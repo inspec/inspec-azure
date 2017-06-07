@@ -55,13 +55,14 @@ class AzureConnection
   def spn
     @subscription_id = azure_subscription_id
 
-    # Check that the credential exists
-    raise format('The specified Azure Subscription cannot be found in your credentials: %s', subscription_id) unless @credentials.sections.include?(subscription_id)
 
     # Determine the client_id, tenant_id and the client_secret
     tenant_id = ENV['AZURE_TENANT_ID'] || @credentials[subscription_id]['tenant_id']
     client_id = ENV['AZURE_CLIENT_ID'] || @credentials[subscription_id]['client_id']
     client_secret = ENV['AZURE_CLIENT_SECRET'] || @credentials[subscription_id]['client_secret']
+
+    # Check that the credential exists
+    raise format('The specified Azure Subscription cannot be found in your credentials: %s', subscription_id) if @subscription_id.nil? && tenant_id.nil? && client_secret.nil? && client_id.nil?
 
     # Return hash of the SPN information
     { subscription_id: subscription_id, client_id: client_id, client_secret: client_secret, tenant_id: tenant_id }
