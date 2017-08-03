@@ -29,7 +29,7 @@ class AzureConnection
     if File.file?(azure_creds_file)
       @credentials = IniFile.load(File.expand_path(azure_creds_file))
     else
-      @credentials = false
+      @credentials = nil
       warn format('%s was not found or not accessible', azure_creds_file)
     end
   end
@@ -57,7 +57,7 @@ class AzureConnection
     @subscription_id = azure_subscription_id
 
     # Check that the credential exists
-    if @credentials
+    unless @credentials.nil?
       raise format('The specified Azure Subscription cannot be found in your credentials: %s', subscription_id) unless @credentials.sections.include?(subscription_id)
     end
 
