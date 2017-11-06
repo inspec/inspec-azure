@@ -54,6 +54,25 @@ resource "azurerm_public_ip" "public_ip_1" {
   domain_name_label            = "linux-external-1-${var.suffix}"
 }
 
+# Create a network security group so it can be tested
+resource "azurerm_network_security_group" "nsg" {
+  name                  = "Inspec-NSG"
+  location              = "${var.location}"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+
+  security_rule {
+    name                        = "SSH-22"
+    priority                    = 100
+    direction                   = "Inbound"
+    access                      = "Allow"
+    protocol                    = "Tcp"
+    source_port_range           = "*"
+    destination_port_range      = "22"
+    source_address_prefix       = "*"
+    destination_address_prefix  = "*"
+  }
+}
+
 # Create the virtual network for the machines
 resource "azurerm_virtual_network" "vnet" {
   name                = "Inspec-VNet"
@@ -68,6 +87,9 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "10.1.1.0/24"
+
+  # Attach the NSG to the subnet
+  network_security_group_id = "${azurerm_network_security_group.nsg.id}"
 }
 
 # Create the NIC for the internal machine
@@ -116,19 +138,10 @@ resource "azurerm_virtual_machine" "vm_linux_internal" {
 
   # Create the OS disk
   storage_os_disk {
-    name          = "linux-internal-osdisk"
-    vhd_uri       = "${azurerm_storage_account.sa.primary_blob_endpoint}${azurerm_storage_container.container.name}/linux-internal-osdisk.vhd"
+    name          = "Linux-Internal-OSDisk-MD"
     caching       = "ReadWrite"
     create_option = "FromImage"
-  }
-
-  # Create 1 data disk to be used for testing
-  storage_data_disk {
-    name          = "linux-datadisk-1"
-    vhd_uri       = "${azurerm_storage_account.sa.primary_blob_endpoint}${azurerm_storage_container.container.name}/linux-internal-datadisk-1.vhd"
-    disk_size_gb  = 15
-    create_option = "empty"
-    lun           = 0
+    managed_disk_type = "Standard_LRS"
   }
 
   # Specify the name of the machine and the access credentials
@@ -166,6 +179,15 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
     create_option = "FromImage"
   }
 
+  # Create 1 data disk to be used for testing
+  storage_data_disk {
+    name          = "linux-datadisk-1"
+    vhd_uri       = "${azurerm_storage_account.sa.primary_blob_endpoint}${azurerm_storage_container.container.name}/linux-internal-datadisk-1.vhd"
+    disk_size_gb  = 15
+    create_option = "empty"
+    lun           = 0
+  }
+
   # Specify the name of the machine and the access credentials
   os_profile {
     computer_name  = "linux-external-1"
@@ -177,3 +199,5 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
     disable_password_authentication = false
   }
 }
+
+

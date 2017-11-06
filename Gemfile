@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'inifile'
-gem 'azure_mgmt_compute', '= 0.14.0'
-gem 'azure_mgmt_resources', '= 0.14.0'
-gem 'azure_mgmt_network', '= 0.14.0'
+gem 'azure_mgmt_resources', '~> 0.15'
 gem 'bundle'
 
 group :development do
@@ -11,6 +9,7 @@ group :development do
   gem 'rubocop'
   gem 'github_changelog_generator'
   gem 'pry-coolline'
+  # gem 'pry-byebug'
   gem 'passgen'
 end
 

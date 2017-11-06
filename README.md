@@ -1,8 +1,16 @@
 # InSpec for Azure
 
+This profile has been been completely rewritten so that it is able to check for _any_ resource in Azure, previous versions only supported 4 resource types.
+
+Whenever a resource is retrieved from Azure its attributes are interrogated and turned into things that can be called during tests on that resource. By making the profile dynamic it means that more or less any resource that is available in Azure can be tested.
+
+**BREAKING CHANGE: If you having been using previous versions of this repository then you must change your tests to work with the new profile. There is now only one control that can be called. All integration tests have been modified to work with the control name**
+
+To determine what methods can be called against a resource please find the resource in https://resources.azure.com. The attributes of the resource are turned into the methods that can be called. Please refer to the examples further down the page or the integration tests for more information.
+
 ## Roadmap
 
-This repository is the development repository for InSpec for VmWare. Once [RFC Platforms](https://github.com/chef/inspec/issues/1661) is fully implemented in InSpec, this repository is going to be merged into core InSpec.
+This repository is the development repository for InSpec for Azure. Once [RFC Platforms](https://github.com/chef/inspec/issues/1661) is fully implemented in InSpec, this repository is going to be merged into core InSpec.
 
 As of now, Azure resources are implemented as an InSpec resource pack. It will ship with the required resources to write your own Azure tests:
 
@@ -14,7 +22,7 @@ As of now, Azure resources are implemented as an InSpec resource pack. It will s
 
 ## Get Started
 
-This profile uses the Azure Ruby SDK and as such requires a Service Principal Name (SPN) to be created in the Azure subscription that is being tested.
+This profile uses one of the Azure Ruby SDK libraries 'Azure Resource Management' and as such requires a Service Principal Name (SPN) to be created in the Azure subscription that is being tested.
 
 This can be done on the command line or from the Azure Portal
 
@@ -100,149 +108,53 @@ depends:
 
 ### Add controls
 
-Since your profile depends on the resource pack, you can use those resources in your own profile:
+Since your profile depends on the resource pack, you can use those resources in your own profile. In this example a virtual machine in the specified resource group is being tested.
+
+Using the https://resources.azure.com portal the virtual machine has the following attributes.
+
+![Virtual Machine Attributes](images/linux_internal_vm_resource.png)
+
+Using this information tests can be written, for example:
 
 ```ruby
 control 'azure-1' do
   impact 1.0
   title 'Checks that the machine was built from the correct image'
 
-  describe azure_virtual_machine(name: 'example-01', resource_group: 'MyResourceGroup') do
-    its('sku') { should eq '16.04.0-LTS' }
-    its('publisher') { should ieq 'Canonical' }
-    its('offer') { should ieq 'UbuntuServer' }
+  describe azure_resource(group_name: 'Inspec-Azure', name: 'Linux-Internal-VM') do
+    its('properties.storageProfile.imageReference.publisher') { should cmp 'Canonical' }
+    its('properties.storageProfile.imageReference.offer') { should cmp 'UbuntuServer' }
+    its('properties.storageProfile.imageReference.sku') { should cmp '16.04.0-LTS' }
   end
 end
 ```
+
+There are a few different ways in which tests can be written, which mean that arrays can be tested. A lot of the different ways and techniques are shown and documented in the integrations tests which are highly recommended reading.
 
 ### Available Resources
 
-- `azure_resource_group` - This resource reads information about the resources in the specified resource group
+- `azure_resource` - This resource using the options to determine what resource(s) are to be retrieved
 
-| Resource Name | Resources | Description |
-|---------------|-----------|-------------|
-| azure_rg | location | Where the item has been deployed |
-| | total | The total number of resources in the resource group |
-| | nic_count | Helper method to return the number of Network Interface Cards (NIC) that exist |
-| | vm_count | Helper method to return the number of Virtual Machines(VM) that exist |
-| | vnet_count | Helper method to return the number of Virtual Networks (VNET) that exist |
-| | nsg_count | Helper method to return the number of Network Security Groups (NSG) that exist |
-| | sa_count | Helper method to return the number of Storage Accounts (SA) that exist |
-| | public_ip_count | Helper method to return the number of Public IP Addresses that exist |
-| | managed_disk_image_count | Helper method to return the number of Managed Disk Images that exist |
-| | managed_disk_count | Helper method to return the number of Managed Disks that exist |
-| | contains | Used to determine if a specific item exists |
+The following table describes the options that can be passed to the resource
 
-This resource also has a FilterTable which means that it is possible to check for items that do not yet have a helper method.
+| Name | Description |
+|------|-------------|
+| group_name | Name of the resource group in which to find resources | 
+| name | Name of the specific resource to look for |
+| type | Type of resources to look for |
+| apiversion | When using the `name` option to look for a specific resource an API Version can be set. If not set the latest version available for that type of resource will be used |
 
-#### Test for the number of storage accounts
+There are _normally_ three standard tests that can be performed on a resource.
 
-```ruby
-control 'azure-1' do
-  impact 1.0
-  title 'Checks that there is only one storage account in the resource group'
+| Name | Description |
+|------|-------------|
+| name | Name of the resource |
+| type | Type of resource |
+| location | Location of the resource within Azure |
 
-  describe azure_resource_group(name: 'MyResourceGroup').where { type == 'Microsoft.Storage/storageAccounts' }.entries do
-    its('count') { should eq 1 }
-  end
-end
-```
+All of the other tests are dynamcially created when a resource is interrogated. Please refer to the integrations tests for exampls on what can be tests. Also refer to https://resources.azure.com to determine the attributes on a resource that are not covered in the integration tests.
 
-#### Ensure that a specific item exists
-
-```ruby
-control 'azure-1' do
-  impact 1.0
-  title 'Checks a resource with the name "example-VM" exists'
-
-  describe azure_resource_group(name: 'MyResourceGroup').contains(parameter: 'name', value: 'example-VM') do
-    it { should be true }
-  end
-end
-```
-
-- `azure_vm` - This resource reads information about a virtual machine in the specified resource group
-
-| Resource Name | Resources | Description |
-|---------------|-----------|-------------|
-| azure_vm | publisher | Publisher that provided the image in the marketplace |
-| | offer | The offer of the image |
-| | sku | The SKU being used |
-| | size | The size of the machine |
-| | location | Where the machine has been deployed |
-| | has_boot_diagnostics? | Whether boot diagnostics have been enabled or not |
-| | nic_count | How many network cards are attached to the machine |
-| | admin_username | The admin username that has been assigned to the machine |
-| | computername | Computer name of the machine in the operating system. This maybe different to the VM name as seen in Azure |
-| | hostname | Alias for computername |
-| | password_authentication? | If password authentication is enabled. For Windows machines this is always true |
-| | ssh_key_count | How many SSH public keys have been added to the machine. For Windows this is always 0 |
-| | os_type | The type of operating system. Linux or Windows |
-| | private_ipaddresses | Returns an array of all the IP addresses for all the NICs on the machine |
-| | has_public_ipaddress? | Whether the machine has been allocated an IP address or not |
-| | domain_name_label | If the machine has a public IP address then return the domain name label it has been assigned |
-
-For the resources that start with `has_` the following construct can be used
-
-```ruby
-it { should have_boot_diagnostics }
-```
-
-- `azure_vm_datadisks` - Resource to read the data disks for a machine and check that they are of the correct size etc
-
-| Resource Name | Resources | Description |
-|---------------|-----------|-------------|
-| azure_vm_datadisks | has_data_disks? | Boolean test to see if a machine has datadisks |
-| | count | Returns the number of data disks attached to the machine |
-| | where | Filter that allows for different tests to be performed, see examples below |
-
-The data disks resource now supports Managed Disks, however the data that is returned is different from that for a VHD.
-
-When data disks are retrieved from a machine they are given as an array. The `where` filter will interogate the array according the criteria it is given.
-
-For items that do not exist a `nil` value will be returned.
-
-###### VHD propertiies
-
-The followin attributes are available in the filter:
-
- - `disk` - Disk number (0 index based)
- - `name` - Name of the disk
- - `size` - The size of the disk in GB
- - `caching` - What sort of caching is enabled on the data disk
- - `create_option` - How the disk was created
- - `lun` - The LUN number
- - `uri` - Full URI to the disk in Blob storage
- - `storage_account` - The name of the storage account in which the Blob storage exists
-
-###### Managed Disk Properties
-
-The following attributes are available in the filter:
-
- - `disk` - Disk number (0 index based)
- - `name` - Name of the disk
- - `size` - The size of the disk in GB
- - `location` - Location of the disk
- - `account_type` - The stoarge type. e.g. `Standard_LRS`
-
-
-#### Test for 1 disk with a size greater than 10gb
-
-```ruby
-control 'azure-1' do
-  impact 1.0
-  title 'Checks that the machine has exactly one data disk and it is over 10gb in size'
-
-  describe azure_virtual_machine(name: 'example-01', resource_group: 'MyResourceGroup') do
-    its('has_disks?') { should be true }
-    its('count') { should eq 1 }
-  end
-
-  describe azure_virtual_machine_datadisks(name: 'example-01', resource_group: 'MyResourceGroup').where { disk == 0 and size > 10 } do
-    its('entries') { should_not be_empty }
-  end
-end
-```
+When multiple resources are returned a FilterTable is created. This means it is possible to retrieve all of hte resources in a resource group and interrogate them within the testing block using the `.where` function on the FilterTable. Please refer to the `test/integration/verify/controls/resources.rb` file for an example of this.
 
 ## Integration Testing
 
@@ -258,6 +170,16 @@ rake test:integration  # Perform Integration Tests
 ```
 
 As with using the resources themselves the integration tests rely on a Service Principal Name being defined. Please see the information at the start of this page on how to generate this.
+
+Due to the fact that any resource can now be tested the integration tests now check the following Azure resource types:
+
+ - Microsoft.Compute/virtualMachines
+ - Microsoft.Compute/disks
+ - Microsoft.Network/networkInterfaces
+ - Microsoft.Network/virtualNetworks
+ - Microsoft.Network/networkSecurityGroups
+ - Microsoft.Network/publicIPAddresses
+ - Microsoft.Storage/storageAccounts
 
 ## License
 

@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 require 'ms_rest_azure'
 require 'azure_mgmt_resources'
-require 'azure_mgmt_compute'
-require 'azure_mgmt_network'
 require 'inifile'
 
 # Class to manage the connection to Azure to retrieve the information required about the resources
@@ -10,12 +10,15 @@ require 'inifile'
 #
 # @attr_reader [String] subscription_id ID of the subscription in which resources are to be tested
 class AzureConnection
-  attr_reader :subscription_id
+  attr_reader :subscription_id, :apis
 
   # Constructor which reads in the credentials file
   #
   # @author Russell Seymour
   def initialize
+    # Ensure that the apis is a hash table
+    @apis = {}
+
     # If an INSPEC_AZURE_CREDS environment has been specified set the
     # the credentials file to that, otherwise set the one in home
     azure_creds_file = ENV['AZURE_CREDS_FILE']
@@ -37,15 +40,26 @@ class AzureConnection
   # Connect to Azure using the specified credentials
   #
   # @author Russell Seymour
-  def connection
+  def client
     # If a connection already exists then return it
-    return @conn if defined?(@conn)
+    return @client if defined?(@client)
 
     creds = spn
 
     # Create a new connection
     token_provider = MsRestAzure::ApplicationTokenProvider.new(creds[:tenant_id], creds[:client_id], creds[:client_secret])
-    @conn = MsRest::TokenCredentials.new(token_provider)
+    token_creds = MsRest::TokenCredentials.new(token_provider)
+
+    # Create the options hash
+    options = {
+      credentials: token_creds,
+      subscription_id: azure_subscription_id,
+      tenant_id: creds[:tenant_id],
+      client_id: creds[:client_id],
+      client_secret: creds[:client_secret],
+    }
+
+    @client = Azure::Resources::Profiles::Latest::Mgmt::Client.new(options)
   end
 
   # Method to retrieve the SPN credentials
@@ -68,6 +82,51 @@ class AzureConnection
 
     # Return hash of the SPN information
     { subscription_id: subscription_id, client_id: client_id, client_secret: client_secret, tenant_id: tenant_id }
+  end
+
+  # Returns the api version for the specified resource type
+  #
+  # If an api version has been specified in the options then the apis version table is updated
+  # with that value and it is returned
+  #
+  # However if it is not specified, or multiple types are being interrogated then this method
+  # will interrogate Azure for each of the types versions and pick the latest one. This is added
+  # to the apis table so that it can be retrieved quickly again of another one of those resources
+  # is encountered again in the resource collection.
+  #
+  # @param string resource_type The resource type for which the API is required
+  # @param hash options Options have that have been passed to the resource during the test.
+  # @option opts [String] :group_name Resource group name
+  # @option opts [String] :type Azure resource type
+  # @option opts [String] :name Name of specific resource to look for
+  # @option opts [String] :apiversion If looking for a specific item or type specify the api version to use
+  #
+  # @return string API Version of the specified resource type
+  def get_api_version(resource_type, options)
+    # if an api version has been set in the options, add to the apis hashtable with
+    # the resource type
+    if options[:apiversion]
+      apis[resource_type] = options[:apiversion]
+    else
+      # only attempt to get the api version from Azure if the resource type
+      # is not present in the apis hashtable
+      unless apis.key?(resource_type)
+
+        # determine the namespace for the resource type
+        namespace, type = resource_type.split(%r{/})
+
+        provider = client.providers.get(namespace)
+
+        # get the latest API version for the type
+        # assuming that this is the first one in the list
+        api_versions = (provider.resource_types.find { |v| v.resource_type == type }).api_versions
+        apis[resource_type] = api_versions[0]
+
+      end
+    end
+
+    # return the api version for the type
+    apis[resource_type]
   end
 
   private
@@ -98,145 +157,5 @@ class AzureConnection
 
     # Return the ID to the calling function
     id
-  end
-end
-
-# Helper class to configure and give access to the various management components of Azure
-# Also provides shortcuts for certain components, such as returing the VM object and performing
-# all the checks that need to be done before retrieving the VM
-#
-# @author Russell Seymour
-# @attr_reader [MsRest::TokenCredentials] azure Azure connection credentials
-# @attr_reader [ComputeManagement] compute_mgmt Compute object for retrieving details about VMs
-# @attr_reader [ResourceManagement] resource_mgmt Resource object for accessing specific resources and resoure groups
-# @attr_reader [NetworkManagement] network_mgmt Network object for retrieving all information about Network cards and IP configurations
-class Helpers
-  attr_reader :azure, :compute_mgmt, :resource_mgmt, :network_mgmt
-
-  # Constructor to configure the various objects that are required for Inspec testing
-  #
-  # @author Russell Seymour
-  def initialize
-    # Azure connection
-    @azure = AzureConnection.new
-
-    # Create the necessary clients
-    @compute_mgmt = ComputeManagement.new(azure)
-    @resource_mgmt = ResourceManagement.new(azure)
-    @network_mgmt = NetworkManagement.new(azure)
-  end
-
-  # Retrieve the named virtual machine from Azure
-  #
-  # This is specified here as it combines two different resource types, Compute and Resource Groups
-  #
-  # @author Russell Seymour
-  #
-  # @return [] VM object
-  #
-  def get_vm(name, rg_name)
-    # Ensure that the resource group exists
-    unless resource_mgmt.client.resource_groups.check_existence(rg_name)
-      raise "The Resource group cannot be found: #{rg_name}"
-    end
-
-    # Return if no name has been specified
-    return if name.nil?
-
-    # get a vm from the named resource group
-    begin
-      compute_mgmt.client.virtual_machines.get(rg_name, name)
-    # TODO: we should avoid doing a general rescue, will be covered with InSpec 2.0 integration
-    rescue => e
-      e.error_message
-    end
-  end
-end
-
-# Class to return a NetworkManagement client for use with NICs and Public IP Addresses
-#
-# @author Russell Seymour
-# @attr_reader [Azure::ARM::Network::NetworkManagementClient] client Azure Network Management cient
-class ResourceManagement
-  attr_reader :client
-
-  # Constructor for the class.  Creates the new Network Management client object
-  #
-  # @author Russell Seymour
-  #
-  # @param [MsRest::TokenCredentials] azure Connection object for Azure
-  def initialize(azure)
-    @client = Azure::ARM::Resources::ResourceManagementClient.new(azure.connection)
-    client.subscription_id = azure.subscription_id
-  end
-
-  # Determine if the specified resource group exists in the subscription_id
-  #
-  # @author Russell Seymour
-  #
-  # @param [String] name Name of the resource group
-  #
-  # @return [Boolean] Whether the resource group exists or not
-  def exists(name)
-    client.resource_groups.check_existence(name)
-  end
-
-  # Retrieve the named resource group if it exists
-  #
-  # @author Russell Seymour
-  #
-  # @param [String] name Name of the resource group
-  #
-  # @return [Azure::ARM::Resources::Models::ResourceGroup] Object containing information about the resource group
-  def get_resource_group(name)
-    client.resource_groups.get(name) if exists(name)
-  end
-
-  # Get all of the resources that are contained within the resource group if it exists
-  #
-  # @author Russell Seymour
-  #
-  # @param [String] name Name of the resource group
-  #
-  # @return [Azure::ARM::Resources::Models::ResourceListResult] Object containing array of all the resources
-  def get_resources(name)
-    client.resources.list_by_resource_group_as_lazy(name) if exists(name)
-  end
-end
-
-# Class to return a ComputeManagement client to get information about VMs
-#
-# @author Russell Seymour
-#
-# @attr_reader [Azure::ARM::Compute::ComputeManagementClient] client ComputeManagement client object
-class ComputeManagement
-  attr_reader :client
-
-  # Constructor for the class.  Creates the new Network Management client object
-  #
-  # @author Russell Seymour
-  #
-  # @param [MsRest::TokenCredentials] azure Connection object for Azure
-  def initialize(azure)
-    @client = Azure::ARM::Compute::ComputeManagementClient.new(azure.connection)
-    client.subscription_id = azure.subscription_id
-  end
-end
-
-# Class to return a NetworkManagement client for use with NICs and Public IP Addresses
-#
-# @author Russell Seymour
-# @attr_reader [Azure::ARM::Network::NetworkManagementClient] client Azure Network Management cient
-class NetworkManagement
-  attr_reader :client
-
-  # Constructor for the class.  Creates the new Network Management client object
-  #
-  # @author Russell Seymour
-  #
-  # @param [MsRest::TokenCredentials] azure Connection object for Azure
-  def initialize(azure)
-    @client = Azure::ARM::Network::NetworkManagementClient.new(azure.connection)
-    client.subscription_id = azure.subscription_id
   end
 end
