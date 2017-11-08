@@ -1,11 +1,11 @@
 title 'Virtual Network Properties'
 
-control 'azure-virtual-network-2.0' do
+control 'azure-generic-virtual-network-2.0' do
 
   impact 1.0
   title 'Ensure that the virtual network has been created with the correct address space and subnet'
 
-  describe azure_resource(group_name: 'Inspec-Azure',
+  describe azure_generic_resource(group_name: 'Inspec-Azure',
                           name: 'Inspec-VNet') do
 
     # Check that this named resource is indeed a virtual network

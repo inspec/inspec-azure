@@ -1,13 +1,13 @@
 
 title 'External Virtual Machine Properties'
 
-control 'azure-vm-external-2.0' do
+control 'azure-generic-vm-external-2.0' do
 
   impact 1.0
   title 'Ensure External VM was built with the correct Image and has the correct properties'
 
   # Ensure that the virtual machine has been created with the correct attributes
-  describe azure_resource(group_name: 'Inspec-Azure',
+  describe azure_generic_resource(group_name: 'Inspec-Azure',
                           name: 'Linux-External-VM') do
 
     its('location') { should cmp 'westeurope' }

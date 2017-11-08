@@ -1,12 +1,12 @@
 title 'Managed Disk'
 
-control 'azure-managed-disk-1.0' do
+control 'azure-generic-managed-disk-1.0' do
 
   impact 1.0
   title 'A managed disk was created for on the of machines, ensure that it is configured correctly'
 
   # Ensure that the virtual machine has been created with the correct attributes
-  describe azure_resource(group_name: 'Inspec-Azure', name: 'Linux-Internal-OSDisk-MD') do
+  describe azure_generic_resource(group_name: 'Inspec-Azure', name: 'Linux-Internal-OSDisk-MD') do
 
     # Ensure that it is attached, or 'managedBy' the correct machine
     its('managed_by') { should match 'Linux-Internal-VM' }

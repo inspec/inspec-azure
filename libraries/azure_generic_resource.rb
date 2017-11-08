@@ -2,8 +2,8 @@
 
 require 'azure_backend'
 
-class AzureResource < Inspec.resource(1)
-  name 'azure_resource'
+class AzureGenericResource < Inspec.resource(1)
+  name 'azure_generic_resource'
 
   desc '
     Inspec Resource to interrogate any Resource type in Azure

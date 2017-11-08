@@ -1,11 +1,11 @@
 title 'Public IP Address Properties'
 
-control 'azure-public-ip-address-1.0' do
+control 'azure-generic-public-ip-address-1.0' do
 
   impact 1.0
   title 'Ensure that the Public IP Address has been configured correctly'
 
-  describe azure_resource(group_name: 'Inspec-Azure', name: 'Inspec-PublicIP-1') do
+  describe azure_generic_resource(group_name: 'Inspec-Azure', name: 'Inspec-PublicIP-1') do
 
     its('type') { should cmp 'Microsoft.Network/publicIPAddresses' }
     its('location') { should cmp 'westeurope' }

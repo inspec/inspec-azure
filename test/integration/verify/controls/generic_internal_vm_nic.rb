@@ -1,13 +1,13 @@
-title 'External VM Network Interface Card'
+title 'Internal VM Network Interface Card'
 
-control 'azure-vm-external-nic-2.0' do
+control 'azure-generic-vm-internal-nic-2.0' do
 
   impact 1.0
-  title 'Ensure that the NIC for the external VM is correctly setup'
+  title 'Ensure that the NIC for the internal VM is correctly setup'
 
   # Ensure that the virtual machine has been created with the correct attributes
-  describe azure_resource(group_name: 'Inspec-Azure',
-                          name: 'Inspec-NIC-2') do
+  describe azure_generic_resource(group_name: 'Inspec-Azure',
+                          name: 'Inspec-NIC-1') do
 
     # There should be no tags
     its('tags.count') { should eq 0 } 
@@ -21,10 +21,8 @@ control 'azure-vm-external-nic-2.0' do
     # Ensure that the NIC is setup correctly
     describe described_class.properties.ipConfigurations.first do
       its('name') { should cmp 'ipConfiguration1' }
-      its('properties.privateIPAllocationMethod') { should cmp 'Dynamic' }
-
-      # This NIC should have a public IP Address associated to it
-      its('properties.publicIPAddress.id') { should match 'Inspec-PublicIP-1' }
+      its('properties.privateIPAddress') { should cmp '10.1.1.10' }
+      its('properties.privateIPAllocationMethod') { should cmp 'Static' }
 
       # Ensure that it is connected to the correct subnet
       its('properties.subnet.id') { should match 'Inspec-Subnet' }
@@ -35,7 +33,7 @@ control 'azure-vm-external-nic-2.0' do
     its('properties.dnsSettings.appliedDnsServers.count') { should eq 0 }
 
     # This NIC should be connected to the correct machine
-    its('properties.virtualMachine.id') { should match 'Linux-External-VM' }
+    its('properties.virtualMachine.id') { should match 'Linux-Internal-VM' }
 
     its('properties.enableAcceleratedNetworking') { should be false }
     its('properties.enableIPForwarding') { should be false }

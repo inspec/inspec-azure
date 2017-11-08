@@ -1,13 +1,13 @@
 
 title 'Check Azure Resources'
 
-control 'azure-resource-group-resources-1.0' do
+control 'azure-generic-resource-group-resources-1.0' do
 
   impact 1.0
   title 'Check that the resource group has the correct resources'
 
   # Ensure that the expected resources have been deployed
-  describe azure_resource(group_name: 'Inspec-Azure') do
+  describe azure_generic_resource(group_name: 'Inspec-Azure') do
     its('total') { should eq 9 }
     its('Microsoft.Compute/virtualMachines') { should eq 2 }
     its('Microsoft.Network/networkInterfaces') { should eq 2 }
