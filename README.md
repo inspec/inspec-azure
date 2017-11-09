@@ -121,7 +121,7 @@ control 'azure-1' do
   impact 1.0
   title 'Checks that the machine was built from the correct image'
 
-  describe azure_resource(group_name: 'Inspec-Azure', name: 'Linux-Internal-VM') do
+  describe azure_generic_resource(group_name: 'Inspec-Azure', name: 'Linux-Internal-VM') do
     its('properties.storageProfile.imageReference.publisher') { should cmp 'Canonical' }
     its('properties.storageProfile.imageReference.offer') { should cmp 'UbuntuServer' }
     its('properties.storageProfile.imageReference.sku') { should cmp '16.04.0-LTS' }
@@ -133,7 +133,7 @@ There are a few different ways in which tests can be written, which mean that ar
 
 ### Available Resources
 
-- `azure_resource` - This resource using the options to determine what resource(s) are to be retrieved
+- `azure_generic_resource` - This resource using the options to determine what resource(s) are to be retrieved
 
 The following table describes the options that can be passed to the resource
 
