@@ -34,7 +34,8 @@ resource "azurerm_storage_account" "sa" {
   name                = "${var.storage_account_name}"
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
-  account_type        = "Standard_LRS"
+  account_tier        = "Standard"
+  account_replication_type = "LRS"
 }
 
 # Create the container in which the hard disks for the machine(s) will be stored
@@ -154,6 +155,13 @@ resource "azurerm_virtual_machine" "vm_linux_internal" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
+
+  # Add boot diagnostics to the machine. These will be added to the 
+  # created storage acccount
+  boot_diagnostics {
+    enabled = true
+    storage_uri = "${azurerm_storage_account.sa.primary_blob_endpoint}"
+  }
 }
 
 resource "azurerm_virtual_machine" "vm_linux_external" {
@@ -196,7 +204,11 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
   }
 
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+    ssh_keys {
+      path = "/home/azure/.ssh/authorized_keys"
+      key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOxB7GqUxppqRBG5pB2fkkhlWkWUWmFjO3ZEc+VW70erOJWfUvhzBDDQziAOVKtNF2NsY0uyRJqwaP1idL0F7GDQtQl+HhkKW1gOCoTrNptJiYfIm05jTETRWObP0kGMPoAWlkWPBluUAI74B4nkvg7SKNpe36IZhuA8/kvVjxBfWy0r/b/dh+QEIb1eE8HfELAN8SrvrydT7My7g0YFT65V00A2HVa5X3oZaBXRKbmd5gZXBJXEbgHZqA9+NnIQkZXH0vkYYOQTANB8taVwjNVftpXzf2zEupONCYOOoIAep2tXuv2YmWuHr/Y5rCv2mK28ZVcM7W9UmwM0CMHZE7 azure@inspec.local"
+    }
   }
 }
 

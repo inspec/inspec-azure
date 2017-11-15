@@ -133,24 +133,10 @@ There are a few different ways in which tests can be written, which mean that ar
 
 ### Available Resources
 
-- `azure_generic_resource` - This resource using the options to determine what resource(s) are to be retrieved
+The following resources are available in the Inspec Azure Profile
 
-The following table describes the options that can be passed to the resource
-
-| Name | Description |
-|------|-------------|
-| group_name | Name of the resource group in which to find resources | 
-| name | Name of the specific resource to look for |
-| type | Type of resources to look for |
-| apiversion | When using the `name` option to look for a specific resource an API Version can be set. If not set the latest version available for that type of resource will be used |
-
-There are _normally_ three standard tests that can be performed on a resource.
-
-| Name | Description |
-|------|-------------|
-| name | Name of the resource |
-| type | Type of resource |
-| location | Location of the resource within Azure |
+ - [Azure Generic Resource](docs/resources/azure_generic_resource.rb)
+ - [Azure Virtual Machine](docs/resources/azure_virtual_machine.rb)s
 
 All of the other tests are dynamcially created when a resource is interrogated. Please refer to the integrations tests for exampls on what can be tests. Also refer to https://resources.azure.com to determine the attributes on a resource that are not covered in the integration tests.
 

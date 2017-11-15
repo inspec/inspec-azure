@@ -62,7 +62,7 @@ control 'azure-generic-vm-external-2.0' do
     describe vm.properties.osProfile do
       its('computerName') { should eq 'linux-external-1' }
       its('adminUsername') { should eq 'azure' }
-      its('linuxConfiguration.disablePasswordAuthentication') { should be false }
+      its('linuxConfiguration.disablePasswordAuthentication') { should be true }
     end
   end
 

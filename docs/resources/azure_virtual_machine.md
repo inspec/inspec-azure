@@ -8,59 +8,90 @@ Use the `azure_virtual_machine` InSpec audit resource to ensure that a Virtual M
 
 ## References
 
-- [Azure Ruby SDK - Compute](https://github.com/Azure/azure-sdk-for-ruby/tree/master/management/azure_mgmt_compute)
+- [Azure Ruby SDK - Resources](https://github.com/Azure/azure-sdk-for-ruby/tree/master/management/azure_mgmt_resources)
 
 ## Syntax
 
 The name of the machine and the resourece group are required as attributes to the resource.
 
 ```ruby
-describe azure_virtual_machine(name: 'MyVM', resource_group: 'MyResourceGroup') do
-  its('matcher') { should eq 'value' }
+describe azure_virtual_machine(group_name: 'MyResourceGroup', name: 'MyVM') do
+  its('attribute') { should eq 'value' }
 end
 ```
 
 where
 
 * `MyVm` is the name of the virtual machine as seen in Azure. (It is **not** the hostname of the machine)
-* `MyResourceGroup` is the name of the resouce group that the machine is in.
-* `matcher` is one of
-  - `publisher`
-  - `offer`
-  - `sku`
-  - `size`
-  - `location`
-  - `boot_diagnostics?`
-  - `nic_count`
+* `MyResourceGroup` is the name of the resource group that the machine is in.
+* `attribute` is one of
+  - [`type`](#type)
+  - [`location`](#location)
+  - [`name`](#name)
+  - [`publisher`](#publisher)
+  - [`offer`](#offer)
+  - [`sku`](#sku)
+  - [`os_type`](#"os_type")
+  - [`os_disk_name`](#os_disk_name)
+  - [`has_managed_osdisk?`](#has_managed_osdisk?)
+  - [`caching`](#caching)
+  - `create_option`
+  - `disk_size_gb`
+  - `has_data_disks?`
+  - `data_disk_count`  
+  - `storage_account_type`
+  - `vm_size`
+  - `computer_name`
   - `admin_username`
-  - `computername`
-  - `hostname`
+  - `has_nics?`
+  - `nic_count`
+  - `connected_nics`
+  - `has_password_authentication?`
   - `password_authentication?`
+  - `has_custom_data?`
+  - `custom_data?`
+  - `has_ssh_keys?`
+  - `ssh_keys?`
   - `ssh_key_count`
-  - `os_type`
-  - `private_ipaddresses`
-  - `has_public_ipaddress?`
-  - `domain_name_label`
+  - `ssh_keys`
+  - `has_boot_diagnostics?`
+  - `boot_diagnostics_storage_uri`
 * `value` is the expected output from the matcher
 
 For example:
 
 ```ruby
-describe azure_virtual_machine(name: 'chef-automate-01', resource_group: 'ChefAutomate') do
+describe azure_virtual_machine(group_name: 'Inspec-Azure', name: 'Linux-Internal-VM') do
   its('os_type') { should eq 'Linux' }
-  its('boot_diagnostics?') { should be false }
+  it { should have_boot_diagnostics }
 end
 ```
 
-## Matchers
+## Testers
 
-This InSpec audit resource has the following matchers:
+There are a number of built in comparison operrtors that are available to test the result with an expected value.
 
-### eq
+For information on all that are available please refer to the [Inspec Matchers Reference](https://www.inspec.io/docs/reference/matchers/) page.
 
-Use the `eq` matcher to test the equality of two values: `its('Port') { should eq '22' }`.
+## Attributes
 
-Using `its('Port') { should eq 22 }` will fail because `22` is not a string value! Use the `cmp` matcher for less restrictive value comparisons.
+This InSpec audit resource has the following attributes that can be tested:
+
+### type
+
+THe Azure Resource type. For a virtual machine this will always return `Microsoft.Compute/virtualMachines`
+
+### location
+
+Where the machine is located
+
+```ruby
+its('location') { should eq 'westeurope' }
+```
+
+### name
+
+Name of the Virtual Machine in Azure. Be aware that this is not the computer name or hostname, rather the name of the machine when seen in the Azure Portal.
 
 ### publisher
 
@@ -80,47 +111,103 @@ The item from the publisher that was used to create the image.
 
 This will be `nil` if the machine was created from a custom image.
 
-### size
+### os_type
+
+Test that returns the classification in Azure of the operating system type. Ostensibly this will be either `Linux` or `Windows`.
+
+### os_disk_name
+
+Return the name of the operating system disk attached to the machine.
+
+### has_managed_osdisk?
+
+Determine if the operating system disk is a Managed Disks or not.
+
+This test can be used in the following way:
+
+```ruby
+it { should have_managed_osdisk }
+```
+
+### caching
+
+Returns the type of caching that has been set on the operating system disk.
+
+### create_option
+
+When the operating system disk is created, how it was created is set as an attribute. This attribute will return has the disk was created.
+
+### disk_size_gb
+
+Return the size of the operating system disk.
+
+### has_data_disks?
+
+Denotes if the machine has data disks attached to it or not.
+
+```ruby
+it { should have_data_disks }
+```
+
+### data_disk_count
+
+Return the number of data disks that are attached to the machine
+
+### storage_account_type
+
+This provides the storage account type for a machine that is using managed disks for the operating system disk.
+
+### vm_size
 
 The size of the machine in Azure
 
 ```ruby
-its('size') { should eq 'Standard_DS2_v2' }
+its('vm_size') { should eq 'Standard_DS2_v2' }
 ```
 
-### location
+### computer_name
 
-Where the machine is located
+The computername of the machine. This is what was assigned to the machine during deployment and is what _should_ be returned by the `hostname` command.
+
+### admin_username
+
+The admin username that was assigned to the machine
+
+NOTE: Azure does not allow the use of `Administrator` as the admin username on a Windows machine
+
+## has_nics?
+
+Returns a boolean to state if the machine has NICs connected or not.
+
+This has can be used in the following way:
 
 ```ruby
-its('location') { should eq 'West Europe' }
-```
-
-### boot_diagnostics?
-
-Boolean test to see if boot diagnostics have been enabled on the machine
-
-```ruby
-it { should have_boot_diagnostics }
+it { should have_nics }
 ```
 
 ### nic_count
 
 The number of network interface cards that have been attached to the machine
 
-### admin_username
+### connected_nics
 
-The admin username that was assigned to the machine
+This returns an array of the NIC ids that are connected to the machine. This means that it possible to check that the machine has the correct NIC(s) attached and thus on the correct subnet.
 
-NOTE:  Azure does not allow the use of `Administrator` as the admin username on a Windows machine
+```ruby
+its('connected_nics') { should include /Inspec-NIC-1/ }
+```
 
-### computername
+Note the use of the regular expression here. This is because the NIC id is a long string that contains the subscription id, resource group, machine id as well as other things. By using the regular expression the NIC can be checked withouth breaking this string up. It also means that other tests can be performed.
 
-The computername of the machine. This is what was assigned to the machine during deployment and is what _should_ be returned by the `hostname` command.
+An example of the id string is `/subscriptions/1e0b427a-d58b-494e-ae4f-ee558463ebbf/resourceGroups/Inspec-Azure/providers/Microsoft.Network/networkInterfaces/Inspec-NIC-1`
 
-### hostname
+### has_password_authentication?
 
-Alias for computername.
+Returns a boolean to denote if the machine is accessible using a password.
+
+```ruby
+it { should have_password_authentication }
+```
 
 ### password_authentication?
 
@@ -132,44 +219,85 @@ its('password_authentication?') { should be false }
 
 This only applies to Linux machines and will always return `true` on Windows.
 
+### has_custom_data?
+
+Returns a boolean stating if the machine has custom data assigned to it.
+
+```ruby
+it { should have_custom_data }
+```
+
+### custom_data?
+
+Boolean to state if the machine has custom data or not
+
+```ruby
+its('custom_data') { should be true }
+```
+
+### has_ssh_keys?
+
+Boolean to state if the machine has SSH keys assigned to it
+
+```ruby
+it { should have_ssh_keys }
+```
+
+For a Windows machine this will always be false.
+
+### ssh_keys?
+
+Boolean to state of the machine is accessible using SSH keys
+
+```ruby
+its('ssh_keys?') { should be true }
+```
+
 ### ssh_key_count
 
 Returns how many SSH keys have been applied to the machine.
 
 This only applies to Linux machines and will always return `0` on Windows.
 
-### os_type
+### ssh_keys
 
-Generic test that returns either `Linux` or `Windows`.
+Returns an array of the keys that are assigned to the machine. This is check if the correct keys are assigned.
 
-### private_ipaddresses
-
-Returns an array of all the private IP addresses that are assigned to the machine.  This is because a machine can multiple NICs and each NIC can have multiple IP Configurations.
+Most SSH public keys have a signature at the end of them that can be tested. For example:
 
 ```ruby
-its('private_ipaddresses') { should include '10.1.1.10' }
+its('ssh_keys') { should include /azure@inspec.local/ }
 ```
 
-### has_public_ipaddress?
+### boot_diagnostics?
 
-Returns boolean to state if the machine has been allocated a Public IP Address.
+Boolean test to see if boot diagnostics have been enabled on the machine
 
 ```ruby
-it { should have_public_ip_address }
+it { should have_boot_diagnostics }
 ```
 
-### domain_name_label
+### boot_diagnostics_storage_uri
 
-If a machine has been allocated a Public IP Addresse test to see what domain name label has been set.
+If boot diagnostics are enabled for the machine they will be saved in a storage account. This method returns the URI for the storage account.
+
+```ruby
+its('boot_diagnostics_storage_uri') { should match 'ghjgjhgjg' }
+```
 
 ## Examples
 
 The following examples show how to use this InSpec audit resource.
 
+Please refer the integration tests for more in depth examples:
+
+ - [Virtual Machine External VM](../../test/integration/verify/controls/virtual_machine_external_vm.rb)
+ - [Virtual Machine Internal VM](../../test/integration/verify/controls/virtual_machine_internal_vm.rb)
+
 ### Test that the machine was built from a Windows image
 
 ```ruby
-describe azure_virtual_machine(name: 'chef-ws-01', resource_group: 'ChefAutomate') do
+describe azure_virtual_machine(name: 'Windows-Internal-VM', group_name: 'Inspec-Azure') do
   its('publisher') { should eq 'MicrosoftWindowsServer' }
   its('offer') { should eq 'WindowsServer' }
   its('sku') { should eq '2012-R2-Datacenter' }
@@ -179,6 +307,6 @@ end
 ### Ensure the machine is in the correct location
 
 ```ruby
-describe azure_virtual_machine(name: 'chef-ws-01', resource_group: 'ChefAutomate') do
-  its('location') { should eq 'West Europe' }
+describe azure_virtual_machine(name: 'Linux-Internal-VM', resource_group: 'Inspec-Azure') do
+  its('location') { should eq 'westeurope' }
 end

@@ -397,4 +397,17 @@ class AzureResourceProbe
     dm = AzureResourceDynamicMethods.new
     dm.create_methods(self, item)
   end
+
+  # Give a sting like `computer_name` return the camelCase version, e.g.
+  # computerName
+  #
+  # @param string data Data that needs to be converted from snake_case to camelCase
+  #
+  # @return string
+  def camel_case(data)
+    camel_case_data = data.split('_').inject([]) { |buffer, e| buffer.push(buffer.empty? ? e : e.capitalize) }.join
+
+    # Ensure that gb (as in gigabytes) is uppercased
+    camel_case_data.gsub(/[gb]/, &:upcase)
+  end
 end
