@@ -58,6 +58,24 @@ where
   - `boot_diagnostics_storage_uri`
 * `value` is the expected output from the matcher
 
+The options that can be passed to the resource are as follows.
+
+| Name        | Description                                                                                                         | Required | Example                           |
+|-------------|---------------------------------------------------------------------------------------------------------------------|----------|-----------------------------------|
+| group_name: | Azure Resource Group to be tested                                                                                   | yes      | MyResourceGroup                   |
+| name:       | Name of the Azure resource to test                                                                                  | no       | MyVM                              |
+| type:       | Type of Axure Resource to test.                                                                                     | no       | Microsoft.Compute/virtualMachines |
+| apiversion: | API Version to use when interrogating the resource. If not set then the latest version for the resoure type is used | no       | 2017-10-9                         |
+
+These options can also be set using the environment variables:
+
+ - `AZURE_RESOURCE_GROUP_NAME`
+ - `AZURE_RESOURCE_NAME`
+ - `AZURE_RESOURCE_TYPE`
+ - `AZURE_RESOURCE_API_VERSION`
+
+When the options have been set as well as the environment variables, the environment variables take priority.
+
 For example:
 
 ```ruby

@@ -183,6 +183,17 @@ class AzureResourceBase < Inspec.resource(1)
     @counts = {}
     @total = 0
 
+    # Determine if the environment variables for the options have been set
+    option_var_names = {
+      group_name: 'AZURE_RESOURCE_GROUP_NAME',
+      name: 'AZURE_RESOURCE_NAME',
+      type: 'AZURE_RESOURCE_TYPE',
+      apiversion: 'AZURE_RESOURCE_API_VERSION',
+    }
+    option_var_names.each do |option_name, env_var_name|
+      opts[option_name] = ENV[env_var_name] unless ENV[env_var_name].nil?
+    end
+
     azure = AzureConnection.new
     client = azure.client
     resources = client.resources.list_by_resource_group(opts[:group_name])
