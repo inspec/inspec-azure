@@ -14,13 +14,18 @@ class AzureVirtualMachine < AzureResourceBase
   # static methods that are documented
   #
   # @author Russell Seymour
-  def initialize(opts)
+  def initialize(opts = {})
+    # The generic resource needs to pass back a Microsoft.Compute/virtualMachines object so force it
+    opts[:type] = 'Microsoft.Compute/virtualMachines'
     super(opts)
   end
 
   # Method to catch calls that are not explicitly defined.
   # This allows the simple attributes of the virtual machine to be read without having
   # to define each one in turn.
+  #
+  # rubocop:disable Style/MethodMissing
+  # rubocop:disable Metrics/AbcSize
   #
   # @param symobl method_id The symbol of the method that has been called
   #
@@ -61,7 +66,7 @@ class AzureVirtualMachine < AzureResourceBase
 
   # Determine if the OS disk is a managed disk
   #
-  # @return boolean 
+  # @return boolean
   def has_managed_osdisk?
     defined?(properties.storageProfile.osDisk.managedDisk)
   end
@@ -70,7 +75,7 @@ class AzureVirtualMachine < AzureResourceBase
   #
   # @return boolean
   def has_nics?
-    properties.networkProfile.networkInterfaces.count == 0 ? false : true
+    properties.networkProfile.networkInterfaces.count != 0
   end
 
   # How many NICs are connected to the machine
@@ -96,7 +101,7 @@ class AzureVirtualMachine < AzureResourceBase
   #
   # @return boolean
   def has_data_disks?
-    properties.storageProfile.dataDisks.count == 0 ? false : true
+    properties.storageProfile.dataDisks.count != 0
   end
 
   # How many data disks are connected
@@ -145,7 +150,7 @@ class AzureVirtualMachine < AzureResourceBase
   #
   # @return boolean
   def custom_data?
-    if defined?(properties.osProfile.CustomData) 
+    if defined?(properties.osProfile.CustomData)
       true
     else
       false
@@ -158,7 +163,7 @@ class AzureVirtualMachine < AzureResourceBase
   #    it { should have_ssh_keys }
   # within the Inspec Profile
   #
-  # @return boolean  
+  # @return boolean
   def has_ssh_keys?
     ssh_keys?
   end
@@ -168,7 +173,7 @@ class AzureVirtualMachine < AzureResourceBase
   # @return boolean
   def ssh_keys?
     if defined?(properties.osProfile.linuxConfiguration.ssh)
-      properties.osProfile.linuxConfiguration.ssh.publicKeys == 0 ? false : true
+      properties.osProfile.linuxConfiguration.ssh.publicKeys != 0
     else
       false
     end
@@ -213,5 +218,39 @@ class AzureVirtualMachine < AzureResourceBase
   # @return string
   def boot_diagnostics_storage_uri
     properties.diagnosticsProfile.bootDiagnostics.storageUri
+  end
+
+  # If this is a windows machine, returns whether the agent was provisioned or not
+  #
+  # @return boolean
+  def has_provision_vmagent?
+    if defined?(properties.osProfile.windowsConfiguration)
+      properties.osProfile.windowsConfiguration.provisionVMAgent
+    else
+      false
+    end
+  end
+
+  # If a windows machine see if automatic updates for the agent are enabled
+  #
+  # @return boolean
+  def has_automatic_agent_update?
+    if defined?(properties.osProfile.windowsConfiguration)
+      properties.osProfile.windowsConfiguration.enableAutomaticUpdates
+    else
+      false
+    end
+  end
+
+  # If this is a windows machine return a boolean to state of the WinRM options
+  # have been set
+  #
+  # @return boolean
+  def has_winrm_options?
+    if defined?(properties.osProfile.windowsConfiguration) && defined?(properties.osProfile.windowsConfiguration.winrm)
+      properties.osProfile.windowsConfiguration.winrm.protocol
+    else
+      false
+    end
   end
 end

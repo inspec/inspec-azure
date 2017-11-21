@@ -1,6 +1,6 @@
 title 'Managed Disk'
 
-control 'azure-generic-managed-disk-1.0' do
+control 'azure-generic-managed-os-disk-1.0' do
 
   impact 1.0
   title 'A managed disk was created for on the of machines, ensure that it is configured correctly'

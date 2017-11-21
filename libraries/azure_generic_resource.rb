@@ -11,7 +11,7 @@ class AzureGenericResource < AzureResourceBase
 
   attr_accessor :filter, :total, :counts, :name, :type, :location, :probes
 
-  def initialize(opts)
+  def initialize(opts = {})
     # Call the parent class constructor
     super(opts)
   end
@@ -43,5 +43,3 @@ class AzureGenericResource < AzureResourceBase
     parsed
   end
 end
-
-

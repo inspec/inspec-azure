@@ -8,14 +8,14 @@ control 'azure-generic-resource-group-resources-1.0' do
 
   # Ensure that the expected resources have been deployed
   describe azure_generic_resource(group_name: 'Inspec-Azure') do
-    its('total') { should eq 9 }
-    its('Microsoft.Compute/virtualMachines') { should eq 2 }
-    its('Microsoft.Network/networkInterfaces') { should eq 2 }
+    its('total') { should eq 13 }
+    its('Microsoft.Compute/virtualMachines') { should eq 3 }
+    its('Microsoft.Network/networkInterfaces') { should eq 3 }
     its('Microsoft.Network/publicIPAddresses') { should eq 1 }
     its('Microsoft.Network/networkSecurityGroups') { should eq 1 }
     its('Microsoft.Storage/storageAccounts') { should eq 1 }
     its('Microsoft.Network/virtualNetworks') { should eq 1 }
-    its('Microsoft.Compute/disks') { should eq 1 }
+    its('Microsoft.Compute/disks') { should eq 3 }
 
     # Within the resources that have been found, find the Linux-Internal-VM and perform
     # tests against it.

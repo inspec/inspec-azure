@@ -199,15 +199,7 @@ class AzureResourceBase < Inspec.resource(1)
     resources = client.resources.list_by_resource_group(opts[:group_name])
 
     # filter the resources based on the type, and the name if they been specified
-    resources = if opts[:type] && opts[:name]
-                  resources.select { |r| r.type == opts[:type] && r.type == opts[:name] }
-                elsif opts[:type]
-                  resources.select { |r| r.type == opts[:type] }
-                elsif opts[:name]
-                  resources.select { |r| r.name == opts[:name] }
-                else
-                  resources
-                end
+    resources = filter_resources(resources, opts)
 
     # if there is one resource then define methods on this class
     if resources.count == 1
@@ -250,6 +242,22 @@ class AzureResourceBase < Inspec.resource(1)
           AzureResourceTypeCounts.new(ns_counts)
         end
       end
+    end
+  end
+
+  private
+
+  # Filter the resources that are returned by the options that have been specified
+  #
+  def filter_resources(resources, opts)
+    if opts[:type] && opts[:name]
+      resources.select { |r| r.type == opts[:type] && r.name == opts[:name] }
+    elsif opts[:type]
+      resources.select { |r| r.type == opts[:type] }
+    elsif opts[:name]
+      resources.select { |r| r.name == opts[:name] }
+    else
+      resources
     end
   end
 end

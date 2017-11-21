@@ -1,7 +1,7 @@
 
 title 'Internal Virtual Machine Properties'
 
-control 'azure-generic-vm-internal-2.0' do
+control 'azure-generic-vm-linux-internal-2.0' do
 
   impact 1.0
   title 'Ensure Internal VM was built with the correct Image and has the correct properties'

@@ -135,8 +135,9 @@ There are a few different ways in which tests can be written, which mean that ar
 
 The following resources are available in the Inspec Azure Profile
 
- - [Azure Generic Resource](docs/resources/azure_generic_resource.rb)
- - [Azure Virtual Machine](docs/resources/azure_virtual_machine.rb)
+ - [Azure Generic Resource](docs/resources/azure_generic_resource.md)
+ - [Azure Virtual Machine](docs/resources/azure_virtual_machine.md)
+ - [Azure Data Disk](docs/resources/azure_virtual_machine_data_disk.md)
 
 When multiple resources are returned a FilterTable is created. This means it is possible to retrieve all of hte resources in a resource group and interrogate them within the testing block using the `.where` function on the FilterTable. Please refer to the `test/integration/verify/controls/resources.rb` file for an example of this.
 

@@ -121,6 +121,18 @@ resource "azurerm_network_interface" "nic2" {
   }
 }
 
+resource "azurerm_network_interface" "nic3" {
+  name                = "Inspec-NIC-3"
+  location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  ip_configuration {
+    name                          = "ipConfiguration1"
+    subnet_id                     = "${azurerm_subnet.subnet.id}"
+    private_ip_address_allocation = "dynamic"
+  }
+}
+
 # Create the machine for testing
 resource "azurerm_virtual_machine" "vm_linux_internal" {
   name                  = "Linux-Internal-VM"
@@ -189,7 +201,7 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
 
   # Create 1 data disk to be used for testing
   storage_data_disk {
-    name          = "linux-datadisk-1"
+    name          = "linux-external-datadisk-1"
     vhd_uri       = "${azurerm_storage_account.sa.primary_blob_endpoint}${azurerm_storage_container.container.name}/linux-internal-datadisk-1.vhd"
     disk_size_gb  = 15
     create_option = "empty"
@@ -209,6 +221,50 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
       path = "/home/azure/.ssh/authorized_keys"
       key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOxB7GqUxppqRBG5pB2fkkhlWkWUWmFjO3ZEc+VW70erOJWfUvhzBDDQziAOVKtNF2NsY0uyRJqwaP1idL0F7GDQtQl+HhkKW1gOCoTrNptJiYfIm05jTETRWObP0kGMPoAWlkWPBluUAI74B4nkvg7SKNpe36IZhuA8/kvVjxBfWy0r/b/dh+QEIb1eE8HfELAN8SrvrydT7My7g0YFT65V00A2HVa5X3oZaBXRKbmd5gZXBJXEbgHZqA9+NnIQkZXH0vkYYOQTANB8taVwjNVftpXzf2zEupONCYOOoIAep2tXuv2YmWuHr/Y5rCv2mK28ZVcM7W9UmwM0CMHZE7 azure@inspec.local"
     }
+  }
+}
+
+resource "azurerm_virtual_machine" "vm_windows_internal" {
+  name                  = "Windows-Internal-VM"
+  location              = "${var.location}"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  network_interface_ids = ["${azurerm_network_interface.nic3.id}"]
+  vm_size               = "Standard_DS2_v2"
+
+  # Configure machine with Ubuntu
+  storage_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2016-Datacenter"
+    version   = "latest"
+  }
+
+  # Create the OS disk
+  storage_os_disk {
+    name          = "Windows-Internal-OSDisk-MD"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+  # Create 1 data disk to be used for testing
+  storage_data_disk {
+    name          = "Windows-Internal-DataDisk-1-MD"
+    create_option = "Empty"
+    managed_disk_type = "Standard_LRS"
+    lun           = 0
+    disk_size_gb  = "1024"
+  }
+
+  # Specify the name of the machine and the access credentials
+  os_profile {
+    computer_name  = "win-internal-1"
+    admin_username = "azure"
+    admin_password = "${var.admin_password}"
+  }
+
+  os_profile_windows_config {
+    provision_vm_agent = true
   }
 }
 
