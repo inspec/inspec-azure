@@ -136,6 +136,7 @@ There are a few different ways in which tests can be written, which mean that ar
 The following resources are available in the Inspec Azure Profile
 
  - [Azure Generic Resource](docs/resources/azure_generic_resource.md)
+ - [Azure Resource Group Resource Counts](docs/resources/azure_resource_group_resource_counts.md)
  - [Azure Virtual Machine](docs/resources/azure_virtual_machine.md)
  - [Azure Data Disk](docs/resources/azure_virtual_machine_data_disk.md)
 
