@@ -284,6 +284,11 @@ class AzureResourceBase < Inspec.resource(1)
   #
   # The format of the method name is '<TAG_NAME>_tag' and will return the value of that tag
   #
+  # Disabling rubopcop check. If this is set as a normal if..then..end statement there is a
+  # violation stating it should use a guard. When using a guard it throws this error
+  #
+  # rubocop:disable Style/MultilineIfModifier
+  #
   # @author Russell Seymour
   def create_tag_methods
     # Iterate around the items of the tags and create the necessary access methods
