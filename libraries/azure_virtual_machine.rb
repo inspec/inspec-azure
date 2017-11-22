@@ -18,6 +18,9 @@ class AzureVirtualMachine < AzureResourceBase
     # The generic resource needs to pass back a Microsoft.Compute/virtualMachines object so force it
     opts[:type] = 'Microsoft.Compute/virtualMachines'
     super(opts)
+
+    # Find the virtual machines
+    resources
   end
 
   # Method to catch calls that are not explicitly defined.

@@ -41,6 +41,9 @@ class AzureVirtualMachineDataDisk < AzureResourceBase
     # The generic resource needs to pass back a Microsoft.Compute/virtualMachines object so force it
     opts[:type] = 'Microsoft.Compute/virtualMachines'
     super(opts)
+
+    # Get the data disks
+    resources
   end
 
   # Return information about the disks and add to the filter table so that

@@ -14,6 +14,9 @@ class AzureGenericResource < AzureResourceBase
   def initialize(opts = {})
     # Call the parent class constructor
     super(opts)
+
+    # Get the specified resource
+    resources
   end
 
   # Define the filter table so that it can be interrogated

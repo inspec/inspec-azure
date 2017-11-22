@@ -166,6 +166,8 @@ end
 #
 # @author Russell Seymour
 class AzureResourceBase < Inspec.resource(1)
+  attr_reader :opts, :client, :azure
+
   # Constructor that retreives the specified resource
   #
   # The opts hash should contain the following
@@ -182,6 +184,7 @@ class AzureResourceBase < Inspec.resource(1)
     # declare the hashtable of counts
     @counts = {}
     @total = 0
+    @opts = opts
 
     # Determine if the environment variables for the options have been set
     option_var_names = {
@@ -194,8 +197,20 @@ class AzureResourceBase < Inspec.resource(1)
       opts[option_name] = ENV[env_var_name] unless ENV[env_var_name].nil?
     end
 
-    azure = AzureConnection.new
-    client = azure.client
+    @azure = AzureConnection.new
+    @client = azure.client
+  end
+
+  # Return information about the resource group
+  def resource_group
+    resource_group = client.resource_groups.get(opts[:group_name])
+
+    # create the methods for the resource group object
+    dm = AzureResourceDynamicMethods.new
+    dm.create_methods(self, resource_group)
+  end
+
+  def resources
     resources = client.resources.list_by_resource_group(opts[:group_name])
 
     # filter the resources based on the type, and the name if they been specified
@@ -285,7 +300,8 @@ class AzureResourceDynamicMethods
     # If it is an Azure Generic Resource then setup methods for each of
     # the instance variables
     case data.class.to_s
-    when /^Azure::Resources::Mgmt::.*::Models::GenericResource$/
+    when /^Azure::Resources::Mgmt::.*::Models::GenericResource$/,
+         /^Azure::Resources::Mgmt::.*::Models::ResourceGroup$/
       # iterate around the instance variables
       data.instance_variables.each do |var|
         create_method(object, var.to_s.delete('@'), data.instance_variable_get(var))
@@ -323,6 +339,13 @@ class AzureResourceDynamicMethods
       value.count.zero? ? return_value = value : return_value = AzureResourceProbe.new(value)
       object.define_singleton_method name do
         return_value
+      end
+    when /^Azure::Resources::Mgmt::.*::Models::ResourceGroupProperties$/
+      # This is a special case where the properties of the resource group is not a simple JSON model
+      # This is because the plugin is using the Azure SDK to get this information so it is an SDK object
+      # that has to be interrogated in a different way. This is the only object type that behaves like this
+      value.instance_variables.each do |var|
+        create_method(object, var.to_s.delete('@'), value.instance_variable_get(var))
       end
     when 'Array'
       # Some things are just string or integer arrays

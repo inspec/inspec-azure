@@ -8,6 +8,8 @@ Whenever a resource is retrieved from Azure its attributes are interrogated and 
 
 To determine what methods can be called against a resource please find the resource in https://resources.azure.com. The attributes of the resource are turned into the methods that can be called. Please refer to the examples further down the page or the integration tests for more information.
 
+The only caveat to this is that the generic resource cannot interrogate a resource group itself. There is a resource called `azure_resource_group` that permits this.
+
 ## Roadmap
 
 This repository is the development repository for InSpec for Azure. Once [RFC Platforms](https://github.com/chef/inspec/issues/1661) is fully implemented in InSpec, this repository is going to be merged into core InSpec.
@@ -136,7 +138,7 @@ There are a few different ways in which tests can be written, which mean that ar
 The following resources are available in the Inspec Azure Profile
 
  - [Azure Generic Resource](docs/resources/azure_generic_resource.md)
- - [Azure Resource Group Resource Counts](docs/resources/azure_resource_group_resource_counts.md)
+ - [Azure Resource Group](docs/resources/azure_resource_group.md)
  - [Azure Virtual Machine](docs/resources/azure_virtual_machine.md)
  - [Azure Data Disk](docs/resources/azure_virtual_machine_data_disk.md)
 
