@@ -10,6 +10,9 @@ control 'azure-generic-public-ip-address-1.0' do
     its('type') { should cmp 'Microsoft.Network/publicIPAddresses' }
     its('location') { should cmp 'westeurope' }
 
+    # There should be no tags
+    it { should_not have_tags }
+
     its('properties.provisioningState') { should cmp 'Succeeded' }
 
     # The IP address should be dynamically assigned

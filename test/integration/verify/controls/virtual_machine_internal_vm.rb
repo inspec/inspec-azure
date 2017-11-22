@@ -19,6 +19,9 @@ control 'azure-virtual-machine-vm-internal-2.0' do
     # Check the name, although this has beeb specified in the options
     its('name') { should cmp 'Linux-Internal-VM' }
 
+    # Make sure there are no tags on the machine
+    it { should_not have_tags }
+
     # Ensure that the machine has been created from the correct image
     its('publisher') { should cmp 'Canonical' }
     its('offer') { should cmp 'UbuntuServer' }

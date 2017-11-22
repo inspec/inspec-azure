@@ -300,6 +300,51 @@ If boot diagnostics are enabled for the machine they will be saved in a storage 
 ```ruby
 its('boot_diagnostics_storage_uri') { should match 'ghjgjhgjg' }
 ```
+## Tags
+
+It is possible to test the tags that have been assigned to the resource. There are a number of attributes that can be called to check that it has tags, that it has the correct number and that the correct ones are assigned.
+
+### has_tags?
+
+This is a simple test to see if the machine has tags assigned to it or not.
+
+```ruby
+it { should have_tags }
+```
+
+### tag_count
+
+Returns the number of tags that are assigned to the resource
+
+```ruby
+its ('tag_count') { should eq 2 }
+```
+
+### tags
+
+It is possible to check if a specific tag has been set on the resource.
+
+```ruby
+its('tags') { should include 'Owner' }
+```
+
+### xxx_tag
+
+To get the value of the tag, a number of tests have been craeted from the tags that are set.
+
+For example, if the following tag is set on a resource:
+
+| Tag Name | Value |
+|----------|-------|
+| Owner | Russell Seymour |
+
+Then a test is available called `Owner_tag`.
+
+```ruby
+its('Owner_tag') { should cmp 'Russell Seymour' }
+```
+
+Note: The tag name is case sensitive which makes the test case sensitive. E.g. `owner_tag` does not equal `Owner_tag`.
 
 ## Examples
 

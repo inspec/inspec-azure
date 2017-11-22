@@ -17,6 +17,12 @@ control 'azure-generic-resource-group-resources-1.0' do
     its('Microsoft.Network/virtualNetworks') { should eq 1 }
     its('Microsoft.Compute/disks') { should eq 3 }
 
+    # Check the tags
+    it { should have_tags }
+    its('tag_count') { should be 1 }
+    its('tags') { should include 'CreatedBy' }
+    its('CreatedBy_tag') { should cmp 'Inspec Azure Integration Tests' }
+
     # Within the resources that have been found, find the Linux-Internal-VM and perform
     # tests against it.
     # These are a subset of the tests as found in 'internal_vm.rb' but shows how it can be done

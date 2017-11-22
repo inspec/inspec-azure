@@ -19,6 +19,9 @@ control 'azure-virtual-machine-vm-windows-internal-1.0' do
     # Check the name, although this has beeb specified in the options
     its('name') { should cmp 'Windows-Internal-VM' }
 
+    # There should be no tags
+    it { should_not have_tags }
+
     # Ensure that the machine has been created from the correct image
     its('publisher') { should cmp 'MicrosoftWindowsServer' }
     its('offer') { should cmp 'WindowsServer' }

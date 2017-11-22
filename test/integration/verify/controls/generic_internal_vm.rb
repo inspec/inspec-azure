@@ -64,6 +64,9 @@ control 'azure-generic-vm-linux-internal-2.0' do
       its('adminUsername') { should eq 'azure' }
       its('linuxConfiguration.disablePasswordAuthentication') { should be false }
     end
+
+    # There should be no tags on the machine
+    its('tags.count') { should eq 0 }
   end
 
 end

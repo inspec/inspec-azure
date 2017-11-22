@@ -260,6 +260,41 @@ class AzureResourceBase < Inspec.resource(1)
     end
   end
 
+  # Does the resource have any tags?
+  #
+  # If it is a Hashtable then it does not, because there was nothing to parse so there is not
+  # a nested object to work with
+  #
+  # @author Russell Seymour
+  def has_tags?
+    tags.is_a?(Hash) ? false : true
+  end
+
+  # Returns how many tags have been set on the resource
+  #
+  # @author Russell Seymour
+  def tag_count
+    tags.count
+  end
+
+  # It is necessary to be able to test the tags of a resource. It is possible to say of the
+  # resource has tags or not, and it is possible to check that the tags include a specific tag
+  # However the value is not accessible, this function creates methods for all the tags that
+  # are available.
+  #
+  # The format of the method name is '<TAG_NAME>_tag' and will return the value of that tag
+  #
+  # @author Russell Seymour
+  def create_tag_methods
+    # Iterate around the items of the tags and create the necessary access methods
+    tags.item.each do |name, value|
+      method_name = format('%s_tag', name)
+      define_singleton_method method_name do
+        value
+      end
+    end if defined?(tags.item)
+  end
+
   private
 
   # Filter the resources that are returned by the options that have been specified
@@ -426,7 +461,7 @@ end
 # @attr_reader string type Type of the Azure Resource
 # @attr_reader string location Location in Azure of the resource
 class AzureResourceProbe
-  attr_reader :name, :type, :location
+  attr_reader :name, :type, :location, :item, :count
 
   # Initialize method for the class. Accepts an item, be it a scalar value, hash or Azure object
   # It will then create the necessary dynamic methods so that they can be called in the tests
@@ -438,6 +473,26 @@ class AzureResourceProbe
   def initialize(item)
     dm = AzureResourceDynamicMethods.new
     dm.create_methods(self, item)
+
+    # Set the item as a property on the class
+    # This is so that it is possible to interrogate what has been added to the class and isolate them from
+    # the standard methods that a Ruby class has.
+    # This used for checking Tags on a resource for example
+    # It also allows direct access if so required
+    @item = item
+
+    # Set how many items have been set
+    @count = item.length
+  end
+
+  # Allows resources to respond to the include test
+  # This means that things like tags can be checked for and then their value tested
+  #
+  # @author Russell Seymour
+  #
+  # @param [String] key Name of the item to look for in the @item property
+  def include?(key)
+    @item.key?(key)
   end
 
   # Give a sting like `computer_name` return the camelCase version, e.g.

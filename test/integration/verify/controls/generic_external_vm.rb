@@ -64,6 +64,12 @@ control 'azure-generic-vm-linux-external-2.0' do
       its('adminUsername') { should eq 'azure' }
       its('linuxConfiguration.disablePasswordAuthentication') { should be true }
     end
+
+    # Check that the tags have been set properly
+    it { should have_tags }
+    its('tag_count') { should be 1 }
+    its('tags') { should include 'Description' }
+    its('Description_tag') { should match 'Externally facing' }
   end
 
 end

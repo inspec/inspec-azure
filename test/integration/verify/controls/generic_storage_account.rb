@@ -13,6 +13,9 @@ control 'azure-generic-storage-account-2.0' do
                           type: 'Microsoft.Storage/storageAccounts') do
     its('total') { should be 1 }
 
+    # There should be no tags
+    it { should_not have_tags }
+
     its('properties.encryption.keySource') { should cmp 'Microsoft.Storage' }
 
     # Check that the blob and file services are enabled

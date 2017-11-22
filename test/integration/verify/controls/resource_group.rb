@@ -15,6 +15,12 @@ control 'azure-resource-group-1.0' do
     # Was the resource group provisionned successfully?
     its('provisioning_state') { should cmp 'Succeeded' }
 
+    # Make sure that the resource group has tags on it
+    it { should have_tags }
+    its('tag_count') { should be 1 }
+    its('tags') { should include 'CreatedBy' }
+    its('CreatedBy_tag') { should cmp 'Inspec Azure Integration Tests' }
+
     # How many resources are in the resource group in total
     its('total') { should eq 13 }
 

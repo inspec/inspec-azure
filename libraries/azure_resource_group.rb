@@ -46,6 +46,9 @@ class AzureResourceGroup < AzureResourceBase
 
     # Call method to create the has_xxxx? methods
     create_has_methods
+
+    # Call method to allow access to the tag values
+    create_tag_methods
   end
 
   # Return the provisioning state of the resource group

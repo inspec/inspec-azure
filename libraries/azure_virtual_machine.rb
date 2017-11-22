@@ -21,6 +21,8 @@ class AzureVirtualMachine < AzureResourceBase
 
     # Find the virtual machines
     resources
+
+    create_tag_methods
   end
 
   # Method to catch calls that are not explicitly defined.

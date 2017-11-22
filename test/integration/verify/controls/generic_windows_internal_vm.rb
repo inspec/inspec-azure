@@ -66,6 +66,9 @@ control 'azure-generic-vm-windows-internal-2.0' do
       its('windowsConfiguration.provisionVMAgent') { should be true }
       its('windowsConfiguration.enableAutomaticUpdates') { should be false }
     end
+
+    # There should be no tags
+    it { should_not have_tags }
   end
 
 end

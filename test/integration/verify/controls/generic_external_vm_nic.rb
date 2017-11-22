@@ -10,6 +10,7 @@ control 'azure-generic-vm-external-nic-2.0' do
                           name: 'Inspec-NIC-2') do
 
     # There should be no tags
+    it { should_not have_tags }
     its('tags.count') { should eq 0 } 
   
     # The resources should be a network interface

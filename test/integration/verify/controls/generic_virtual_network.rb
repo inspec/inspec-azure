@@ -12,6 +12,9 @@ control 'azure-generic-virtual-network-2.0' do
     its('type') { should cmp 'Microsoft.Network/virtualNetworks' }
     its('location') { should cmp 'westeurope' }
 
+    # There should be no tags
+    it { should_not have_tags }
+
     # Ensure that the address prefix for the VNet is correct
     # This will return an array so the `include` matcher needs to be used to
     # see if the specified address prefix is present

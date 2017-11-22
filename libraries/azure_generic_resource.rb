@@ -15,8 +15,14 @@ class AzureGenericResource < AzureResourceBase
     # Call the parent class constructor
     super(opts)
 
-    # Get the specified resource
+    # Get the resource group
+    resource_group
+
+    # Get the resources
     resources
+
+    # Create the tag methods
+    create_tag_methods
   end
 
   # Define the filter table so that it can be interrogated

@@ -27,6 +27,10 @@ provider "azurerm" {
 resource "azurerm_resource_group" "rg" {
   name     = "Inspec-Azure"
   location = "${var.location}"
+
+  tags {
+    CreatedBy = "Inspec Azure Integration Tests"
+  }
 }
 
 # Create the storage account to be used
@@ -182,6 +186,10 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
   resource_group_name   = "${azurerm_resource_group.rg.name}"
   network_interface_ids = ["${azurerm_network_interface.nic2.id}"]
   vm_size               = "Standard_DS2_v2"
+
+  tags {
+    Description = "Externally facing Linux machine to be used as a web server"
+  }
 
   # Configure machine with Ubuntu
   storage_image_reference {
