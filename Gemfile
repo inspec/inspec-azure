@@ -9,7 +9,6 @@ group :development do
   gem 'rubocop'
   gem 'github_changelog_generator'
   gem 'pry-coolline'
-  # gem 'pry-byebug'
   gem 'passgen'
 end
 
