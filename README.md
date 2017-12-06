@@ -1,14 +1,14 @@
 # InSpec for Azure
 
-This profile has been been completely rewritten so that it is able to check for _any_ resource in Azure, previous versions only supported 4 resource types.
+This Resource Pack has been been completely rewritten so that it is able to check for _any_ resource in Azure, previous versions only supported 4 resource types.
 
-Whenever a resource is retrieved from Azure its attributes are interrogated and turned into things that can be called during tests on that resource. By making the profile dynamic it means that more or less any resource that is available in Azure can be tested.
+Whenever an Azure resource is retrieved its attributes are interrogated and turned into things that can be called during tests on that particular resource. By making the profile dynamic it means that more or less any resource that is available in Azure can be tested.
 
-**BREAKING CHANGE: If you having been using previous versions of this repository then you must change your tests to work with the new profile. There is now only one control that can be called. All integration tests have been modified to work with the control name**
+To determine what methods can be called against an Azure resource please find the resource in https://resources.azure.com. The attributes of the resource are turned into the methods that can be called. Please refer to the examples further down the page or the integration tests for more information.
 
-To determine what methods can be called against a resource please find the resource in https://resources.azure.com. The attributes of the resource are turned into the methods that can be called. Please refer to the examples further down the page or the integration tests for more information.
+The only caveat to this is that the generic resource cannot interrogate an Azure resource group itself. There is an InSpec resource called `azure_resource_group` that permits this.
 
-The only caveat to this is that the generic resource cannot interrogate a resource group itself. There is a resource called `azure_resource_group` that permits this.
+**The resource pack not only contains the generic resource but also expliclit tests for some resources. These are similar to the ones that were in previous versions, but now have different properties and attributes that may break existing tests. Please review the documentation for the resource you are using.**
 
 ## Roadmap
 
@@ -110,7 +110,7 @@ depends:
 
 ### Add controls
 
-Since your profile depends on the resource pack, you can use those resources in your own profile. In this example a virtual machine in the specified resource group is being tested.
+Since your profile depends on the InSpec resource pack, you can use those resources in your own profile. In this example a virtual machine in the specified Azure resource group is being tested.
 
 Using the https://resources.azure.com portal the virtual machine has the following attributes.
 
@@ -157,9 +157,9 @@ rake rubocop           # Run Rubocop lint checks
 rake test:integration  # Perform Integration Tests
 ```
 
-As with using the resources themselves the integration tests rely on a Service Principal Name being defined. Please see the information at the start of this page on how to generate this.
+As with using the InSpec resources themselves the integration tests rely on a Service Principal Name being defined. Please see the information at the start of this page on how to generate this.
 
-Due to the fact that any resource can now be tested the integration tests now check the following Azure resource types:
+Due to the fact that any Azure resource can now be tested the integration tests check the following Azure resource types:
 
  - Microsoft.Compute/virtualMachines
  - Microsoft.Compute/disks

@@ -10,16 +10,17 @@ Use the `azure_generic_resource` Inspec audit resource to test any valid Azure R
 
 ```ruby
 describe azure_generic_resource(group_name: 'MyResourceGroup', name: 'MyResource') do
-  its('attribute') { should eq 'value' }
+  its('property') { should eq 'value' }
 end
 ```
 
 where
 
-* `MyResourceGroup` is the name of the resource group that contains the Azure Resource to be validated
-* `MyResource` is the name of the resource that needs to be checked
-* `attribute` - This generic resource dynamically creates the attributes on the fly based on the type of resource that has been targetted.
-* `value` is the expected output from the chosen attribute
+* Resource Parameters
+  * `MyResourceGroup` is the name of the resource group that contains the Azure Resource to be validated
+  * `MyResource` is the name of the resource that needs to be checked
+* `property` - This generic resource dynamically creates the properties on the fly based on the type of resource that has been targetted.
+* `value` is the expected output from the chosen property
 
 The options that can be passed to the resource are as follows.
 
@@ -55,11 +56,11 @@ describe azure_generic_resource(group_name: 'Inspec-Azure', name: 'Linux-Interna
 end
 ```
 
-## Attributes
+## Properties
 
-The attributes that can be tested are entirely dependent on the Azure Resource that is under scrutiny. That means the attributes vary. The best way to see what is available please use the [Azure Resources Portal](https://resources.azure.com) to select the resource you are interested in and see what can be tested.
+The properties that can be tested are entirely dependent on the Azure Resource that is under scrutiny. That means the properties vary. The best way to see what is available please use the [Azure Resources Portal](https://resources.azure.com) to select the resource you are interested in and see what can be tested.
 
-![Virtual Machine Attributes](images/linux_internal_vm_resource.png)
+![Virtual Machine Properties](images/linux_internal_vm_resource.png)
 
 This resource allows you to test _any_ valid Azure Resource. The trade off for this is that the language to check each item is not as natural as it would be for a native Inspec resource.
 

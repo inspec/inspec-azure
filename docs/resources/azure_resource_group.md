@@ -12,18 +12,19 @@ Use the `azure_resource_group_resource_counts` InSpec audit resource to check th
 
 ## Syntax
 
-The name of the resource group is specified as an attribute on the resource:
+The name of the resource group is specified as a parameter on the resource:
 
 ```ruby
 describe azure_resource_group(name: 'MyResourceGroup') do
-  its('attribute') { should eq 'value' }
+  its('property') { should eq 'value' }
 end
 ```
 
 where
 
-* `MyResourceGroup` is the name of the resource group being interrogated
-* `attribute` is one of 
+* Resource Parameters
+  * `MyResourceGroup` is the name of the resource group being interrogated
+* `property` is one of 
   - `name`
   - `location`
   - `id`
@@ -92,7 +93,7 @@ it { should have_nics }
 it { should_not have_extensions }
 ```
 
-## Attribute
+## Properties
 
 This InSpec audit resource has the following matchers:
 
@@ -158,9 +159,9 @@ If a resource group contains one virtual machine with an OS disk and 2 data disk
 
 ## Tags
 
-It is possible to test the tags that have been assigned to the resource. There are a number of attributes that can be called to check that it has tags, that it has the correct number and that the correct ones are assigned.
+It is possible to test the tags that have been assigned to the resource. There are a number of properties that can be called to check that it has tags, that it has the correct number and that the correct ones are assigned.
 
-### has_tags?
+### have_tags
 
 This is a simple test to see if the machine has tags assigned to it or not.
 
@@ -186,7 +187,7 @@ its('tags') { should include 'Owner' }
 
 ### xxx_tag
 
-To get the value of the tag, a number of tests have been craeted from the tags that are set.
+To get the value of the tag, a number of preoprties have been created from the tags that are set.
 
 For example, if the following tag is set on a resource:
 
@@ -194,7 +195,7 @@ For example, if the following tag is set on a resource:
 |----------|-------|
 | Owner | Russell Seymour |
 
-Then a test is available called `Owner_tag`.
+Then a property is available called `Owner_tag`.
 
 ```ruby
 its('Owner_tag') { should cmp 'Russell Seymour' }

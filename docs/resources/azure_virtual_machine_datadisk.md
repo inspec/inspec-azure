@@ -16,18 +16,19 @@ The name of the resource group and machine are required to use this resource.
 
 ```ruby
 describe azure_virtual_machine_data_disk(group_name: 'MyResourceGroup', name: 'MyVM') do
-  its('attribute') { should eq 'value' }
+  its('property') { should eq 'value' }
 end
 ```
 
 where 
 
-* `MyVm` is the name of the virtual machine as seen in Azure. (It is **not** the hostname of the machine)
-* `MyResourceGroup` is the name of the resouce group that the machine is in.
-* `attribute` is one of
+* Resource Parameters
+  * `MyVm` is the name of the virtual machine as seen in Azure. (It is **not** the hostname of the machine)
+  * `MyResourceGroup` is the name of the resouce group that the machine is in.
+* `property` is one of
    - `count` the number of data disks attached to the machine
-   - `has_data_disks?` boolean test denoting if data disks are attached
-   - `has_managed_disks?` boolean test denoting if the data disks are all managed disks or not
+   - `have_data_disks` boolean test denoting if data disks are attached
+   - `have_managed_disks` boolean test denoting if the data disks are all managed disks or not
    - `disk` the zero based index of the disk attached to the machine
    - `number` disk number of the disk attached to the machine, starting at 1
    - `name` name of the disk
@@ -44,7 +45,7 @@ where
    - `resource_group` if this is a managed disk the resource group that it is in
 * `value` is the expected output fdrom the matcher
 
-The `count`, `has_data_disks?` and `has_managed_disks?` are catchall tests that give information about the virtual machine. The specific tests need to be used in conjunction with the `where` option as shown below.
+The `count`, `have_data_disks` and `have_managed_disks` are catchall tests that give information about the virtual machine. The specific tests need to be used in conjunction with the `where` option as shown below.
 
 | Name        | Description                                                                                                         | Required | Example                           |
 |-------------|---------------------------------------------------------------------------------------------------------------------|----------|-----------------------------------|
@@ -79,7 +80,9 @@ Use the `eq` matcher to test the equality of two values: `its('Port') { should e
 
 Using `its('Port') { should eq 22 }` will fail because `22` is not a string value! Use the `cmp` matcher for less restrictive value comparisons.
 
-**The following attributes are ones that are applied to the virtual machine itself and not specfic disks**
+**The following properties are ones that are applied to the virtual machine itself and not specfic disks**
+
+## Properties
 
 ### count
 
@@ -89,7 +92,7 @@ Returns the number of data disks attached to the machine
 its('count') { should eq 1 }
 ```
 
-### has_data_disks?
+### have_data_disks
 
 Returns a boolean denoting if any data disks are attached to the machine
 
@@ -97,7 +100,7 @@ Returns a boolean denoting if any data disks are attached to the machine
 it { should have_data_disks }
 ```
 
-### has_managed_disks?
+### have_managed_disks
 
 Returns a boolean stating if the machine has Managed Disks for data disks.
 

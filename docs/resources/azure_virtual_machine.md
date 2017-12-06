@@ -12,19 +12,20 @@ Use the `azure_virtual_machine` InSpec audit resource to ensure that a Virtual M
 
 ## Syntax
 
-The name of the machine and the resourece group are required as attributes to the resource.
+The name of the machine and the resourece group are required as properties to the resource.
 
 ```ruby
 describe azure_virtual_machine(group_name: 'MyResourceGroup', name: 'MyVM') do
-  its('attribute') { should eq 'value' }
+  its('property') { should eq 'value' }
 end
 ```
 
 where
 
-* `MyVm` is the name of the virtual machine as seen in Azure. (It is **not** the hostname of the machine)
-* `MyResourceGroup` is the name of the resource group that the machine is in.
-* `attribute` is one of
+* Resource Parameters
+  * `MyVm` is the name of the virtual machine as seen in Azure. (It is **not** the hostname of the machine)
+  * `MyResourceGroup` is the name of the resource group that the machine is in.
+* `property` is one of
   - [`type`](#type)
   - [`location`](#location)
   - [`name`](#name)
@@ -33,28 +34,28 @@ where
   - [`sku`](#sku)
   - [`os_type`](#"os_type")
   - [`os_disk_name`](#os_disk_name)
-  - [`has_managed_osdisk?`](#has_managed_osdisk?)
+  - [`have_managed_osdisk`](#have_managed_osdisk?)
   - [`caching`](#caching)
   - `create_option`
   - `disk_size_gb`
-  - `has_data_disks?`
+  - `have_data_disks`
   - `data_disk_count`  
   - `storage_account_type`
   - `vm_size`
   - `computer_name`
   - `admin_username`
-  - `has_nics?`
+  - `have_nics`
   - `nic_count`
   - `connected_nics`
-  - `has_password_authentication?`
+  - `have_password_authentication`
   - `password_authentication?`
-  - `has_custom_data?`
+  - `have_custom_data`
   - `custom_data?`
-  - `has_ssh_keys?`
+  - `have_ssh_keys`
   - `ssh_keys?`
   - `ssh_key_count`
   - `ssh_keys`
-  - `has_boot_diagnostics?`
+  - `have_boot_diagnostics`
   - `boot_diagnostics_storage_uri`
 * `value` is the expected output from the matcher
 
@@ -89,9 +90,9 @@ There are a number of built in comparison operrtors that are available to test t
 
 For information on all that are available please refer to the [Inspec Matchers Reference](https://www.inspec.io/docs/reference/matchers/) page.
 
-## Attributes
+## Properties
 
-This InSpec audit resource has the following attributes that can be tested:
+This InSpec audit resource has the following properties that can be tested:
 
 ### type
 
@@ -135,7 +136,7 @@ Test that returns the classification in Azure of the operating system type. Oste
 
 Return the name of the operating system disk attached to the machine.
 
-### has_managed_osdisk?
+### have_managed_osdisk
 
 Determine if the operating system disk is a Managed Disks or not.
 
@@ -151,13 +152,13 @@ Returns the type of caching that has been set on the operating system disk.
 
 ### create_option
 
-When the operating system disk is created, how it was created is set as an attribute. This attribute will return has the disk was created.
+When the operating system disk is created, how it was created is set as an property. This property will return has the disk was created.
 
 ### disk_size_gb
 
 Return the size of the operating system disk.
 
-### has_data_disks?
+### have_data_disks
 
 Denotes if the machine has data disks attached to it or not.
 
@@ -191,7 +192,7 @@ The admin username that was assigned to the machine
 
 NOTE: Azure does not allow the use of `Administrator` as the admin username on a Windows machine
 
-## has_nics?
+## have_nics
 
 Returns a boolean to state if the machine has NICs connected or not.
 
@@ -217,7 +218,7 @@ Note the use of the regular expression here. This is because the NIC id is a lon
 
 An example of the id string is `/subscriptions/1e0b427a-d58b-494e-ae4f-ee558463ebbf/resourceGroups/Inspec-Azure/providers/Microsoft.Network/networkInterfaces/Inspec-NIC-1`
 
-### has_password_authentication?
+### have_password_authentication
 
 Returns a boolean to denote if the machine is accessible using a password.
 
@@ -235,7 +236,7 @@ its('password_authentication?') { should be false }
 
 This only applies to Linux machines and will always return `true` on Windows.
 
-### has_custom_data?
+### have_custom_data
 
 Returns a boolean stating if the machine has custom data assigned to it.
 
@@ -251,7 +252,7 @@ Boolean to state if the machine has custom data or not
 its('custom_data') { should be true }
 ```
 
-### has_ssh_keys?
+### have_ssh_keys
 
 Boolean to state if the machine has SSH keys assigned to it
 
@@ -302,9 +303,9 @@ its('boot_diagnostics_storage_uri') { should match 'ghjgjhgjg' }
 ```
 ## Tags
 
-It is possible to test the tags that have been assigned to the resource. There are a number of attributes that can be called to check that it has tags, that it has the correct number and that the correct ones are assigned.
+It is possible to test the tags that have been assigned to the resource. There are a number of properties that can be called to check that it has tags, that it has the correct number and that the correct ones are assigned.
 
-### has_tags?
+### have_tags
 
 This is a simple test to see if the machine has tags assigned to it or not.
 
