@@ -16,14 +16,12 @@ control 'azure-generic-managed-os-disk-1.0' do
 
     # This disk should have been created from an image
     # Ensure that it is the correct one
-    describe described_class.properties.creationData do
-      its('createOption') { should eq 'FromImage' }
+    its('properties.creationData.createOption') { should eq 'FromImage' }
 
-      # This disk should be an ubuntu image
-      its('imageReference.id') { should match 'Canonical' }
-      its('imageReference.id') { should match 'UbuntuServer' }
-      its('imageReference.id') { should match '16.04.0-LTS' }
-    end
+    # This disk should be an ubuntu image
+    its('properties.creationData.imageReference.id') { should match 'Canonical' }
+    its('properties.creationData.imageReference.id') { should match 'UbuntuServer' }
+    its('properties.creationData.imageReference.id') { should match '16.04.0-LTS' }
 
     its('properties.diskSizeGB') { should be > 25 }
 

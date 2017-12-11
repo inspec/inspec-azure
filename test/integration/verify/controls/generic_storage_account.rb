@@ -23,12 +23,10 @@ control 'azure-generic-storage-account-2.0' do
     its('properties.encryption.services.file.enabled') { should be true }
 
     # Check the ACLs
-    describe described_class.properties.networkAcls do
-      its('bypass') { should cmp 'AzureServices' }
-      its('defaultAction') { should cmp 'Allow' }
-      its('ipRules.count') { should eq 0 }
-      its('virtualNetworkRules.count') { should eq 0 }
-    end
+    its('properties.networkAcls.bypass') { should cmp 'AzureServices' }
+    its('properties.networkAcls.defaultAction') { should cmp 'Allow' }
+    its('properties.networkAcls.ipRules.count') { should eq 0 }
+    its('properties.networkAcls.virtualNetworkRules.count') { should eq 0 }
 
     # Determine if it only supports HTTPS traffic
     its('properties.supportsHttpsTrafficOnly') { should be false }

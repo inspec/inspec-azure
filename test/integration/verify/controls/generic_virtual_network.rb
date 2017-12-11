@@ -23,12 +23,5 @@ control 'azure-generic-virtual-network-2.0' do
     # There should be one subnet
     its('properties.subnets.count') { should eq 1 }
     
-    # Interrogate the first (and only) subnet
-    describe described_class.properties.subnets[0] do
-      # Check the name
-      its('name') { should cmp 'Inspec-Subnet' }
-      its('properties.addressPrefix') { should eq '10.1.1.0/24' }
-    end
   end
-
 end

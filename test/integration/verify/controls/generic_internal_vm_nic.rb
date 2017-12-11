@@ -19,16 +19,6 @@ control 'azure-generic-vm-internal-nic-2.0' do
     # It should have only 1 ipConfiguration
     its('properties.ipConfigurations.count') { should eq 1 }
 
-    # Ensure that the NIC is setup correctly
-    describe described_class.properties.ipConfigurations.first do
-      its('name') { should cmp 'ipConfiguration1' }
-      its('properties.privateIPAddress') { should cmp '10.1.1.10' }
-      its('properties.privateIPAllocationMethod') { should cmp 'Static' }
-
-      # Ensure that it is connected to the correct subnet
-      its('properties.subnet.id') { should match 'Inspec-Subnet' }
-    end
-
     # There should be no custom dns settings
     its('properties.dnsSettings.dnsServers.count') { should eq 0 }
     its('properties.dnsSettings.appliedDnsServers.count') { should eq 0 }
