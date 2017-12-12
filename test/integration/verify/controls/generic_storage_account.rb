@@ -21,12 +21,12 @@ control 'azure-generic-storage-account-2.0' do
     # Check that the blob and file services are enabled
     its('properties.encryption.services.blob.enabled') { should be true }
     its('properties.encryption.services.file.enabled') { should be true }
+    its('properties.encryption.keySource') { should cmp "Microsoft.Storage" }
 
-    # Check the ACLs
-    its('properties.networkAcls.bypass') { should cmp 'AzureServices' }
-    its('properties.networkAcls.defaultAction') { should cmp 'Allow' }
-    its('properties.networkAcls.ipRules.count') { should eq 0 }
-    its('properties.networkAcls.virtualNetworkRules.count') { should eq 0 }
+    its('properties.provisioningState') { should cmp "Succeeded" }
+
+    its("properties.primaryLocation") { should cmp "westeurope" }
+    its("properties.statusOfPrimary") { should cmp "available" }
 
     # Determine if it only supports HTTPS traffic
     its('properties.supportsHttpsTrafficOnly') { should be false }

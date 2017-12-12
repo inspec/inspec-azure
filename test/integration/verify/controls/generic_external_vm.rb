@@ -33,9 +33,9 @@ control 'azure-generic-vm-linux-external-2.0' do
     its('properties.networkProfile.networkInterfaces.count') { should eq 1 }
 
     # Determine the authentication and OS type
-    its('properties.storageProfile.imageReference.properties.osProfile.computerName') { should eq 'linux-external-1' }
-    its('properties.storageProfile.imageReference.properties.osProfile.adminUsername') { should eq 'azure' }
-    its('properties.storageProfile.imageReference.properties.osProfile.linuxConfiguration.disablePasswordAuthentication') { should be true }
+    its('properties.osProfile.computerName') { should eq 'linux-external-1' }
+    its('properties.osProfile.adminUsername') { should eq 'azure' }
+    its('properties.osProfile.linuxConfiguration.disablePasswordAuthentication') { should be true }
 
     # Check that the tags have been set properly
     it { should have_tags }

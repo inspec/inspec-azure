@@ -37,10 +37,10 @@ control 'azure-generic-vm-windows-internal-2.0' do
     its('properties.networkProfile.networkInterfaces.count') { should eq 1 }
 
     # Determine the authentication and OS type
-    its('properties.storageProfile.imageReference.properties.osProfile.computerName') { should eq 'win-internal-1' }
-    its('properties.storageProfile.imageReference.properties.osProfile.adminUsername') { should eq 'azure' }
-    its('properties.storageProfile.imageReference.properties.osProfile.windowsConfiguration.provisionVMAgent') { should be true }
-    its('properties.storageProfile.imageReference.properties.osProfile.windowsConfiguration.enableAutomaticUpdates') { should be false }
+    its('properties.osProfile.computerName') { should eq 'win-internal-1' }
+    its('properties.osProfile.adminUsername') { should eq 'azure' }
+    its('properties.osProfile.windowsConfiguration.provisionVMAgent') { should be true }
+    its('properties.osProfile.windowsConfiguration.enableAutomaticUpdates') { should be false }
 
     # There should be no tags
     it { should_not have_tags }
