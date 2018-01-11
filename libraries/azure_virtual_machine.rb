@@ -5,6 +5,8 @@ require 'azure_backend'
 class AzureVirtualMachine < AzureResourceBase
   name 'azure_virtual_machine'
 
+  supports platform: "azure"
+
   desc '
     Inspec Resource to test Azure Virtual Machines
   '
