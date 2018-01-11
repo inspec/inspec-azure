@@ -5,6 +5,8 @@ require 'azure_backend'
 class AzureGenericResource < AzureResourceBase
   name 'azure_generic_resource'
 
+  supports platform: "azure"
+
   desc '
     Inspec Resource to interrogate any Resource type in Azure
   '

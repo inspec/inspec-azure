@@ -72,5 +72,5 @@ Layout/SpaceAroundOperators:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
-Lint/RescueWithoutErrorClass:
+Style/RescueStandardError:
   Enabled: false

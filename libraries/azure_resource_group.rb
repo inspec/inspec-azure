@@ -5,6 +5,8 @@ require 'azure_backend'
 class AzureResourceGroup < AzureResourceBase
   name 'azure_resource_group'
 
+  supports platform: "azure"
+
   desc '
     Inspec Resource to get metadata about a specific Resource Group
   '

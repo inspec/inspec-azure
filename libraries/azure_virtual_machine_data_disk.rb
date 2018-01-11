@@ -6,6 +6,8 @@ require 'uri'
 class AzureVirtualMachineDataDisk < AzureResourceBase
   name 'azure_virtual_machine_data_disk'
 
+  supports platform: "azure"
+
   desc '
     Inspec Resource to ensure that the data disks attached to a machine are correct
   '
