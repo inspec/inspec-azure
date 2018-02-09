@@ -2,7 +2,7 @@
 
 On or about February 9th, 2018, we plan to set this repo to be Archived, which means that it will be available as read-only.  With this change, this repo no longer accepts new issues, pull requests, or comments.
 
-We are moving the functionality of this AWS resource pack into InSpec core, at https://github.com/chef/inspec . We’ll migrate the existing issues there, as well.
+We are moving the functionality of this Azure resource pack into InSpec core, at https://github.com/chef/inspec . We’ll migrate the existing issues there, as well.
 
 You may also use the `release-2.0` branch of the `inspec` repo to test the new integration, but it will be unstable until the official release of InSpec 2.0, targeted for February 15th.
 
