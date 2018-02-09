@@ -1,10 +1,10 @@
-# This Repository Will Be Archived Soon
+# This Repository Has Been Archived
 
-On or about February 9th, 2018, we plan to set this repo to be Archived, which means that it will be available as read-only.  With this change, this repo no longer accepts new issues, pull requests, or comments.
+You may continue to use this repo as an InSpec resource pack, but after February 15th, 2018, those resources will be available directly in InSpec 2.0
 
-We are moving the functionality of this Azure resource pack into InSpec core, at https://github.com/chef/inspec . We’ll migrate the existing issues there, as well.
+All code, issues, and pull requests are now available in the https://github.com/chef/inspec repository.  Use the label 'azure' to find issues and PRs related to Azure.
 
-You may also use the `release-2.0` branch of the `inspec` repo to test the new integration, but it will be unstable until the official release of InSpec 2.0, targeted for February 15th.
+This repository remains available for public reference.
 
 ---
 
