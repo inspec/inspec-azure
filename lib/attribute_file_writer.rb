@@ -1,0 +1,22 @@
+require 'yaml'
+require 'json'
+
+class AttributeFileWriter
+  def self.write_yaml(file, content)
+    writer = AttributeFileWriter.new(file)
+    writer.convert_to_yaml(content)
+  end
+
+  def initialize(file)
+    @file = file
+  end
+
+  def convert_to_yaml(content)
+    json = JSON.parse(content)
+    yaml = {}
+    json.keys.each do |key|
+      yaml[key] = json[key]['value']
+    end
+    File.open(@file, 'w') { |file| file.puts(yaml.to_yaml) }
+  end
+end
