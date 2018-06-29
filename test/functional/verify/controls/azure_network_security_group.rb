@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group',         default: nil)
-nsg            = attribute('network_security_group', default: nil)
+resource_group = attribute('resource_group',            default: nil)
+nsg            = attribute('network_security_group',    default: nil)
 nsg_id         = attribute('network_security_group_id', default: nil)
 
 control 'azure_network_security_group' do

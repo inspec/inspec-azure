@@ -30,13 +30,13 @@ If no policy is given the default one will be used.
 
 ## Examples
 
-### Test the default Security Center Policy exists
+### Assert that the default Security Center Policy exists
 
     describe azure_security_center_policy(name: 'default') do
       it { should exist }
     end
 
-### Test the default Security Center Policy has log collection enabled
+### Assert that the default Security Center Policy has log collection enabled
 
     describe azure_security_center_policy(name: 'default') do
       its('log_collection') { should eq('On') }
@@ -59,6 +59,7 @@ If no policy is given the default one will be used.
 The name of the Security Center Policy. It must be `default`. If no name is given then it will search for the `default` Security Center Policy (Optional).
 
     describe azure_security_center_policy(name: 'default') do
+      its('log_collection') { should eq('On') }
     end
 
 ## Properties
@@ -77,7 +78,7 @@ The name of the Security Center Policy.
 
     its('name') { should eq('default') }
 
-### log_collection
+### log\_collection
 
 Log collection indicates if the monitoring agent will collect security data (`On`|`Off`).
 
@@ -95,13 +96,13 @@ Baseline indicates if OS vulnerabilities recommendations for virtual machines ar
 
     its('baseline') { should eq('On') }
 
-### anti_malware
+### anti\_malware
 
 Anti-Malware indicates if endpoint protection recommendations for virtual machines are enabled (`On`|`Off`).
 
     its('anti_malware') { should eq('On') }
 
-### disk_encryption
+### disk\_encryption
 
 Disk Encryption indicates if recommendations for virtual machines are enabled (`On`|`Off`).
 
@@ -125,7 +126,7 @@ Next generation firewall indicates if recommendations for virtual machines are e
 
     its('next_generation_firewall') { should eq('On') }
 
-### vulnerability_assessment
+### vulnerability\_assessment
 
 Vulnerability assessment indicates if recommendations for virtual machines are enabled (`On`|`Off`).
 
@@ -137,13 +138,13 @@ Just in time network access indicates if recommendations for virtual machines ar
 
     its('just_in_time_network_access') { should eq('On') }
 
-### app_whitelisting
+### app\_whitelisting
 
 App whitelisting indicates if adaptive application controls are enabled (`On`|`Off`).
 
     its('app_whitelisting') { should eq('On') }
 
-### sql_auditing
+### sql\_auditing
 
 SQL auditing indicates if auditing and threat detection recommendations are enabled (`On`|`Off`).
 
@@ -155,7 +156,7 @@ SQL transparent data encryption indicates if recommendations are enabled (`On`|`
 
     its('sql_transparent_data_encryption') { should eq('On') }
 
-### notifications_enabled
+### notifications\_enabled
 
 Notifications enabled indicates if security alerts are emailed to the security contact (`true`|`false`).
 
@@ -167,13 +168,13 @@ Send security email to admin indicates if the subscription admin will receive se
 
     its('send_security_email_to_admin') { should eq(true) }
 
-### contact_emails
+### contact\_emails
 
 Contact emails contains a list of security email addresses.
 
     its('contact_emails') { should include('security@example.com') }
 
-### contact_phone
+### contact\_phone
 
 Contact phone contains the security contact phone number.
 
@@ -182,25 +183,23 @@ Contact phone contains the security contact phone number.
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # default should always exist
-    describe azure_security_center_policy(name: 'default')
+    describe azure_security_center_policy(name: 'default') do
       it { should exist }
     end
 
     # this security center policy should not exist
-    describe azure_security_center_policy(name: 'DoesNotExist')
+    describe azure_security_center_policy(name: 'DoesNotExist') do
       it { should_not exist }
     end
 
 ## Azure Permissions
 
-Your [Service
-Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

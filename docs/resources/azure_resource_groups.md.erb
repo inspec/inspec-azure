@@ -37,7 +37,7 @@ The following examples show how to use this InSpec audit resource.
 ### Insist that your resource group exists
 
     describe azure_resource_groups.where('name' => 'MyResourceGroup')
-      it { should_not exist }
+      it { should exist }
     end
 
 ### Use names to get all Virtual Machines in Azure
@@ -59,7 +59,7 @@ The following examples show how to use this InSpec audit resource.
 Filters the results to include only those resource groups that match the given
 name. This is a string value.
 
-    describe azure_resource_groups.where { name.start_with?('Inspec') } do
+    describe azure_resource_groups.where { name.start_with?('InSpec') } do
       it { should exist }
     end
 
@@ -84,12 +84,11 @@ page](https://www.inspec.io/docs/reference/matchers/).
 The control will pass if the filter returns at least one result. Use
 `should_not` if you expect zero matches.
 
-    describe azure_resource_groups
+    describe azure_resource_groups do
       it { should exist }
     end
 
 ## Azure Permissions
 
-Your [Service
-Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

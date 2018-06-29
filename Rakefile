@@ -75,7 +75,6 @@ namespace :inspec do
 
     puts stdout
 
-    # TODO: add "warnings" back to list when we switch to using InSpec backend
     %w{errors}.each do |type|
       abort("InSpec check failed with syntax #{type}!") if !!(/[1-9]\d* #{type}/ =~ stdout)
     end

@@ -5,11 +5,11 @@ require 'azurerm_resource'
 class AzureNetworkWatcher < AzurermResource
   name 'azure_network_watcher'
   desc 'Verifies settings for Network Watchers'
-  example "
+  example <<-EXAMPLE
     describe azure_network_watcher(resource_group: 'example', name: 'name') do
       its(name) { should eq 'name'}
     end
-  "
+  EXAMPLE
 
   ATTRS = %i(
     name

@@ -5,11 +5,11 @@ require 'azurerm_resource'
 class AzureNetworkWatchers < AzurermResource
   name 'azure_network_watchers'
   desc 'Verifies settings for Network Watchers'
-  example "
+  example <<-EXAMPLE
     azure_network_watchers(resource_group: 'example') do
       it{ should exist }
     end
-  "
+  EXAMPLE
 
   attr_reader :table
 

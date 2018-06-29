@@ -25,13 +25,14 @@ The `resource_group` and virtual machine `name` must be given as parameters.
 ### Ensure that the virtual machine has the expected data disks
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
-      its('data_disks.sort') { should eq ['DataDisk1', 'DataDisk2'] }
+      its('data_disks') { should include 'DataDisk1' }
+      its('data_disks') { should include 'DataDisk2' }
     end
 
 ### Ensure that the virtual machine has the expected monitoring agent installed
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
-      its('monitoring_agent_installed') { should eq true }
+      it { should have_monitoring_agent_installed }
     end
 
 <br />
@@ -42,7 +43,7 @@ The `resource_group` and virtual machine `name` must be given as parameters.
 
 ## Parameter Examples
 
-### resource_group (required)
+### resource\_group (required)
 
 Defines the resource group that the virtual machine that you wish to test resides in.
 
@@ -112,7 +113,7 @@ The virtual machine's operating system disk name.
 
 The virtual machine's data disk names.
 
-    its('data_disk_names') { should eq(['DataDisk1', 'DataDisk2']) }
+    its('data_disk_names') { should include('DataDisk1') }
 
 ### installed\_extensions\_types
 
@@ -129,8 +130,7 @@ List of all installed extensions' names for the virtual machine.
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
@@ -144,7 +144,7 @@ page](https://www.inspec.io/docs/reference/matchers/).
       it { should_not exist }
     end
 
-### have_only_approved_extensions
+### have\_only\_approved\_extensions
 
     # Check if a virtual machine has only approved extensions. If an extension
     # is used that's not in the list then the check will fail.
@@ -152,14 +152,14 @@ page](https://www.inspec.io/docs/reference/matchers/).
       it { should have_only_approved_extensions(['ApprovedExtension', 'OtherApprovedExtensions']) }
     end
 
-### have_monitoring_agent_installed
+### have\_monitoring\_agent\_installed
 
     # Will be true if the MicrosoftMonitoringAgent is installed (Windows only)
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       it { should have_monitoring_agent_installed }
     end
 
-### have_endpoint_protection_installed
+### have\_endpoint\_protection\_installed
 
     # Will be true if any of the given extensions are installed.
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
@@ -168,6 +168,5 @@ page](https://www.inspec.io/docs/reference/matchers/).
 
 ## Azure Permissions
 
-Your [Service
-Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

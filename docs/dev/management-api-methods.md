@@ -15,9 +15,9 @@ of them and use a single implementation to produce the needed code.
 
 There are three main parts to the implementation:
 
- * the resource data, `management.yaml`
+ * The resource data, `management.yaml`
  * The resource method generator, 'Azure::ManagementMethodGenerator`
- * the proxy object, 'Azure::Management`
+ * The proxy object, 'Azure::Management`
 
 ### `management.yaml`
 

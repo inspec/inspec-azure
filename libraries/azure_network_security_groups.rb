@@ -5,11 +5,11 @@ require 'azurerm_resource'
 class AzureNetworkSecurityGroups < AzurermResource
   name 'azure_network_security_groups'
   desc 'Verifies settings for Network Security Groups'
-  example "
+  example <<-EXAMPLE
     azure_network_security_groups(resource_group: 'example') do
       it{ should exist }
     end
-  "
+  EXAMPLE
 
   attr_reader :table
 

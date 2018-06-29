@@ -27,8 +27,8 @@ class AzureMonitorLogProfile < AzurermResource
     resp = client.log_profile(options[:name])
     return if resp.nil? || resp.key?('error')
 
-    @name = resp['name']
-    @id   = resp['id']
+    @name              = resp['name']
+    @id                = resp['id']
     @retention_policy  = resp['properties']['retentionPolicy']
     @retention_days    = resp['properties']['retentionPolicy']['days']
     @retention_enabled = resp['properties']['retentionPolicy']['enabled']

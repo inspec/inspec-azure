@@ -5,11 +5,11 @@ require 'azurerm_resource'
 class AzureResourceGroups < AzurermResource
   name 'azure_resource_groups'
   desc 'Fetches all available resource groups'
-  example "
+  example <<-EXAMPLE
     describe azure_resource_groups do
       its('names') { should include('example-group') }
     end
-  "
+  EXAMPLE
 
   FilterTable.create
              .add_accessor(:entries)

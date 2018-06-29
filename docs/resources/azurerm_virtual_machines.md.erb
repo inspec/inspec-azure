@@ -38,7 +38,7 @@ The `resource_group` must be given as a parameter.
 
 ### Parameter Examples
 
-### resource_group (required)
+### resource\_group (required)
 
     describe azurerm_virtual_machines(resource_group: 'MyResourceGroup') do
       ...
@@ -73,13 +73,13 @@ Filters the result to only those that match the given name.
 
 * `os_disks`, `data_disks`, `vm_names`
 
-### os_disks
+### os\_disks
 
 Gives a list of OS disk names for all the virtual machines in the resource group.
 
     its('os_disks.sort') { should eq ['MyDisk1', 'MyDisk2'] }
 
-### data_disks
+### data\_disks
 
 Gives a list of data disks for all the virtual machines in the resource group.
 
@@ -89,7 +89,7 @@ Note that it returns an array of arrays. You may flatten them for testing:
 
     its('os_disks.flatten.sort') { should eq ['MyDisk1', 'MyDisk2'] }
 
-### vm_names
+### vm\_names
 
 Gives a list of all the virtual machine names in the resource group.
 
@@ -98,8 +98,7 @@ Gives a list of all the virtual machine names in the resource group.
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
@@ -115,6 +114,5 @@ page](https://www.inspec.io/docs/reference/matchers/).
 
 ## Azure Permissions
 
-Your [Service
-Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-# TODO: we will have a name collision with the existing implementation
-
 require 'azurerm_resource'
 
 class AzurermVirtualMachineDisk < AzurermResource
   name 'azurerm_virtual_machine_disk'
   desc 'Verifies settings for Azure Virtual Machine Disks'
-  example "
+  example <<-EXAMPLE
     describe azurerm_virtual_machine_disk(resource_group: 'example', name: 'vm-name') do
+      it{ should exist }
     end
-  "
+  EXAMPLE
 
   ATTRS = %i(
     managedBy

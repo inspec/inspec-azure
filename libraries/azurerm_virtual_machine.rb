@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-# TODO: we will have a name collision with the existing implementation
-
 require 'azurerm_resource'
 
 class AzurermVirtualMachine < AzurermResource
   name 'azurerm_virtual_machine'
-  desc 'Verifies settings for Azure Virtual Machines'
-  example "
+  desc 'Verifies settings for an Azure Virtual Machine'
+  example <<-EXAMPLE
     describe azurerm_virtual_machine(resource_group: 'example', name: 'vm-name') do
+      it { should have_monitoring_agent_installed }
     end
-  "
+  EXAMPLE
 
   ATTRS = %i(
     id

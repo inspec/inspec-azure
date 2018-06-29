@@ -30,10 +30,10 @@ exist.
 ### Check for a Security Center Policy
 
     describe azure_security_center_policies do
-      its('names') { should incldue 'default' }
+      its('names') { should include 'default' }
     end
 
-### Insist default Security Center Policy exists
+### Assert default Security Center Policy exists
 
     describe azure_security_center_policies.where('name' => 'default')
       it { should exist }
@@ -78,6 +78,5 @@ The control will pass if the filter returns at least one result. Use
 
 ## Azure Permissions
 
-Your [Service
-Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

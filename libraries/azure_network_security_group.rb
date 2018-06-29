@@ -5,11 +5,11 @@ require 'azurerm_resource'
 class AzureNetworkSecurityGroup < AzurermResource
   name 'azure_network_security_group'
   desc 'Verifies settings for Network Security Groups'
-  example "
+  example <<-EXAMPLE
     describe azure_network_security_group(resource_group: 'example', name: 'name') do
       its(name) { should eq 'name'}
     end
-  "
+  EXAMPLE
 
   ATTRS = %i(
     name

@@ -5,11 +5,11 @@ require 'azurerm_resource'
 class AzurermVirtualMachines < AzurermResource
   name 'azurerm_virtual_machines'
   desc 'Verifies settings for Azure Virtual Machines'
-  example "
+  example <<-EXAMPLE
     azurerm_virtual_machines(resource_group: 'example') do
       it{ should exist }
     end
-  "
+  EXAMPLE
 
   FilterTable.create
              .add_accessor(:entries)

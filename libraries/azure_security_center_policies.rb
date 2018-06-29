@@ -5,11 +5,11 @@ require 'azurerm_resource'
 class AzureSecurityCenterPolicies < AzurermResource
   name 'azure_security_center_policies'
   desc 'Verifies settings for Security Center'
-  example "
+  example <<-EXAMPLE
     describe azure_security_center_policies do
       its('policy_names') { should include('default') }
     end
-  "
+  EXAMPLE
 
   FilterTable.create
              .add_accessor(:entries)
