@@ -17,15 +17,15 @@ TERRAFORM_DIR = 'terraform'
 
 task default: :test
 desc 'Testing tasks'
-task test: ['test:unit', 'test:functional']
+task test: ['test:unit', 'test:integration']
 
-task 'test:functional': :setup_env
+task 'test:integration': :setup_env
 
-desc 'Set up Azure env, run functional tests, destroy Azure env'
+desc 'Set up Azure env, run integration tests, destroy Azure env'
 task azure: 'azure:run'
 
 namespace :azure do
-  task run: ['tf:apply', 'test:functional', 'tf:destroy']
+  task run: ['tf:apply', 'test:integration', 'tf:destroy']
 
   desc 'Authenticate with the Azure CLI'
   task :login do
@@ -98,10 +98,10 @@ namespace :test do
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :functional, [:controls] => [:check_attributes_file] do |_t, args|
+  task :integration, [:controls] => [:check_attributes_file] do |_t, args|
     credentials = Azure::Credentials.new
 
-    cmd = %W( bin/inspec exec test/functional/verify
+    cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
               -t azure://#{credentials.subscription_id} )
 

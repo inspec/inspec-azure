@@ -73,7 +73,7 @@ rake azure:login
 rake tf:destroy
 ```
 
-## Running functional tests
+## Running integration tests
 
 To start up an environment and run all tests:
 ```
@@ -90,20 +90,20 @@ bundle
 rake
 ```
 
-To run functional tests:
+To run integration tests:
 ```
 bundle
-rake test:functional
+rake test:integration
 ```
 
 To run a control called `azurerm_virtual_machine`:
 ```
 bundle
-rake test:functional[azurerm_virtual_machine]
+rake test:integration[azurerm_virtual_machine]
 ```
 
 You may run multiple controls:
 ```
 bundle
-rake test:functional[azure_resource_group,azurerm_virtual_machine]
+rake test:integration[azure_resource_group,azurerm_virtual_machine]
 ```
