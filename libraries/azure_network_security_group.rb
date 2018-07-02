@@ -84,10 +84,9 @@ class AzureNetworkSecurityGroup < AzurermResource
 
   def matches_port?(ports, match_port)
     return true if ports.detect { |p| p =~ /^(#{match_port}|\*)$/ }
-    ports
-      .select { |port| port.include?('-') }
-      .collect { |range| range.split('-') }
-      .any? { |range| (range.first..range.last).cover?(match_port) }
+    ports.select { |port| port.include?('-') }
+         .collect { |range| range.split('-') }
+         .any? { |range| (range.first..range.last).cover?(match_port) }
   end
 
   def tcp?(properties)
