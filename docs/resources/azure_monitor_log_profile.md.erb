@@ -1,0 +1,88 @@
+---
+title: About the azure_monitor_log_profile Resource
+platform: azure
+---
+
+# azure\_monitor\_log\_profile
+
+Use the `azure_monitor_log_profile` InSpec audit resource to test properties
+of an Azure Monitor Log Profile.
+
+<br />
+
+## Syntax
+
+An `azure_monitor_log_profile` resource block identifies a Log Profile by name.
+
+    describe azure_monitor_log_profile(name: 'default') do
+      ...
+    end
+<br />
+
+## Examples
+
+### Test that a Log Profile exists
+
+    describe azure_monitor_log_profile(name: 'default') do
+      it { should exist }
+    end
+
+### Test that a Log Profile retention is enabled
+
+    describe azure_monitor_log_profile(name: 'default') do
+      its('retention_enabled') { should be true }
+    end
+
+<br />
+
+## Parameters
+
+* `name`
+
+## Parameter Examples
+
+The name of the Log Profile.
+
+    describe azure_monitor_log_profile(name: 'default') do
+      it { should exist }
+    end
+
+## Properties
+
+* `retention_enabled`
+* `retention_days`
+
+### retention_enabled
+
+Determine if retention is enabled
+
+    its('retention_enabled') { should be true }
+
+### retention_days
+
+Determine number of days retention is enabled for
+
+    its('retention_days')    { should eq(365) }
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list
+of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
+
+    # should always exist
+    describe azure_monitor_log_profile(name: 'default') do
+      it { should exist }
+    end
+
+    # should not exist
+    describe azure_monitor_log_profile(name: 'default') do
+      it { should_not exist }
+    end
+
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

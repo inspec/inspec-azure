@@ -1,0 +1,62 @@
+---
+title: About the azure_monitor_log_profiles Resource
+platform: azure
+---
+
+# azure\_monitor\_log\_profiles
+
+Use the `azure_monitor_log_profiles` InSpec audit resource to verify a Log Profile exists.
+
+<br />
+
+## Syntax
+
+An `azure_monitor_log_profiles` resource block identifies a Log Profile by name.
+
+    describe azure_monitor_log_profiles do
+      ...
+    end
+<br />
+
+## Examples
+
+### Test an example resource has a Log Profile
+
+    describe azure_monitor_log_profiles do
+      its('names') { should include('example-profile') }
+    end
+
+<br />
+
+## Properties
+
+* `names`
+
+### names
+
+The name of the Log Profile
+
+    its('names') { should include('example-profile') }
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list
+of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
+
+    # example should exist
+    describe azure_monitor_log_profiles do
+      its('names') { should include('example-profile') }
+    end
+
+    # texample shouldnot exist
+    describe azure_monitor_log_profiles do
+      its('names') { should_not include('example-profile') }
+    end
+
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
