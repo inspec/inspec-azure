@@ -1,0 +1,82 @@
+---
+title: About the azure_security_center_policies Resource
+platform: azure
+---
+
+# azure\_security\_center\_policies
+
+Use the `azure_security_center_policies` InSpec audit resource to test
+properties of some or all Azure Security Center Policies.
+
+Security Center Policies are defined for each Resource Group. A Security Center
+Policy called `default` also exists for every subscription.
+
+<br />
+
+## Syntax
+
+An `azure_security_center_policies` resource block uses an optional filter to
+select a group of Security Center Policies and confirm that the expected groups
+exist.
+
+    describe azure_security_center_policies do
+      ...
+    end
+
+<br />
+
+## Examples
+
+### Check for a Security Center Policy
+
+    describe azure_security_center_policies do
+      its('names') { should include 'default' }
+    end
+
+### Assert default Security Center Policy exists
+
+    describe azure_security_center_policies.where('name' => 'default')
+      it { should exist }
+    end
+
+<br />
+
+## Filter Criteria
+
+* `names`
+
+### names
+
+Filters the results to include only those Security Center Policies that match
+the given name. This is a string value.
+
+    # default should always exist
+    describe azure_security_center_policies.where('name' => 'default')
+      it { should exist }
+    end
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list
+of available matchers, please visit our [Universal Matchers
+page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+The control will pass if the filter returns at least one result. Use
+`should_not` if you expect zero matches.
+
+    # default should always exist
+    describe azure_security_center_policies.where('name' => 'default')
+      it { should exist }
+    end
+
+    # this security center policy should not exist
+    describe azure_security_center_policies.where('name' => 'DoesNotExist')
+      it { should_not exist }
+    end
+
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+must be setup with a `contributor` role on the subscription you wish to test.

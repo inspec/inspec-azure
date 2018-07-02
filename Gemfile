@@ -1,17 +1,18 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'inifile'
-gem 'azure_mgmt_resources', '~> 0.15'
-gem 'bundle'
+gem 'faraday',            '~> 0.15.0'
+gem 'faraday_middleware', '~> 0.12.2'
+gem 'inspec'
+gem 'plural',             '~> 0.1.0'
+gem 'rake',               '~> 12.3', '>= 12.3.1'
 
 group :development do
-  gem 'rake'
-  gem 'rubocop'
-  gem 'github_changelog_generator'
-  gem 'pry-coolline'
-  gem 'passgen'
+  gem 'pry', '~> 0.11.3'
 end
 
-group :inspec do
-  gem 'inspec', '~> 1.1'
+group :developmen, :test do
+  gem 'minitest', '~> 5.11.0'
+  gem 'rubocop',  '~> 0.55.0'
 end

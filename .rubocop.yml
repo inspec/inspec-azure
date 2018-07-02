@@ -1,36 +1,86 @@
 ---
 AllCops:
+  TargetRubyVersion: 2.3
   Exclude:
-  - Gemfile
-  - Rakefile
-  - 'test/**/*'
-  - 'examples/**/*'
-  - 'vendor/**/*'
-  - 'lib/bundles/inspec-init/templates/**/*'
-Documentation:
-  Enabled: false
+  - legacy-prototype/**/*
+  - bin/**/*
 AlignParameters:
   Enabled: true
-Encoding:
-  Enabled: true
-HashSyntax:
-  Enabled: true
-ClassLength:
-  Max: 200
-LineLength:
+BlockDelimiters:
+  Enabled: false
+Documentation:
   Enabled: false
 EmptyLinesAroundBlockBody:
   Enabled: false
+FrozenStringLiteralComment:
+  Enabled: false
+HashSyntax:
+  Enabled: true
+LineLength:
+  Enabled: false
+Layout/AlignHash:
+  Enabled: false
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+Layout/EndOfLine:
+  Enabled: true
+  EnforcedStyle: lf
+Layout/ExtraSpacing:
+  Enabled: true
+  Exclude:
+  - Gemfile
+Layout/SpaceAroundOperators:
+  Enabled: false
 MethodLength:
   Max: 40
-NumericLiterals:
-  MinDigits: 10
+Metrics/AbcSize:
+  Max: 33
+Metrics/BlockLength:
+  Max: 50
+Metrics/ClassLength:
+  Enabled: false
 Metrics/CyclomaticComplexity:
   Max: 10
 Metrics/PerceivedComplexity:
   Max: 11
-Metrics/AbcSize:
-  Max: 33
+Naming/FileName:
+  Enabled: false
+Naming/PredicateName:
+  Enabled: false
+NumericLiterals:
+  MinDigits: 10
+Security/YAMLLoad:
+  Enabled: false
+Style/AndOr:
+  Enabled: false
+Style/BracesAroundHashParameters:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Style/EmptyMethod:
+  Enabled: false
+Style/Encoding:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/MethodMissing:
+  Enabled: false
+Style/MultilineIfModifier:
+  Enabled: false
+Style/NegatedIf:
+  Enabled: false
+Style/Not:
+  Enabled: false
+Style/NumericLiteralPrefix:
+  Enabled: false
+Style/NumericPredicate:
+  Enabled: false
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%':  '{}'
@@ -42,35 +92,13 @@ Style/PercentLiteralDelimiters:
     '%w': '{}'
     '%W': ()
     '%x': ()
-Layout/AlignHash:
+Style/SymbolArray:
   Enabled: false
-Naming/PredicateName:
-  Enabled: false
-Style/ClassAndModuleChildren:
-  Enabled: false
-Style/ConditionalAssignment:
-  Enabled: false
-Style/BracesAroundHashParameters:
-  Enabled: false
-Style/AndOr:
-  Enabled: false
-Style/Not:
-  Enabled: false
-Naming/FileName:
-  Enabled: false
-Style/TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: comma
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
-Style/NegatedIf:
-  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
 Style/UnlessElse:
-  Enabled: false
-BlockDelimiters:
-  Enabled: false
-Layout/SpaceAroundOperators:
-  Enabled: false
-Style/IfUnlessModifier:
-  Enabled: false
-Lint/RescueWithoutErrorClass:
   Enabled: false

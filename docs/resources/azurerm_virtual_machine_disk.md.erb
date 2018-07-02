@@ -1,0 +1,127 @@
+---
+title: About the azurerm_virtual_machine_disk Resource
+platform: azure
+---
+
+# azurerm\_virtual\_machine\_disk
+
+Use the `azurerm_virtual_machine_disk` InSpec audit resource to test properties
+related to a virtual machine's disk. This resource will only support managed
+disks. If your disk is not managed it will not `exist` to the matcher.
+
+<br />
+
+## Syntax
+
+The `resource_group` and `name` must be given as parameters.
+
+    describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do
+      ...
+    end
+
+<br />
+
+## Examples
+
+    # If a disk is found it will exist
+    describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do
+      it { should exist }
+    end
+
+    # Check if encryption is enabled
+    describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do
+      it('encryption_enabled') { should be true }
+    end
+
+<br />
+
+## Parameters
+
+* `resource_group`, `name`
+
+## Parameter Examples
+
+    # resource_group and name are required parameters
+    describe azurerm_virtual_machine_disk(resource_group: 'MyGroup', name: 'MyDiskName') do
+      ...
+    end
+
+## Properties
+
+* `id`, `name`, `managedBy`, `sku`, `properties`, `type`, `location`, `tags`, `encryption_enabled`
+
+### id
+
+The disk's unique identifier.
+
+    its('id') { should eq(id) }
+
+Id will be in the format:
+
+    /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/myManagedDisk
+
+### name
+
+The disk's name.
+
+    its('name') { should eq('MyDiskName') }
+
+### managedBy
+
+The resource managing the disk if it is attached to a virtual machine.
+
+    its('managedBy') { should eq(ResourceId) }
+
+ResourceId will be in the format:
+
+    /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/myManagedDisk
+
+### sku
+
+The disk's sku name (`Standard_LRS`|`Premium_LRS`).
+
+    its('sku') { should eq('Standard_LRS') }
+
+### properties
+
+The disk's properties. This is a hash of key/value pairs.
+
+### type
+
+The disk's type. Will always be `Microsoft.Compute/disks`.
+
+    its('type') { should eq('Microsoft.Compute/disks') }
+
+### location
+
+The disk's location. Will be the region where the disk resides.
+
+    its('location') { should eq('West US') }
+
+### tags
+
+The disk's tags. Will be a hash of key/value pairs.
+
+    its('tags') { should eq({ 'department' => 'IT' })
+
+### encryption\_enabled
+
+If the disk is encrypted or not (`true`|`false`).
+
+    its('encryption_enabled') { should be true }
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list
+of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+    describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do
+      it { should exist }
+    end
+
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+must be setup with a `contributor` role on the subscription you wish to test.

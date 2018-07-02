@@ -1,101 +1,172 @@
-#!/usr/bin/env rake
+# frozen_string_literal: true
 
+require 'bundler'
+require 'bundler/gem_helper'
 require 'rake/testtask'
 require 'rubocop/rake_task'
-require 'inifile'
-require 'passgen'
-require_relative 'libraries/azure_backend'
+require 'fileutils'
+require 'open3'
 
-# Rubocop
-desc 'Run Rubocop lint checks'
-task :rubocop do
-  RuboCop::RakeTask.new
+require_relative 'libraries/support/azure/credentials'
+require_relative 'lib/attribute_file_writer'
+
+RuboCop::RakeTask.new
+
+FIXTURE_DIR = "#{Dir.pwd}/test/fixtures"
+TERRAFORM_DIR = 'terraform'
+
+task default: :test
+desc 'Testing tasks'
+task test: ['test:unit', 'test:integration']
+
+task 'test:integration': :setup_env
+
+desc 'Set up Azure env, run integration tests, destroy Azure env'
+task azure: 'azure:run'
+
+namespace :azure do
+  task run: ['tf:apply', 'test:integration', 'tf:destroy']
+
+  desc 'Authenticate with the Azure CLI'
+  task :login do
+    sh(
+      'az', 'login',
+      '--service-principal',
+      '-u', ENV['AZURE_CLIENT_ID'],
+      '-p', ENV['AZURE_CLIENT_SECRET'],
+      '--tenant', ENV['AZURE_TENANT_ID']
+    )
+  end
 end
 
-# lint the project
-desc 'Run robocop linter'
-task lint: [:rubocop]
+desc 'Linting tasks'
+task lint: [:rubocop, :syntax, :'inspec:check']
 
-# run tests
-task default: [:lint]
+desc 'Ruby syntax check'
+task :syntax do
+  files = %w{Gemfile Rakefile} + Dir['./**/*.rb']
+
+  files.each do |file|
+    sh('ruby', '-c', file) do |ok, res|
+      next if ok
+
+      puts 'Syntax check FAILED'
+      exit res.exitstatus
+    end
+  end
+end
+
+task :check_attributes_file do
+  abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
+  abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
+end
+
+namespace :inspec do
+  desc 'Runs profile against Azure with given Subscription Id'
+  task :run, [:subscription_id] => :check_attributes_file do |_t, args|
+    sh('./bin/inspec', 'exec', '.',
+       '--attrs', "terraform/#{ENV['ATTRIBUTES_FILE']}",
+       '-t', "azure://#{args[:subscription_id]}")
+  end
+
+  desc 'InSpec syntax check'
+  task :check do
+    stdout, status = Open3.capture2('./bin/inspec check .')
+
+    puts stdout
+
+    %w{errors}.each do |type|
+      abort("InSpec check failed with syntax #{type}!") if !!(/[1-9]\d* #{type}/ =~ stdout)
+    end
+
+    status.exitstatus
+  end
+end
+
+task :setup_env do
+  credentials = Azure::Credentials.new
+  ENV['TF_VAR_subscription_id'] = credentials.subscription_id
+  ENV['TF_VAR_tenant_id']       = credentials.tenant_id
+  ENV['TF_VAR_client_id']       = credentials.client_id
+  ENV['TF_VAR_client_secret']   = credentials.client_secret
+end
 
 namespace :test do
-
-  # Specify the directory for the integration tests
-  integration_dir = "test/integration"
-
-  # run inspec check to verify that the profile is properly configured
-  #task :check do
-  #  dir = File.join(File.dirname(__FILE__))
-  #  sh("bundle exec inspec check #{dir}")
-  #end
-
-  task :init_workspace do
-    # Initialize terraform workspace
-    cmd = format("cd %s/build/ && terraform init", integration_dir)
-    sh(cmd)
+  Rake::TestTask.new(:unit) do |t|
+    t.libs << 'test/unit'
+    t.libs << 'libraries'
+    t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :setup_integration_tests do
+  task :integration, [:controls] => [:check_attributes_file] do |_t, args|
+    credentials = Azure::Credentials.new
 
-    azure_backend = AzureConnection.new
-    creds = azure_backend.spn
+    cmd = %W( bin/inspec exec test/integration/verify
+              --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
+              -t azure://#{credentials.subscription_id} )
 
-    # Determine the storage account name and the admin password
-    sa_name = (0...15).map { (65 + rand(26)).chr }.join.downcase
-    admin_password = Passgen::generate(length: 12, uppercase: true, lowercase: true, symbols: true, digits: true)
-
-    # Use the first 4 characters of the storage account to create a suffix
-    suffix = sa_name[0..3]
-
-    puts "----> Setup"
-
-    # Create the plan that can be applied to Azure
-    cmd = format("cd %s/build/ && terraform plan -var 'subscription_id=%s' -var 'client_id=%s' -var 'client_secret=%s' -var 'tenant_id=%s' -var 'storage_account_name=%s' -var 'admin_password=%s' -var 'suffix=%s' -out inspec-azure.plan", integration_dir, creds[:subscription_id], creds[:client_id], creds[:client_secret], creds[:tenant_id], sa_name, admin_password, suffix)
-    sh(cmd)
-
-    # Apply the plan on Azure
-    cmd = format("cd %s/build/ && terraform apply inspec-azure.plan", integration_dir)
-    sh(cmd)
-  end
-
-  task :run_integration_tests do
-    puts "----> Run"
-
-    cmd = format("bundle exec inspec exec %s/verify", integration_dir)
-    sh(cmd)
-  end
-
-  task :cleanup_integration_tests do
-
-    azure_backend = AzureConnection.new
-    creds = azure_backend.spn
-
-    puts "----> Cleanup"
-    cmd = format("cd %s/build/ && terraform destroy -force -var 'subscription_id=%s' -var 'client_id=%s' -var 'client_secret=%s' -var 'tenant_id=%s' -var 'admin_password=dummy' -var 'storage_account_name=dummy' -var 'suffix=dummy'", integration_dir, creds[:subscription_id], creds[:client_id], creds[:client_secret], creds[:tenant_id])
-    sh(cmd)
-
-  end
-
-  desc "Perform Integration Tests"
-  task :integration do
-    Rake::Task["test:init_workspace"].execute
-    Rake::Task["test:cleanup_integration_tests"].execute
-    Rake::Task["test:setup_integration_tests"].execute
-    Rake::Task["test:run_integration_tests"].execute
-    Rake::Task["test:cleanup_integration_tests"].execute
+    if args[:controls]
+      sh(*cmd, '--controls', args[:controls], *args.extras)
+    else
+      sh(*cmd)
+    end
   end
 end
 
-# Automatically generate a changelog for this project. Only loaded if
-# the necessary gem is installed.
-# use `rake changelog to=1.2.0`
-begin
-  v = ENV['to']
-  require 'github_changelog_generator/task'
-  GitHubChangelogGenerator::RakeTask.new :changelog do |config|
-    config.future_release = v
+namespace :tf do
+  workspace = ENV['WORKSPACE']
+
+  task init: [:setup_env] do
+    abort('$WORKSPACE not set. Please source .envrc.') if workspace.nil?
+    abort('$WORKSPACE has no content. Check .envrc.') if workspace.empty?
+    Dir.chdir(TERRAFORM_DIR) do
+      sh('terraform', 'init',
+         '--backend-config', "storage_account_name=#{ENV['TF_STORAGE_ACCOUNT_NAME']}",
+         '--backend-config', "access_key=#{ENV['TF_ACCESS_KEY']}",
+         '--backend-config', "container_name=#{ENV['TF_CONTAINER_NAME']}")
+    end
   end
-rescue LoadError
-  puts '>>>>> GitHub Changelog Generator not loaded, omitting tasks'
+
+  task workspace: [:init] do
+    Dir.chdir(TERRAFORM_DIR) do
+      sh('terraform', 'workspace', 'select', workspace) do |ok, _|
+        next if ok
+        sh('terraform', 'workspace', 'new', workspace)
+      end
+    end
+  end
+
+  desc 'Creates a Terraform execution plan from the plan file'
+  task plan: [:workspace] do
+    Dir.chdir(TERRAFORM_DIR) do
+      sh('terraform', 'get')
+      sh('terraform', 'plan', '-out', 'inspec-azure.plan')
+    end
+  end
+
+  desc 'Executes the Terraform plan'
+  task apply: [:workspace, :plan] do
+    Dir.chdir(TERRAFORM_DIR) do
+      sh('terraform', 'apply', 'inspec-azure.plan')
+    end
+
+    Rake::Task['tf:attributes_file'].invoke(workspace)
+  end
+
+  desc 'Destroys the Terraform environment'
+  task destroy: [:workspace] do
+    Dir.chdir(TERRAFORM_DIR) do
+      sh('terraform', 'destroy', '-force')
+    end
+  end
+
+  task attributes_file: [:workspace, :check_attributes_file] do
+    Dir.chdir(TERRAFORM_DIR) do
+      stdout, stderr, status = Open3.capture3('terraform output -json')
+
+      abort(stderr) unless status.success?
+
+      AttributeFileWriter.write_yaml(ENV['ATTRIBUTES_FILE'], stdout)
+    end
+  end
 end

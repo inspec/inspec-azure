@@ -1,0 +1,17 @@
+export WORKSPACE=`whoami`
+export ATTRIBUTES_FILE=.$WORKSPACE-attributes.yml
+export MANAGEMENT_DEFINITION_FILE=libraries/support/azure/management.yaml
+
+export AZURE_SUBSCRIPTION_ID=
+export AZURE_CLIENT_ID=
+export AZURE_TENANT_ID=
+export AZURE_CLIENT_SECRET=
+
+# Storage account we use to store terraform state in Azure
+export TF_STORAGE_ACCOUNT_NAME=
+
+# key for the storage account access. This is used to store remote state files
+export TF_ACCESS_KEY=
+
+# container used to store remote state. This should be your workspace by convention.
+export TF_CONTAINER_NAME=$WORKSPACE
