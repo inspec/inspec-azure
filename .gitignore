@@ -7,3 +7,4 @@ terraform/terraform.tfstate.backup
 terraform/*.plan
 .envrc
 inspec.lock
+Gemfile.lock
