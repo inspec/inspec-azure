@@ -17,18 +17,10 @@ module Azure
       end
     end
 
-    DEFAULT_MANAGEMENT_DEFINITION_FILE = './management.yaml'
-
     attr_reader :cache
 
     def initialize
       @cache = Cache.new
-
-      parse_management_api_definition(
-        ENV.fetch('MANAGEMENT_DEFINITION_FILE') {
-          DEFAULT_MANAGEMENT_DEFINITION_FILE
-        },
-      )
     end
 
     def with_cache(cache)
@@ -42,8 +34,6 @@ module Azure
     def for_subscription(subscription_id, override: false)
       set_reader(:subscription_id, subscription_id, override)
     end
-
-    private
 
     def activity_log_alert(resource_group, id)
       get(
@@ -153,6 +143,8 @@ module Azure
         api_version: '2017-03-30',
       )
     end
+
+    private
 
     def link(location:, resource_group: nil)
       "/subscriptions/#{subscription_id}" \
