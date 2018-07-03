@@ -49,3 +49,7 @@ variable "encrypted_disk_name" {
 variable "unmanaged_data_disk_name" {
   default = "linux-internal-datadisk-1"
 }
+
+variable "network_watcher_enabled" {
+  default = false
+}

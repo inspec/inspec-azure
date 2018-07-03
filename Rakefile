@@ -25,7 +25,7 @@ desc 'Set up Azure env, run integration tests, destroy Azure env'
 task azure: 'azure:run'
 
 namespace :azure do
-  task run: ['tf:apply', 'test:integration', 'tf:destroy']
+  task run: ['network_watcher', 'tf:apply', 'test:integration', 'tf:destroy']
 
   desc 'Authenticate with the Azure CLI'
   task :login do
@@ -81,6 +81,12 @@ namespace :inspec do
 
     status.exitstatus
   end
+end
+
+desc 'This will enable network watcher creation and integration tests'
+task :network_watcher do
+  ENV['ENABLE_NETWORK_WATCHER'] = 'true'
+  ENV['TF_VAR_network_watcher_enabled'] = '1'
 end
 
 task :setup_env do
