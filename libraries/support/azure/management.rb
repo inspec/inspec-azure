@@ -45,14 +45,113 @@ module Azure
 
     private
 
-    def parse_management_api_definition(mgmt_def_file)
-      ManagementMethodGenerator.generate(mgmt_def_file).map do |method|
-        self.class.send(:define_method, method[:name], method[:body])
-      end
+    def activity_log_alert(resource_group, id)
+      get(
+        url: link(location: 'Microsoft.Insights/activityLogAlerts',
+                  resource_group: resource_group) + id,
+        api_version: '2016-04-01',
+      )
     end
 
-    def subscription_id
-      'subid'
+    def activity_log_alerts
+      get(
+        url: link(location: 'Microsoft.Insights/activityLogAlerts'),
+        api_version: '2016-04-01',
+      )
+    end
+
+    def log_profile(id)
+      get(
+        url: link(location: 'Microsoft.Insights/logProfiles') + id,
+        api_version: '2016-03-01',
+      )
+    end
+
+    def log_profiles
+      get(
+        url: link(location: 'Microsoft.Insights/logProfiles'),
+        api_version: '2016-03-01',
+      )
+    end
+
+    def network_security_group(resource_group, id)
+      get(
+        url: link(location: 'Microsoft.Network/networkSecurityGroups',
+                  resource_group: resource_group) + id,
+        api_version: '2018-02-01',
+      )
+    end
+
+    def network_security_groups(resource_group)
+      get(
+        url: link(location: 'Microsoft.Network/networkSecurityGroups',
+                  resource_group: resource_group),
+        api_version: '2018-02-01',
+      )
+    end
+
+    def network_watcher(resource_group, id)
+      get(
+        url: link(location: 'Microsoft.Network/networkWatchers',
+                  resource_group: resource_group) + id,
+        api_version: '2018-02-01',
+      )
+    end
+
+    def network_watchers(resource_group)
+      get(
+        url: link(location: 'Microsoft.Network/networkWatchers',
+                  resource_group: resource_group),
+        api_version: '2018-02-01',
+      )
+    end
+
+    def resource_groups
+      get(url: link(location: 'resourcegroups'), api_version: '2018-02-01')
+    end
+
+    def security_center_policy(id)
+      get(
+        url: link(location: 'Microsoft.Security/policies') + id,
+        api_version: '2015-06-01-Preview',
+      )
+    end
+
+    def security_center_policies
+      get(
+        url: link(location: 'Microsoft.Security/policies'),
+        api_version: '2015-06-01-Preview',
+      )
+    end
+
+    def storage_accounts
+      get(
+        url: link(location: 'Microsoft.Storage/storageAccounts'),
+        api_version: '2017-06-01',
+      )
+    end
+
+    def virtual_machine(resource_group, id)
+      get(
+        url: link(location: 'Microsoft.Compute/virtualMachines',
+                  resource_group: resource_group) + id,
+        api_version: '2017-12-01',
+      )
+    end
+
+    def virtual_machines(resource_group)
+      get(
+        url: link(location: 'Microsoft.Compute/virtualMachines',
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def virtual_machine_disk(id)
+      get(
+        url: link(location: 'Microsoft.Compute/disks') + id,
+        api_version: '2017-03-30',
+      )
     end
 
     def link(location:, resource_group: nil)

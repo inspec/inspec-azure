@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'faraday',            '~> 0.15.0'
 gem 'faraday_middleware', '~> 0.12.2'
 gem 'inspec'
-gem 'plural',             '~> 0.1.0'
 gem 'rake',               '~> 12.3', '>= 12.3.1'
 
 group :development do
