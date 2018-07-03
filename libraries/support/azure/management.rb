@@ -97,7 +97,7 @@ module Azure
     end
 
     def resource_groups
-      get(url: link(location: 'resourcegroups'), api_version: '2018-02-01')
+      get(url: link(location: 'resourcegroups', provider: false), api_version: '2018-02-01')
     end
 
     def security_center_policy(id)
@@ -137,18 +137,20 @@ module Azure
       )
     end
 
-    def virtual_machine_disk(id)
+    def virtual_machine_disk(resource_group, id)
       get(
-        url: link(location: 'Microsoft.Compute/disks') + id,
+        url: link(location: 'Microsoft.Compute/disks',
+                  resource_group: resource_group) + id,
         api_version: '2017-03-30',
       )
     end
 
     private
 
-    def link(location:, resource_group: nil)
+    def link(location:, provider: true, resource_group: nil)
       "/subscriptions/#{subscription_id}" \
       "#{"/resourceGroups/#{resource_group}" if resource_group}" \
+      "#{'/providers' if provider}" \
       "/#{location}/"
     end
 
