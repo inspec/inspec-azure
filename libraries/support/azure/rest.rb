@@ -5,11 +5,10 @@ require 'faraday_middleware'
 
 module Azure
   class Rest
-    DEFAULT_HOST = 'https://management.azure.com'
 
     attr_reader :host, :resource, :credentials
 
-    def initialize(host: DEFAULT_HOST, credentials: {})
+    def initialize(host, credentials: {})
       @host        = host
       @resource    = "#{host}/"
       @credentials = credentials
