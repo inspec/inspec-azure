@@ -8,8 +8,9 @@ module Azure
     include Singleton
 
     def initialize
-      @user        = Hash.new { |h, k| h[k] = {} } # memoized hash for user
-      @users       = {} # memoized hash for users
+      @user         = Hash.new { |h, k| h[k] = {} }
+      @users        = {}
+      @users_next   = {}
     end
 
     def with_client(azure_client, override: false)
@@ -20,12 +21,28 @@ module Azure
       set_reader(:tenant_id, tenant_id, override)
     end
 
-    def iam_guest_users
-      @virtual_machine_guest ||= get(
-          "/#{tenant_id}/users",
-          params: { 'api-version' => '1.6' } #todo expand params to only get guests
+    def get_user(object_id)
+      @user ||= get(
+          "/#{tenant_id}/users/#{object_id}",
+          params: { 'api-version' => '1.6' }
       )
     end
+
+    def get_users
+      @users ||= get(
+          "/#{tenant_id}/users",
+          params: { 'api-version' => '1.6' }
+      )
+    end
+
+    def get_users_next(next_link)
+      @users ||= get(
+          "/#{tenant_id}/#{next_link}",
+          params: { 'api-version' => '1.6', 'Users_ListNext' => '' }
+          #todo Not sure if second param needed, docs are not clear.
+      )
+    end
+
 
     private
 

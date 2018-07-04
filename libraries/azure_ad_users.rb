@@ -4,37 +4,50 @@ require 'azurerm_resource'
 
 class AzureAdUsers < AzurermResource
   name 'azure_ad_user'
-  desc 'Verifies settings for an Azure Active Directory User'
+  desc 'Verifies settings for a collection of Azure Active Directory Users'
   example "
-    describe azure_iam_user(tenant_id: 'example', objectId: 'user-id') do
+    describe azure_iam_user do
+        it                  { should exist }
     end
   "
-  # todo what we can get
-  # ATTRS = %i(
-  #   objectId
-  #   mail
-  #   displayName
-  #   givenName
-  #   surname
-  #   userType
-  # ).freeze
 
   FilterTable.create
       .add_accessor(:entries)
       .add_accessor(:where)
-      .add(:exists?) { |obj| !obj.entries.empty? }
-      .add(:object_ids,   field: 'objectId')
-      .add(:display_names, field: 'displayName')
-      .add(:user_type, field: 'userType')
+      .add(:exists?)        { |obj| !obj.entries.empty? }
+      .add(:object_ids,     field: 'objectId')
+      .add(:display_names,  field: 'displayName')
+      .add(:mail,           field: 'mail')
+      .add(:user_type,      field: 'userType')
       .connect(self, :table)
 
   attr_reader(:table)
 
   def initialize
-    resp = graph_client.iam_guest_users
-    return if resp.nil? || resp.key?('error')
 
-    @table = resp
+    user_rows = []
+    next_page = nil
+
+    @users = graph_client.get_users
+    return if @users.nil? || @users.key?('error')
+
+    loop do # Users may be paginated
+      if next_page != nil # Skip in first iteration
+        @users = graph_client.get_users_next(next_link)
+      end
+
+      @users.items.map do |user|
+        user_rows += [{
+                          objectId:     user.objectId,
+                          displayName:  user.displayName,
+                          mail:         user.mail,
+                          userType:     user.userType
+                      }]
+      end
+      next_page = @users.odata.nextLink # todo: does the . in the field name mess this up?
+      break unless next_page
+    end
+    @table = user_rows
   end
 
   def to_s
