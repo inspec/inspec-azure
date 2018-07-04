@@ -43,7 +43,6 @@ module Azure
       )
     end
 
-
     private
 
     def get(*args)
