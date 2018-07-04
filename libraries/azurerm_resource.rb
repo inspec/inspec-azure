@@ -5,10 +5,8 @@ require 'support/azure'
 class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
-
   MGMT_HOST = 'https://management.azure.com'.freeze
   AZURE_HOST = 'https://graph.windows.net'.freeze
-
 
   def exists?
     @exists ||= false
