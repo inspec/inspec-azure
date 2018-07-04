@@ -3,10 +3,10 @@
 require 'azurerm_resource'
 
 class AzureAdUsers < AzurermResource
-  name 'azure_ad_user'
+  name 'azure_ad_users'
   desc 'Verifies settings for a collection of Azure Active Directory Users'
   example "
-    describe azure_iam_user do
+    describe azure_ad_users do
         it                  { should exist }
     end
   "
