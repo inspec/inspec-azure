@@ -19,18 +19,25 @@ class AzureAdUser < AzurermResource
 
   attr_reader(*ATTRS)
 
-  def initialize(object_id)
-    resp = graph_client.get_user(object_id)
-    return if resp.nil? || resp.key?('error')
+  # Can be constructed either via API call with an Azure ID provided,
+  # or from parameters passed. API call takes precedence when ID provided.
+  def initialize(object_id = nil, *user_args)
+
+    if object_id != nil
+      user = graph_client.get_user(object_id)
+      return if user.nil? || user.key?('error')
+    else
+      user = user_args
+    end
 
     ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
+      instance_variable_set("@#{field}", user[field.to_s])
     end
 
     @exists = true
   end
 
-  def is_guest
+  def be_guest
     :userType == 'Guest'
   end
 
