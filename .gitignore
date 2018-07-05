@@ -8,4 +8,3 @@ terraform/*.plan
 .envrc
 inspec.lock
 Gemfile.lock
-.idea/
