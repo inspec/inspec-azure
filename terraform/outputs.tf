@@ -3,11 +3,11 @@ output "resource_group" {
 }
 
 output "network_watcher_name" {
-  value = "${azurerm_network_watcher.rg.name}"
+  value = "${azurerm_network_watcher.rg.*.name}"
 }
 
 output "network_watcher_id" {
-  value = "${azurerm_network_watcher.rg.id}"
+  value = "${azurerm_network_watcher.rg.*.id}"
 }
 
 output "location" {
