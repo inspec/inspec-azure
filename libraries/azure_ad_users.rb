@@ -29,19 +29,19 @@ class AzureAdUsers < AzurermResource
     next_page = nil
 
     @users = graph_client.get_users
-    return if @users.nil? || @users.key?('error')
+    return if @users.nil? || @users.empty?
 
     loop do # Users may be paginated
       if next_page != nil # Skip in first iteration
         @users = graph_client.get_users_next(next_link)
       end
 
-      @users.items.map do |user|
+      @users.map do |user|
         user_rows += [{
-                          objectId:     user.objectId,
-                          displayName:  user.displayName,
-                          mail:         user.mail,
-                          userType:     user.userType
+                          objectId:     user["objectId"],
+                          displayName:  user["displayName"],
+                          mail:         user["mail"],
+                          userType:     user["userType"]
                       }]
       end
       next_page = @users.odata.nextLink # todo: does the . in the field name mess this up?

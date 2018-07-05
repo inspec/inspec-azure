@@ -7,12 +7,6 @@ module Azure
   class Graph
     include Singleton
 
-    def initialize
-      @user         = Hash.new { |h, k| h[k] = {} }
-      @users        = {}
-      @users_next   = {}
-    end
-
     def with_client(azure_client, override: false)
       set_reader(:azure_client, azure_client, override)
     end
@@ -22,21 +16,21 @@ module Azure
     end
 
     def get_user(object_id)
-      @user ||= get(
+      get(
           "/#{tenant_id}/users/#{object_id}",
           params: { 'api-version' => '1.6' }
       )
     end
 
     def get_users
-      @users ||= get(
+      get(
           "/#{tenant_id}/users",
           params: { 'api-version' => '1.6' }
       )
     end
 
     def get_users_next(next_link)
-      @users ||= get(
+      get(
           "/#{tenant_id}/#{next_link}",
           params: { 'api-version' => '1.6', 'Users_ListNext' => '' }
           #todo Not sure if second param needed, docs are not clear.
