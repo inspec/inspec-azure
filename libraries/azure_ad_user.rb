@@ -21,27 +21,27 @@ class AzureAdUser < AzurermResource
 
   # Can be constructed either via API call with an Azure ID provided,
   # or from parameters passed. API call takes precedence when ID provided.
-  def initialize(object_id = nil, *user_args)
+  def initialize(azure_id, user_args)
 
-    if object_id != nil
-      user = graph_client.get_user(object_id)
+    if azure_id != nil
+      user = graph_client.get_user(azure_id)
       return if user.nil? || user.key?('error')
     else
       user = user_args
     end
 
     ATTRS.each do |field|
-      instance_variable_set("@#{field}", user[field.to_s])
+      instance_variable_set("@#{field}", user[field])
     end
 
     @exists = true
   end
 
-  def be_guest
-    :userType == 'Guest'
+  def guest?
+    @userType == 'Guest'
   end
 
   def to_s
-    "'#{name}' Azure AD User"
+    "Azure AD Username: '#{displayName}' with email '#{mail}'"
   end
 end
