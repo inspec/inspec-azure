@@ -17,8 +17,8 @@ class AzureAdUsers < AzurermResource
       .add(:exists?)        { |obj| !obj.entries.empty? }
       .add(:object_ids,     field: 'objectId')
       .add(:display_names,  field: 'displayName')
-      .add(:mails,           field: 'mail')
-      .add(:user_types,      field: 'userType')
+      .add(:mails,          field: 'mail')
+      .add(:user_types,     field: 'userType')
       .connect(self, :table)
 
   attr_reader(:table)
@@ -51,6 +51,6 @@ class AzureAdUsers < AzurermResource
   end
 
   def to_s
-    "'#{name}' Azure AD User"
+    "Azure AD Users"
   end
 end
