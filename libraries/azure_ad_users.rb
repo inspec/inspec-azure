@@ -33,10 +33,10 @@ class AzureAdUsers < AzurermResource
 
     loop do # Users may be paginated
       if next_page != nil # Skip in first iteration
-        @users = graph_client.get_users_next(next_link)
+        @users = graph_client.get_users_next(next_page)
       end
 
-      @users.map do |user|
+      @users["values"].map do |user|
         user_rows += [{
                           objectId:     user["objectId"],
                           displayName:  user["displayName"],
@@ -44,7 +44,7 @@ class AzureAdUsers < AzurermResource
                           userType:     user["userType"]
                       }]
       end
-      next_page = @users.odata.nextLink # todo: does the . in the field name mess this up?
+      next_page = @users["nextLink"]
       break unless next_page
     end
     @table = user_rows

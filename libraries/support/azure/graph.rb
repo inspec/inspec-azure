@@ -29,11 +29,10 @@ module Azure
       )
     end
 
-    def get_users_next(next_link)
+    def get_users_next(next_page)
       get(
-          "/#{tenant_id}/#{next_link}",
-          params: { 'api-version' => '1.6', 'Users_ListNext' => '' }
-          #todo Not sure if second param needed, docs are not clear.
+          "/#{tenant_id}/#{next_page}",
+          params: { 'api-version' => '1.6' }
       )
     end
 
@@ -41,9 +40,11 @@ module Azure
 
     def get(*args)
       confirm_configured!
-
-      body = azure_client.get(*args).body
-      body.fetch('value', body)
+      response          = azure_client.get(*args).body
+      map               = {}
+      map["values"]     = response.fetch('value', response)
+      map["nextLink"] ||= response.fetch("odata.nextLink", nil)
+      map
     end
 
     def confirm_configured!
