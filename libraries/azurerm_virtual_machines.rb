@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermVirtualMachines < AzurermResource
+class AzurermVirtualMachines < AzurermPluralResource
   name 'azurerm_virtual_machines'
   desc 'Verifies settings for Azure Virtual Machines'
   example <<-EXAMPLE
@@ -12,13 +12,10 @@ class AzurermVirtualMachines < AzurermResource
   EXAMPLE
 
   FilterTable.create
-             .add_accessor(:entries)
-             .add_accessor(:where)
-             .add(:exists?) { |obj| !obj.entries.empty? }
-             .add(:os_disks,   field: 'os_disk')
-             .add(:data_disks, field: 'data_disks')
-             .add(:vm_names,   field: 'name')
-             .connect(self, :table)
+             .register_column(:os_disks,   field: 'os_disk')
+             .register_column(:data_disks, field: 'data_disks')
+             .register_column(:vm_names,   field: 'name')
+             .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table
 
@@ -29,8 +26,6 @@ class AzurermVirtualMachines < AzurermResource
     @table = resp.collect(&with_platform)
                  .collect(&with_os_disk)
                  .collect(&with_data_disks)
-
-    @exists = @table.any?
   end
 
   def to_s

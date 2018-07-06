@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermAdUser < AzurermResource
+class AzurermAdUser < AzurermSingularResource
   name 'azurerm_ad_user'
   desc 'Verifies settings for an Azure Active Directory User'
   example <<-EXAMPLE

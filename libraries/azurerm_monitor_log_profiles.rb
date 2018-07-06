@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermMonitorLogProfiles < AzurermResource
+class AzurermMonitorLogProfiles < AzurermPluralResource
   name 'azurerm_monitor_log_profiles'
   desc 'Fetches all Azure Monitor Log Profiles'
   example <<-EXAMPLE
@@ -12,11 +12,8 @@ class AzurermMonitorLogProfiles < AzurermResource
   EXAMPLE
 
   FilterTable.create
-             .add_accessor(:entries)
-             .add_accessor(:where)
-             .add(:exists?) { |obj| !obj.entries.empty? }
-             .add(:names, field: 'name')
-             .connect(self, :table)
+             .register_column(:names, field: 'name')
+             .install_filter_methods_on_resource(self, :table)
 
   def to_s
     'Log Profiles'

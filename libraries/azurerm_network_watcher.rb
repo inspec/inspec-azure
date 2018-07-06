@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermNetworkWatcher < AzurermResource
+class AzurermNetworkWatcher < AzurermSingularResource
   name 'azurerm_network_watcher'
   desc 'Verifies settings for Network Watchers'
   example <<-EXAMPLE
