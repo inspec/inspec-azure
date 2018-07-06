@@ -11,13 +11,21 @@ export AZURE_TENANT_ID=<tenant id>
 export AZURE_CLIENT_SECRET=<client secret>
 ```
 
+For PowerShell, set the following environment variables
+```
+$env:AZURE_SUBSCRIPTION_ID="<subscription id>"
+$env:AZURE_CLIENT_ID="<client id>"
+$env:AZURE_CLIENT_SECRET="<tenant id>"
+$env:AZURE_TENANT_ID="<client secret>"
+```
+
 **Setup Azure CLI**
 - Follow the instructions for your platform [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
   * macOS: `brew update && brew install azure-cli`
 - Login with the azure-cli
   * `rake azure:login`
 - Verify azure-cli is logged in:
-  * az account show
+  * `az account show`
 
 ## Starting an Environment
 

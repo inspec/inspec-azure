@@ -12,8 +12,9 @@ require_relative 'lib/attribute_file_writer'
 
 RuboCop::RakeTask.new
 
-FIXTURE_DIR = "#{Dir.pwd}/test/fixtures"
+FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures"
 TERRAFORM_DIR = 'terraform'
+REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID}.freeze
 
 task default: :test
 desc 'Testing tasks'
@@ -25,10 +26,12 @@ desc 'Set up Azure env, run integration tests, destroy Azure env'
 task azure: 'azure:run'
 
 namespace :azure do
-  task run: ['network_watcher', 'tf:apply', 'test:integration', 'tf:destroy']
+  task run: ['network_watcher', 'check_env', 'tf:apply', 'test:integration', 'tf:destroy']
 
   desc 'Authenticate with the Azure CLI'
   task :login do
+    Rake::Task['check_env'].invoke
+
     sh(
       'az', 'login',
       '--service-principal',
@@ -95,6 +98,12 @@ task :setup_env do
   ENV['TF_VAR_tenant_id']       = credentials.tenant_id
   ENV['TF_VAR_client_id']       = credentials.client_id
   ENV['TF_VAR_client_secret']   = credentials.client_secret
+end
+
+task :check_env do
+  REQUIRED_ENVS.each do |var|
+    abort("Missing ENV: #{var}") unless ENV.key?(var)
+  end
 end
 
 namespace :test do
