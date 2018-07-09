@@ -6,7 +6,7 @@ class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
   MGMT_HOST = 'https://management.azure.com'.freeze
-  AZURE_HOST = 'https://graph.windows.net'.freeze
+  GRAPH_HOST = 'https://graph.windows.net'.freeze
 
   def exists?
     @exists ||= false
@@ -20,7 +20,7 @@ class AzurermResource < Inspec.resource(1)
 
   def graph_client
     Azure::Graph.instance
-                .with_client(rest_client(AZURE_HOST))
+                .with_client(rest_client(GRAPH_HOST))
                 .for_tenant(tenant_id)
   end
 
