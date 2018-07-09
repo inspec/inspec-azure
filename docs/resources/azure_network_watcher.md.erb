@@ -1,0 +1,84 @@
+---
+title: About the azure_network_watcher Resource
+platform: azure
+---
+
+# azure\_network\_watcher
+
+Use the `azure_network_watcher` InSpec audit resource to test properties
+of an Azure Network Watcher.
+
+<br />
+
+## Syntax
+
+An `azure_network_watcher` resource block identifies a Network Watcher by
+name and resource group.
+
+    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+      ...
+    end
+<br />
+
+## Examples
+
+### Test that an example Resource Group has the specified Network Watcher
+
+    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+      it { should exist }
+    end
+
+### Test that an example Resource Group has a Network Watcher with the Provisioning State value 'Succeeded'
+
+    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+      its('provisioning_state') { should eq 'Succeeded' }
+    end
+
+<br />
+
+## Parameters
+
+* `name`
+* `resource_group`
+
+## Parameter Examples
+
+The Resource Group as well as the Network Watcher name.
+
+    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+      its('provisioning_state') { should eq 'Succeeded' }
+    end
+
+## Properties
+
+* `provisioning_state`
+
+### provisioning_state
+
+The provisioning_state field can be checked for the value of the Provisioning State.
+
+    its('provisioning_state') { should eq 'Succeeded' }
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list
+of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
+
+    # If we expect 'WatcherName' to always exist
+    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+      it { should exist }
+    end
+
+    # If we expect 'WatcherName' to never exist
+    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+      it { should_not exist }
+    end
+
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+must be setup with a `contributor` role on the subscription you wish to test.
