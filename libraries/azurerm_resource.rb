@@ -22,8 +22,8 @@ class AzurermResource < Inspec.resource(1)
 
   private
 
-  def azure_client
-    Azure::Rest.new(credentials: credentials)
+  def rest_client(host = MANAGEMENT_HOST)
+    Azure::Rest.new(host, credentials: credentials)
   end
 
   def tenant_id
