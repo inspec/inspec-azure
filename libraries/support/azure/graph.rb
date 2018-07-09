@@ -15,9 +15,9 @@ module Azure
       set_reader(:tenant_id, tenant_id, override)
     end
 
-    def user(object_id)
+    def user(id)
       get(
-          "/#{tenant_id}/users/#{object_id}",
+          "/#{tenant_id}/users/#{id}",
           params: { 'api-version' => '1.6' }
       )
     end
@@ -29,22 +29,39 @@ module Azure
       )
     end
 
-    def users_next(next_page)
-      get(
-          "/#{tenant_id}/#{next_page}",
-          params: { 'api-version' => '1.6' }
-      )
-    end
-
     private
 
     def get(*args)
       confirm_configured!
-      response          = rest_client.get(*args).body
-      map               = {}
-      map["values"]     = response.fetch('value', response)
-      map["nextLink"] ||= response.fetch("odata.nextLink", nil)
-      map
+      values = []
+
+      response = rest_client.get(*args).body
+
+      value = response.fetch('value', response)
+      next_link = response.fetch("odata.nextLink", nil)
+
+      # If it's a single entity being requested (e.g. a User), simply return the single entity.
+      return value unless value.kind_of?(Array)
+
+      values += value
+
+      # Get more if Graph API has paginated results.
+      if next_link != nil
+        loop do
+          response = next_results(next_link)
+          values += response.fetch('value', response)
+          next_link = response.fetch("odata.nextLink", nil)
+          break unless next_link
+        end
+      end
+      values
+    end
+
+    def next_results(next_link)
+      rest_client.get(
+          "/#{tenant_id}/#{next_link}",
+          params: { 'api-version' => '1.6' }
+      ).body
     end
 
     def confirm_configured!

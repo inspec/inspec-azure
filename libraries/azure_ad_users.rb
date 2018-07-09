@@ -11,43 +11,19 @@ class AzureAdUsers < AzurermResource
     end
   "
 
-  FilterTable.create
-      .add_accessor(:entries)
-      .add_accessor(:where)
-      .add(:exists?)        { |obj| !obj.entries.empty? }
-      .add(:object_ids,     field: 'objectId')
-      .add(:display_names,  field: 'displayName')
-      .add(:mails,          field: 'mail')
-      .add(:user_types,     field: 'userType')
-      .connect(self, :table)
-
-  attr_reader(:table)
+  @users = FilterTable.create
+                          .register_column(:object_ids,     field: 'objectId')
+                          .register_column(:display_names,  field: 'displayName')
+                          .register_column(:mails,          field: 'mail')
+                          .register_column(:user_types,     field: 'userType')
+                          .install_filter_methods_on_resource(self, :data)
 
   def initialize
-
-    user_rows = []
-    next_page = nil
-
     @users = graph_client.users
-    return if @users.nil? || @users.empty?
+  end
 
-    loop do # Users may be paginated
-      if next_page != nil # Skip in first iteration
-        @users = graph_client.users_next(next_page)
-      end
-
-      @users["values"].map do |user|
-        user_rows += [{
-                          objectId:     user["objectId"],
-                          displayName:  user["displayName"],
-                          mail:         user["mail"],
-                          userType:     user["userType"]
-                      }]
-      end
-      next_page = @users["nextLink"]
-      break unless next_page
-    end
-    @table = user_rows
+  def data
+    @users
   end
 
   def to_s
