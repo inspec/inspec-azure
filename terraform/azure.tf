@@ -10,7 +10,6 @@ provider "azurerm" {
   tenant_id       = "${var.tenant_id}"
 }
 
-
 data "azurerm_client_config" "current" {}
 
 provider "random" {
@@ -486,4 +485,102 @@ module "activity_log_alert_5_12" {
   action_group            = "${var.activity_log_alert["action_group"]}"
 
   depends_on = ["${null_resource.azure_action_group.triggers}"]
+}
+
+
+#
+# MSI External Access VM
+# Use only when testing MSI access controls
+#
+resource "azurerm_public_ip" "public_ip" {
+  name                         = "Inspec-PublicIP-1"
+  count                        = "${var.public_vm_count}"
+  location                     = "${var.location}"
+  resource_group_name          = "${azurerm_resource_group.rg.name}"
+  public_ip_address_allocation = "dynamic"
+}
+
+resource "azurerm_network_interface" "nic2" {
+  name                = "Inspec-NIC-2"
+  count               = "${var.public_vm_count}"
+  location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  ip_configuration {
+    name                          = "ipConfiguration1"
+    subnet_id                     = "${azurerm_subnet.subnet.id}"
+    private_ip_address_allocation = "dynamic"
+    public_ip_address_id          = "${azurerm_public_ip.public_ip.0.id}"
+  }
+}
+
+resource "azurerm_virtual_machine" "vm_linux_external" {
+  name                  = "Linux-External-VM"
+  count                 = "${var.public_vm_count}"
+  location              = "${var.location}"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  network_interface_ids = ["${azurerm_network_interface.nic2.0.id}"]
+  vm_size               = "Standard_DS2_v2"
+
+  tags {
+    Description = "Externally facing Linux machine with SSH access"
+  }
+
+  identity = {
+    type = "SystemAssigned"
+  }
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04.0-LTS"
+    version   = "latest"
+  }
+
+  storage_os_disk {
+    name              = "${var.linux_external_os_disk}"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+  storage_data_disk {
+    name          = "${var.linux_external_data_disk}"
+    create_option = "Empty"
+    managed_disk_type = "Standard_LRS"
+    lun           = 0
+    disk_size_gb  = 15
+  }
+
+  os_profile {
+    computer_name  = "linux-external-1"
+    admin_username = "azure"
+    admin_password = "${random_string.password.result}"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = true
+
+    ssh_keys {
+      path     = "/home/azure/.ssh/authorized_keys"
+      key_data = "${var.public_key}"
+    }
+  }
+}
+
+resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
+  name                 = "MSIExtension"
+  count                = "${var.public_vm_count}"
+  location             = "${var.location}"
+  resource_group_name  = "${azurerm_resource_group.rg.name}"
+  virtual_machine_name = "${azurerm_virtual_machine.vm_linux_external.0.name}"
+  publisher            = "Microsoft.ManagedIdentity"
+  type                 = "ManagedIdentityExtensionForLinux"
+  type_handler_version = "1.0"
+
+  settings = <<SETTINGS
+    {
+        "port": 50342
+    }
+SETTINGS
 }

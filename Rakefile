@@ -7,7 +7,6 @@ require 'rubocop/rake_task'
 require 'fileutils'
 require 'open3'
 
-require_relative 'libraries/support/azure/credentials'
 require_relative 'lib/attribute_file_writer'
 
 RuboCop::RakeTask.new
@@ -86,18 +85,22 @@ namespace :inspec do
   end
 end
 
-desc 'This will enable network watcher creation and integration tests'
+desc 'Enables network watcher creation and integration tests'
 task :network_watcher do
   ENV['ENABLE_NETWORK_WATCHER'] = 'true'
   ENV['TF_VAR_network_watcher_enabled'] = '1'
 end
 
+desc 'Creates a VM with MSI Enabled and Contributor grant'
+task :msi_vm do
+  ENV['TF_VAR_public_vm_count'] = '1'
+end
+
 task :setup_env do
-  credentials = Azure::Credentials.new
-  ENV['TF_VAR_subscription_id'] = credentials.subscription_id
-  ENV['TF_VAR_tenant_id']       = credentials.tenant_id
-  ENV['TF_VAR_client_id']       = credentials.client_id
-  ENV['TF_VAR_client_secret']   = credentials.client_secret
+  ENV['TF_VAR_subscription_id'] = ENV['AZURE_SUBSCRIPTION_ID']
+  ENV['TF_VAR_tenant_id']       = ENV['AZURE_TENANT_ID']
+  ENV['TF_VAR_client_id']       = ENV['AZURE_CLIENT_ID']
+  ENV['TF_VAR_client_secret']   = ENV['AZURE_CLIENT_SECRET']
 end
 
 task :check_env do
@@ -114,11 +117,9 @@ namespace :test do
   end
 
   task :integration, [:controls] => [:check_attributes_file] do |_t, args|
-    credentials = Azure::Credentials.new
-
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
-              -t azure://#{credentials.subscription_id} )
+              -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )
 
     if args[:controls]
       sh(*cmd, '--controls', args[:controls], *args.extras)
