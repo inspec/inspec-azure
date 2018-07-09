@@ -50,12 +50,12 @@ The control will pass if the resource returns a result. Use `should_not` if you 
 
     # If we expect 'ExampleLogAlert' to exist
     describe azure_monitor_activity_log_alerts do
-      its('names') { should include('ExampleLogAlert') }
+      it { should exist }
     end
 
     # If we do not expect 'ExampleLogAlert' to exist
     describe azure_monitor_activity_log_alerts do
-      its('names') { should_not include('ExampleLogAlert') }
+      it { should_not exist }
     end
 
 ## Azure Permissions
