@@ -55,6 +55,13 @@ rake azure:login
 rake tf:apply
 ```
 
+Creating a new environment with a Network Watcher:
+```
+rake azure:login
+rake network_watcher tf:apply
+```
+You may only have a single Network Watcher per a subscription. Use this carefully if you are working with other team members.
+
 Updating a running environment (e.g. when you change the .tf file):
 ```
 rake azure:login
@@ -94,6 +101,12 @@ To run integration tests:
 ```
 bundle
 rake test:integration
+```
+
+To run integration tests including a Network Watcher:
+```
+bundle
+rake network_watcher test:integration
 ```
 
 To run a control called `azurerm_virtual_machine`:
