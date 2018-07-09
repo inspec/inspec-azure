@@ -18,19 +18,14 @@ class AzurermResource < Inspec.resource(1)
   private
 
   def azure_client
-    Azure::Rest.new(credentials: credentials.to_h)
-  end
-
-  def subscription_id
-    credentials.subscription_id
+    Azure::Rest.new(credentials: credentials)
   end
 
   def credentials
-    @credentials ||= begin
-      args = {}
-      args[:subscription_id] = inspec.backend.options[:subscription_id] if respond_to?(:inspec)
+    inspec.backend.azure_client.credentials
+  end
 
-      Azure::Credentials.new(args)
-    end
+  def subscription_id
+    inspec.backend.azure_client.subscription_id
   end
 end

@@ -15,16 +15,16 @@ output "location" {
 }
 
 output "os_disks" {
-  value = [
-           "${var.linux_internal_os_disk}",
-           "${var.windows_internal_os_disk}"
-          ]
+  description = "Virtual Machine OS disk names that were created."
+  value = "${compact(list(var.linux_internal_os_disk,
+                          var.windows_internal_os_disk,
+                          var.public_vm_count == 1 ? var.linux_external_os_disk : ""))}"
 }
 
 output "managed_data_disks" {
-  value = [
-           "${var.windows_internal_data_disk}"
-          ]
+  description = "Virtual Machine OS disk names that were created."
+  value = "${compact(list(var.windows_internal_data_disk,
+                          var.public_vm_count == 1 ? var.linux_external_data_disk : ""))}"
 }
 
 output "unencrypted_disk_name" {
@@ -48,10 +48,11 @@ output "unamaged_disk_name" {
 }
 
 output "vm_names" {
-  value = [
-           "${azurerm_virtual_machine.vm_windows_internal.name}",
-           "${azurerm_virtual_machine.vm_linux_internal.name}",
-          ]
+  description = "Virtual Machine names that were created."
+  value       = "${concat(azurerm_virtual_machine.vm_windows_internal.*.name,
+                          azurerm_virtual_machine.vm_linux_internal.*.name,
+                          azurerm_virtual_machine.vm_linux_external.*.name)
+                  }"
 }
 
 output "windows_vm_name" {

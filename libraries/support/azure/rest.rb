@@ -20,7 +20,8 @@ module Azure
         req.url path
 
         req.params  = req.params.merge(params)
-        req.headers = headers.merge(authorization: authorization_header)
+        req.headers = req.headers.merge(headers)
+        credentials.sign_request(req)
       end
     end
 
@@ -37,13 +38,6 @@ module Azure
         conn.response :json, content_type: /\bjson$/
         conn.adapter  Faraday.default_adapter
       end
-    end
-
-    def authorization_header
-      @authentication ||= Authentication.new(
-        *credentials.values_at(:tenant_id, :client_id, :client_secret), resource
-      )
-      @authentication.authentication_header
     end
   end
 end
