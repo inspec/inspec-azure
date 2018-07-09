@@ -14,3 +14,7 @@ export TF_ACCESS_KEY=
 
 # container used to store remote state. This should be your workspace by convention.
 export TF_CONTAINER_NAME=$WORKSPACE
+
+# Public SSH key. We recommend using a throw away key that you generated locally and not an important key.
+# export TF_VAR_public_key=$(<~/.ssh/my_ssh_key.pub)
+export TF_VAR_public_key=

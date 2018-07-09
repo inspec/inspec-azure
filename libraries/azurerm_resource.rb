@@ -23,11 +23,7 @@ class AzurermResource < Inspec.resource(1)
   private
 
   def rest_client(host = MANAGEMENT_HOST)
-    Azure::Rest.new(host, credentials: credentials.to_h)
-  end
-
-  def subscription_id
-    credentials.subscription_id
+    Azure::Rest.new(host, credentials: credentials)
   end
 
   def tenant_id
@@ -35,12 +31,11 @@ class AzurermResource < Inspec.resource(1)
   end
 
   def credentials
-    @credentials ||= begin
-      args = {}
-      args[:subscription_id] = inspec.backend.options[:subscription_id] if respond_to?(:inspec)
+    inspec.backend.azure_client.credentials
+  end
 
-      Azure::Credentials.new(args)
-    end
+  def subscription_id
+    inspec.backend.azure_client.subscription_id
   end
 end
 
