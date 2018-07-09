@@ -27,8 +27,8 @@ module Azure
       @cache = cache
     end
 
-    def with_client(azure_client, override: false)
-      set_reader(:azure_client, azure_client, override)
+    def with_client(rest_client, override: false)
+      set_reader(:rest_client, rest_client, override)
     end
 
     def for_subscription(subscription_id, override: false)
@@ -158,13 +158,13 @@ module Azure
       confirm_configured!
 
       cache.fetch(url) do
-        body = azure_client.get(url, params: { 'api-version' => api_version }).body
+        body = rest_client.get(url, params: {'api-version' => api_version }).body
         body.fetch('value', body)
       end
     end
 
     def confirm_configured!
-      %i(azure_client subscription_id).each do |name|
+      %i(rest_client subscription_id).each do |name|
         next if respond_to?(name)
 
         raise "Set #{name} before making requests"

@@ -7,7 +7,7 @@ class AzureAdUsers < AzurermResource
   desc 'Verifies settings for a collection of Azure Active Directory Users'
   example "
     describe azure_ad_users do
-        it                  { should exist }
+        it  { should exist }
     end
   "
 
@@ -28,12 +28,12 @@ class AzureAdUsers < AzurermResource
     user_rows = []
     next_page = nil
 
-    @users = graph_client.get_users
+    @users = graph_client.users
     return if @users.nil? || @users.empty?
 
     loop do # Users may be paginated
       if next_page != nil # Skip in first iteration
-        @users = graph_client.get_users_next(next_page)
+        @users = graph_client.users_next(next_page)
       end
 
       @users["values"].map do |user|
@@ -51,6 +51,6 @@ class AzureAdUsers < AzurermResource
   end
 
   def to_s
-    "Azure AD Users"
+    "Azure Active Directory Users"
   end
 end

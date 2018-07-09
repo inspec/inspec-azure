@@ -14,19 +14,19 @@ class AzurermResource < Inspec.resource(1)
 
   def client
     Azure::Management.instance
-                     .with_client(azure_client(MGMT_HOST))
+                     .with_client(rest_client(MGMT_HOST))
                      .for_subscription(subscription_id)
   end
 
   def graph_client
     Azure::Graph.instance
-                .with_client(azure_client(AZURE_HOST))
+                .with_client(rest_client(AZURE_HOST))
                 .for_tenant(tenant_id)
   end
 
   private
 
-  def azure_client(host)
+  def rest_client(host)
     Azure::Rest.new(host, credentials: credentials.to_h)
   end
 
