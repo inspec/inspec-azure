@@ -101,9 +101,9 @@ task :setup_env do
 end
 
 task :check_env do
-  REQUIRED_ENVS.each do |var|
-    abort("Missing ENV: #{var}") unless ENV.key?(var)
-  end
+  missing = REQUIRED_ENVS.reject { |var| ENV.key?(var) }
+
+  abort("ENV missing: #{missing.join(', ')}") if missing.any?
 end
 
 namespace :test do
