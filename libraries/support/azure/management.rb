@@ -74,7 +74,10 @@ module Azure
     end
 
     def resource_groups
-      get(url: link(location: 'resourcegroups', provider: false), api_version: '2018-02-01')
+      get(
+        url: link(location: 'resourcegroups', provider: false),
+        api_version: '2018-02-01'
+      )
     end
 
     def security_center_policy(id)
