@@ -28,7 +28,7 @@ name and resource group.
       it { should exist }
     end
 
-### Test an example resource has an Activity Log Alert with the correct opertion
+### Test an example resource has an Activity Log Alert with the correct operation
 
     describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
@@ -73,7 +73,7 @@ The control will pass if the resource returns a result. Use `should_not` if you 
       it { should exist }
     end
 
-    # If we expect 'AlertName' to never exist
+    # If we expect 'OtherAlertName' to never exist
     describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'OtherAlertName') do
       it { should_not exist }
     end
