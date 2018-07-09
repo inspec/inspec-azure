@@ -5,10 +5,11 @@ require 'azurerm_resource'
 class AzureAdUser < AzurermResource
   name 'azure_ad_user'
   desc 'Verifies settings for an Azure Active Directory User'
-  example "
+  example <<-EXAMPLE
     describe azure_ad_user(object_id: 'object_id') do
+      it  { should exist }
     end
-  "
+  EXAMPLE
 
   ATTRS = %i(
     objectId
@@ -24,7 +25,7 @@ class AzureAdUser < AzurermResource
   def initialize(azure_id, user_args)
 
     if azure_id != nil
-      user = graph_client.get_user(azure_id)
+      user = graph_client.user(azure_id)
       return if user.nil? || user.key?('error')
     else
       user = user_args
@@ -42,6 +43,6 @@ class AzureAdUser < AzurermResource
   end
 
   def to_s
-    "Azure AD Username: '#{displayName}' with email '#{mail}'"
+    "Azure Active Directory Username: '#{displayName}' with email '#{mail}'"
   end
 end
