@@ -1,5 +1,5 @@
 ---
-title: About the azure_resource_groups Resource
+title: About the azurerm_ad_users Resource
 platform: azure
 ---
 
@@ -45,16 +45,16 @@ The following examples show how to use this InSpec audit resource.
 Filters the results to include only those resource groups that match the given
 name. This is a string value.
 
-     describe azurerm_ad_users.where{ displayName.eql?('Joe Bloggs') } do
+    describe azurerm_ad_users.where{ displayName.eql?('Joe Bloggs') } do
       it { should exist }
     end
 
 ## Properties
 
-* `azureIds`
-* `displayNames`
+* `azure_ids`
+* `display_names`
 * `mails`
-* `userTypes`
+* `user_types`
 
 ### azureIds
 
@@ -70,7 +70,7 @@ The displayNames property provides a list of all the User display names.
     
 ### mails
 
-The mail property provides a list of all the User email addresses, where present.
+The mails property provides a list of all the User email addresses, where present.
 
     its('mails') { should include 'admin@example.com' }
     
@@ -78,7 +78,7 @@ The mail property provides a list of all the User email addresses, where present
 
 The userTypes property provides a list of all User Types for all users.
 
-    its('userTypes') { should include 'Member' }
+    its('user_types') { should include 'Member' }
 
 ## Matchers
 
