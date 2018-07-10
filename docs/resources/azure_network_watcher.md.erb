@@ -53,9 +53,9 @@ The Resource Group as well as the Network Watcher name.
 
 * `provisioning_state`
 
-### provisioning_state
+### provisioning\_state
 
-The provisioning_state field can be checked for the value of the Provisioning State.
+The provisioning\_state field can be checked for the value of the Provisioning State.
 
     its('provisioning_state') { should eq 'Succeeded' }
 
@@ -73,8 +73,8 @@ The control will pass if the resource returns a result. Use `should_not` if you 
       it { should exist }
     end
 
-    # If we expect 'WatcherName' to never exist
-    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+    # If we expect 'WatcherNotFound' to never exist
+    describe azure_network_watcher(resource_group: 'example', name: 'WatcherNotFound') do
       it { should_not exist }
     end
 

@@ -47,13 +47,13 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
-    # If we expect 'example_group' Resource Group to have Network Watchers
-    describe azure_network_watchers(resource_group: 'example_group') do
+    # If we expect 'ExampleGroup' Resource Group to have Network Watchers
+    describe azure_network_watchers(resource_group: 'ExampleGroup') do
       it { should exist }
     end
 
-    # If we expect 'example_group' Resource Group to not have Network Watchers
-    describe azure_network_watchers(resource_group: 'example_group') do
+    # If we expect 'MissingExampleGroup' Resource Group to not have Network Watchers
+    describe azure_network_watchers(resource_group: 'MissingExampleGroup') do
       it { should_not exist }
     end
 
