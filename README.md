@@ -1,9 +1,55 @@
 # InSpec for Azure
 
-## Getting Started
+This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
+
+## Prerequisites
+
+* Ruby
+* Bundler installed
+* Azure Service Principal Account
+
+Your Azure Service Principal Account must have `contributor` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
+
+* TENANT_ID
+* CLIENT_ID
+* CLIENT_SECRET
+* SUBSCRIPTION_ID
+
+These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
+
+Terraform is only required to run the integration tests for this project.
+
+### Use the Resources
+
+Since this is an InSpec resource pack, it only defines InSpec resources. To use these resources in your own controls you should create your own profile:
+
+#### Create a new profile
+
+```
+$ inspec init profile my-profile
+```
+Example inspec.yml:
+```
+name: my-profile
+title: My own Oneview profile
+version: 0.1.0
+inspec_version: '>= 2.2.7'
+depends:
+  - name: inspec-azure
+    url: https://github.com/inspec/inspec-azure/archive/master.tar.gz
+supports:
+  - platform: azure
+```
+
+### Examples
+
+## Development
+
+If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). The following instructions will help you get your development environment setup to run integration tests.
+
+### Getting Started
 
 Copy `.envrc-example` to `.envrc` and fill in the fields with the values from your account.
-
 ```
 export AZURE_SUBSCRIPTION_ID=<subscription id>
 export AZURE_CLIENT_ID=<client id>
