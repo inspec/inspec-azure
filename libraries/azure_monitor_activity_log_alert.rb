@@ -6,7 +6,7 @@ class AzureMonitorActivityLogAlert < AzurermResource
   name 'azure_monitor_activity_log_alert'
   desc 'Verifies settings for a Azure Monitor Activity Log Alert'
   example <<-EXAMPLE
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'alert-name') do
+    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       it { should exist }
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
     end

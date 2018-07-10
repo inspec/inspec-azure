@@ -7,7 +7,7 @@ class AzureMonitorLogProfiles < AzurermResource
   desc 'Fetches all Azure Monitor Log Profiles'
   example <<-EXAMPLE
     describe azure_monitor_log_profiles do
-      its('names') { should include('example-profile') }
+      its('names') { should include('default') }
     end
   EXAMPLE
 
