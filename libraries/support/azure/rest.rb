@@ -5,7 +5,6 @@ require 'faraday_middleware'
 
 module Azure
   class Rest
-
     attr_reader :host, :resource, :credentials
 
     def initialize(host, credentials: {})

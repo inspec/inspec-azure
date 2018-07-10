@@ -21,7 +21,6 @@ class AzurermAdUser < AzurermResource
   attr_reader(*ATTRS)
 
   def initialize(id)
-
     user = graph_client.user(id)
     return if user.nil?
 
