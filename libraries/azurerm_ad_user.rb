@@ -2,8 +2,8 @@
 
 require 'azurerm_resource'
 
-class AzureAdUser < AzurermResource
-  name 'azure_ad_user'
+class AzurermAdUser < AzurermResource
+  name 'azurerm_ad_user'
   desc 'Verifies settings for an Azure Active Directory User'
   example <<-EXAMPLE
     describe azure_ad_user(object_id: 'object_id') do
