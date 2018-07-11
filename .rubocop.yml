@@ -1,8 +1,6 @@
 ---
 AllCops:
-  TargetRubyVersion: 2.3
   Exclude:
-  - legacy-prototype/**/*
   - bin/**/*
 AlignParameters:
   Enabled: true
@@ -69,9 +67,7 @@ Style/GuardClause:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
-Style/MethodMissingSuper:
-  Enabled: false
-Style//MissingRespondToMissing:
+Style/MethodMissing:
   Enabled: false
 Style/MultilineIfModifier:
   Enabled: false
