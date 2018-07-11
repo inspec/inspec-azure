@@ -1,21 +1,21 @@
 ---
-title: About the azure_network_watcher Resource
+title: About the azurerm_network_watcher Resource
 platform: azure
 ---
 
-# azure\_network\_watcher
+# azurerm\_network\_watcher
 
-Use the `azure_network_watcher` InSpec audit resource to test properties
+Use the `azurerm_network_watcher` InSpec audit resource to test properties
 of an Azure Network Watcher.
 
 <br />
 
 ## Syntax
 
-An `azure_network_watcher` resource block identifies a Network Watcher by
+An `azurerm_network_watcher` resource block identifies a Network Watcher by
 name and resource group.
 
-    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+    describe azurerm_network_watcher(resource_group: 'example', name: 'WatcherName') do
       ...
     end
 <br />
@@ -24,13 +24,13 @@ name and resource group.
 
 ### Test that an example Resource Group has the specified Network Watcher
 
-    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+    describe azurerm_network_watcher(resource_group: 'example', name: 'WatcherName') do
       it { should exist }
     end
 
 ### Test that an example Resource Group has a Network Watcher with the Provisioning State value 'Succeeded'
 
-    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+    describe azurerm_network_watcher(resource_group: 'example', name: 'WatcherName') do
       its('provisioning_state') { should eq 'Succeeded' }
     end
 
@@ -45,7 +45,7 @@ name and resource group.
 
 The Resource Group as well as the Network Watcher name.
 
-    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+    describe azurerm_network_watcher(resource_group: 'example', name: 'WatcherName') do
       its('provisioning_state') { should eq 'Succeeded' }
     end
 
@@ -69,12 +69,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # If we expect 'WatcherName' to always exist
-    describe azure_network_watcher(resource_group: 'example', name: 'WatcherName') do
+    describe azurerm_network_watcher(resource_group: 'example', name: 'WatcherName') do
       it { should exist }
     end
 
     # If we expect 'WatcherNotFound' to never exist
-    describe azure_network_watcher(resource_group: 'example', name: 'WatcherNotFound') do
+    describe azurerm_network_watcher(resource_group: 'example', name: 'WatcherNotFound') do
       it { should_not exist }
     end
 
