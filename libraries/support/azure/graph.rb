@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
-require 'json'
 require 'singleton'
 
 module Azure
   class Graph
     include Singleton
+    include Service
 
-    def with_client(graph_client, override: false)
-      set_reader(:rest_client, graph_client, override)
-    end
-
-    def for_tenant(tenant_id, override: false)
-      set_reader(:tenant_id, tenant_id, override)
+    def initialize
+      @required_attrs = %i(rest_client tenant_id)
+      @page_link_name = 'odata.nextLink'
     end
 
     def user(id)
@@ -31,6 +28,8 @@ module Azure
 
     private
 
+    attr_reader :page_link_name
+
     def get(*args)
       confirm_configured!
       values = []
@@ -38,7 +37,7 @@ module Azure
       response = rest_client.get(*args).body
 
       value = response.fetch('value', response)
-      next_link = response.fetch('odata.nextLink', nil)
+      next_link = response.fetch(page_link_Name, nil)
 
       # If it's a single entity being requested (e.g. a User), simply return the single entity.
       return value unless value.is_a?(Array)
@@ -50,7 +49,7 @@ module Azure
         loop do
           response = next_results(next_link)
           values += response.fetch('value', response)
-          next_link = response.fetch('odata.nextLink', nil)
+          next_link = response.fetch(page_link_Name, nil)
           break unless next_link
         end
       end
@@ -62,22 +61,6 @@ module Azure
         "/#{tenant_id}/#{next_link}",
         params: { 'api-version' => '1.6' },
       ).body
-    end
-
-    def confirm_configured!
-      %i(rest_client tenant_id).each do |name|
-        next if respond_to?(name)
-
-        raise "Set #{name} before making requests"
-      end
-    end
-
-    def set_reader(name, value, override)
-      return self if respond_to?(name) && !override
-
-      define_singleton_method(name) { value }
-
-      self
     end
   end
 end
