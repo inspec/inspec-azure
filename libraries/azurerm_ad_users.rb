@@ -37,8 +37,8 @@ class AzurermAdUsers < AzurermResource
                          .map { |user|
                            {
                              displayName: user['displayName'],
-                               mail:        user['mail'],
-                               userType:    user['userType'],
+                                    mail: user['mail'],
+                                userType: user['userType'],
                            }
                          }
 
