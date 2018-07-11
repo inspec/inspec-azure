@@ -17,8 +17,6 @@ Your Azure Service Principal Account must have `contributor` role to any subscri
 
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
 
-Terraform is only required to run the integration tests for this project.
-
 ### Use the Resources
 
 Since this is an InSpec resource pack, it only defines InSpec resources. To use these resources in your own controls you should create your own profile:
@@ -41,7 +39,56 @@ supports:
   - platform: azure
 ```
 
-### Examples
+## Examples
+
+Verify properties of an Azure VM
+
+```
+control 'azurerm_virtual_machine' do
+  describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'prod-web-01') do
+    it                                { should exist }
+    it                                { should have_monitoring_agent_installed }
+    it                                { should_not have_endpoint_protection_installed([]) }
+    it                                { should have_only_approved_extensions(['MicrosoftMonitoringAgent']) }
+    its('type')                       { should eq 'Microsoft.Compute/virtualMachines' }
+    its('installed_extensions_types') { should include('MicrosoftMonitoringAgent') }
+    its('installed_extensions_names') { should include('LogAnalytics') }
+  end
+end
+```
+
+Verify properties of a security group
+
+```
+control 'azure_network_security_group' do
+  describe azure_network_security_group(resource_group: 'ProductionResourceGroup', name: 'ProdServers') do
+    it                            { should exist }
+    its('type')                   { should eq 'Microsoft.Network/networkSecurityGroups' }
+    its('security_rules')         { should_not be_empty }
+    its('default_security_rules') { should_not be_empty }
+    it                            { should_not allow_rdp_from_internet }
+    it                            { should_not allow_ssh_from_internet }
+  end
+end
+```
+
+## Resource Documentation
+
+The following resources are available in the InSpec Azure Resource Pack
+
+- [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md.erb)
+- [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md.erb)
+- [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md.erb)
+- [azure_resource_groups](docs/resources/azure_resource_groups.md.erb)
+- [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md.erb)
+- [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
+- [azure_monitor_log_profiles](docs/resources/azure_monitor_log_profiles.md.erb)
+- [azure_network_watcher](docs/resources/azure_network_watcher.md.erb)
+- [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md.erb)
+- [azure_security_center_policies](docs/resources/azure_security_center_policies.md.erb)
+- [azure_network_watchers](docs/resources/azure_network_watchers.md.erb)
+- [azure_security_center_policy](docs/resources/azure_security_center_policy.md.erb)
+
 
 ## Development
 
@@ -73,7 +120,7 @@ $env:AZURE_TENANT_ID="<client secret>"
 - Verify azure-cli is logged in:
   * `az account show`
 
-## Starting an Environment
+### Starting an Environment
 
 First ensure your system has [Terraform](https://www.terraform.io/intro/getting-started/install.html) (Version 0.11.7) installed.
 
@@ -134,7 +181,7 @@ rake azure:login
 rake tf:destroy
 ```
 
-## Running integration tests
+### Running integration tests
 
 To start up an environment and run all tests:
 ```
@@ -143,7 +190,7 @@ rake azure:login
 rake azure
 ```
 
-## Development
+### Development
 
 To run all tests:
 ```
