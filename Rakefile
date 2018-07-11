@@ -189,12 +189,11 @@ end
 namespace :docs do
   desc 'Prints markdown links for resource doc files to update the README'
   task :resource_links do
-    files = Dir.entries('docs/resources').select { |f| !File.directory? f }
-
     puts "\n"
-    files.each do |file|
-      puts "- [#{file.split('.')[0]}](docs/resources/#{file})"
-    end
+    Dir.entries('docs/resources')
+       .select { |file| !File.directory?(file) }
+       .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
+       .map { |link| puts link }
     puts "\n"
   end
 end
