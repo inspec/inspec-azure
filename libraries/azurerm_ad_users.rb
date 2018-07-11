@@ -36,7 +36,7 @@ class AzurermAdUsers < AzurermResource
       @guests = all_users.select { |user| user['userType'] == 'Guest' }
                          .map { |user|
                            {
-                               displayName: user['displayName'],
+                             displayName: user['displayName'],
                                mail:        user['mail'],
                                userType:    user['userType'],
                            }
