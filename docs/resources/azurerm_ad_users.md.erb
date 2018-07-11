@@ -97,4 +97,10 @@ The control will pass if the filter returns at least one result. Use
 
 ## Azure Permissions
 
-TODO : specific permissions required to read users from Graph API
+The Client/Active Directory Application you have configured Inspec Azure to use (`AZURE_CLIENT_ID`) must
+have permissions to read User data from the Azure Graph RBAC API. 
+
+Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) 
+for information on how to grant these permissions to your application.
+<br>
+Note: An Azure Admin must grant your application these permissions.
