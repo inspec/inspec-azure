@@ -39,14 +39,14 @@ module Azure
       get(
         url: link(location: 'Microsoft.Insights/activityLogAlerts',
                   resource_group: resource_group) + id,
-        api_version: '2016-04-01',
+        api_version: '2017-04-01',
       )
     end
 
     def activity_log_alerts
       get(
         url: link(location: 'Microsoft.Insights/activityLogAlerts'),
-        api_version: '2016-04-01',
+        api_version: '2017-04-01',
       )
     end
 
