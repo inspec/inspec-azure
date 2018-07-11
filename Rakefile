@@ -185,3 +185,15 @@ namespace :tf do
     end
   end
 end
+
+namespace :docs do
+  desc 'Prints markdown links for resource doc files to update the README'
+  task :resource_links do
+    puts "\n"
+    Dir.entries('docs/resources')
+       .select { |file| !File.directory?(file) }
+       .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
+       .map { |link| puts link }
+    puts "\n"
+  end
+end
