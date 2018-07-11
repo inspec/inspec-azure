@@ -5,8 +5,8 @@ require 'support/azure'
 class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
-  MGMT_HOST = 'https://management.azure.com'
-  GRAPH_HOST = 'https://graph.windows.net'
+  MANAGEMENT_HOST = 'https://management.azure.com'
+  GRAPH_HOST      = 'https://graph.windows.net'
 
   def exists?
     @exists ||= false
@@ -14,7 +14,7 @@ class AzurermResource < Inspec.resource(1)
 
   def client
     Azure::Management.instance
-                     .with_client(rest_client(MGMT_HOST))
+                     .with_client(rest_client(MANAGEMENT_HOST))
                      .for_subscription(subscription_id)
   end
 

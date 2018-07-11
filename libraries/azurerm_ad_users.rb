@@ -17,20 +17,14 @@ class AzurermAdUsers < AzurermResource
   filter.register_column(:display_names,  field: 'displayName')
   filter.register_column(:mails,          field: 'mail')
   filter.register_column(:user_types,     field: 'userType')
-  filter.install_filter_methods_on_resource(self, :data)
+  filter.install_filter_methods_on_resource(self, :table)
 
   def initialize
     @table = graph_client.users
-
-    @exists = !@table.empty?
-  end
-
-  def data
-    @table
   end
 
   def guest_accounts
-    GuestUsers.new(@table)
+    @guest_accounts ||= GuestUsers.new(@table)
   end
 
   def to_s
@@ -39,11 +33,14 @@ class AzurermAdUsers < AzurermResource
 
   class GuestUsers
     def initialize(all_users)
-      @guests = []
-
-      all_users.each do |user|
-        @guests << { displayName: user['displayName'], mail: user['mail'], userType: user['userType'] } if user['userType'] == 'Guest'
-      end
+      @guests = all_users.select { |user| user['userType'] == 'Guest' }
+                         .map { |user|
+                           {
+                               displayName: user['displayName'],
+                               mail:        user['mail'],
+                               userType:    user['userType'],
+                           }
+                         }
 
       @exists = !@guests.empty?
     end
