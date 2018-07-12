@@ -1,9 +1,10 @@
-control 'azure_ad_users' do
+guest_accounts = attribute('guest_accounts', default: nil)
 
-  title 'Ensure no Guest Users are present within an Active Directory Tenant'
-
-  describe azurerm_ad_users.guest_accounts do
-    it { should_not exist }
+control 'azurerm_ad_users' do
+  describe azurerm_ad_users do
+    its('display_names')       { should_not be_empty }
+    its('user_types')          { should_not be_empty }
+    its('mails')               { should_not be_empty }
+    its('guest_accounts.size') { should cmp guest_accounts }
   end
-
 end

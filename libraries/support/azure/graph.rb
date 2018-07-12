@@ -30,11 +30,19 @@ module Azure
 
     attr_reader :page_link_name
 
+    def format_error(error)
+      "#{error['code']}: #{error.dig('message', 'value')}"
+    end
+
     def get(*args)
       confirm_configured!
       values = []
 
       response = rest_client.get(*args).body
+
+      if response.has_key? 'odata.error'
+        raise Inspec::Exceptions::ResourceFailed, format_error(response['odata.error'])
+      end
 
       value = response.fetch('value', response)
       next_link = response.fetch(page_link_name, nil)
