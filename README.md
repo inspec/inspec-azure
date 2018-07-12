@@ -80,17 +80,16 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md.erb)
 - [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md.erb)
 - [azure_monitor_log_profiles](docs/resources/azure_monitor_log_profiles.md.erb)
-- [azure_resource_groups](docs/resources/azure_resource_groups.md.erb)
 - [azure_security_center_policies](docs/resources/azure_security_center_policies.md.erb)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md.erb)
 - [azurerm_network_security_group](docs/resources/azurerm_network_security_group.md.erb)
 - [azurerm_network_security_groups](docs/resources/azurerm_network_security_groups.md.erb)
 - [azurerm_network_watcher](docs/resources/azurerm_network_watcher.md.erb)
 - [azurerm_network_watchers](docs/resources/azurerm_network_watchers.md.erb)
+- [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md.erb)
 - [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md.erb)
 - [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md.erb)
 - [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
-
 
 ## Development
 
