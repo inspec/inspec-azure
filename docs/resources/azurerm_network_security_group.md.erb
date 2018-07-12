@@ -1,21 +1,21 @@
 ---
-title: About the azure_network_security_group Resource
+title: About the azurerm_network_security_group Resource
 platform: azure
 ---
 
-# azure\_network\_security\_group
+# azurerm\_network\_security\_group
 
-Use the `azure_network_security_group` InSpec audit resource to test properties
+Use the `azurerm_network_security_group` InSpec audit resource to test properties
 of an Azure Network Security Group.
 
 <br />
 
 ## Syntax
 
-An `azure_network_security_group` resource block identifies a Network Security Group by
+An `azurerm_network_security_group` resource block identifies a Network Security Group by
 name and Resource Group.
 
-    describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
+    describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       ...
     end
 <br />
@@ -24,13 +24,13 @@ name and Resource Group.
 
 ### Test that an example Resource Group has the specified Network Security Group
 
-    describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
+    describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should exist }
     end
 
 ### Test that an example Resource Group has a Network Security Group that allows SSH from the internet
 
-    describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
+    describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should allow_ssh_from_internet }
     end
 
@@ -45,7 +45,7 @@ name and Resource Group.
 
 The Resource Group as well as the Network Security Group name.
 
-    describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
+    describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should allow_rdp_from_internet }
     end
 
@@ -92,12 +92,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # If we expect 'GroupName' to always exist
-    describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
+    describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should exist }
     end
 
     # If we expect 'EmptyGroupName' to never exist
-    describe azure_network_security_group(resource_group: 'example', name: 'EmptyGroupName') do
+    describe azurerm_network_security_group(resource_group: 'example', name: 'EmptyGroupName') do
       it { should_not exist }
     end
 

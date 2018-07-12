@@ -1,21 +1,21 @@
 ---
-title: About the azure_network_security_groups Resource
+title: About the azurerm_network_security_groups Resource
 platform: azure
 ---
 
-# azure\_network\_security\_groups
+# azurerm\_network\_security\_groups
 
-Use the `azure_network_security_groups` InSpec audit resource to enumerate
+Use the `azurerm_network_security_groups` InSpec audit resource to enumerate
 Network Security Groups.
 
 <br />
 
 ## Syntax
 
-An `azure_network_security_groups` resource block identifies Network Security
+An `azurerm_network_security_groups` resource block identifies Network Security
 Groups by Resource Group.
 
-    describe azure_network_security_groups(resource_group: 'ExampleGroup') do
+    describe azurerm_network_security_groups(resource_group: 'ExampleGroup') do
       ...
     end
 
@@ -25,7 +25,7 @@ Groups by Resource Group.
 
 ### Test that an example Resource Group has the named Network Security Group
 
-    describe azure_network_security_groups(resource_group: 'ExampleGroup') do
+    describe azurerm_network_security_groups(resource_group: 'ExampleGroup') do
       its('names') { should include('ExampleNetworkSecurityGroup') }
     end
 
@@ -51,12 +51,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # If we expect 'ExampleGroup' Resource Group to have Network Security Groups
-    describe azure_network_security_groups(resource_group: 'ExampleGroup') do
+    describe azurerm_network_security_groups(resource_group: 'ExampleGroup') do
       it { should exist }
     end
 
     # If we expect 'EmptyExampleGroup' Resource Group to not have Network Security Groups
-    describe azure_network_security_groups(resource_group: 'EmptyExampleGroup') do
+    describe azurerm_network_security_groups(resource_group: 'EmptyExampleGroup') do
       it { should_not exist }
     end
 
