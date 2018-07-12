@@ -28,7 +28,7 @@ name and Resource Group.
       it { should exist }
     end
 
-### Test that an example Resource Group has a Network Security Group that allows ssh from the Internet
+### Test that an example Resource Group has a Network Security Group that allows SSH from the internet
 
     describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should allow_ssh_from_internet }
@@ -56,28 +56,28 @@ The Resource Group as well as the Network Security Group name.
 * `allow_ssh_from_internet`
 * `allow_rdp_from_internet`
 
-### security_rules
+### security\_rules
 
-The security_rules property contains the set of Security Rules.
+The security\_rules property contains the set of Security Rules.
 
     its('security_rules') { should_not be_empty }
 
-### default_security_rules
+### default\_security\_rules
 
-The default_security_rules property contains the set of Default Security Rules.
+The default\_security\_rules property contains the set of Default Security Rules.
 
     its('default_security_rules') { should_not be_empty }
 
-### allow_ssh_from_internet
+### allow\_ssh\_from\_internet
 
-The allow_ssh_from_internet property contains a boolean value determined by analysing
+The allow\_ssh\_from\_internet property contains a boolean value determined by analysing
 the Security Rules and Default Security Rules for unrestricted SSH access.
 
     it { should_not allow_ssh_from_internet }
 
-### allow_rdp_from_internet
+### allow\_rdp\_from\_internet
 
-The allow_rdp_from_internet property contains a boolean value determined by analysing
+The allow\_rdp\_from\_internet property contains a boolean value determined by analysing
 the Security Rules and Default Security Rules for unrestricted RDP access.
 
     it { should_not allow_rdp_from_internet }
