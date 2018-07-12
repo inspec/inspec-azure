@@ -1,19 +1,19 @@
 ---
-title: About the azure_network_watchers Resource
+title: About the azurerm_network_watchers Resource
 platform: azure
 ---
 
-# azure\_network\_watchers
+# azurerm\_network\_watchers
 
-Use the `azure_network_watchers` InSpec audit resource to verify that a Network Watcher exists.
+Use the `azurerm_network_watchers` InSpec audit resource to verify that a Network Watcher exists.
 
 <br />
 
 ## Syntax
 
-An `azure_network_watchers` resource block identifies Network Watchers by Resource Group.
+An `azurerm_network_watchers` resource block identifies Network Watchers by Resource Group.
 
-    describe azure_network_watchers(resource_group: 'example_group') do
+    describe azurerm_network_watchers(resource_group: 'example_group') do
       ...
     end
 <br />
@@ -22,7 +22,7 @@ An `azure_network_watchers` resource block identifies Network Watchers by Resour
 
 ### Test that an example Resource Group has the named Network Watcher
 
-    describe azure_network_watchers(resource_group: 'example_group') do
+    describe azurerm_network_watchers(resource_group: 'example_group') do
       its('names') { should include('ExampleNetworkWatcher') }
     end
 
@@ -48,12 +48,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # If we expect 'ExampleGroup' Resource Group to have Network Watchers
-    describe azure_network_watchers(resource_group: 'ExampleGroup') do
+    describe azurerm_network_watchers(resource_group: 'ExampleGroup') do
       it { should exist }
     end
 
     # If we expect 'MissingExampleGroup' Resource Group to not have Network Watchers
-    describe azure_network_watchers(resource_group: 'MissingExampleGroup') do
+    describe azurerm_network_watchers(resource_group: 'MissingExampleGroup') do
       it { should_not exist }
     end
 
