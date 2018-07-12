@@ -14,15 +14,15 @@ alerts_and_operations = {
   '5_12' => 'Microsoft.Security/policies/write',
 }
 
-control 'azure_monitor_activity_log_alert' do
+control 'azurerm_monitor_activity_log_alert' do
   alerts_and_operations.each do |alert, operation|
-    describe azure_monitor_activity_log_alert(resource_group: resource_group, name: "#{log_alert_name}_#{alert}") do
+    describe azurerm_monitor_activity_log_alert(resource_group: resource_group, name: "#{log_alert_name}_#{alert}") do
       it                { should exist }
       its('operations') { should include operation }
     end
   end
 
-  describe azure_monitor_activity_log_alert(resource_group: resource_group, name: 'fake') do
+  describe azurerm_monitor_activity_log_alert(resource_group: resource_group, name: 'fake') do
     it { should_not exist }
   end
 end
