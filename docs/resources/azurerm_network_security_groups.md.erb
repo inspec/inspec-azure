@@ -5,15 +5,30 @@ platform: azure
 
 # azurerm\_network\_security\_groups
 
-Use the `azurerm_network_security_groups` InSpec audit resource to enumerate
-Network Security Groups.
+Use the `azurerm_network_security_groups` InSpec audit resource to enumerate Network
+Security Groups.
 
 <br />
 
+## Availability
+
+### Installation
+
+This resource is available in the `inspec-azure` [resource
+pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+following to your `inspec.yml` in your top-level profile:
+
+    depends:
+      inspec-azure:
+        git: https://github.com/inspec/inspec-azure.git
+
+You'll also need to setup your Azure credentials; see the resource pack
+[README](https://github.com/inspec/inspec-azure#inspec-for-azure).
+
 ## Syntax
 
-An `azurerm_network_security_groups` resource block identifies Network Security
-Groups by Resource Group.
+An `azurerm_network_security_groups` resource block identifies Network Security Groups by
+Resource Group.
 
     describe azurerm_network_security_groups(resource_group: 'ExampleGroup') do
       ...
@@ -33,7 +48,7 @@ Groups by Resource Group.
 
 ## Properties
 
-* `names`
+  - `names`
 
 ### names
 
@@ -43,18 +58,20 @@ The name of the Network Security Group
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+This InSpec audit resource has the following special matchers. For a full list of
+available matchers, please visit our [Universal Matchers
+page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
-The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
+The control will pass if the resource returns a result. Use `should_not` if you expect
+zero matches.
 
     # If we expect 'ExampleGroup' Resource Group to have Network Security Groups
     describe azurerm_network_security_groups(resource_group: 'ExampleGroup') do
       it { should exist }
     end
-
+    
     # If we expect 'EmptyExampleGroup' Resource Group to not have Network Security Groups
     describe azurerm_network_security_groups(resource_group: 'EmptyExampleGroup') do
       it { should_not exist }
@@ -62,5 +79,6 @@ The control will pass if the resource returns a result. Use `should_not` if you 
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service
+Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

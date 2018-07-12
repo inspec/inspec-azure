@@ -5,19 +5,36 @@ platform: azure
 
 # azurerm\_network\_security\_group
 
-Use the `azurerm_network_security_group` InSpec audit resource to test properties
-of an Azure Network Security Group.
+Use the `azurerm_network_security_group` InSpec audit resource to test properties of an
+Azure Network Security Group.
 
 <br />
+
+## Availability
+
+### Installation
+
+This resource is available in the `inspec-azure` [resource
+pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+following to your `inspec.yml` in your top-level profile:
+
+    depends:
+      inspec-azure:
+        git: https://github.com/inspec/inspec-azure.git
+
+You'll also need to setup your Azure credentials; see the resource pack
+[README](https://github.com/inspec/inspec-azure#inspec-for-azure).
 
 ## Syntax
 
 An `azurerm_network_security_group` resource block identifies a Network Security Group by
-name and Resource Group.
+name and Resource
+    Group.
 
     describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       ...
     end
+
 <br />
 
 ## Examples
@@ -38,12 +55,13 @@ name and Resource Group.
 
 ## Parameters
 
-* `name`
-* `resource_group`
+  - `name`
+  - `resource_group`
 
 ## Parameter Examples
 
-The Resource Group as well as the Network Security Group name.
+The Resource Group as well as the Network Security Group
+    name.
 
     describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should allow_rdp_from_internet }
@@ -51,10 +69,10 @@ The Resource Group as well as the Network Security Group name.
 
 ## Properties
 
-* `security_rules`
-* `default_security_rules`
-* `allow_ssh_from_internet`
-* `allow_rdp_from_internet`
+  - `security_rules`
+  - `default_security_rules`
+  - `allow_ssh_from_internet`
+  - `allow_rdp_from_internet`
 
 ### security\_rules
 
@@ -84,18 +102,20 @@ the Security Rules and Default Security Rules for unrestricted RDP access.
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+This InSpec audit resource has the following special matchers. For a full list of
+available matchers, please visit our [Universal Matchers
+page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
-The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
+The control will pass if the resource returns a result. Use `should_not` if you expect
+zero matches.
 
     # If we expect 'GroupName' to always exist
     describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should exist }
     end
-
+    
     # If we expect 'EmptyGroupName' to never exist
     describe azurerm_network_security_group(resource_group: 'example', name: 'EmptyGroupName') do
       it { should_not exist }
@@ -103,5 +123,6 @@ The control will pass if the resource returns a result. Use `should_not` if you 
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service
+Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.
