@@ -37,7 +37,7 @@ module Azure
       response = rest_client.get(*args).body
 
       value = response.fetch('value', response)
-      next_link = response.fetch(page_link_Name, nil)
+      next_link = response.fetch(page_link_name, nil)
 
       # If it's a single entity being requested (e.g. a User), simply return the single entity.
       return value unless value.is_a?(Array)
@@ -49,7 +49,7 @@ module Azure
         loop do
           response = next_results(next_link)
           values += response.fetch('value', response)
-          next_link = response.fetch(page_link_Name, nil)
+          next_link = response.fetch(page_link_name, nil)
           break unless next_link
         end
       end
