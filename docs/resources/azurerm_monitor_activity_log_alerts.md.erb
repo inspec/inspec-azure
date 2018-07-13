@@ -1,20 +1,20 @@
 ---
-title: About the azure_monitor_activity_log_alerts Resource
+title: About the azurerm_monitor_activity_log_alerts Resource
 platform: azure
 ---
 
-# azure\_monitor\_activity\_log\_alerts
+# azurerm\_monitor\_activity\_log\_alerts
 
-Use the `azure_monitor_activity_log_alerts` InSpec audit resource to verify that an Activity Log
+Use the `azurerm_monitor_activity_log_alerts` InSpec audit resource to verify that an Activity Log
 Alert exists.
 
 <br />
 
 ## Syntax
 
-An `azure_monitor_activity_log_alerts` resource block identifies Activity Log Alerts by name.
+An `azurerm_monitor_activity_log_alerts` resource block identifies Activity Log Alerts by name.
 
-    describe azure_monitor_activity_log_alerts do
+    describe azurerm_monitor_activity_log_alerts do
       ...
     end
 <br />
@@ -23,7 +23,7 @@ An `azure_monitor_activity_log_alerts` resource block identifies Activity Log Al
 
 ### Test that an example resource has an Activity Log Alert
 
-    describe azure_monitor_activity_log_alerts do
+    describe azurerm_monitor_activity_log_alerts do
       its('names') { should include('ExampleLogAlert') }
     end
 
@@ -49,12 +49,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # If we expect 'ExampleLogAlert' to exist
-    describe azure_monitor_activity_log_alerts do
+    describe azurerm_monitor_activity_log_alerts do
       it { should exist }
     end
 
     # If we do not expect 'ExampleLogAlert' to exist
-    describe azure_monitor_activity_log_alerts do
+    describe azurerm_monitor_activity_log_alerts do
       it { should_not exist }
     end
 
