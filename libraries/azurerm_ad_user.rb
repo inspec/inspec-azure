@@ -6,22 +6,40 @@ class AzurermAdUser < AzurermResource
   name 'azurerm_ad_user'
   desc 'Verifies settings for an Azure Active Directory User'
   example <<-EXAMPLE
-    describe azure_ad_user(azureId: 'azure_id') do
+    describe azure_ad_user(user_id: 'userId') do
       it  { should exist }
     end
   EXAMPLE
 
   ATTRS = %i(
-    azureId
-    mail
+    objectId
+    accountEnabled
+    city
+    country
+    department
     displayName
+    facsimileTelephoneNumber
+    givenName
+    jobTitle
+    mail
+    mailNickname
+    mobile
+    passwordPolicies
+    passwordProfile
+    postalCode
+    state
+    streetAddress
+    surname
+    telephoneNumber
+    usageLocation
+    userPrincipalName
     userType
   ).freeze
 
   attr_reader(*ATTRS)
 
-  def initialize(id)
-    user = graph_client.user(id)
+  def initialize(user_id: nil)
+    user = graph_client.user(user_id)
     return if user.nil?
 
     ATTRS.each do |field|
