@@ -14,7 +14,7 @@ class AzurermResource < Inspec.resource(1)
 
   def client
     Azure::Management.instance
-                     .with_client(rest_client(MANAGEMENT_HOST))
+                     .with_client(rest_client)
                      .for_subscription(subscription_id)
   end
 
@@ -26,7 +26,7 @@ class AzurermResource < Inspec.resource(1)
 
   private
 
-  def rest_client(host)
+  def rest_client(host = MANAGEMENT_HOST)
     Azure::Rest.new(host, credentials: credentials.to_h)
   end
 
