@@ -7,6 +7,9 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 * Ruby
 * Bundler installed
 * Azure Service Principal Account
+* Azure Service Principal may read the Azure Active Directory
+
+### Service Principal
 
 Your Azure Service Principal Account must have `contributor` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
 
@@ -15,7 +18,35 @@ Your Azure Service Principal Account must have `contributor` role to any subscri
 * CLIENT_SECRET
 * SUBSCRIPTION_ID
 
+To create your account Service Principal Account:
+
+1. Login to the Azure portal.
+2. Click on `Azure Active Directory`.
+3. Click on `APP registrations`.
+4. Click on `New application registration`.
+5. Fill in a name and a Sign-on URL. Select `Web app / API` from the `Application Type` drop down. Save your application.
+6. Note your Application ID. This is your `client_id` above.
+6. Click on `Settings`
+7. Click on `Keys`
+8. Create a new password. This value is your `client_secret` above.
+9. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
+11. Note your Subscription ID can be found here.
+10. Click `Access Control (IAM)`
+11. Click Add
+13. Select the `contributor` role.
+12. Select the application you just created and save.
+
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
+
+### Granting Azure Active Directory Read to Service Principal
+
+The Client/Active Directory Application you have configured Inspec Azure to use (`AZURE_CLIENT_ID`) must
+have permissions to read User data from the Azure Graph RBAC API.
+
+Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
+for information on how to grant these permissions to your application.
+
+Note: An Azure Administrator must grant your application these permissions.
 
 ### Use the Resources
 
