@@ -1,8 +1,6 @@
 ---
 AllCops:
-  TargetRubyVersion: 2.3
   Exclude:
-  - legacy-prototype/**/*
   - bin/**/*
 AlignParameters:
   Enabled: true

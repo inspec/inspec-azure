@@ -7,6 +7,11 @@ class AttributeFileWriter
     writer.convert_to_yaml(content)
   end
 
+  def self.append(file, content)
+    writer = AttributeFileWriter.new(file)
+    writer.append(content)
+  end
+
   def initialize(file)
     @file = file
   end
@@ -18,5 +23,9 @@ class AttributeFileWriter
       yaml[key] = json[key]['value']
     end
     File.open(@file, 'w') { |file| file.puts(yaml.to_yaml) }
+  end
+
+  def append(content)
+    File.open(@file, 'a') { |file| file.puts(content) }
   end
 end
