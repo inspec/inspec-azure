@@ -7,6 +7,7 @@ platform: azure
 
 Use the `azurerm_ad_users` InSpec audit resource to test properties of
 some or all Azure Active Directory users within a Tenant.
+
 <br />
 
 ## Syntax
@@ -17,6 +18,7 @@ contained within the configured Tenant and then tests that group group of users.
     describe azurerm_ad_users do
       ...
     end
+
 <br />
 
 ## Examples
@@ -34,6 +36,7 @@ The following examples show how to use this InSpec audit resource.
     describe azurerm_ad_users.guest_accounts
       it { should_not exist }
     end
+
 <br />
 
 ## Filter Criteria
@@ -82,9 +85,8 @@ The userTypes property provides a list of all User Types for all users.
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+This InSpec audit resource has the following special matchers. For a full list of available matchers,
+please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
@@ -102,5 +104,7 @@ have permissions to read User data from the Azure Graph RBAC API.
 
 Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
 for information on how to grant these permissions to your application.
-<br>
+
+<br />
+
 Note: An Azure Admin must grant your application these permissions.

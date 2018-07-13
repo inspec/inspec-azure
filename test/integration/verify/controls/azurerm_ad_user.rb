@@ -4,7 +4,7 @@ control 'azurerm_ad_user' do
     it                    { should exist }
     its('objectId')       { should eq user_id }
     its('displayName')    { should_not be_nil }
-    its('userType')       { should eq 'Member' }
+    its('userType')       { should_not be_nil }
     its('accountEnabled') { should_not be_nil }
   end
 end
