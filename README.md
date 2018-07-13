@@ -107,6 +107,7 @@ end
 
 The following resources are available in the InSpec Azure Resource Pack
 
+- [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
 - [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
 - [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md.erb)
 - [azurerm_monitor_log_profile](docs/resources/azurerm_monitor_log_profile.md.erb)
