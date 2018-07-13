@@ -1,11 +1,11 @@
 ---
-title: About the azure_security_center_policy Resource
+title: About the azurerm_security_center_policy Resource
 platform: azure
 ---
 
-# azure\_security\_center\_policy
+# azurerm\_security\_center\_policy
 
-Use the `azure_security_center_policy` InSpec audit resource to test properties
+Use the `azurerm_security_center_policy` InSpec audit resource to test properties
 of the `default` Security Center Policy. Azure currently only supports looking
 up the `default` policy via their Rest API. If you attempt to look up a
 different Security Policy you will receive an error.
@@ -19,11 +19,11 @@ inspect what alerts you have configured for your account.
 
 ## Syntax
 
-An `azure_security_center_policy` resource block identifies a Security Center
+An `azurerm_security_center_policy` resource block identifies a Security Center
 Policy by name. In the current Rest API you may only lookup a `default` policy.
 If no policy is given the default one will be used.
 
-    describe azure_security_center_policy(name: 'default') do
+    describe azurerm_security_center_policy(name: 'default') do
       ...
     end
 <br />
@@ -32,19 +32,19 @@ If no policy is given the default one will be used.
 
 ### Assert that the default Security Center Policy exists
 
-    describe azure_security_center_policy(name: 'default') do
+    describe azurerm_security_center_policy(name: 'default') do
       it { should exist }
     end
 
 ### Assert that the default Security Center Policy has log collection enabled
 
-    describe azure_security_center_policy(name: 'default') do
+    describe azurerm_security_center_policy(name: 'default') do
       its('log_collection') { should eq('On') }
     end
 
 ### A non default policy may not be searched
 
-    describe azure_security_center_policy(name: 'NonDefaultPolicy') do
+    describe azurerm_security_center_policy(name: 'NonDefaultPolicy') do
       it { should_not exist }
     end
 
@@ -58,7 +58,7 @@ If no policy is given the default one will be used.
 
 The name of the Security Center Policy. It must be `default`. If no name is given then it will search for the `default` Security Center Policy (Optional).
 
-    describe azure_security_center_policy(name: 'default') do
+    describe azurerm_security_center_policy(name: 'default') do
       its('log_collection') { should eq('On') }
     end
 
@@ -190,12 +190,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # default should always exist
-    describe azure_security_center_policy(name: 'default') do
+    describe azurerm_security_center_policy(name: 'default') do
       it { should exist }
     end
 
     # this security center policy should not exist
-    describe azure_security_center_policy(name: 'DoesNotExist') do
+    describe azurerm_security_center_policy(name: 'DoesNotExist') do
       it { should_not exist }
     end
 

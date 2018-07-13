@@ -191,7 +191,7 @@ namespace :docs do
   task :resource_links do
     puts "\n"
     Dir.entries('docs/resources').sort
-       .select { |file| !File.directory?(file) }
+       .reject { |file| File.directory?(file) }
        .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
        .map { |link| puts link }
     puts "\n"
