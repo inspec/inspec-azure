@@ -27,7 +27,7 @@ class AzurermResource < Inspec.resource(1)
   end
 
   def tenant_id
-    credentials.tenant_id
+    inspec.backend.azure_client.tenant_id
   end
 
   def credentials
