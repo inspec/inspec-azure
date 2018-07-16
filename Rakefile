@@ -165,7 +165,7 @@ namespace :tf do
       sh('terraform', 'apply', 'inspec-azure.plan')
     end
 
-    Rake::Task['attributes:write']
+    Rake::Task['attributes:write'].invoke
   end
 
   desc 'Destroys the Terraform environment'
