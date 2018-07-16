@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermMonitorActivityLogAlert < AzurermResource
+class AzurermMonitorActivityLogAlert < AzurermSingularResource
   name 'azurerm_monitor_activity_log_alert'
   desc 'Verifies settings for a Azure Monitor Activity Log Alert'
   example <<-EXAMPLE

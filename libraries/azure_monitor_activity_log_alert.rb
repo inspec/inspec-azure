@@ -13,7 +13,9 @@ class AzureMonitorActivityLogAlert < AzurermMonitorActivityLogAlert
   EXAMPLE
 
   def initialize(resource_group: nil, name: nil)
-    warn '[DEPRECATION] The `azure_monitor_activity_log_alert` resource is deprecated and will be removed in version 2.0. Use the `azurerm_monitor_activity_log_alert` resource instead.'
+    warn '[DEPRECATION] The `azure_monitor_activity_log_alert` resource is ' \
+         'deprecated and will be removed in version 2.0. Use the ' \
+         '`azurerm_monitor_activity_log_alert` resource instead.'
     super
   end
 end

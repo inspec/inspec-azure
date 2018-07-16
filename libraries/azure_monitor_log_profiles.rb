@@ -12,7 +12,9 @@ class AzureMonitorLogProfiles < AzurermMonitorLogProfiles
   EXAMPLE
 
   def initialize
-    warn '[DEPRECATION] The `azure_monitor_log_profiles` resource is deprecated and will be removed in version 2.0. Use the `azurerm_monitor_log_profiles` resource instead.'
+    warn '[DEPRECATION] The `azure_monitor_log_profiles` resource is ' \
+         'deprecated and will be removed in version 2.0. Use the ' \
+         '`azurerm_monitor_log_profiles` resource instead.'
     super
   end
 end

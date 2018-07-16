@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermSecurityCenterPolicies < AzurermResource
+class AzurermSecurityCenterPolicies < AzurermPluralResource
   name 'azurerm_security_center_policies'
   desc 'Verifies settings for Security Center'
   example <<-EXAMPLE
@@ -12,11 +12,8 @@ class AzurermSecurityCenterPolicies < AzurermResource
   EXAMPLE
 
   FilterTable.create
-             .add_accessor(:entries)
-             .add_accessor(:where)
-             .add(:exists?) { |obj| !obj.entries.empty? }
-             .add(:policy_names, field: 'name')
-             .connect(self, :table)
+             .register_column(:policy_names, field: 'name')
+             .install_filter_methods_on_resource(self, :table)
 
   def to_s
     'Security Policies'

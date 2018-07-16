@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermResourceGroups < AzurermResource
+class AzurermResourceGroups < AzurermPluralResource
   name 'azurerm_resource_groups'
   desc 'Fetches all available resource groups'
   example <<-EXAMPLE
@@ -12,11 +12,8 @@ class AzurermResourceGroups < AzurermResource
   EXAMPLE
 
   FilterTable.create
-             .add_accessor(:entries)
-             .add_accessor(:where)
-             .add(:exists?) { |obj| !obj.entries.empty? }
-             .add(:names, field: 'name')
-             .connect(self, :table)
+             .register_column(:names, field: 'name')
+             .install_filter_methods_on_resource(self, :table)
 
   def to_s
     'Resource Groups'

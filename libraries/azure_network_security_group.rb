@@ -12,7 +12,9 @@ class AzureNetworkSecurityGroup < AzurermNetworkSecurityGroup
   EXAMPLE
 
   def initialize(resource_group: nil, name: nil)
-    warn '[DEPRECATION] The `azure_network_security_group` resource is deprecated and will be removed in version 2.0. Use the `azurerm_network_security_group` resource instead.'
+    warn '[DEPRECATION] The `azure_network_security_group` resource is ' \
+         'deprecated and will be removed in version 2.0. Use the ' \
+         '`azurerm_network_security_group` resource instead.'
     super
   end
 end

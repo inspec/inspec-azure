@@ -12,7 +12,9 @@ class AzureNetworkWatchers < AzurermNetworkWatchers
   EXAMPLE
 
   def initialize(resource_group:)
-    warn '[DEPRECATION] The `azure_network_watchers` resource is deprecated and will be removed in version 2.0. Use the `azurerm_network_watchers` resource instead.'
+    warn '[DEPRECATION] The `azure_network_watchers` resource is deprecated ' \
+         'and will be removed in version 2.0. Use the ' \
+         '`azurerm_network_watchers` resource instead.'
     super
   end
 end

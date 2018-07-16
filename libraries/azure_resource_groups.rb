@@ -12,8 +12,9 @@ class AzureResourceGroups < AzurermResourceGroups
   EXAMPLE
 
   def initialize
-    warn '[DEPRECATION] The `azure_resource_groups` resource is deprecated and will ' \
-         'be removed in version 2.0. Use the `azurerm_resource_groups` resource instead.'
+    warn '[DEPRECATION] The `azure_resource_groups` resource is deprecated ' \
+         'and will be removed in version 2.0. Use the ' \
+         '`azurerm_resource_groups` resource instead.'
     super
   end
 end

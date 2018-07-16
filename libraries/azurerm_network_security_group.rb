@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermNetworkSecurityGroup < AzurermResource
+class AzurermNetworkSecurityGroup < AzurermSingularResource
   name 'azurerm_network_security_group'
   desc 'Verifies settings for Network Security Groups'
   example <<-EXAMPLE

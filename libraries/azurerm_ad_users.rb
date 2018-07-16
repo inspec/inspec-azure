@@ -3,7 +3,7 @@
 require 'azurerm_resource'
 require 'json'
 
-class AzurermAdUsers < AzurermResource
+class AzurermAdUsers < AzurermPluralResource
   name 'azurerm_ad_users'
   desc 'Verifies settings for a collection of Azure Active Directory Users'
   example <<-EXAMPLE

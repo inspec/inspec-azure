@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermNetworkSecurityGroups < AzurermResource
+class AzurermNetworkSecurityGroups < AzurermPluralResource
   name 'azurerm_network_security_groups'
   desc 'Verifies settings for Network Security Groups'
   example <<-EXAMPLE
@@ -14,11 +14,8 @@ class AzurermNetworkSecurityGroups < AzurermResource
   attr_reader :table
 
   FilterTable.create
-             .add_accessor(:entries)
-             .add_accessor(:where)
-             .add(:exists?) { |obj| !obj.entries.empty? }
-             .add(:names, field: 'name')
-             .connect(self, :table)
+             .register_column(:names, field: 'name')
+             .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group: nil)
     resp = client.network_security_groups(resource_group)

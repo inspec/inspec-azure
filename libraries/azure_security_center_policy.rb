@@ -17,8 +17,4 @@ class AzureSecurityCenterPolicy < AzurermSecurityCenterPolicy
          '`azurerm_security_center_policy` resource instead.'
     super
   end
-
-  def to_s
-    "'#{name}' Security Policy"
-  end
 end
