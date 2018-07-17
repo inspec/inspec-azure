@@ -1,9 +1,136 @@
 # InSpec for Azure
 
-## Getting Started
+This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
+
+## Prerequisites
+
+* Ruby
+* Bundler installed
+* Azure Service Principal Account
+* Azure Service Principal may read the Azure Active Directory
+
+### Service Principal
+
+Your Azure Service Principal Account must have `contributor` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
+
+* TENANT_ID
+* CLIENT_ID
+* CLIENT_SECRET
+* SUBSCRIPTION_ID
+
+To create your account Service Principal Account:
+
+1. Login to the Azure portal.
+2. Click on `Azure Active Directory`.
+3. Click on `APP registrations`.
+4. Click on `New application registration`.
+5. Fill in a name and a Sign-on URL. Select `Web app / API` from the `Application Type` drop down. Save your application.
+6. Note your Application ID. This is your `client_id` above.
+6. Click on `Settings`
+7. Click on `Keys`
+8. Create a new password. This value is your `client_secret` above.
+9. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
+11. Note your Subscription ID can be found here.
+10. Click `Access Control (IAM)`
+11. Click Add
+13. Select the `contributor` role.
+12. Select the application you just created and save.
+
+These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
+
+### Granting Azure Active Directory Read to Service Principal
+
+The Client/Active Directory Application you have configured Inspec Azure to use (`AZURE_CLIENT_ID`) must
+have permissions to read User data from the Azure Graph RBAC API.
+
+Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
+for information on how to grant these permissions to your application.
+
+Note: An Azure Administrator must grant your application these permissions.
+
+### Use the Resources
+
+Since this is an InSpec resource pack, it only defines InSpec resources. To use these resources in your own controls you should create your own profile:
+
+#### Create a new profile
+
+```
+$ inspec init profile my-profile
+```
+Example inspec.yml:
+```
+name: my-profile
+title: My own Oneview profile
+version: 0.1.0
+inspec_version: '>= 2.2.7'
+depends:
+  - name: inspec-azure
+    url: https://github.com/inspec/inspec-azure/archive/master.tar.gz
+supports:
+  - platform: azure
+```
+
+## Examples
+
+Verify properties of an Azure VM
+
+```
+control 'azurerm_virtual_machine' do
+  describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'prod-web-01') do
+    it                                { should exist }
+    it                                { should have_monitoring_agent_installed }
+    it                                { should_not have_endpoint_protection_installed([]) }
+    it                                { should have_only_approved_extensions(['MicrosoftMonitoringAgent']) }
+    its('type')                       { should eq 'Microsoft.Compute/virtualMachines' }
+    its('installed_extensions_types') { should include('MicrosoftMonitoringAgent') }
+    its('installed_extensions_names') { should include('LogAnalytics') }
+  end
+end
+```
+
+Verify properties of a security group
+
+```
+control 'azure_network_security_group' do
+  describe azure_network_security_group(resource_group: 'ProductionResourceGroup', name: 'ProdServers') do
+    it                            { should exist }
+    its('type')                   { should eq 'Microsoft.Network/networkSecurityGroups' }
+    its('security_rules')         { should_not be_empty }
+    its('default_security_rules') { should_not be_empty }
+    it                            { should_not allow_rdp_from_internet }
+    it                            { should_not allow_ssh_from_internet }
+  end
+end
+```
+
+## Resource Documentation
+
+The following resources are available in the InSpec Azure Resource Pack
+
+- [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
+- [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
+- [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md.erb)
+- [azurerm_monitor_log_profile](docs/resources/azurerm_monitor_log_profile.md.erb)
+- [azurerm_monitor_log_profiles](docs/resources/azurerm_monitor_log_profiles.md.erb)
+- [azurerm_network_security_group](docs/resources/azurerm_network_security_group.md.erb)
+- [azurerm_network_security_groups](docs/resources/azurerm_network_security_groups.md.erb)
+- [azurerm_network_watcher](docs/resources/azurerm_network_watcher.md.erb)
+- [azurerm_network_watchers](docs/resources/azurerm_network_watchers.md.erb)
+- [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md.erb)
+- [azurerm_security_center_policies](docs/resources/azurerm_security_center_policies.md.erb)
+- [azurerm_security_center_policy](docs/resources/azurerm_security_center_policy.md.erb)
+- [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md.erb)
+- [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md.erb)
+- [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
+
+
+## Development
+
+If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). The following instructions will help you get your development environment setup to run integration tests.
+
+### Getting Started
 
 Copy `.envrc-example` to `.envrc` and fill in the fields with the values from your account.
-
 ```
 export AZURE_SUBSCRIPTION_ID=<subscription id>
 export AZURE_CLIENT_ID=<client id>
@@ -27,7 +154,7 @@ $env:AZURE_TENANT_ID="<client secret>"
 - Verify azure-cli is logged in:
   * `az account show`
 
-## Starting an Environment
+### Starting an Environment
 
 First ensure your system has [Terraform](https://www.terraform.io/intro/getting-started/install.html) (Version 0.11.7) installed.
 
@@ -88,7 +215,7 @@ rake azure:login
 rake tf:destroy
 ```
 
-## Running integration tests
+### Running integration tests
 
 To start up an environment and run all tests:
 ```
@@ -97,7 +224,7 @@ rake azure:login
 rake azure
 ```
 
-## Development
+### Development
 
 To run all tests:
 ```

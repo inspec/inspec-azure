@@ -2,8 +2,8 @@ resource_group = attribute('resource_group',            default: nil)
 nsg            = attribute('network_security_group',    default: nil)
 nsg_id         = attribute('network_security_group_id', default: nil)
 
-control 'azure_network_security_group' do
-  describe azure_network_security_group(resource_group: resource_group, name: nsg) do
+control 'azurerm_network_security_group' do
+  describe azurerm_network_security_group(resource_group: resource_group, name: nsg) do
     it                            { should exist }
     its('id')                     { should eq nsg_id }
     its('name')                   { should eq nsg }
@@ -14,11 +14,11 @@ control 'azure_network_security_group' do
     it                            { should_not allow_ssh_from_internet }
   end
 
-  describe azure_network_security_group(resource_group: resource_group, name: 'fake') do
+  describe azurerm_network_security_group(resource_group: resource_group, name: 'fake') do
     it { should_not exist }
   end
 
-  describe azure_network_security_group(resource_group: 'does-not-exist', name: nsg) do
+  describe azurerm_network_security_group(resource_group: 'does-not-exist', name: nsg) do
     it { should_not exist }
   end
 end

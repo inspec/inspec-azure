@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermVirtualMachineDisk < AzurermResource
+class AzurermVirtualMachineDisk < AzurermSingularResource
   name 'azurerm_virtual_machine_disk'
   desc 'Verifies settings for Azure Virtual Machine Disks'
   example <<-EXAMPLE

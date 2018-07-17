@@ -1,28 +1,20 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require 'azurerm_resource_groups'
 
-class AzureResourceGroups < AzurermResource
+class AzureResourceGroups < AzurermResourceGroups
   name 'azure_resource_groups'
-  desc 'Fetches all available resource groups'
+  desc '[DEPRECATED] Please use the azurerm_resource_groups resource'
   example <<-EXAMPLE
     describe azure_resource_groups do
       its('names') { should include('example-group') }
     end
   EXAMPLE
 
-  FilterTable.create
-             .add_accessor(:entries)
-             .add_accessor(:where)
-             .add(:exists?) { |obj| !obj.entries.empty? }
-             .add(:names, field: 'name')
-             .connect(self, :table)
-
-  def to_s
-    'Resource Groups'
-  end
-
-  def table
-    @table ||= client.resource_groups
+  def initialize
+    warn '[DEPRECATION] The `azure_resource_groups` resource is deprecated ' \
+         'and will be removed in version 2.0. Use the ' \
+         '`azurerm_resource_groups` resource instead.'
+    super
   end
 end

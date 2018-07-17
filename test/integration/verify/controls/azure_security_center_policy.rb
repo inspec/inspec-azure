@@ -1,6 +1,6 @@
 resource_group = attribute('resource_group', default: nil)
 
-control 'azure_security_center_policy' do
+control 'azurerm_security_center_policy' do
   desc <<-DESC
     This control is asserting state on global settings outside the control of
     Terraform. I will only be asserting on the expectation that things will be
@@ -12,7 +12,7 @@ control 'azure_security_center_policy' do
     Security Policy names match resource group names.
   DESC
 
-  describe azure_security_center_policy(name: 'default') do
+  describe azurerm_security_center_policy(name: 'default') do
     it                                     { should exist }
     its('id')                              { should eq("/subscriptions/#{ENV['AZURE_SUBSCRIPTION_ID']}/providers/Microsoft.Security/policies/default") }
     its('name')                            { should eq('default') }
@@ -36,7 +36,7 @@ control 'azure_security_center_policy' do
   end
 
   # only supports looking up the security center policy named 'default'
-  describe azure_security_center_policy(name: resource_group) do
+  describe azurerm_security_center_policy(name: resource_group) do
     it { should_not exist }
   end
 end

@@ -1,21 +1,21 @@
 ---
-title: About the azure_monitor_activity_log_alert Resource
+title: About the azurerm_monitor_activity_log_alert Resource
 platform: azure
 ---
 
-# azure\_monitor\_activity\_log\_alert
+# azurerm\_monitor\_activity\_log\_alert
 
-Use the `azure_monitor_activity_log_alert` InSpec audit resource to test properties
+Use the `azurerm_monitor_activity_log_alert` InSpec audit resource to test properties
 of an Azure Monitor Activity Log Alert.
 
 <br />
 
 ## Syntax
 
-An `azure_monitor_activity_log_alert` resource block identifies an Activity Log Alert by
+An `azurerm_monitor_activity_log_alert` resource block identifies an Activity Log Alert by
 name and resource group.
 
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
+    describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       ...
     end
 <br />
@@ -24,13 +24,13 @@ name and resource group.
 
 ### Test that an example resource has an Activity Log Alert
 
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
+    describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       it { should exist }
     end
 
 ### Test an example resource has an Activity Log Alert with the correct operation
 
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
+    describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
     end
 
@@ -45,7 +45,7 @@ name and resource group.
 
 The resource group as well as the Activty Log Alert name.
 
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
+    describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
     end
 
@@ -69,12 +69,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # If we expect 'AlertName' to always exist
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
+    describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       it { should exist }
     end
 
     # If we expect 'OtherAlertName' to never exist
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'OtherAlertName') do
+    describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'OtherAlertName') do
       it { should_not exist }
     end
 

@@ -1,19 +1,19 @@
 ---
-title: About the azure_monitor_log_profiles Resource
+title: About the azurerm_monitor_log_profiles Resource
 platform: azure
 ---
 
-# azure\_monitor\_log\_profiles
+# azurerm\_monitor\_log\_profiles
 
-Use the `azure_monitor_log_profiles` InSpec audit resource to verify that a Log Profile exists.
+Use the `azurerm_monitor_log_profiles` InSpec audit resource to verify that a Log Profile exists.
 
 <br />
 
 ## Syntax
 
-An `azure_monitor_log_profiles` resource block identifies a Log Profile by name.
+An `azurerm_monitor_log_profiles` resource block identifies a Log Profile by name.
 
-    describe azure_monitor_log_profiles do
+    describe azurerm_monitor_log_profiles do
       ...
     end
 <br />
@@ -22,7 +22,7 @@ An `azure_monitor_log_profiles` resource block identifies a Log Profile by name.
 
 ### Test that an example resource has a Log Profile
 
-    describe azure_monitor_log_profiles do
+    describe azurerm_monitor_log_profiles do
       its('names') { should include('ExampleProfile') }
     end
 
@@ -48,12 +48,12 @@ of available matchers, please visit our [Universal Matchers page](https://www.in
 The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
 
     # If we expect 'ExampleProfile' to exist
-    describe azure_monitor_log_profiles do
+    describe azurerm_monitor_log_profiles do
       its('names') { should include('ExampleProfile') }
     end
 
     # If we expect 'ExampleProfile' to not exist
-    describe azure_monitor_log_profiles do
+    describe azurerm_monitor_log_profiles do
       its('names') { should_not include('ExampleProfile') }
     end
 

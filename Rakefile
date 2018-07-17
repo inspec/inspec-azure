@@ -166,7 +166,7 @@ namespace :tf do
       sh('terraform', 'apply', 'inspec-azure.plan')
     end
 
-    Rake::Task['tf:attributes_file'].invoke(workspace)
+    Rake::Task['attributes:write'].invoke
   end
 
   desc 'Destroys the Terraform environment'
@@ -176,13 +176,43 @@ namespace :tf do
     end
   end
 
-  task attributes_file: [:workspace, :check_attributes_file] do
+  task write_tf_output_to_file: ['tf:workspace'] do
     Dir.chdir(TERRAFORM_DIR) do
       stdout, stderr, status = Open3.capture3('terraform output -json')
 
       abort(stderr) unless status.success?
 
       AttributeFileWriter.write_yaml(ENV['ATTRIBUTES_FILE'], stdout)
+    end
+  end
+end
+
+namespace :docs do
+  desc 'Prints markdown links for resource doc files to update the README'
+  task :resource_links do
+    puts "\n"
+    Dir.entries('docs/resources').sort
+       .reject { |file| File.directory?(file) }
+       .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
+       .map { |link| puts link }
+    puts "\n"
+  end
+end
+
+namespace :attributes do
+  desc 'Create attributes used for integration testing'
+  task write: [:check_attributes_file] do
+    Rake::Task['tf:write_tf_output_to_file'].invoke
+    Rake::Task['attributes:write_guest_presence_to_file'].invoke
+  end
+
+  task :write_guest_presence_to_file do
+    Dir.chdir(TERRAFORM_DIR) do
+      stdout, stderr, status = Open3.capture3("az ad user list --query=\"length([?userType == 'Guest'])\"")
+
+      abort(stderr) unless status.success?
+
+      AttributeFileWriter.append(ENV['ATTRIBUTES_FILE'], "guest_accounts: #{stdout.to_i}")
     end
   end
 end

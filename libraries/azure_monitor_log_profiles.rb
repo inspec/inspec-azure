@@ -1,28 +1,20 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require 'azurerm_monitor_log_profiles'
 
-class AzureMonitorLogProfiles < AzurermResource
+class AzureMonitorLogProfiles < AzurermMonitorLogProfiles
   name 'azure_monitor_log_profiles'
-  desc 'Fetches all Azure Monitor Log Profiles'
+  desc '[DEPRECATED] Please use azurerm_monitor_log_profiles'
   example <<-EXAMPLE
     describe azure_monitor_log_profiles do
-      its('names') { should include('example-profile') }
+      its('names') { should include('default') }
     end
   EXAMPLE
 
-  FilterTable.create
-             .add_accessor(:entries)
-             .add_accessor(:where)
-             .add(:exists?) { |obj| !obj.entries.empty? }
-             .add(:names, field: 'name')
-             .connect(self, :table)
-
-  def to_s
-    'Log Profiles'
-  end
-
-  def table
-    @table ||= client.log_profiles
+  def initialize
+    warn '[DEPRECATION] The `azure_monitor_log_profiles` resource is ' \
+         'deprecated and will be removed in version 2.0. Use the ' \
+         '`azurerm_monitor_log_profiles` resource instead.'
+    super
   end
 end

@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermVirtualMachine < AzurermResource
+class AzurermVirtualMachine < AzurermSingularResource
   name 'azurerm_virtual_machine'
   desc 'Verifies settings for an Azure Virtual Machine'
   example <<-EXAMPLE

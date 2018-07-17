@@ -1,52 +1,29 @@
 # frozen_string_literal: true
 
-require 'json'
 require 'singleton'
 
 module Azure
   class Management
     include Singleton
-
-    class Cache
-      def initialize
-        @store = {}
-      end
-
-      def fetch(key)
-        @store.fetch(key) { @store[key] = yield }
-      end
-    end
-
-    attr_reader :cache
+    include Service
 
     def initialize
-      @cache = Cache.new
-    end
-
-    def with_cache(cache)
-      @cache = cache
-    end
-
-    def with_client(azure_client, override: false)
-      set_reader(:azure_client, azure_client, override)
-    end
-
-    def for_subscription(subscription_id, override: false)
-      set_reader(:subscription_id, subscription_id, override)
+      @required_attrs = %i(rest_client subscription_id)
+      @page_link_name = 'nextLink'
     end
 
     def activity_log_alert(resource_group, id)
       get(
         url: link(location: 'Microsoft.Insights/activityLogAlerts',
                   resource_group: resource_group) + id,
-        api_version: '2016-04-01',
+        api_version: '2017-04-01',
       )
     end
 
     def activity_log_alerts
       get(
         url: link(location: 'Microsoft.Insights/activityLogAlerts'),
-        api_version: '2016-04-01',
+        api_version: '2017-04-01',
       )
     end
 
@@ -155,31 +132,6 @@ module Azure
       "#{"/resourceGroups/#{resource_group}" if resource_group}" \
       "#{'/providers' if provider}" \
       "/#{location}/"
-    end
-
-    def get(url:, api_version:)
-      confirm_configured!
-
-      cache.fetch(url) do
-        body = azure_client.get(url, params: { 'api-version' => api_version }).body
-        body.fetch('value', body)
-      end
-    end
-
-    def confirm_configured!
-      %i(azure_client subscription_id).each do |name|
-        next if respond_to?(name)
-
-        raise "Set #{name} before making requests"
-      end
-    end
-
-    def set_reader(name, value, override)
-      return self if respond_to?(name) && !override
-
-      define_singleton_method(name) { value }
-
-      self
     end
   end
 end
