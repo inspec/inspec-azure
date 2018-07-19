@@ -7,7 +7,7 @@ class AzurermAdUser < AzurermSingularResource
   desc 'Verifies settings for an Azure Active Directory User'
   example <<-EXAMPLE
     describe azurerm_ad_user(user_id: 'userId') do
-      it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 

@@ -6,7 +6,7 @@ platform: azure
 # azurerm\_virtual\_machine
 
 Use the `azurerm_virtual_machine` InSpec audit resource to test properties related to a
-virtual machines.
+virtual machine.
 
 <br />
 
@@ -164,7 +164,7 @@ page](https://www.inspec.io/docs/reference/matchers/).
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       it { should exist }
     end
-    
+
     # virtual machines that aren't found will not exist
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'DoesNotExist') do
       it { should_not exist }

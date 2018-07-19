@@ -32,8 +32,7 @@ This resource first became available in 1.0.0 of the inspec-azure resource pack.
 
 ## Syntax
 
-The `resource_group` and `name` must be given as
-    parameters.
+The `resource_group` and `name` must be given as parameters.
 
     describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do
       ...
@@ -47,7 +46,7 @@ The `resource_group` and `name` must be given as
     describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do
       it { should exist }
     end
-    
+
     # Check if encryption is enabled
     describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do
       it('encryption_enabled') { should be true }
