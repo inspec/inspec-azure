@@ -10,6 +10,21 @@ of an Azure Monitor Activity Log Alert.
 
 <br />
 
+## Availability
+
+### Installation
+
+This resource is available in the `inspec-azure` [resource
+pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+following to your `inspec.yml` in your top-level profile:
+
+    depends:
+      inspec-azure:
+        git: https://github.com/inspec/inspec-azure.git
+
+You'll also need to setup your Azure credentials; see the resource pack
+[README](https://github.com/inspec/inspec-azure#inspec-for-azure).
+
 ## Syntax
 
 An `azurerm_monitor_activity_log_alert` resource block identifies an Activity Log Alert by
@@ -18,6 +33,7 @@ name and resource group.
     describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       ...
     end
+
 <br />
 
 ## Examples
@@ -38,12 +54,13 @@ name and resource group.
 
 ## Parameters
 
-* `name`
-* `resource_group`
+  - `name`
+  - `resource_group`
 
 ## Parameter Examples
 
-The resource group as well as the Activty Log Alert name.
+The resource group as well as the Activty Log Alert
+    name.
 
     describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
@@ -51,22 +68,25 @@ The resource group as well as the Activty Log Alert name.
 
 ## Properties
 
-* `operations`
+  - `operations`
 
 ### operations
 
-The operations collection can be checked for the presence or absence of a given operation string.
+The operations collection can be checked for the presence or absence of a given operation
+string.
 
     its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+This InSpec audit resource has the following special matchers. For a full list of
+available matchers, please visit our [Universal Matchers
+page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
-The control will pass if the resource returns a result. Use `should_not` if you expect zero matches.
+The control will pass if the resource returns a result. Use `should_not` if you expect
+zero matches.
 
     # If we expect 'AlertName' to always exist
     describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
@@ -80,5 +100,6 @@ The control will pass if the resource returns a result. Use `should_not` if you 
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service
+Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

@@ -8,10 +8,29 @@ platform: azure
 Use the `azurerm_security_center_policies` InSpec audit resource to test
 properties of some or all Azure Security Center Policies.
 
-Security Center Policies are defined for each Resource Group. A Security Center
-Policy called `default` also exists for every subscription.
+Security Center Policies are defined for each Resource Group. A Security Center Policy
+called `default` also exists for every subscription.
 
 <br />
+
+## Availability
+
+### Installation
+
+This resource is available in the `inspec-azure` [resource
+pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+following to your `inspec.yml` in your top-level profile:
+
+    depends:
+      inspec-azure:
+        git: https://github.com/inspec/inspec-azure.git
+
+You'll also need to setup your Azure credentials; see the resource pack
+[README](https://github.com/inspec/inspec-azure#inspec-for-azure).
+
+### Version
+
+This resource first became available in 1.0.0 of the inspec-azure resource pack.
 
 ## Syntax
 
@@ -43,12 +62,12 @@ exist.
 
 ## Filter Criteria
 
-* `names`
+  - `names`
 
 ### names
 
-Filters the results to include only those Security Center Policies that match
-the given name. This is a string value.
+Filters the results to include only those Security Center Policies that match the given
+name. This is a string value.
 
     # default should always exist
     describe azurerm_security_center_policies.where('name' => 'default')
@@ -57,14 +76,14 @@ the given name. This is a string value.
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list
-of available matchers, please visit our [Universal Matchers
+This InSpec audit resource has the following special matchers. For a full list of
+available matchers, please visit our [Universal Matchers
 page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use
-`should_not` if you expect zero matches.
+The control will pass if the filter returns at least one result. Use `should_not` if you
+expect zero matches.
 
     # default should always exist
     describe azurerm_security_center_policies.where('name' => 'default')
@@ -78,5 +97,6 @@ The control will pass if the filter returns at least one result. Use
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+Your [Service
+Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 must be setup with a `contributor` role on the subscription you wish to test.

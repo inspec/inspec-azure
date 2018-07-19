@@ -10,6 +10,25 @@ some or all Azure Active Directory users within a Tenant.
 
 <br />
 
+## Availability
+
+### Installation
+
+This resource is available in the `inspec-azure` [resource
+pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+following to your `inspec.yml` in your top-level profile:
+
+    depends:
+      inspec-azure:
+        git: https://github.com/inspec/inspec-azure.git
+
+You'll also need to setup your Azure credentials; see the resource pack
+[README](https://github.com/inspec/inspec-azure#inspec-for-azure).
+
+### Version
+
+This resource first became available in 1.1.0 of the inspec-azure resource pack.
+
 ## Syntax
 
 An `azurerm_ad_users` resource block returns all Azure Active Directory user accounts for the
@@ -54,12 +73,12 @@ name. This is a string value.
 
 ## Properties
 
-* `azure_ids`
+* `object_ids`
 * `display_names`
 * `mails`
 * `user_types`
 
-### azure\_ids
+### object\_ids
 
 The azureIds property provides a list of all User's Azure IDs.
 
