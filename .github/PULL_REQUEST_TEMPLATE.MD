@@ -1,11 +1,10 @@
 ### Description
 
-[Please describe what this change achieves]
+Please describe what this change achieves. Ensure you have read the [Contributing to InSpec](https://github.com/inspec/inspec-azure/CONTRIBUTING.MD) document before submitting.
 
 ### Issues Resolved
 
-[List any existing issues this PR resolves, or any Discourse or
-StackOverflow discussion that's relevant]
+List any existing issues this PR resolves, or any Discourse or StackOverflow discussion that's relevant
 
 ### Check List
 
