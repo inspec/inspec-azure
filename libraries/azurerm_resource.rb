@@ -5,8 +5,9 @@ require 'support/azure'
 class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
-  MANAGEMENT_HOST = 'https://management.azure.com'
-  GRAPH_HOST      = 'https://graph.windows.net'
+  # Todo these definitions belong in Train somewhere...
+  MANAGEMENT_API_CLIENT = ::Azure::Resources::Profiles::Latest::Mgmt::Client
+  GRAPH_API_CLIENT      = ::Azure::GraphRbac::Profiles::Latest::Client
 
   def client
     Azure::Management.instance
@@ -16,22 +17,18 @@ class AzurermResource < Inspec.resource(1)
 
   def graph_client
     Azure::Graph.instance
-                .with_client(rest_client(GRAPH_HOST))
+                .with_client(rest_client(GRAPH_API_CLIENT))
                 .for_tenant(tenant_id)
   end
 
   private
 
-  def rest_client(host = MANAGEMENT_HOST)
-    Azure::Rest.new(host, credentials: credentials)
+  def rest_client(client = MANAGEMENT_API_CLIENT)
+      Azure::Rest.new(inspec.backend.azure_client(client))
   end
 
   def tenant_id
     inspec.backend.azure_client.tenant_id
-  end
-
-  def credentials
-    inspec.backend.azure_client.credentials
   end
 
   def subscription_id
