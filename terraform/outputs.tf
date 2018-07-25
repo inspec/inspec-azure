@@ -1,3 +1,35 @@
+output "vnet_name"{
+    value = "${azurerm_virtual_network.vnet.name}"
+}
+
+output "vnet_id"{
+	value = "${azurerm_virtual_network.vnet.id}"
+}
+
+output "vnet_location"{
+    value = "${azurerm_virtual_network.vnet.location}"
+}
+
+output "vnet_tags" {
+    value = "${azurerm_virtual_network.vnet.tags}"
+}
+
+output "vnet_address_space"{
+    value = "${azurerm_virtual_network.vnet.address_space}"
+}
+
+output "vnet_subnets"{
+    value = ["${azurerm_subnet.subnet.name}"]
+}
+
+output "vnet_dns_servers"{
+    value = "${data.azurerm_virtual_network.vnet.dns_servers}"
+}
+
+output "vnet_peerings"{
+  value ="${data.azurerm_virtual_network.vnet.vnet_peerings}"
+}
+
 output "resource_group" {
   value = "${azurerm_resource_group.rg.name}"
 }
