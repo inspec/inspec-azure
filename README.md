@@ -214,6 +214,38 @@ rake azure:login
 rake azure
 ```
 
+### Development
+
+To run all tests:
+```
+bundle
+rake
+```
+
+To run integration tests:
+```
+bundle
+rake test:integration
+```
+
+To run integration tests including a Network Watcher:
+```
+bundle
+rake network_watcher test:integration
+```
+
+To run a control called `azurerm_virtual_machine`:
+```
+bundle
+rake test:integration[azurerm_virtual_machine]
+```
+
+You may run multiple controls:
+```
+bundle
+rake test:integration[azure_resource_group,azurerm_virtual_machine]
+```
+
 ### Optional Components
 
 By default, rake tasks will only use core components. Optional components have
@@ -280,34 +312,3 @@ direnv allow # or source .envrc
 rake tf:apply
 ```
 
-### Development
-
-To run all tests:
-```
-bundle
-rake
-```
-
-To run integration tests:
-```
-bundle
-rake test:integration
-```
-
-To run integration tests including a Network Watcher:
-```
-bundle
-rake network_watcher test:integration
-```
-
-To run a control called `azurerm_virtual_machine`:
-```
-bundle
-rake test:integration[azurerm_virtual_machine]
-```
-
-You may run multiple controls:
-```
-bundle
-rake test:integration[azure_resource_group,azurerm_virtual_machine]
-```
