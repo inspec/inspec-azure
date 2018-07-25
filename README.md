@@ -252,35 +252,6 @@ By default, rake tasks will only use core components. Optional components have
 associated integrations that will be skipped unless you enable these. We have
 the following optional pieces that may be managed with Terraform.
 
-Optional Components may be combined when running tasks:
-
-```
-rake options[option_1,option_2,option3]
-direnv allow # or source .envrc
-rake tf:apply
-```
-
-To disable optional components just re-run `rake options` without the components you wish to disable:
-
-```
-rake option[] # disable all optional components
-rake option[option_1] # enables option_1 disabling all other optional components
-```
-
-#### MSI Virtual Machine
-
-The MSI Virtual Machine may be used when testing the MSI Connector in Azure. To
-enable this component:
-
-```
-rake options[msi]
-direnv allow # or source .envrc
-rake tf:apply
-```
-
-In order to gain access to the Virtual Machine you may need to change firewall
-rules to enable an SSH connection from your host to the Virtual Machine.
-
 #### Network Watcher
 
 Network Watcher may be enabled to run integration tests related to the Network
@@ -312,3 +283,18 @@ direnv allow # or source .envrc
 rake tf:apply
 ```
 
+#### Using optional components
+
+Optional Components may be combined when running tasks:
+
+```
+rake options[option_1,option_2,option3]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+To disable optional components run `rake options[]` including only the optional components you wish to enable. Any omitted component will be disabled.
+```
+rake options[] # disable all optional components
+rake options[option_1] # enables option_1 disabling all other optional components
+```

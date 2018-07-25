@@ -26,6 +26,18 @@ describe EnvironmentFile do
     @tmp_file.unlink
   end
 
+  describe 'current configuration' do
+    it 'gives the current options in file' do
+      @env_file.current_options.must_equal %w{graph network_watcher}
+    end
+
+    it 'gives empty list if not options in file' do
+      @env_file.synchronize([])
+
+      @env_file.current_options.must_equal []
+    end
+  end
+
   describe 'synchronizing environment' do
     it 'adds given keys and removes missing keys' do
       @env_file.synchronize(['network_watcher'])
@@ -43,51 +55,10 @@ describe EnvironmentFile do
       CONTENT
     end
 
-    it 'warns and ignores unknown keys' do
-      @env_file.synchronize(['network_watcher', 'graph', 'unknown'])
-
-      @tmp_file.open
-      @tmp_file.read.must_equal @content
+    it 'raises an error when unkown keys are given' do
+      assert_raises RuntimeError do
+        @env_file.synchronize(%w{network_watcher graph unknown})
+      end
     end
-  end
-
-  it 'leaves existing properties' do
-    @env_file.set_var('NETWORK_WATCHER', 'true')
-
-    @tmp_file.open
-    @tmp_file.read.must_equal @content
-  end
-
-  it 'removes a property' do
-    @env_file.remove_var('NETWORK_WATCHER')
-
-    @tmp_file.open
-    @tmp_file.read.must_equal <<~CONTENT
-      unrelated content
-
-      export GRAPH=true
-
-      unrelated content
-
-
-      unrelated content
-    CONTENT
-  end
-
-  it 'replaces property if the value is changes' do
-    @env_file.set_var('NETWORK_WATCHER', 'one')
-
-    @tmp_file.open
-    @tmp_file.read.must_equal <<~CONTENT
-      unrelated content
-
-      export GRAPH=true
-
-      unrelated content
-
-      export NETWORK_WATCHER=one
-
-      unrelated content
-    CONTENT
   end
 end
