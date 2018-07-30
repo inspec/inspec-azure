@@ -5,33 +5,30 @@ require 'support/azure'
 class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
-  MANAGEMENT_HOST = 'https://management.azure.com'
-  GRAPH_HOST      = 'https://graph.windows.net'
-
-  def client
+  def management
     Azure::Management.instance
-                     .with_client(rest_client)
+                     .with_client(management_client)
                      .for_subscription(subscription_id)
   end
 
-  def graph_client
+  def graph
     Azure::Graph.instance
-                .with_client(rest_client(GRAPH_HOST))
+                .with_client(graph_client)
                 .for_tenant(tenant_id)
   end
 
   private
 
-  def rest_client(host = MANAGEMENT_HOST)
-    Azure::Rest.new(host, credentials: credentials)
+  def management_client
+    Azure::Rest.new(inspec.backend.azure_client)
+  end
+
+  def graph_client
+    Azure::Rest.new(inspec.backend.graph_client)
   end
 
   def tenant_id
     inspec.backend.azure_client.tenant_id
-  end
-
-  def credentials
-    inspec.backend.azure_client.credentials
   end
 
   def subscription_id

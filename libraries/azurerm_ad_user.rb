@@ -39,7 +39,7 @@ class AzurermAdUser < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(user_id: nil)
-    user = graph_client.user(user_id)
+    user = graph.user(user_id)
     return if user.nil?
 
     ATTRS.each do |field|

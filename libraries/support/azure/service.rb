@@ -16,8 +16,8 @@ module Azure
       @cache = cache
     end
 
-    def with_client(graph_client, override: false)
-      set_reader(:rest_client, graph_client, override)
+    def with_client(client, override: false)
+      set_reader(:rest_client, client, override)
     end
 
     def for_tenant(tenant_id, override: false)

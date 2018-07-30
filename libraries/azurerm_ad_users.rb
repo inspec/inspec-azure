@@ -22,7 +22,7 @@ class AzurermAdUsers < AzurermPluralResource
              .install_filter_methods_on_resource(self, :table)
 
   def initialize
-    @table ||= graph_client.users
+    @table ||= graph.users
   end
 
   def guest_accounts

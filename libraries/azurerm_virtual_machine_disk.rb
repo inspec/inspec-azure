@@ -26,7 +26,7 @@ class AzurermVirtualMachineDisk < AzurermSingularResource
 
   def initialize(resource_group: nil, name: nil)
     @name = name
-    resp = client.virtual_machine_disk(resource_group, name)
+    resp = management.virtual_machine_disk(resource_group, name)
     return if resp.nil? || resp.key?('error')
 
     ATTRS.each do |field|
