@@ -50,6 +50,6 @@ variable "unmanaged_data_disk_name" {
   default = "linux-internal-datadisk-1"
 }
 
-variable "network_watcher_enabled" {
+variable "network_watcher" {
   default = false
 }

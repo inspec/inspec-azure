@@ -38,16 +38,6 @@ To create your account Service Principal Account:
 
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
 
-### Granting Azure Active Directory Read to Service Principal
-
-The Client/Active Directory Application you have configured Inspec Azure to use (`AZURE_CLIENT_ID`) must
-have permissions to read User data from the Azure Graph RBAC API.
-
-Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
-for information on how to grant these permissions to your application.
-
-Note: An Azure Administrator must grant your application these permissions.
-
 ### Use the Resources
 
 Since this is an InSpec resource pack, it only defines InSpec resources. To use these resources in your own controls you should create your own profile:
@@ -254,4 +244,57 @@ You may run multiple controls:
 ```
 bundle
 rake test:integration[azure_resource_group,azurerm_virtual_machine]
+```
+
+### Optional Components
+
+By default, rake tasks will only use core components. Optional components have
+associated integrations that will be skipped unless you enable these. We have
+the following optional pieces that may be managed with Terraform.
+
+#### Network Watcher
+
+Network Watcher may be enabled to run integration tests related to the Network
+Watcher. We recommend leaving this disabled unless you are specifically working
+on related resources. You may only have one Network Watcher enabled per an
+Azure subscription at a time. To enable Network Watcher:
+
+```
+rake options[network_watcher]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+#### Graph API
+
+Graph API support may be enabled to test with `azure_ad` related resources.
+Graph requires granting "Active Directory Read" to the Service Principal. If
+your account does not have access leave this disabled.
+
+Please refer to the [Microsoft
+Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
+for information on how to grant these permissions to your application.
+
+Note: An Azure Administrator must grant your application these permissions.
+
+```
+rake options[graph]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+#### Using optional components
+
+Optional Components may be combined when running tasks:
+
+```
+rake options[option_1,option_2,option3]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+To disable optional components run `rake options[]` including only the optional components you wish to enable. Any omitted component will be disabled.
+```
+rake options[] # disable all optional components
+rake options[option_1] # enables option_1 disabling all other optional components
 ```

@@ -9,6 +9,7 @@ require 'open3'
 
 require_relative 'libraries/support/azure/credentials'
 require_relative 'lib/attribute_file_writer'
+require_relative 'lib/environment_file'
 
 RuboCop::RakeTask.new
 
@@ -86,10 +87,35 @@ namespace :inspec do
   end
 end
 
-desc 'This will enable network watcher creation and integration tests'
-task :network_watcher do
-  ENV['ENABLE_NETWORK_WATCHER'] = 'true'
-  ENV['TF_VAR_network_watcher_enabled'] = '1'
+task :output_options do
+  env_file = EnvironmentFile.new('.envrc')
+  options = env_file.current_options
+
+  if options.empty?
+    puts "\nYou are not using any optional components. See the README for more information.\n\n"
+  else
+    puts "\nYou are using the following optional components:\n\n"
+    options.each do |option|
+      puts "* #{option}\n"
+    end
+    puts "\nTo change these options run: rake options[component]. See the README for more information.\n\n"
+  end
+end
+
+desc 'Enables given optional components. See README for details.'
+task :options, :component do |_t_, args|
+  components = []
+  components << args[:component] if args[:component]
+  components += args.extras unless args.extras.nil?
+
+  begin
+    env_file = EnvironmentFile.new('.envrc')
+    env_file.synchronize(components)
+
+    sh('source', '.envrc')
+  rescue RuntimeError => error
+    puts error.message
+  end
 end
 
 task :setup_env do
@@ -98,6 +124,7 @@ task :setup_env do
   ENV['TF_VAR_tenant_id']       = credentials.tenant_id
   ENV['TF_VAR_client_id']       = credentials.client_id
   ENV['TF_VAR_client_secret']   = credentials.client_secret
+  ENV['TF_VAR_network_watcher'] = '1' if ENV.key?('NETWORK_WATCHER')
 end
 
 task :check_env do
@@ -206,12 +233,16 @@ namespace :attributes do
   end
 
   task :write_guest_presence_to_file do
-    Dir.chdir(TERRAFORM_DIR) do
-      stdout, stderr, status = Open3.capture3("az ad user list --query=\"length([?userType == 'Guest'])\"")
+    if ENV.key?('GRAPH')
+      Dir.chdir(TERRAFORM_DIR) do
+        stdout, stderr, status = Open3.capture3("az ad user list --query=\"length([?userType == 'Guest'])\"")
 
-      abort(stderr) unless status.success?
+        abort(stderr) unless status.success?
 
-      AttributeFileWriter.append(ENV['ATTRIBUTES_FILE'], "guest_accounts: #{stdout.to_i}")
+        AttributeFileWriter.append(ENV['ATTRIBUTES_FILE'], "guest_accounts: #{stdout.to_i}")
+      end
     end
   end
 end
+
+Rake.application.top_level_tasks << :output_options
