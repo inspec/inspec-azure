@@ -7,10 +7,10 @@ module Azure
   class Rest
     attr_reader :host, :resource, :credentials
 
-    def initialize(host, credentials: {})
-      @host        = host
-      @resource    = "#{host}/"
-      @credentials = credentials
+    def initialize(client)
+      @host        = client.base_url
+      @resource    = "#{client.base_url}/"
+      @credentials = client.credentials
     end
 
     def get(path, params: {}, headers: {})

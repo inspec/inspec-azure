@@ -18,7 +18,7 @@ class AzurermNetworkWatchers < AzurermPluralResource
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group:)
-    resp = client.network_watchers(resource_group)
+    resp = management.network_watchers(resource_group)
     return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
 
     @table = resp

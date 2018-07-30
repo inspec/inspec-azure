@@ -20,6 +20,6 @@ class AzurermMonitorLogProfiles < AzurermPluralResource
   end
 
   def table
-    @table ||= client.log_profiles
+    @table ||= management.log_profiles
   end
 end
