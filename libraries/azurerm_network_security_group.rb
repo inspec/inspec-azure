@@ -24,7 +24,7 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(resource_group: nil, name: nil)
-    resp = client.network_security_group(resource_group, name)
+    resp = management.network_security_group(resource_group, name)
     return if resp.nil? || resp.key?('error')
 
     ATTRS.each do |field|

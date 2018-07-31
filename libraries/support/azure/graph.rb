@@ -40,7 +40,7 @@ module Azure
 
       response = rest_client.get(*args).body
 
-      if response.has_key? 'odata.error'
+      if response.key?('odata.error')
         raise Inspec::Exceptions::ResourceFailed, format_error(response['odata.error'])
       end
 

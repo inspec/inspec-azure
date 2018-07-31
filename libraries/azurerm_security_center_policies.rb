@@ -20,6 +20,6 @@ class AzurermSecurityCenterPolicies < AzurermPluralResource
   end
 
   def table
-    @table ||= client.security_center_policies
+    @table ||= management.security_center_policies
   end
 end

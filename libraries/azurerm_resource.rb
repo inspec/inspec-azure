@@ -5,25 +5,26 @@ require 'support/azure'
 class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
-  MANAGEMENT_API_CLIENT = ::Azure::Resources::Profiles::Latest::Mgmt::Client
-  GRAPH_API_CLIENT      = ::Azure::GraphRbac::Profiles::Latest::Client
-
-  def client
+  def management
     Azure::Management.instance
-                     .with_client(rest_client)
+                     .with_client(management_client)
                      .for_subscription(subscription_id)
   end
 
-  def graph_client
+  def graph
     Azure::Graph.instance
-                .with_client(rest_client(GRAPH_API_CLIENT))
+                .with_client(graph_client)
                 .for_tenant(tenant_id)
   end
 
   private
 
-  def rest_client(client = MANAGEMENT_API_CLIENT)
-      Azure::Rest.new(inspec.backend.azure_client(client))
+  def management_client
+    Azure::Rest.new(inspec.backend.azure_client)
+  end
+
+  def graph_client
+    Azure::Rest.new(inspec.backend.graph_client)
   end
 
   def tenant_id

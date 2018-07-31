@@ -1,0 +1,184 @@
+---
+title: About the azurerm_ad_user Resource
+platform: azure
+---
+
+# azurerm\_ad\_user
+
+Use the `azurerm_ad_user` InSpec audit resource to test properties of
+an Azure Active Directory user within a Tenant.
+
+<br />
+
+## Availability
+
+### Installation
+
+This resource is available in the `inspec-azure` [resource
+pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+following to your `inspec.yml` in your top-level profile:
+
+    depends:
+      inspec-azure:
+        git: https://github.com/inspec/inspec-azure.git
+
+You'll also need to setup your Azure credentials; see the resource pack
+[README](https://github.com/inspec/inspec-azure#inspec-for-azure).
+
+### Version
+
+This resource first became available in 1.1.0 of the inspec-azure resource pack.
+
+## Syntax
+
+The `user_id` must be given as a parameter.
+
+    describe azurerm_ad_user(user_id: 'someUserId') do
+      it { should exist }
+    end
+
+<br />
+
+## Examples
+
+If an Active Directory user account is referenced with a valid ID
+
+    describe azurerm_ad_user(user_id: 'someValidId')
+      it { should exist }
+    end
+
+If an Active Directory user account is referenced with an invalid ID
+
+    describe azurerm_ad_user(user_id: 'someInvalidId')
+      it { should_not exist }
+    end
+
+<br />
+
+## Parameters
+
+  - `user_id`
+
+## Parameter Examples
+
+  # user_id is a required parameter
+  describe azurerm_ad_user(user_id: 'someUserId') do
+    ...
+  end
+
+## Properties
+
+  - `object_id', `account_enabled', `city', `country', `department',
+    `displayName', `facsimile_telephone_number', `given_name', `job_title',
+    `mail', `mail_nickname', `mobile', `password_policies', `password_profile',
+    `postal_code', `state', `street_address', `surname', `telephone_number',
+    `usage_location', `user_principal_name', `user_type'
+
+### object_id
+
+The user's object ID.
+
+### account_enabled
+
+Whether the account is enabled.
+
+### city
+
+The user's city.
+
+### country
+
+The user's country.
+
+### department
+
+The user's department.
+
+### displayName
+
+The display name of the user.
+
+### facsimile_telephone_number
+
+The user's facsimile (fax) number.
+
+### given_name
+
+The given name for the user.
+
+### job_title
+
+The user's job title.
+
+### mail
+
+The primary email address of the user.
+
+### mail_nickname
+
+The mail alias for the user.
+
+### mobile
+
+The user's mobile (cell) phone number.
+
+### password_policies
+
+The password policies for the user.
+
+### password_profile
+
+The password profile for the user.
+
+### postal_code
+
+The user's postal (ZIP) code.
+
+### state
+
+The user's state.
+
+### street_address
+
+The user's street address.
+
+### surname
+
+The user's surname (family name or last name).
+
+### telephone_number
+
+The user's telephone number.
+
+### usage_location
+
+A two letter country code (ISO standard 3166). Required for users that will be
+assigned licenses due to legal requirement to check for availability of
+services in countries. Examples include: "US", "JP", and "GB".
+
+### user_principal_name
+
+The principal name of the user.
+
+### user_type
+
+A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'.
+
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list of
+available matchers, please visit our [Universal Matchers
+page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+    describe azurerm_ad_user(user_id: 'someUserId') do
+      it { should exist }
+    end
+
+## Azure Permissions
+
+Your [Service
+Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+must be setup with a `contributor` role on the subscription you wish to test.

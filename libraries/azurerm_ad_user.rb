@@ -7,7 +7,7 @@ class AzurermAdUser < AzurermSingularResource
   desc 'Verifies settings for an Azure Active Directory User'
   example <<-EXAMPLE
     describe azurerm_ad_user(user_id: 'userId') do
-      it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 
@@ -39,7 +39,7 @@ class AzurermAdUser < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(user_id: nil)
-    user = graph_client.user(user_id)
+    user = graph.user(user_id)
     return if user.nil?
 
     ATTRS.each do |field|

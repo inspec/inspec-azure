@@ -15,6 +15,6 @@ class AzureSecurityCenterPolicies < AzurermSecurityCenterPolicies
     warn '[DEPRECATION] The `azure_security_center_policies` resource is ' \
          'deprecated and will be removed in version 2.0. Use the ' \
          '`azurerm_security_center_policies` resource instead.'
-   super
+    super
   end
 end
