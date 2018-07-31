@@ -24,7 +24,7 @@ class AzurermAdUsers < AzurermPluralResource
   end
 
   def guest_accounts
-    @guest_accounts ||= where('userType' => 'Guest').entries
+    @guest_accounts ||= where('userType' => 'Guest').mails
   end
 
   def to_s
