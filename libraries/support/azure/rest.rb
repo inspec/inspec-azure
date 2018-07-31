@@ -9,7 +9,8 @@ module Azure
 
     def initialize(client)
       @host        = client.base_url
-      @resource    = "#{client.base_url}/"
+      @resource    = "#{client.base_url}"
+      @resource    += "/" unless @resource[-1, 1] == "/"
       @credentials = client.credentials
     end
 

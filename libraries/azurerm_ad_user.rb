@@ -54,6 +54,6 @@ class AzurermAdUser < AzurermSingularResource
   end
 
   def to_s
-    "Azure Active Directory Username: '#{displayName}' with email '#{mail}'"
+    "Azure Active Directory Username: '#{displayName}' with objectId '#{objectId}'"
   end
 end

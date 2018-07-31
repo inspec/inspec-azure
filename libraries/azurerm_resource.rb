@@ -5,7 +5,6 @@ require 'support/azure'
 class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
-  # Todo these definitions belong in Train somewhere...
   MANAGEMENT_API_CLIENT = ::Azure::Resources::Profiles::Latest::Mgmt::Client
   GRAPH_API_CLIENT      = ::Azure::GraphRbac::Profiles::Latest::Client
 
