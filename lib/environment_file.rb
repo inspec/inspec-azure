@@ -4,6 +4,12 @@ class EnvironmentFile
     network_watcher
   }.freeze
 
+  def self.options(path)
+    return [] unless File.readable?(path)
+
+    File.new(path).current_options
+  end
+
   def initialize(path)
     @file = File.new(path)
   end

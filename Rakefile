@@ -88,8 +88,7 @@ namespace :inspec do
 end
 
 task :output_options do
-  env_file = EnvironmentFile.new('.envrc')
-  options = env_file.current_options
+  options = EnvironmentFile.options('.envrc')
 
   if options.empty?
     puts "\nYou are not using any optional components. See the README for more information.\n\n"

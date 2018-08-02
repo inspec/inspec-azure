@@ -26,6 +26,12 @@ describe EnvironmentFile do
     @tmp_file.unlink
   end
 
+  describe 'no env file' do
+    it 'returns no options' do
+      assert_equal([], EnvironmentFile.options('fake/path'))
+    end
+  end
+
   describe 'current configuration' do
     it 'gives the current options in file' do
       @env_file.current_options.must_equal %w{graph network_watcher}
