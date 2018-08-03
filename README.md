@@ -156,21 +156,27 @@ This environment may be used to run your profile against or to run integration t
 
 ### Remote State
 
-Remote state is being used to store the Terraform state file. You'll need the following configuration keys to enable remote state:
+Remote state has been removed. The first time you run Terraform after having
+remote state removed you will be presented with a message like:
 
 ```
-TF_STORAGE_ACCOUNT_NAME=
-TF_ACCESS_KEY=
-TF_CONTAINER_NAME=$WORKSPACE
+Do you want to migrate all workspaces to "local"?
+  Both the existing "azurerm" backend and the newly configured "local" backend support
+  workspaces. When migrating between backends, Terraform will copy all
+  workspaces (with the same names). THIS WILL OVERWRITE any conflicting
+  states in the destination.
+
+  Terraform initialization doesn't currently migrate only select workspaces.
+  If you want to migrate a select number of workspaces, you must manually
+  pull and push those states.
+
+  If you answer "yes", Terraform will migrate all states. If you answer
+  "no", Terraform will abort.
+
+  Enter a value: yes
 ```
 
-By convention `TF_CONTAINER_NAME` will always be your workspace name. To get started:
-
-1. Log into Azure
-2. Add a container matching your workspace name (likely whatever `whoami` resolves to on your machine, unless you overrode the default).
-3. Ensure you update your `.envrc` with those new keys and your other account settings.
-4. Either run `source .envrc` (or `direnv allow` if you use the direnv tool).
-5. Now when you run `rake azure:login tf:apply` you should be initialized with remote state. If you have an existing state file Terraform may prompt you to upload the state from your machine to the container in Azure.
+Enter yes or press enter.
 
 ### Rake commands
 
