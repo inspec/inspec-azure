@@ -3,6 +3,7 @@ require 'tempfile'
 require_relative '../test_helper'
 require_relative '../../../lib/environment_file'
 
+# rubocop:disable Metrics/BlockLength
 describe EnvironmentFile do
   before do
     @tmp_file = Tempfile.new('env')
@@ -29,6 +30,12 @@ describe EnvironmentFile do
   describe 'no env file' do
     it 'returns no options' do
       assert_equal([], EnvironmentFile.options('fake/path'))
+    end
+  end
+
+  describe 'env file' do
+    it 'returns no options' do
+      assert_equal(%w{graph network_watcher}, EnvironmentFile.options(@tmp_file.path))
     end
   end
 
@@ -68,3 +75,4 @@ describe EnvironmentFile do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
