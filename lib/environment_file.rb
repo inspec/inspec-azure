@@ -7,7 +7,7 @@ class EnvironmentFile
   def self.options(path)
     return [] unless File.readable?(path)
 
-    File.new(path).current_options
+    EnvironmentFile.new(path).current_options
   end
 
   def initialize(path)
