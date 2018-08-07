@@ -25,7 +25,7 @@ class AzurermMonitorLogProfile < AzurermSingularResource
 
   def initialize(options = { name: 'default' })
     resp = client.log_profile(options[:name])
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
     @name              = resp['name']
     @id                = resp['id']

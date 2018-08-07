@@ -42,6 +42,10 @@ class AzurermResource < Inspec.resource(1)
       Azure::Credentials.new(args)
     end
   end
+
+  def has_error?(response)
+    response.nil? || response.key?(:error)
+  end
 end
 
 class AzurermPluralResource < AzurermResource; end

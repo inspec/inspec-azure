@@ -38,7 +38,7 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
 
   def initialize(options = { name: 'default' })
     resp = client.security_center_policy(options[:name])
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
     @name = resp['name']
     @id   = resp['id']

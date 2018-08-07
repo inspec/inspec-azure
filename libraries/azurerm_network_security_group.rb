@@ -25,7 +25,7 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
 
   def initialize(resource_group: nil, name: nil)
     resp = client.network_security_group(resource_group, name)
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
     ATTRS.each do |field|
       instance_variable_set("@#{field}", resp[field.to_s])

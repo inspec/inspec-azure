@@ -26,7 +26,7 @@ class AzurermVirtualMachine < AzurermSingularResource
 
   def initialize(resource_group: nil, name: nil)
     resp = client.virtual_machine(resource_group, name)
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
     ATTRS.each do |field|
       instance_variable_set("@#{field}", resp[field.to_s])

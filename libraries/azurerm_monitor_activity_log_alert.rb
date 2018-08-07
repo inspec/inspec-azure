@@ -23,7 +23,7 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
 
   def initialize(resource_group: nil, name: nil)
     resp = client.activity_log_alert(resource_group, name)
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
     @name       = resp['name']
     @id         = resp['id']
