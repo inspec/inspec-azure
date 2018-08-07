@@ -57,8 +57,21 @@ module Azure
 
       cache.fetch(url) do
         body = rest_client.get(url, params: { 'api-version' => api_version }).body
-        body.fetch('value', body)
+        structify(body.fetch('value', body))
       end
+    end
+
+    def structify(value)
+      return value.map { |v| structify(v) } if value.is_a?(Array)
+      return value unless value.is_a?(Hash)
+
+      Struct.new(*value.keys.map(&:to_sym)) do
+        def key?(key)
+          members.include?(key)
+        end
+
+        alias_method :keys, :members
+      end.new(*value.values)
     end
   end
 end

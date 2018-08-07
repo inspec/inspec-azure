@@ -30,12 +30,6 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
     @conditions = resp['properties']['condition']['allOf']
     @operations = collect_operations(@conditions)
 
-    ATTRS.each do |attr_name, api_name|
-      next if instance_variable_defined?("@#{attr_name}")
-
-      instance_variable_set("@#{name}", fields[api_name])
-    end
-
     @exists = true
   end
 
