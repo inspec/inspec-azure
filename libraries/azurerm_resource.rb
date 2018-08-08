@@ -43,12 +43,38 @@ class AzurermResource < Inspec.resource(1)
     end
   end
 
-  def has_error?(response)
-    response.nil? || response.key?(:error)
+  def has_error?(struct)
+    struct.nil? || (struct.is_a?(Struct) && struct.key?(:error))
+  end
+
+  def assign_fields(keys, struct)
+    keys.each do |field|
+      next if instance_variable_defined?("@#{field}")
+
+      instance_variable_set("@#{field}", struct.key?(field) ? struct[field] : nil)
+    end
+  end
+
+  def assign_fields_with_map(map, struct)
+    map.each do |name, api_name|
+      next if instance_variable_defined?("@#{name}")
+
+      instance_variable_set("@#{name}", struct.key?(api_name) ? struct[api_name] : nil)
+    end
   end
 end
 
-class AzurermPluralResource < AzurermResource; end
+class AzurermPluralResource < AzurermResource
+  def add_key(struct, key, value)
+    Struct.new(*struct.members << key) do
+      def key?(key)
+        members.include?(key)
+      end
+
+      alias_method :keys, :members
+    end.new(*struct.values << value)
+  end
+end
 
 class AzurermSingularResource < AzurermResource
   def exists?

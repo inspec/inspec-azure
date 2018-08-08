@@ -14,7 +14,7 @@ control 'azurerm_virtual_networks' do
   end
 
   describe azurerm_virtual_networks(resource_group: resource_group)
-    .where('name' => vnet) do
+    .where(name: vnet) do
     it { should exist }
   end
 end

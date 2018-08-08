@@ -29,9 +29,7 @@ class AzurermVirtualMachineDisk < AzurermSingularResource
     resp = client.virtual_machine_disk(resource_group, name)
     return if has_error?(resp)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
-    end
+    assign_fields(ATTRS, resp)
 
     @exists = true
   end
@@ -41,7 +39,9 @@ class AzurermVirtualMachineDisk < AzurermSingularResource
   end
 
   def encryption_enabled
-    return nil unless properties
-    !!properties.dig('encryptionSettings', 'enabled')
+    return nil unless !!properties
+    return false unless properties.key?(:encryptionSettings)
+
+    !!properties.encryptionSettings.enabled
   end
 end

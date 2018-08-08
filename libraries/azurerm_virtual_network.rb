@@ -26,40 +26,38 @@ class AzurermVirtualNetwork < AzurermSingularResource
     resp = client.virtual_network(resource_group, name)
     return if has_error?(resp)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
-    end
+    assign_fields(ATTRS, resp)
 
-    @subs = Array(resp['properties']['subnets']) || []
+    @subs = Array(resp.properties.subnets) || []
 
     @exists = true
   end
 
   def address_space
-    properties['addressSpace']['addressPrefixes']
+    properties.addressSpace.addressPrefixes
   end
 
   def dns_servers
-    properties['dhcpOptions']['dnsServers']
+    properties.dhcpOptions.dnsServers
   end
 
   def vnet_peerings
-    name_id = ->(peer) { [peer['name'], peer.dig('properties', 'remoteVirtualNetwork', 'id')] }
+    name_id = ->(peer) { [peer.name, peer.properties.remoteVirtualNetwork.id] }
     any_nils = ->(pair) { pair.any?(&:nil?) }
 
-    properties['virtualNetworkPeerings'].collect(&name_id).reject(&any_nils).to_h
+    properties.virtualNetworkPeerings.collect(&name_id).reject(&any_nils).to_h
   end
 
   def enable_ddos_protection
-    properties['enableDdosProtection']
+    properties.enableDdosProtection
   end
 
   def enable_vm_protection
-    properties['enableVmProtection']
+    properties.enableVmProtection
   end
 
   def subnets
-    @subs.collect { |s| s['name'] }
+    @subs.collect(&:name)
   end
 
   def to_s

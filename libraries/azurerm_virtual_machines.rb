@@ -21,7 +21,7 @@ class AzurermVirtualMachines < AzurermPluralResource
 
   def initialize(resource_group: nil)
     resp = client.virtual_machines(resource_group)
-    return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
+    return if has_error?(resp)
 
     @table = resp.collect(&with_platform)
                  .collect(&with_os_disk)
@@ -34,36 +34,37 @@ class AzurermVirtualMachines < AzurermPluralResource
 
   def with_platform
     lambda do |vm|
-      os_profile = vm.dig('properties', 'osProfile')
+      os_profile = vm.properties.osProfile
 
       platform = \
-        if os_profile.key?('windowsConfiguration')
+        if os_profile.key?(:windowsConfiguration)
           'windows'
-        elsif os_profile.key?('linuxConfiguration')
+        elsif os_profile.key?(:linuxConfiguration)
           'linux'
         else
           'unknown'
         end
 
-      vm.merge('platform' => platform)
+      add_key(vm, :platform, platform)
     end
   end
 
   def with_os_disk
     lambda do |vm|
-      os_disk = vm.dig('properties', 'storageProfile', 'osDisk')
+      os_disk = vm.properties.storageProfile.osDisk
 
-      vm.merge('os_disk' => os_disk.fetch('name', ''))
+      disk_name = os_disk.key?(:name) ? os_disk.name : ''
+
+      add_key(vm, :os_disk, disk_name)
     end
   end
 
   def with_data_disks
     lambda do |vm|
-      disk_name = ->(disk) { disk['name'] }
-      disks = Array(vm.dig('properties', 'storageProfile', 'dataDisks'))
-      disks = disks.reject { |disk| disk['managedDisk'].nil? }
+      disks = Array(vm.properties.storageProfile.dataDisks)
+      disks = disks.select { |disk| disk.key?(:managedDisk) }
 
-      vm.merge('data_disks' => disks.collect(&disk_name))
+      add_key(vm, :data_disks, disks.collect(&:name))
     end
   end
 end

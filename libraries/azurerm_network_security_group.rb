@@ -27,9 +27,7 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
     resp = client.network_security_group(resource_group, name)
     return if has_error?(resp)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
-    end
+    assign_fields(ATTRS, resp)
 
     @exists = true
   end

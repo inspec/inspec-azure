@@ -15,11 +15,16 @@ class AzurermMonitorLogProfiles < AzurermPluralResource
              .register_column(:names, field: 'name')
              .install_filter_methods_on_resource(self, :table)
 
-  def to_s
-    'Log Profiles'
+  attr_reader :table
+
+  def initialize
+    resp = client.log_profiles
+    return if has_error?(resp)
+
+    @table = resp
   end
 
-  def table
-    @table ||= client.log_profiles
+  def to_s
+    'Log Profiles'
   end
 end

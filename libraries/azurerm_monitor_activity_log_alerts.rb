@@ -21,7 +21,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
 
   def initialize
     resp = client.activity_log_alerts
-    return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
+    return if has_error?(resp)
 
     @table = resp.collect(&with_resource_group)
                  .collect(&with_operations)
@@ -34,17 +34,17 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
   def with_resource_group
     lambda do |group|
       # Get resource group from ID string
-      name = group['id'].split('/')[4]
-      group.merge('resource_group' => name)
+      name = group.id.split('/')[4]
+      add_key(group, :resource_group, name)
     end
   end
 
   def with_operations
     lambda do |alert|
-      conditions = alert.dig('properties', 'condition', 'allOf')
-      operations = conditions.find_all { |x| x['field'] == 'operationName' }.collect { |x| x['equals'] }
+      conditions = alert.properties.condition.allOf
+      operations = conditions.find_all { |x| x.field == 'operationName' }.collect(&:equals)
 
-      alert.merge('operations' => operations)
+      add_key(alert, :operations, operations)
     end
   end
 end

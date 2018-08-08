@@ -14,12 +14,12 @@ class AzurermNetworkWatchers < AzurermPluralResource
   attr_reader :table
 
   FilterTable.create
-             .register_column(:names, field: 'name')
+             .register_column(:names, field: :name)
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group:)
     resp = client.network_watchers(resource_group)
-    return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
+    return if has_error?(resp)
 
     @table = resp
   end

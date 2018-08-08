@@ -28,6 +28,20 @@ module Azure
       set_reader(:subscription_id, subscription_id, override)
     end
 
+    def structify(data)
+      return data.map { |v| structify(v) } if data.is_a?(Array)
+      return data unless data.is_a?(Hash)
+      return data if data.empty?
+
+      Struct.new(*data.keys.map(&:to_sym)) do
+        def key?(key)
+          members.include?(key)
+        end
+
+        alias_method :keys, :members
+      end.new(*data.values.map { |v| structify(v) })
+    end
+
     private
 
     attr_reader :required_attrs
@@ -59,19 +73,6 @@ module Azure
         body = rest_client.get(url, params: { 'api-version' => api_version }).body
         structify(body.fetch('value', body))
       end
-    end
-
-    def structify(value)
-      return value.map { |v| structify(v) } if value.is_a?(Array)
-      return value unless value.is_a?(Hash)
-
-      Struct.new(*value.keys.map(&:to_sym)) do
-        def key?(key)
-          members.include?(key)
-        end
-
-        alias_method :keys, :members
-      end.new(*value.values)
     end
   end
 end

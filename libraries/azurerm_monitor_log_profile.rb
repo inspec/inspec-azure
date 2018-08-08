@@ -13,31 +13,25 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = {
-    name:              'name',
-    id:                'id',
-    retention_policy:  'retentionPolicy',
-    retention_days:    'retentionPolicyDays',
-    retention_enabled: 'retentionPolicyEnabled',
-  }.freeze
+  ATTRS = %i(
+    name
+    id
+    retention_policy
+    retention_days
+    retention_enabled
+  ).freeze
 
-  attr_reader(*ATTRS.keys)
+  attr_reader(*ATTRS)
 
   def initialize(options = { name: 'default' })
     resp = client.log_profile(options[:name])
     return if has_error?(resp)
 
-    @name              = resp['name']
-    @id                = resp['id']
-    @retention_policy  = resp['properties']['retentionPolicy']
-    @retention_days    = resp['properties']['retentionPolicy']['days']
-    @retention_enabled = resp['properties']['retentionPolicy']['enabled']
-
-    ATTRS.each do |name, api_name|
-      next if instance_variable_defined?("@#{name}")
-
-      instance_variable_set("@#{name}", fields[api_name])
-    end
+    @name              = resp.name
+    @id                = resp.id
+    @retention_policy  = resp.properties.retentionPolicy
+    @retention_days    = resp.properties.retentionPolicy.days
+    @retention_enabled = resp.properties.retentionPolicy.enabled
 
     @exists = true
   end

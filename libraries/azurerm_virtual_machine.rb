@@ -28,9 +28,7 @@ class AzurermVirtualMachine < AzurermSingularResource
     resp = client.virtual_machine(resource_group, name)
     return if has_error?(resp)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
-    end
+    assign_fields(ATTRS, resp)
 
     @exists = true
   end
@@ -41,7 +39,7 @@ class AzurermVirtualMachine < AzurermSingularResource
 
   def installed_extensions_types
     @installed_extensions_types ||= Array(resources).map do |extension|
-      extension['properties']['type']
+      extension.properties.type
     end
   end
 
@@ -60,21 +58,21 @@ class AzurermVirtualMachine < AzurermSingularResource
   end
 
   def has_monitoring_agent_installed?
-    return false unless properties['osProfile']['windowsConfiguration']
+    return false unless properties.osProfile.key?(:windowsConfiguration)
 
     Array(resources).any? do |extension|
-      status = extension['properties']['provisioningState']
-      type = extension['properties']['type']
+      status = extension.properties.provisioningState
+      type   = extension.properties.type
 
       type == 'MicrosoftMonitoringAgent' && status == 'Succeeded'
     end
   end
 
   def os_disk_name
-    properties['storageProfile']['osDisk']['name']
+    properties.storageProfile.osDisk.name
   end
 
   def data_disk_names
-    Array(properties.dig('storageProfile', 'dataDisks')).map { |disk| disk['name'] }
+    Array(properties.storageProfile.dataDisks).map(&:name)
   end
 end
