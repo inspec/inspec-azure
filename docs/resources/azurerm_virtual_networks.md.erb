@@ -97,11 +97,6 @@ page](https://www.inspec.io/docs/reference/matchers/).
       it { should_not exist }
     end
 
-    # Should exist if the filter returns a single virtual network
-    describe azurerm_virtual_networks(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
-      it { should exist }
-    end
-
 ## Azure Permissions
 
 Your [Service
