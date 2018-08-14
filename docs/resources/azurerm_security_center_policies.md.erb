@@ -54,7 +54,7 @@ exist.
 
 ### Assert default Security Center Policy exists
 
-    describe azurerm_security_center_policies.where('name' => 'default')
+    describe azurerm_security_center_policies.where(name: 'default')
       it { should exist }
     end
 
@@ -70,7 +70,7 @@ Filters the results to include only those Security Center Policies that match th
 name. This is a string value.
 
     # default should always exist
-    describe azurerm_security_center_policies.where('name' => 'default')
+    describe azurerm_security_center_policies.where(name: 'default')
       it { should exist }
     end
 
@@ -86,12 +86,12 @@ The control will pass if the filter returns at least one result. Use `should_not
 expect zero matches.
 
     # default should always exist
-    describe azurerm_security_center_policies.where('name' => 'default')
+    describe azurerm_security_center_policies.where(name: 'default')
       it { should exist }
     end
 
     # this security center policy should not exist
-    describe azurerm_security_center_policies.where('name' => 'DoesNotExist')
+    describe azurerm_security_center_policies.where(name: 'DoesNotExist')
       it { should_not exist }
     end
 
