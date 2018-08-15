@@ -18,7 +18,7 @@ class AzurermVirtualNetworkss < AzurermPluralResource
   attr_reader :table
 
   def initialize(resource_group: nil)
-    resp = client.virtual_networks(resource_group)
+    resp = management.virtual_networks(resource_group)
     return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
     @table = resp
   end
