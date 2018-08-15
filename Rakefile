@@ -110,8 +110,6 @@ task :options, :component do |_t_, args|
   begin
     env_file = EnvironmentFile.new('.envrc')
     env_file.synchronize(components)
-
-    sh('source', '.envrc')
   rescue RuntimeError => error
     puts error.message
   end
