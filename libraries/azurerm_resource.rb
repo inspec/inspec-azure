@@ -65,15 +65,6 @@ class AzurermResource < Inspec.resource(1)
 end
 
 class AzurermPluralResource < AzurermResource
-  def add_key(struct, key, value)
-    Struct.new(*struct.members << key) do
-      def key?(key)
-        members.include?(key)
-      end
-
-      alias_method :keys, :members
-    end.new(*struct.values << value)
-  end
 end
 
 class AzurermSingularResource < AzurermResource

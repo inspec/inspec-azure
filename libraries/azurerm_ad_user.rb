@@ -40,11 +40,9 @@ class AzurermAdUser < AzurermSingularResource
 
   def initialize(user_id: nil)
     user = graph_client.user(user_id)
-    return if user.nil?
+    return if has_error?(user)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", user[field.to_s])
-    end
+    assign_fields(ATTRS, user)
 
     @exists = true
   end

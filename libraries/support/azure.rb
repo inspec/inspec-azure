@@ -2,6 +2,7 @@
 
 require 'support/azure/authentication'
 require 'support/azure/rest'
+require 'support/azure/response_struct'
 require 'support/azure/credentials'
 require 'support/azure/service'
 require 'support/azure/management'
