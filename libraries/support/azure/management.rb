@@ -76,7 +76,7 @@ module Azure
     def resource_groups
       get(
         url: link(location: 'resourcegroups', provider: false),
-        api_version: '2018-02-01'
+        api_version: '2018-02-01',
       )
     end
 

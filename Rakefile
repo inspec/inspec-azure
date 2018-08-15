@@ -33,11 +33,11 @@ namespace :azure do
     Rake::Task['check_env'].invoke
 
     sh(
-        'az', 'login',
-        '--service-principal',
-        '-u', ENV['AZURE_CLIENT_ID'],
-        '-p', ENV['AZURE_CLIENT_SECRET'],
-        '--tenant', ENV['AZURE_TENANT_ID']
+      'az', 'login',
+      '--service-principal',
+      '-u', ENV['AZURE_CLIENT_ID'],
+      '-p', ENV['AZURE_CLIENT_SECRET'],
+      '--tenant', ENV['AZURE_TENANT_ID']
     )
   end
 end
@@ -213,9 +213,9 @@ namespace :docs do
   task :resource_links do
     puts "\n"
     Dir.entries('docs/resources').sort
-        .reject { |file| File.directory?(file) }
-        .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
-        .map { |link| puts link }
+       .reject { |file| File.directory?(file) }
+       .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
+       .map { |link| puts link }
     puts "\n"
   end
 end
