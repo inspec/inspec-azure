@@ -38,16 +38,6 @@ To create your account Service Principal Account:
 
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
 
-### Granting Azure Active Directory Read to Service Principal
-
-The Client/Active Directory Application you have configured Inspec Azure to use (`AZURE_CLIENT_ID`) must
-have permissions to read User data from the Azure Graph RBAC API.
-
-Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
-for information on how to grant these permissions to your application.
-
-Note: An Azure Administrator must grant your application these permissions.
-
 ### Use the Resources
 
 Since this is an InSpec resource pack, it only defines InSpec resources. To use these resources in your own controls you should create your own profile:
@@ -166,21 +156,27 @@ This environment may be used to run your profile against or to run integration t
 
 ### Remote State
 
-Remote state is being used to store the Terraform state file. You'll need the following configuration keys to enable remote state:
+Remote state has been removed. The first time you run Terraform after having
+remote state removed you will be presented with a message like:
 
 ```
-TF_STORAGE_ACCOUNT_NAME=
-TF_ACCESS_KEY=
-TF_CONTAINER_NAME=$WORKSPACE
+Do you want to migrate all workspaces to "local"?
+  Both the existing "azurerm" backend and the newly configured "local" backend support
+  workspaces. When migrating between backends, Terraform will copy all
+  workspaces (with the same names). THIS WILL OVERWRITE any conflicting
+  states in the destination.
+
+  Terraform initialization doesn't currently migrate only select workspaces.
+  If you want to migrate a select number of workspaces, you must manually
+  pull and push those states.
+
+  If you answer "yes", Terraform will migrate all states. If you answer
+  "no", Terraform will abort.
+
+  Enter a value: yes
 ```
 
-By convention `TF_CONTAINER_NAME` will always be your workspace name. To get started:
-
-1. Log into Azure
-2. Add a container matching your workspace name (likely whatever `whoami` resolves to on your machine, unless you overrode the default).
-3. Ensure you update your `.envrc` with those new keys and your other account settings.
-4. Either run `source .envrc` (or `direnv allow` if you use the direnv tool).
-5. Now when you run `rake azure:login tf:apply` you should be initialized with remote state. If you have an existing state file Terraform may prompt you to upload the state from your machine to the container in Azure.
+Enter yes or press enter.
 
 ### Rake commands
 
@@ -254,4 +250,71 @@ You may run multiple controls:
 ```
 bundle
 rake test:integration[azure_resource_group,azurerm_virtual_machine]
+```
+
+### Optional Components
+
+By default, rake tasks will only use core components. Optional components have
+associated integrations that will be skipped unless you enable these. We have
+the following optional pieces that may be managed with Terraform.
+
+#### Network Watcher
+
+Network Watcher may be enabled to run integration tests related to the Network
+Watcher. We recommend leaving this disabled unless you are specifically working
+on related resources. You may only have one Network Watcher enabled per an
+Azure subscription at a time. To enable Network Watcher:
+
+```
+rake options[network_watcher]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+#### Graph API
+
+Graph API support may be enabled to test with `azure_ad` related resources.
+Graph requires granting "Active Directory Read" to the Service Principal. If
+your account does not have access leave this disabled.
+
+Please refer to the [Microsoft
+Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
+for information on how to grant these permissions to your application.
+
+Note: An Azure Administrator must grant your application these permissions.
+
+```
+rake options[graph]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+#### Managed Service Identity
+
+Managed Service Identity (MSI) is another way to connect to the Azure APIs.
+This option starts an additonal virtual machine with MSI enabled and a public
+ip address. You will need to put a hole in your firewall to connect to the
+virtual machine. You will also need to grant the `contributor` role to this
+identity for your subscription.
+
+```
+rake options[msi]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+#### Using optional components
+
+Optional Components may be combined when running tasks:
+
+```
+rake options[option_1,option_2,option3]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
+To disable optional components run `rake options[]` including only the optional components you wish to enable. Any omitted component will be disabled.
+```
+rake options[] # disable all optional components
+rake options[option_1] # enables option_1 disabling all other optional components
 ```

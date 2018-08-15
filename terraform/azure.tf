@@ -33,7 +33,7 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_network_watcher" "rg" {
   name                = "${azurerm_resource_group.rg.name}-netwatcher"
-  count               = "${var.network_watcher_enabled}"
+  count               = "${var.network_watcher}"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   tags {
@@ -172,6 +172,11 @@ resource "azurerm_virtual_network" "vnet" {
   name                = "Inspec-VNet"
   address_space       = ["10.1.1.0/24"]
   location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+}
+
+data "azurerm_virtual_network" "vnet" {
+  name                = "${azurerm_virtual_network.vnet.name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 }
 

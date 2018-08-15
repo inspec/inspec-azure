@@ -1,4 +1,6 @@
 control 'azurerm_ad_user' do
+  only_if { ENV['GRAPH'] }
+
   user_id = azurerm_ad_users.object_ids.first
   describe azurerm_ad_user(user_id: user_id) do
     it                    { should exist }

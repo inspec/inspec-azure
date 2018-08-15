@@ -8,6 +8,7 @@ require 'fileutils'
 require 'open3'
 
 require_relative 'lib/attribute_file_writer'
+require_relative 'lib/environment_file'
 
 RuboCop::RakeTask.new
 
@@ -32,11 +33,11 @@ namespace :azure do
     Rake::Task['check_env'].invoke
 
     sh(
-      'az', 'login',
-      '--service-principal',
-      '-u', ENV['AZURE_CLIENT_ID'],
-      '-p', ENV['AZURE_CLIENT_SECRET'],
-      '--tenant', ENV['AZURE_TENANT_ID']
+        'az', 'login',
+        '--service-principal',
+        '-u', ENV['AZURE_CLIENT_ID'],
+        '-p', ENV['AZURE_CLIENT_SECRET'],
+        '--tenant', ENV['AZURE_TENANT_ID']
     )
   end
 end
@@ -85,15 +86,34 @@ namespace :inspec do
   end
 end
 
-desc 'Enables network watcher creation and integration tests'
-task :network_watcher do
-  ENV['ENABLE_NETWORK_WATCHER'] = 'true'
-  ENV['TF_VAR_network_watcher_enabled'] = '1'
+task :output_options do
+  options = EnvironmentFile.options('.envrc')
+
+  if options.empty?
+    puts "\nYou are not using any optional components. See the README for more information.\n\n"
+  else
+    puts "\nYou are using the following optional components:\n\n"
+    options.each do |option|
+      puts "* #{option}\n"
+    end
+    puts "\nTo change these options run: rake options[component]. See the README for more information.\n\n"
+  end
 end
 
-desc 'Creates a VM with MSI Enabled and Contributor grant'
-task :msi_vm do
-  ENV['TF_VAR_public_vm_count'] = '1'
+desc 'Enables given optional components. See README for details.'
+task :options, :component do |_t_, args|
+  components = []
+  components << args[:component] if args[:component]
+  components += args.extras unless args.extras.nil?
+
+  begin
+    env_file = EnvironmentFile.new('.envrc')
+    env_file.synchronize(components)
+
+    sh('source', '.envrc')
+  rescue RuntimeError => error
+    puts error.message
+  end
 end
 
 task :setup_env do
@@ -101,6 +121,7 @@ task :setup_env do
   ENV['TF_VAR_tenant_id']       = ENV['AZURE_TENANT_ID']
   ENV['TF_VAR_client_id']       = ENV['AZURE_CLIENT_ID']
   ENV['TF_VAR_client_secret']   = ENV['AZURE_CLIENT_SECRET']
+  ENV['TF_VAR_public_vm_count'] = '1' if ENV.key?('MSI')
 end
 
 task :check_env do
@@ -192,9 +213,9 @@ namespace :docs do
   task :resource_links do
     puts "\n"
     Dir.entries('docs/resources').sort
-       .reject { |file| File.directory?(file) }
-       .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
-       .map { |link| puts link }
+        .reject { |file| File.directory?(file) }
+        .collect { |file| "- [#{file.split('.')[0]}](docs/resources/#{file})" }
+        .map { |link| puts link }
     puts "\n"
   end
 end
@@ -207,12 +228,16 @@ namespace :attributes do
   end
 
   task :write_guest_presence_to_file do
-    Dir.chdir(TERRAFORM_DIR) do
-      stdout, stderr, status = Open3.capture3("az ad user list --query=\"length([?userType == 'Guest'])\"")
+    if ENV.key?('GRAPH')
+      Dir.chdir(TERRAFORM_DIR) do
+        stdout, stderr, status = Open3.capture3("az ad user list --query=\"length([?userType == 'Guest'])\"")
 
-      abort(stderr) unless status.success?
+        abort(stderr) unless status.success?
 
-      AttributeFileWriter.append(ENV['ATTRIBUTES_FILE'], "guest_accounts: #{stdout.to_i}")
+        AttributeFileWriter.append(ENV['ATTRIBUTES_FILE'], "guest_accounts: #{stdout.to_i}")
+      end
     end
   end
 end
+
+Rake.application.top_level_tasks << :output_options

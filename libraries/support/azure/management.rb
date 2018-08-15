@@ -117,6 +117,22 @@ module Azure
       )
     end
 
+    def virtual_network(resource_group, id)
+      get(
+        url: link(location: 'Microsoft.Network/virtualNetworks',
+                  resource_group: resource_group) + id,
+        api_version: '2018-02-01',
+      )
+    end
+
+    def virtual_networks(resource_group)
+      get(
+        url: link(location: 'Microsoft.Network/virtualNetworks',
+                  resource_group: resource_group),
+        api_version: '2018-02-01',
+      )
+    end
+
     def virtual_machine_disk(resource_group, id)
       get(
         url: link(location: 'Microsoft.Compute/disks',

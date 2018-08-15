@@ -38,5 +38,12 @@ module Azure
         conn.adapter  Faraday.default_adapter
       end
     end
+
+    def authorization_header
+      @authentication ||= Authentication.new(
+        *credentials.values_at(:tenant_id, :client_id, :client_secret), resource
+      )
+      @authentication.authentication_header
+    end
   end
 end

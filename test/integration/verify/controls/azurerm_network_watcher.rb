@@ -3,7 +3,7 @@ nw             = attribute('network_watcher_name', default: nil).first
 nw_id          = attribute('network_watcher_id',   default: nil).first
 
 control 'azurerm_network_watcher' do
-  only_if { ENV['ENABLE_NETWORK_WATCHER'] }
+  only_if { ENV['NETWORK_WATCHER'] }
 
   describe azurerm_network_watcher(resource_group: resource_group, name: nw) do
     it                        { should exist }
