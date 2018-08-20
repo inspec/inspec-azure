@@ -12,6 +12,8 @@ class AzurermResource < Inspec.resource(1)
   end
 
   def graph
+    raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported '\
+      'for Graph RBAC API, control skipped.' if inspec.backend.msi_auth?
     Azure::Graph.instance
                 .with_client(graph_client)
                 .for_tenant(tenant_id)
