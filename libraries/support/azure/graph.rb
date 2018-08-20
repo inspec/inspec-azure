@@ -38,7 +38,7 @@ module Azure
       confirm_configured!
       values = []
 
-      response = rest_client.get(*args).body # rest.get
+      response = rest_client.get(*args).body
 
       if response.key?('odata.error')
         raise Inspec::Exceptions::ResourceFailed, format_error(response['odata.error'])
@@ -65,7 +65,7 @@ module Azure
     end
 
     def next_results(next_link)
-      rest_client.get( #rest.get
+      rest_client.get(
         "/#{tenant_id}/#{next_link}",
         params: { 'api-version' => '1.6' },
       ).body

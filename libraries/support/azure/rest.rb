@@ -5,9 +5,9 @@ require 'faraday_middleware'
 
 module Azure
   class Rest
-
+    USER_AGENT = 'User-Agent'
     INSPEC_USER_AGENT = 'Chef-Inspec-pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'
-    private_constant :INSPEC_USER_AGENT
+    private_constant  :USER_AGENT, :INSPEC_USER_AGENT
 
     attr_reader :host, :resource, :credentials
 
@@ -19,7 +19,6 @@ module Azure
     end
 
     def get(path, params: {}, headers: {})
-
       add_user_agent!(headers)
       connection.get do |req|
         req.url path
@@ -53,11 +52,11 @@ module Azure
     end
 
     def add_user_agent!(headers)
-      current_user_agent = headers.fetch(:user_agent, nil)
-      if current_user_agent == nil
-        headers.store(:user_agent => INSPEC_USER_AGENT)
+      current_user_agent = headers.fetch(USER_AGENT, nil)
+      if current_user_agent.nil?
+        headers[USER_AGENT] = INSPEC_USER_AGENT
       else
-        headers[:user_agent] = current_user_agent + "; #{INSPEC_USER_AGENT}"
+        headers[USER_AGENT] = current_user_agent + "; #{INSPEC_USER_AGENT}"
       end
     end
   end
