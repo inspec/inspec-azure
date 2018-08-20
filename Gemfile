@@ -6,7 +6,6 @@ gem 'faraday',            '~> 0.15.0'
 gem 'faraday_middleware', '~> 0.12.2'
 gem 'inspec',             '~> 2.2',  '>= 2.2.7'
 gem 'rake',               '~> 12.3', '>= 12.3.1'
-gem 'train', path: '~/repos/train'
 
 group :development do
   gem 'pry', '~> 0.11.3'
