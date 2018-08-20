@@ -25,5 +25,5 @@ To mention the team, use @chef/dca-team
 
  * [Joshua Padgett](https://github.com/Padgett)
  * [Paul Welch](https://github.com/pwelch)
- * [Trevor Bramble](https://github.com/TrevorBramble)
  * [Ruairi Fennell](https://github.com/r-fennell)
+ * [Trevor Bramble](https://github.com/TrevorBramble)
