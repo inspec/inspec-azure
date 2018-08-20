@@ -56,7 +56,7 @@ module Azure
       confirm_configured!
 
       cache.fetch(url) do
-        body = rest_client.get(url, params: { 'api-version' => api_version }).body
+        body = rest_client.get(url, params: { 'api-version' => api_version }).body # rest.get
         body.fetch('value', body)
       end
     end
