@@ -12,7 +12,8 @@ control 'azurerm_virtual_machine_disk' do
     its('tags')               { should eq({}) }
     its('location')           { should eq(location) }
     its('type')               { should eq('Microsoft.Compute/disks') }
-    its('sku')                { should eq({ 'name' => 'Standard_LRS', 'tier' => 'Standard' }) }
+    its('sku.name')           { should eq('Standard_LRS') }
+    its('sku.tier')           { should eq('Standard') }
     its('encryption_enabled') { should be true }
     its('properties')         { should_not be_nil }
   end

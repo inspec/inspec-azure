@@ -142,6 +142,7 @@ namespace :test do
 
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
+              --reporter progress
               -t azure://#{credentials.subscription_id} )
 
     if args[:controls]
