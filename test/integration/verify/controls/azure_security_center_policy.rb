@@ -17,6 +17,7 @@ control 'azurerm_security_center_policy' do
     its('id')                              { should eq("/subscriptions/#{ENV['AZURE_SUBSCRIPTION_ID']}/providers/Microsoft.Security/policies/default") }
     its('name')                            { should eq('default') }
     its('log_collection')                  { should eq('On').or eq('Off') }
+    its('pricing_tier')                    { should eq('Standard').or eq('Free') }
     its('patch')                           { should eq('On').or eq('Off') }
     its('baseline')                        { should eq('On').or eq('Off') }
     its('anti_malware')                    { should eq('On').or eq('Off') }
