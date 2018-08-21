@@ -15,6 +15,7 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
     name:                            'name',
     id:                              'id',
     log_collection:                  'logCollection',
+    pricing_tier:                    'selectedPricingTier',
     patch:                           'patch',
     baseline:                        'baseline',
     anti_malware:                    'antimalware',
@@ -43,6 +44,7 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
     @name = resp['name']
     @id   = resp['id']
     @log_collection = resp['properties']['logCollection']
+    @pricing_tier   = resp['properties']['pricingConfiguration']['selectedPricingTier']
 
     fields = resp['properties']['recommendations'].merge(
       resp['properties']['securityContactConfiguration'],
