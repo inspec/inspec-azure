@@ -152,7 +152,7 @@ This environment may be used to run your profile against or to run integration t
 
 ### Direnv
 
-[Direnv](https://direnv.net/) is used to initial an environment variable `WORKSPACE` to your username. We recommend using `direnv` and allowing it to run in your environment. However, if you prefer to not use `direnv` you may also `source .envrc`.
+[Direnv](https://direnv.net/) is used to initialize an environment variable `WORKSPACE` to your username. We recommend using `direnv` and allowing it to run in your environment. However, if you prefer to not use `direnv` you may also `source .envrc`.
 
 ### Remote State
 

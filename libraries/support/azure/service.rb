@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'support/azure/response_struct'
+
 module Azure
   module Service
     class Cache
@@ -28,6 +30,21 @@ module Azure
       set_reader(:subscription_id, subscription_id, override)
     end
 
+    # Converts data (a hash) into a struct. This is a recursive
+    # call that will wall the entire hash and convert all key/value pairs.
+    #
+    # If data is a single value it will be returned.
+    # If data is an array then each value in the array will be converted to a struct.
+    # If data is an empty hash then it will return the empty array.
+    # If data is an array of hashes then each value will be converted to a struct.
+    def to_struct(data)
+      return data.map { |v| to_struct(v) } if data.is_a?(Array)
+      return data unless data.is_a?(Hash)
+      return data if data.empty?
+
+      ResponseStruct.create(data.keys.map(&:to_sym), data.values.map { |v| to_struct(v) })
+    end
+
     private
 
     attr_reader :required_attrs
@@ -52,12 +69,20 @@ module Azure
       self
     end
 
-    def get(url:, api_version:)
+    def get(url:, api_version:, error_handler: nil, unwrap: nil)
       confirm_configured!
 
       cache.fetch(url) do
+        require 'pry'; binding.pry
         body = rest_client.get(url, params: { 'api-version' => api_version }).body
-        body.fetch('value', body)
+
+        error_handler&.(body)
+
+        if unwrap.respond_to?(:call)
+          to_struct(unwrap.call(body, api_version))
+        else
+          to_struct(body.fetch('value', body))
+        end
       end
     end
   end

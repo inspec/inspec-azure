@@ -12,29 +12,23 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = {
-    name:       'name',
-    id:         'id',
-    conditions: 'conditionAllOf',
-    operations: 'operations',
-  }.freeze
+  ATTRS = %i(
+    name
+    id
+    conditions
+    operations
+  ).freeze
 
-  attr_reader(*ATTRS.keys)
+  attr_reader(*ATTRS)
 
   def initialize(resource_group: nil, name: nil)
     resp = management.activity_log_alert(resource_group, name)
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
-    @name       = resp['name']
-    @id         = resp['id']
-    @conditions = resp['properties']['condition']['allOf']
+    @name       = resp.name
+    @id         = resp.id
+    @conditions = resp.properties.condition.allOf
     @operations = collect_operations(@conditions)
-
-    ATTRS.each do |attr_name, api_name|
-      next if instance_variable_defined?("@#{attr_name}")
-
-      instance_variable_set("@#{name}", fields[api_name])
-    end
 
     @exists = true
   end
@@ -50,6 +44,6 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
   # @param [Hash] 'allOf' conditions from response properties
   # @return [Array] of operation strings
   def collect_operations(conditions)
-    conditions.find_all { |x| x['field'] == 'operationName' }.collect { |x| x['equals'] }
+    conditions.find_all { |x| x.field == 'operationName' }.collect(&:equals)
   end
 end

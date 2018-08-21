@@ -19,6 +19,7 @@ control 'azurerm_monitor_activity_log_alert' do
     describe azurerm_monitor_activity_log_alert(resource_group: resource_group, name: "#{log_alert_name}_#{alert}") do
       it                { should exist }
       its('operations') { should include operation }
+      its('conditions') { should_not be_nil }
     end
   end
 
