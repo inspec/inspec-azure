@@ -73,7 +73,6 @@ module Azure
       confirm_configured!
 
       cache.fetch(url) do
-        require 'pry'; binding.pry
         body = rest_client.get(url, params: { 'api-version' => api_version }).body
 
         error_handler&.(body)
