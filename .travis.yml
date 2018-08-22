@@ -1,0 +1,5 @@
+language: ruby
+env:
+  -RAKE_TASK=test:unit
+  -RAKE_TASK=lint
+script: "bundle exec rake $RAKE_TASK"
