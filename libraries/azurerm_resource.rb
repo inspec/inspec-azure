@@ -26,7 +26,7 @@ class AzurermResource < Inspec.resource(1)
   end
 
   def graph_client
-    Azure::Rest.new(inspec.backend.graph_client)
+    Azure::Rest.new(inspec.backend.azure_client(::Azure::GraphRbac::Profiles::Latest::Client))
   end
 
   def tenant_id
