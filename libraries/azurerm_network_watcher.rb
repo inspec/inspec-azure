@@ -25,11 +25,9 @@ class AzurermNetworkWatcher < AzurermSingularResource
 
   def initialize(resource_group: nil, name: nil)
     resp = management.network_watcher(resource_group, name)
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
-    end
+    assign_fields(ATTRS, resp)
 
     @exists = true
   end
@@ -39,6 +37,6 @@ class AzurermNetworkWatcher < AzurermSingularResource
   end
 
   def provisioning_state
-    @provisioning_state ||= properties['provisioningState']
+    @provisioning_state ||= properties.provisioningState
   end
 end

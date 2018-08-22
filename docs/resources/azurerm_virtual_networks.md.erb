@@ -65,7 +65,7 @@ Filters the results to only those that match the given name.
 
     # Insist that MyVnetName exists
     describe azurerm_virtual_networks(resource_group: 'MyResourceGroup')
-      .where('name' => 'MyVnetName') do
+      .where(name: 'MyVnetName') do
       it              { should exist }
     end
 
@@ -98,7 +98,7 @@ page](https://www.inspec.io/docs/reference/matchers/).
     end
 
     # Should exist if the filter returns a single virtual network
-    describe azurerm_virtual_networks(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
+    describe azurerm_virtual_networks(resource_group: 'MyResourceGroup').where(platform: 'windows') do
       it { should exist }
     end
 

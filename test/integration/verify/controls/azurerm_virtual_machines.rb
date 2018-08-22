@@ -21,7 +21,7 @@ control 'azurerm_virtual_machines' do
   end
 
   describe azurerm_virtual_machines(resource_group: resource_group)
-    .where('platform' => 'windows') do
+    .where(platform: 'windows') do
     it                             { should exist }
     its('vm_names.sort')           { should eq windows_vm_names.sort }
     its('os_disks.sort')           { should eq windows_os_disks.sort }
@@ -29,7 +29,7 @@ control 'azurerm_virtual_machines' do
   end
 
   describe azurerm_virtual_machines(resource_group: resource_group)
-    .where('platform' => 'linux') do
+    .where(platform: 'linux') do
     it                             { should exist }
     its('vm_names.sort')           { should eq linux_vm_names.sort }
     its('os_disks.sort')           { should eq linux_os_disks.sort }
