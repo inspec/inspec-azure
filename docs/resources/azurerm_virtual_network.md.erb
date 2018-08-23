@@ -96,8 +96,7 @@ The virtual network's id.
 Id will be in
     format:
 
-    '/subscriptions/5dbd1a2e-7fd6-4891-9e3b-74f665be76d5/resourceGroups/Inspec-Azure-mmclane/providers/Microsoft.Network/virtualNetworks/MyVnetName'
-
+    '/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/Inspec-Azure-mmclane/providers/Microsoft.Network/virtualNetworks/MyVnetName'
 ### name
 
 The virtual network's name.
@@ -132,7 +131,7 @@ The list of subnet names that are attached to this virtual network.
 
 The list of address spaces used by the virtual network.
 
-    its('subnets') { should eq ["x.x.x.x/x"] }
+    its('address_space') { should eq ["x.x.x.x/x"] }
 
 ### dns_servers
 

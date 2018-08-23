@@ -1,5 +1,7 @@
 # InSpec for Azure
 
+[![Build Status](https://travis-ci.org/inspec/inspec-azure.svg?branch=master)](https://travis-ci.org/inspec/inspec-azure)
+
 This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
 
 ## Prerequisites

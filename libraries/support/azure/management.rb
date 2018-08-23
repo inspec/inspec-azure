@@ -141,6 +141,22 @@ module Azure
       )
     end
 
+    def subnet(resource_group, vnet, id)
+      get(
+        url: link(location: "Microsoft.Network/virtualNetworks/#{vnet}/subnets",
+                    resource_group: resource_group) + id,
+        api_version: '2018-02-01',
+      )
+    end
+
+    def subnets(resource_group, vnet)
+      get(
+        url: link(location: "Microsoft.Network/virtualNetworks/#{vnet}/subnets",
+                    resource_group: resource_group),
+        api_version: '2018-02-01',
+      )
+    end
+
     private
 
     def link(location:, provider: true, resource_group: nil)
