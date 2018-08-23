@@ -12,14 +12,15 @@ class AzurermVirtualNetworkss < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:names, field: 'name')
+             .register_column(:names, field: :name)
              .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table
 
   def initialize(resource_group: nil)
     resp = client.virtual_networks(resource_group)
-    return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
+    return if has_error?(resp)
+
     @table = resp
   end
 

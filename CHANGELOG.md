@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.0] - 2018.08.09
+[Full Changelog](https://github.com/inspec/inspec-azure/compare/1.0.0...1.1.0)
+
+**Enhancements:**
+
+- Adds resources to see AD users in your Azure Subscription. These resources require elevated permissions see the [README.md](README.md) for more information. Thank you for your contribution [Ruairi Fennell](https://github.com/r-fennell)!
+  * azurerm_ad_user
+  * azurerm_ad_users
+
+- Adds resources to see your Virtual Network in your Azure Subscription. Thank you for your contribution [Matt Mclane](https://github.com/mmclane)!
+  * azurerm_virtual_network
+  * azurerm_virtual_networks
+
+- Adds development enhancement for choosing optional components. See the [README.md](README.md) for more information.
+
+- Renames resources to `azurerm` from `azure`. Resources namespaced with `azure` are deprecated and will give a warning when used.
+
+- Updates filter table syntax usages.
+
 ## [1.0.0] - 2018.06.28
 - Replaced with REST API-backed implementation
 

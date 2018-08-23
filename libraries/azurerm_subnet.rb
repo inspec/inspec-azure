@@ -23,12 +23,9 @@ class AzurermSubnet < AzurermSingularResource
 
   def initialize(resource_group: nil, vnet: nil, name: nil)
     resp = client.subnet(resource_group, vnet, name)
-    return if resp.nil? || resp.key?('error')
+    return if has_error?(resp)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
-    end
-
+    assign_fields(ATTRS, resp)
     @exists = true
   end
 
@@ -37,7 +34,7 @@ class AzurermSubnet < AzurermSingularResource
   end
 
   def nsg
-    properties['networkSecurityGroup']['id'].split('/')[-1]
+    properties.networkSecurityGroup.id.split('/')[-1]
   end
 
   def to_s

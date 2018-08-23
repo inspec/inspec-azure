@@ -117,9 +117,9 @@ class AzurermClownCar < AzurermSingularResource
   EXAMPLE
 
   ATTRS = {
-    name:       'name',
-    id:         'id',
-    occupants:  'occupants',
+    name:       :name,
+    id:         :id,
+    occupants:  :occupants,
   }.freeze
 
   attr_reader(*ATTRS.keys)
@@ -137,11 +137,7 @@ class AzurermClownCar < AzurermSingularResource
 
     # The rest of the values don't require processing, just pull them out of
     # the response and assign them as-is
-    ATTRS.each do |attr_name, api_name|
-      next if instance_variable_defined?("@#{attr_name}")
-
-      instance_variable_set("@#{name}", fields[api_name])
-    end
+    assign_fields_with_map(ATTRS, car)
 
     # If we got this far, our clown car exists
     @exists = true
@@ -179,7 +175,7 @@ class AzurermClownCars < AzurermPluralResource
 
   def initialize
     cars = circus_client.clown_cars(resource_group)
-    return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
+    return if has_error?(cars)
 
     # assign our results to the name we gave FilterTable above
     @table = cars

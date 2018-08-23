@@ -75,7 +75,7 @@ Filters the results to only those that match the given name.
 
     # Insist that MySubnet exists
     describe azurerm_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName') do
-      .where('name' => 'MySubnet') do
+      .where(name: 'MySubnet') do
       it { should exist }
     end
 

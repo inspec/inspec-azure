@@ -19,7 +19,7 @@ class AzurermSubnets < AzurermPluralResource
 
   def initialize(resource_group: nil, vnet: nil)
     resp = client.subnets(resource_group, vnet)
-    return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
+    return if has_error?(resp)
     @vnet = vnet
     @table = resp
   end

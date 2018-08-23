@@ -12,19 +12,24 @@ class AzurermAdUsers < AzurermPluralResource
     end
   EXAMPLE
 
+  attr_reader :table
+
   FilterTable.create
-             .register_column(:object_ids,     field: 'objectId')
-             .register_column(:display_names,  field: 'displayName')
-             .register_column(:mails,          field: 'mail')
-             .register_column(:user_types,     field: 'userType')
+             .register_column(:object_ids,     field: :objectId)
+             .register_column(:display_names,  field: :displayName)
+             .register_column(:mails,          field: :mail)
+             .register_column(:user_types,     field: :userType)
              .install_filter_methods_on_resource(self, :table)
 
-  def table
-    @table ||= graph_client.users
+  def initialize
+    resp = graph_client.users
+    return if has_error?(resp)
+
+    @table = resp
   end
 
   def guest_accounts
-    @guest_accounts ||= where('userType' => 'Guest').mails
+    @guest_accounts ||= where(userType: 'Guest').mails
   end
 
   def to_s

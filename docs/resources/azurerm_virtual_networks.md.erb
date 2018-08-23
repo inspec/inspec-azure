@@ -65,7 +65,7 @@ Filters the results to only those that match the given name.
 
     # Insist that MyVnetName exists
     describe azurerm_virtual_networks(resource_group: 'MyResourceGroup')
-      .where('name' => 'MyVnetName') do
+      .where(name: 'MyVnetName') do
       it              { should exist }
     end
 
