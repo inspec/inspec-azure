@@ -18,7 +18,7 @@ class AzurermSubnets < AzurermPluralResource
   attr_reader :table
 
   def initialize(resource_group: nil, vnet: nil)
-    resp = client.subnets(resource_group, vnet)
+    resp = management.subnets(resource_group, vnet)
     return if has_error?(resp)
     @vnet = vnet
     @table = resp

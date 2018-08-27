@@ -18,7 +18,7 @@ class AzurermMonitorLogProfiles < AzurermPluralResource
   attr_reader :table
 
   def initialize
-    resp = client.log_profiles
+    resp = management.log_profiles
     return if has_error?(resp)
 
     @table = resp

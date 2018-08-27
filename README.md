@@ -291,6 +291,20 @@ direnv allow # or source .envrc
 rake tf:apply
 ```
 
+#### Managed Service Identity
+
+Managed Service Identity (MSI) is another way to connect to the Azure APIs.
+This option starts an additonal virtual machine with MSI enabled and a public
+ip address. You will need to put a hole in your firewall to connect to the
+virtual machine. You will also need to grant the `contributor` role to this
+identity for your subscription.
+
+```
+rake options[msi]
+direnv allow # or source .envrc
+rake tf:apply
+```
+
 #### Using optional components
 
 Optional Components may be combined when running tasks:

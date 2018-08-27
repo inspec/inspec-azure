@@ -22,7 +22,7 @@ class AzurermSubnet < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(resource_group: nil, vnet: nil, name: nil)
-    resp = client.subnet(resource_group, vnet, name)
+    resp = management.subnet(resource_group, vnet, name)
     return if has_error?(resp)
 
     assign_fields(ATTRS, resp)

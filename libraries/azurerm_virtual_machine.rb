@@ -25,7 +25,7 @@ class AzurermVirtualMachine < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(resource_group: nil, name: nil)
-    resp = client.virtual_machine(resource_group, name)
+    resp = management.virtual_machine(resource_group, name)
     return if has_error?(resp)
 
     assign_fields(ATTRS, resp)

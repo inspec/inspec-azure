@@ -22,7 +22,7 @@ class AzurermAdUsers < AzurermPluralResource
              .install_filter_methods_on_resource(self, :table)
 
   def initialize
-    resp = graph_client.users
+    resp = graph.users
     return if has_error?(resp)
 
     @table = resp

@@ -24,7 +24,7 @@ class AzurermMonitorLogProfile < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(options = { name: 'default' })
-    resp = client.log_profile(options[:name])
+    resp = management.log_profile(options[:name])
     return if has_error?(resp)
 
     @name              = resp.name

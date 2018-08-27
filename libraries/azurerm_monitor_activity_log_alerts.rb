@@ -20,7 +20,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
              .install_filter_methods_on_resource(self, :table)
 
   def initialize
-    resp = client.activity_log_alerts
+    resp = management.activity_log_alerts
     return if has_error?(resp)
 
     @table = resp.collect(&with_resource_group)

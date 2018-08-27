@@ -41,7 +41,7 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
   attr_reader(*ATTRS.keys, *SECURITY_CONTACT_ATTRS.keys)
 
   def initialize(options = { name: 'default' })
-    resp = client.security_center_policy(options[:name])
+    resp = management.security_center_policy(options[:name])
     return if has_error?(resp)
 
     @name = resp.name

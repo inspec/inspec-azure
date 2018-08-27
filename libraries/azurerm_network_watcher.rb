@@ -24,7 +24,7 @@ class AzurermNetworkWatcher < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(resource_group: nil, name: nil)
-    resp = client.network_watcher(resource_group, name)
+    resp = management.network_watcher(resource_group, name)
     return if has_error?(resp)
 
     assign_fields(ATTRS, resp)

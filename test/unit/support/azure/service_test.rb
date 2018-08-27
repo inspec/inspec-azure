@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 require_relative '../../../../libraries/support/azure/service'
 
-describe TestCredentials do
+describe Azure::Service do
   let(:address)         { { street: '123 Fake St.', city: 'Nowhere', state: 'NO' } }
   let(:john)            { { name: 'John', age: 20, address: address } }
   let(:jane)            { { name: 'Jane', age: 25, address: {} } }

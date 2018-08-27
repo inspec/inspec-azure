@@ -18,7 +18,7 @@ class AzurermSecurityCenterPolicies < AzurermPluralResource
   attr_reader :table
 
   def initialize
-    resp = client.security_center_policies
+    resp = management.security_center_policies
     return if has_error?(resp)
 
     @table = resp

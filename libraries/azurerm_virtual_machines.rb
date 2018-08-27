@@ -20,7 +20,7 @@ class AzurermVirtualMachines < AzurermPluralResource
   attr_reader :table
 
   def initialize(resource_group: nil)
-    resp = client.virtual_machines(resource_group)
+    resp = management.virtual_machines(resource_group)
     return if has_error?(resp)
 
     @table = resp.collect(&with_platform)

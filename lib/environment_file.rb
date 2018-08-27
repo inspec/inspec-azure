@@ -2,6 +2,7 @@ class EnvironmentFile
   OPTIONS = %w{
     graph
     network_watcher
+    msi
   }.freeze
 
   def self.options(path)

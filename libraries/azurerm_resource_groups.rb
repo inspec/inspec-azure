@@ -20,6 +20,6 @@ class AzurermResourceGroups < AzurermPluralResource
   end
 
   def table
-    @table ||= client.resource_groups
+    @table ||= management.resource_groups
   end
 end

@@ -22,6 +22,10 @@ variable "activity_log_alert" {
   }
 }
 
+variable "linux_external_os_disk" {
+  default = "linux-external-osdisk"
+}
+
 variable "linux_internal_os_disk" {
   default = "Linux-Internal-OSDisk-MD"
 }
@@ -32,6 +36,10 @@ variable "windows_internal_os_disk" {
 
 variable "windows_internal_data_disk" {
   default = "Windows-Internal-DataDisk-1-MD"
+}
+
+variable "linux_external_data_disk" {
+  default = "linux-external-datadisk-1"
 }
 
 variable "monitoring_agent_name" {
@@ -52,4 +60,12 @@ variable "unmanaged_data_disk_name" {
 
 variable "network_watcher" {
   default = false
+}
+
+variable "public_key" {
+  default = ""
+}
+
+variable "public_vm_count" {
+  default = 0
 }
