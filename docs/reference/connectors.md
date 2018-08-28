@@ -12,7 +12,7 @@ using a Service Principal. See the
 [README.md](https://github.com/inspec/inspec-azure#service-principal) for more
 information on setting up your Service Principal.
 
-When you run InSpec Subscription ID will be included in
+When you run InSpec, Subscription ID will be included in
 the target. `-t azure://$SUBSCRIPTION_ID`.
 
 To find your Subscription ID:
@@ -62,7 +62,7 @@ $env:AZURE_TENANT_ID="<Client Secret>"
 A credentials file may also be used. The default location is
 `~/.azure/credentials`. You may override the default location by setting the
 environment variable `AZURE_CRED_FILE` with your credential file's path. The
-credentials file is a ini file with the following structure:
+credentials file is an ini file with the following structure:
 
 ```
 [SUBSCRIPTION_ID]
@@ -110,14 +110,19 @@ $ bundle exec insepc exec . -t azure://
 A Managed Service Identity (MSI) connector may be used as well. For more
 information about MSI see
 [What is Managed Service Identity for Azure resources?](https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/overview).
-Using this strategy will require that you have enabled MSI on the virtual
-machine you wish to use.
+You will need shell or desktop access to an Azure virutal machine with MSI
+enabled. When running a Chef Compliance profile while on that machine's shell
+or desktop Train will attempt to use the MSI connector.
 
-Using this method you will only need to have a Subscription ID, which should be
-included with the target flag `-t azure://SUBSCRIPTION_ID`. We will use the MSI
-connector when no Client ID and Client Secret are present and the MSI port is
-open (50342 by default). You may change the default port by setting
-`AZURE_MSI_PORT` with the port you have configured as an environment variable.
+This method requires only a Subscription ID, which should be included with the
+target flag `-t azure://SUBSCRIPTION_ID`. We will use the MSI connector when no
+Client ID and Client Secret are present and the MSI port is open (50342 by
+default). You may change the default port by setting `AZURE_MSI_PORT` with the
+port you have configured as an environment variable.
 
 The VM account must have contributor role for your subscription for this
-resource pack to function. It must also have read access to the Graph API.
+resource pack to function.
+
+*note:* MSI support was added in Train 1.4.35 for this resource pack.
+Unfortunately, the Graph API is not support at this time. We will update this
+guide when Graph API is supported.
