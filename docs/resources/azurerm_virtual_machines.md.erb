@@ -43,9 +43,9 @@ The `resource_group` must be given as a parameter.
     describe azurerm_virtual_machines(resource_group: 'MyResourceGroup') do
       it { should exist }
     end
-    
+
     # Filters based on platform
-    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
+    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
       it { should exist }
     end
 
@@ -75,7 +75,7 @@ Filters the results to only include those that match the given platform. Valid c
 `linux` and `windows`.
 
     # Insist that you have at least one windows virtual machine
-    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
+    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
       it { should exist }
     end
 
@@ -126,9 +126,9 @@ page](https://www.inspec.io/docs/reference/matchers/).
     describe azurerm_virtual_machines(resource_group: 'MyResourceGroup') do
       it { should_not exist }
     end
-    
+
     # Should exist if the filter returns a single virtual machine
-    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
+    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
       it { should exist }
     end
 

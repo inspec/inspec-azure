@@ -74,7 +74,10 @@ module Azure
     end
 
     def resource_groups
-      get(url: link(location: 'resourcegroups', provider: false), api_version: '2018-02-01')
+      get(
+        url: link(location: 'resourcegroups', provider: false),
+        api_version: '2018-02-01',
+      )
     end
 
     def security_center_policy(id)
@@ -135,6 +138,22 @@ module Azure
         url: link(location: 'Microsoft.Compute/disks',
                   resource_group: resource_group) + id,
         api_version: '2017-03-30',
+      )
+    end
+
+    def subnet(resource_group, vnet, id)
+      get(
+        url: link(location: "Microsoft.Network/virtualNetworks/#{vnet}/subnets",
+                    resource_group: resource_group) + id,
+        api_version: '2018-02-01',
+      )
+    end
+
+    def subnets(resource_group, vnet)
+      get(
+        url: link(location: "Microsoft.Network/virtualNetworks/#{vnet}/subnets",
+                    resource_group: resource_group),
+        api_version: '2018-02-01',
       )
     end
 

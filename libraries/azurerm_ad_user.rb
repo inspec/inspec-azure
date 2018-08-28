@@ -39,12 +39,10 @@ class AzurermAdUser < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(user_id: nil)
-    user = graph_client.user(user_id)
-    return if user.nil?
+    user = graph.user(user_id)
+    return if has_error?(user)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", user[field.to_s])
-    end
+    assign_fields(ATTRS, user)
 
     @exists = true
   end
@@ -54,6 +52,6 @@ class AzurermAdUser < AzurermSingularResource
   end
 
   def to_s
-    "Azure Active Directory Username: '#{displayName}' with email '#{mail}'"
+    "Azure Active Directory Username: '#{displayName}' with objectId '#{objectId}'"
   end
 end

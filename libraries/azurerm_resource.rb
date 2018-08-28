@@ -5,46 +5,62 @@ require 'support/azure'
 class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
-  MANAGEMENT_HOST = 'https://management.azure.com'
-  GRAPH_HOST      = 'https://graph.windows.net'
-
-  def client
+  def management
     Azure::Management.instance
-                     .with_client(rest_client)
+                     .with_client(management_client)
                      .for_subscription(subscription_id)
   end
 
-  def graph_client
+  def graph
+    if inspec.backend.msi_auth?
+      raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported for Active Directory Users.'
+    end
     Azure::Graph.instance
-                .with_client(rest_client(GRAPH_HOST))
+                .with_client(graph_client)
                 .for_tenant(tenant_id)
   end
 
   private
 
-  def rest_client(host = MANAGEMENT_HOST)
-    Azure::Rest.new(host, credentials: credentials.to_h)
+  def management_client
+    Azure::Rest.new(inspec.backend.azure_client)
   end
 
-  def subscription_id
-    credentials.subscription_id
+  def graph_client
+    Azure::Rest.new(inspec.backend.azure_client(::Azure::GraphRbac::Profiles::Latest::Client))
   end
 
   def tenant_id
-    credentials.tenant_id
+    inspec.backend.azure_client.tenant_id
   end
 
-  def credentials
-    @credentials ||= begin
-      args = {}
-      args[:subscription_id] = inspec.backend.options[:subscription_id] if respond_to?(:inspec)
+  def subscription_id
+    inspec.backend.azure_client.subscription_id
+  end
 
-      Azure::Credentials.new(args)
+  def has_error?(struct)
+    struct.nil? || (struct.is_a?(Struct) && struct.key?(:error))
+  end
+
+  def assign_fields(keys, struct)
+    keys.each do |field|
+      next if instance_variable_defined?("@#{field}")
+
+      instance_variable_set("@#{field}", struct.key?(field) ? struct[field] : nil)
+    end
+  end
+
+  def assign_fields_with_map(map, struct)
+    map.each do |name, api_name|
+      next if instance_variable_defined?("@#{name}")
+
+      instance_variable_set("@#{name}", struct.key?(api_name) ? struct[api_name] : nil)
     end
   end
 end
 
-class AzurermPluralResource < AzurermResource; end
+class AzurermPluralResource < AzurermResource
+end
 
 class AzurermSingularResource < AzurermResource
   def exists?

@@ -55,7 +55,7 @@ The following examples show how to use this InSpec audit resource.
 
 ### Insist that your resource group exists
 
-    describe azurerm_resource_groups.where('name' => 'MyResourceGroup')
+    describe azurerm_resource_groups.where(name: 'MyResourceGroup')
       it { should exist }
     end
 

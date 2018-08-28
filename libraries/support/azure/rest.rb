@@ -7,10 +7,11 @@ module Azure
   class Rest
     attr_reader :host, :resource, :credentials
 
-    def initialize(host, credentials: {})
-      @host        = host
-      @resource    = "#{host}/"
-      @credentials = credentials
+    def initialize(client)
+      @host        = client.base_url
+      @resource    = client.base_url.to_s
+      @resource    += '/' unless @resource.end_with?('/')
+      @credentials = client.credentials
     end
 
     def get(path, params: {}, headers: {})
@@ -18,7 +19,8 @@ module Azure
         req.url path
 
         req.params  = req.params.merge(params)
-        req.headers = headers.merge(authorization: authorization_header)
+        req.headers = req.headers.merge(headers)
+        credentials.sign_request(req)
       end
     end
 

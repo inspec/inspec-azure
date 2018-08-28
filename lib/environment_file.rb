@@ -2,6 +2,7 @@ class EnvironmentFile
   OPTIONS = %w{
     graph
     network_watcher
+    msi
   }.freeze
 
   def self.options(path)
@@ -40,7 +41,7 @@ class EnvironmentFile
   end
 
   def match_export_statement(key, text)
-    /export #{key}=.*$/.match?(text)
+    /export #{key}=.*$/.match(text)
   end
 
   def export_statement(key, value)

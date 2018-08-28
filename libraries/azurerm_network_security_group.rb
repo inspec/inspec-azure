@@ -24,12 +24,10 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(resource_group: nil, name: nil)
-    resp = client.network_security_group(resource_group, name)
-    return if resp.nil? || resp.key?('error')
+    resp = management.network_security_group(resource_group, name)
+    return if has_error?(resp)
 
-    ATTRS.each do |field|
-      instance_variable_set("@#{field}", resp[field.to_s])
-    end
+    assign_fields(ATTRS, resp)
 
     @exists = true
   end

@@ -18,8 +18,8 @@ class AzurermNetworkSecurityGroups < AzurermPluralResource
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group: nil)
-    resp = client.network_security_groups(resource_group)
-    return if resp.nil? || (resp.is_a?(Hash) && resp.key?('error'))
+    resp = management.network_security_groups(resource_group)
+    return if has_error?(resp)
 
     @table = resp
   end
