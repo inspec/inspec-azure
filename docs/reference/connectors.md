@@ -8,9 +8,10 @@ This resource pack supports the following connection configurations:
 
 For any of these connection strategies you'll need a Subscription ID and Tenant
 ID. These values may be found in the Azure Portal. This guide assumes you are
-using a Service Principal. See the
+using a service account. See the
 [README.md](https://github.com/inspec/inspec-azure#service-principal) for more
-information on setting up your Service Principal.
+information on setting up a service account, which will also be referred to as
+a service principal.
 
 When you run InSpec, Subscription ID will be included in
 the target. `-t azure://$SUBSCRIPTION_ID`.
