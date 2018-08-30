@@ -115,6 +115,9 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md.erb)
 - [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
 
+## Connectors
+
+See [Connectors](docs/reference/connectors.md) for more information on the different connection strategies we support.
 
 ## Development
 
