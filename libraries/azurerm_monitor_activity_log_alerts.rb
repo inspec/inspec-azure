@@ -27,7 +27,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
                  .collect(&with_operations)
   end
 
-  include Deprecations::StringsInWhereClause
+  include Azure::Deprecations::StringsInWhereClause
 
   def to_s
     'Activity Log Alerts'

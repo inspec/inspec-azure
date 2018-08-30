@@ -24,7 +24,7 @@ class AzurermSubnets < AzurermPluralResource
     @table = resp
   end
 
-  include Deprecations::StringsInWhereClause
+  include Azure::Deprecations::StringsInWhereClause
 
   def to_s
     "Azure Subnets for virtual network: '#{@vnet}'"

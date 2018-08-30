@@ -28,7 +28,7 @@ class AzurermAdUsers < AzurermPluralResource
     @table = resp
   end
 
-  include Deprecations::StringsInWhereClause
+  include Azure::Deprecations::StringsInWhereClause
 
   def guest_accounts
     @guest_accounts ||= where(userType: 'Guest').mails

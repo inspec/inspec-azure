@@ -24,7 +24,7 @@ class AzurermSecurityCenterPolicies < AzurermPluralResource
     @table = resp
   end
 
-  include Deprecations::StringsInWhereClause
+  include Azure::Deprecations::StringsInWhereClause
 
   def to_s
     'Security Policies'
