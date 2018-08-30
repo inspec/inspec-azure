@@ -6,7 +6,10 @@ module Azure
           alias_method :filtertable_where, :where
 
           def where(conditions = {}, &block)
-            string_warn = ->(k, v) { warn_deprecation(k, v) if k.is_a?(String); [:"#{k}", v] }
+            string_warn = lambda do |k, v|
+              warn_deprecation(k, v) if k.is_a?(String)
+              [:"#{k}", v]
+            end
 
             filtertable_where(conditions.map(&string_warn).to_h, &block)
           end
