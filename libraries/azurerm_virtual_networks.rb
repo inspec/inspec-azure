@@ -24,6 +24,8 @@ class AzurermVirtualNetworkss < AzurermPluralResource
     @table = resp
   end
 
+  include Deprecations::StringsInWhereClause
+
   def to_s
     'Azure Virtual Networks'
   end

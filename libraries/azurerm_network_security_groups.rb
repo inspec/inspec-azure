@@ -24,6 +24,8 @@ class AzurermNetworkSecurityGroups < AzurermPluralResource
     @table = resp
   end
 
+  include Deprecations::StringsInWhereClause
+
   def to_s
     'Network Security Groups'
   end
