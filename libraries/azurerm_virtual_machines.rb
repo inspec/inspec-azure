@@ -28,6 +28,8 @@ class AzurermVirtualMachines < AzurermPluralResource
                  .collect(&with_data_disks)
   end
 
+  include Azure::Deprecations::StringsInWhereClause
+
   def to_s
     'Azure Virtual Machines'
   end

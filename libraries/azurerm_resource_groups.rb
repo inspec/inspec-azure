@@ -15,11 +15,18 @@ class AzurermResourceGroups < AzurermPluralResource
              .register_column(:names, field: 'name')
              .install_filter_methods_on_resource(self, :table)
 
-  def to_s
-    'Resource Groups'
+  attr_reader :table
+
+  def initialize
+    resp = management.resource_groups
+    return if has_error?(resp)
+
+    @table = resp
   end
 
-  def table
-    @table ||= management.resource_groups
+  include Azure::Deprecations::StringsInWhereClause
+
+  def to_s
+    'Resource Groups'
   end
 end

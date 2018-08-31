@@ -24,6 +24,8 @@ class AzurermNetworkWatchers < AzurermPluralResource
     @table = resp
   end
 
+  include Azure::Deprecations::StringsInWhereClause
+
   def to_s
     'Network Watchers'
   end
