@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2018.08.31
+[Full Changelog](https://github.com/inspec/inspec-azure/compare/1.1.0...1.2.0)
+
+**Enhancements:**
+
+- Resources are now backed by structs instead of hashes. You may now access all of the properties of a resources without needing custom methods. Fixes [\#106](https://github.com/chef/inspec-azure/issues/106).
+
+- Replaces connection authentication with Train. The available connection strategies are documented [here](docs/reference/connectors.md).
+
+- Adds resources related to subnets. Thank you for your contribution [Matt Mclane](https://github.com/mmclane)!
+  * azurerm_subnet
+  * azurerm_subnets
+
+- Adds `pricing_tier` field to Security Center resource. Thank you for your contribution [Yarick Tsagoyko](https://github.com/yarick)!
+
+**Bug Fixes:**
+
+- Removes `source` command from Rakefile, which was causing an error after each rake command.
+
 ## [1.1.0] - 2018.08.09
 [Full Changelog](https://github.com/inspec/inspec-azure/compare/1.0.0...1.1.0)
 
