@@ -589,3 +589,20 @@ resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
     }
 SETTINGS
 }
+
+resource "azurerm_sql_server" "sql-server-1" {
+  name                          = "${var.sql-server-name}"
+  resource_group_name           = "${azurerm_resource_group.rg.name}"
+  location                      = "${var.location}"
+  version                       = "12.0"
+  administrator_login           = "${terraform.workspace}"
+  administrator_login_password  = "P4assw0rd!"
+}
+
+resource "azurerm_sql_database" "sql-database-1" {
+  name                  = "${var.sql-database-name}"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  location              = "${var.location}"
+  server_name           = "${var.sql-server-name}"
+  tags {}
+}

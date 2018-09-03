@@ -141,10 +141,10 @@ module Azure
       )
     end
 
-    def subnet(resource_group, vnet, id)
+    def subnet(resource_group, vnet, name)
       get(
         url: link(location: "Microsoft.Network/virtualNetworks/#{vnet}/subnets",
-                    resource_group: resource_group) + id,
+                  resource_group: resource_group) + name,
         api_version: '2018-02-01',
       )
     end
@@ -152,8 +152,24 @@ module Azure
     def subnets(resource_group, vnet)
       get(
         url: link(location: "Microsoft.Network/virtualNetworks/#{vnet}/subnets",
-                    resource_group: resource_group),
+                  resource_group: resource_group),
         api_version: '2018-02-01',
+      )
+    end
+
+    def sql_servers(resource_group)
+      get(
+        url: link(location: 'Microsoft.Sql/servers',
+                  resource_group: resource_group),
+        api_version: '2018-06-01-preview',
+      )
+    end
+
+    def sql_server(resource_group, name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{name}",
+                  resource_group: resource_group),
+        api_version: '2018-06-01-preview',
       )
     end
 
