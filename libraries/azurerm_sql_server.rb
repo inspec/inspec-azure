@@ -6,7 +6,7 @@ class AzurermSqlServer < AzurermSingularResource
   name 'azurerm_sql_server'
   desc 'Verifies settings for an Azure SQL Server'
   example <<-EXAMPLE
-    describe azure_sql_server(resource_group: 'My Resource Group', name: 'my-server-name') do
+    describe azure_sql_server(resource_group: 'rg-1', name: 'my-server-name') do
       it { should exist }
     end
   EXAMPLE
@@ -29,7 +29,13 @@ class AzurermSqlServer < AzurermSingularResource
 
     assign_fields(ATTRS, sql_server)
 
+    @resource_group = resource_group
+    @name = name
     @exists = true
+  end
+
+  def auditing_settings
+    management.sql_server_auditing_settings(@resource_group, @name)
   end
 
   def to_s

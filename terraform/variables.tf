@@ -77,3 +77,7 @@ variable "sql-server-name" {
 variable "sql-database-name" {
   default = "sql-database-1"
 }
+
+variable "sql-server-version" {
+  default = "12.0"
+}

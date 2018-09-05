@@ -24,7 +24,7 @@ class AzurermSqlServers < AzurermPluralResource
              .register_column(:types,      field: :type)
              .install_filter_methods_on_resource(self, :table)
 
-  def initialize(resource_group)
+  def initialize(resource_group: nil)
     servers = management.sql_servers(resource_group)
     return if has_error?(servers)
 

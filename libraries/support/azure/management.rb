@@ -173,6 +173,14 @@ module Azure
       )
     end
 
+    def sql_server_auditing_settings(resource_group, name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{name}/auditingSettings/default",
+                  resource_group: resource_group),
+        api_version: '2017-03-01-preview',
+      )
+    end
+
     private
 
     def link(location:, provider: true, resource_group: nil)

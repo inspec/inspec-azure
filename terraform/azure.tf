@@ -594,7 +594,7 @@ resource "azurerm_sql_server" "sql-server-1" {
   name                          = "${var.sql-server-name}"
   resource_group_name           = "${azurerm_resource_group.rg.name}"
   location                      = "${var.location}"
-  version                       = "12.0"
+  version                       = "${var.sql-server-version}"
   administrator_login           = "${terraform.workspace}"
   administrator_login_password  = "P4assw0rd!"
 }
