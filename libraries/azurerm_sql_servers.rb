@@ -20,7 +20,7 @@ class AzurermSqlServers < AzurermPluralResource
              .register_column(:kinds,      field: :kind)
              .register_column(:locations,  field: :location)
              .register_column(:properties, field: :properties)
-             .register_column(:tags,       field: :tags)
+             .register_column(:tags,       field: :tag)
              .register_column(:types,      field: :type)
              .install_filter_methods_on_resource(self, :table)
 
