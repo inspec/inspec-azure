@@ -6,7 +6,7 @@ class AzurermSqlServer < AzurermSingularResource
   name 'azurerm_sql_server'
   desc 'Verifies settings for an Azure SQL Server'
   example <<-EXAMPLE
-    describe azure_sql_server(resource_group: 'rg-1', name: 'my-server-name') do
+    describe azure_sql_server(resource_group: 'rg-1', server_name: 'my-server-name') do
       it { should exist }
     end
   EXAMPLE
