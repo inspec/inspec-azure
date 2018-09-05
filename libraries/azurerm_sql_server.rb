@@ -6,7 +6,7 @@ class AzurermSqlServer < AzurermSingularResource
   name 'azurerm_sql_server'
   desc 'Verifies settings for an Azure SQL Server'
   example <<-EXAMPLE
-    describe azure_sql_server(resource_group: 'rg-1', name: 'my-server-name') do
+    describe azure_sql_server(resource_group: 'rg-1', server_name: 'my-server-name') do
       it { should exist }
     end
   EXAMPLE
@@ -23,19 +23,23 @@ class AzurermSqlServer < AzurermSingularResource
 
   attr_reader(*ATTRS)
 
-  def initialize(resource_group: nil, name: nil)
-    sql_server = management.sql_server(resource_group, name)
+  def initialize(resource_group: nil, server_name: nil)
+    sql_server = management.sql_server(resource_group, server_name)
     return if has_error?(sql_server)
 
     assign_fields(ATTRS, sql_server)
 
     @resource_group = resource_group
-    @name = name
+    @server_name = server_name
     @exists = true
   end
 
   def auditing_settings
-    management.sql_server_auditing_settings(@resource_group, @name)
+    management.sql_server_auditing_settings(@resource_group, @server_name)
+  end
+
+  def threat_detection_settings
+    management.sql_server_threat_detection_settings(@resource_group, @server_name)
   end
 
   def to_s

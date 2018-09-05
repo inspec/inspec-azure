@@ -173,9 +173,17 @@ module Azure
       )
     end
 
-    def sql_server_auditing_settings(resource_group, name)
+    def sql_server_auditing_settings(resource_group, server_name)
       get(
-        url: link(location: "Microsoft.Sql/servers/#{name}/auditingSettings/default",
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/auditingSettings/default",
+                  resource_group: resource_group),
+        api_version: '2017-03-01-preview',
+      )
+    end
+
+    def sql_server_threat_detection_settings(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/securityAlertPolicies/Default",
                   resource_group: resource_group),
         api_version: '2017-03-01-preview',
       )
