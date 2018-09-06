@@ -75,7 +75,7 @@ module Azure
       cache.fetch(url) do
         body = rest_client.get(url,
                                params: { 'api-version' => api_version },
-                               headers: {:Accept => 'application/json'}).body
+                               headers: { Accept: 'application/json' }).body
 
         error_handler&.(body)
 
