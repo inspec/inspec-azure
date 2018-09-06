@@ -10,6 +10,10 @@ of an Azure Monitor Activity Log Alert.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2017-04-01` of the Azure Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/monitor/activitylogalerts/get).
+
 ## Availability
 
 ### Installation
@@ -66,16 +70,68 @@ The resource group as well as the Activty Log Alert
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
     end
 
-## Properties
+## Attributes
 
-  - `operations`
+  For more information on these attributes see [Azure REST API documentation](https://docs.microsoft.com/en-us/rest/api/monitor/activitylogalerts/get#activitylogalertresource).
+
+  - `id`,`name`,`operations`,`properties`,`conditions`
+
+### id
+
+The Activity Log Alert's id.
+
+    its('id') { should eq(id) }
+
+### name
+
+The Activity Log Alert's name.
+
+    its('name') { should eq(name) }
 
 ### operations
 
-The operations collection can be checked for the presence or absence of a given operation
-string.
+The operations collection can be checked for the presence or absence of a given
+operation string.
 
     its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
+
+### properties.actions
+
+A list of actions that are executed when the condition is met.
+
+### properties.description
+
+Description of this alert.
+
+    its('properties.description') { should eq 'Alert description' }
+
+### properties.enabled
+
+Indicates if this alert is enabled or not (`true`|`false`).
+
+    its('properties.enabled') { should be_true }
+
+### properties.scopes
+
+List of resources this alert applies to. There must be at least one item in
+this list.
+
+    its('properties.scopes') { should include 'subscriptions/SUBSCRIPTION_ID' }
+
+
+### Other Attributes
+
+There are additional attributes that may be accessed that we have not
+documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+Any attribute in the response may be accessed with the key names separated by
+dots (`.`).
+
+The api may not always return keys if there is no data associated with that
+key. There may be cases where the deeply nested property may not have the
+desired attribute along your call chain. If find yourself writing tests against
+properties that may be nil, fork this resource pack and add an accessor to the
+resource. Within that accessor you'll be able to guard against nil keys. Pull
+requests are always welcome.
 
 ## Matchers
 
