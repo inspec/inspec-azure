@@ -10,6 +10,10 @@ exists.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2018-02-01` of the Azure Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-watcher/networkwatchers/list).
+
 ## Availability
 
 ### Installation
@@ -71,7 +75,7 @@ zero matches.
     describe azurerm_network_watchers(resource_group: 'ExampleGroup') do
       it { should exist }
     end
-    
+
     # If we expect 'MissingExampleGroup' Resource Group to not have Network Watchers
     describe azurerm_network_watchers(resource_group: 'MissingExampleGroup') do
       it { should_not exist }
