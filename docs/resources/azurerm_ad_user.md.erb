@@ -10,6 +10,10 @@ an Azure Active Directory user within a Tenant.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `1.6` of the Azure Graph API. For more information see the [official Azure documentation](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/users-operations#GetAUser).
+
 ## Availability
 
 ### Installation
@@ -66,7 +70,7 @@ If an Active Directory user account is referenced with an invalid ID
     ...
   end
 
-## Properties
+## Attributes
 
   - `object_id', `account_enabled', `city', `country', `department',
     `displayName', `facsimile_telephone_number', `given_name', `job_title',
@@ -164,6 +168,37 @@ The principal name of the user.
 
 A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'.
 
+### Other Attributes
+
+There are additional attributes that may be accessed that we have not
+documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+Any attribute in the response may be accessed with the key names separated by
+dots (`.`). Given the example response in their documentation:
+
+```
+...
+  "preferredLanguage": "en-US",
+  "provisionedPlans": [
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+...
+```
+
+We may access `provisioningStatus` with:
+
+```
+its('provisionedPlants.first.provisioningStatus') { should eq "Success" }
+```
+
+The api may not always return keys if there is no data associated with that
+key. There may be cases where the deeply nested property may not have the
+desired attribute along your call chain. If find yourself writing tests against
+properties that may be nil, fork this resource pack and add an accessor to the
+resource. Within that accessor you'll be able to guard against nil keys. Pull
+requests are always welcome.
 
 ## Matchers
 
