@@ -10,6 +10,10 @@ Security Groups.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2018-02-01` of the Azure Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups/list).
+
 ## Availability
 
 ### Installation
@@ -71,7 +75,7 @@ zero matches.
     describe azurerm_network_security_groups(resource_group: 'ExampleGroup') do
       it { should exist }
     end
-    
+
     # If we expect 'EmptyExampleGroup' Resource Group to not have Network Security Groups
     describe azurerm_network_security_groups(resource_group: 'EmptyExampleGroup') do
       it { should_not exist }
