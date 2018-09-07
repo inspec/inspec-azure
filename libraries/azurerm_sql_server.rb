@@ -42,6 +42,10 @@ class AzurermSqlServer < AzurermSingularResource
     management.sql_server_threat_detection_settings(@resource_group, @server_name)
   end
 
+  def administrators
+    management.sql_server_administrators(@resource_group, @server_name)
+  end
+
   def to_s
     "Azure SQL Server: '#{name}'"
   end

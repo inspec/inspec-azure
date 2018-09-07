@@ -189,6 +189,14 @@ module Azure
       )
     end
 
+    def sql_server_administrators(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/administrators",
+                  resource_group: resource_group),
+        api_version: '2014-04-01',
+      )
+    end
+
     private
 
     def link(location:, provider: true, resource_group: nil)
