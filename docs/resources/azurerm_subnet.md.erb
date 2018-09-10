@@ -10,7 +10,15 @@ subnet for a given virtual network.
 
 <br />
 
-## Availability
+## Availabilityzure REST API version
+
+This resource interacts with version `2018-02-01` of the Azure
+Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/subnets/get).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
 
 ### Installation
 
@@ -127,6 +135,20 @@ The address prefix for the subnet.
 The network security group attached to the subnet.
 
     its('nsg') { should eq 'MyNetworkSecurityGroupName' }
+
+### Other Attributes
+
+There are additional attributes that may be accessed that we have not
+documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+Any attribute in the response may be accessed with the key names separated by
+dots (`.`).
+
+The api may not always return keys if there is no data associated with that
+key. There may be cases where the deeply nested property may not have the
+desired attribute along your call chain. If find yourself writing tests against
+properties that may be nil, fork this resource pack and add an accessor to the
+resource. Within that accessor you'll be able to guard against nil keys. Pull
+requests are always welcome.
 
 ## Matchers
 
