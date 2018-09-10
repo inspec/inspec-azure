@@ -199,7 +199,7 @@ We may access `provisioningStatus` with:
 its('provisionedPlants.first.provisioningStatus') { should eq "Success" }
 ```
 
-The API may not always return keys that do not have any associated data.  There
+The API may not always return keys that do not have any associated data. There
 may be cases where the deeply nested property may not have the desired
 attribute along your call chain. If find yourself writing tests against
 properties that may be nil, fork this resource pack and add an accessor to the
