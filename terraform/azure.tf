@@ -48,12 +48,13 @@ resource "random_string" "storage_account" {
 }
 
 resource "azurerm_storage_account" "sa" {
-  name                     = "${random_string.storage_account.result}"
-  location                 = "${var.location}"
-  resource_group_name      = "${azurerm_resource_group.rg.name}"
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  tags                     = {
+  name                      = "${random_string.storage_account.result}"
+  location                  = "${var.location}"
+  resource_group_name       = "${azurerm_resource_group.rg.name}"
+  enable_https_traffic_only = true
+  account_tier              = "Standard"
+  account_replication_type  = "LRS"
+  tags                      = {
     user = "${terraform.workspace}"
   }
 }

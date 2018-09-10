@@ -94,6 +94,14 @@ module Azure
       )
     end
 
+    def storage_account(resource_group, name)
+      get(
+        url: link(location: 'Microsoft.Storage/storageAccounts',
+                  resource_group: resource_group) + name,
+        api_version: '2017-06-01',
+      )
+    end
+
     def storage_accounts
       get(
         url: link(location: 'Microsoft.Storage/storageAccounts'),
