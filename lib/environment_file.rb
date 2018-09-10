@@ -3,6 +3,7 @@ class EnvironmentFile
     graph
     network_watcher
     msi
+    sql
   }.freeze
 
   def self.options(path)
