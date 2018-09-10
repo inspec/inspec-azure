@@ -1,0 +1,32 @@
+# frozen_string_literal: true
+
+require 'azurerm_resource'
+
+class StorageAccounts < AzurermPluralResource
+  name 'azurerm_storage_accounts'
+  desc 'Fetches all Azure Monitor Log Profiles'
+  example <<-EXAMPLE
+    describe azurerm_storage_accounts do
+      its('names') { should include('default') }
+    end
+  EXAMPLE
+
+  FilterTable.create
+             .register_column(:names, field: 'name')
+             .install_filter_methods_on_resource(self, :table)
+
+  attr_reader :table
+
+  def initialize
+    resp = management.storage_accounts
+    return if has_error?(resp)
+
+    @table = resp
+  end
+
+  include Azure::Deprecations::StringsInWhereClause
+
+  def to_s
+    'Storage Accounts'
+  end
+end
