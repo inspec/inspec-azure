@@ -43,6 +43,10 @@ class AzurermSqlDatabase < AzurermSingularResource
     management.sql_database_threat_detection_settings(@resource_group, @server_name, @database_name)
   end
 
+  def encryption_settings
+    management.sql_database_encryption(@resource_group, @server_name, @database_name)
+  end
+
   def to_s
     "Azure SQL Database: '#{name}'"
   end

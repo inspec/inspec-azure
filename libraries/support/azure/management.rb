@@ -215,7 +215,8 @@ module Azure
 
     def sql_database_auditing_settings(resource_group, server_name, database_name)
       get(
-        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}/auditingSettings/default",
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}" \
+                            '/auditingSettings/default',
                   resource_group: resource_group),
         api_version: '2017-03-01-preview',
       )
@@ -223,7 +224,17 @@ module Azure
 
     def sql_database_threat_detection_settings(resource_group, server_name, database_name)
       get(
-        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}/securityAlertPolicies/default",
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}" \
+                            '/securityAlertPolicies/default',
+                  resource_group: resource_group),
+        api_version: '2014-04-01',
+      )
+    end
+
+    def sql_database_encryption(resource_group, server_name, database_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}" \
+                            '/transparentDataEncryption/current',
                   resource_group: resource_group),
         api_version: '2014-04-01',
       )
