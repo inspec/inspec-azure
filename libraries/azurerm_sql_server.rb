@@ -16,9 +16,9 @@ class AzurermSqlServer < AzurermSingularResource
     name
     kind
     location
-    properties
-    tags
     type
+    tags
+    properties
   ).freeze
 
   attr_reader(*ATTRS)

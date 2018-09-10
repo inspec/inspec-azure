@@ -1,11 +1,11 @@
 ---
-title: About the azurerm_sql_servers Resource
+title: About the azurerm_sql_databases Resource
 platform: azure
 ---
 
-# azurerm\_sql\_servers
+# azurerm\_sql\_databases
 
-Use the `azurerm_sql_servers` InSpec audit resource to test properties and configuration of Azure SQL Servers.
+Use the `azurerm_sql_databases` InSpec audit resource to test properties and configuration of Azure SQL Databases.
 <br />
 
 ## Availability
@@ -29,15 +29,9 @@ This resource first became available in 1.1.0 of the inspec-azure resource pack.
 
 ## Syntax
 
-An `azurerm_sql_servers` resource block returns all Azure SQL Servers, either within a Resource Group (if provided), or within an entire Subscription.
+An `azurerm_sql_databases` resource block returns all SQL Databases on a SQL Server, within a Rsource Group.
 
-    describe azurerm_sql_servers do
-      ...
-    end
-    
-  or
-  
-    describe azurerm_sql_servers(resource_group: 'my-rg') do
+    describe azurerm_sql_databases(resource_group: ..., server_name: ...) do
       ...
     end
 
@@ -47,24 +41,24 @@ An `azurerm_sql_servers` resource block returns all Azure SQL Servers, either wi
 
 The following examples show how to use this InSpec audit resource.
 
-### Check SQL Servers are present
+### Check SQL Databases are present
 
-    describe azurerm_sql_servers do
+    describe azurerm_sql_databases(resource_group: 'resource-group-1', server_name: 'production') do
       it            { should exist }
-      its('names')  { should include 'my-server-name' }
+      its('names')  { should include 'my-database-name' }
     end
 <br />
 
 ## Filter Criteria
 
-* `names`
+* `azure_sql_databases` resources are filterable on all available properties. Below are some examples.
 
 ### names
 
-Filters the results to include only those servers that match the given
+Filters the results to include only those databases that match the given
 name. This is a string value.
 
-    describe azurerm_sql_servers.where{ name.eql?('production-server-5') } do
+    describe azurerm_sql_databases(resource_group: 'rg', server_name: 'server').where{ name.eql?('production-database') } do
       it { should exist }
     end
     
@@ -72,9 +66,9 @@ name. This is a string value.
 
 ### location
 
-Filters the results to include only those servers that reside ina given location. This is a string value.
+Filters the results to include only those resource groups that reside ina given location. This is a string value.
 
-    describe azurerm_sql_servers.where{ location.eql?('eastus') } do
+    describe azurerm_sql_databases(resource_group: 'rg', server_name: 'server').where{ location.eql?('eastus') } do
       it { should exist }
     end
 
@@ -84,35 +78,36 @@ Filters the results to include only those servers that reside ina given location
 - `name`
 - `kind`
 - `location`
-- `properties`
-- `tags`
 - `type`
+- `sku`
+- `properties`
     
-For more please see the [Microsoft Azure Documentation](https://docs.microsoft.com/en-us/rest/api/sql/servers/get#server)
+For more please see the [Microsoft Azure Documentation](https://docs.microsoft.com/en-us/rest/api/sql/databases/get)
+
 ### ids
 Azure resource ID.
 
 ### names
-SQL Server name, e.g. `my-sql-server`.
+SQL Database name, e.g. `my-sql-database`.
     
     its('names') { should include 'my-sql-database' }
 
 ### kinds
-Kind of sql server. This is metadata used for the Azure portal experience.
+Kind of sql database. This is metadata used for the Azure portal experience.
 
 ### locations
 Resource location, e.g. `eastus`.
 
     its('locations') { should_not include 'eastus' }
 
-### properties
-A collection of additional configuration properties related to the SQL Server, e.g. `administratorLogin`.
-
-### tag
-Resource tags applied to the SQL Server.
-
 ### type
-The type of Resource, typically `Microsoft.Sql/servers`.
+The type of Resource, typically `Microsoft.Sql/servers/databases`.
+
+### sku
+The name and tier of the SKU.
+
+### properties
+A collection of additional configuration properties related to the SQL Database, e.g. `collation`.
 
 ## Matchers
 
@@ -124,7 +119,7 @@ please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/
 The control will pass if the filter returns at least one result. Use
 `should_not` if you expect zero matches.
 
-    describe azurerm_sql_servers do
+    describe azurerm_sql_databases do
       it { should exist }
     end
 

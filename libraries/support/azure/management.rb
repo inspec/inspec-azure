@@ -197,6 +197,38 @@ module Azure
       )
     end
 
+    def sql_database(resource_group, server_name, database_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}",
+                  resource_group: resource_group),
+        api_version: '2017-10-01-preview',
+      )
+    end
+
+    def sql_databases(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases",
+                  resource_group: resource_group),
+        api_version: '2017-10-01-preview',
+      )
+    end
+
+    def sql_database_auditing_settings(resource_group, server_name, database_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}/auditingSettings/default",
+                  resource_group: resource_group),
+        api_version: '2017-03-01-preview',
+      )
+    end
+
+    def sql_database_threat_detection_settings(resource_group, server_name, database_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}/securityAlertPolicies/default",
+                  resource_group: resource_group),
+        api_version: '2014-04-01',
+      )
+    end
+
     private
 
     def link(location:, provider: true, resource_group: nil)
