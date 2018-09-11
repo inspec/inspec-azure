@@ -32,6 +32,10 @@ class AzurermKeyVault < AzurermSingularResource
     @exists = true
   end
 
+  def diagnostic_settings
+    management.key_vault_diagnostic_settings(id)
+  end
+
   def to_s
     "Azure Key Vault: '#{name}'"
   end
