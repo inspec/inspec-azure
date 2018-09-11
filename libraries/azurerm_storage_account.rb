@@ -15,7 +15,7 @@ class AzurermStorageAccout < AzurermSingularResource
   ATTRS = %i(
     name
     id
-    secure_transfer_enabled
+    properties
   ).freeze
 
   attr_reader(*ATTRS)
@@ -24,15 +24,11 @@ class AzurermStorageAccout < AzurermSingularResource
     resp = management.storage_account(opt[:resource_group], opt[:name])
     return if has_error?(resp)
 
-    @name                    = resp.name
-    @id                      = resp.id
-    @secure_transfer_enabled = resp.properties.supportsHttpsTrafficOnly
+    @name       = resp.name
+    @id         = resp.id
+    @properties = resp.properties
 
     @exists = true
-  end
-
-  def has_secure_transfer_enabled?
-    !!secure_transfer_enabled
   end
 
   def to_s
