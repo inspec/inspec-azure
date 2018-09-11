@@ -152,9 +152,9 @@ output "activity_log_alert_name" {
 }
 
 output "sql_server_name" {
-  value = "${azurerm_sql_server.sql-server-1.name}"
+  value = "${azurerm_sql_server.sql-server.name}"
 }
 
 output "sql_database_name" {
-  value = "${azurerm_sql_database.sql-database-1.name}"
+  value = "${azurerm_sql_database.sql-database.name}"
 }

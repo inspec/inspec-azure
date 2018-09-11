@@ -70,14 +70,6 @@ variable "public_vm_count" {
   default = 0
 }
 
-variable "sql-server-name" {
-  default = "sql-server-1"
-}
-
-variable "sql-database-name" {
-  default = "sql-database-1"
-}
-
 variable "sql-server-version" {
   default = "12.0"
 }
