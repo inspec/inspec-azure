@@ -16,6 +16,7 @@ class AzurermMonitorLogProfile < AzurermSingularResource
   ATTRS = %i(
     name
     id
+    properties
     retention_policy
     retention_days
     retention_enabled
@@ -32,6 +33,7 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     @retention_policy  = resp.properties.retentionPolicy
     @retention_days    = resp.properties.retentionPolicy.days
     @retention_enabled = resp.properties.retentionPolicy.enabled
+    @properties        = resp.properties
 
     @exists = true
   end

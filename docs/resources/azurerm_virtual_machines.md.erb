@@ -10,6 +10,16 @@ virtual machines for a resource group.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2017-12-01` of the Azure
+Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/list).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
+
 ## Availability
 
 ### Installation
@@ -88,7 +98,7 @@ Filters the result to only those that match the given name.
       it { should exist }
     end
 
-## Properties
+## Attributes
 
   - `os_disks`, `data_disks`, `vm_names`
 
