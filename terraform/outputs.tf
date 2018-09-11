@@ -158,3 +158,7 @@ output "sql_server_name" {
 output "sql_database_name" {
   value = "${azurerm_sql_database.sql-database-1.name}"
 }
+
+output "key_vault_name" {
+  value = "${azurerm_key_vault.disk_vault.name}"
+}
