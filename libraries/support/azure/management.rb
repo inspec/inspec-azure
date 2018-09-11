@@ -199,9 +199,9 @@ module Azure
 
     def sql_server_firewall_rules(resource_group, server_name)
       get(
-          url: link(location: "Microsoft.Sql/servers/#{server_name}/firewallRules",
-                    resource_group: resource_group),
-          api_version: '2014-04-01',
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/firewallRules",
+                  resource_group: resource_group),
+        api_version: '2014-04-01',
       )
     end
 
@@ -250,17 +250,17 @@ module Azure
 
     def key_vaults(resource_group)
       get(
-          url: link(location: "Microsoft.KeyVault/vaults",
-                    resource_group: resource_group),
-          api_version: '2016-10-01',
-          )
+        url: link(location: 'Microsoft.KeyVault/vaults',
+                  resource_group: resource_group),
+        api_version: '2016-10-01',
+      )
     end
 
     def key_vault(resource_group, key_vault_name)
       get(
-          url: link(location: "Microsoft.KeyVault/vaults/#{key_vault_name}",
-                    resource_group: resource_group),
-          api_version: '2016-10-01',
+        url: link(location: "Microsoft.KeyVault/vaults/#{key_vault_name}",
+                  resource_group: resource_group),
+        api_version: '2016-10-01',
       )
     end
 
