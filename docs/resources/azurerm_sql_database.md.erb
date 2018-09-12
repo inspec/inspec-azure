@@ -9,6 +9,16 @@ Use the `azurerm_sql_database` InSpec audit resource to test properties and conf
 an Azure SQL Database on a SQL Server.
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2017-10-01-preview` of the Azure Management API. For more
+information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/sql/databases/get).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
+
 ## Availability
 
 ### Installation
@@ -26,7 +36,7 @@ You'll also need to setup your Azure credentials; see the resource pack
 
 ### Version
 
-This resource first became available in 1.1.0 of the inspec-azure resource pack.
+This resource first became available in 1.2.0 of the inspec-azure resource pack.
 
 ## Syntax
 
@@ -60,8 +70,7 @@ If a SQL Database is referenced with an invalid `Resource Group`, `Server Name` 
   - `server_name` - The unique name of the SQL Server.
   - `database_name` - The unique name of the SQL Database.
 
-
-## Properties
+## Attributes
 
 - `id`
 - `name`
@@ -70,8 +79,6 @@ If a SQL Database is referenced with an invalid `Resource Group`, `Server Name` 
 - `type`
 - `sku`
 - `properties`
-    
-For more please see the [Microsoft Azure Documentation](https://docs.microsoft.com/en-us/rest/api/sql/databases/get)
 
 ### id
 Azure resource ID.
@@ -93,6 +100,20 @@ The name and tier of the SKU.
 
 ### properties
 A collection of additional configuration properties related to the SQL Database, e.g. `collation`.
+
+### Other Attributes
+
+There are additional attributes that may be accessed that we have not
+documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+Any attribute in the response may be accessed with the key names separated by
+dots (`.`).
+
+The API may not always return keys that do not have any associated data. There
+may be cases where the deeply nested property may not have the desired
+attribute along your call chain. If find yourself writing tests against
+properties that may be nil, fork this resource pack and add an accessor to the
+resource. Within that accessor you'll be able to guard against nil keys. Pull
+requests are always welcome.
 
 ## Matchers
 
