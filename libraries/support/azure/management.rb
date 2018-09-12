@@ -197,6 +197,14 @@ module Azure
       )
     end
 
+    def sql_server_firewall_rules(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/firewallRules",
+                  resource_group: resource_group),
+        api_version: '2014-04-01',
+      )
+    end
+
     def sql_database(resource_group, server_name, database_name)
       get(
         url: link(location: "Microsoft.Sql/servers/#{server_name}/databases/#{database_name}",
@@ -237,6 +245,29 @@ module Azure
                             '/transparentDataEncryption/current',
                   resource_group: resource_group),
         api_version: '2014-04-01',
+      )
+    end
+
+    def key_vaults(resource_group)
+      get(
+        url: link(location: 'Microsoft.KeyVault/vaults',
+                  resource_group: resource_group),
+        api_version: '2016-10-01',
+      )
+    end
+
+    def key_vault(resource_group, key_vault_name)
+      get(
+        url: link(location: "Microsoft.KeyVault/vaults/#{key_vault_name}",
+                  resource_group: resource_group),
+        api_version: '2016-10-01',
+      )
+    end
+
+    def key_vault_diagnostic_settings(key_vault_id)
+      get(
+        url: "#{key_vault_id}/providers/microsoft.insights/diagnosticSettings",
+        api_version: '2017-05-01-preview',
       )
     end
 

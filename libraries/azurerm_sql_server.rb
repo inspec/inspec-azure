@@ -46,6 +46,10 @@ class AzurermSqlServer < AzurermSingularResource
     management.sql_server_administrators(@resource_group, @server_name)
   end
 
+  def firewall_rules
+    management.sql_server_firewall_rules(@resource_group, @server_name)
+  end
+
   def to_s
     "Azure SQL Server: '#{name}'"
   end
