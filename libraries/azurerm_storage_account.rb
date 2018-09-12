@@ -20,8 +20,8 @@ class AzurermStorageAccout < AzurermSingularResource
 
   attr_reader(*ATTRS)
 
-  def initialize(opt = { name: 'default', resource_group: nil })
-    resp = management.storage_account(opt[:resource_group], opt[:name])
+  def initialize(name: 'default', resource_group: nil)
+    resp = management.storage_account(resource_group, name)
     return if has_error?(resp)
 
     @name       = resp.name
