@@ -266,8 +266,8 @@ module Azure
 
     def key_vault_diagnostic_settings(key_vault_id)
       get(
-          url: "#{key_vault_id}/providers/microsoft.insights/diagnosticSettings",
-          api_version: '2017-05-01-preview',
+        url: "#{key_vault_id}/providers/microsoft.insights/diagnosticSettings",
+        api_version: '2017-05-01-preview',
       )
     end
 
