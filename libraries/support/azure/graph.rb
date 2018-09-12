@@ -14,15 +14,19 @@ module Azure
 
     def user(id)
       get(
-        "/#{tenant_id}/users/#{id}",
-        params: { 'api-version' => '1.6' },
+        url:           "/#{tenant_id}/users/#{id}",
+        api_version:   '1.6',
+        error_handler: handle_error,
+        unwrap:        unwrap,
       )
     end
 
     def users
       get(
-        "/#{tenant_id}/users",
-        params: { 'api-version' => '1.6' },
+        url:           "/#{tenant_id}/users",
+        api_version:   '1.6',
+        error_handler: handle_error,
+        unwrap:        unwrap,
       )
     end
 
@@ -30,45 +34,40 @@ module Azure
 
     attr_reader :page_link_name
 
-    def format_error(error)
-      "#{error['code']}: #{error.dig('message', 'value')}"
-    end
-
-    def get(*args)
-      confirm_configured!
-      values = []
-
-      response = rest_client.get(*args).body
-
-      if response.key?('odata.error')
-        raise Inspec::Exceptions::ResourceFailed, format_error(response['odata.error'])
-      end
-
-      value = response.fetch('value', response)
-      next_link = response.fetch(page_link_name, nil)
-
-      # If it's a single entity being requested (e.g. a User), simply return the single entity.
-      return value unless value.is_a?(Array)
-
-      values += value
-
-      # Get more if Graph API has paginated results.
-      if !next_link.nil?
-        loop do
-          response = next_results(next_link)
-          values += response.fetch('value', response)
-          next_link = response.fetch(page_link_name, nil)
-          break unless next_link
+    def handle_error
+      lambda do |response|
+        if response.key?('odata.error')
+          error = response['odata.error']
+          message = "#{error['code']}: #{error.dig('message', 'value')}"
+          raise Inspec::Exceptions::ResourceFailed, message
         end
       end
-      values
     end
 
-    def next_results(next_link)
-      rest_client.get(
-        "/#{tenant_id}/#{next_link}",
-        params: { 'api-version' => '1.6' },
-      ).body
+    def next_page
+      lambda do |url:, api_version:|
+        body = rest_client.get(url, params: { 'api-version' => api_version }).body
+        handle_error.call(body)
+        values = body.fetch('value', body)
+        link = body.fetch(page_link_name, nil)
+        return [values, link]
+      end
+    end
+
+    def unwrap
+      lambda do |body, api_version|
+        next_link = body.fetch(page_link_name, nil)
+        values = body.fetch('value', body)
+        return values unless values.is_a?(Array)
+
+        until next_link.nil?
+          records, next_link = next_page.call(url: "/#{tenant_id}/#{next_link}",
+                                              api_version: api_version)
+          values += records
+        end
+
+        values
+      end
     end
   end
 end

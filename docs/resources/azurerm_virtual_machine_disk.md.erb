@@ -11,6 +11,16 @@ not managed it will not `exist` to the matcher.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2017-03-30` of the Azure
+Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/compute/disks/get).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
+
 ## Availability
 
 ### Installation
@@ -65,7 +75,7 @@ The `resource_group` and `name` must be given as parameters.
       ...
     end
 
-## Properties
+## Attributes
 
   - `id`, `name`, `managedBy`, `sku`, `properties`, `type`, `location`, `tags`,
     `encryption_enabled`
@@ -131,6 +141,20 @@ The disk's tags. Will be a hash of key/value pairs.
 If the disk is encrypted or not (`true`|`false`).
 
     its('encryption_enabled') { should be true }
+
+### Other Attributes
+
+There are additional attributes that may be accessed that we have not
+documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+Any attribute in the response may be accessed with the key names separated by
+dots (`.`).
+
+The API may not always return keys that do not have any associated data. There
+may be cases where the deeply nested property may not have the desired
+attribute along your call chain. If find yourself writing tests against
+properties that may be nil, fork this resource pack and add an accessor to the
+resource. Within that accessor you'll be able to guard against nil keys. Pull
+requests are always welcome.
 
 ## Matchers
 

@@ -69,3 +69,7 @@ variable "public_key" {
 variable "public_vm_count" {
   default = 0
 }
+
+variable "sql-server-version" {
+  default = "12.0"
+}

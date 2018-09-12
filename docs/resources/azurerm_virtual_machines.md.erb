@@ -10,6 +10,16 @@ virtual machines for a resource group.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2017-12-01` of the Azure
+Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/list).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
+
 ## Availability
 
 ### Installation
@@ -43,9 +53,9 @@ The `resource_group` must be given as a parameter.
     describe azurerm_virtual_machines(resource_group: 'MyResourceGroup') do
       it { should exist }
     end
-    
+
     # Filters based on platform
-    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
+    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
       it { should exist }
     end
 
@@ -75,7 +85,7 @@ Filters the results to only include those that match the given platform. Valid c
 `linux` and `windows`.
 
     # Insist that you have at least one windows virtual machine
-    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
+    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
       it { should exist }
     end
 
@@ -88,7 +98,7 @@ Filters the result to only those that match the given name.
       it { should exist }
     end
 
-## Properties
+## Attributes
 
   - `os_disks`, `data_disks`, `vm_names`
 
@@ -126,9 +136,9 @@ page](https://www.inspec.io/docs/reference/matchers/).
     describe azurerm_virtual_machines(resource_group: 'MyResourceGroup') do
       it { should_not exist }
     end
-    
+
     # Should exist if the filter returns a single virtual machine
-    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
+    describe azurerm_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
       it { should exist }
     end
 

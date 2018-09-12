@@ -12,14 +12,21 @@ class AzurermSecurityCenterPolicies < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:policy_names, field: 'name')
+             .register_column(:policy_names, field: :name)
              .install_filter_methods_on_resource(self, :table)
+
+  attr_reader :table
+
+  def initialize
+    resp = management.security_center_policies
+    return if has_error?(resp)
+
+    @table = resp
+  end
+
+  include Azure::Deprecations::StringsInWhereClause
 
   def to_s
     'Security Policies'
-  end
-
-  def table
-    @table ||= management.security_center_policies
   end
 end

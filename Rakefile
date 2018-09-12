@@ -109,8 +109,6 @@ task :options, :component do |_t_, args|
   begin
     env_file = EnvironmentFile.new('.envrc')
     env_file.synchronize(components)
-
-    sh('source', '.envrc')
   rescue RuntimeError => error
     puts error.message
   end
@@ -140,6 +138,7 @@ namespace :test do
   task :integration, [:controls] => [:check_attributes_file] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
+              --reporter progress
               -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )
 
     if args[:controls]

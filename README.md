@@ -1,5 +1,7 @@
 # InSpec for Azure
 
+[![Build Status](https://travis-ci.org/inspec/inspec-azure.svg?branch=master)](https://travis-ci.org/inspec/inspec-azure)
+
 This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
 
 ## Prerequisites
@@ -97,6 +99,7 @@ end
 
 The following resources are available in the InSpec Azure Resource Pack
 
+- [azurerm_ad_user](docs/resources/azurerm_ad_user.md.erb)
 - [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
 - [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
 - [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md.erb)
@@ -109,10 +112,17 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md.erb)
 - [azurerm_security_center_policies](docs/resources/azurerm_security_center_policies.md.erb)
 - [azurerm_security_center_policy](docs/resources/azurerm_security_center_policy.md.erb)
+- [azurerm_subnet](docs/resources/azurerm_subnet.md.erb)
+- [azurerm_subnets](docs/resources/azurerm_subnets.md.erb)
 - [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md.erb)
 - [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md.erb)
 - [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
+- [azurerm_virtual_network](docs/resources/azurerm_virtual_network.md.erb)
+- [azurerm_virtual_networks](docs/resources/azurerm_virtual_networks.md.erb)
 
+## Connectors
+
+See [Connectors](docs/reference/connectors.md) for more information on the different connection strategies we support.
 
 ## Development
 
@@ -152,7 +162,7 @@ This environment may be used to run your profile against or to run integration t
 
 ### Direnv
 
-[Direnv](https://direnv.net/) is used to initial an environment variable `WORKSPACE` to your username. We recommend using `direnv` and allowing it to run in your environment. However, if you prefer to not use `direnv` you may also `source .envrc`.
+[Direnv](https://direnv.net/) is used to initialize an environment variable `WORKSPACE` to your username. We recommend using `direnv` and allowing it to run in your environment. However, if you prefer to not use `direnv` you may also `source .envrc`.
 
 ### Remote State
 

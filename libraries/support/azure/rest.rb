@@ -6,14 +6,14 @@ require 'faraday_middleware'
 module Azure
   class Rest
     USER_AGENT = 'User-Agent'
-    INSPEC_USER_AGENT = 'Chef-Inspec-18d63047-6cdf-4f34-beed-62f01fc73fc2'
+    INSPEC_USER_AGENT = 'Inspec-18d63047-6cdf-4f34-beed-62f01fc73fc2'
 
     attr_reader :host, :resource, :credentials
 
     def initialize(client)
       @host        = client.base_url
       @resource    = client.base_url.to_s
-      @resource    += '/' unless @resource[-1, 1] == '/'
+      @resource    += '/' unless @resource.end_with?('/')
       @credentials = client.credentials
     end
 

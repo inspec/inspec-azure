@@ -13,6 +13,17 @@ command on a group of resources.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2018-02-01` of the Azure Management API.
+For more information see the [official Azure
+documentation](https://docs.microsoft.com/en-us/rest/api/resources/resourcegroups/list).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
+
 ## Availability
 
 ### Installation
@@ -55,7 +66,7 @@ The following examples show how to use this InSpec audit resource.
 
 ### Insist that your resource group exists
 
-    describe azurerm_resource_groups.where('name' => 'MyResourceGroup')
+    describe azurerm_resource_groups.where(name: 'MyResourceGroup')
       it { should exist }
     end
 

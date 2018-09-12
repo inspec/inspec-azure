@@ -12,8 +12,9 @@ class AzurermResource < Inspec.resource(1)
   end
 
   def graph
-    raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported '\
-      'for Graph RBAC API, control skipped.' if inspec.backend.msi_auth?
+    if inspec.backend.msi_auth?
+      raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported for Active Directory Users.'
+    end
     Azure::Graph.instance
                 .with_client(graph_client)
                 .for_tenant(tenant_id)
@@ -26,7 +27,7 @@ class AzurermResource < Inspec.resource(1)
   end
 
   def graph_client
-    Azure::Rest.new(inspec.backend.graph_client)
+    Azure::Rest.new(inspec.backend.azure_client(::Azure::GraphRbac::Profiles::Latest::Client))
   end
 
   def tenant_id
@@ -36,9 +37,30 @@ class AzurermResource < Inspec.resource(1)
   def subscription_id
     inspec.backend.azure_client.subscription_id
   end
+
+  def has_error?(struct)
+    struct.nil? || (struct.is_a?(Struct) && struct.key?(:error))
+  end
+
+  def assign_fields(keys, struct)
+    keys.each do |field|
+      next if instance_variable_defined?("@#{field}")
+
+      instance_variable_set("@#{field}", struct.key?(field) ? struct[field] : nil)
+    end
+  end
+
+  def assign_fields_with_map(map, struct)
+    map.each do |name, api_name|
+      next if instance_variable_defined?("@#{name}")
+
+      instance_variable_set("@#{name}", struct.key?(api_name) ? struct[api_name] : nil)
+    end
+  end
 end
 
-class AzurermPluralResource < AzurermResource; end
+class AzurermPluralResource < AzurermResource
+end
 
 class AzurermSingularResource < AzurermResource
   def exists?

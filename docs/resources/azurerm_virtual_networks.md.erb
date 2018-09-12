@@ -10,6 +10,16 @@ virtual networks for a resource group.
 
 <br />
 
+## Azure REST API version
+
+This resource interacts with version `2018-02-01` of the Azure
+Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/virtualnetworks/list).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
+
 ## Availability
 
 ### Installation
@@ -65,7 +75,7 @@ Filters the results to only those that match the given name.
 
     # Insist that MyVnetName exists
     describe azurerm_virtual_networks(resource_group: 'MyResourceGroup')
-      .where('name' => 'MyVnetName') do
+      .where(name: 'MyVnetName') do
       it              { should exist }
     end
 
@@ -74,7 +84,7 @@ Filters the results to only those that match the given name.
       it { should exist }
     end
 
-## Properties
+## Attributes
 
   - `names`
 
@@ -95,11 +105,6 @@ page](https://www.inspec.io/docs/reference/matchers/).
     # Should not exist if no virtual networks are in the resource group
     describe azurerm_virtual_networks(resource_group: 'MyResourceGroup') do
       it { should_not exist }
-    end
-
-    # Should exist if the filter returns a single virtual network
-    describe azurerm_virtual_networks(resource_group: 'MyResourceGroup').where('platform' => 'windows') do
-      it { should exist }
     end
 
 ## Azure Permissions

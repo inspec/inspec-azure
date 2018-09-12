@@ -10,12 +10,22 @@ of the `default` Security Center Policy. Azure currently only supports looking
 up the `default` policy via their Rest API. If you attempt to look up a
 different Security Policy you will receive an error.
 
-An Azure Security Center Policy defines a set of controls recommended for resources within
-this subscription. These settings will generate alerts if something is found to violate
-the recommendations. This resource allows you to inspect what alerts you have configured
-for your account.
+An Azure Security Center Policy defines a set of controls recommended for
+resources within this subscription. These settings will generate alerts if
+something is found to violate the recommendations. This resource allows you to
+inspect what alerts you have configured for your account.
 
 <br />
+
+## Azure REST API version
+
+This resource interacts with version `2015-06-01-Preview` of the Azure
+Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/previous-versions/azure/reference/mt704062%28v%3dazure.100%29).
+
+At the moment, there doesn't appear to be a way to select the version of the
+Azure API docs. If you notice a newer version being referenced in the official
+documentation please open an issue or submit a pull request using the updated
+version.
 
 ## Availability
 
@@ -87,10 +97,11 @@ will search for the `default` Security Center Policy (Optional).
 
   - `id`, `name`, `log_collection`, `patch`, `baseline`, `anti_malware`,
     `disk_encryption`, `network_security_groups`, `web_application_firewall`,
-    `next_generation_firewall`, `vulnerability_assessment`, `just_in_time_network_access`,
-    `app_whitelisting`, `sql_auditing`, `sql_transparent_data_encryption`,
-    `notifications_enabled`, `send_security_email_to_admin`, `contact_emails`,
-    `contact_phone`
+    `next_generation_firewall`, `vulnerability_assessment`, `storage_encryption`,
+    `just_in_time_network_access`, `app_whitelisting`, `sql_auditing`,
+    `sql_transparent_data_encryption`, `notifications_enabled`,
+    `send_security_email_to_admin`, `contact_emails`, `contact_phone`,
+    `pricing_tier`
 
 ### id
 
@@ -110,6 +121,12 @@ The name of the Security Center Policy.
 Log collection indicates if the monitoring agent will collect security data (`On`|`Off`).
 
     its('log_collection') { should eq('On') }
+
+### pricing\_tier
+
+Cost/Feature Model under which the subscription is operating (`Standard`|`Free`).
+
+    its('pricing_tier') { should eq('Standard') }
 
 ### patch
 
@@ -166,6 +183,12 @@ Vulnerability assessment indicates if recommendations for virtual machines are e
 
     its('vulnerability_assessment') { should eq('On') }
 
+### storage\_encryption
+
+Storage Encryption indicates if new data in Azure Blobs and Files will be encrypted by default (`On`|`Off`).
+
+    its('storage_encryption') { should eq('On') }
+
 ### just\_in\_time\_network\_access
 
 Just in time network access indicates if recommendations for virtual machines are enabled
@@ -217,6 +240,20 @@ Contact emails contains a list of security email addresses.
 Contact phone contains the security contact phone number.
 
     its('contact_phone') { should eq('1-111-111-1111') }
+
+### Other Attributes
+
+There are additional attributes that may be accessed that we have not
+documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+Any attribute in the response may be accessed with the key names separated by
+dots (`.`).
+
+The API may not always return keys that do not have any associated data. There
+may be cases where the deeply nested property may not have the desired
+attribute along your call chain. If find yourself writing tests against
+properties that may be nil, fork this resource pack and add an accessor to the
+resource. Within that accessor you'll be able to guard against nil keys. Pull
+requests are always welcome.
 
 ## Matchers
 
