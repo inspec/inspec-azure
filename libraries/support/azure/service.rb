@@ -14,6 +14,11 @@ module Azure
       end
     end
 
+    EXEMPTED_TAGS = %i(
+      tags
+    ).freeze
+    private_constant :EXEMPTED_TAGS
+
     def with_cache(cache)
       @cache = cache
     end
@@ -42,7 +47,11 @@ module Azure
       return data unless data.is_a?(Hash)
       return data if data.empty?
 
-      ResponseStruct.create(data.keys.map(&:to_sym), data.values.map { |v| to_struct(v) })
+      exempted = data.slice(*EXEMPTED_TAGS)
+      data.reject! { |k, _| EXEMPTED_TAGS.include?(k.to_sym) }
+
+      ResponseStruct.create(data.keys.map(&:to_sym) + exempted.keys.map(&:to_sym),
+                            data.values.map { |v| to_struct(v) } + exempted.values)
     end
 
     private
