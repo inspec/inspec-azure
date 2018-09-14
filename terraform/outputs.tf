@@ -150,3 +150,15 @@ output "network_security_group_id" {
 output "activity_log_alert_name" {
   value = "${var.activity_log_alert["log_alert"]}"
 }
+
+output "sql_server_name" {
+  value = "${azurerm_sql_server.sql-server.name}"
+}
+
+output "sql_database_name" {
+  value = "${azurerm_sql_database.sql-database.name}"
+}
+
+output "key_vault_name" {
+  value = "${azurerm_key_vault.disk_vault.name}"
+}

@@ -589,3 +589,33 @@ resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
     }
 SETTINGS
 }
+
+resource "random_string" "sql_server" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "random_string" "sql_database" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_sql_server" "sql-server" {
+  name                         = "${random_string.sql_server.result}"
+  resource_group_name          = "${azurerm_resource_group.rg.name}"
+  location                     = "${var.location}"
+  version                      = "${var.sql-server-version}"
+  administrator_login          = "${terraform.workspace}"
+  administrator_login_password = "P4assw0rd!"
+}
+
+resource "azurerm_sql_database" "sql-database" {
+  name                = "${random_string.sql_database.result}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = "${var.location}"
+  server_name         = "${random_string.sql_server.result}"
+  depends_on          = ["azurerm_sql_server.sql-server"]
+  tags {}
+}

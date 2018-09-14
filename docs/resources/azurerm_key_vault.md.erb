@@ -1,19 +1,18 @@
 ---
-title: About the azurerm_monitor_log_profile Resource
+title: About the azurerm_key_vault Resource
 platform: azure
 ---
 
-# azurerm\_monitor\_log\_profile
+# azurerm\_key\_vault
 
-Use the `azurerm_monitor_log_profile` InSpec audit resource to test properties
-of an Azure Monitor Log Profile.
-
+Use the `azurerm_key_vault` InSpec audit resource to test properties and configuration of
+an Azure Key Vault.
 <br />
 
 ## Azure REST API version
 
-This resource interacts with version `2016-03-01` of the Azure Management API.
-For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/monitor/logprofiles/get).
+This resource interacts with version `2016-10-01` of the Azure Management API. For more
+information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/keyvault/vaults/get).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -35,65 +34,74 @@ following to your `inspec.yml` in your top-level profile:
 You'll also need to setup your Azure credentials; see the resource pack
 [README](https://github.com/inspec/inspec-azure#inspec-for-azure).
 
+### Version
+
+This resource first became available in 1.2.0 of the inspec-azure resource pack.
+
 ## Syntax
 
-An `azurerm_monitor_log_profile` resource block identifies a Log Profile by name.
+The `resource_group` and `vault_name` must be given as a parameter.
 
-    describe azurerm_monitor_log_profile(name: 'default') do
-      ...
+    describe azurerm_key_vault(resource_group: 'inspec-resource-group', vault_name: 'vault-101') do
+      it            { should exist }
+      its('name')   { should eq('vault-101') }    
     end
 
 <br />
 
 ## Examples
 
-### Test that a Log Profile exists
+If a Key Vault is referenced with a valid `Resource Group` and `Vault Name`
 
-    describe azurerm_monitor_log_profile(name: 'default') do
+    describe azurerm_key_vault(resource_group: 'my-rg', vault_name: 'vault-101') do
       it { should exist }
     end
 
-### Test that Log Profile retention is enabled
+If a Key Vault is referenced with an invalid `Resource Group` or `Vault Name`
 
-    describe azurerm_monitor_log_profile(name: 'default') do
-      its('retention_enabled') { should be true }
+    describe azurerm_key_vault(resource_group: 'invalid-rg', vault_name: 'vault-null') do
+      it { should_not exist }
     end
 
 <br />
 
 ## Parameters
 
-  - `name`
+  - `resource_group` - The resource Group to which the Key Vault belongs.
+  - `vault_name` - The unique name of the Key Vault.
 
-## Parameter Examples
-
-The name of the Log Profile.
-
-    describe azurerm_monitor_log_profile(name: 'default') do
-      it { should exist }
-    end
 
 ## Attributes
 
-  - `retention_enabled`
-  - `retention_days`
+- `id`
+- `name`
+- `location`
+- `type`
+- `tags`
+- `properties`
 
-### retention\_enabled
+### id
+Azure resource ID.
 
-Determine if retention is enabled
+### name
+Key Vault name, e.g. `vault-101`.
 
-    its('retention_enabled') { should be true }
+### location
+Resource location, e.g. `eastus`.
 
-### retention\_days
+### type
+The type of Resource, typically `Microsoft.KeyVault/vaults`.
 
-Determine number of days retention is enabled for
+### tags
+Resource tags applied to the Key Vault.
 
-    its('retention_days')    { should eq(365) }
+### properties
+A collection of additional configuration properties related to the Key Vault, e.g. `vaultUri`.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -112,17 +120,8 @@ page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
-The control will pass if the resource returns a result. Use `should_not` if you expect
-zero matches.
-
-    #  If we expect 'default' to exist
-    describe azurerm_monitor_log_profile(name: 'default') do
+    describe azurerm_key_vault(resource_group: 'my-rg', vault_name: 'vault-101') do
       it { should exist }
-    end
-
-    # If we expect 'default' to not exist
-    describe azurerm_monitor_log_profile(name: 'default') do
-      it { should_not exist }
     end
 
 ## Azure Permissions

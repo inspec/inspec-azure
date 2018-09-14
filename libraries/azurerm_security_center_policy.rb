@@ -14,6 +14,7 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
   ATTRS = {
     name:                            :name,
     id:                              :id,
+    properties:                      :properties,
     log_collection:                  :logCollection,
     pricing_tier:                    :selectedPricingTier,
     patch:                           :patch,
