@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Adds `pricing_tier` field to Security Center resource. Thank you for your contribution [Yarick Tsagoyko](https://github.com/yarick)!
 
-- Adds links Azure documentation and includes REST API version in resource documentation.
+- Adds links to Azure documentation and includes REST API version in resource documentation.
 
 **New Resources:**
 
