@@ -5,7 +5,7 @@ Typically there are two resources created for each resource type, singular and p
 The singular resource (`azurerm_subnet`) is used to test a specific resource of that type and should include all of the properties available. A plural resource (`azurerm_subnets`) is used to test the collection of resources of that type. This allows for tests to be written based on the group of resources.
 
 ## Update libraries/support/azure/management.rb
-The files in `libraries/support/azure` define how things are downloaded by the API. A definition needs to be added for the types of resources your going to be testing for (i.e. virtual machine, virtual networks, subnets, etc). This definition will need to include the location of the resource in the API. This is essentially the type of object. The [Azure Resource Explorer](https://resources.azure.com) can be used to determine the location by browsing for an object and referencing the object type.
+The files in `libraries/support/azure` define how things are downloaded by the API. A definition needs to be added for the types of resources you're going to be testing for (i.e. virtual machine, virtual networks, subnets, etc). This definition will need to include the location of the resource in the API. This is essentially the type of object. The [Azure Resource Explorer](https://resources.azure.com) can be used to determine the location by browsing for an object and referencing the object type.
 ```
 # Example: defines both subnet and subnets
 
@@ -42,7 +42,7 @@ class AzurermSubnet < AzurermSingularResource
 ```
 def initialize(resource_group: nil, name: nil)
   resp = client.subnet(resource_group, name)
-  return if resp.nil? || resp.key?('error')
+  return if has_error?(resp)
 ```
 
 ## Update Terraform outputs
