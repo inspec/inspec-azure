@@ -47,8 +47,7 @@ module Azure
       return data unless data.is_a?(Hash)
       return data if data.empty?
 
-      exempted = data.slice(*EXEMPTED_TAGS)
-      data.reject! { |k, _| EXEMPTED_TAGS.include?(k.to_sym) }
+      exempted = slice!(data, EXEMPTED_TAGS)
 
       ResponseStruct.create(data.keys.map(&:to_sym) + exempted.keys.map(&:to_sym),
                             data.values.map { |v| to_struct(v) } + exempted.values)
@@ -57,6 +56,12 @@ module Azure
     private
 
     attr_reader :required_attrs
+
+    def slice!(data, keys)
+      selected = data.select { |k, _| keys.include?(k.to_sym) }
+      data.reject! { |k, _| keys.include?(k.to_sym) }
+      selected
+    end
 
     def cache
       @cache ||= Cache.new
