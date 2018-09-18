@@ -4,6 +4,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2018.09.14
+[Full Changelog](https://github.com/inspec/inspec-azure/compare/1.1.0...1.2.0)
+
+**Enhancements:**
+
+- Resources are now backed by structs instead of hashes. You may now access all of the properties of a resources without needing custom methods. Fixes [\#106](https://github.com/chef/inspec-azure/issues/106).
+
+- Replaces connection authentication with Train. The available connection strategies are documented [here](docs/reference/connectors.md).
+
+- Adds `pricing_tier` field to Security Center resource. Thank you for your contribution [Yarick Tsagoyko](https://github.com/yarick)!
+
+- Adds links to Azure documentation and includes REST API version in resource documentation.
+
+**New Resources:**
+
+  * azurerm_key_vault        [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vaults       [Ruairi Fennell](https://github.com/r-Fennell)
+  * azurerm_sql_database     [Ruairi Fennell](https://github.com/r-Fennell)
+  * azurerm_sql_databases    [Ruairi Fennell](https://github.com/r-Fennell)
+  * azurerm_sql_server       [Ruairi Fennell](https://github.com/r-Fennell)
+  * azurerm_sql_servers      [Ruairi Fennell](https://github.com/r-Fennell)
+  * azurerm_storage_account  [Paul Welch](https://github.com/pwelch)
+  * azurerm_storage_accounts [Paul Welch](https://github.com/pwelch)
+  * azurerm_subnet           [Matt Mclane](https://github.com/mmclane)
+  * azurerm_subnets          [Matt Mclane](https://github.com/mmclane)
+
+Thank you for your contribution @[Matt Mclane](https://github.com/mmclane)!
+
+**Bug Fixes:**
+
+- Removes `source` command from Rakefile, which was causing an error after each rake command.
+
 ## [1.1.0] - 2018.08.09
 [Full Changelog](https://github.com/inspec/inspec-azure/compare/1.0.0...1.1.0)
 
