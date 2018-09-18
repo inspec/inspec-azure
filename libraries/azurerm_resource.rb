@@ -20,6 +20,11 @@ class AzurermResource < Inspec.resource(1)
                 .for_tenant(tenant_id)
   end
 
+  def vault(vault_name)
+    Azure::Vault.instance
+                .with_client(vault_client(vault_name))
+  end
+
   private
 
   def management_client
@@ -28,6 +33,10 @@ class AzurermResource < Inspec.resource(1)
 
   def graph_client
     Azure::Rest.new(inspec.backend.azure_client(::Azure::GraphRbac::Profiles::Latest::Client))
+  end
+
+  def vault_client(vault_name)
+    Azure::Rest.new(inspec.backend.azure_client(::Azure::KeyVault::Profiles::Latest, vault_name))
   end
 
   def tenant_id
