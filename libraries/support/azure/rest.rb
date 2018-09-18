@@ -5,7 +5,7 @@ require 'faraday_middleware'
 
 module Azure
   class Rest
-    USER_AGENT = 'User-Agent'
+    USER_AGENT        = 'User-Agent'
     INSPEC_USER_AGENT = 'Inspec-18d63047-6cdf-4f34-beed-62f01fc73fc2'
 
     attr_reader :host, :resource, :credentials
