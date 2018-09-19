@@ -5,6 +5,9 @@ require 'faraday_middleware'
 
 module Azure
   class Rest
+    USER_AGENT        = 'User-Agent'
+    INSPEC_USER_AGENT = 'pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'
+
     attr_reader :host, :resource, :credentials
 
     def initialize(client)
@@ -15,6 +18,7 @@ module Azure
     end
 
     def get(path, params: {}, headers: {})
+      add_user_agent!(headers)
       connection.get do |req|
         req.url path
 
@@ -44,6 +48,15 @@ module Azure
         *credentials.values_at(:tenant_id, :client_id, :client_secret), resource
       )
       @authentication.authentication_header
+    end
+
+    def add_user_agent!(headers)
+      current_user_agent = headers.fetch(USER_AGENT, nil)
+      if current_user_agent.nil?
+        headers[USER_AGENT] = INSPEC_USER_AGENT
+      else
+        headers[USER_AGENT] = current_user_agent + "; #{INSPEC_USER_AGENT}"
+      end
     end
   end
 end
