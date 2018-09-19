@@ -69,7 +69,7 @@ module Azure
       self
     end
 
-    def get(use_cache = true, url:,  api_version:, error_handler: nil, unwrap: nil)
+    def get(use_cache = true, url:, api_version:, error_handler: nil, unwrap: nil)
       confirm_configured!
 
       if use_cache
