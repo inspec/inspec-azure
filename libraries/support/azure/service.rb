@@ -14,10 +14,10 @@ module Azure
       end
     end
 
-    EXEMPTED_TAGS = %i(
+    EXEMPTED_ATTRIBUTES = %i(
       tags
     ).freeze
-    private_constant :EXEMPTED_TAGS
+    private_constant :EXEMPTED_ATTRIBUTES
 
     def with_cache(cache)
       @cache = cache
@@ -47,7 +47,7 @@ module Azure
       return data unless data.is_a?(Hash)
       return data if data.empty?
 
-      exempted = slice!(data, EXEMPTED_TAGS)
+      exempted = slice!(data, EXEMPTED_ATTRIBUTES)
 
       ResponseStruct.create(data.keys.map(&:to_sym) + exempted.keys.map(&:to_sym),
                             data.values.map { |v| to_struct(v) } + exempted.values)
@@ -57,9 +57,9 @@ module Azure
 
     attr_reader :required_attrs
 
-    def slice!(data, keys)
-      selected = data.select { |k, _| keys.include?(k.to_sym) }
-      data.reject! { |k, _| keys.include?(k.to_sym) }
+    def slice!(data, keys_to_select)
+      selected = data.select { |k, _| keys_to_select.include?(k.to_sym) }
+      data.reject! { |k, _| keys_to_select.include?(k.to_sym) }
       selected
     end
 
