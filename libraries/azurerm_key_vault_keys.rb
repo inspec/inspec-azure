@@ -15,9 +15,10 @@ class AzurermKeyVaultKeys < AzurermPluralResource
   attr_reader :table
 
   FilterTable.create
-             .register_column(:attributes, field: :attributes)
              .register_column(:kids,       field: :kid)
-             .register_column(:tags,       field: :tags)
+             .register_column(:attributes, field: :attributes)
+             .register_column(:managed,    field: :managed) { |table, _value| table[:managed] || false }
+             .register_column(:tags,       field: :tags)    { |table, _value| table[:tags] || nil }
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(vault_name)

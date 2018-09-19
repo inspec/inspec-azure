@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-
 module Azure
   class Vault
     include Service
@@ -23,6 +21,14 @@ module Azure
       get(
         false,
         url: "/keys/#{key_name}/#{key_version}",
+        api_version: '2016-10-01',
+      )
+    end
+
+    def key_versions(key_name)
+      get(
+        false,
+        url: "/keys/#{key_name}/versions",
         api_version: '2016-10-01',
       )
     end
