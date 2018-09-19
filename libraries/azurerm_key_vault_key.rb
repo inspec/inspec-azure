@@ -14,8 +14,7 @@ class AzurermKeyVaultKey < AzurermSingularResource
 
   ATTRS = %i(
     attributes
-    key
-    managed
+    kid
     tags
   ).freeze
 

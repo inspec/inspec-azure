@@ -4,7 +4,6 @@ require 'singleton'
 
 module Azure
   class Vault
-    include Singleton
     include Service
 
     def initialize
@@ -14,6 +13,7 @@ module Azure
 
     def keys
       get(
+        false,
         url: '/keys',
         api_version: '2016-10-01',
       )
@@ -21,6 +21,7 @@ module Azure
 
     def key(key_name, key_version)
       get(
+        false,
         url: "/keys/#{key_name}/#{key_version}",
         api_version: '2016-10-01',
       )
