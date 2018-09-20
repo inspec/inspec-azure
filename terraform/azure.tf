@@ -103,6 +103,7 @@ resource "azurerm_key_vault" "disk_vault" {
       "delete",
       "get",
       "set",
+      "list",
     ]
   }
 

@@ -170,3 +170,7 @@ output "key_vault_name" {
 output "key_vault_key_name" {
   value = "${azurerm_key_vault_key.vk.name}"
 }
+
+output "key_vault_secret_name" {
+  value = "${azurerm_key_vault_secret.vs.name}"
+}

@@ -32,5 +32,29 @@ module Azure
         api_version: '2016-10-01',
       )
     end
+
+    def secrets
+      get(
+        false,
+        url: '/secrets',
+        api_version: '2016-10-01',
+      )
+    end
+
+    def secret(secret_name, secret_version)
+      get(
+        false,
+        url: "/secrets/#{secret_name}/#{secret_version}",
+        api_version: '2016-10-01',
+      )
+    end
+
+    def secret_versions(secret_name)
+      get(
+        false,
+        url: "/secrets/#{secret_name}/versions",
+        api_version: '2016-10-01',
+      )
+    end
   end
 end

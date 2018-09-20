@@ -37,6 +37,10 @@ class AzurermKeyVaultKey < AzurermSingularResource
     @exists = true
   end
 
+  def to_s
+    "Azure Key Vault Key: '#{key.kid}'"
+  end
+
   private
 
   VALID_VERSION_REGEX = Regexp.new('^([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{12})$')
@@ -45,9 +49,5 @@ class AzurermKeyVaultKey < AzurermSingularResource
     version.downcase
            .scan(VALID_VERSION_REGEX)
            .any?
-  end
-
-  def to_s
-    "Azure Key Vault Key: '#{key.kid}'"
   end
 end
