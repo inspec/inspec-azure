@@ -7,7 +7,7 @@ class AzurermKeyVaultKeys < AzurermPluralResource
   name 'azurerm_key_vault_keys'
   desc 'Verifies settings for a collection of Azure Keys belonging to a Vault'
   example <<-EXAMPLE
-    describe azurerm_key_vault_keys(vault_name: 'vault-101') do
+    describe azurerm_key_vault_keys('vault-101') do
         it           { should exist }
     end
   EXAMPLE

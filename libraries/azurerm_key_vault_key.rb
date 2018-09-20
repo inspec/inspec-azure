@@ -6,7 +6,7 @@ class AzurermKeyVaultKey < AzurermSingularResource
   name 'azurerm_key_vault_key'
   desc 'Verifies configuration for an Azure Key within a Vault'
   example <<-EXAMPLE
-    describe azurerm_key_vault_key(key_name: 'key', key_version: '1a8e0148bf84') do
+    describe azurerm_key_vault_key('vault-101', 'key') do
       it                        { should exist }
       its('attributes.enabled') { should eq true }
     end
