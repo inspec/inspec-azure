@@ -1,4 +1,4 @@
-resource_group = attribute('resource_group', default: nil)
+resource_group  = attribute('resource_group',  default: nil)
 storage_account = attribute('storage_account', default: nil)
 
 control 'azurerm_storage_accounts' do
