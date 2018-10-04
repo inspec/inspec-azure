@@ -65,13 +65,6 @@ task :check_attributes_file do
 end
 
 namespace :inspec do
-  desc 'Runs profile against Azure with given Subscription Id'
-  task :run, [:subscription_id] => :check_attributes_file do |_t, args|
-    sh('./bin/inspec', 'exec', '.',
-       '--attrs', "terraform/#{ENV['ATTRIBUTES_FILE']}",
-       '-t', "azure://#{args[:subscription_id]}")
-  end
-
   desc 'InSpec syntax check'
   task :check do
     stdout, status = Open3.capture2('./bin/inspec check .')
