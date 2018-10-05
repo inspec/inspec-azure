@@ -71,24 +71,24 @@ If an Active Directory user account is referenced with an invalid ID
 
 ## Parameter Examples
 
-  # user_id is a required parameter
-  describe azurerm_ad_user(user_id: 'someUserId') do
-    ...
-  end
+    # user_id is a required parameter
+    describe azurerm_ad_user(user_id: 'MyUserId') do
+        ...
+    end
 
 ## Attributes
 
-  - `object_id', `account_enabled', `city', `country', `department',
-    `displayName', `facsimile_telephone_number', `given_name', `job_title',
-    `mail', `mail_nickname', `mobile', `password_policies', `password_profile',
-    `postal_code', `state', `street_address', `surname', `telephone_number',
-    `usage_location', `user_principal_name', `user_type'
+  - `object_id`, `account_enabled`, `city`, `country`, `department`,
+    `displayName`, `facsimile_telephone_number`, `given_name`, `job_title`,
+    `mail`, `mail_nickname`, `mobile`, `password_policies`, `password_profile`,
+    `postal_code`, `state`, `street_address`, `surname`, `telephone_number`,
+    `usage_location`, `user_principal_name`, `user_type`
 
-### object_id
+### object\_id
 
 The user's object ID.
 
-### account_enabled
+### account\_enabled
 
 Whether the account is enabled.
 
@@ -108,23 +108,23 @@ The user's department.
 
 The display name of the user.
 
-### facsimile_telephone_number
+### facsimile\_telephone\_number
 
-The user's facsimile (fax) number.
+the user's facsimile (fax) number.
 
-### given_name
+### given\_name
 
-The given name for the user.
+the given name for the user.
 
-### job_title
+### job\_title
 
-The user's job title.
+the user's job title.
 
 ### mail
 
-The primary email address of the user.
+the primary email address of the user.
 
-### mail_nickname
+### mail\_nickname
 
 The mail alias for the user.
 
@@ -132,15 +132,15 @@ The mail alias for the user.
 
 The user's mobile (cell) phone number.
 
-### password_policies
+### password\_policies
 
 The password policies for the user.
 
-### password_profile
+### password\_profile
 
 The password profile for the user.
 
-### postal_code
+### postal\_code
 
 The user's postal (ZIP) code.
 
@@ -148,7 +148,7 @@ The user's postal (ZIP) code.
 
 The user's state.
 
-### street_address
+### street\_address
 
 The user's street address.
 
@@ -156,21 +156,21 @@ The user's street address.
 
 The user's surname (family name or last name).
 
-### telephone_number
+### telephone\_number
 
 The user's telephone number.
 
-### usage_location
+### usage\_location
 
 A two letter country code (ISO standard 3166). Required for users that will be
 assigned licenses due to legal requirement to check for availability of
 services in countries. Examples include: "US", "JP", and "GB".
 
-### user_principal_name
+### user\_principal\_name
 
 The principal name of the user.
 
-### user_type
+### user\_type
 
 A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'.
 
@@ -220,6 +220,12 @@ page](https://www.inspec.io/docs/reference/matchers/).
 
 ## Azure Permissions
 
-Your [Service
-Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-must be setup with a `contributor` role on the subscription you wish to test.
+The Client/Active Directory Application you have configured Inspec Azure to use (`AZURE_CLIENT_ID`) must
+have permissions to read User data from the Azure Graph RBAC API.
+
+Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
+for information on how to grant these permissions to your application.
+
+<br />
+
+Note: An Azure Admin must grant your application these permissions.
