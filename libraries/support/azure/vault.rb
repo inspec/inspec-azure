@@ -11,50 +11,67 @@ module Azure
 
     def keys
       get(
-        false,
         url: '/keys',
         api_version: '2016-10-01',
+        use_cache: false,
       )
     end
 
     def key(key_name, key_version)
       get(
-        false,
         url: "/keys/#{key_name}/#{key_version}",
         api_version: '2016-10-01',
+        use_cache: false,
       )
     end
 
     def key_versions(key_name)
       get(
-        false,
         url: "/keys/#{key_name}/versions",
         api_version: '2016-10-01',
+        use_cache: false,
       )
     end
 
     def secrets
       get(
-        false,
         url: '/secrets',
         api_version: '2016-10-01',
+        use_cache: false,
       )
     end
 
     def secret(secret_name, secret_version)
       get(
-        false,
         url: "/secrets/#{secret_name}/#{secret_version}",
         api_version: '2016-10-01',
+        unwrap: unwrap,
+        use_cache: false,
       )
     end
 
     def secret_versions(secret_name)
       get(
-        false,
         url: "/secrets/#{secret_name}/versions",
         api_version: '2016-10-01',
+        use_cache: false,
       )
+    end
+
+    private
+
+    def unwrap
+      lambda do |body, _api_version|
+        {
+          id:           body.fetch('id'),
+          value:        body.fetch('value'),
+          attributes:   body.fetch('attributes'),
+          kid:          body.fetch('kid', nil),
+          content_type: body.fetch('contentType', nil),
+          managed:      body.fetch('managed', false),
+          tags:         body.fetch('tags', nil),
+        }
+      end
     end
   end
 end

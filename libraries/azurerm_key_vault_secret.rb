@@ -12,32 +12,34 @@ class AzurermKeyVaultSecret < AzurermSingularResource
     end
   EXAMPLE
 
-  # TODO : The API (https://docs.microsoft.com/en-us/rest/api/keyvault/getsecret/getsecret)
-  # currently returns only the Value of the Secret, not the entire SecretBundle object
-  # as documented.
-  # TODO : Link to issue. When issue is resolved, bring this resource in line with the
-  # standards of other singular resources.
-  attr_reader :secret_name, :value
+  ATTRS = %i(
+    id
+    value
+    attributes
+    kid
+    content_type
+    managed
+    tags
+  ).freeze
+
+  attr_reader(*ATTRS)
 
   def initialize(vault_name, secret_name, secret_version = nil)
-    secret_version ||= vault(vault_name).secret_versions(secret_name)
-                                        .sort_by! { |obj| obj.attributes.created }.last
-                                        .id.partition("/secrets/#{secret_name}/").last
+    secret_version ||= secret_version(vault_name, secret_name)
 
     raise ArgumentError, "Invalid version '#{secret_version}' for secret '#{secret_name}'" unless valid_version?(secret_version)
 
-    response = vault(vault_name).secret(secret_name, secret_version)
+    secret = vault(vault_name).secret(secret_name, secret_version)
 
-    return if has_error?(response)
+    return if has_error?(secret)
 
-    @secret_name = secret_name
-    @value = response
+    assign_fields(ATTRS, secret)
 
     @exists = true
   end
 
   def to_s
-    "Azure Key Vault Secret: '#{@secret_name}'"
+    "Azure Key Vault Secret: '#{id}'"
   end
 
   private
@@ -45,8 +47,12 @@ class AzurermKeyVaultSecret < AzurermSingularResource
   VALID_VERSION_REGEX = Regexp.new('^([0-9a-f]{32})$')
 
   def valid_version?(version)
-    version.downcase
-           .scan(VALID_VERSION_REGEX)
-           .any?
+    version.downcase.scan(VALID_VERSION_REGEX).any?
+  end
+
+  def secret_version(vault_name, secret_name)
+    vault(vault_name).secret_versions(secret_name)
+                     .max_by { |obj| obj.attributes.created }
+                     .id.partition("/secrets/#{secret_name}/").last
   end
 end

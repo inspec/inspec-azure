@@ -22,9 +22,7 @@ class AzurermKeyVaultKey < AzurermSingularResource
   attr_reader(*ATTRS)
 
   def initialize(vault_name, key_name, key_version = nil)
-    key_version ||= vault(vault_name).key_versions(key_name)
-                                     .sort_by! { |obj| obj.attributes.created }.last
-                                     .kid.partition("/keys/#{key_name}/").last
+    key_version ||= key_version(vault_name, key_name)
 
     raise ArgumentError, "Invalid version '#{key_version}' for key '#{key_name}'" unless valid_version?(key_version)
 
@@ -43,11 +41,15 @@ class AzurermKeyVaultKey < AzurermSingularResource
 
   private
 
-  VALID_VERSION_REGEX = Regexp.new('^([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{12})$')
+  VALID_VERSION_REGEX = Regexp.new('^([0-9a-f]{32})$')
 
   def valid_version?(version)
-    version.downcase
-           .scan(VALID_VERSION_REGEX)
-           .any?
+    version.downcase.scan(VALID_VERSION_REGEX).any?
+  end
+
+  def key_version(vault_name, key_name)
+    vault(vault_name).key_versions(key_name)
+                     .max_by { |obj| obj.attributes.created }
+                     .kid.partition("/keys/#{key_name}/").last
   end
 end

@@ -8,7 +8,7 @@ class AzurermKeyVaultSecrets < AzurermPluralResource
   desc 'Verifies settings for a collection of Azure Secrets within to a Vault'
   example <<-EXAMPLE
     describe azurerm_key_vault_secrets('vault-101') do
-        it           { should exist }
+        it { should exist }
     end
   EXAMPLE
 

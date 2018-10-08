@@ -69,18 +69,14 @@ module Azure
       self
     end
 
-    def get(use_cache = true, url:, api_version:, error_handler: nil, unwrap: nil)
+    def get(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true)
       confirm_configured!
 
-      if use_cache
-        body = cache.fetch(url)
-      end
+      body = cache.fetch(url) if use_cache
 
-      if body.nil?
-        body = rest_client.get(url,
+      body ||= rest_client.get(url,
                                params:  { 'api-version' => api_version },
                                headers: { Accept: 'application/json' }).body
-      end
 
       error_handler&.(body)
 

@@ -102,8 +102,8 @@ resource "azurerm_key_vault" "disk_vault" {
     secret_permissions = [
       "delete",
       "get",
-      "set",
       "list",
+      "set",
     ]
   }
 
