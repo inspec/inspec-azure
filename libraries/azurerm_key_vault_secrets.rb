@@ -17,9 +17,9 @@ class AzurermKeyVaultSecrets < AzurermPluralResource
   FilterTable.create
              .register_column(:ids,          field: :id)
              .register_column(:attributes,   field: :attributes)
-             .register_column(:contentTypes, field: :contentType) { |table, _value| table[:contentType] || nil }
-             .register_column(:managed,      field: :managed)     { |table, _value| table[:managed] || false }
-             .register_column(:tags,         field: :tags)        { |table, _value| table[:tags] || nil }
+             .register_column(:contentTypes, field: :contentType) { |table, _| table[:contentType] || nil }
+             .register_column(:managed,      field: :managed)     { |table, _| table[:managed] || false }
+             .register_column(:tags,         field: :tags)        { |table, _| table[:tags] || nil }
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(vault_name)
