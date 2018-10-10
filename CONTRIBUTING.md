@@ -25,7 +25,7 @@ Chef Projects are built to last. We strive to ensure high quality throughout the
 
 1. **Tests:** To ensure high quality code and protect against future regressions, we require all the code in Chef Projects to have at least unit test coverage. See the [test/unit](https://github.com/inspec/inspec-azure/tree/master/test/unit)
 directory for the existing tests and use ```bundle exec rake test``` to run them.
-2. **Green CI Tests:** We use [Buildkite](https://buildkite.com) to test all Pull Requests. The Maintainers will run this manually. We require these test runs to succeed on every Pull Request before being merged.
+2. **Green CI Tests:** We use [Travis CI](https://travis-ci.org) to test all Pull Requests. The Maintainers will run this manually. We require these test runs to succeed on every Pull Request before being merged.
 3. **Up-to-date Documentation:**  Every code change should be reflected in an update for our [documentation](https://github.com/inspec/inspec-azure/tree/master/docs). We expect PRs to update the documentation with the code change.
 
 ### Code Review Process
@@ -61,7 +61,7 @@ By making a contribution to this project, I certify that:
 
 (b) The contribution is based upon previous work that, to the
     best of my knowledge, is covered under an appropriate open
-    source license and I have the right under that license to   
+    source license and I have the right under that license to
     submit that work with modifications, whether created in whole
     or in part by me, under the same open source license (unless
     I am permitted to submit under a different license), as
