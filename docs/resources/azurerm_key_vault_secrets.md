@@ -75,8 +75,6 @@ Filters the results to include only those Secrets which are not managed by the V
 
 ## Attributes
 
-## Attributes
-
  -   `id`
  -   `attributes`
  -   `contentType`
@@ -97,7 +95,6 @@ True if the secret's lifetime is managed by key vault. If this is a key backing 
 
 ### tags
 Resource tags applied to the Key.
-
 
 ## Matchers
 

@@ -56,7 +56,7 @@ You may also specify a `key_version` - if no version is specified, the most rece
 If a Key Vault Key is referenced with a valid `Vault Name`, `Key Name` and `Key Version`
 
     describe azurerm_key_vault_key('vault-101', 'secret-key', '7df9bf2c3b4347bab213ebe233f0e350') do
-        it { should exist }
+        it                        { should exist }
         its('key.kid')            { should_not be_nil }
         its('attributes.enabled') { should eq true }
     end
@@ -74,7 +74,6 @@ If a Key Vault Key is referenced with an invalid `Vault Name` or `Key Name`
   - `vault_name`  - The name of the Key Vault.
   - `key_name`    - The name of the Key.
   - `key_version` (Optional) - The version of a Key, e.g. `7df9bf2c3b4347bab213ebe233f0e350`.
-
 
 ## Attributes
 
