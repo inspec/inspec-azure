@@ -634,3 +634,29 @@ resource "azurerm_sql_database" "sql-database" {
   depends_on          = ["azurerm_sql_server.sql-server"]
   tags {}
 }
+
+resource "azurerm_kubernetes_cluster" "test" {
+  name                = "inspecakstest"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  dns_prefix          = "inspecaksagent1"
+
+  agent_pool_profile {
+    name            = "default"
+    count           = 5
+    vm_size         = "Standard_D1_v2"
+    os_type         = "Linux"
+    os_disk_size_gb = 30
+  }
+  linux_profile {
+    admin_username = "inspecuser1"
+
+    ssh_key {
+      key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDQTKriRSJjQOurKaXSQKb5rmkv1SBtBKIvy4K8+dlUp4xot+CMcJVb9UmTl9EuVuwcktTt/9iEmFVkDIovbaiYWkT/LVeJHQkwJQ2ezykG3eipvAPeQX9RcUTTRP69DV/01f3nVQZOM7HJl/xswuX/ps8eBEcov9hzdEKDq5c0KPokb9NHNrToax5t+fd2xC41hkQL6obYwD/gDw4t1tGQV2Xvq5ellZhUnLQfSQ5cjec/FOMCKtwAcOKjQqZh2BXqv2MQaxCfjwX7gmhKNABUrq7+BQQgJA1YxS69lhFozzhTmH88PHRL3V/Plfm6ismIU+UdjF49iTnJ69fj2Vv"
+    }
+  }
+  service_principal {
+    client_id     = "${var.client_id}"
+    client_secret = "${var.client_secret}"
+  }
+}

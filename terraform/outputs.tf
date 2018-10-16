@@ -179,3 +179,6 @@ output "storage_account_blob_container" {
   value = "${azurerm_storage_container.blob.name}"
 }
 
+output "cluster_fqdn" {
+  value = "${azurerm_kubernetes_cluster.test.fqdn}"
+}
