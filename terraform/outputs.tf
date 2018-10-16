@@ -166,3 +166,8 @@ output "sql_database_name" {
 output "key_vault_name" {
   value = "${azurerm_key_vault.disk_vault.name}"
 }
+
+output "storage_account_blob_container" {
+value = "${azurerm_storage_container.blob.name}"
+}
+

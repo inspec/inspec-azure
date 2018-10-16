@@ -4,7 +4,7 @@ require 'azurerm_resource'
 
 class StorageAccounts < AzurermPluralResource
   name 'azurerm_storage_accounts'
-  desc 'Fetches all Azure Monitor Log Profiles'
+  desc 'Fetches all Azure Storage Accounts'
   example <<-EXAMPLE
     describe azurerm_storage_accounts do
       its('names') { should include('default') }
