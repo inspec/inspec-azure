@@ -14,6 +14,11 @@ module Azure
       end
     end
 
+    EXEMPTED_ATTRIBUTES = %i(
+      tags
+    ).freeze
+    private_constant :EXEMPTED_ATTRIBUTES
+
     def with_cache(cache)
       @cache = cache
     end
@@ -42,12 +47,21 @@ module Azure
       return data unless data.is_a?(Hash)
       return data if data.empty?
 
-      ResponseStruct.create(data.keys.map(&:to_sym), data.values.map { |v| to_struct(v) })
+      exempted = slice!(data, EXEMPTED_ATTRIBUTES)
+
+      ResponseStruct.create(data.keys.map(&:to_sym) + exempted.keys.map(&:to_sym),
+                            data.values.map { |v| to_struct(v) } + exempted.values)
     end
 
     private
 
     attr_reader :required_attrs
+
+    def slice!(data, keys_to_select)
+      selected = data.select { |k, _| keys_to_select.include?(k.to_sym) }
+      data.reject! { |k, _| keys_to_select.include?(k.to_sym) }
+      selected
+    end
 
     def cache
       @cache ||= Cache.new

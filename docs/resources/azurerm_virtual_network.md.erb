@@ -93,9 +93,17 @@ Defines the name of the virtual network that you wish to test.
 
 ## Attributes
 
-  - `id`, `name`, `location`, `tags`, `type`, `subnets`,
-    `address_space`, `dns_servers`, `vnet_peerings`,
-    `enable_ddos_protection`, `enable_vm_protection`
+  - `id`
+  - `name`
+  - `location`
+  - `tags`
+  - `type`
+  - `subnets`
+  - `address_space`
+  - `dns_servers`
+  - `vnet_peerings`
+  - `enable_ddos_protection`
+  - `enable_vm_protection`
 
 ### id
 
@@ -107,6 +115,7 @@ Id will be in
     format:
 
     '/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/Inspec-Azure-mmclane/providers/Microsoft.Network/virtualNetworks/MyVnetName'
+
 ### name
 
 The virtual network's name.
@@ -137,33 +146,33 @@ The list of subnet names that are attached to this virtual network.
 
     its('subnets') { should eq ["MySubnetName"] }
 
-### address_space
+### address\_space
 
 The list of address spaces used by the virtual network.
 
     its('address_space') { should eq ["x.x.x.x/x"] }
 
-### dns_servers
+### dns\_servers
 
 The list of DNS servers configured for the virtual network.  The virtual network returns these IP addresses
 when virtual machines makes a DHCP request.
 
     its('dns_servers') { should eq ["x.x.x.x", "x.x.x.x"] }
 
-### vnet_peerings
+### vnet\_peerings
 
 A mapping of names and the virtual network ids of the virtual network peerings.
 
     its('vnet_peerings') { should eq "MyVnetPeeringConnection"=>"PeeringConnectionID"}
 
-### enable_ddos_protection
+### enable\_ddos\_protection
 
 Boolean value showing if Azure DDoS standard protection is enabled on the virtual network.
 
 
     its('enable_ddos_protection') { should eq true }
 
-### enable_vm_protection
+### enable\_vm\_protection
 
 Boolean value showing if the virtual network has VM protection enabled.
 

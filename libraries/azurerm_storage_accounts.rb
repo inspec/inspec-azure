@@ -17,8 +17,8 @@ class StorageAccounts < AzurermPluralResource
 
   attr_reader :table
 
-  def initialize
-    resp = management.storage_accounts
+  def initialize(resource_group: nil)
+    resp = management.storage_accounts(resource_group)
     return if has_error?(resp)
 
     @table = resp
