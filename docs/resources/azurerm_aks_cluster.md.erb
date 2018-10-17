@@ -12,7 +12,7 @@ Use the `azurerm_aks_cluster` InSpec audit resource to test properties of an Azu
 ## Azure REST API version
 
 This resource interacts with version `2018-03-31` of the Azure Management API.
-For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups/get).
+For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -54,14 +54,14 @@ An `azurerm_aks_cluster` resource block identifies an AKS Cluster by name and Re
 
 ### Test that a specified AKS cluster was successfully provisioned
 
-    describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
-      its('provisioning_state') { should cmp "Succeeded" }
+    describe azurerm_network_security_group(resource_group: 'example', name: 'ClusterName') do
+      its('properties.provisioningState') { should cmp 'Succeeded' }
     end
 
 ### Test that a specified AKS cluster the correct number of nodes in pool
 
-    describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
-      its('pool_count') { should = 5 }
+    describe azurerm_network_security_group(resource_group: 'example', name: 'ClusterName') do
+      its('properties.agentPoolProfiles.first.count') { should cmp 5 }
     end
 
 <br />
@@ -81,77 +81,25 @@ The Resource Group as well as the AKS Cluster name.
 
 ## Attributes
 
-  - `provisioning_state`
-  - `kubernetes_version`
-  - `dns_prefix`
-  - `fqdn`
-  - `pool_name`
-  - `pool_count`
-  - `pool_vm_size`
-  - `pool_storage_profile`
-  - `pool_max_pods`
-  - `pool_os_type`
+All of the attributes are avialable via dot notation. This is an example of the currently available attributes.
 
-### provisioning\_state
-
-The provisioning\_state property contains the provisioning state of the named cluster.
-
-    its('provisioning_state') { should_not cmp "Failed" }
-
-### kubernetes\_version
-
-The kubernetes\_version property contains the version of Kubernetes specified when creating the managed cluster.
-
-    its('kubernetes_version') { should cmp "1.9.6" }
-
-### dns\_prefix
-
-The dns\_prefix property contains the DNS prefix specified when creating the managed cluster.
-
-    its('dns_prefix') { should cmp "mycluster" }
-
-### fqdn
-
-The fqdn property contains the FDQN for the master pool.
-
-    its('fqdn') { should cmp "dnsprefix1-abcd1234.hcp.eastus.azmk8s.io" }
-
-### pool\_name
-
-The pool\_name property contains the name of the cluster.
-
-    its('pool_name') { should cmp "mycluster" }
-
-### pool\_count
-
-The pool\_count property contains the number of agents (VMs) to host docker containers.
-
-    its('pool_count') { should cmp "5" }
-
-### pool\_vm\_size
-
-The pool\_vm\_size property contains the size of agent VMs.
-
-    its('pool_vm_size') { should cmp "Standard_DS1_v2" }
-
-### pool\_storage\_profile
-
-The pool\_storage\_profile property contains type of storage used.
-
-    its('pool_storage_profile') { should cmp "ManagedDisks" }
-
-### pool\_max\_pods
-
-The pool\_max\_pods property contains the maximum number of pods that can run on a node.
-
-    its('pool_max_pods') { should cmp "110" }
-
-### pool\_os\_type
-
-The pool\_os\_type property contains the OS used for the cluster.
-
-    its('pool_os_type') { should cmp "Linux" }
-
+```
+control 'azurerm_aks_cluster' do
+  describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+    it { should exist }
+    its('properties.provisioningState') { should cmp 'Succeeded' }
+    its('properties.kubernetesVersion') { should cmp '1.11.3' }
+    its('properties.dnsPrefix') { should cmp 'ClusterName' }
+    its('properties.fqdn') { should cmp 'ClusterName' }
+    its('properties.agentPoolProfiles.first.name') { should cmp 'agentpool' }
+    its('properties.agentPoolProfiles.first.count') { should cmp 3 }
+    its('properties.agentPoolProfiles.first.vmSize') { should cmp 'Standard_DS2_V2' }
+    its('properties.agentPoolProfiles.first.storageProfile') { should cmp 'ManagedDisks' }
+    its('properties.agentPoolProfiles.first.maxPods') { should cmp 110 }
+    its('properties.agentPoolProfiles.first.osType') { should cmp 'Linux' }
+  end
+end
+```
 
 
 ### Other Attributes
@@ -163,7 +111,7 @@ dots (`.`).
 
 The API may not always return keys that do not have any associated data. There
 may be cases where the deeply nested property may not have the desired
-attribute along your call chain. If find yourself writing tests against
+attribute along your call chain. If you find yourself writing tests against
 properties that may be nil, fork this resource pack and add an accessor to the
 resource. Within that accessor you'll be able to guard against nil keys. Pull
 requests are always welcome.

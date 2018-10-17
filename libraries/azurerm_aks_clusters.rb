@@ -18,7 +18,7 @@ class AzurermAksClusters < AzurermPluralResource
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group: nil)
-    resp = management.network_security_groups(resource_group)
+    resp = management.azurerm_aks_clusters(resource_group)
     return if has_error?(resp)
 
     @table = resp

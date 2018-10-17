@@ -652,7 +652,7 @@ resource "azurerm_kubernetes_cluster" "test" {
     admin_username = "inspecuser1"
 
     ssh_key {
-      key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDQTKriRSJjQOurKaXSQKb5rmkv1SBtBKIvy4K8+dlUp4xot+CMcJVb9UmTl9EuVuwcktTt/9iEmFVkDIovbaiYWkT/LVeJHQkwJQ2ezykG3eipvAPeQX9RcUTTRP69DV/01f3nVQZOM7HJl/xswuX/ps8eBEcov9hzdEKDq5c0KPokb9NHNrToax5t+fd2xC41hkQL6obYwD/gDw4t1tGQV2Xvq5ellZhUnLQfSQ5cjec/FOMCKtwAcOKjQqZh2BXqv2MQaxCfjwX7gmhKNABUrq7+BQQgJA1YxS69lhFozzhTmH88PHRL3V/Plfm6ismIU+UdjF49iTnJ69fj2Vv"
+      key_data = "${var.ssh_key}"
     }
   }
   service_principal {
