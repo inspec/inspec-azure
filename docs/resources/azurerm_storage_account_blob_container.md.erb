@@ -67,7 +67,7 @@ The `resource_group`, `storage_account_name` and `blob_container_name` must be g
 
     describe azurerm_storage_account_blob_container(resource_group: 'rg', storage_account_name: 'production',
                                                     blob_container_name: 'logs') do
-        its('properties') { should have_attributes(publicAccess: 'None') }
+      its('properties') { should have_attributes(publicAccess: 'None') }
     end
 <br />
 
@@ -87,7 +87,7 @@ The `resource_group`, `storage_account_name` and `blob_container_name` must be g
 
 ### id
 
-Fully qualified resource Id for the resource, e.g.
+Fully qualified resource ID for the resource, e.g.
 
     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 
@@ -105,7 +105,7 @@ Resource Etag, e.g.
 
 Additional properties relating to the Blob Container, e.g.
 
-        its('properties') { should have_attributes(publicAccess: 'None') }
+      its('properties') { should have_attributes(publicAccess: 'None') }
 
 ### type
 
@@ -122,7 +122,7 @@ dots (`.`).
 
 The API may not always return keys that do not have any associated data. There
 may be cases where the deeply nested property may not have the desired
-attribute along your call chain. If find yourself writing tests against
+attribute along your call chain. If you find yourself writing tests against
 properties that may be nil, fork this resource pack and add an accessor to the
 resource. Within that accessor you'll be able to guard against nil keys. Pull
 requests are always welcome.
@@ -135,10 +135,10 @@ page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 
-        describe azurerm_storage_account_blob_container(resource_group: 'rg', storage_account_name: 'production',
-                                                        blob_container_name: 'logs') do
-          it { should exist }
-        end
+      describe azurerm_storage_account_blob_container(resource_group: 'rg', storage_account_name: 'production',
+                                                      blob_container_name: 'logs') do
+        it { should exist }
+      end
 
 ## Azure Permissions
 

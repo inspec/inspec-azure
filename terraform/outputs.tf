@@ -168,6 +168,6 @@ output "key_vault_name" {
 }
 
 output "storage_account_blob_container" {
-value = "${azurerm_storage_container.blob.name}"
+  value = "${azurerm_storage_container.blob.name}"
 }
 
