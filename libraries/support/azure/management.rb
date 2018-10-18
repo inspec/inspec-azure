@@ -110,6 +110,24 @@ module Azure
       )
     end
 
+    def blob_container(resource_group, storage_account_name, blob_container_name)
+      get(
+        url: link(location: "Microsoft.Storage/storageAccounts/#{storage_account_name}/"\
+                            "blobServices/default/containers/#{blob_container_name}",
+                  resource_group: resource_group),
+        api_version: '2018-07-01',
+      )
+    end
+
+    def blob_containers(resource_group, storage_account_name)
+      get(
+        url: link(location: "Microsoft.Storage/storageAccounts/#{storage_account_name}/"\
+                            'blobServices/default/containers/',
+                  resource_group: resource_group),
+        api_version: '2018-07-01',
+      )
+    end
+
     def virtual_machine(resource_group, id)
       get(
         url: link(location: 'Microsoft.Compute/virtualMachines',
