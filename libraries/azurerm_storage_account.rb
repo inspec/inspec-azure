@@ -2,7 +2,6 @@
 
 require 'azurerm_resource'
 require 'date'
-require 'time'
 
 class AzurermStorageAccout < AzurermSingularResource
   name 'azurerm_storage_account'
@@ -32,13 +31,14 @@ class AzurermStorageAccout < AzurermSingularResource
   end
 
   def have_recently_generated_access_key
-    now = DateTime.now
-    less_than = to_utc(now)
-    greater_than = to_utc(now-90)
+    now = Time.now
+    ninety_days_ago = ((60*60)*(24*90))
+    upper_bound = to_utc(now)
+    lower_bound = to_utc(now - ninety_days_ago)
 
     filter = "resourceId eq '#{id}' and "\
-             "eventTimestamp ge '#{greater_than}' and "\
-             "eventTimestamp le '#{less_than}' and "\
+             "eventTimestamp ge '#{lower_bound}' and "\
+             "eventTimestamp le '#{upper_bound}' and "\
              "operations eq 'Microsoft.Storage/storageAccounts/regeneratekey/action'"
 
     log_events = management.activity_log_alert_filtered(filter)
