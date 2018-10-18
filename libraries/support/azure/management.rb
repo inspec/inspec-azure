@@ -27,6 +27,13 @@ module Azure
       )
     end
 
+    def activity_log_alert_filtered(filter)
+      get(
+        url: link(location: "Microsoft.Insights/eventTypes/management/values/?$filter=#{filter}"),
+        api_version: '2017-03-01-preview',
+      )
+    end
+
     def log_profile(id)
       get(
         url: link(location: 'Microsoft.Insights/logProfiles') + id,
