@@ -30,7 +30,7 @@ class AzurermStorageAccout < AzurermSingularResource
     @exists = true
   end
 
-  def have_recently_generated_access_key
+  def has_recently_generated_access_key?
     now = Time.now
     ninety_days_ago = ((60*60)*(24*90))
     upper_bound = to_utc(now)
