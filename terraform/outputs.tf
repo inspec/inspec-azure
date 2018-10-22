@@ -174,3 +174,8 @@ output "key_vault_key_name" {
 output "key_vault_secret_name" {
   value = "${azurerm_key_vault_secret.vs.name}"
 }
+
+output "storage_account_blob_container" {
+  value = "${azurerm_storage_container.blob.name}"
+}
+

@@ -27,6 +27,13 @@ module Azure
       )
     end
 
+    def activity_log_alert_filtered(filter)
+      get(
+        url: link(location: "Microsoft.Insights/eventTypes/management/values/?$filter=#{filter}"),
+        api_version: '2017-03-01-preview',
+      )
+    end
+
     def log_profile(id)
       get(
         url: link(location: 'Microsoft.Insights/logProfiles') + id,
@@ -107,6 +114,24 @@ module Azure
         url: link(location: 'Microsoft.Storage/storageAccounts',
                   resource_group: resource_group),
         api_version: '2017-06-01',
+      )
+    end
+
+    def blob_container(resource_group, storage_account_name, blob_container_name)
+      get(
+        url: link(location: "Microsoft.Storage/storageAccounts/#{storage_account_name}/"\
+                            "blobServices/default/containers/#{blob_container_name}",
+                  resource_group: resource_group),
+        api_version: '2018-07-01',
+      )
+    end
+
+    def blob_containers(resource_group, storage_account_name)
+      get(
+        url: link(location: "Microsoft.Storage/storageAccounts/#{storage_account_name}/"\
+                            'blobServices/default/containers/',
+                  resource_group: resource_group),
+        api_version: '2018-07-01',
       )
     end
 

@@ -4,8 +4,8 @@ control 'azurerm_key_vault_keys' do
 
   azurerm_key_vault_keys(vault_name).entries.each do |key|
     describe key do
-      its('kid')                { should_not be nil }
-      its('attributes.enabled') { should eq true }
+      its('kid')        { should_not be nil }
+      its('attributes') { should have_attributes(enabled: true) }
     end
   end
 end

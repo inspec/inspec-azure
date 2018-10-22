@@ -334,3 +334,4 @@ To disable optional components run `rake options[]` including only the optional 
 rake options[] # disable all optional components
 rake options[option_1] # enables option_1 disabling all other optional components
 ```
+ 
