@@ -20,14 +20,28 @@ class AzurermResource < Inspec.resource(1)
                 .for_tenant(tenant_id)
   end
 
+  def vault(vault_name)
+    if inspec.backend.msi_auth?
+      raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported for Key Vault'
+    end
+    Azure::Vault.new.with_client(vault_client(vault_name))
+  end
+
   private
 
   def management_client
+    inspec.backend.enable_cache(:api_call)
     Azure::Rest.new(inspec.backend.azure_client)
   end
 
   def graph_client
+    inspec.backend.enable_cache(:api_call)
     Azure::Rest.new(inspec.backend.azure_client(::Azure::GraphRbac::Profiles::Latest::Client))
+  end
+
+  def vault_client(vault_name)
+    inspec.backend.disable_cache(:api_call)
+    Azure::Rest.new(inspec.backend.azure_client(::Azure::KeyVault::Profiles::Latest::Mgmt::Client, vault_name: vault_name))
   end
 
   def tenant_id

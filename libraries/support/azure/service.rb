@@ -10,7 +10,7 @@ module Azure
       end
 
       def fetch(key)
-        @store.fetch(key) { @store[key] = yield }
+        @store.fetch(key, nil)
       end
     end
 
@@ -83,21 +83,21 @@ module Azure
       self
     end
 
-    def get(url:, api_version:, error_handler: nil, unwrap: nil)
+    def get(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true)
       confirm_configured!
 
-      cache.fetch(url) do
-        body = rest_client.get(url,
-                               params: { 'api-version' => api_version },
+      body = cache.fetch(url) if use_cache
+
+      body ||= rest_client.get(url,
+                               params:  { 'api-version' => api_version },
                                headers: { Accept: 'application/json' }).body
 
-        error_handler&.(body)
+      error_handler&.(body)
 
-        if unwrap.respond_to?(:call)
-          to_struct(unwrap.call(body, api_version))
-        else
-          to_struct(body.fetch('value', body))
-        end
+      if unwrap.respond_to?(:call)
+        to_struct(unwrap.call(body, api_version))
+      else
+        to_struct(body.fetch('value', body))
       end
     end
   end
