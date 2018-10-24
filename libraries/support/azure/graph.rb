@@ -8,7 +8,7 @@ module Azure
     include Service
 
     def initialize
-      @required_attrs = %i(rest_client tenant_id)
+      @required_attrs = %i(backend)
       @page_link_name = 'odata.nextLink'
     end
 
@@ -33,6 +33,15 @@ module Azure
     private
 
     attr_reader :page_link_name
+
+    def rest_client
+      if backend.msi_auth?
+        raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported for Active Directory Users.'
+      end
+
+      backend.enable_cache(:api_call)
+      @rest_client ||= Azure::Rest.new(backend.azure_client(::Azure::GraphRbac::Profiles::Latest::Client))
+    end
 
     def handle_error
       lambda do |response|

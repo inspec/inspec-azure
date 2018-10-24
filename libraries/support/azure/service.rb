@@ -23,16 +23,8 @@ module Azure
       @cache = cache
     end
 
-    def with_client(client, override: false)
-      set_reader(:rest_client, client, override)
-    end
-
-    def for_tenant(tenant_id, override: false)
-      set_reader(:tenant_id, tenant_id, override)
-    end
-
-    def for_subscription(subscription_id, override: false)
-      set_reader(:subscription_id, subscription_id, override)
+    def with_backend(backend, override: false)
+      set_reader(:backend, backend, override)
     end
 
     # Converts data (a hash) into a struct. This is a recursive
@@ -56,6 +48,14 @@ module Azure
     private
 
     attr_reader :required_attrs
+
+    def tenant_id
+      @tenant_id ||= backend.azure_client.tenant_id
+    end
+
+    def subscription_id
+      @subscription_id ||= backend.azure_client.subscription_id
+    end
 
     def slice!(data, keys_to_select)
       selected = data.select { |k, _| keys_to_select.include?(k.to_sym) }

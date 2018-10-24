@@ -6,51 +6,18 @@ class AzurermResource < Inspec.resource(1)
   supports platform: 'azure'
 
   def management
-    Azure::Management.instance
-                     .with_client(management_client)
-                     .for_subscription(subscription_id)
+    Azure::Management.instance.with_backend(inspec.backend)
   end
 
   def graph
-    if inspec.backend.msi_auth?
-      raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported for Active Directory Users.'
-    end
-    Azure::Graph.instance
-                .with_client(graph_client)
-                .for_tenant(tenant_id)
+    Azure::Graph.instance.with_backend(inspec.backend)
   end
 
   def vault(vault_name)
-    if inspec.backend.msi_auth?
-      raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported for Key Vault'
-    end
-    Azure::Vault.new.with_client(vault_client(vault_name))
+    Azure::Vault.new(vault_name, inspec.backend)
   end
 
   private
-
-  def management_client
-    inspec.backend.enable_cache(:api_call)
-    Azure::Rest.new(inspec.backend.azure_client)
-  end
-
-  def graph_client
-    inspec.backend.enable_cache(:api_call)
-    Azure::Rest.new(inspec.backend.azure_client(::Azure::GraphRbac::Profiles::Latest::Client))
-  end
-
-  def vault_client(vault_name)
-    inspec.backend.disable_cache(:api_call)
-    Azure::Rest.new(inspec.backend.azure_client(::Azure::KeyVault::Profiles::Latest::Mgmt::Client, vault_name: vault_name))
-  end
-
-  def tenant_id
-    inspec.backend.azure_client.tenant_id
-  end
-
-  def subscription_id
-    inspec.backend.azure_client.subscription_id
-  end
 
   def has_error?(struct)
     struct.nil? || (struct.is_a?(Struct) && struct.key?(:error))
