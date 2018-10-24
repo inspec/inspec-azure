@@ -19,7 +19,8 @@ module Azure
         api_version: '2017-04-01',
       )
     end
-def activity_log_alerts
+
+    def activity_log_alerts
       get(
         url: link(location: 'Microsoft.Insights/activityLogAlerts'),
         api_version: '2017-04-01',

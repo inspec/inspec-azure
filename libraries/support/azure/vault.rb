@@ -5,12 +5,12 @@ module Azure
     include Service
 
     def initialize(vault_name, backend)
-      @required_attrs = []
       if backend.msi_auth?
         raise Inspec::Exceptions::ResourceSkipped, 'MSI Authentication is currently unsupported for Key Vault'
       end
       backend.disable_cache(:api_call)
 
+      @required_attrs = []
       @page_link_name = 'nextLink'
       @rest_client    = Azure::Rest.new(backend.azure_client(::Azure::KeyVault::Profiles::Latest::Mgmt::Client, vault_name: vault_name))
     end
