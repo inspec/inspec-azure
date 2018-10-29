@@ -15,12 +15,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 **New Resources:**
 
-  * azurerm_storage_account_blob_container  [Ruairi Fennel](https://github.com/r-fennell)
-  * azurerm_storage_account_blob_containers [Ruairi Fennel](https://github.com/r-fennell)
-  * azurerm_key_vault_key                   [Ruairi Fennel](https://github.com/r-fennell)
-  * azurerm_key_vault_keys                  [Ruairi Fennel](https://github.com/r-fennell)
-  * azurerm_key_vault_secret                [Ruairi Fennel](https://github.com/r-fennell)
-  * azurerm_key_vault_secrets               [Ruairi Fennel](https://github.com/r-fennell)
+  * azurerm_storage_account_blob_container  [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_storage_account_blob_containers [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_key                   [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_keys                  [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_secret                [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_secrets               [Ruairi Fennell](https://github.com/r-fennell)
 
 **Bug Fixes:**
 
@@ -46,11 +46,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 **New Resources:**
 
   * azurerm_key_vault        [Ruairi Fennell](https://github.com/r-fennell)
-  * azurerm_key_vaults       [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_database     [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_databases    [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_server       [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_servers      [Ruairi Fennell](https://github.com/r-Fennell)
+  * azurerm_key_vaults       [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_database     [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_databases    [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_server       [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_servers      [Ruairi Fennell](https://github.com/r-fennell)
   * azurerm_storage_account  [Paul Welch](https://github.com/pwelch)
   * azurerm_storage_accounts [Paul Welch](https://github.com/pwelch)
   * azurerm_subnet           [Matt Mclane](https://github.com/mmclane)
