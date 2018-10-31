@@ -8,7 +8,7 @@ module Azure
     include Service
 
     def initialize
-      @required_attrs = %i(rest_client subscription_id)
+      @required_attrs = %i(backend)
       @page_link_name = 'nextLink'
     end
 
@@ -306,6 +306,11 @@ module Azure
     end
 
     private
+
+    def rest_client
+      backend.enable_cache(:api_call)
+      @rest_client ||= Azure::Rest.new(backend.azure_client)
+    end
 
     def link(location:, provider: true, resource_group: nil)
       "/subscriptions/#{subscription_id}" \
