@@ -102,6 +102,10 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_ad_user](docs/resources/azurerm_ad_user.md.erb)
 - [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
 - [azurerm_key_vault](docs/resources/azurerm_key_vault.md.erb)
+- [azurerm_key_vault_key](docs/resources/azurerm_key_vault_key.md.erb)
+- [azurerm_key_vault_keys](docs/resources/azurerm_key_vault_keys.md.erb)
+- [azurerm_key_vault_secret](docs/resources/azurerm_key_vault_secret.md.erb)
+- [azurerm_key_vault_secrets](docs/resources/azurerm_key_vault_secrets.md)
 - [azurerm_key_vaults](docs/resources/azurerm_key_vaults.md.erb)
 - [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
 - [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md.erb)
@@ -118,6 +122,8 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_sql_databases](docs/resources/azurerm_sql_databases.md.erb)
 - [azurerm_sql_server](docs/resources/azurerm_sql_server.md.erb)
 - [azurerm_sql_servers](docs/resources/azurerm_sql_servers.md.erb)
+- [azurerm_storage_account_blob_container](docs/resources/azurerm_storage_account_blob_container.md.erb)
+- [azurerm_storage_account_blob_containers](docs/resources/azurerm_storage_account_blob_containers.md.erb)
 - [azurerm_subnet](docs/resources/azurerm_subnet.md.erb)
 - [azurerm_subnets](docs/resources/azurerm_subnets.md.erb)
 - [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md.erb)
@@ -334,4 +340,4 @@ To disable optional components run `rake options[]` including only the optional 
 rake options[] # disable all optional components
 rake options[option_1] # enables option_1 disabling all other optional components
 ```
- 
+

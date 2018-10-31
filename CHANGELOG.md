@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.3.0] - 2018.10.25
+[Full Changelog](https://github.com/inspec/inspec-azure/compare/1.2.0...1.3.0)
+
+**Enhancements:**
+
+- Requests to Azure REST API now include an InSpec User Agent.
+
+- Adds Resource creation guide. Thank you for your contribution @[Matt Mclane](https://github.com/mmclane)!
+
+**New Resources:**
+
+  * azurerm_storage_account_blob_container  [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_storage_account_blob_containers [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_key                   [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_keys                  [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_secret                [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_key_vault_secrets               [Ruairi Fennell](https://github.com/r-fennell)
+
+**Bug Fixes:**
+
+- Tags are no longer converted to a struct. It should be easier to validate the tags as a hash in your control. Fixes [\#138](https://github.com/chef/inspec-azure/issues/138)
+
+- `azurerm_storage_accounts` may now be scoped by resource group.
+
+- Cleans up formatting on documentation.
+
 ## [1.2.0] - 2018.09.14
 [Full Changelog](https://github.com/inspec/inspec-azure/compare/1.1.0...1.2.0)
 
@@ -20,11 +46,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 **New Resources:**
 
   * azurerm_key_vault        [Ruairi Fennell](https://github.com/r-fennell)
-  * azurerm_key_vaults       [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_database     [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_databases    [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_server       [Ruairi Fennell](https://github.com/r-Fennell)
-  * azurerm_sql_servers      [Ruairi Fennell](https://github.com/r-Fennell)
+  * azurerm_key_vaults       [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_database     [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_databases    [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_server       [Ruairi Fennell](https://github.com/r-fennell)
+  * azurerm_sql_servers      [Ruairi Fennell](https://github.com/r-fennell)
   * azurerm_storage_account  [Paul Welch](https://github.com/pwelch)
   * azurerm_storage_accounts [Paul Welch](https://github.com/pwelch)
   * azurerm_subnet           [Matt Mclane](https://github.com/mmclane)
