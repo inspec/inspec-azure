@@ -7,8 +7,13 @@ module Azure
         def key?(key)
           members.include?(key)
         end
-
         alias_method :keys, :members
+
+        private
+
+        def method_missing(_name)
+          nil
+        end
       end.new(*values)
     end
   end
