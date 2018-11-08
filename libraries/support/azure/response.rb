@@ -19,23 +19,21 @@ module Azure
     end
   end
 
-  class NullResponse < Struct.new(:NullResponse)
+  class NullResponse
     def nil?
       true
     end
-    alias_method :empty?, :nil?
+    alias empty? nil?
 
     def ==(other)
       other.nil?
     end
-    alias_method :===, :==
-    alias_method :<=>, :==
+    alias === ==
+    alias <=> ==
 
-    def key?(_name)
+    def key?(_key)
       false
     end
-
-    alias_method :keys, :members
 
     def method_missing(*_args)
       self

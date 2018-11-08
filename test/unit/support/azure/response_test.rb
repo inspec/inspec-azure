@@ -34,29 +34,41 @@ describe Azure::Response do
   end
 
   describe Azure::NullResponse do
+    let(:unknown_key) { subject.unknown_key }
+
     it 'should return null type for unknown keys' do
-      expect(subject.unknown_key).must_be_kind_of Azure::NullResponse
+      expect(unknown_key).must_be_kind_of Azure::NullResponse
     end
 
-    # we do this because InSpec (RSpec) evaluates expected == actual
-    it 'should be nil when returning null type' do
-      expect(subject.unknown_key == nil).must_equal true
+    it 'should be nil' do
+      expect(unknown_key).must_be :nil?
+      expect(unknown_key.nil?).must_equal true
     end
 
-    it 'should be nil when returning null type' do
-      expect(subject.unknown_key).must_be :nil?
+    # rubocop: disable Style/NilComparison
+    # rubocop: disable Style/CaseEquality
+    it 'should always compare against nil as true' do
+      expect(unknown_key == nil).must_equal true
+      expect(unknown_key === nil).must_equal true
+      expect(unknown_key <=> nil).must_equal true
     end
+    # rubocop: enable Style/CaseEquality
+    # rubocop: enable Style/NilComparison
 
-    it 'should be nil when returning null type' do
-      expect(subject.unknown_key.nil?).must_equal true
-    end
-
-    it 'should be empty when returning null type' do
-      expect(subject.unknown_key).must_be :empty?
+    it 'should be empty' do
+      expect(unknown_key).must_be :empty?
     end
 
     it 'should handle broken method chains' do
-      expect(subject.unknown_key.other_unknown_key).must_be :nil?
+      expect(unknown_key.other_unknown_key).must_be :nil?
+    end
+
+    it 'should have no members' do
+      expect(unknown_key.members).must_be :empty?
+    end
+
+    it 'should respond to index methods' do
+      expect(unknown_key[:nothing]).must_be :nil?
     end
   end
 end
