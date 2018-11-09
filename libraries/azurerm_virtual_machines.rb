@@ -47,7 +47,7 @@ class AzurermVirtualMachines < AzurermPluralResource
           'unknown'
         end
 
-      Azure::ResponseStruct.create(vm.members << :platform, vm.values << platform)
+      Azure::Response.create(vm.members << :platform, vm.values << platform)
     end
   end
 
@@ -57,7 +57,7 @@ class AzurermVirtualMachines < AzurermPluralResource
 
       disk_name = os_disk.key?(:name) ? os_disk.name : ''
 
-      Azure::ResponseStruct.create(vm.members << :os_disk, vm.values << disk_name)
+      Azure::Response.create(vm.members << :os_disk, vm.values << disk_name)
     end
   end
 
@@ -66,7 +66,7 @@ class AzurermVirtualMachines < AzurermPluralResource
       disks = Array(vm.properties.storageProfile.dataDisks)
       disks = disks.select { |disk| disk.key?(:managedDisk) }
 
-      Azure::ResponseStruct.create(vm.members << :data_disks, vm.values << disks.collect(&:name))
+      Azure::Response.create(vm.members << :data_disks, vm.values << disks.collect(&:name))
     end
   end
 end

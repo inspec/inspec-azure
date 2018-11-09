@@ -37,7 +37,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
     lambda do |group|
       # Get resource group from ID string
       name = group.id.split('/')[4]
-      Azure::ResponseStruct.create(group.members << :resource_group, group.values << name)
+      Azure::Response.create(group.members << :resource_group, group.values << name)
     end
   end
 
@@ -46,7 +46,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
       conditions = alert.properties.condition.allOf
       operations = conditions.find_all { |x| x.field == 'operationName' }.collect(&:equals)
 
-      Azure::ResponseStruct.create(alert.members << :operations, alert.values << operations)
+      Azure::Response.create(alert.members << :operations, alert.values << operations)
     end
   end
 end

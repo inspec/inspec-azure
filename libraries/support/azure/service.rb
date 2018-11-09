@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'support/azure/response_struct'
+require 'support/azure/response'
 
 module Azure
   module Service
@@ -40,9 +40,10 @@ module Azure
       return data if data.empty?
 
       exempted = slice!(data, EXEMPTED_ATTRIBUTES)
+      keys     = (data.keys + exempted.keys).map(&:to_sym)
+      values   = data.values.map { |v| to_struct(v) } + exempted.values
 
-      ResponseStruct.create(data.keys.map(&:to_sym) + exempted.keys.map(&:to_sym),
-                            data.values.map { |v| to_struct(v) } + exempted.values)
+      Response.create(keys, values)
     end
 
     private
