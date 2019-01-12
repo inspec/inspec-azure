@@ -179,3 +179,6 @@ output "storage_account_blob_container" {
   value = "${azurerm_storage_container.blob.name}"
 }
 
+output "mysql_server_name" {
+  value = "${azurerm_mysql_server.mysql.name}"
+}

@@ -634,3 +634,49 @@ resource "azurerm_sql_database" "sql-database" {
   depends_on          = ["azurerm_sql_server.sql-server"]
   tags {}
 }
+
+resource "random_string" "mysql_server" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_mysql_server" "mysql" {
+  name                = "${random_string.mysql_server.result}-mysqlsvr"
+  location            = "westeurope"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  sku {
+    name     = "${var.sku_name}"
+    capacity = "${var.sku_capacity}"
+    tier     = "${var.sku_tier}"
+    family   = "${var.sku_family}"
+  }
+
+  storage_profile {
+    storage_mb            = "${var.storage_mb}"
+    backup_retention_days = "${var.backup_retention_days}"
+    geo_redundant_backup  = "${var.geo_redundant_backup}"
+  }
+
+  administrator_login          = "${terraform.workspace}"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "${var.db_version}"
+  ssl_enforcement              = "${var.ssl_enforcement}"
+}
+
+resource "azurerm_mysql_database" "mysql" {
+  name                = "mydatabase"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_mysql_server.mysql.name}"
+  charset             = "${var.charset}"
+  collation           = "${var.collation}"
+}
+
+resource "azurerm_mysql_firewall_rule" "mysql" {
+  name                = "mydatabase-fwrules"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_mysql_server.mysql.name}"
+  start_ip_address    = "${var.start_ip_address}"
+  end_ip_address      = "${var.end_ip_address}"
+}

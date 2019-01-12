@@ -111,6 +111,8 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md.erb)
 - [azurerm_monitor_log_profile](docs/resources/azurerm_monitor_log_profile.md.erb)
 - [azurerm_monitor_log_profiles](docs/resources/azurerm_monitor_log_profiles.md.erb)
+- [azurerm_mysql_server](docs/resources/azurerm_mysql_server.md.erb)
+- [azurerm_mysql_servers](docs/resources/azurerm_mysql_servers.md.erb)
 - [azurerm_network_security_group](docs/resources/azurerm_network_security_group.md.erb)
 - [azurerm_network_security_groups](docs/resources/azurerm_network_security_groups.md.erb)
 - [azurerm_network_watcher](docs/resources/azurerm_network_watcher.md.erb)
@@ -131,6 +133,7 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
 - [azurerm_virtual_network](docs/resources/azurerm_virtual_network.md.erb)
 - [azurerm_virtual_networks](docs/resources/azurerm_virtual_networks.md.erb)
+
 
 ## Connectors
 

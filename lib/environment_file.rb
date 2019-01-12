@@ -4,6 +4,7 @@ class EnvironmentFile
     network_watcher
     msi
     sql
+    mysql
   }.freeze
 
   def self.options(path)
