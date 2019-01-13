@@ -1,4 +1,4 @@
-resource_group  = attribute('resource_group', default: nil)
+resource_group = attribute('resource_group', default: nil)
 mysql_server_name = attribute('mysql_server_name', default: nil)
 
 control 'azurerm_mysql_servers' do
@@ -10,7 +10,7 @@ control 'azurerm_mysql_servers' do
   end
 
   describe azurerm_mysql_servers do
-      it            { should exist }
-      its('names')  { should include mysql_server_name }
+    it            { should exist }
+    its('names')  { should include mysql_server_name }
   end
 end

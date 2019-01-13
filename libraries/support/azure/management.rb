@@ -323,7 +323,7 @@ module Azure
 
     def mysql_servers(resource_group)
       get(
-        url: link(location: "Microsoft.DBforMySQL/servers/",
+        url: link(location: 'Microsoft.DBforMySQL/servers/',
                   resource_group: resource_group),
         api_version: '2017-12-01',
       )

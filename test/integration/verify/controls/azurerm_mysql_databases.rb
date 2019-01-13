@@ -1,5 +1,5 @@
-resource_group      = attribute('resource_group', default: nil)
-mysql_server_name     = attribute('mysql_server_name', default: nil)
+resource_group = attribute('resource_group', default: nil)
+mysql_server_name = attribute('mysql_server_name', default: nil)
 mysql_server_database = attribute('mysql_database_name', default: nil)
 
 control 'azurerm_mysql_databases' do

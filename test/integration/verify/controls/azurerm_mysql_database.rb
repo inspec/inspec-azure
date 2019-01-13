@@ -1,6 +1,6 @@
-resource_group  = attribute('resource_group', default: nil)
+resource_group = attribute('resource_group', default: nil)
 mysql_server_name = attribute('mysql_server_name', default: nil)
-mysql_db_name     = attribute('mysql_database_name', default: nil)
+mysql_db_name = attribute('mysql_database_name', default: nil)
 
 control 'azurerm_mysql_database' do
   only_if { ENV['MYSQL'] }

@@ -13,7 +13,7 @@ require_relative 'lib/environment_file'
 RuboCop::RakeTask.new
 
 FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures"
-TERRAFORM_DIR = "terraform"
+TERRAFORM_DIR = 'terraform'
 REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID}.freeze
 
 task default: :test
@@ -38,12 +38,10 @@ namespace :azure do
       '-u', ENV['AZURE_CLIENT_ID'],
       '-p', ENV['AZURE_CLIENT_SECRET'],
       '--tenant', ENV['AZURE_TENANT_ID']
-
-      
     )
 
     sh(
-      'az', 'account', 
+      'az', 'account',
       'set',
       '--subscription', ENV['AZURE_SUBSCRIPTION_ID']
     )

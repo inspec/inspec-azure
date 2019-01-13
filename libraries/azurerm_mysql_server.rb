@@ -34,7 +34,6 @@ class AzurermMySqlServer < AzurermSingularResource
     @exists = true
   end
 
-
   def firewall_rules
     management.mysql_server_firewall_rules(@resource_group, @server_name)
   end
