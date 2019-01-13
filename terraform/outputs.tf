@@ -186,3 +186,7 @@ output "mysql_server_name" {
 output "mysql_database_name" {
   value = "${azurerm_mysql_database.mysql.name}"
 }
+
+output "lb_name" {
+  value = "${module.azurerm_lb.azurerm_lb_name}"
+}

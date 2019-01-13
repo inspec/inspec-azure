@@ -345,6 +345,22 @@ module Azure
       )
     end
 
+    def load_balancer(resource_group, loadbalancer_name)
+      get(
+        url: link(location: "Microsoft.Network/loadBalancers/#{loadbalancer_name}",
+                  resource_group: resource_group),
+        api_version: '2018-08-01',
+      )
+    end
+
+    def load_balancers(resource_group)
+      get(
+        url: link(location: 'Microsoft.Network/loadBalancers/',
+                  resource_group: resource_group),
+        api_version: '2018-08-01',
+      )
+    end
+
     private
 
     def rest_client

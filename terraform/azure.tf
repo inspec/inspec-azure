@@ -16,12 +16,6 @@ provider "random" {
   version = "~> 1.2"
 }
 
-resource "random_string" "password" {
-  length = 16
-  special = true
-  override_special = "/@\" "
-}
-
 resource "azurerm_resource_group" "rg" {
   name     = "Inspec-Azure-${terraform.workspace}"
   location = "${var.location}"
@@ -679,4 +673,26 @@ resource "azurerm_mysql_firewall_rule" "mysql" {
   server_name         = "${azurerm_mysql_server.mysql.name}"
   start_ip_address    = "${var.start_ip_address}"
   end_ip_address      = "${var.end_ip_address}"
+}
+
+resource "random_string" "lb-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+module "azurerm_lb" {
+  source              = "modules/LoadBalancer"
+  use_loadbalancer    = "true"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  lb_name             = "${random_string.lb-random.result}-lb"
+  location            = "${var.location}"
+  remote_port         = "${var.remote_port}"
+  lb_port             = "${var.lb_port}"
+}
+
+
+resource "random_string" "password" {
+  length = 16
+  special = true
+  override_special = "/@\" "
 }
