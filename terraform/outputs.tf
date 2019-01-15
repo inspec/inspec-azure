@@ -139,6 +139,14 @@ output "windows_vm_data_disks" {
   value = ["${var.windows_internal_data_disk}"]
 }
 
+output "windows_vm_nic_name" {
+  value = "${azurerm_network_interface.nic3.name}"
+}
+
+output "linux_vm_nic_name" {
+  value = "${azurerm_network_interface.nic1.name}"
+}
+
 output "monitoring_agent_name" {
   value = "${var.monitoring_agent_name}"
 }

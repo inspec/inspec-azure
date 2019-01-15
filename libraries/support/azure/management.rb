@@ -361,6 +361,23 @@ module Azure
       )
     end
 
+
+    def network_interface(resource_group, name)
+      get(
+        url: link(location: "Microsoft.Network/networkInterfaces/#{name}",
+                  resource_group: resource_group),
+        api_version: '2018-08-01',
+      )
+    end
+
+    def network_interfaces(resource_group)
+      get(
+        url: link(location: "Microsoft.Network/networkInterfaces/",
+                  resource_group: resource_group),
+        api_version: '2018-08-01',
+      )
+    end
+
     private
 
     def rest_client
