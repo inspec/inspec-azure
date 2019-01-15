@@ -9,7 +9,6 @@ control 'azurerm_network_interface' do
     its('name')       { should eq nic_name }
     its('location')   { should_not be_nil }
     its('type')       { should eq 'Microsoft.Network/networkInterfaces' }
-    
-    it { should have_private_address_IP }
+    it { should have_private_address_ip }
   end
 end

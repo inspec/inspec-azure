@@ -33,15 +33,13 @@ class AzurermNetworkInterface < AzurermSingularResource
     @exists = true
   end
 
-
-  def has_private_address_IP?
+  def has_private_address_ip?
     !!properties.ipConfigurations[0].properties.privateIPAddress
   end
 
-  def has_public_address_IP?
+  def has_public_address_ip?
     !!properties.ipConfigurations[0].properties.publicIPAddress
   end
-
 
   def to_s
     "Azure Network Interface: '#{name}'"

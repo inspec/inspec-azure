@@ -22,7 +22,7 @@ class AzurermLoadBalancer < AzurermSingularResource
 
   attr_reader(*ATTRS)
 
-  def initialize(resource_group: nil,  loadbalancer_name: nil)
+  def initialize(resource_group: nil, loadbalancer_name: nil)
     loadbalancer = management.load_balancer(resource_group, loadbalancer_name)
     return if has_error?(loadbalancer)
 
@@ -32,7 +32,6 @@ class AzurermLoadBalancer < AzurermSingularResource
     @loadbalancer_name = loadbalancer_name
     @exists = true
   end
-
 
   def to_s
     "Azure Load Balancer: '#{name}'"
