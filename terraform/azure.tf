@@ -647,36 +647,36 @@ resource "azurerm_mysql_server" "mysql" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   sku {
-    name     = "${var.sku_name}"
-    capacity = "${var.sku_capacity}"
-    tier     = "${var.sku_tier}"
-    family   = "${var.sku_family}"
+    name     = "B_Gen4_2"
+    capacity = "2"
+    tier     = "Basic"
+    family   = "Gen4"
   }
 
   storage_profile {
-    storage_mb            = "${var.storage_mb}"
-    backup_retention_days = "${var.backup_retention_days}"
-    geo_redundant_backup  = "${var.geo_redundant_backup}"
+    storage_mb            = "5120"
+    backup_retention_days = "7"
+    geo_redundant_backup  = "Disabled"
   }
 
   administrator_login          = "${terraform.workspace}"
   administrator_login_password = "P4assw0rd!"
-  version                      = "${var.db_version}"
-  ssl_enforcement              = "${var.ssl_enforcement}"
+  version                      = "5.7"
+  ssl_enforcement              = "Enabled"
 }
 
 resource "azurerm_mysql_database" "mysql" {
   name                = "mydatabase"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   server_name         = "${azurerm_mysql_server.mysql.name}"
-  charset             = "${var.charset}"
-  collation           = "${var.collation}"
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
 }
 
 resource "azurerm_mysql_firewall_rule" "mysql" {
   name                = "mydatabase-fwrules"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   server_name         = "${azurerm_mysql_server.mysql.name}"
-  start_ip_address    = "${var.start_ip_address}"
-  end_ip_address      = "${var.end_ip_address}"
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
 }

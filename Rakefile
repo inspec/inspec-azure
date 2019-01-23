@@ -137,7 +137,7 @@ namespace :test do
   task :integration, [:controls] => [:check_attributes_file] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
-              --reporter cli
+              --reporter progress
               -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )
 
     if args[:controls]
