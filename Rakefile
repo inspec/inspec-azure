@@ -18,13 +18,13 @@ REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID}.freeze
 
 task default: :test
 desc 'Testing tasks'
-task test: %w(test:unit setup_env test:integration)
+task test: %w{test:unit setup_env test:integration}
 
 desc 'Set up Azure env, run integration tests, destroy Azure env'
 task azure: 'azure:run'
 
 namespace :azure do
-  task run: %w(network_watcher check_env tf:apply test:integration tf:destroy)
+  task run: %w{network_watcher check_env tf:apply test:integration tf:destroy}
 
   desc 'Authenticate with the Azure CLI'
   task :login do
@@ -70,7 +70,7 @@ namespace :inspec do
     puts stdout
 
     %w{errors}.each do |type|
-      abort("InSpec check failed with syntax #{type}!") if (/[1-9]\d* #{type}/ =~ stdout)
+      abort("InSpec check failed with syntax #{type}!") if /[1-9]\d* #{type}/ =~ stdout
     end
 
     status.exitstatus
@@ -126,7 +126,7 @@ namespace :test do
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => [:check_attributes_file] do |_t, args|
+  task :integration, [:controls] => [:lint, :check_attributes_file] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
