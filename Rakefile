@@ -18,15 +18,13 @@ REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID}.freeze
 
 task default: :test
 desc 'Testing tasks'
-task test: ['test:unit', 'test:integration']
-
-task 'test:integration': :setup_env
+task test: %w(test:unit setup_env test:integration)
 
 desc 'Set up Azure env, run integration tests, destroy Azure env'
 task azure: 'azure:run'
 
 namespace :azure do
-  task run: ['network_watcher', 'check_env', 'tf:apply', 'test:integration', 'tf:destroy']
+  task run: %w(network_watcher check_env tf:apply test:integration tf:destroy)
 
   desc 'Authenticate with the Azure CLI'
   task :login do
@@ -72,7 +70,7 @@ namespace :inspec do
     puts stdout
 
     %w{errors}.each do |type|
-      abort("InSpec check failed with syntax #{type}!") if !!(/[1-9]\d* #{type}/ =~ stdout)
+      abort("InSpec check failed with syntax #{type}!") if (/[1-9]\d* #{type}/ =~ stdout)
     end
 
     status.exitstatus
@@ -132,6 +130,7 @@ namespace :test do
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
+              --no-distinct-exit
               -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )
 
     if args[:controls]
@@ -149,10 +148,7 @@ namespace :tf do
     abort('$WORKSPACE not set. Please source .envrc.') if workspace.nil?
     abort('$WORKSPACE has no content. Check .envrc.') if workspace.empty?
     Dir.chdir(TERRAFORM_DIR) do
-      sh('terraform', 'init',
-         '--backend-config', "storage_account_name=#{ENV['TF_STORAGE_ACCOUNT_NAME']}",
-         '--backend-config', "access_key=#{ENV['TF_ACCESS_KEY']}",
-         '--backend-config', "container_name=#{ENV['TF_CONTAINER_NAME']}")
+      sh('terraform', 'init')
     end
   end
 
