@@ -349,7 +349,7 @@ module Azure
       get(
         url: link(location: "Microsoft.Network/loadBalancers/#{loadbalancer_name}",
                   resource_group: resource_group),
-        api_version: '2018-08-01',
+        api_version: '2018-11-01',
       )
     end
 
@@ -357,7 +357,7 @@ module Azure
       get(
         url: link(location: 'Microsoft.Network/loadBalancers/',
                   resource_group: resource_group),
-        api_version: '2018-08-01',
+        api_version: '2018-11-01',
       )
     end
 
@@ -365,7 +365,7 @@ module Azure
       get(
         url: link(location: "Microsoft.Network/networkInterfaces/#{name}",
                   resource_group: resource_group),
-        api_version: '2018-08-01',
+        api_version: '2018-11-01',
       )
     end
 
@@ -373,7 +373,7 @@ module Azure
       get(
         url: link(location: 'Microsoft.Network/networkInterfaces/',
                   resource_group: resource_group),
-        api_version: '2018-08-01',
+        api_version: '2018-11-01',
       )
     end
 
