@@ -687,7 +687,7 @@ resource "random_string" "lb-random" {
   upper   = false
 }
 module "azurerm_lb" {
-  source              = "modules/LoadBalancer"
+  source              = "modules/load_balancer"
   use_loadbalancer    = "true"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   lb_name             = "${random_string.lb-random.result}-lb"
