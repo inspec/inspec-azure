@@ -70,7 +70,7 @@ namespace :inspec do
     puts stdout
 
     %w{errors}.each do |type|
-      abort("InSpec check failed with syntax #{type}!") if /[1-9]\d* #{type}/ =~ stdout
+      abort("InSpec check failed with syntax #{type}!") if !!(/[1-9]\d* #{type}/ =~ stdout)
     end
 
     status.exitstatus
