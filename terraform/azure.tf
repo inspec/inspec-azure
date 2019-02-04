@@ -636,13 +636,13 @@ resource "azurerm_sql_database" "sql-database" {
 }
 
 resource "azurerm_kubernetes_cluster" "test" {
-  name                = "inspecakstest"
+  name                = "inspecaks"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   dns_prefix          = "inspecaksagent1"
 
   agent_pool_profile {
-    name            = "inspecakstest"
+    name            = "inspecaks"
     count           = 5
     vm_size         = "Standard_DS1_v2"
     os_type         = "Linux"

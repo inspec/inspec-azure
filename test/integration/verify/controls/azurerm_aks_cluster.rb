@@ -10,7 +10,7 @@ control 'azurerm_aks_cluster' do
     its('properties.kubernetesVersion')                      { should cmp '1.9.11' }
     its('properties.dnsPrefix')                              { should cmp 'inspecaksagent1' }
     its('properties.fqdn')                                   { should cmp cluster_fqdn }
-    its('properties.agentPoolProfiles.first.name')           { should cmp 'inspecakstest' }
+    its('properties.agentPoolProfiles.first.name')           { should cmp 'inspecaks' }
     its('properties.agentPoolProfiles.first.count')          { should cmp '5' }
     its('properties.agentPoolProfiles.first.vmSize')         { should cmp 'Standard_DS1_v2' }
     its('properties.agentPoolProfiles.first.storageProfile') { should cmp 'ManagedDisks' }
