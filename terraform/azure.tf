@@ -636,7 +636,7 @@ resource "azurerm_sql_database" "sql-database" {
 }
 
 resource "azurerm_kubernetes_cluster" "test" {
-  name                = "inspecaks"
+  name                = "inspecakstest"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   dns_prefix          = "inspecaksagent1"
