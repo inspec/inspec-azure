@@ -634,3 +634,29 @@ resource "azurerm_sql_database" "sql-database" {
   depends_on          = ["azurerm_sql_server.sql-server"]
   tags {}
 }
+
+resource "azurerm_kubernetes_cluster" "test" {
+  name                = "inspecakstest"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  dns_prefix          = "inspecaksagent1"
+
+  agent_pool_profile {
+    name            = "inspecaks"
+    count           = 5
+    vm_size         = "Standard_DS1_v2"
+    os_type         = "Linux"
+    os_disk_size_gb = 30
+  }
+  linux_profile {
+    admin_username = "inspecuser1"
+
+    ssh_key {
+      key_data = "${var.ssh_key}"
+    }
+  }
+  service_principal {
+    client_id     = "${var.client_id}"
+    client_secret = "${var.client_secret}"
+  }
+}

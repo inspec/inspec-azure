@@ -101,6 +101,8 @@ The following resources are available in the InSpec Azure Resource Pack
 
 - [azurerm_ad_user](docs/resources/azurerm_ad_user.md.erb)
 - [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
+- [azurerm_aks_cluster](docs/resources/azurerm_aks_cluster.md.erb)
+- [azurerm_aks_clusters](docs/resources/azurerm_aks_clusters.md.erb)
 - [azurerm_key_vault](docs/resources/azurerm_key_vault.md.erb)
 - [azurerm_key_vault_key](docs/resources/azurerm_key_vault_key.md.erb)
 - [azurerm_key_vault_keys](docs/resources/azurerm_key_vault_keys.md.erb)
@@ -148,6 +150,7 @@ export AZURE_SUBSCRIPTION_ID=<subscription id>
 export AZURE_CLIENT_ID=<client id>
 export AZURE_TENANT_ID=<tenant id>
 export AZURE_CLIENT_SECRET=<client secret>
+export SSH_KEY=<ssh-rsa...>
 ```
 
 For PowerShell, set the following environment variables
@@ -156,7 +159,10 @@ $env:AZURE_SUBSCRIPTION_ID="<subscription id>"
 $env:AZURE_CLIENT_ID="<client id>"
 $env:AZURE_CLIENT_SECRET="<tenant id>"
 $env:AZURE_TENANT_ID="<client secret>"
+$env:SSH_KEY="<ssh-rsa...>"
 ```
+
+> NOTE: The the SSH_KEY is used in the Terraform plan to create an AKS cluster. It is the public SSH key used to access the cluster. It's not actually used; however, it's a required parameter for creating a new cluster.
 
 **Setup Azure CLI**
 - Follow the instructions for your platform [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)

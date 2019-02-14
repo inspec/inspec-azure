@@ -167,6 +167,7 @@ output "key_vault_name" {
   value = "${azurerm_key_vault.disk_vault.name}"
 }
 
+<<<<<<< HEAD
 output "key_vault_key_name" {
   value = "${azurerm_key_vault_key.vk.name}"
 }
@@ -179,3 +180,8 @@ output "storage_account_blob_container" {
   value = "${azurerm_storage_container.blob.name}"
 }
 
+=======
+>>>>>>> Updates based on PR feedback
+output "cluster_fqdn" {
+  value = "${azurerm_kubernetes_cluster.test.fqdn}"
+}
