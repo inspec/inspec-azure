@@ -110,7 +110,6 @@ task :setup_env do
   ENV['TF_VAR_tenant_id']       = ENV['AZURE_TENANT_ID']
   ENV['TF_VAR_client_id']       = ENV['AZURE_CLIENT_ID']
   ENV['TF_VAR_client_secret']   = ENV['AZURE_CLIENT_SECRET']
-  ENV['TF_VAR_ssh_key']         = ENV['SSH_KEY']
   ENV['TF_VAR_public_vm_count'] = '1' if ENV.key?('MSI')
 end
 
