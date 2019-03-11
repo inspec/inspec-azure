@@ -16,6 +16,7 @@ control 'azurerm_aks_cluster' do
     its('properties.agentPoolProfiles.first.storageProfile') { should cmp 'ManagedDisks' }
     its('properties.agentPoolProfiles.first.maxPods')        { should cmp '110' }
     its('properties.agentPoolProfiles.first.osType')         { should cmp 'Linux' }
+    its('properties.kubernetesVersion')                      { should_not be nil }
   end
 
   describe azurerm_aks_cluster(resource_group: resource_group, name: 'fake') do
