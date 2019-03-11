@@ -7,7 +7,6 @@ control 'azurerm_aks_cluster' do
     its('name')                                              { should cmp 'inspecakstest' }
     its('type')                                              { should cmp 'Microsoft.ContainerService/managedClusters' }
     its('properties.provisioningState')                      { should cmp 'Succeeded' }
-    its('properties.kubernetesVersion')                      { should cmp '1.9.11' }
     its('properties.dnsPrefix')                              { should cmp 'inspecaksagent1' }
     its('properties.fqdn')                                   { should cmp cluster_fqdn }
     its('properties.agentPoolProfiles.first.name')           { should cmp 'inspecaks' }
