@@ -96,7 +96,13 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   end
 
   def source_open?(properties)
-    properties['sourceAddressPrefix'] =~ %r{\*|0\.0\.0\.0|<nw>\/0|\/0|internet|any}
+    properties_hash = properties.to_h
+    if properties_hash.include?(:sourceAddressPrefix)
+      return properties['sourceAddressPrefix'] =~ %r{\*|0\.0\.0\.0|<nw>\/0|\/0|Internet|any}
+    end
+    if properties_hash.include?(:sourceAddressPrefixes)
+      return properties['sourceAddressPrefixes'].include?('0.0.0.0')
+    end
   end
 
   def direction_inbound?(properties)
