@@ -75,8 +75,9 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   end
 
   def destination_port_ranges(properties)
-    return Array(properties['destinationPortRange']) if properties['destinationPortRanges'].empty?
-    return properties['destinationPortRanges'] if properties['destinationPortRange'].empty?
+    properties_hash = properties.to_h
+    return Array(properties['destinationPortRange']) if !properties_hash.include?(:destinationPortRanges)
+    return properties['destinationPortRanges'] if !properties_hash.include?(:destinationPortRange)
     properties['destinationPortRanges'].push(properties['destinationPortRange'])
   end
 
