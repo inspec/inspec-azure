@@ -298,6 +298,39 @@ module Azure
       )
     end
 
+    def webapp(resource_group, webapp_name)
+      get(
+        url: link(location: "Microsoft.Web/sites/#{webapp_name}",
+                  resource_group: resource_group),
+        api_version: '2016-08-01',
+      )
+    end
+
+    def webapps(resource_group)
+      get(
+        url: link(location: 'Microsoft.Web/sites',
+                  resource_group: resource_group),
+        api_version: '2016-08-01',
+      )
+    end
+
+    def webapp_authentication_settings(resource_group, webapp_name)
+      post(
+        url: link(location: "Microsoft.Web/sites/#{webapp_name}" \
+                            '/config/authsettings/list',
+                  resource_group: resource_group),
+        api_version: '2016-08-01',
+      )
+    end
+
+    def webapp_configuration(resource_group, webapp_name)
+      get(
+        url: link(location: "Microsoft.Web/sites/#{webapp_name}/config/web",
+                  resource_group: resource_group),
+        api_version: '2016-08-01'
+      )
+    end
+
     def key_vaults(resource_group)
       get(
         url: link(location: 'Microsoft.KeyVault/vaults',
