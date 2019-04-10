@@ -101,5 +101,23 @@ module Azure
         to_struct(body.fetch('value', body))
       end
     end
+
+    def post(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true)
+      confirm_configured!
+
+      body = cache.fetch(url) if use_cache
+
+      body = rest_client.post(url,
+                               params:  { 'api-version' => api_version },
+                               headers: { Accept: 'application/json' }).body
+
+      error_handler&.(body)
+
+      if unwrap.respond_to?(:call)
+        to_struct(unwrap.call(body, api_version))
+      else
+        to_struct(body.fetch('value', body))
+      end
+    end
   end
 end
