@@ -48,7 +48,4 @@ class AzurermWebapp < AzurermSingularResource
     identity.is_a?(Struct)
   end
   
-  # def uses_latest_software?
-
-  # end
 end
