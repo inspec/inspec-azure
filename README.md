@@ -1,5 +1,11 @@
 # InSpec for Azure
 
+* **Project State: Active**
+* **Issues Response SLA: 3 business days**
+* **Pull Request Response SLA: 3 business days**
+
+For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
+
 [![Build Status](https://travis-ci.org/inspec/inspec-azure.svg?branch=master)](https://travis-ci.org/inspec/inspec-azure)
 
 This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
