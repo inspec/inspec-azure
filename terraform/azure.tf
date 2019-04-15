@@ -665,3 +665,23 @@ resource "azurerm_kubernetes_cluster" "test" {
     client_secret = "${var.client_secret}"
   }
 }
+
+resource "azurerm_app_service_plan" "app-service-plan" {
+  name                = "inspecappserviceplantest"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  kind                = "Windows"
+
+  sku {
+    tier              = "Free"
+    size              = "F1"
+  }
+}
+
+resource "azurerm_app_service" "app-service" {
+  name                = "inspecappservicetest"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  app_service_plan_id = "${azurerm_app_service_plan.app-service-plan.id}"
+  https_only          = "true"
+}
