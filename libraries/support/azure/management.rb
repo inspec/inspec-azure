@@ -327,7 +327,7 @@ module Azure
       get(
         url: link(location: "Microsoft.Web/sites/#{webapp_name}/config/web",
                   resource_group: resource_group),
-        api_version: '2016-08-01'
+        api_version: '2016-08-01',
       )
     end
 

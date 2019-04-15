@@ -107,9 +107,9 @@ module Azure
 
       body = cache.fetch(url) if use_cache
 
-      body = rest_client.post(url,
-                               params:  { 'api-version' => api_version },
-                               headers: { Accept: 'application/json' }).body
+      body ||= rest_client.post(url,
+                                params:  { 'api-version' => api_version },
+                                headers: { Accept: 'application/json' }).body
 
       error_handler&.(body)
 

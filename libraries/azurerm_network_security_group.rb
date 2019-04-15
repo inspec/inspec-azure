@@ -77,12 +77,15 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   def destination_port_ranges(properties)
     properties_hash = properties.to_h
     return Array(properties['destinationPortRange']) if !properties_hash.include?(:destinationPortRanges)
+
     return properties['destinationPortRanges'] if !properties_hash.include?(:destinationPortRange)
+
     properties['destinationPortRanges'].push(properties['destinationPortRange'])
   end
 
   def matches_port?(ports, match_port)
     return true if ports.detect { |p| p =~ /^(#{match_port}|\*)$/ }
+
     ports.select { |port| port.include?('-') }
          .collect { |range| range.split('-') }
          .any? { |range| (range.first..range.last).cover?(match_port) }
@@ -103,6 +106,7 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
     end
     if properties_hash.include?(:sourceAddressPrefixes)
       return properties['sourceAddressPrefixes'].include?('0.0.0.0')
+
     end
   end
 

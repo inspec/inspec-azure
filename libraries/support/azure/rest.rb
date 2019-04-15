@@ -39,7 +39,6 @@ module Azure
       end
     end
 
-
     def connection
       @connection ||= Faraday.new(url: host) do |conn|
         conn.request  :multipart
