@@ -182,3 +182,7 @@ output "storage_account_blob_container" {
 output "cluster_fqdn" {
   value = "${azurerm_kubernetes_cluster.test.fqdn}"
 }
+
+output "webapp_name" {
+  value = "${azurerm_app_service.app-service.name}"
+}
