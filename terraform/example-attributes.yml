@@ -1,0 +1,29 @@
+resource_group: Inspec-Azure-<add your workspace here>
+
+vnet_name: Inspec-VNet
+subnet_name: Inspec-Subnet
+network_watcher_name:
+  - nil
+network_watcher_id:
+  - nil
+vm_names:
+  - Linux-Internal-VM
+  - Windows-Internal-VM
+os_disks:
+  - Linux-Internal-OSDisk-MD
+  - Windows-Internal-OSDisk-MD
+managed_data_disks:
+  - linux-internal-datadisk-1
+  - Windows-Internal-DataDisk-1-MD
+
+
+key_vault_name: vault-mighty-chicken
+
+namespace_name: inspectestehnamespace
+event_hub_name: inspectesteh
+authorization_rule: inspectesteh_endpoint
+iothub_resource_name: inspectest-iothub
+iothub_event_hub_endpoint: events
+consumer_groups:
+  - $Default
+  - inspectest_consumer_group
