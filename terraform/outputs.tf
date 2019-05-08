@@ -186,3 +186,6 @@ output "mysql_server_name" {
 output "mysql_database_name" {
   value = "${azurerm_mysql_database.mysql.name}"
 }
+output "cluster_fqdn" {
+  value = "${azurerm_kubernetes_cluster.test.fqdn}"
+}

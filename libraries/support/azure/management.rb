@@ -48,6 +48,22 @@ module Azure
       )
     end
 
+    def aks_cluster(resource_group, id)
+      get(
+        url: link(location: 'Microsoft.ContainerService/managedClusters',
+                  resource_group: resource_group) + id,
+        api_version: '2018-03-31',
+      )
+    end
+
+    def aks_clusters(resource_group)
+      get(
+        url: link(location: 'Microsoft.ContainerService/managedClusters',
+                  resource_group: resource_group),
+        api_version: '2018-03-31',
+      )
+    end
+
     def network_security_group(resource_group, id)
       get(
         url: link(location: 'Microsoft.Network/networkSecurityGroups',
