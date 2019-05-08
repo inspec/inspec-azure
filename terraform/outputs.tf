@@ -187,6 +187,7 @@ output "storage_account_blob_container" {
   value = "${azurerm_storage_container.blob.name}"
 }
 
+
 output "mysql_server_name" {
   value = "${azurerm_mysql_server.mysql.name}"
 }
@@ -197,4 +198,9 @@ output "mysql_database_name" {
 
 output "lb_name" {
   value = "${module.azurerm_lb.azurerm_lb_name}"
+}
+
+output "cluster_fqdn" {
+  value = "${azurerm_kubernetes_cluster.test.fqdn}"
+
 }

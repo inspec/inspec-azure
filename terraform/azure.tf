@@ -635,6 +635,7 @@ resource "azurerm_sql_database" "sql-database" {
   tags {}
 }
 
+
 resource "random_string" "mysql_server" {
   length  = 10
   special = false
@@ -694,4 +695,35 @@ module "azurerm_lb" {
   location            = "${var.location}"
   remote_port         = "${var.remote_port}"
   lb_port             = "${var.lb_port}"
+}
+
+resource "tls_private_key" "key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "azurerm_kubernetes_cluster" "test" {
+  name                = "inspecakstest"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  dns_prefix          = "inspecaksagent1"
+
+  agent_pool_profile {
+    name            = "inspecaks"
+    count           = 5
+    vm_size         = "Standard_DS1_v2"
+    os_type         = "Linux"
+    os_disk_size_gb = 30
+  }
+  linux_profile {
+    admin_username = "inspecuser1"
+
+    ssh_key {
+      key_data = "${tls_private_key.key.public_key_openssh}"
+    }
+  }
+  service_principal {
+    client_id     = "${var.client_id}"
+    client_secret = "${var.client_secret}"
+  }
 }
