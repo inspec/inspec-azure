@@ -27,3 +27,5 @@ iothub_event_hub_endpoint: events
 consumer_groups:
   - $Default
   - inspectest_consumer_group
+
+cosmosdb_database_account: inspectest-cosmosdb

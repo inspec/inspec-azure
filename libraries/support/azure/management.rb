@@ -369,6 +369,14 @@ module Azure
       )
     end
 
+    def cosmosdb_database_account(resource_group, database_account_name)
+      get(
+        url: link(location: "Microsoft.DocumentDB/databaseAccounts/#{database_account_name}",
+                  resource_group: resource_group),
+        api_version: '2015-04-08',
+      )
+    end
+
     private
 
     def rest_client

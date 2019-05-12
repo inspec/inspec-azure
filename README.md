@@ -103,6 +103,7 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
 - [azurerm_aks_cluster](docs/resources/azurerm_aks_cluster.md.erb)
 - [azurerm_aks_clusters](docs/resources/azurerm_aks_clusters.md.erb)
+- [azurerm_cosmosdb_database_account](docs/resources/azurerm_cosmosdb_database_account.md.erb)
 - [azurerm_event_hub_authorization_rule](docs/resources/azurerm_event_hub_authorization_rule.md.erb)
 - [azurerm_event_hub_event_hub](docs/resources/azurerm_event_hub_event_hub.md.erb)
 - [azurerm_event_hub_namespace](docs/resources/azurerm_event_hub_namespace.md.erb)
@@ -162,8 +163,8 @@ For PowerShell, set the following environment variables
 ```
 $env:AZURE_SUBSCRIPTION_ID="<subscription id>"
 $env:AZURE_CLIENT_ID="<client id>"
-$env:AZURE_CLIENT_SECRET="<tenant id>"
-$env:AZURE_TENANT_ID="<client secret>"
+$env:AZURE_CLIENT_SECRET="<client secret>"
+$env:AZURE_TENANT_ID="<tenant id>"
 ```
 
 **Setup Azure CLI**
