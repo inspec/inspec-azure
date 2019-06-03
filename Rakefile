@@ -100,8 +100,8 @@ task :options, :component do |_t_, args|
   begin
     env_file = EnvironmentFile.new('.envrc')
     env_file.synchronize(components)
-  rescue RuntimeError => error
-    puts error.message
+  rescue RuntimeError => e
+    puts e.message
   end
 end
 

@@ -18,8 +18,12 @@ provider "random" {
 
 resource "random_string" "password" {
   length = 16
+  upper = true
+  lower = true
   special = true
   override_special = "/@\" "
+  min_numeric = 3
+  min_special = 3
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -348,24 +352,15 @@ SETTINGS
 PROTECTED_SETTINGS
 }
 
-## Azure Resources managed by azure-cli because they are currently not in TerraForm Azure provider
-resource "null_resource" "azure_log_profile" {
-  depends_on = ["azurerm_storage_account.sa"]
+resource "azurerm_monitor_log_profile" "azure_log_profile" {
+  name        = "default"
+  categories  = [ "Action" ]
+  locations   = [ "${var.log_profile_default_location}" ]
+  storage_account_id = "${azurerm_storage_account.sa.id}"
 
-  # Create the Log Profile
-  provisioner "local-exec" {
-    command = <<CMD
-    az monitor log-profiles create --name default --days 365 --enabled true \
-      --location '${var.log_profile_default_location}' --locations '${var.log_profile_default_location}' \
-      --categories ACTION --storage-account-id ${azurerm_storage_account.sa.id}
-    CMD
-  }
-
-  # Destroy the Log Profile
-  provisioner "local-exec" {
-    command    = "az monitor log-profiles delete --name default"
-    when       = "destroy"
-    on_failure = "continue"
+  retention_policy {
+    enabled = true
+    days    = 365
   }
 }
 
