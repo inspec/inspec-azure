@@ -57,11 +57,6 @@ task :syntax do
   end
 end
 
-task :check_attributes_file do
-  abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
-  abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
-end
-
 namespace :inspec do
   desc 'InSpec syntax check'
   task :check do
@@ -126,7 +121,7 @@ namespace :test do
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => [:lint, :check_attributes_file] do |_t, args|
+  task :integration, [:controls] => ['attributes:write', :lint] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
@@ -210,7 +205,9 @@ end
 
 namespace :attributes do
   desc 'Create attributes used for integration testing'
-  task write: [:check_attributes_file] do
+  task :write do
+    abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
+    abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
     Rake::Task['tf:write_tf_output_to_file'].invoke
     Rake::Task['attributes:write_guest_presence_to_file'].invoke
   end
