@@ -1,8 +1,6 @@
 # InSpec for Azure
 
-* **Project State: Active**
-* **Issues Response SLA: 3 business days**
-* **Pull Request Response SLA: 3 business days**
+* **Project State: Maintained**
 
 For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
 
