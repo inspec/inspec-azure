@@ -3,7 +3,7 @@
 require 'azurerm_resource'
 require 'date'
 
-class AzurermStorageAccout < AzurermSingularResource
+class AzurermStorageAccount < AzurermSingularResource
   name 'azurerm_storage_account'
   desc 'Verifies settings for a Azure Storage Account'
   example <<-EXAMPLE
