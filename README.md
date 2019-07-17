@@ -56,7 +56,7 @@ $ inspec init profile my-profile
 Example inspec.yml:
 ```
 name: my-profile
-title: My own Oneview profile
+title: My own Azure profile
 version: 0.1.0
 inspec_version: '>= 4.6.9'
 depends:
