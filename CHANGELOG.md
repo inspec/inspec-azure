@@ -1,6 +1,12 @@
 # Changelog
+<!-- latest_release 1.3.0 -->
+## [v1.3.0](https://github.com/inspec/inspec-azure/tree/v1.3.0) (2019-07-23)
+
+#### Merged Pull Requests
+- Add expeditor and buildkite verify pipeline [#190](https://github.com/inspec/inspec-azure/pull/190) ([miah](https://github.com/miah))
 <!-- latest_release -->
-<!-- latest_release -->
+
+
 
 All notable changes to this project will be documented in this file.
 
