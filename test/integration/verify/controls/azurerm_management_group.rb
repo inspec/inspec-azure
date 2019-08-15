@@ -8,9 +8,6 @@ control 'azurerm_management_group' do
     its('name')                   { should eq 'mg_parent' }
     its('display_name')           { should eq 'Management Group Parent' }
     its('tenant_id')              { should eq tenant_id }
-    its('parent_name')            { should eq tenant_id }
-    its('parent_id')              { should eq "/providers/Microsoft.Management/managementGroups/#{tenant_id}" }
-    its('parent_display_name')    { should eq 'Tenant Root Group' }
     its('children_display_names') { should include 'Management Group Child 1' }
     its('children_display_names') { should include 'Management Group Child 2' }
     its('children_ids')           { should include '/providers/Microsoft.Management/managementGroups/mg_child_one' }
