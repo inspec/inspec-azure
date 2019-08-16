@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.3.0 -->
+<!-- latest_release 1.3.1 -->
+## [v1.3.1](https://github.com/inspec/inspec-azure/tree/v1.3.1) (2019-08-16)
+
+#### Merged Pull Requests
+- Add azurerm_management_group and azurerm_management_groups [#193](https://github.com/inspec/inspec-azure/pull/193) ([jasonwbarnett](https://github.com/jasonwbarnett))
+<!-- latest_release -->
+
 ## [v1.3.0](https://github.com/inspec/inspec-azure/tree/v1.3.0) (2019-07-23)
 
 #### Merged Pull Requests
 - Add expeditor and buildkite verify pipeline [#190](https://github.com/inspec/inspec-azure/pull/190) ([miah](https://github.com/miah))
-<!-- latest_release -->
 
 
 
