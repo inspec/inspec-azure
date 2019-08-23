@@ -368,6 +368,27 @@ module Azure
         api_version: '2018-04-01',
       )
     end
+    
+    def management_groups
+      get(
+        url: '/providers/Microsoft.Management/managementGroups',
+        api_version: '2018-03-01-preview',
+      )
+    end
+
+    def management_group(group_id, expand: nil, recurse: false, filter: nil)
+      params = {
+        '$recurse' => recurse,
+      }
+      params.merge!('$expand' => expand) if expand
+      params.merge!('$filter' => filter) if filter
+
+      get(
+        url: "/providers/Microsoft.Management/managementGroups/#{group_id}",
+        api_version: '2018-03-01-preview',
+        params: params,
+      )
+    end
 
     private
 

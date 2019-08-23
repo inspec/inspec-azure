@@ -1,5 +1,9 @@
 # InSpec for Azure
 
+* **Project State: Maintained**
+
+For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
+
 [![Build Status](https://travis-ci.org/inspec/inspec-azure.svg?branch=master)](https://travis-ci.org/inspec/inspec-azure)
 
 This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
@@ -52,15 +56,17 @@ $ inspec init profile my-profile
 Example inspec.yml:
 ```
 name: my-profile
-title: My own Oneview profile
+title: My own Azure profile
 version: 0.1.0
-inspec_version: '>= 2.2.7'
+inspec_version: '>= 4.6.9'
 depends:
   - name: inspec-azure
-    url: https://github.com/inspec/inspec-azure/archive/master.tar.gz
+    url: https://github.com/inspec/inspec-azure/archive/x.tar.gz
 supports:
   - platform: azure
 ```
+
+(For available inspec-azure versions, see this list of [inspec-azure versions](https://github.com/inspec/inspec-azure/releases).)
 
 ## Examples
 
@@ -115,6 +121,8 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_key_vault_secret](docs/resources/azurerm_key_vault_secret.md.erb)
 - [azurerm_key_vault_secrets](docs/resources/azurerm_key_vault_secrets.md)
 - [azurerm_key_vaults](docs/resources/azurerm_key_vaults.md.erb)
+- [azurerm_management_group](docs/resources/azurerm_management_group.md.erb)
+- [azurerm_management_groups](docs/resources/azurerm_management_groups.md.erb)
 - [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
 - [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md.erb)
 - [azurerm_monitor_log_profile](docs/resources/azurerm_monitor_log_profile.md.erb)

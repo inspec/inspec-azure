@@ -77,7 +77,6 @@ class EnvironmentFile
     false
   end
 
-  # rubocop:disable Performance/RedundantBlockCall
   def replace_key(key, value = nil, &formatter)
     new_content = ''
     found       = false
@@ -93,5 +92,4 @@ class EnvironmentFile
 
     [found, new_content]
   end
-  # rubocop:enable Performance/RedundantBlockCall
 end
