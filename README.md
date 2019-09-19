@@ -30,17 +30,17 @@ To create your account Service Principal Account:
 2. Click on `Azure Active Directory`.
 3. Click on `APP registrations`.
 4. Click on `New application registration`.
-5. Fill in a name and a Sign-on URL. Select `Web app / API` from the `Application Type` drop down. Save your application.
+5. Fill in a name and select `Web` from the `Application Type` drop down. Save your application.
 6. Note your Application ID. This is your `client_id` above.
-6. Click on `Settings`
-7. Click on `Keys`
-8. Create a new password. This value is your `client_secret` above.
-9. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
+7. Click on `Certificates & Settings`
+8. Click on `New client secret`
+9. Create a new password. This value is your `client_secret` above.
+10. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
 11. Note your Subscription ID can be found here.
-10. Click `Access Control (IAM)`
-11. Click Add
-13. Select the `contributor` role.
-12. Select the application you just created and save.
+12. Click `Access Control (IAM)`
+13. Click Add
+14. Select the `contributor` role.
+15. Select the application you just created and save.
 
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
 
