@@ -82,7 +82,6 @@ resource "azurerm_storage_account" "sa" {
 
 resource "azurerm_storage_container" "container" {
   name                  = "vhds"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -95,7 +94,6 @@ resource "random_pet" "blob_name" {
 
 resource "azurerm_storage_container" "blob" {
   name                  = "${random_pet.blob_name.id}"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -111,10 +109,7 @@ resource "azurerm_key_vault" "disk_vault" {
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   tenant_id           = "${var.tenant_id}"
-
-  sku {
-    name = "premium"
-  }
+  sku_name            = "premium"
 
   access_policy {
     tenant_id = "${var.tenant_id}"
@@ -147,12 +142,12 @@ resource "azurerm_key_vault" "disk_vault" {
 resource "azurerm_key_vault_secret" "vs" {
   name      = "secret"
   value     = "${random_string.password.result}"
-  vault_uri = "${azurerm_key_vault.disk_vault.vault_uri}"
+  key_vault_id = "${azurerm_key_vault.disk_vault.id}"
 }
 
 resource "azurerm_key_vault_key" "vk" {
   name      = "key"
-  vault_uri = "${azurerm_key_vault.disk_vault.vault_uri}"
+  key_vault_id = "${azurerm_key_vault.disk_vault.id}"
   key_type  = "EC"
   key_size  = 2048
 
@@ -221,9 +216,11 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "10.1.1.0/24"
+}
 
-  # Attach the NSG to the subnet
+resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
   network_security_group_id = "${azurerm_network_security_group.nsg.id}"
+  subnet_id = "${azurerm_subnet.subnet.id}"
 }
 
 resource "azurerm_network_interface" "nic1" {
@@ -406,14 +403,11 @@ module "activity_log_alert_5_3" {
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
-  # Wait for resources and associations to be created
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_4" {
   source = "modules/activity_log_alert"
-
   name                    = "5_4"
   condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/write"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
@@ -425,97 +419,81 @@ module "activity_log_alert_5_4" {
 
 module "activity_log_alert_5_5" {
   source = "modules/activity_log_alert"
-
   name                    = "5_5"
   condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/delete"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_6" {
   source = "modules/activity_log_alert"
-
   name                    = "5_6"
   condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/securityRules/write"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_7" {
   source = "modules/activity_log_alert"
-
   name                    = "5_7"
   condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/securityRules/delete"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_8" {
   source = "modules/activity_log_alert"
-
   name                    = "5_8"
   condition               = "category=Administrative and operationName=Microsoft.Security/securitySolutions/write"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_9" {
   source = "modules/activity_log_alert"
-
   name                    = "5_9"
   condition               = "category=Administrative and operationName=Microsoft.Security/securitySolutions/delete"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_10" {
   source = "modules/activity_log_alert"
-
   name                    = "5_10"
   condition               = "category=Administrative and operationName=Microsoft.Sql/servers/firewallRules/write"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_11" {
   source = "modules/activity_log_alert"
-
   name                    = "5_11"
   condition               = "category=Administrative and operationName=Microsoft.Sql/servers/firewallRules/delete"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
 module "activity_log_alert_5_12" {
   source = "modules/activity_log_alert"
-
   name                    = "5_12"
   condition               = "category=Administrative and operationName=Microsoft.Security/policies/write"
   activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
   resource_group          = "${azurerm_resource_group.rg.name}"
   action_group            = "${var.activity_log_alert["action_group"]}"
-
   depends_on = ["${null_resource.azure_action_group.triggers}"]
 }
 
@@ -652,7 +630,7 @@ resource "tls_private_key" "key" {
   rsa_bits  = 4096
 }
 
-resource "azurerm_kubernetes_cluster" "test" {
+resource "azurerm_kubernetes_cluster" "cluster" {
   name                = "inspecakstest"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
