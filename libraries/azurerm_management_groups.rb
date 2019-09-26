@@ -14,11 +14,11 @@ class AzurermManagementGroups < AzurermPluralResource
   attr_reader :table
 
   FilterTable.create
-      .register_column(:ids, field: :id)
-      .register_column(:types, field: :type)
-      .register_column(:names, field: :name)
-      .register_column(:properties, field: :properties)
-      .install_filter_methods_on_resource(self, :table)
+             .register_column(:ids, field: :id)
+             .register_column(:types, field: :type)
+             .register_column(:names, field: :name)
+             .register_column(:properties, field: :properties)
+             .install_filter_methods_on_resource(self, :table)
 
   def initialize
     resp = management.management_groups

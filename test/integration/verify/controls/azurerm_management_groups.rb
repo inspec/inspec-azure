@@ -16,6 +16,6 @@ control 'azurerm_management_groups' do
   end
 
   describe azurerm_management_groups.where(name: 'mg_parent').entries.first do
-    its('properties') { should have_attributes(:tenantId => tenant_id, :displayName => parent_dn)}
+    its('properties') { should have_attributes(tenantId: tenant_id, displayName: parent_dn) }
   end
 end

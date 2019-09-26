@@ -8,7 +8,7 @@ mg_type   = '/providers/Microsoft.Management/managementGroups'
 control 'azurerm_management_group' do
   describe azurerm_management_group(group_id: parent_mg, expand: 'children', recurse: true) do
     it                            { should exist }
-    its('id')                     { should eq "#{mg_type}/#{parent_mg}"}
+    its('id')                     { should eq "#{mg_type}/#{parent_mg}" }
     its('type')                   { should eq mg_type   }
     its('name')                   { should eq parent_mg }
     its('display_name')           { should eq parent_dn }
@@ -29,7 +29,7 @@ control 'azurerm_management_group' do
     its('name')                   { should eq child1_mg }
     its('tenant_id')              { should eq tenant_id }
     its('parent_name')            { should eq parent_mg }
-    its('parent_id')              { should eq "#{mg_type}/#{parent_mg}"}
+    its('parent_id')              { should eq "#{mg_type}/#{parent_mg}" }
     its('display_name')           { should eq 'Management Group Child 1' }
     its('parent_display_name')    { should eq 'Management Group Parent' }
     its('children_display_names') { should eq [] }
@@ -45,7 +45,7 @@ control 'azurerm_management_group' do
     its('name')                   { should eq child2_mg }
     its('tenant_id')              { should eq tenant_id }
     its('parent_name')            { should eq parent_mg }
-    its('parent_id')              { should eq "#{mg_type}/#{parent_mg}"}
+    its('parent_id')              { should eq "#{mg_type}/#{parent_mg}" }
     its('display_name')           { should eq 'Management Group Child 2' }
     its('parent_display_name')    { should eq 'Management Group Parent' }
     its('children_display_names') { should eq [] }
