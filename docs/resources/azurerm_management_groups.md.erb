@@ -48,12 +48,8 @@ You'll also need to setup your Azure credentials; see the resource pack
 ### Check attributes of all management groups
 
   describe azurerm_management_groups do
-    its('ids')           { should include "/providers/Microsoft.Management/managementGroups/#{parent_mg}" }
-    its('ids')           { should include "/providers/Microsoft.Management/managementGroups/#{child1_mg}" }
-    its('ids')           { should include "/providers/Microsoft.Management/managementGroups/#{child2_mg}" }
-    its('names')         { should include parent_mg }
-    its('names')         { should include child1_mg }
-    its('names')         { should include child2_mg }
+    its('ids')           { should include "/providers/Microsoft.Management/managementGroups/mg_id" }
+    its('names')         { should include "parent_mg" }
     its('types')         { should include '/providers/Microsoft.Management/managementGroups' }
   end
 
