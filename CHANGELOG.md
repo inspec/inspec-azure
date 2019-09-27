@@ -1,4 +1,33 @@
 # Changelog
+<!-- latest_release 1.3.4 -->
+## [v1.3.4](https://github.com/inspec/inspec-azure/tree/v1.3.4) (2019-09-27)
+
+#### Merged Pull Requests
+- Have azurerm_management_groups use FilterTable [#199](https://github.com/inspec/inspec-azure/pull/199) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
+## [v1.3.3](https://github.com/inspec/inspec-azure/tree/v1.3.3) (2019-09-19)
+
+#### Merged Pull Requests
+- Update app registrations workflow for the new UI [#197](https://github.com/inspec/inspec-azure/pull/197) ([gsreynolds](https://github.com/gsreynolds))
+
+## [v1.3.2](https://github.com/inspec/inspec-azure/tree/v1.3.2) (2019-09-05)
+
+#### Merged Pull Requests
+- Updates maintainers [#196](https://github.com/inspec/inspec-azure/pull/196) ([dmccown](https://github.com/dmccown))
+
+## [v1.3.1](https://github.com/inspec/inspec-azure/tree/v1.3.1) (2019-08-16)
+
+#### Merged Pull Requests
+- Add azurerm_management_group and azurerm_management_groups [#193](https://github.com/inspec/inspec-azure/pull/193) ([jasonwbarnett](https://github.com/jasonwbarnett))
+
+## [v1.3.0](https://github.com/inspec/inspec-azure/tree/v1.3.0) (2019-07-23)
+
+#### Merged Pull Requests
+- Add expeditor and buildkite verify pipeline [#190](https://github.com/inspec/inspec-azure/pull/190) ([miah](https://github.com/miah))
+
+
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)

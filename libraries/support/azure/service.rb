@@ -84,13 +84,13 @@ module Azure
       self
     end
 
-    def get(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true)
+    def get(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true, params: {}) # rubocop:disable Metrics/ParameterLists
       confirm_configured!
 
       body = cache.fetch(url) if use_cache
 
       body ||= rest_client.get(url,
-                               params:  { 'api-version' => api_version },
+                               params:  { 'api-version' => api_version }.merge(params),
                                headers: { Accept: 'application/json' }).body
 
       error_handler&.(body)
