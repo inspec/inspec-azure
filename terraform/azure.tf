@@ -10,10 +10,18 @@ provider "azurerm" {
   tenant_id       = "${var.tenant_id}"
 }
 
-data "azurerm_client_config" "current" {}
-
 provider "random" {
   version = "~> 1.2"
+}
+
+data "azurerm_client_config" "current" {}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "Inspec-Azure-${terraform.workspace}"
+  location = "${var.location}"
+  tags {
+    CreatedBy = "${terraform.workspace}"
+  }
 }
 
 resource "azurerm_management_group" "mg_parent" {
@@ -43,15 +51,6 @@ resource "random_string" "password" {
   min_special = 3
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = "Inspec-Azure-${terraform.workspace}"
-  location = "${var.location}"
-
-  tags {
-    CreatedBy = "${terraform.workspace}"
-  }
-}
-
 resource "azurerm_network_watcher" "rg" {
   name                = "${azurerm_resource_group.rg.name}-netwatcher"
   count               = "${var.network_watcher}"
@@ -75,6 +74,7 @@ resource "azurerm_storage_account" "sa" {
   enable_https_traffic_only = true
   account_tier              = "Standard"
   account_replication_type  = "LRS"
+  depends_on                = ["azurerm_resource_group.rg"]
   tags                      = {
     user = "${terraform.workspace}"
   }
@@ -82,6 +82,7 @@ resource "azurerm_storage_account" "sa" {
 
 resource "azurerm_storage_container" "container" {
   name                  = "vhds"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -94,6 +95,7 @@ resource "random_pet" "blob_name" {
 
 resource "azurerm_storage_container" "blob" {
   name                  = "${random_pet.blob_name.id}"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -378,130 +380,8 @@ resource "azurerm_monitor_log_profile" "azure_log_profile" {
   }
 }
 
-resource "null_resource" "azure_action_group" {
-  triggers {
-    resource_group = "${azurerm_resource_group.rg.id}"
-  }
-  depends_on = ["azurerm_resource_group.rg"]
-
-  provisioner "local-exec" {
-    command = "az monitor action-group create --name ${var.activity_log_alert["action_group"]} --resource-group ${azurerm_resource_group.rg.name}"
-  }
-
-  provisioner "local-exec" {
-    command    = "az monitor action-group delete --name ${var.activity_log_alert["action_group"]} --resource-group ${azurerm_resource_group.rg.name}"
-    when       = "destroy"
-    on_failure = "continue"
-  }
-}
-
-module "activity_log_alert_5_3" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_3"
-  condition               = "category=Administrative and operationName=Microsoft.Authorization/policyAssignments/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_4" {
-  source = "modules/activity_log_alert"
-  name                    = "5_4"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_5" {
-  source = "modules/activity_log_alert"
-  name                    = "5_5"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_6" {
-  source = "modules/activity_log_alert"
-  name                    = "5_6"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/securityRules/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_7" {
-  source = "modules/activity_log_alert"
-  name                    = "5_7"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/securityRules/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_8" {
-  source = "modules/activity_log_alert"
-  name                    = "5_8"
-  condition               = "category=Administrative and operationName=Microsoft.Security/securitySolutions/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_9" {
-  source = "modules/activity_log_alert"
-  name                    = "5_9"
-  condition               = "category=Administrative and operationName=Microsoft.Security/securitySolutions/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_10" {
-  source = "modules/activity_log_alert"
-  name                    = "5_10"
-  condition               = "category=Administrative and operationName=Microsoft.Sql/servers/firewallRules/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_11" {
-  source = "modules/activity_log_alert"
-  name                    = "5_11"
-  condition               = "category=Administrative and operationName=Microsoft.Sql/servers/firewallRules/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_12" {
-  source = "modules/activity_log_alert"
-  name                    = "5_12"
-  condition               = "category=Administrative and operationName=Microsoft.Security/policies/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-
-#
 # MSI External Access VM
 # Use only when testing MSI access controls
-#
 resource "azurerm_public_ip" "public_ip" {
   name                         = "Inspec-PublicIP-1"
   count                        = "${var.public_vm_count}"
@@ -635,6 +515,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   dns_prefix          = "inspecaksagent1"
+  depends_on          = ["azurerm_resource_group.rg"]
 
   agent_pool_profile {
     name            = "inspecaks"
