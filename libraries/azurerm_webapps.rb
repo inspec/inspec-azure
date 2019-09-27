@@ -6,7 +6,7 @@ class AzurermWebapps < AzurermPluralResource
   name 'azurerm_webapps'
   desc 'Verifies settings for Webapps'
   example <<-EXAMPLE
-    azurerm_webaps(resource_group: 'example') do
+    azurerm_webapps(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE

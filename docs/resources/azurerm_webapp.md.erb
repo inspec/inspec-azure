@@ -46,10 +46,18 @@ An `azurerm_webapp` resource block identifies an AppService Webapp by name and R
 
 ## Examples
 
-### Test that an example Resource Group has the specified Webapp
+### Test that an example Resource Group has the specified Webapp and verify it's authentication settings are enabled. Verify HTTP 2.0 is enabled. 
 
     describe azurerm_webapp(resource_group: 'example', name: 'webapp_name') do
       it { should exist }
+      its('auth_settings.properties') { should have_attributes(enabled: false) }
+      its('configuration.properties') { should have_attributes(http20Enabled: true) }
+    end
+
+### Test Webapp to ensure it's using .Net version greater than 2.0
+
+    describe azurerm_webapp(resource_group: resource_group, name: wa_name).configuration do
+      its('properties.netFrameworkVersion') { should cmp > 'v2.0' }
     end
 
 <br />
