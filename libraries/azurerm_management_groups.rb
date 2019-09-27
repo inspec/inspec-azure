@@ -7,44 +7,27 @@ class AzurermManagementGroups < AzurermPluralResource
   desc 'Verifies settings for an Azure Management Groups'
   example <<-EXAMPLE
     describe azurerm_management_groups do
-      its('groups_names') { should include 'example-group' }
+      its('names') { should include 'example-group' }
     end
   EXAMPLE
 
-  ATTRS = [
-    :groups,
-  ].freeze
+  attr_reader :table
 
-  attr_reader(*ATTRS)
+  FilterTable.create
+             .register_column(:ids, field: :id)
+             .register_column(:types, field: :type)
+             .register_column(:names, field: :name)
+             .register_column(:properties, field: :properties)
+             .install_filter_methods_on_resource(self, :table)
 
   def initialize
     resp = management.management_groups
     return if has_error?(resp)
 
-    @groups = resp
+    @table = resp
   end
 
   def to_s
     'Management Groups'
-  end
-
-  def group_ids
-    groups.map(&:id)
-  end
-
-  def group_types
-    groups.map(&:type)
-  end
-
-  def group_names
-    groups.map(&:name)
-  end
-
-  def group_tenant_ids
-    groups.map { |x| x.properties.tenantId }
-  end
-
-  def group_display_names
-    groups.map { |x| x.properties.displayName }
   end
 end

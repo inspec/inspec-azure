@@ -180,9 +180,25 @@ output "storage_account_blob_container" {
 }
 
 output "cluster_fqdn" {
-  value = "${azurerm_kubernetes_cluster.test.fqdn}"
+  value = "${azurerm_kubernetes_cluster.cluster.fqdn}"
 }
 
 output "tenant_id" {
   value = "${var.tenant_id}"
+}
+
+output "parent_mg" {
+  value = "${azurerm_management_group.mg_parent.group_id}"
+}
+
+output "child1_mg" {
+  value = "${azurerm_management_group.mg_child_one.group_id}"
+}
+
+output "child2_mg" {
+  value = "${azurerm_management_group.mg_child_two.group_id}"
+}
+
+output "parent_dn" {
+  value = "${azurerm_management_group.mg_parent.display_name}"
 }
