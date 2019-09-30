@@ -202,3 +202,7 @@ output "child2_mg" {
 output "parent_dn" {
   value = "${azurerm_management_group.mg_parent.display_name}"
 }
+
+output "webapp_name" {
+  value = "${azurerm_app_service.app-service.name}"
+}
