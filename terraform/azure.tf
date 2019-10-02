@@ -555,7 +555,7 @@ resource "azurerm_app_service" "app-service" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
   app_service_plan_id = "${azurerm_app_service_plan.app-service-plan.id}"
   https_only          = "true"
-  
+
   identity = {
     type              = "SystemAssigned"
   }
