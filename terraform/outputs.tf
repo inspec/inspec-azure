@@ -206,3 +206,7 @@ output "parent_dn" {
 output "webapp_name" {
   value = "${azurerm_app_service.app-service.name}"
 }
+
+output "contributor_role_name" {
+  value = "${substr("${data.azurerm_builtin_role_definition.contributor.id}", -36, 36)}"
+}

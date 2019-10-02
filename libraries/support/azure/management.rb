@@ -103,6 +103,20 @@ module Azure
       )
     end
 
+    def role_definition(name)
+      get(
+        url: link(location: "Microsoft.Authorization/roleDefinitions/#{name}", provider: true),
+        api_version: '2015-07-01',
+      )
+    end
+
+    def role_definitions
+      get(
+        url: link(location: 'Microsoft.Authorization/roleDefinitions', provider: true),
+        api_version: '2015-07-01',
+      )
+    end
+
     def security_center_policy(id)
       get(
         url: link(location: 'Microsoft.Security/policies') + id,
