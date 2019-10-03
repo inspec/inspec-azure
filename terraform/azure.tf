@@ -560,3 +560,7 @@ resource "azurerm_app_service" "app-service" {
     type              = "SystemAssigned"
   }
 }
+
+data "azurerm_builtin_role_definition" "contributor" {
+  name = "Contributor"
+}
