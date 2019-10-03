@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.3.6 -->
+<!-- latest_release 1.3.7 -->
+## [v1.3.7](https://github.com/inspec/inspec-azure/tree/v1.3.7) (2019-10-03)
+
+#### Merged Pull Requests
+- Adds azurerm_role_definition [#202](https://github.com/inspec/inspec-azure/pull/202) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.3.6](https://github.com/inspec/inspec-azure/tree/v1.3.6) (2019-09-30)
 
 #### Merged Pull Requests
 - NSG resource Fixes and Webapp resources added [#172](https://github.com/inspec/inspec-azure/pull/172) ([skelleyton](https://github.com/skelleyton))
-<!-- latest_release -->
 
 ## [v1.3.5](https://github.com/inspec/inspec-azure/tree/v1.3.5) (2019-09-27)
 
