@@ -14,10 +14,10 @@ class AzurermLocks < AzurermPluralResource
   attr_reader :table
 
   FilterTable.create
-      .register_column(:ids,        field: :id)
-      .register_column(:names,      field: :name)
-      .register_column(:properties, field: :properties)
-      .install_filter_methods_on_resource(self, :table)
+             .register_column(:ids,        field: :id)
+             .register_column(:names,      field: :name)
+             .register_column(:properties, field: :properties)
+             .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group: nil, resource_name: nil, resource_type: nil)
     resp = management.locks(resource_group, resource_name, resource_type)
