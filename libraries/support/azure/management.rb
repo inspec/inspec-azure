@@ -34,6 +34,14 @@ module Azure
       )
     end
 
+    def locks(resource_group, resource_name, resource_type)
+      get(
+        url: link(location: "#{resource_type}/#{resource_name}",
+                  resource_group: resource_group) + 'providers/Microsoft.Authorization/locks',
+        api_version: '2016-09-01',
+      )
+    end
+
     def log_profile(id)
       get(
         url: link(location: 'Microsoft.Insights/logProfiles') + id,
