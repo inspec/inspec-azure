@@ -35,7 +35,7 @@ control 'azurerm_security_center_policy' do
     its('send_security_email_to_admin')    { should eq(true).or eq(false) }
     its('contact_emails')                  { should_not be_nil }
     its('contact_phone')                   { should_not be_nil }
-    its('default_policy')                  { is_expected.to respond_to(:properties)  }
+    its('default_policy')                  { is_expected.to respond_to(:properties) }
   end
 
   # only supports looking up the security center policy named 'default'
