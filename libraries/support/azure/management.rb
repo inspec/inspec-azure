@@ -150,7 +150,7 @@ module Azure
       get(
         url: link(location: 'Microsoft.Authorization/policyAssignments/SecurityCenterBuiltIn'),
         api_version: '2018-05-01',
-        )
+      )
     end
 
     def storage_account(resource_group, name)
