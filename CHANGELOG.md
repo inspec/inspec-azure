@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.3.8 -->
+<!-- latest_release 1.4.0 -->
+## [v1.4.0](https://github.com/inspec/inspec-azure/tree/v1.4.0) (2019-10-09)
+
+#### Merged Pull Requests
+- Additional methods for default security center policy [#207](https://github.com/inspec/inspec-azure/pull/207) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.3.8](https://github.com/inspec/inspec-azure/tree/v1.3.8) (2019-10-04)
 
 #### Merged Pull Requests
 - Adds azurerm_locks [#203](https://github.com/inspec/inspec-azure/pull/203) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.3.7](https://github.com/inspec/inspec-azure/tree/v1.3.7) (2019-10-03)
 
