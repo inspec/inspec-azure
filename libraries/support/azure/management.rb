@@ -139,6 +139,20 @@ module Azure
       )
     end
 
+    def scp_auto_provisioning_settings
+      get(
+        url: link(location: 'Microsoft.Security/autoProvisioningSettings'),
+        api_version: '2017-08-01-preview',
+      )
+    end
+
+    def scp_default_policy
+      get(
+        url: link(location: 'Microsoft.Authorization/policyAssignments/SecurityCenterBuiltIn'),
+        api_version: '2018-05-01',
+        )
+    end
+
     def storage_account(resource_group, name)
       get(
         url: link(location: "Microsoft.Storage/storageAccounts/#{name}",
