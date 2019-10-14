@@ -368,11 +368,15 @@ SETTINGS
 PROTECTED_SETTINGS
 }
 
+data "azurerm_monitor_log_profile" "log_profile" {
+  name = "azure_log_profile"
+}
+
 resource "azurerm_monitor_log_profile" "azure_log_profile" {
-  name        = "default"
-  categories  = [ "Action" ]
-  locations   = [ "${var.log_profile_default_location}" ]
-  storage_account_id = "${azurerm_storage_account.sa.id}"
+  name                = "${data.azurerm_monitor_log_profile.log_profile.name}"
+  categories          = ["${data.azurerm_monitor_log_profile.log_profile.categories}"]
+  locations           = ["${data.azurerm_monitor_log_profile.log_profile.locations}"]
+  storage_account_id  = "${data.azurerm_monitor_log_profile.log_profile.storage_account_id}"
 
   retention_policy {
     enabled = true
