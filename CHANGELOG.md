@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.4.1 -->
+<!-- latest_release 1.4.2 -->
+## [v1.4.2](https://github.com/inspec/inspec-azure/tree/v1.4.2) (2019-10-14)
+
+#### Merged Pull Requests
+- Lookup log profile before updating [#209](https://github.com/inspec/inspec-azure/pull/209) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.4.1](https://github.com/inspec/inspec-azure/tree/v1.4.1) (2019-10-14)
 
 #### Merged Pull Requests
 - Adds name &amp; desc to base class to conform to inspec check [#208](https://github.com/inspec/inspec-azure/pull/208) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.4.0](https://github.com/inspec/inspec-azure/tree/v1.4.0) (2019-10-09)
 
