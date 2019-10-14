@@ -3,6 +3,8 @@
 require 'support/azure'
 
 class AzurermResource < Inspec.resource(1)
+  name 'azurerm_resource'
+  desc 'Base class for azurerm resources.'
   supports platform: 'azure'
 
   def management
