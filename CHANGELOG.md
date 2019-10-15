@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.4.2 -->
+<!-- latest_release 1.4.3 -->
+## [v1.4.3](https://github.com/inspec/inspec-azure/tree/v1.4.3) (2019-10-15)
+
+#### Merged Pull Requests
+- Prevent Log Profile deletion [#210](https://github.com/inspec/inspec-azure/pull/210) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.4.2](https://github.com/inspec/inspec-azure/tree/v1.4.2) (2019-10-14)
 
 #### Merged Pull Requests
 - Lookup log profile before updating [#209](https://github.com/inspec/inspec-azure/pull/209) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.4.1](https://github.com/inspec/inspec-azure/tree/v1.4.1) (2019-10-14)
 
