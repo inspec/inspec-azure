@@ -372,15 +372,9 @@ data "azurerm_monitor_log_profile" "log_profile" {
   name = "azure_log_profile"
 }
 
-resource "azurerm_monitor_log_profile" "azure_log_profile" {
-  name                = "${data.azurerm_monitor_log_profile.log_profile.name}"
-  categories          = ["${data.azurerm_monitor_log_profile.log_profile.categories}"]
-  locations           = ["${data.azurerm_monitor_log_profile.log_profile.locations}"]
-  storage_account_id  = "${data.azurerm_monitor_log_profile.log_profile.storage_account_id}"
-
-  retention_policy {
-    enabled = true
-    days    = 365
+resource "null_resource" "set_log_profile_retention" {
+  provisioner "local-exec" {
+    command = "az monitor log-profiles update --name ${data.azurerm_monitor_log_profile.log_profile.name} --set retentionPolicy.days=365 location=eastus"
   }
 }
 

@@ -210,3 +210,7 @@ output "webapp_name" {
 output "contributor_role_name" {
   value = "${substr("${data.azurerm_builtin_role_definition.contributor.id}", -36, 36)}"
 }
+
+output "log_profile_name" {
+  value = "${data.azurerm_monitor_log_profile.log_profile.name}"
+}
