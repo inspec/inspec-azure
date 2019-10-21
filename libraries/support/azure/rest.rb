@@ -39,6 +39,8 @@ module Azure
       end
     end
 
+    private
+
     def connection
       @connection ||= Faraday.new(url: host) do |conn|
         conn.request  :multipart
@@ -54,6 +56,7 @@ module Azure
       end
     end
 
+    # todo used?
     def authorization_header
       @authentication ||= Authentication.new(
         *credentials.values_at(:tenant_id, :client_id, :client_secret), resource

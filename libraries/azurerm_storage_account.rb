@@ -45,6 +45,14 @@ class AzurermStorageAccout < AzurermSingularResource
     log_events.any?
   end
 
+  def queues
+    queue(name).queues
+  end
+
+  def queue_properties
+    queue(name).queue_properties
+  end
+
   def to_s
     "#{name} Storage Account"
   end
