@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'activesupport',       '~> 6.0.0'
+gem 'activesupport',       '~> 5.2.3'
 gem 'faraday',             '~> 0.15.0'
 gem 'faraday_middleware',  '~> 0.12.2'
 gem 'inspec',              '~> 3.0', '>= 3.0.9'

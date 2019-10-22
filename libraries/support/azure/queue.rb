@@ -2,7 +2,7 @@
 
 require 'ostruct'
 require 'json'
-require 'active_support/core_ext'
+require 'active_support/core_ext/hash'
 
 module Azure
   class Queue
