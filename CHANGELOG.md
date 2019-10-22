@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.4.3 -->
+<!-- latest_release 1.5.0 -->
+## [v1.5.0](https://github.com/inspec/inspec-azure/tree/v1.5.0) (2019-10-22)
+
+#### Merged Pull Requests
+- Adds Queue functionality to azurerm_storage_account [#212](https://github.com/inspec/inspec-azure/pull/212) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.4.3](https://github.com/inspec/inspec-azure/tree/v1.4.3) (2019-10-15)
 
 #### Merged Pull Requests
 - Prevent Log Profile deletion [#210](https://github.com/inspec/inspec-azure/pull/210) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.4.2](https://github.com/inspec/inspec-azure/tree/v1.4.2) (2019-10-14)
 
