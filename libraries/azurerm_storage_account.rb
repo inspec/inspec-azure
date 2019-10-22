@@ -46,11 +46,11 @@ class AzurermStorageAccout < AzurermSingularResource
   end
 
   def queues
-    queue(name).queues
+    @queues ||= queue(name).queues
   end
 
   def queue_properties
-    queue(name).queue_properties
+    @queue_properties ||= queue(name).queue_properties
   end
 
   def to_s
