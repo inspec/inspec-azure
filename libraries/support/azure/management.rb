@@ -283,6 +283,14 @@ module Azure
       )
     end
 
+    def sql_encryption_protector(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.Sql/servers/#{server_name}/encryptionProtector",
+                  resource_group: resource_group),
+        api_version: '2015-05-01-preview',
+      )
+    end
+
     def sql_server_firewall_rules(resource_group, server_name)
       get(
         url: link(location: "Microsoft.Sql/servers/#{server_name}/firewallRules",
