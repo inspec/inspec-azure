@@ -117,6 +117,9 @@ To determine which properties are available for a given resource, start by looki
 
 ## Create documentation in `docs/resources`
 Once everything is working, documentation must be added for the resources that have been added. Copy similar resource documents in `docs/resources/` and edit them as appropriate. Include enough examples to give a good idea how the resource works. Make sure to include any special case examples that might exist.
+After writing the documentation:
+- Run `bundle exec rake docs:resource_links`
+- Copy/Paste all display links in the Readme.md
 
 ## Create a pull request.
 - Prior to creating a pull request, make user to do the following:

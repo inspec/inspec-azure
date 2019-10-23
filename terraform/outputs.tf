@@ -156,11 +156,11 @@ output "activity_log_alert_name" {
 }
 
 output "sql_server_name" {
-  value = "${azurerm_sql_server.sql-server.name}"
+  value = "${azurerm_sql_server.sql_server.name}"
 }
 
 output "sql_database_name" {
-  value = "${azurerm_sql_database.sql-database.name}"
+  value = "${azurerm_sql_database.sql_database.name}"
 }
 
 output "key_vault_name" {
@@ -204,7 +204,7 @@ output "parent_dn" {
 }
 
 output "webapp_name" {
-  value = "${azurerm_app_service.app-service.name}"
+  value = "${azurerm_app_service.app_service.name}"
 }
 
 output "contributor_role_name" {
@@ -213,4 +213,12 @@ output "contributor_role_name" {
 
 output "log_profile_name" {
   value = "${data.azurerm_monitor_log_profile.log_profile.name}"
+}
+
+output "mysql_server_name" {
+  value = "${azurerm_mysql_server.mysql.name}"
+}
+
+output "mysql_database_name" {
+  value = "${azurerm_mysql_database.mysql.name}"
 }

@@ -419,6 +419,46 @@ module Azure
       )
     end
 
+    def mysql_server(resource_group, name)
+      get(
+        url: link(location: "Microsoft.DBforMySQL/servers/#{name}",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def mysql_server_firewall_rules(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.DBforMySQL/servers/#{server_name}/firewallRules",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def mysql_servers(resource_group)
+      get(
+        url: link(location: 'Microsoft.DBforMySQL/servers/',
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def mysql_database(resource_group, server_name, database_name)
+      get(
+        url: link(location: "Microsoft.DBforMySQL/servers/#{server_name}/databases/#{database_name}",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def mysql_databases(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.DBforMySQL/servers/#{server_name}/databases",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
     private
 
     def rest_client
