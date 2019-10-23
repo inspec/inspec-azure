@@ -34,6 +34,14 @@ module Azure
       )
     end
 
+    def locks(resource_group, resource_name, resource_type)
+      get(
+        url: link(location: "#{resource_type}/#{resource_name}",
+                  resource_group: resource_group) + 'providers/Microsoft.Authorization/locks',
+        api_version: '2016-09-01',
+      )
+    end
+
     def log_profile(id)
       get(
         url: link(location: 'Microsoft.Insights/logProfiles') + id,
@@ -103,6 +111,20 @@ module Azure
       )
     end
 
+    def role_definition(name)
+      get(
+        url: link(location: "Microsoft.Authorization/roleDefinitions/#{name}", provider: true),
+        api_version: '2015-07-01',
+      )
+    end
+
+    def role_definitions
+      get(
+        url: link(location: 'Microsoft.Authorization/roleDefinitions', provider: true),
+        api_version: '2015-07-01',
+      )
+    end
+
     def security_center_policy(id)
       get(
         url: link(location: 'Microsoft.Security/policies') + id,
@@ -114,6 +136,20 @@ module Azure
       get(
         url: link(location: 'Microsoft.Security/policies'),
         api_version: '2015-06-01-Preview',
+      )
+    end
+
+    def scp_auto_provisioning_settings
+      get(
+        url: link(location: 'Microsoft.Security/autoProvisioningSettings'),
+        api_version: '2017-08-01-preview',
+      )
+    end
+
+    def scp_default_policy
+      get(
+        url: link(location: 'Microsoft.Authorization/policyAssignments/SecurityCenterBuiltIn'),
+        api_version: '2018-05-01',
       )
     end
 
@@ -298,6 +334,39 @@ module Azure
       )
     end
 
+    def webapp(resource_group, webapp_name)
+      get(
+        url: link(location: "Microsoft.Web/sites/#{webapp_name}",
+                  resource_group: resource_group),
+        api_version: '2016-08-01',
+      )
+    end
+
+    def webapps(resource_group)
+      get(
+        url: link(location: 'Microsoft.Web/sites',
+                  resource_group: resource_group),
+        api_version: '2016-08-01',
+      )
+    end
+
+    def webapp_authentication_settings(resource_group, webapp_name)
+      post(
+        url: link(location: "Microsoft.Web/sites/#{webapp_name}" \
+                            '/config/authsettings/list',
+                  resource_group: resource_group),
+        api_version: '2016-08-01',
+      )
+    end
+
+    def webapp_configuration(resource_group, webapp_name)
+      get(
+        url: link(location: "Microsoft.Web/sites/#{webapp_name}/config/web",
+                  resource_group: resource_group),
+        api_version: '2016-08-01',
+      )
+    end
+
     def key_vaults(resource_group)
       get(
         url: link(location: 'Microsoft.KeyVault/vaults',
@@ -321,43 +390,24 @@ module Azure
       )
     end
 
-    def mysql_server(resource_group, name)
+    def management_groups
       get(
-        url: link(location: "Microsoft.DBforMySQL/servers/#{name}",
-                  resource_group: resource_group),
-        api_version: '2017-12-01',
+        url: '/providers/Microsoft.Management/managementGroups',
+        api_version: '2018-03-01-preview',
       )
     end
 
-    def mysql_server_firewall_rules(resource_group, server_name)
-      get(
-        url: link(location: "Microsoft.DBforMySQL/servers/#{server_name}/firewallRules",
-                  resource_group: resource_group),
-        api_version: '2017-12-01',
-      )
-    end
+    def management_group(group_id, expand: nil, recurse: false, filter: nil)
+      params = {
+        '$recurse' => recurse,
+      }
+      params.merge!('$expand' => expand) if expand
+      params.merge!('$filter' => filter) if filter
 
-    def mysql_servers(resource_group)
       get(
-        url: link(location: 'Microsoft.DBforMySQL/servers/',
-                  resource_group: resource_group),
-        api_version: '2017-12-01',
-      )
-    end
-
-    def mysql_database(resource_group, server_name, database_name)
-      get(
-        url: link(location: "Microsoft.DBforMySQL/servers/#{server_name}/databases/#{database_name}",
-                  resource_group: resource_group),
-        api_version: '2017-12-01',
-      )
-    end
-
-    def mysql_databases(resource_group, server_name)
-      get(
-        url: link(location: "Microsoft.DBforMySQL/servers/#{server_name}/databases",
-                  resource_group: resource_group),
-        api_version: '2017-12-01',
+        url: "/providers/Microsoft.Management/managementGroups/#{group_id}",
+        api_version: '2018-03-01-preview',
+        params: params,
       )
     end
 

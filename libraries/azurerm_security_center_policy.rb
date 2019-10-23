@@ -56,6 +56,14 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
     @exists = true
   end
 
+  def default_policy
+    management.scp_default_policy
+  end
+
+  def has_auto_provisioning_enabled?
+    management.scp_auto_provisioning_settings.first.properties.autoProvision == 'On'
+  end
+
   def to_s
     "'#{name}' Security Policy"
   end
