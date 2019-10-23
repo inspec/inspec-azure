@@ -14,10 +14,12 @@ RuboCop::RakeTask.new
 
 FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures"
 TERRAFORM_DIR = 'terraform'
-REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID}.freeze
+REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUBSCRIPTION_ID}.freeze
 
 task default: :test
 desc 'Testing tasks'
+
+
 task test: %w{test:unit setup_env test:integration}
 
 desc 'Set up Azure env, run integration tests, destroy Azure env'
@@ -46,31 +48,42 @@ namespace :azure do
   end
 end
 
+task test: %w{test:unit azure:login test:integration}
+
+
+
 desc 'Linting tasks'
-task lint: [:rubocop, :syntax, :'inspec:check']
+task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
 
-desc 'Ruby syntax check'
-task :syntax do
-  files = %w{Gemfile Rakefile} + Dir['./**/*.rb']
+task :setup_env do
+  puts '-> Loading Environment Variables'
+  ENV['TF_VAR_subscription_id'] = ENV['AZURE_SUBSCRIPTION_ID']
+  ENV['TF_VAR_tenant_id']       = ENV['AZURE_TENANT_ID']
+  ENV['TF_VAR_client_id']       = ENV['AZURE_CLIENT_ID']
+  ENV['TF_VAR_client_secret']   = ENV['AZURE_CLIENT_SECRET']
+  ENV['TF_VAR_public_vm_count'] = '1' if ENV.key?('MSI')
 
-  files.each do |file|
-    sh('ruby', '-c', file) do |ok, res|
-      next if ok
+  puts '-> Ensuring required Environment Variables are set'
+  missing = REQUIRED_ENVS.reject { |var| ENV.key?(var) }
+  abort("ENV missing: #{missing.join(', ')}") if missing.any?
 
-      puts 'Syntax check FAILED'
-      exit res.exitstatus
+  # Notify user which optional components they are using
+  options = EnvironmentFile.options('.envrc')
+  if options.empty?
+    puts "-> You are not using any optional components. See the README for more information.\n\n"
+  else
+    puts "-> You are using the following optional components:\n\n"
+    options.each do |option|
+      puts "* #{option}\n"
     end
+    puts "\nTo change these options run: rake options[component] or add desired components to your .envrc file. See the README for more information.\n\n"
   end
 end
 
-task :check_attributes_file do
-  abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
-  abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
-end
-
-namespace :inspec do
+namespace :syntax do
   desc 'InSpec syntax check'
-  task :check do
+  task :inspec do
+    puts '-> Checking Inspec Control Syntax'
     stdout, status = Open3.capture2('./bin/inspec check .')
 
     puts stdout
@@ -81,58 +94,51 @@ namespace :inspec do
 
     status.exitstatus
   end
-end
 
-task :output_options do
-  options = EnvironmentFile.options('.envrc')
+  desc 'Ruby syntax check'
+  task :ruby do
+    puts '-> Checking Ruby Syntax'
+    files = %w{Gemfile Rakefile} + Dir['./**/*.rb']
 
-  if options.empty?
-    puts "\nYou are not using any optional components. See the README for more information.\n\n"
-  else
-    puts "\nYou are using the following optional components:\n\n"
-    options.each do |option|
-      puts "* #{option}\n"
+    files.each do |file|
+      sh('ruby', '-c', file) do |ok, res|
+        next if ok
+
+        puts 'Syntax check FAILED'
+        exit res.exitstatus
+      end
     end
-    puts "\nTo change these options run: rake options[component]. See the README for more information.\n\n"
   end
 end
 
-desc 'Enables given optional components. See README for details.'
-task :options, :component do |_t_, args|
-  components = []
-  components << args[:component] if args[:component]
-  components += args.extras unless args.extras.nil?
-
-  begin
-    env_file = EnvironmentFile.new('.envrc')
-    env_file.synchronize(components)
-  rescue RuntimeError => error
-    puts error.message
+namespace :azure do
+  desc 'Authenticate with the Azure CLI'
+  task login: [:setup_env] do
+    puts '-> Logging into Azure'
+    sh(
+      'az', 'login',
+      '--service-principal',
+      '-u', ENV['AZURE_CLIENT_ID'],
+      '-p', ENV['AZURE_CLIENT_SECRET'],
+      '--tenant', ENV['AZURE_TENANT_ID']
+    )
+    puts '-> Setting Subscription'
+    sh(
+      'az', 'account', 'set',
+      '-s', ENV['AZURE_SUBSCRIPTION_ID']
+    )
   end
-end
-
-task :setup_env do
-  ENV['TF_VAR_subscription_id'] = ENV['AZURE_SUBSCRIPTION_ID']
-  ENV['TF_VAR_tenant_id']       = ENV['AZURE_TENANT_ID']
-  ENV['TF_VAR_client_id']       = ENV['AZURE_CLIENT_ID']
-  ENV['TF_VAR_client_secret']   = ENV['AZURE_CLIENT_SECRET']
-  ENV['TF_VAR_public_vm_count'] = '1' if ENV.key?('MSI')
-end
-
-task :check_env do
-  missing = REQUIRED_ENVS.reject { |var| ENV.key?(var) }
-
-  abort("ENV missing: #{missing.join(', ')}") if missing.any?
 end
 
 namespace :test do
+
   Rake::TestTask.new(:unit) do |t|
     t.libs << 'test/unit'
     t.libs << 'libraries'
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => [:lint, :check_attributes_file] do |_t, args|
+  task :integration, [:controls] => ['attributes:write', :lint, :setup_env] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
               --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
@@ -150,7 +156,7 @@ end
 namespace :tf do
   workspace = ENV['WORKSPACE']
 
-  task init: [:setup_env] do
+  task init: [:'azure:login'] do
     abort('$WORKSPACE not set. Please source .envrc.') if workspace.nil?
     abort('$WORKSPACE has no content. Check .envrc.') if workspace.empty?
     Dir.chdir(TERRAFORM_DIR) do
@@ -176,7 +182,7 @@ namespace :tf do
   end
 
   desc 'Executes the Terraform plan'
-  task apply: [:workspace, :plan] do
+  task apply: [:plan] do
     Dir.chdir(TERRAFORM_DIR) do
       sh('terraform', 'apply', 'inspec-azure.plan')
     end
@@ -191,7 +197,7 @@ namespace :tf do
     end
   end
 
-  task write_tf_output_to_file: ['tf:workspace'] do
+  task write_tf_output_to_file: [:workspace] do
     Dir.chdir(TERRAFORM_DIR) do
       stdout, stderr, status = Open3.capture3('terraform output -json')
 
@@ -216,7 +222,9 @@ end
 
 namespace :attributes do
   desc 'Create attributes used for integration testing'
-  task write: [:check_attributes_file] do
+  task :write do
+    abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
+    abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
     Rake::Task['tf:write_tf_output_to_file'].invoke
     Rake::Task['attributes:write_guest_presence_to_file'].invoke
   end
@@ -234,4 +242,16 @@ namespace :attributes do
   end
 end
 
-Rake.application.top_level_tasks << :output_options
+desc 'Enables given optional components. See README for details.'
+task :options, :component do |_t_, args|
+  components = []
+  components << args[:component] if args[:component]
+  components += args.extras unless args.extras.nil?
+
+  begin
+    env_file = EnvironmentFile.new('.envrc')
+    env_file.synchronize(components)
+  rescue RuntimeError => e
+    puts e.message
+  end
+end

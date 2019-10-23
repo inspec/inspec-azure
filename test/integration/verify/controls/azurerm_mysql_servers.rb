@@ -2,7 +2,8 @@ resource_group = attribute('resource_group', default: nil)
 mysql_server_name = attribute('mysql_server_name', default: nil)
 
 control 'azurerm_mysql_servers' do
-  only_if { ENV['MYSQL'] }
+
+  only_if { ENV['SQL'] }
 
   describe azurerm_mysql_servers(resource_group: resource_group) do
     it           { should exist }

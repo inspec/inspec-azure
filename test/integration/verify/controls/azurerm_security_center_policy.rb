@@ -14,6 +14,7 @@ control 'azurerm_security_center_policy' do
 
   describe azurerm_security_center_policy(name: 'default') do
     it                                     { should exist }
+    it                                     { should have_auto_provisioning_enabled }
     its('id')                              { should eq("/subscriptions/#{ENV['AZURE_SUBSCRIPTION_ID']}/providers/Microsoft.Security/policies/default") }
     its('name')                            { should eq('default') }
     its('log_collection')                  { should eq('On').or eq('Off') }
@@ -34,6 +35,7 @@ control 'azurerm_security_center_policy' do
     its('send_security_email_to_admin')    { should eq(true).or eq(false) }
     its('contact_emails')                  { should_not be_nil }
     its('contact_phone')                   { should_not be_nil }
+    its('default_policy')                  { is_expected.to respond_to(:properties) }
   end
 
   # only supports looking up the security center policy named 'default'

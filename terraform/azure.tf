@@ -10,25 +10,45 @@ provider "azurerm" {
   tenant_id       = "${var.tenant_id}"
 }
 
-data "azurerm_client_config" "current" {}
-
 provider "random" {
   version = "~> 1.2"
 }
 
-resource "random_string" "password" {
-  length = 16
-  special = true
-  override_special = "/@\" "
-}
+data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "rg" {
   name     = "Inspec-Azure-${terraform.workspace}"
   location = "${var.location}"
-
   tags {
     CreatedBy = "${terraform.workspace}"
   }
+}
+
+resource "azurerm_management_group" "mg_parent" {
+  group_id = "mg_parent"
+  display_name = "Management Group Parent"
+}
+
+resource "azurerm_management_group" "mg_child_one" {
+  group_id = "mg_child_one"
+  display_name = "Management Group Child 1"
+  parent_management_group_id = "${azurerm_management_group.mg_parent.id}"
+}
+
+resource "azurerm_management_group" "mg_child_two" {
+  group_id = "mg_child_two"
+  display_name = "Management Group Child 2"
+  parent_management_group_id = "${azurerm_management_group.mg_parent.id}"
+}
+
+resource "random_string" "password" {
+  length = 16
+  upper = true
+  lower = true
+  special = true
+  override_special = "/@\" "
+  min_numeric = 3
+  min_special = 3
 }
 
 resource "azurerm_network_watcher" "rg" {
@@ -54,6 +74,7 @@ resource "azurerm_storage_account" "sa" {
   enable_https_traffic_only = true
   account_tier              = "Standard"
   account_replication_type  = "LRS"
+  depends_on                = ["azurerm_resource_group.rg"]
   tags                      = {
     user = "${terraform.workspace}"
   }
@@ -61,7 +82,6 @@ resource "azurerm_storage_account" "sa" {
 
 resource "azurerm_storage_container" "container" {
   name                  = "vhds"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -74,7 +94,6 @@ resource "random_pet" "blob_name" {
 
 resource "azurerm_storage_container" "blob" {
   name                  = "${random_pet.blob_name.id}"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -90,10 +109,7 @@ resource "azurerm_key_vault" "disk_vault" {
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   tenant_id           = "${var.tenant_id}"
-
-  sku {
-    name = "premium"
-  }
+  sku_name            = "premium"
 
   access_policy {
     tenant_id = "${var.tenant_id}"
@@ -126,12 +142,12 @@ resource "azurerm_key_vault" "disk_vault" {
 resource "azurerm_key_vault_secret" "vs" {
   name      = "secret"
   value     = "${random_string.password.result}"
-  vault_uri = "${azurerm_key_vault.disk_vault.vault_uri}"
+  key_vault_id = "${azurerm_key_vault.disk_vault.id}"
 }
 
 resource "azurerm_key_vault_key" "vk" {
   name      = "key"
-  vault_uri = "${azurerm_key_vault.disk_vault.vault_uri}"
+  key_vault_id = "${azurerm_key_vault.disk_vault.id}"
   key_type  = "EC"
   key_size  = 2048
 
@@ -200,9 +216,11 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "10.1.1.0/24"
+}
 
-  # Attach the NSG to the subnet
+resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
   network_security_group_id = "${azurerm_network_security_group.nsg.id}"
+  subnet_id = "${azurerm_subnet.subnet.id}"
 }
 
 resource "azurerm_network_interface" "nic1" {
@@ -348,170 +366,18 @@ SETTINGS
 PROTECTED_SETTINGS
 }
 
-## Azure Resources managed by azure-cli because they are currently not in TerraForm Azure provider
-resource "null_resource" "azure_log_profile" {
-  depends_on = ["azurerm_storage_account.sa"]
+data "azurerm_monitor_log_profile" "log_profile" {
+  name = "azure_log_profile"
+}
 
-  # Create the Log Profile
+resource "null_resource" "set_log_profile_retention" {
   provisioner "local-exec" {
-    command = <<CMD
-    az monitor log-profiles create --name default --days 365 --enabled true \
-      --location '${var.log_profile_default_location}' --locations '${var.log_profile_default_location}' \
-      --categories ACTION --storage-account-id ${azurerm_storage_account.sa.id}
-    CMD
-  }
-
-  # Destroy the Log Profile
-  provisioner "local-exec" {
-    command    = "az monitor log-profiles delete --name default"
-    when       = "destroy"
-    on_failure = "continue"
+    command = "az monitor log-profiles update --name ${data.azurerm_monitor_log_profile.log_profile.name} --set retentionPolicy.days=365 location=eastus"
   }
 }
 
-resource "null_resource" "azure_action_group" {
-  triggers {
-    resource_group = "${azurerm_resource_group.rg.id}"
-  }
-  depends_on = ["azurerm_resource_group.rg"]
-
-  provisioner "local-exec" {
-    command = "az monitor action-group create --name ${var.activity_log_alert["action_group"]} --resource-group ${azurerm_resource_group.rg.name}"
-  }
-
-  provisioner "local-exec" {
-    command    = "az monitor action-group delete --name ${var.activity_log_alert["action_group"]} --resource-group ${azurerm_resource_group.rg.name}"
-    when       = "destroy"
-    on_failure = "continue"
-  }
-}
-
-module "activity_log_alert_5_3" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_3"
-  condition               = "category=Administrative and operationName=Microsoft.Authorization/policyAssignments/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  # Wait for resources and associations to be created
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_4" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_4"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_5" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_5"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_6" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_6"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/securityRules/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_7" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_7"
-  condition               = "category=Administrative and operationName=Microsoft.Network/networkSecurityGroups/securityRules/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_8" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_8"
-  condition               = "category=Administrative and operationName=Microsoft.Security/securitySolutions/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_9" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_9"
-  condition               = "category=Administrative and operationName=Microsoft.Security/securitySolutions/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_10" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_10"
-  condition               = "category=Administrative and operationName=Microsoft.Sql/servers/firewallRules/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_11" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_11"
-  condition               = "category=Administrative and operationName=Microsoft.Sql/servers/firewallRules/delete"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-module "activity_log_alert_5_12" {
-  source = "modules/activity_log_alert"
-
-  name                    = "5_12"
-  condition               = "category=Administrative and operationName=Microsoft.Security/policies/write"
-  activity_log_alert_name = "${var.activity_log_alert["log_alert"]}"
-  resource_group          = "${azurerm_resource_group.rg.name}"
-  action_group            = "${var.activity_log_alert["action_group"]}"
-
-  depends_on = ["${null_resource.azure_action_group.triggers}"]
-}
-
-
-#
 # MSI External Access VM
 # Use only when testing MSI access controls
-#
 resource "azurerm_public_ip" "public_ip" {
   name                         = "Inspec-PublicIP-1"
   count                        = "${var.public_vm_count}"
@@ -605,20 +471,14 @@ resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
 SETTINGS
 }
 
-resource "random_string" "sql_server" {
+resource "random_string" "sql" {
   length  = 10
   special = false
   upper   = false
 }
 
-resource "random_string" "sql_database" {
-  length  = 10
-  special = false
-  upper   = false
-}
-
-resource "azurerm_sql_server" "sql-server" {
-  name                         = "${random_string.sql_server.result}"
+resource "azurerm_sql_server" "sql_server" {
+  name                         = "sql-srv-${random_string.sql.result}"
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   location                     = "${var.location}"
   version                      = "${var.sql-server-version}"
@@ -626,12 +486,12 @@ resource "azurerm_sql_server" "sql-server" {
   administrator_login_password = "P4assw0rd!"
 }
 
-resource "azurerm_sql_database" "sql-database" {
-  name                = "${random_string.sql_database.result}"
+resource "azurerm_sql_database" "sql_database" {
+  name                = "sqldb${random_string.sql.result}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   location            = "${var.location}"
-  server_name         = "${random_string.sql_server.result}"
-  depends_on          = ["azurerm_sql_server.sql-server"]
+  server_name         = "${azurerm_sql_server.sql_server.name}"
+  depends_on          = ["azurerm_sql_server.sql_server"]
   tags {}
 }
 
@@ -702,15 +562,16 @@ resource "tls_private_key" "key" {
   rsa_bits  = 4096
 }
 
-resource "azurerm_kubernetes_cluster" "test" {
+resource "azurerm_kubernetes_cluster" "cluster" {
   name                = "inspecakstest"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   dns_prefix          = "inspecaksagent1"
+  depends_on          = ["azurerm_resource_group.rg"]
 
   agent_pool_profile {
     name            = "inspecaks"
-    count           = 5
+    count           = 2
     vm_size         = "Standard_DS1_v2"
     os_type         = "Linux"
     os_disk_size_gb = 30
@@ -726,4 +587,72 @@ resource "azurerm_kubernetes_cluster" "test" {
     client_id     = "${var.client_id}"
     client_secret = "${var.client_secret}"
   }
+}
+
+resource "azurerm_app_service_plan" "app_service_plan" {
+  name                = "app-serv-plan-${random_pet.workspace.id}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  kind                = "Windows"
+
+  sku {
+    tier              = "Free"
+    size              = "F1"
+  }
+}
+
+resource "azurerm_app_service" "app_service" {
+  name                = "app-serv-${random_pet.workspace.id}"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  app_service_plan_id = "${azurerm_app_service_plan.app_service_plan.id}"
+  https_only          = "true"
+
+  identity = {
+    type              = "SystemAssigned"
+  }
+}
+
+resource "azurerm_mysql_server" "mysql" {
+  name                = "mysql-svr-${random_string.sql.result}"
+  location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = "2"
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = "5120"
+    backup_retention_days = "7"
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "${terraform.workspace}"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "5.7"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_mysql_database" "mysql" {
+  name                = "mysqldb${random_string.sql.result}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_mysql_server.mysql.name}"
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
+}
+
+resource "azurerm_mysql_firewall_rule" "server_rule" {
+  name                = "mysql-srv-firewall"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_mysql_server.mysql.name}"
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
+}
+
+data "azurerm_builtin_role_definition" "contributor" {
+  name = "Contributor"
 }

@@ -35,19 +35,23 @@ class AzurermSqlServer < AzurermSingularResource
   end
 
   def auditing_settings
-    management.sql_server_auditing_settings(@resource_group, @server_name)
+    @auditing_settings ||= management.sql_server_auditing_settings(@resource_group, @server_name)
   end
 
   def threat_detection_settings
-    management.sql_server_threat_detection_settings(@resource_group, @server_name)
+    @threat_detection_settings ||= management.sql_server_threat_detection_settings(@resource_group, @server_name)
   end
 
   def administrators
-    management.sql_server_administrators(@resource_group, @server_name)
+    @administrators ||= management.sql_server_administrators(@resource_group, @server_name)
+  end
+
+  def encryption_protector
+    @encryption_protector ||= management.sql_encryption_protector(@resource_group, @server_name)
   end
 
   def firewall_rules
-    management.sql_server_firewall_rules(@resource_group, @server_name)
+    @firewall_rules ||= management.sql_server_firewall_rules(@resource_group, @server_name)
   end
 
   def to_s

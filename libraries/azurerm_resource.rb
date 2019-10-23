@@ -3,6 +3,8 @@
 require 'support/azure'
 
 class AzurermResource < Inspec.resource(1)
+  name 'azurerm_resource'
+  desc 'Base class for azurerm resources.'
   supports platform: 'azure'
 
   def management
@@ -15,6 +17,10 @@ class AzurermResource < Inspec.resource(1)
 
   def vault(vault_name)
     Azure::Vault.new(vault_name, inspec.backend)
+  end
+
+  def queue(queue_name)
+    Azure::Queue.new(queue_name, inspec.backend)
   end
 
   private

@@ -164,11 +164,11 @@ output "activity_log_alert_name" {
 }
 
 output "sql_server_name" {
-  value = "${azurerm_sql_server.sql-server.name}"
+  value = "${azurerm_sql_server.sql_server.name}"
 }
 
 output "sql_database_name" {
-  value = "${azurerm_sql_database.sql-database.name}"
+  value = "${azurerm_sql_database.sql_database.name}"
 }
 
 output "key_vault_name" {
@@ -201,6 +201,45 @@ output "lb_name" {
 }
 
 output "cluster_fqdn" {
-  value = "${azurerm_kubernetes_cluster.test.fqdn}"
+  value = "${azurerm_kubernetes_cluster.cluster.fqdn}"
+}
 
+output "tenant_id" {
+  value = "${var.tenant_id}"
+}
+
+output "parent_mg" {
+  value = "${azurerm_management_group.mg_parent.group_id}"
+}
+
+output "child1_mg" {
+  value = "${azurerm_management_group.mg_child_one.group_id}"
+}
+
+output "child2_mg" {
+  value = "${azurerm_management_group.mg_child_two.group_id}"
+}
+
+output "parent_dn" {
+  value = "${azurerm_management_group.mg_parent.display_name}"
+}
+
+output "webapp_name" {
+  value = "${azurerm_app_service.app_service.name}"
+}
+
+output "contributor_role_name" {
+  value = "${substr("${data.azurerm_builtin_role_definition.contributor.id}", -36, 36)}"
+}
+
+output "log_profile_name" {
+  value = "${data.azurerm_monitor_log_profile.log_profile.name}"
+}
+
+output "mysql_server_name" {
+  value = "${azurerm_mysql_server.mysql.name}"
+}
+
+output "mysql_database_name" {
+  value = "${azurerm_mysql_database.mysql.name}"
 }

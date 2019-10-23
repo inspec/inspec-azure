@@ -9,6 +9,7 @@ class AzurermMySqlServers < AzurermPluralResource
   example <<-EXAMPLE
     describe azurerm_mysql_servers do
         it  { should exist }
+        its('names')  { should include 'my-sql-server' }
     end
   EXAMPLE
 
