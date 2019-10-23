@@ -398,7 +398,6 @@ module Azure
       )
     end
 
-
     def management_groups
       get(
         url: '/providers/Microsoft.Management/managementGroups',
@@ -419,7 +418,6 @@ module Azure
         params: params,
       )
     end
-
 
     def mysql_server(resource_group, name)
       get(
@@ -460,7 +458,6 @@ module Azure
         api_version: '2017-12-01',
       )
     end
-
 
     def load_balancer(resource_group, loadbalancer_name)
       get(
