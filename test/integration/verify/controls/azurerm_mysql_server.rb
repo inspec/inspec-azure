@@ -3,8 +3,6 @@ mysql_server_name = attribute('mysql_server_name', default: nil)
 
 control 'azurerm_mysql_server' do
   only_if { ENV['SQL'] }
-
-
   describe azurerm_mysql_server(resource_group: resource_group, server_name: mysql_server_name) do
     it                { should exist }
     its('id')         { should_not be_nil }
