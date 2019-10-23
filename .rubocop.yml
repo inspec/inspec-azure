@@ -27,6 +27,8 @@ Layout/ExtraSpacing:
   Enabled: true
   Exclude:
   - Gemfile
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
 Layout/SpaceAroundOperators:
   Enabled: false
 MethodLength:
@@ -67,7 +69,9 @@ Style/GuardClause:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
-Style/MethodMissing:
+Style/MethodMissingSuper:
+  Enabled: false
+Style/MissingRespondToMissing:
   Enabled: false
 Style/MultilineIfModifier:
   Enabled: false

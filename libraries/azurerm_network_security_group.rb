@@ -75,13 +75,17 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   end
 
   def destination_port_ranges(properties)
-    return Array(properties['destinationPortRange']) if properties['destinationPortRanges'].empty?
-    return properties['destinationPortRanges'] if properties['destinationPortRange'].empty?
+    properties_hash = properties.to_h
+    return Array(properties['destinationPortRange']) if !properties_hash.include?(:destinationPortRanges)
+
+    return properties['destinationPortRanges'] if !properties_hash.include?(:destinationPortRange)
+
     properties['destinationPortRanges'].push(properties['destinationPortRange'])
   end
 
   def matches_port?(ports, match_port)
     return true if ports.detect { |p| p =~ /^(#{match_port}|\*)$/ }
+
     ports.select { |port| port.include?('-') }
          .collect { |range| range.split('-') }
          .any? { |range| (range.first..range.last).cover?(match_port) }
@@ -96,7 +100,14 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   end
 
   def source_open?(properties)
-    properties['sourceAddressPrefix'] =~ %r{\*|0\.0\.0\.0|<nw>\/0|\/0|internet|any}
+    properties_hash = properties.to_h
+    if properties_hash.include?(:sourceAddressPrefix)
+      return properties['sourceAddressPrefix'] =~ %r{\*|0\.0\.0\.0|<nw>\/0|\/0|Internet|any}
+    end
+    if properties_hash.include?(:sourceAddressPrefixes)
+      return properties['sourceAddressPrefixes'].include?('0.0.0.0')
+
+    end
   end
 
   def direction_inbound?(properties)

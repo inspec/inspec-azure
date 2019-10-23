@@ -84,14 +84,36 @@ module Azure
       self
     end
 
-    def get(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true)
+    def get(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true, params: {}, headers: {}) # rubocop:disable Metrics/ParameterLists
       confirm_configured!
 
       body = cache.fetch(url) if use_cache
 
+      params = { 'api-version' => api_version }.merge(params) if api_version
+
       body ||= rest_client.get(url,
-                               params:  { 'api-version' => api_version },
-                               headers: { Accept: 'application/json' }).body
+                               params: params,
+                               headers: { Accept: 'application/json' }.merge(headers)).body
+
+      error_handler&.(body)
+
+      if unwrap.respond_to?(:call)
+        to_struct(unwrap.call(body, api_version))
+      else
+        to_struct(body.fetch('value', body))
+      end
+    end
+
+    def post(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true, params: {}, headers: {}) # rubocop:disable Metrics/ParameterLists
+      confirm_configured!
+
+      body = cache.fetch(url) if use_cache
+
+      params = { 'api-version' => api_version }.merge(params) if api_version
+
+      body ||= rest_client.post(url,
+                                params: params,
+                                headers: { Accept: 'application/json' }.merge(headers)).body
 
       error_handler&.(body)
 

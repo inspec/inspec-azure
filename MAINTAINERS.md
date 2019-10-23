@@ -19,11 +19,17 @@ To mention the team, use @chef/dca-team
 
 ### Lieutenant
 
- * [David McCown](https://github.com/dmccown)
+ * [Stuart Paterson](https://github.com/skpaterson)
 
 ### Maintainers
 
+ * [Ruairi Fennell](https://github.com/r-fennell)
+ * [Davy MacAleer](https://github.com/davymcaleer)
+ * [Darren Murray](https://github.com/dmurray-chef)
+ * [James Stocks](https://github.com/james-stocks)
+ * [Rachel Rice](https://github.com/rachelrice)
+ * [Ross](https://github.com/rmoles)
+ * [Russel Seymour](https://github.com/russellseymour)
  * [Joshua Padgett](https://github.com/Padgett)
  * [Paul Welch](https://github.com/pwelch)
- * [Ruairi Fennell](https://github.com/r-fennell)
  * [Trevor Bramble](https://github.com/TrevorBramble)

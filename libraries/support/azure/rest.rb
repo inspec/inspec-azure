@@ -28,6 +28,19 @@ module Azure
       end
     end
 
+    def post(path, params: {}, headers: {})
+      add_user_agent!(headers)
+      connection.post do |req|
+        req.url path
+
+        req.params  = req.params.merge(params)
+        req.headers = req.headers.merge(headers)
+        credentials.sign_request(req)
+      end
+    end
+
+    private
+
     def connection
       @connection ||= Faraday.new(url: host) do |conn|
         conn.request  :multipart
