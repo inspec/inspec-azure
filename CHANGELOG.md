@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.5.0 -->
+<!-- latest_release 1.6.0 -->
+## [v1.6.0](https://github.com/inspec/inspec-azure/tree/v1.6.0) (2019-10-23)
+
+#### Merged Pull Requests
+- Adds MySQL Resources [#213](https://github.com/inspec/inspec-azure/pull/213) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.5.0](https://github.com/inspec/inspec-azure/tree/v1.5.0) (2019-10-22)
 
 #### Merged Pull Requests
 - Adds Queue functionality to azurerm_storage_account [#212](https://github.com/inspec/inspec-azure/pull/212) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.4.3](https://github.com/inspec/inspec-azure/tree/v1.4.3) (2019-10-15)
 
