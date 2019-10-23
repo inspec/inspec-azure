@@ -622,7 +622,7 @@ resource "azurerm_sql_server" "sql-server" {
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   location                     = "${var.location}"
   version                      = "${var.sql-server-version}"
-  administrator_login          = "${terraform.workspace}"
+  administrator_login          = "inspec-azure"
   administrator_login_password = "P4assw0rd!"
 }
 
@@ -648,10 +648,10 @@ resource "azurerm_mysql_server" "mysql" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   sku {
-    name     = "B_Gen4_2"
+    name     = "B_Gen5_2"
     capacity = "2"
     tier     = "Basic"
-    family   = "Gen4"
+    family   = "Gen5"
   }
 
   storage_profile {
@@ -660,7 +660,7 @@ resource "azurerm_mysql_server" "mysql" {
     geo_redundant_backup  = "Disabled"
   }
 
-  administrator_login          = "${terraform.workspace}"
+  administrator_login          = "inspec-azure"
   administrator_login_password = "P4assw0rd!"
   version                      = "5.7"
   ssl_enforcement              = "Enabled"
