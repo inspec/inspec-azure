@@ -4,7 +4,7 @@ variable "location" {
 
 variable "resource_group_name" {
   description = "(Required) The name of the resource group where the load balancer resources will be placed."
-  default     = "azure_lb-rg"
+  default     = "inspec-azure_lb-rg"
 }
 
 variable "lb_name" {
@@ -12,7 +12,7 @@ variable "lb_name" {
 }
 
 variable "use_loadbalancer" {
-  description = "Indique si on utilise un load balancer"
+  description = "Indicates if we are using a load balancer"
   default     = "false"
 }
 
