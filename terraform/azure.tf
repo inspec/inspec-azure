@@ -82,7 +82,6 @@ resource "azurerm_storage_account" "sa" {
 
 resource "azurerm_storage_container" "container" {
   name                  = "vhds"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -95,7 +94,6 @@ resource "random_pet" "blob_name" {
 
 resource "azurerm_storage_container" "blob" {
   name                  = "${random_pet.blob_name.id}"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.sa.name}"
   container_access_type = "private"
 }
@@ -473,20 +471,14 @@ resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
 SETTINGS
 }
 
-resource "random_string" "sql_server" {
+resource "random_string" "sql" {
   length  = 10
   special = false
   upper   = false
 }
 
-resource "random_string" "sql_database" {
-  length  = 10
-  special = false
-  upper   = false
-}
-
-resource "azurerm_sql_server" "sql-server" {
-  name                         = "${random_string.sql_server.result}"
+resource "azurerm_sql_server" "sql_server" {
+  name                         = "sql-srv-${random_string.sql.result}"
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   location                     = "${var.location}"
   version                      = "${var.sql-server-version}"
@@ -494,12 +486,12 @@ resource "azurerm_sql_server" "sql-server" {
   administrator_login_password = "P4assw0rd!"
 }
 
-resource "azurerm_sql_database" "sql-database" {
-  name                = "${random_string.sql_database.result}"
+resource "azurerm_sql_database" "sql_database" {
+  name                = "sqldb${random_string.sql.result}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   location            = "${var.location}"
-  server_name         = "${random_string.sql_server.result}"
-  depends_on          = ["azurerm_sql_server.sql-server"]
+  server_name         = "${azurerm_sql_server.sql_server.name}"
+  depends_on          = ["azurerm_sql_server.sql_server"]
   tags {}
 }
 
@@ -579,7 +571,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 
   agent_pool_profile {
     name            = "inspecaks"
-    count           = 5
+    count           = 2
     vm_size         = "Standard_DS1_v2"
     os_type         = "Linux"
     os_disk_size_gb = 30
@@ -597,7 +589,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   }
 }
 
-resource "azurerm_app_service_plan" "app-service-plan" {
+resource "azurerm_app_service_plan" "app_service_plan" {
   name                = "app-serv-plan-${random_pet.workspace.id}"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
@@ -609,16 +601,56 @@ resource "azurerm_app_service_plan" "app-service-plan" {
   }
 }
 
-resource "azurerm_app_service" "app-service" {
+resource "azurerm_app_service" "app_service" {
   name                = "app-serv-${random_pet.workspace.id}"
   location            = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
-  app_service_plan_id = "${azurerm_app_service_plan.app-service-plan.id}"
+  app_service_plan_id = "${azurerm_app_service_plan.app_service_plan.id}"
   https_only          = "true"
 
   identity = {
     type              = "SystemAssigned"
   }
+}
+
+resource "azurerm_mysql_server" "mysql" {
+  name                = "mysql-svr-${random_string.sql.result}"
+  location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = "2"
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = "5120"
+    backup_retention_days = "7"
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "${terraform.workspace}"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "5.7"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_mysql_database" "mysql" {
+  name                = "mysqldb${random_string.sql.result}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_mysql_server.mysql.name}"
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
+}
+
+resource "azurerm_mysql_firewall_rule" "server_rule" {
+  name                = "mysql-srv-firewall"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_mysql_server.mysql.name}"
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
 }
 
 data "azurerm_builtin_role_definition" "contributor" {

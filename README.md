@@ -119,6 +119,7 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_key_vaults](docs/resources/azurerm_key_vaults.md.erb)
 - [azurerm_load_balancer](docs/resources/azurerm_load_balancer.md.erb)
 - [azurerm_load_balancers](docs/resources/azurerm_load_balancers.md.erb)
+- [azurerm_locks](docs/resources/azurerm_locks.md.erb)
 - [azurerm_management_group](docs/resources/azurerm_management_group.md.erb)
 - [azurerm_management_groups](docs/resources/azurerm_management_groups.md.erb)
 - [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
@@ -136,6 +137,8 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_network_watcher](docs/resources/azurerm_network_watcher.md.erb)
 - [azurerm_network_watchers](docs/resources/azurerm_network_watchers.md.erb)
 - [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md.erb)
+- [azurerm_role_definition](docs/resources/azurerm_role_definition.md.erb)
+- [azurerm_role_definitions](docs/resources/azurerm_role_definitions.md.erb)
 - [azurerm_security_center_policies](docs/resources/azurerm_security_center_policies.md.erb)
 - [azurerm_security_center_policy](docs/resources/azurerm_security_center_policy.md.erb)
 - [azurerm_sql_database](docs/resources/azurerm_sql_database.md.erb)
@@ -151,6 +154,9 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
 - [azurerm_virtual_network](docs/resources/azurerm_virtual_network.md.erb)
 - [azurerm_virtual_networks](docs/resources/azurerm_virtual_networks.md.erb)
+- [azurerm_webapp](docs/resources/azurerm_webapp.md.erb)
+- [azurerm_webapps](docs/resources/azurerm_webapps.md.erb)
+
 
 ## Connectors
 

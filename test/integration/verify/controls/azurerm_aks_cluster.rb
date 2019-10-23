@@ -10,7 +10,7 @@ control 'azurerm_aks_cluster' do
     its('properties.dnsPrefix')                              { should cmp 'inspecaksagent1' }
     its('properties.fqdn')                                   { should cmp cluster_fqdn }
     its('properties.agentPoolProfiles.first.name')           { should cmp 'inspecaks' }
-    its('properties.agentPoolProfiles.first.count')          { should cmp '5' }
+    its('properties.agentPoolProfiles.first.count')          { should cmp '2' }
     its('properties.agentPoolProfiles.first.vmSize')         { should cmp 'Standard_DS1_v2' }
     its('properties.agentPoolProfiles.first.storageProfile') { should cmp 'ManagedDisks' }
     its('properties.agentPoolProfiles.first.maxPods')        { should cmp '110' }
