@@ -3,7 +3,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version         = "~> 1.3"
+  version         = "~> 1.35.0"
   subscription_id = "${var.subscription_id}"
   client_id       = "${var.client_id}"
   client_secret   = "${var.client_secret}"
@@ -15,6 +15,10 @@ provider "random" {
 }
 
 data "azurerm_client_config" "current" {}
+
+data "azurerm_builtin_role_definition" "contributor" {
+  name = "Contributor"
+}
 
 resource "azurerm_resource_group" "rg" {
   name     = "Inspec-Azure-${terraform.workspace}"
@@ -216,6 +220,8 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "10.1.1.0/24"
+  # "Soft" deprecated, required until v2 of azurerm provider:
+  network_security_group_id = "${azurerm_network_security_group.nsg.id}"
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
@@ -591,6 +597,76 @@ resource "azurerm_mysql_firewall_rule" "server_rule" {
   end_ip_address      = "255.255.255.255"
 }
 
-data "azurerm_builtin_role_definition" "contributor" {
-  name = "Contributor"
+resource "azurerm_postgresql_server" "postgresql" {
+  name                = "postgresql-srv-${random_string.sql.result}"
+  location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = 2
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = 5120
+    backup_retention_days = 7
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "${terraform.workspace}"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "9.5"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_postgresql_database" "postgresql" {
+  name                = "postgresqldb${random_string.sql.result}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  charset             = "UTF8"
+  collation           = "English_United States.1252"
+}
+
+resource "azurerm_postgresql_configuration" "log_checkpoints" {
+  name                = "log_checkpoints"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  value               = "on"
+}
+
+resource "azurerm_postgresql_configuration" "log_connections" {
+  name                = "log_connections"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  value               = "on"
+}
+
+resource "azurerm_postgresql_configuration" "log_disconnections" {
+  name                = "log_disconnections"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  value               = "on"
+}
+
+resource "azurerm_postgresql_configuration" "log_duration" {
+  name                = "log_duration"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  value               = "on"
+}
+
+resource "azurerm_postgresql_configuration" "connection_throttling" {
+  name                = "connection_throttling"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  value               = "on"
+}
+
+resource "azurerm_postgresql_configuration" "log_retention_days" {
+  name                = "log_retention_days"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  value               = "5"
 }

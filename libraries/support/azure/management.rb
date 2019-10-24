@@ -459,6 +459,46 @@ module Azure
       )
     end
 
+    def postgresql_server(resource_group, name)
+      get(
+        url: link(location: "Microsoft.DBforPostgreSQL/servers/#{name}",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def postgresql_server_configurations(resource_group, name)
+      get(
+        url: link(location: "Microsoft.DBforPostgreSQL/servers/#{name}/configurations",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def postgresql_servers(resource_group)
+      get(
+        url: link(location: 'Microsoft.DBforPostgreSQL/servers/',
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def postgresql_database(resource_group, server_name, database_name)
+      get(
+        url: link(location: "Microsoft.DBforPostgreSQL/servers/#{server_name}/databases/#{database_name}",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
+    def postgresql_databases(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.DBforPostgreSQL/servers/#{server_name}/databases",
+                  resource_group: resource_group),
+        api_version: '2017-12-01',
+      )
+    end
+
     private
 
     def rest_client
