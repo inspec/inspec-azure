@@ -222,3 +222,11 @@ output "mysql_server_name" {
 output "mysql_database_name" {
   value = "${azurerm_mysql_database.mysql.name}"
 }
+
+output "postgresql_server_name" {
+  value = "${azurerm_postgresql_server.postgresql.name}"
+}
+
+output "postgresql_database_name" {
+  value = "${azurerm_postgresql_database.postgresql.name}"
+}
