@@ -33,7 +33,7 @@ class AzurermKeyVault < AzurermSingularResource
   end
 
   def diagnostic_settings
-    management.key_vault_diagnostic_settings(id)
+    @diagnostic_settings ||= management.key_vault_diagnostic_settings(id)
   end
 
   def to_s

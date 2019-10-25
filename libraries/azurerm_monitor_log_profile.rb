@@ -20,6 +20,7 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     retention_policy
     retention_days
     retention_enabled
+    storage_account
   ).freeze
 
   attr_reader(*ATTRS)
@@ -34,7 +35,10 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     @retention_days    = resp.properties.retentionPolicy.days
     @retention_enabled = resp.properties.retentionPolicy.enabled
     @properties        = resp.properties
-
+    @storage_account   = {
+      name: resp.properties.storageAccountId.split('/')[-1],
+        resource_group: resp.properties.storageAccountId.split('/')[-5],
+    }
     @exists = true
   end
 
