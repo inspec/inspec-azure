@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.6.0 -->
+<!-- latest_release 1.7.0 -->
+## [v1.7.0](https://github.com/inspec/inspec-azure/tree/v1.7.0) (2019-10-25)
+
+#### Merged Pull Requests
+- Adds PostgreSQL and Subscription Resources [#214](https://github.com/inspec/inspec-azure/pull/214) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.6.0](https://github.com/inspec/inspec-azure/tree/v1.6.0) (2019-10-23)
 
 #### Merged Pull Requests
 - Adds MySQL Resources [#213](https://github.com/inspec/inspec-azure/pull/213) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.5.0](https://github.com/inspec/inspec-azure/tree/v1.5.0) (2019-10-22)
 
