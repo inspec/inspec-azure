@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.7.0 -->
+<!-- latest_release 1.7.1 -->
+## [v1.7.1](https://github.com/inspec/inspec-azure/tree/v1.7.1) (2019-10-25)
+
+#### Merged Pull Requests
+- fix spelling of StorageAccou(n)t class [#183](https://github.com/inspec/inspec-azure/pull/183) ([cruwe](https://github.com/cruwe))
+<!-- latest_release -->
+
 ## [v1.7.0](https://github.com/inspec/inspec-azure/tree/v1.7.0) (2019-10-25)
 
 #### Merged Pull Requests
 - Adds PostgreSQL and Subscription Resources [#214](https://github.com/inspec/inspec-azure/pull/214) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.6.0](https://github.com/inspec/inspec-azure/tree/v1.6.0) (2019-10-23)
 
