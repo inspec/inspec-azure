@@ -37,9 +37,9 @@ class AzurermPostgreSQLServer < AzurermSingularResource
   # Convenient access e.g. configurations.{config_name}.properties.value.eql?("on")
   def configurations
     @configurations ||= OpenStruct.new(
-        management.postgresql_server_configurations(@resource_group, @server_name)
-                  .map{|c| [c.name, c]}
-                  .to_h
+      management.postgresql_server_configurations(@resource_group, @server_name)
+                .map { |c| [c.name, c] }
+                .to_h,
     )
   end
 
