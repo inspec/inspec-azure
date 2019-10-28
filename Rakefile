@@ -19,7 +19,6 @@ REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUB
 task default: :test
 desc 'Testing tasks'
 
-
 task test: %w{test:unit setup_env test:integration}
 
 desc 'Set up Azure env, run integration tests, destroy Azure env'
@@ -49,8 +48,6 @@ namespace :azure do
 end
 
 task test: %w{test:unit azure:login test:integration}
-
-
 
 desc 'Linting tasks'
 task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
