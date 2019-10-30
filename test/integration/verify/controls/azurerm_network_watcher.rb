@@ -1,6 +1,6 @@
-resource_group = attribute('resource_group',       default: nil)
-nw             = attribute('network_watcher_name', default: nil).first
-nw_id          = attribute('network_watcher_id',   default: nil).first
+resource_group = attribute('resource_group',       value: nil)
+nw             = attribute('network_watcher_name', value: nil).first
+nw_id          = attribute('network_watcher_id',   value: nil).first
 
 control 'azurerm_network_watcher' do
   only_if { ENV['NETWORK_WATCHER'] }

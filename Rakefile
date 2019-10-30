@@ -101,14 +101,15 @@ end
 namespace :test do
 
   Rake::TestTask.new(:unit) do |t|
+    puts '-> Running Unit Tests'
     t.libs << 'test/unit'
     t.libs << 'libraries'
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => ['attributes:write', :lint, :setup_env] do |_t, args|
+  task :integration, [:controls] => [:unit, 'attributes:write', :lint, :setup_env] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
-              --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
+              --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
               --no-distinct-exit
               -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )

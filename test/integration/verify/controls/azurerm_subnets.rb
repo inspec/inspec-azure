@@ -1,6 +1,6 @@
-resource_group = attribute('resource_group',  default: nil)
-vnet           = attribute('vnet_name',       default: nil)
-subnet         = attribute('subnet_name',     default: nil)
+resource_group = attribute('resource_group', value: nil)
+vnet           = attribute('vnet_name',      value: nil)
+subnet         = attribute('subnet_name',    value: nil)
 
 control 'azurerm_subnets' do
   describe azurerm_subnets(resource_group: resource_group, vnet: vnet) do

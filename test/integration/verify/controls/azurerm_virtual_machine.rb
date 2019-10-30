@@ -1,11 +1,11 @@
-resource_group            = attribute('resource_group',        default: nil)
-win_name                  = attribute('windows_vm_name',       default: nil)
-win_id                    = attribute('windows_vm_id',         default: nil)
-win_location              = attribute('windows_vm_location',   default: nil)
-win_tags                  = attribute('windows_vm_tags',       default: nil)
-win_os_disk_name          = attribute('windows_vm_os_disk',    default: nil)
-win_data_disk_names       = attribute('windows_vm_data_disks', default: nil)
-win_monitoring_agent_name = attribute('monitoring_agent_name', default: nil)
+resource_group            = attribute('resource_group',        value: nil)
+win_name                  = attribute('windows_vm_name',       value: nil)
+win_id                    = attribute('windows_vm_id',         value: nil)
+win_location              = attribute('windows_vm_location',   value: nil)
+win_tags                  = attribute('windows_vm_tags',       value: nil)
+win_os_disk_name          = attribute('windows_vm_os_disk',    value: nil)
+win_data_disk_names       = attribute('windows_vm_data_disks', value: nil)
+win_monitoring_agent_name = attribute('monitoring_agent_name', value: nil)
 
 control 'azurerm_virtual_machine' do
   describe azurerm_virtual_machine(resource_group: resource_group, name: win_name) do

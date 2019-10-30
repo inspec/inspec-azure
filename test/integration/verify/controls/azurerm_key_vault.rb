@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-vault_name     = attribute('key_vault_name', default: nil)
+resource_group = attribute('resource_group', value: nil)
+vault_name     = attribute('key_vault_name', value: nil)
 
 control 'azurerm_key_vault' do
 

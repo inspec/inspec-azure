@@ -1,6 +1,6 @@
-resource_group = attribute('resource_group',            default: nil)
-nsg            = attribute('network_security_group',    default: nil)
-nsg_id         = attribute('network_security_group_id', default: nil)
+resource_group = attribute('resource_group',            value: nil)
+nsg            = attribute('network_security_group',    value: nil)
+nsg_id         = attribute('network_security_group_id', value: nil)
 
 control 'azurerm_network_security_group' do
   describe azurerm_network_security_group(resource_group: resource_group, name: nsg) do

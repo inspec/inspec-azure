@@ -1,4 +1,4 @@
-guest_accounts = attribute('guest_accounts', default: nil)
+guest_accounts = attribute('guest_accounts', value: nil)
 
 control 'azurerm_ad_users' do
   only_if { ENV['GRAPH'] }

@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-postgresql_server_name = attribute('postgresql_server_name', default: nil)
+resource_group = attribute('resource_group', value: nil)
+postgresql_server_name = attribute('postgresql_server_name', value: nil)
 
 control 'azurerm_postgresql_server' do
   only_if { ENV['SQL'] }
