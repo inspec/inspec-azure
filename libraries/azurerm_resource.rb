@@ -60,7 +60,11 @@ class AzurermResource < Inspec.resource(1)
       i = 0
       counter = 0
       while counter < split.length/2
-        hash[split[i].delete_suffix('s').underscore.to_sym] = split[i+1]
+        # Remove plural from API noun.
+        k = split[i].end_with?('s') ? split[i][0..-2] : split[i]
+        k = k.underscore.to_sym
+        v = split[i+1]
+        hash[k] = v
         i += 2
         counter += 1
       end

@@ -107,7 +107,7 @@ namespace :test do
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => [:unit, 'attributes:write', :lint, :setup_env] do |_t, args|
+  task :integration, [:controls] => [:lint, :unit, 'attributes:write', :setup_env] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
               --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
