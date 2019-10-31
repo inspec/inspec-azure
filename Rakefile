@@ -18,35 +18,6 @@ REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUB
 
 task default: :test
 desc 'Testing tasks'
-
-task test: %w{test:unit setup_env test:integration}
-
-desc 'Set up Azure env, run integration tests, destroy Azure env'
-task azure: 'azure:run'
-
-namespace :azure do
-  task run: %w{network_watcher check_env tf:apply test:integration tf:destroy}
-
-  desc 'Authenticate with the Azure CLI'
-  task :login do
-    Rake::Task['check_env'].invoke
-
-    sh(
-      'az', 'login',
-      '--service-principal',
-      '-u', ENV['AZURE_CLIENT_ID'],
-      '-p', ENV['AZURE_CLIENT_SECRET'],
-      '--tenant', ENV['AZURE_TENANT_ID']
-    )
-
-    sh(
-      'az', 'account',
-      'set',
-      '--subscription', ENV['AZURE_SUBSCRIPTION_ID']
-    )
-  end
-end
-
 task test: %w{test:unit azure:login test:integration}
 
 desc 'Linting tasks'
