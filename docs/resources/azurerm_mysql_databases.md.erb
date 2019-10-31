@@ -78,7 +78,7 @@ name. This is a string value.
 
 ### location
 
-Filters the results to include only those resource groups that reside ina given location. This is a string value.
+Filters the results to include only those resource groups that reside in a given location. This is a string value.
 
     describe azurerm_mysql_databases(resource_group: 'rg', server_name: 'server').where{ location.eql?('eastus') } do
       it { should exist }
