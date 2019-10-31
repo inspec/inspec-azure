@@ -236,3 +236,11 @@ output "contributor_role_name" {
 output "log_profile_name" {
   value = "${data.azurerm_monitor_log_profile.log_profile.name}"
 }
+
+output "postgresql_server_name" {
+  value = "${azurerm_postgresql_server.postgresql.name}"
+}
+
+output "postgresql_database_name" {
+  value = "${azurerm_postgresql_database.postgresql.name}"
+}
