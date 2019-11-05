@@ -54,12 +54,17 @@ An `azurerm_webapp` resource block identifies an AppService Webapp by name and R
       its('configuration.properties') { should have_attributes(http20Enabled: true) }
     end
 
-### Test Webapp to ensure it's using .Net version greater than 2.0
+### Test Webapp to ensure it's using the latest supported version of .NET
 
-    describe azurerm_webapp(resource_group: resource_group, name: wa_name).configuration do
-      its('properties.netFrameworkVersion') { should cmp > 'v2.0' }
+    describe azurerm_webapp(resource_group: resource_group, name: wa_name) do
+      it { should be_using_latest('aspnet') }
     end
 
+### Test Webapp to ensure it's using the latest supported version of Python
+
+    describe azurerm_webapp(resource_group: resource_group, name: wa_name) do
+      it { should be_using_latest('python') }
+    end
 <br />
 
 ## Parameters
@@ -81,16 +86,24 @@ The Resource Group as well as the Webapp name.
 
 ## Attributes
 
+  - `id`
+  - `name`
+  - `location`
+  - `properties`
+  - `identity`
+  - `auth_settings`
+  - `configuration`
+
 All of the attributes are avialable via dot notation. This is an example of the currently available attributes.
 
 ```
 control 'azurerm_webapp' do
   describe azurerm_webapp(resource_group: 'example', name: 'webapp_name') do
-    it { should exist }
-    its('properties.enabled') { should cmp true }
+    it                                  { should exist }
+    its('properties.enabled')           { should cmp true }
     its('properties.clientCertEnabled') { should cmp true }
-    its('properties.enabledHostNames') { should cmp 'webapp_name.azurewebsites.net' }
-    its('properties.httpsOnly') { should cmp true }
+    its('properties.enabledHostNames')  { should cmp 'webapp_name.azurewebsites.net' }
+    its('properties.httpsOnly')         { should cmp true }
   end
 end
 ```
@@ -115,6 +128,19 @@ requests are always welcome.
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
 page](https://www.inspec.io/docs/reference/matchers/).
+
+### using_latest?(stack)
+
+Asserts whether the deployed Azure WebApp is using the latest supported version of the given language/stack.
+Supported stacks (i.e. python, java, php, node) can be found in the `properties` section of WebApp Configuration [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/getconfiguration#siteconfigresource).
+
+```
+        it { should be_using_latest('php') }
+        it { should be_using_latest('java') }
+        it { should be_using_latest('python') }
+        it { should be_using_latest('aspnet') }
+        it { should be_using_latest('dotnetcore') }
+```
 
 ### exists
 
