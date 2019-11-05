@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-resource_group = attribute('resource_group', value: nil)
-resource_name = attribute('windows_vm_name', value: nil)
+resource_group = input('resource_group', value: nil)
+resource_name = input('windows_vm_name', value: nil)
 resource_type = 'Microsoft.Compute/virtualMachines'
 
 control 'azurerm_locks' do

@@ -35,7 +35,7 @@ class AzurermSubnet < AzurermSingularResource
 
   def nsg
     return nil unless properties.respond_to?(:networkSecurityGroup)
-    @nsg ||= id_to_h(properties.networkSecurityGroup.id)[:network_security_group]
+    @nsg ||= id_to_h(properties.networkSecurityGroup.id)[:network_security_groups]
   end
 
   def to_s

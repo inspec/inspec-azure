@@ -48,7 +48,7 @@ class AzurermResource < Inspec.resource(1)
 
   # Converts the given Azure ID to a hash representation such that:
   # "/subscriptions/xxx/resourceGroups/my-rg/providers/Microsoft.Compute/disks/my-disk"
-  # becomes {:subscription => 'xxx', :resource_group => 'my-rg', :provider => 'Microsoft.Compute', :disk => 'my-disk'}
+  # becomes {:subscriptions => 'xxx', :resource_groups => 'my-rg', :providers => 'Microsoft.Compute', :disks => 'my-disk'}
   def id_to_h(azure_id)
     raise ArgumentError, "`#{azure_id}` is not a valid Azure ID." unless !azure_id.nil? && azure_id.start_with?('/subscriptions')
 
@@ -60,9 +60,7 @@ class AzurermResource < Inspec.resource(1)
       i = 0
       counter = 0
       while counter < split.length/2
-        # Remove plural from API noun.
-        k = split[i].end_with?('s') ? split[i][0..-2] : split[i]
-        k = k.underscore.to_sym
+        k = split[i].underscore.to_sym
         v = split[i+1]
         hash[k] = v
         i += 2

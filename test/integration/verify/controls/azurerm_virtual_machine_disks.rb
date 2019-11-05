@@ -1,5 +1,5 @@
-rg = attribute('resource_group', value: nil)
-windows_vm_os_disk = attribute('windows_vm_os_disk', value: nil)
+rg = input('resource_group', value: nil)
+windows_vm_os_disk = input('windows_vm_os_disk', value: nil)
 
 control 'azurerm_virtual_machine_disks' do
   describe azurerm_virtual_machine_disks do

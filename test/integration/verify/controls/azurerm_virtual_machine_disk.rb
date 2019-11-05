@@ -1,8 +1,8 @@
-resource_group        = attribute('resource_group',          value: nil)
-location              = attribute('encrypted_disk_location', value: nil)
-unencrypted_disk_name = attribute('unencrypted_disk_name',   value: nil)
-encrypted_disk_name   = attribute('encrypted_disk_name',     value: nil)
-unmanaged_disk_name   = attribute('unamaged_disk_name',      value: nil)
+resource_group        = input('resource_group',          value: nil)
+location              = input('encrypted_disk_location', value: nil)
+unencrypted_disk_name = input('unencrypted_disk_name',   value: nil)
+encrypted_disk_name   = input('encrypted_disk_name',     value: nil)
+unmanaged_disk_name   = input('unamaged_disk_name',      value: nil)
 
 control 'azurerm_virtual_machine_disk' do
   describe azurerm_virtual_machine_disk(resource_group: resource_group, name: encrypted_disk_name) do

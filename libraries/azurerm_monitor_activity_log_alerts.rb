@@ -37,7 +37,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
   def with_resource_group
     lambda do |group|
       # Get resource group from ID string
-      name = id_to_h(group.id)[:resource_group]
+      name = id_to_h(group.id)[:resource_groups]
       Azure::Response.create(group.members << :resource_group, group.values << name)
     end
   end

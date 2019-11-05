@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', value: nil)
-mysql_server_name = attribute('mysql_server_name', value: nil)
+resource_group = input('resource_group', value: nil)
+mysql_server_name = input('mysql_server_name', value: nil)
 
 control 'azurerm_mysql_server' do
   only_if { ENV['SQL'] }

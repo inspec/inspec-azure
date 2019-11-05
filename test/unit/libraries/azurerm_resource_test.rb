@@ -17,11 +17,11 @@ class AzurermResourceTest < Minitest::Test
 
     result = @resource.send(:id_to_h, id)
 
-    assert_equal(result.class.name,       Hash.name)
-    assert_equal(result[:subscription],   @sub)
-    assert_equal(result[:resource_group], @resource_group)
-    assert_equal(result[:provider],       'Microsoft.Compute')
-    assert_equal(result[:disk],           'data-disk')
+    assert_equal(result.class.name,        Hash.name)
+    assert_equal(result[:subscriptions],   @sub)
+    assert_equal(result[:resource_groups], @resource_group)
+    assert_equal(result[:providers],       'Microsoft.Compute')
+    assert_equal(result[:disks],           'data-disk')
   end
 
   def test_id_not_set
