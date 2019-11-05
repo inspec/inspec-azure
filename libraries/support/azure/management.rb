@@ -520,6 +520,13 @@ module Azure
       )
     end
 
+    def webapp_supported_stacks
+      get(
+        url: link(location: 'Microsoft.Web/availableStacks'),
+        api_version: '2018-02-01',
+      )
+    end
+
     private
 
     def rest_client
