@@ -65,7 +65,7 @@ Consider the following:
   - At the top attributes are defined for each property that will be tested.
   - The control is the InSpec control that will be tested when the integration test is run.
 - The attributes at the top associate an InSpec variable with an attribute as defined in Terraform.
-  - The attribute statements take the form of `var = attribute('tf_output', value: nil)`.
+  - The attribute statements take the form of `var = input('tf_output', value: nil)`.
   - Attributes' default statements should, for the most part, be nil.
 - Within the control, there should be three describe statements:
   - A `describe` statement that includes all of the available properties to be tested
@@ -77,11 +77,11 @@ Consider the following:
 - Update variables and Terraform outputs as needed.
 
 ```
-resource_group = attribute('resource_group',  value: nil)
-subnet         = attribute('subnet_name',     value: nil)
-tags           = attribute('subnet_tags',     value: nil)
-id             = attribute('subnet_id',       value: nil)
-location       = attribute('subnet_location', value: nil)
+resource_group = input('resource_group',  value: nil)
+subnet         = input('subnet_name',     value: nil)
+tags           = input('subnet_tags',     value: nil)
+id             = input('subnet_id',       value: nil)
+location       = input('subnet_location', value: nil)
 
 control 'azurerm_subnet' do
   describe azurerm_subnet(resource_group: resource_group, name: subnet) do
