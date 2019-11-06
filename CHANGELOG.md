@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.7.1 -->
+<!-- latest_release 1.8.0 -->
+## [v1.8.0](https://github.com/inspec/inspec-azure/tree/v1.8.0) (2019-11-06)
+
+#### Merged Pull Requests
+- Bump Inspec, Adds Azurerm Disks Plural resource [#215](https://github.com/inspec/inspec-azure/pull/215) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.7.1](https://github.com/inspec/inspec-azure/tree/v1.7.1) (2019-10-25)
 
 #### Merged Pull Requests
 - fix spelling of StorageAccou(n)t class [#183](https://github.com/inspec/inspec-azure/pull/183) ([cruwe](https://github.com/cruwe))
-<!-- latest_release -->
 
 ## [v1.7.0](https://github.com/inspec/inspec-azure/tree/v1.7.0) (2019-10-25)
 

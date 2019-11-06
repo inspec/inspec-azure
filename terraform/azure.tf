@@ -488,7 +488,7 @@ resource "azurerm_sql_server" "sql_server" {
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   location                     = "${var.location}"
   version                      = "${var.sql-server-version}"
-  administrator_login          = "${terraform.workspace}"
+  administrator_login          = "iazAdmin"
   administrator_login_password = "P4assw0rd!"
 }
 
@@ -575,7 +575,7 @@ resource "azurerm_mysql_server" "mysql" {
     geo_redundant_backup  = "Disabled"
   }
 
-  administrator_login          = "${terraform.workspace}"
+  administrator_login          = "iazAdmin"
   administrator_login_password = "P4assw0rd!"
   version                      = "5.7"
   ssl_enforcement              = "Enabled"
@@ -615,7 +615,7 @@ resource "azurerm_postgresql_server" "postgresql" {
     geo_redundant_backup  = "Disabled"
   }
 
-  administrator_login          = "${terraform.workspace}"
+  administrator_login          = "iazAdmin"
   administrator_login_password = "P4assw0rd!"
   version                      = "9.5"
   ssl_enforcement              = "Enabled"

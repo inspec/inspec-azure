@@ -1,4 +1,4 @@
-log_profile = attribute('log_profile_name', value: nil)
+log_profile = input('log_profile_name', value: nil)
 
 control 'azurerm_monitor_log_profile' do
   describe azurerm_monitor_log_profile(name: log_profile) do

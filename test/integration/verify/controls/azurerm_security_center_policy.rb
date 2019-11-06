@@ -1,4 +1,4 @@
-resource_group = attribute('resource_group', value: nil)
+resource_group = input('resource_group', value: nil)
 
 control 'azurerm_security_center_policy' do
   desc <<-DESC

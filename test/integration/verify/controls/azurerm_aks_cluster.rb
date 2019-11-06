@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', value: nil)
-cluster_fqdn   = attribute('cluster_fqdn',   value: nil)
+resource_group = input('resource_group', value: nil)
+cluster_fqdn   = input('cluster_fqdn',   value: nil)
 
 control 'azurerm_aks_cluster' do
   describe azurerm_aks_cluster(resource_group: resource_group, name: 'inspecakstest') do

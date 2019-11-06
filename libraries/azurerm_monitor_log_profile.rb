@@ -37,7 +37,7 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     @properties        = resp.properties
 
     sa = id_to_h(resp.properties.storageAccountId)
-    @storage_account = { name: sa[:storage_account], resource_group: sa[:resource_group] }
+    @storage_account = { name: sa[:storage_accounts], resource_group: sa[:resource_groups] }
     @exists = true
   end
 

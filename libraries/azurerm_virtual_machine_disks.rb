@@ -30,7 +30,7 @@ class AzurermVirtualMachineDisks < AzurermPluralResource
 
     resp.map!(&:to_h).each do |disk|
       disk[:attached]       = disk[:properties][:diskState].eql?('Attached')
-      disk[:resource_group] = id_to_h(disk[:id])[:resource_group]
+      disk[:resource_group] = id_to_h(disk[:id])[:resource_groups]
     end
 
     @table = resp

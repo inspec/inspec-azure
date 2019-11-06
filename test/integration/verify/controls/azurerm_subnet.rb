@@ -1,9 +1,9 @@
-resource_group  = attribute('resource_group',        value: nil)
-name            = attribute('subnet_name',           value: nil)
-id              = attribute('subnet_id',             value: nil)
-vnet            = attribute('vnet_name',             value: nil)
-address_prefix  = attribute('subnet_address_prefix', value: nil)
-nsg             = attribute('subnet_nsg',            value: nil)
+resource_group  = input('resource_group',        value: nil)
+name            = input('subnet_name',           value: nil)
+id              = input('subnet_id',             value: nil)
+vnet            = input('vnet_name',             value: nil)
+address_prefix  = input('subnet_address_prefix', value: nil)
+nsg             = input('subnet_nsg',            value: nil)
 
 control 'azurerm_subnet' do
   describe azurerm_subnet(resource_group: resource_group, vnet: vnet, name: name) do
