@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.8.0 -->
+<!-- latest_release 1.9.0 -->
+## [v1.9.0](https://github.com/inspec/inspec-azure/tree/v1.9.0) (2019-11-06)
+
+#### Merged Pull Requests
+- Additional azurerm_webapp functionality [#217](https://github.com/inspec/inspec-azure/pull/217) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.8.0](https://github.com/inspec/inspec-azure/tree/v1.8.0) (2019-11-06)
 
 #### Merged Pull Requests
 - Bump Inspec, Adds Azurerm Disks Plural resource [#215](https://github.com/inspec/inspec-azure/pull/215) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.7.1](https://github.com/inspec/inspec-azure/tree/v1.7.1) (2019-10-25)
 
