@@ -60,7 +60,7 @@ class AzurermWebapp < AzurermSingularResource
     using = stack_version(stack)
     raise ArgumentError, "#{self} does not use Stack #{stack}" unless using
     latest = latest(stack)
-    using  = using[1..] if using[0].casecmp?('v')
+    using[0] = '' if using[0].casecmp?('v')
     using.to_i >= latest.to_i
   end
 
@@ -72,9 +72,9 @@ class AzurermWebapp < AzurermSingularResource
 
   def latest(stack)
     latest_supported = supported_stacks.select { |s| s.name.eql?(stack) }
-                                       .map { |e| e.properties.majorVersions.max_by(&:runtimeVersion).runtimeVersion }
-                                       .reduce(:+)
-    latest_supported = latest_supported[1..] if latest_supported[0].casecmp?('v')
+                           .map { |e| e.properties.majorVersions.max_by(&:runtimeVersion).runtimeVersion }
+                           .reduce(:+)
+    latest_supported[0] = '' if latest_supported[0].casecmp?('v')
     latest_supported
   end
 
