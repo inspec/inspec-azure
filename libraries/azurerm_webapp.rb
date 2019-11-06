@@ -72,8 +72,8 @@ class AzurermWebapp < AzurermSingularResource
 
   def latest(stack)
     latest_supported = supported_stacks.select { |s| s.name.eql?(stack) }
-                           .map { |e| e.properties.majorVersions.max_by(&:runtimeVersion).runtimeVersion }
-                           .reduce(:+)
+                                       .map { |e| e.properties.majorVersions.max_by(&:runtimeVersion).runtimeVersion }
+                                       .reduce(:+)
     latest_supported[0] = '' if latest_supported[0].casecmp?('v')
     latest_supported
   end
