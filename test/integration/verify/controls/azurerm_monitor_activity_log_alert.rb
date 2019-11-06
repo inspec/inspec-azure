@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-log_alert_name = attribute('activity_log_alert_name', default: nil)
+resource_group = input('resource_group', value: nil)
+log_alert_name = input('activity_log_alert_name', value: nil)
 
 alerts_and_operations = {
   '5_3'  => 'Microsoft.Authorization/policyAssignments/write',

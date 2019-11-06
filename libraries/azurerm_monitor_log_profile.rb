@@ -35,10 +35,9 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     @retention_days    = resp.properties.retentionPolicy.days
     @retention_enabled = resp.properties.retentionPolicy.enabled
     @properties        = resp.properties
-    @storage_account   = {
-      name: resp.properties.storageAccountId.split('/')[-1],
-        resource_group: resp.properties.storageAccountId.split('/')[-5],
-    }
+
+    sa = id_to_h(resp.properties.storageAccountId)
+    @storage_account = { name: sa[:storage_accounts], resource_group: sa[:resource_groups] }
     @exists = true
   end
 

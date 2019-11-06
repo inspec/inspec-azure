@@ -480,6 +480,13 @@ module Azure
       )
     end
 
+    def virtual_machine_disks
+      get(
+        url: link(location: 'Microsoft.Compute/disks'),
+        api_version: '2019-03-01',
+      )
+    end
+
     def webapp(resource_group, webapp_name)
       get(
         url: link(location: "Microsoft.Web/sites/#{webapp_name}",

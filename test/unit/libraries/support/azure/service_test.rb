@@ -1,5 +1,5 @@
-require_relative '../../test_helper'
-require_relative '../../../../libraries/support/azure/service'
+require_relative '../../../test_helper'
+require_relative '../../../../../libraries/support/azure/service'
 
 describe Azure::Service do
   let(:address)         { { street: '123 Fake St.', city: 'Nowhere', state: 'NO' } }

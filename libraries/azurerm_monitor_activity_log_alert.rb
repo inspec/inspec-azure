@@ -17,6 +17,7 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
     id
     conditions
     operations
+    scopes
   ).freeze
 
   attr_reader(*ATTRS)
@@ -28,9 +29,14 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
     @name       = resp.name
     @id         = resp.id
     @conditions = resp.properties.condition.allOf
+    @scopes     = resp.properties.scopes
+    @enabled    = resp.properties.enabled
     @operations = collect_operations(@conditions)
-
     @exists = true
+  end
+
+  def enabled?
+    @enabled
   end
 
   def to_s

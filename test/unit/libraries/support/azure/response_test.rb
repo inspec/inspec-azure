@@ -1,5 +1,5 @@
-require_relative '../../test_helper'
-require_relative '../../../../libraries/support/azure/response'
+require_relative '../../../test_helper'
+require_relative '../../../../../libraries/support/azure/response'
 
 describe Azure::Response do
   let(:keys) { %i(foo bar baz) }
