@@ -37,11 +37,11 @@ class AzurermWebapp < AzurermSingularResource
   end
 
   def auth_settings
-    @auth ||= management.webapp_authentication_settings(@resource_group, @webapp_name)
+    @auth_settings ||= management.webapp_authentication_settings(@resource_group, @webapp_name)
   end
 
   def configuration
-    @conf ||= management.webapp_configuration(@resource_group, @webapp_name)
+    @configuration ||= management.webapp_configuration(@resource_group, @webapp_name)
   end
 
   # Returns the version of the given stack being used by the Webapp.
@@ -50,15 +50,15 @@ class AzurermWebapp < AzurermSingularResource
     stack = 'netFramework' if stack.eql?('aspnet')
     stack_key = "#{stack}Version"
     raise ArgumentError, "#{stack} is not a supported stack." unless configuration.properties.respond_to?(stack_key)
-    version = configuration.properties.public_send("#{stack_key}")
+    version = configuration.properties.public_send(stack_key.to_s)
     version.nil? || version.empty? ? nil : version
   end
 
   # Determines if the Webapp is using the given stack, and if the version
   # of that stack is the latest runtime supported by Azure.
   def using_latest?(stack)
-    using  = stack_version(stack)
-    raise ArgumentError, "#{to_s} does not use Stack #{stack}" unless using
+    using = stack_version(stack)
+    raise ArgumentError, "#{self} does not use Stack #{stack}" unless using
     latest = latest(stack)
     using  = using[1..] if using[0].casecmp?('v')
     using.to_i >= latest.to_i
@@ -72,13 +72,13 @@ class AzurermWebapp < AzurermSingularResource
 
   def latest(stack)
     latest_supported = supported_stacks.select { |s| s.name.eql?(stack) }
-                           .map { |e| e.properties.majorVersions.max_by(&:runtimeVersion).runtimeVersion }
-                           .reduce(:+)
+                                       .map { |e| e.properties.majorVersions.max_by(&:runtimeVersion).runtimeVersion }
+                                       .reduce(:+)
     latest_supported = latest_supported[1..] if latest_supported[0].casecmp?('v')
     latest_supported
   end
 
   def supported_stacks
-    @stacks ||= management.webapp_supported_stacks
+    @supported_stacks ||= management.webapp_supported_stacks
   end
 end
