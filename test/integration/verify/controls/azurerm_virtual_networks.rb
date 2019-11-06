@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group',  default: nil)
-vnet           = attribute('vnet_name',       default: nil)
+resource_group = input('resource_group',  value: nil)
+vnet           = input('vnet_name',       value: nil)
 
 control 'azurerm_virtual_networks' do
   describe azurerm_virtual_networks(resource_group: resource_group) do

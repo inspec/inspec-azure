@@ -480,6 +480,13 @@ module Azure
       )
     end
 
+    def virtual_machine_disks
+      get(
+        url: link(location: 'Microsoft.Compute/disks'),
+        api_version: '2019-03-01',
+      )
+    end
+
     def webapp(resource_group, webapp_name)
       get(
         url: link(location: "Microsoft.Web/sites/#{webapp_name}",
@@ -542,6 +549,13 @@ module Azure
         url: link(location: 'Microsoft.Network/networkInterfaces/',
                   resource_group: resource_group),
         api_version: '2018-11-01',
+      )
+    end
+
+    def webapp_supported_stacks
+      get(
+        url: link(location: 'Microsoft.Web/availableStacks'),
+        api_version: '2018-02-01',
       )
     end
 

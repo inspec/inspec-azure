@@ -1,4 +1,4 @@
-resource_group = attribute('resource_group', default: nil)
+resource_group = input('resource_group', value: nil)
 
 control 'azurerm_resource_groups' do
   describe azurerm_resource_groups do
