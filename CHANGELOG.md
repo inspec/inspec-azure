@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.9.0 -->
+<!-- latest_release 1.9.1 -->
+## [v1.9.1](https://github.com/inspec/inspec-azure/tree/v1.9.1) (2019-11-06)
+
+#### Merged Pull Requests
+- Upgrade Terraform to v0.12 [#218](https://github.com/inspec/inspec-azure/pull/218) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.9.0](https://github.com/inspec/inspec-azure/tree/v1.9.0) (2019-11-06)
 
 #### Merged Pull Requests
 - Additional azurerm_webapp functionality [#217](https://github.com/inspec/inspec-azure/pull/217) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.8.0](https://github.com/inspec/inspec-azure/tree/v1.8.0) (2019-11-06)
 
