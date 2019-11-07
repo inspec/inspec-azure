@@ -1,67 +1,67 @@
 terraform {
-  required_version = "~> 0.11.0"
+  required_version = "~> 0.12.0"
 }
 
 provider "azurerm" {
-  version         = "~> 1.35.0"
-  subscription_id = "${var.subscription_id}"
-  client_id       = "${var.client_id}"
-  client_secret   = "${var.client_secret}"
-  tenant_id       = "${var.tenant_id}"
+  version         = "~> 1.36.0"
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 provider "random" {
-  version = "~> 1.2"
+  version = "~> 2.2.1"
 }
 
 data "azurerm_client_config" "current" {}
 
-data "azurerm_builtin_role_definition" "contributor" {
+data "azurerm_role_definition" "contributor" {
   name = "Contributor"
 }
 
 resource "azurerm_resource_group" "rg" {
   name     = "Inspec-Azure-${terraform.workspace}"
-  location = "${var.location}"
-  tags {
-    CreatedBy = "${terraform.workspace}"
+  location = var.location
+  tags = {
+    CreatedBy = terraform.workspace
   }
 }
 
 resource "azurerm_management_group" "mg_parent" {
-  group_id = "mg_parent"
+  group_id     = "mg_parent"
   display_name = "Management Group Parent"
 }
 
 resource "azurerm_management_group" "mg_child_one" {
-  group_id = "mg_child_one"
-  display_name = "Management Group Child 1"
-  parent_management_group_id = "${azurerm_management_group.mg_parent.id}"
+  group_id                   = "mg_child_one"
+  display_name               = "Management Group Child 1"
+  parent_management_group_id = azurerm_management_group.mg_parent.id
 }
 
 resource "azurerm_management_group" "mg_child_two" {
-  group_id = "mg_child_two"
-  display_name = "Management Group Child 2"
-  parent_management_group_id = "${azurerm_management_group.mg_parent.id}"
+  group_id                   = "mg_child_two"
+  display_name               = "Management Group Child 2"
+  parent_management_group_id = azurerm_management_group.mg_parent.id
 }
 
 resource "random_string" "password" {
-  length = 16
-  upper = true
-  lower = true
-  special = true
+  length           = 16
+  upper            = true
+  lower            = true
+  special          = true
   override_special = "/@\" "
-  min_numeric = 3
-  min_special = 3
+  min_numeric      = 3
+  min_special      = 3
 }
 
 resource "azurerm_network_watcher" "rg" {
   name                = "${azurerm_resource_group.rg.name}-netwatcher"
-  count               = "${var.network_watcher}"
-  location            = "${azurerm_resource_group.rg.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  tags {
-    CreatedBy = "${terraform.workspace}"
+  count               = var.network_watcher ? 1 : 0
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  tags = {
+    CreatedBy = terraform.workspace
   }
 }
 
@@ -72,21 +72,21 @@ resource "random_string" "storage_account" {
 }
 
 resource "azurerm_storage_account" "sa" {
-  name                      = "${random_string.storage_account.result}"
-  location                  = "${var.location}"
-  resource_group_name       = "${azurerm_resource_group.rg.name}"
+  name                      = random_string.storage_account.result
+  location                  = var.location
+  resource_group_name       = azurerm_resource_group.rg.name
   enable_https_traffic_only = true
   account_tier              = "Standard"
   account_replication_type  = "LRS"
   depends_on                = ["azurerm_resource_group.rg"]
-  tags                      = {
-    user = "${terraform.workspace}"
+  tags = {
+    user = terraform.workspace
   }
 }
 
 resource "azurerm_storage_container" "container" {
   name                  = "vhds"
-  storage_account_name  = "${azurerm_storage_account.sa.name}"
+  storage_account_name  = azurerm_storage_account.sa.name
   container_access_type = "private"
 }
 
@@ -97,8 +97,8 @@ resource "random_pet" "blob_name" {
 }
 
 resource "azurerm_storage_container" "blob" {
-  name                  = "${random_pet.blob_name.id}"
-  storage_account_name  = "${azurerm_storage_account.sa.name}"
+  name                  = random_pet.blob_name.id
+  storage_account_name  = azurerm_storage_account.sa.name
   container_access_type = "private"
 }
 
@@ -109,15 +109,15 @@ resource "random_pet" "vault" {
 }
 
 resource "azurerm_key_vault" "disk_vault" {
-  name                = "${random_pet.vault.id}"
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  tenant_id           = "${var.tenant_id}"
+  name                = random_pet.vault.id
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  tenant_id           = var.tenant_id
   sku_name            = "premium"
 
   access_policy {
-    tenant_id = "${var.tenant_id}"
-    object_id = "${data.azurerm_client_config.current.service_principal_object_id}"
+    tenant_id = var.tenant_id
+    object_id = data.azurerm_client_config.current.service_principal_object_id
 
     key_permissions = [
       "create",
@@ -144,16 +144,16 @@ resource "azurerm_key_vault" "disk_vault" {
 }
 
 resource "azurerm_key_vault_secret" "vs" {
-  name      = "secret"
-  value     = "${random_string.password.result}"
-  key_vault_id = "${azurerm_key_vault.disk_vault.id}"
+  name         = "secret"
+  value        = random_string.password.result
+  key_vault_id = azurerm_key_vault.disk_vault.id
 }
 
 resource "azurerm_key_vault_key" "vk" {
-  name      = "key"
-  key_vault_id = "${azurerm_key_vault.disk_vault.id}"
-  key_type  = "EC"
-  key_size  = 2048
+  name         = "key"
+  key_vault_id = azurerm_key_vault.disk_vault.id
+  key_type     = "EC"
+  key_size     = 2048
 
   key_opts = [
     "sign",
@@ -162,32 +162,32 @@ resource "azurerm_key_vault_key" "vk" {
 }
 
 resource "azurerm_managed_disk" "disk" {
-  name                = "${var.encrypted_disk_name}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  name                = var.encrypted_disk_name
+  resource_group_name = azurerm_resource_group.rg.name
 
-  location            = "${var.location}"
+  location = var.location
 
-  storage_account_type= "${var.managed_disk_type}"
-  create_option       = "Empty"
-  disk_size_gb        = 1
+  storage_account_type = var.managed_disk_type
+  create_option        = "Empty"
+  disk_size_gb         = 1
 
   encryption_settings {
-    enabled           = true
+    enabled = true
     disk_encryption_key {
-      secret_url      = "${azurerm_key_vault_secret.vs.id}"
-      source_vault_id = "${azurerm_key_vault.disk_vault.id}"
+      secret_url      = azurerm_key_vault_secret.vs.id
+      source_vault_id = azurerm_key_vault.disk_vault.id
     }
     key_encryption_key {
-      key_url         = "${azurerm_key_vault_key.vk.id}"
-      source_vault_id = "${azurerm_key_vault.disk_vault.id}"
+      key_url         = azurerm_key_vault_key.vk.id
+      source_vault_id = azurerm_key_vault.disk_vault.id
     }
   }
 }
 
 resource "azurerm_network_security_group" "nsg" {
   name                = "Inspec-NSG"
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   security_rule {
     name                       = "SSH-RDP-Deny"
@@ -197,7 +197,7 @@ resource "azurerm_network_security_group" "nsg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = ""
-    destination_port_ranges    = ["22","3389"]
+    destination_port_ranges    = ["22", "3389"]
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -206,58 +206,58 @@ resource "azurerm_network_security_group" "nsg" {
 resource "azurerm_virtual_network" "vnet" {
   name                = "Inspec-VNet"
   address_space       = ["10.1.1.0/24"]
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
 data "azurerm_virtual_network" "vnet" {
-  name                = "${azurerm_virtual_network.vnet.name}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  name                = azurerm_virtual_network.vnet.name
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
 resource "azurerm_subnet" "subnet" {
   name                 = "Inspec-Subnet"
-  resource_group_name  = "${azurerm_resource_group.rg.name}"
-  virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefix       = "10.1.1.0/24"
   # "Soft" deprecated, required until v2 of azurerm provider:
-  network_security_group_id = "${azurerm_network_security_group.nsg.id}"
+  network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
-  network_security_group_id = "${azurerm_network_security_group.nsg.id}"
-  subnet_id = "${azurerm_subnet.subnet.id}"
+  network_security_group_id = azurerm_network_security_group.nsg.id
+  subnet_id                 = azurerm_subnet.subnet.id
 }
 
 resource "azurerm_network_interface" "nic1" {
   name                = "Inspec-NIC-1"
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "ipConfiguration1"
-    subnet_id                     = "${azurerm_subnet.subnet.id}"
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "dynamic"
   }
 }
 
 resource "azurerm_network_interface" "nic3" {
   name                = "Inspec-NIC-3"
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "ipConfiguration1"
-    subnet_id                     = "${azurerm_subnet.subnet.id}"
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "dynamic"
   }
 }
 
 resource "azurerm_virtual_machine" "vm_linux_internal" {
   name                  = "Linux-Internal-VM"
-  location              = "${var.location}"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
-  network_interface_ids = ["${azurerm_network_interface.nic1.id}"]
+  location              = var.location
+  resource_group_name   = azurerm_resource_group.rg.name
+  network_interface_ids = [azurerm_network_interface.nic1.id]
   vm_size               = "Standard_DS2_v2"
 
   storage_image_reference {
@@ -268,14 +268,14 @@ resource "azurerm_virtual_machine" "vm_linux_internal" {
   }
 
   storage_os_disk {
-    name          = "${var.linux_internal_os_disk}"
+    name          = var.linux_internal_os_disk
     vhd_uri       = "${azurerm_storage_account.sa.primary_blob_endpoint}${azurerm_storage_container.container.name}/linux-internal-osdisk.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
 
   storage_data_disk {
-    name          = "${var.unmanaged_data_disk_name}"
+    name          = var.unmanaged_data_disk_name
     vhd_uri       = "${azurerm_storage_account.sa.primary_blob_endpoint}${azurerm_storage_container.container.name}/linux-internal-datadisk-1.vhd"
     disk_size_gb  = 15
     create_option = "empty"
@@ -285,7 +285,7 @@ resource "azurerm_virtual_machine" "vm_linux_internal" {
   os_profile {
     computer_name  = "linux-internal-1"
     admin_username = "azure"
-    admin_password = "${random_string.password.result}"
+    admin_password = random_string.password.result
   }
 
   os_profile_linux_config {
@@ -294,15 +294,15 @@ resource "azurerm_virtual_machine" "vm_linux_internal" {
 
   boot_diagnostics {
     enabled     = true
-    storage_uri = "${azurerm_storage_account.sa.primary_blob_endpoint}"
+    storage_uri = azurerm_storage_account.sa.primary_blob_endpoint
   }
 }
 
 resource "azurerm_virtual_machine" "vm_windows_internal" {
   name                  = "Windows-Internal-VM"
-  location              = "${var.location}"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
-  network_interface_ids = ["${azurerm_network_interface.nic3.id}"]
+  location              = var.location
+  resource_group_name   = azurerm_resource_group.rg.name
+  network_interface_ids = [azurerm_network_interface.nic3.id]
   vm_size               = "Standard_DS2_v2"
 
   storage_image_reference {
@@ -313,14 +313,14 @@ resource "azurerm_virtual_machine" "vm_windows_internal" {
   }
 
   storage_os_disk {
-    name              = "${var.windows_internal_os_disk}"
+    name              = var.windows_internal_os_disk
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
 
   storage_data_disk {
-    name              = "${var.windows_internal_data_disk}"
+    name              = var.windows_internal_data_disk
     create_option     = "Empty"
     managed_disk_type = "Standard_LRS"
     lun               = 0
@@ -330,7 +330,7 @@ resource "azurerm_virtual_machine" "vm_windows_internal" {
   os_profile {
     computer_name  = "win-internal-1"
     admin_username = "azure"
-    admin_password = "${random_string.password.result}"
+    admin_password = random_string.password.result
   }
 
   os_profile_windows_config {
@@ -339,22 +339,22 @@ resource "azurerm_virtual_machine" "vm_windows_internal" {
 }
 
 resource "random_pet" "workspace" {
-  length  = 2
+  length = 2
 }
 
 resource "azurerm_log_analytics_workspace" "workspace" {
-  name                = "${random_pet.workspace.id}"
-  location            = "${azurerm_resource_group.rg.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  name                = random_pet.workspace.id
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   sku                 = "Standard"
   retention_in_days   = 30
 }
 
 resource "azurerm_virtual_machine_extension" "log_extension" {
-  name                 = "${var.monitoring_agent_name}"
-  location             = "${var.location}"
-  resource_group_name  = "${azurerm_resource_group.rg.name}"
-  virtual_machine_name = "${azurerm_virtual_machine.vm_windows_internal.name}"
+  name                 = var.monitoring_agent_name
+  location             = var.location
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_machine_name = azurerm_virtual_machine.vm_windows_internal.name
   publisher            = "Microsoft.EnterpriseCloud.Monitoring"
   type                 = "MicrosoftMonitoringAgent"
   type_handler_version = "1.0"
@@ -386,39 +386,39 @@ resource "null_resource" "set_log_profile_retention" {
 # Use only when testing MSI access controls
 resource "azurerm_public_ip" "public_ip" {
   name                         = "Inspec-PublicIP-1"
-  count                        = "${var.public_vm_count}"
-  location                     = "${var.location}"
-  resource_group_name          = "${azurerm_resource_group.rg.name}"
+  count                        = var.public_vm_count
+  location                     = var.location
+  resource_group_name          = azurerm_resource_group.rg.name
   public_ip_address_allocation = "dynamic"
 }
 
 resource "azurerm_network_interface" "nic2" {
   name                = "Inspec-NIC-2"
-  count               = "${var.public_vm_count}"
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  count               = var.public_vm_count
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "ipConfiguration1"
-    subnet_id                     = "${azurerm_subnet.subnet.id}"
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "dynamic"
-    public_ip_address_id          = "${azurerm_public_ip.public_ip.0.id}"
+    public_ip_address_id          = azurerm_public_ip.public_ip[0].id
   }
 }
 
 resource "azurerm_virtual_machine" "vm_linux_external" {
   name                  = "Linux-External-VM"
-  count                 = "${var.public_vm_count}"
-  location              = "${var.location}"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
-  network_interface_ids = ["${azurerm_network_interface.nic2.0.id}"]
+  count                 = var.public_vm_count
+  location              = var.location
+  resource_group_name   = azurerm_resource_group.rg.name
+  network_interface_ids = [azurerm_network_interface.nic2[0].id]
   vm_size               = "Standard_DS2_v2"
 
-  tags {
+  tags = {
     Description = "Externally facing Linux machine with SSH access"
   }
 
-  identity = {
+  identity {
     type = "SystemAssigned"
   }
 
@@ -430,24 +430,24 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
   }
 
   storage_os_disk {
-    name              = "${var.linux_external_os_disk}"
+    name              = var.linux_external_os_disk
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
 
   storage_data_disk {
-    name          = "${var.linux_external_data_disk}"
-    create_option = "Empty"
+    name              = var.linux_external_data_disk
+    create_option     = "Empty"
     managed_disk_type = "Standard_LRS"
-    lun           = 0
-    disk_size_gb  = 15
+    lun               = 0
+    disk_size_gb      = 15
   }
 
   os_profile {
     computer_name  = "linux-external-1"
     admin_username = "azure"
-    admin_password = "${random_string.password.result}"
+    admin_password = random_string.password.result
   }
 
   os_profile_linux_config {
@@ -455,17 +455,17 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
 
     ssh_keys {
       path     = "/home/azure/.ssh/authorized_keys"
-      key_data = "${var.public_key}"
+      key_data = var.public_key
     }
   }
 }
 
 resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
   name                 = "MSIExtension"
-  count                = "${var.public_vm_count}"
-  location             = "${var.location}"
-  resource_group_name  = "${azurerm_resource_group.rg.name}"
-  virtual_machine_name = "${azurerm_virtual_machine.vm_linux_external.0.name}"
+  count                = var.public_vm_count
+  location             = var.location
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_machine_name = azurerm_virtual_machine.vm_linux_external[0].name
   publisher            = "Microsoft.ManagedIdentity"
   type                 = "ManagedIdentityExtensionForLinux"
   type_handler_version = "1.0"
@@ -494,11 +494,10 @@ resource "azurerm_sql_server" "sql_server" {
 
 resource "azurerm_sql_database" "sql_database" {
   name                = "sqldb${random_string.sql.result}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  location            = "${var.location}"
-  server_name         = "${azurerm_sql_server.sql_server.name}"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  server_name         = azurerm_sql_server.sql_server.name
   depends_on          = ["azurerm_sql_server.sql_server"]
-  tags {}
 }
 
 
@@ -570,8 +569,8 @@ resource "tls_private_key" "key" {
 
 resource "azurerm_kubernetes_cluster" "cluster" {
   name                = "inspecakstest"
-  location            = "${azurerm_resource_group.rg.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   dns_prefix          = "inspecaksagent1"
   depends_on          = ["azurerm_resource_group.rg"]
 
@@ -586,43 +585,43 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     admin_username = "inspecuser1"
 
     ssh_key {
-      key_data = "${tls_private_key.key.public_key_openssh}"
+      key_data = tls_private_key.key.public_key_openssh
     }
   }
   service_principal {
-    client_id     = "${var.client_id}"
-    client_secret = "${var.client_secret}"
+    client_id     = var.client_id
+    client_secret = var.client_secret
   }
 }
 
 resource "azurerm_app_service_plan" "app_service_plan" {
   name                = "app-serv-plan-${random_pet.workspace.id}"
-  location            = "${azurerm_resource_group.rg.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   kind                = "Windows"
 
   sku {
-    tier              = "Free"
-    size              = "F1"
+    tier = "Free"
+    size = "F1"
   }
 }
 
 resource "azurerm_app_service" "app_service" {
   name                = "app-serv-${random_pet.workspace.id}"
-  location            = "${azurerm_resource_group.rg.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  app_service_plan_id = "${azurerm_app_service_plan.app_service_plan.id}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  app_service_plan_id = azurerm_app_service_plan.app_service_plan.id
   https_only          = "true"
 
-  identity = {
-    type              = "SystemAssigned"
+  identity {
+    type = "SystemAssigned"
   }
 }
 
 resource "azurerm_mysql_server" "mysql" {
   name                = "mysql-svr-${random_string.sql.result}"
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   sku {
     name     = "B_Gen5_2"
@@ -645,24 +644,24 @@ resource "azurerm_mysql_server" "mysql" {
 
 resource "azurerm_mysql_database" "mysql" {
   name                = "mysqldb${random_string.sql.result}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  server_name         = "${azurerm_mysql_server.mysql.name}"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mysql_server.mysql.name
   charset             = "utf8"
   collation           = "utf8_unicode_ci"
 }
 
 resource "azurerm_mysql_firewall_rule" "server_rule" {
   name                = "mysql-srv-firewall"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  server_name         = "${azurerm_mysql_server.mysql.name}"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mysql_server.mysql.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "255.255.255.255"
 }
 
 resource "azurerm_postgresql_server" "postgresql" {
   name                = "postgresql-srv-${random_string.sql.result}"
-  location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   sku {
     name     = "B_Gen5_2"
@@ -685,8 +684,8 @@ resource "azurerm_postgresql_server" "postgresql" {
 
 resource "azurerm_postgresql_database" "postgresql" {
   name                = "postgresqldb${random_string.sql.result}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  server_name         = "${azurerm_postgresql_server.postgresql.name}"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_postgresql_server.postgresql.name
   charset             = "UTF8"
   collation           = "English_United States.1252"
 }
