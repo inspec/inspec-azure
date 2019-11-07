@@ -18,7 +18,7 @@ REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUB
 
 task default: :test
 desc 'Testing tasks'
-task test: %w{test:unit azure:login test:integration}
+task test: %w{lint test:unit test:integration}
 
 desc 'Linting tasks'
 task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
@@ -101,13 +101,12 @@ end
 namespace :test do
 
   Rake::TestTask.new(:unit) do |t|
-    puts '-> Running Unit Tests'
     t.libs << 'test/unit'
     t.libs << 'libraries'
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => [:lint, :unit, 'attributes:write', :setup_env] do |_t, args|
+  task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
     cmd = %W( bin/inspec exec test/integration/verify
               --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
