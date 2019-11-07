@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.9.1 -->
+<!-- latest_release 1.9.2 -->
+## [v1.9.2](https://github.com/inspec/inspec-azure/tree/v1.9.2) (2019-11-07)
+
+#### Merged Pull Requests
+- Fix inspec_version, remove redundant rakefile calls [#219](https://github.com/inspec/inspec-azure/pull/219) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.9.1](https://github.com/inspec/inspec-azure/tree/v1.9.1) (2019-11-06)
 
 #### Merged Pull Requests
 - Upgrade Terraform to v0.12 [#218](https://github.com/inspec/inspec-azure/pull/218) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.9.0](https://github.com/inspec/inspec-azure/tree/v1.9.0) (2019-11-06)
 
