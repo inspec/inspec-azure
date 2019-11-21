@@ -104,7 +104,7 @@ module Azure
       end
     end
 
-    def post(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true, params: {}, headers: {}) # rubocop:disable Metrics/ParameterLists
+    def post(url:, api_version:, error_handler: nil, unwrap: nil, use_cache: true, params: {}, headers: {}, req_body: nil) # rubocop:disable Metrics/ParameterLists
       confirm_configured!
 
       body = cache.fetch(url) if use_cache
@@ -113,7 +113,8 @@ module Azure
 
       body ||= rest_client.post(url,
                                 params: params,
-                                headers: { Accept: 'application/json' }.merge(headers)).body
+                                headers: { Accept: 'application/json' }.merge(headers),
+                                body: req_body).body
 
       error_handler&.(body)
 
