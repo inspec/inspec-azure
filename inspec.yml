@@ -5,7 +5,7 @@ copyright: Chef Software, Inc.
 copyright_email: support@chef.io
 license: Apache-2.0
 summary: This resource pack provides compliance resources for Azure.
-version: 1.9.2
-inspec_version: 1.9.2
+version: 1.9.3
+inspec_version: 1.9.3
 supports:
   - platform: azure

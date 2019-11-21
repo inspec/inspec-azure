@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.9.2 -->
+<!-- latest_release 1.9.3 -->
+## [v1.9.3](https://github.com/inspec/inspec-azure/tree/v1.9.3) (2019-11-21)
+
+#### Merged Pull Requests
+- Adds ability to check Network Watcher flow logs. [#222](https://github.com/inspec/inspec-azure/pull/222) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.9.2](https://github.com/inspec/inspec-azure/tree/v1.9.2) (2019-11-07)
 
 #### Merged Pull Requests
 - Fix inspec_version, remove redundant rakefile calls [#219](https://github.com/inspec/inspec-azure/pull/219) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.9.1](https://github.com/inspec/inspec-azure/tree/v1.9.1) (2019-11-06)
 
