@@ -206,6 +206,15 @@ module Azure
       )
     end
 
+    def network_watcher_flow_log_status(resource_group, network_watcher, nsg)
+      post(
+        url: link(location: "Microsoft.Network/networkWatchers/#{network_watcher}/queryFlowLogStatus",
+                  resource_group: resource_group),
+        api_version: '2019-04-01',
+        req_body: "{\"targetResourceId\": \"/subscriptions/#{subscription_id}/resourceGroups/#{resource_group}/providers/Microsoft.Network/networkSecurityGroups/#{nsg}\"}",
+      )
+    end
+
     def postgresql_server(resource_group, name)
       get(
         url: link(location: "Microsoft.DBforPostgreSQL/servers/#{name}",
