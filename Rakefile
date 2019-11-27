@@ -15,6 +15,7 @@ RuboCop::RakeTask.new
 FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures"
 TERRAFORM_DIR = 'terraform'
 REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUBSCRIPTION_ID}.freeze
+INTEGRATION_DIR = 'test/integration/verify'
 
 task default: :test
 desc 'Testing tasks'
@@ -52,8 +53,9 @@ namespace :syntax do
   desc 'InSpec syntax check'
   task :inspec do
     puts '-> Checking Inspec Control Syntax'
-    stdout, status = Open3.capture2('./bin/inspec check .')
-
+    stdout, status = Open3.capture2("./bin/inspec vendor #{INTEGRATION_DIR} --overwrite &&
+                                     ./bin/inspec check #{INTEGRATION_DIR} &&
+                                     ./bin/inspec check .")
     puts stdout
 
     %w{errors}.each do |type|
@@ -107,7 +109,7 @@ namespace :test do
   end
 
   task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
-    cmd = %W( bin/inspec exec test/integration/verify
+    cmd = %W( bin/inspec exec #{INTEGRATION_DIR}
               --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
               --no-distinct-exit

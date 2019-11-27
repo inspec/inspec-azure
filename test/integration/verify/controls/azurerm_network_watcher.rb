@@ -1,6 +1,6 @@
 resource_group = input('resource_group',       value: nil)
-nw             = input('network_watcher_name', value: nil).first
-nw_id          = input('network_watcher_id',   value: nil).first
+nw             = input('network_watcher_name', value: []).first
+nw_id          = input('network_watcher_id',   value: []).first
 
 control 'azurerm_network_watcher' do
   only_if { ENV['NETWORK_WATCHER'] }
