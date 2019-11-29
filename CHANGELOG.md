@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.9.5 -->
+<!-- latest_release 1.9.6 -->
+## [v1.9.6](https://github.com/inspec/inspec-azure/tree/v1.9.6) (2019-11-29)
+
+#### Merged Pull Requests
+- Inspec Check fix [#226](https://github.com/inspec/inspec-azure/pull/226) ([r-fennell](https://github.com/r-fennell))
+<!-- latest_release -->
+
 ## [v1.9.5](https://github.com/inspec/inspec-azure/tree/v1.9.5) (2019-11-27)
 
 #### Merged Pull Requests
 - Fix expeditor pattern match [#225](https://github.com/inspec/inspec-azure/pull/225) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.9.4](https://github.com/inspec/inspec-azure/tree/v1.9.4) (2019-11-27)
 
