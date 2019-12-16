@@ -21,12 +21,15 @@ module Azure
       )
     end
 
-    def users
+    def users(raw_params = {})
+      cooked_params = {}
+      cooked_params['$filter'] = raw_params[:filter] unless raw_params[:filter].nil?
       get(
         url:           "/#{tenant_id}/users",
         api_version:   '1.6',
         error_handler: handle_error,
         unwrap:        unwrap,
+        params:        cooked_params,
       )
     end
 
