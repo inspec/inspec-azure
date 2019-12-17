@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.9.6 -->
+<!-- latest_release 1.10.0 -->
+## [v1.10.0](https://github.com/inspec/inspec-azure/tree/v1.10.0) (2019-12-17)
+
+#### Merged Pull Requests
+- Offload user filtering to Azure API to avoid resource issues in large AD [#227](https://github.com/inspec/inspec-azure/pull/227) ([trickyearlobe](https://github.com/trickyearlobe))
+<!-- latest_release -->
+
 ## [v1.9.6](https://github.com/inspec/inspec-azure/tree/v1.9.6) (2019-11-29)
 
 #### Merged Pull Requests
 - Inspec Check fix [#226](https://github.com/inspec/inspec-azure/pull/226) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.9.5](https://github.com/inspec/inspec-azure/tree/v1.9.5) (2019-11-27)
 
