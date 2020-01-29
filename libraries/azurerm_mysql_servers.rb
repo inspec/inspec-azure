@@ -8,7 +8,7 @@ class AzurermMySqlServers < AzurermPluralResource
   desc 'Verifies settings for a collection of Azure MySQL Servers'
   example <<-EXAMPLE
     describe azurerm_mysql_servers do
-        it  { should exist }
+        its('names')  { should include 'my-sql-server' }
     end
   EXAMPLE
 

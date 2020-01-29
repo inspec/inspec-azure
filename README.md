@@ -42,7 +42,8 @@ To create your account Service Principal Account:
 14. Select the `contributor` role.
 15. Select the application you just created and save.
 
-These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
+These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. 
+Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
 
 ### Use the Resources
 
@@ -110,12 +111,20 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
 - [azurerm_aks_cluster](docs/resources/azurerm_aks_cluster.md.erb)
 - [azurerm_aks_clusters](docs/resources/azurerm_aks_clusters.md.erb)
+- [azurerm_cosmosdb_database_account](docs/resources/azurerm_cosmosdb_database_account.md.erb)
+- [azurerm_event_hub_authorization_rule](docs/resources/azurerm_event_hub_authorization_rule.md.erb)
+- [azurerm_event_hub_event_hub](docs/resources/azurerm_event_hub_event_hub.md.erb)
+- [azurerm_event_hub_namespace](docs/resources/azurerm_event_hub_namespace.md.erb)
+- [azurerm_iothub_event_hub_consumer_group](docs/resources/azurerm_iothub_event_hub_consumer_group.md.erb)
+- [azurerm_iothub_event_hub_consumer_groups](docs/resources/azurerm_iothub_event_hub_consumer_groups.md.erb)
+- [azurerm_iothub](docs/resources/azurerm_iothub.md.erb)
 - [azurerm_key_vault](docs/resources/azurerm_key_vault.md.erb)
 - [azurerm_key_vault_key](docs/resources/azurerm_key_vault_key.md.erb)
 - [azurerm_key_vault_keys](docs/resources/azurerm_key_vault_keys.md.erb)
 - [azurerm_key_vault_secret](docs/resources/azurerm_key_vault_secret.md.erb)
-- [azurerm_key_vault_secrets](docs/resources/azurerm_key_vault_secrets.md)
+- [azurerm_key_vault_secrets](docs/resources/azurerm_key_vault_secrets.md.erb)
 - [azurerm_key_vaults](docs/resources/azurerm_key_vaults.md.erb)
+- [azurerm_locks](docs/resources/azurerm_locks.md.erb)
 - [azurerm_management_group](docs/resources/azurerm_management_group.md.erb)
 - [azurerm_management_groups](docs/resources/azurerm_management_groups.md.erb)
 - [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
@@ -130,7 +139,13 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_network_security_groups](docs/resources/azurerm_network_security_groups.md.erb)
 - [azurerm_network_watcher](docs/resources/azurerm_network_watcher.md.erb)
 - [azurerm_network_watchers](docs/resources/azurerm_network_watchers.md.erb)
+- [azurerm_postgresql_database](docs/resources/azurerm_postgresql_database.md.erb)
+- [azurerm_postgresql_databases](docs/resources/azurerm_postgresql_databases.md.erb)
+- [azurerm_postgresql_server](docs/resources/azurerm_postgresql_server.md.erb)
+- [azurerm_postgresql_servers](docs/resources/azurerm_postgresql_servers.md.erb)
 - [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md.erb)
+- [azurerm_role_definition](docs/resources/azurerm_role_definition.md.erb)
+- [azurerm_role_definitions](docs/resources/azurerm_role_definitions.md.erb)
 - [azurerm_security_center_policies](docs/resources/azurerm_security_center_policies.md.erb)
 - [azurerm_security_center_policy](docs/resources/azurerm_security_center_policy.md.erb)
 - [azurerm_sql_database](docs/resources/azurerm_sql_database.md.erb)
@@ -141,11 +156,16 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_storage_account_blob_containers](docs/resources/azurerm_storage_account_blob_containers.md.erb)
 - [azurerm_subnet](docs/resources/azurerm_subnet.md.erb)
 - [azurerm_subnets](docs/resources/azurerm_subnets.md.erb)
+- [azurerm_subscription](docs/resources/azurerm_subscription.md.erb)
 - [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md.erb)
 - [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md.erb)
+- [azurerm_virtual_machine_disks](docs/resources/azurerm_virtual_machine_disks.md.erb)
 - [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
 - [azurerm_virtual_network](docs/resources/azurerm_virtual_network.md.erb)
 - [azurerm_virtual_networks](docs/resources/azurerm_virtual_networks.md.erb)
+- [azurerm_webapp](docs/resources/azurerm_webapp.md.erb)
+- [azurerm_webapps](docs/resources/azurerm_webapps.md.erb)
+
 
 
 
@@ -171,8 +191,8 @@ For PowerShell, set the following environment variables
 ```
 $env:AZURE_SUBSCRIPTION_ID="<subscription id>"
 $env:AZURE_CLIENT_ID="<client id>"
-$env:AZURE_CLIENT_SECRET="<tenant id>"
-$env:AZURE_TENANT_ID="<client secret>"
+$env:AZURE_CLIENT_SECRET="<client secret>"
+$env:AZURE_TENANT_ID="<tenant id>"
 ```
 
 **Setup Azure CLI**

@@ -17,7 +17,8 @@ class AzurermNetworkWatchers < AzurermPluralResource
              .register_column(:names, field: :name)
              .install_filter_methods_on_resource(self, :table)
 
-  def initialize(resource_group:)
+  def initialize(resource_group = nil)
+    resource_group = resource_group[:resource_group] if resource_group.is_a?(Hash)
     resp = management.network_watchers(resource_group)
     return if has_error?(resp)
 

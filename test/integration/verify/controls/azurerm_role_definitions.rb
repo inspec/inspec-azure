@@ -1,4 +1,4 @@
-contributor_name = attribute('contributor_role_name', default: nil)
+contributor_name = input('contributor_role_name', value: nil)
 
 control 'azurerm_role_definitions' do
   describe azurerm_role_definitions.where(name: contributor_name) do

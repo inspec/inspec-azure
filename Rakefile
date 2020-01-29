@@ -15,10 +15,11 @@ RuboCop::RakeTask.new
 FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures"
 TERRAFORM_DIR = 'terraform'
 REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUBSCRIPTION_ID}.freeze
+INTEGRATION_DIR = 'test/integration/verify'
 
 task default: :test
 desc 'Testing tasks'
-task test: %w{test:unit azure:login test:integration}
+task test: %w{lint test:unit test:integration}
 
 desc 'Linting tasks'
 task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
@@ -52,8 +53,9 @@ namespace :syntax do
   desc 'InSpec syntax check'
   task :inspec do
     puts '-> Checking Inspec Control Syntax'
-    stdout, status = Open3.capture2('./bin/inspec check .')
-
+    stdout, status = Open3.capture2("./bin/inspec vendor #{INTEGRATION_DIR} --overwrite &&
+                                     ./bin/inspec check #{INTEGRATION_DIR} &&
+                                     ./bin/inspec check .")
     puts stdout
 
     %w{errors}.each do |type|
@@ -106,9 +108,9 @@ namespace :test do
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => ['attributes:write', :lint, :setup_env] do |_t, args|
-    cmd = %W( bin/inspec exec test/integration/verify
-              --attrs terraform/#{ENV['ATTRIBUTES_FILE']}
+  task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
+    cmd = %W( bin/inspec exec #{INTEGRATION_DIR}
+              --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter progress
               --no-distinct-exit
               -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )

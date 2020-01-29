@@ -36,15 +36,15 @@ class AzurermSqlDatabase < AzurermSingularResource
   end
 
   def auditing_settings
-    management.sql_database_auditing_settings(@resource_group, @server_name, @database_name)
+    @auditing_settings ||= management.sql_database_auditing_settings(@resource_group, @server_name, @database_name)
   end
 
   def threat_detection_settings
-    management.sql_database_threat_detection_settings(@resource_group, @server_name, @database_name)
+    @threat_detection_settings ||= management.sql_database_threat_detection_settings(@resource_group, @server_name, @database_name)
   end
 
   def encryption_settings
-    management.sql_database_encryption(@resource_group, @server_name, @database_name)
+    @encryption_settings ||= management.sql_database_encryption(@resource_group, @server_name, @database_name)
   end
 
   def to_s

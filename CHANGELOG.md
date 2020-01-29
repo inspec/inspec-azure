@@ -1,10 +1,80 @@
 # Changelog
-<!-- latest_release 1.5.0 -->
+<!-- latest_release 1.11.0 -->
+## [v1.11.0](https://github.com/inspec/inspec-azure/tree/v1.11.0) (2020-01-29)
+
+#### Merged Pull Requests
+- cosmodb follow up [#230](https://github.com/inspec/inspec-azure/pull/230) ([rmoles](https://github.com/rmoles))
+<!-- latest_release -->
+
+## [v1.10.1](https://github.com/inspec/inspec-azure/tree/v1.10.1) (2020-01-29)
+
+#### Merged Pull Requests
+- Feature/cosmos db [#175](https://github.com/inspec/inspec-azure/pull/175) ([MRushtonScratch](https://github.com/MRushtonScratch))
+
+## [v1.10.0](https://github.com/inspec/inspec-azure/tree/v1.10.0) (2019-12-17)
+
+#### Merged Pull Requests
+- Offload user filtering to Azure API to avoid resource issues in large AD [#227](https://github.com/inspec/inspec-azure/pull/227) ([trickyearlobe](https://github.com/trickyearlobe))
+
+## [v1.9.6](https://github.com/inspec/inspec-azure/tree/v1.9.6) (2019-11-29)
+
+#### Merged Pull Requests
+- Inspec Check fix [#226](https://github.com/inspec/inspec-azure/pull/226) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.9.5](https://github.com/inspec/inspec-azure/tree/v1.9.5) (2019-11-27)
+
+#### Merged Pull Requests
+- Fix expeditor pattern match [#225](https://github.com/inspec/inspec-azure/pull/225) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.9.4](https://github.com/inspec/inspec-azure/tree/v1.9.4) (2019-11-27)
+
+#### Merged Pull Requests
+- Bump inspec version [#223](https://github.com/inspec/inspec-azure/pull/223) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.9.3](https://github.com/inspec/inspec-azure/tree/v1.9.3) (2019-11-21)
+
+#### Merged Pull Requests
+- Adds ability to check Network Watcher flow logs. [#222](https://github.com/inspec/inspec-azure/pull/222) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.9.2](https://github.com/inspec/inspec-azure/tree/v1.9.2) (2019-11-07)
+
+#### Merged Pull Requests
+- Fix inspec_version, remove redundant rakefile calls [#219](https://github.com/inspec/inspec-azure/pull/219) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.9.1](https://github.com/inspec/inspec-azure/tree/v1.9.1) (2019-11-06)
+
+#### Merged Pull Requests
+- Upgrade Terraform to v0.12 [#218](https://github.com/inspec/inspec-azure/pull/218) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.9.0](https://github.com/inspec/inspec-azure/tree/v1.9.0) (2019-11-06)
+
+#### Merged Pull Requests
+- Additional azurerm_webapp functionality [#217](https://github.com/inspec/inspec-azure/pull/217) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.8.0](https://github.com/inspec/inspec-azure/tree/v1.8.0) (2019-11-06)
+
+#### Merged Pull Requests
+- Bump Inspec, Adds Azurerm Disks Plural resource [#215](https://github.com/inspec/inspec-azure/pull/215) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.7.1](https://github.com/inspec/inspec-azure/tree/v1.7.1) (2019-10-25)
+
+#### Merged Pull Requests
+- fix spelling of StorageAccou(n)t class [#183](https://github.com/inspec/inspec-azure/pull/183) ([cruwe](https://github.com/cruwe))
+
+## [v1.7.0](https://github.com/inspec/inspec-azure/tree/v1.7.0) (2019-10-25)
+
+#### Merged Pull Requests
+- Adds PostgreSQL and Subscription Resources [#214](https://github.com/inspec/inspec-azure/pull/214) ([r-fennell](https://github.com/r-fennell))
+
+## [v1.6.0](https://github.com/inspec/inspec-azure/tree/v1.6.0) (2019-10-23)
+
+#### Merged Pull Requests
+- Adds MySQL Resources [#213](https://github.com/inspec/inspec-azure/pull/213) ([r-fennell](https://github.com/r-fennell))
+
 ## [v1.5.0](https://github.com/inspec/inspec-azure/tree/v1.5.0) (2019-10-22)
 
 #### Merged Pull Requests
 - Adds Queue functionality to azurerm_storage_account [#212](https://github.com/inspec/inspec-azure/pull/212) ([r-fennell](https://github.com/r-fennell))
-<!-- latest_release -->
 
 ## [v1.4.3](https://github.com/inspec/inspec-azure/tree/v1.4.3) (2019-10-15)
 

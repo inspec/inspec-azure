@@ -2,7 +2,7 @@
 
 require 'azurerm_resource'
 
-class AzurermStorageAccoutBlobContainer < AzurermSingularResource
+class AzurermStorageAccountBlobContainer < AzurermSingularResource
   name 'azurerm_storage_account_blob_container'
   desc 'Verifies settings for a Azure Storage Account Blob Container'
   example <<-EXAMPLE

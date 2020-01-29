@@ -1,8 +1,8 @@
-tenant_id = attribute('tenant_id', default: nil)
-parent_mg = attribute('parent_mg', default: nil)
-child1_mg = attribute('child1_mg', default: nil)
-child2_mg = attribute('child2_mg', default: nil)
-parent_dn = attribute('parent_dn', default: nil)
+tenant_id = input('tenant_id', value: nil)
+parent_mg = input('parent_mg', value: nil)
+child1_mg = input('child1_mg', value: nil)
+child2_mg = input('child2_mg', value: nil)
+parent_dn = input('parent_dn', value: nil)
 
 control 'azurerm_management_groups' do
   describe azurerm_management_groups do
