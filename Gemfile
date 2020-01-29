@@ -2,10 +2,9 @@
 
 source 'https://rubygems.org'
 
-gem 'activesupport',       '~> 5.2.3'
 gem 'faraday',             '~> 0.15.0'
 gem 'faraday_middleware',  '~> 0.12.2'
-gem 'inspec-bin'
+gem 'inspec-bin',          '~> 4.18.39'
 gem 'rake',                '~> 12.3', '>= 12.3.1'
 
 group :development do

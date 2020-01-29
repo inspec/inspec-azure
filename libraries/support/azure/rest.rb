@@ -28,11 +28,11 @@ module Azure
       end
     end
 
-    def post(path, params: {}, headers: {})
+    def post(path, params: {}, headers: {}, body: nil)
       add_user_agent!(headers)
       connection.post do |req|
         req.url path
-
+        req.body    = body if body
         req.params  = req.params.merge(params)
         req.headers = req.headers.merge(headers)
         credentials.sign_request(req)
