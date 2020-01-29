@@ -1,7 +1,7 @@
 resource_group = attribute('resource_group', default: nil)
 iothub_resource_name = attribute('iothub_resource_name', default: nil)
 iothub_event_hub_endpoint = attribute('iothub_event_hub_endpoint', default: nil)
-consumer_group = attribute('consumer_groups', default: nil).first
+consumer_group = attribute('consumer_group', default: nil)
 
 control 'azurerm_iothub_event_hub_consumer_group' do
 

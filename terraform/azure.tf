@@ -78,7 +78,7 @@ resource "azurerm_storage_account" "sa" {
   enable_https_traffic_only = true
   account_tier              = "Standard"
   account_replication_type  = "LRS"
-  depends_on                = ["azurerm_resource_group.rg"]
+  depends_on                = [azurerm_resource_group.rg]
   tags = {
     user = terraform.workspace
   }
@@ -372,13 +372,27 @@ SETTINGS
 PROTECTED_SETTINGS
 }
 
-data "azurerm_monitor_log_profile" "log_profile" {
-  name = "azure_log_profile"
-}
+# Only one log_profile can be created per subscription if this fails run:
+# az monitor log-profiles list --query [*].[id,name]
+# the default log_profile should be deleted to enable this TF to work:
+# az monitor log-profiles delete --name default
+resource "azurerm_monitor_log_profile" "log_profile" {
+  name = "default"
 
-resource "null_resource" "set_log_profile_retention" {
-  provisioner "local-exec" {
-    command = "az monitor log-profiles update --name ${data.azurerm_monitor_log_profile.log_profile.name} --set retentionPolicy.days=365 location=eastus"
+  categories = [
+    "Action",
+    "Write",
+  ]
+
+  locations = [
+    "eastus",
+  ]
+
+  storage_account_id = azurerm_storage_account.sa.id
+
+  retention_policy {
+    enabled = true
+    days    = 365
   }
 }
 
@@ -497,7 +511,7 @@ resource "azurerm_sql_database" "sql_database" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
   server_name         = azurerm_sql_server.sql_server.name
-  depends_on          = ["azurerm_sql_server.sql_server"]
+  depends_on          = [azurerm_sql_server.sql_server]
 }
 
 resource "tls_private_key" "key" {
@@ -510,7 +524,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   dns_prefix          = "inspecaksagent1"
-  depends_on          = ["azurerm_resource_group.rg"]
+  depends_on          = [azurerm_resource_group.rg]
 
   agent_pool_profile {
     name            = "inspecaks"
@@ -628,7 +642,7 @@ resource "azurerm_postgresql_database" "postgresql" {
   collation           = "English_United States.1252"
 }
 
-resource "azurerm_eventhub_namespace" "event-hub-namespace" {
+resource "azurerm_eventhub_namespace" "event_hub_namespace" {
   name                = "inspectestehnamespace"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -637,9 +651,9 @@ resource "azurerm_eventhub_namespace" "event-hub-namespace" {
   kafka_enabled       = true
 }
 
- resource "azurerm_eventhub" "test-event-hub-event-hub" {
+ resource "azurerm_eventhub" "event_hub" {
      name                = "inspectesteh"
-     namespace_name      = azurerm_eventhub_namespace.event-hub-namespace.name
+     namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
      resource_group_name = azurerm_resource_group.rg.name
      partition_count     = 2
      message_retention   = 1
@@ -647,8 +661,8 @@ resource "azurerm_eventhub_namespace" "event-hub-namespace" {
 
 resource "azurerm_eventhub_authorization_rule" "auth_rule_inspectesteh" {
   name                = "inspectesteh_endpoint"
-  namespace_name      = azurerm_eventhub_namespace.event-hub-namespace.name
-  eventhub_name       = azurerm_eventhub.test-event-hub-event-hub.name
+  namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
+  eventhub_name       = azurerm_eventhub.event_hub.name
   resource_group_name = azurerm_resource_group.rg.name
   listen              = false
   send                = true
@@ -709,7 +723,7 @@ resource "azurerm_cosmosdb_account" "inspectest_cosmosdb" {
 
   geo_location {
     prefix            = "inspectest-geo-prefix"
-    location          = "${azurerm_resource_group.rg.location}"
+    location          = azurerm_resource_group.rg.location
     failover_priority = 0
   }
 }

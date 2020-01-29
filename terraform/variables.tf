@@ -9,7 +9,7 @@ variable "location" {
 
 # azure_log_profile vars
 variable "log_profile_default_location" {
-  type    = "string"
+  type    = string
   default = "EastUS"
 }
 
