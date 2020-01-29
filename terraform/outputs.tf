@@ -141,11 +141,11 @@ output "windows_vm_data_disks" {
 }
 
 output "windows_vm_nic_name" {
-  value = "${azurerm_network_interface.nic3.name}"
+  value = azurerm_network_interface.nic3.name
 }
 
 output "linux_vm_nic_name" {
-  value = "${azurerm_network_interface.nic1.name}"
+  value = azurerm_network_interface.nic1.name
 }
 
 output "monitoring_agent_name" {
@@ -190,15 +190,15 @@ output "storage_account_blob_container" {
 
 
 output "mysql_server_name" {
-  value = "${azurerm_mysql_server.mysql.name}"
+  value = azurerm_mysql_server.mysql_server.name
 }
 
 output "mysql_database_name" {
-  value = "${azurerm_mysql_database.mysql.name}"
+  value = azurerm_mysql_database.mysql_database.name
 }
 
 output "lb_name" {
-  value = "${module.azurerm_lb.azurerm_lb_name}"
+  value = module.azurerm_lb.azurerm_lb_name
 }
 
 
