@@ -627,3 +627,89 @@ resource "azurerm_postgresql_database" "postgresql" {
   charset             = "UTF8"
   collation           = "English_United States.1252"
 }
+
+resource "azurerm_eventhub_namespace" "event-hub-namespace" {
+  name                = "inspectestehnamespace"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+  capacity            = 1
+  kafka_enabled       = true
+}
+
+ resource "azurerm_eventhub" "test-event-hub-event-hub" {
+     name                = "inspectesteh"
+     namespace_name      = azurerm_eventhub_namespace.event-hub-namespace.name
+     resource_group_name = azurerm_resource_group.rg.name
+     partition_count     = 2
+     message_retention   = 1
+ }
+
+resource "azurerm_eventhub_authorization_rule" "auth_rule_inspectesteh" {
+  name                = "inspectesteh_endpoint"
+  namespace_name      = azurerm_eventhub_namespace.event-hub-namespace.name
+  eventhub_name       = azurerm_eventhub.test-event-hub-event-hub.name
+  resource_group_name = azurerm_resource_group.rg.name
+  listen              = false
+  send                = true
+  manage              = false
+}
+
+resource "azurerm_iothub" "iothub" {
+  name                = "inspectest-iothub"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku {
+    name = "S1"
+    tier = "Standard"
+    capacity = 1
+  }
+
+
+  endpoint {
+    type                       = "AzureIotHub.EventHub"
+    connection_string          = azurerm_eventhub_authorization_rule.auth_rule_inspectesteh.primary_connection_string
+    name                       = "inspectesteh"
+    batch_frequency_in_seconds = 300
+    max_chunk_size_in_bytes    = 314572800
+  }
+
+
+  route {
+    name            = "ExampleRoute"
+    source          = "DeviceLifecycleEvents"
+    condition       = "true"
+    endpoint_names  = [
+      "inspectesteh",
+    ]
+    enabled         = true
+  }
+}
+
+resource "azurerm_iothub_consumer_group" "inspecehtest_consumergroup" {
+  name                   = "inspectest_consumer_group"
+  iothub_name            = azurerm_iothub.iothub.name
+  eventhub_endpoint_name = "events"
+  resource_group_name    = azurerm_resource_group.rg.name
+}
+
+
+resource "azurerm_cosmosdb_account" "inspectest_cosmosdb" {
+  name                = "inspectest-cosmosdb"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  offer_type          = "Standard"
+  kind                = "GlobalDocumentDB"
+
+  consistency_policy {
+    consistency_level       = "BoundedStaleness"
+    max_interval_in_seconds = 10
+    max_staleness_prefix    = 200
+  }
+
+  geo_location {
+    prefix            = "inspectest-geo-prefix"
+    location          = "${azurerm_resource_group.rg.location}"
+    failover_priority = 0
+  }
+}

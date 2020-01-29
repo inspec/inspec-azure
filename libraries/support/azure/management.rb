@@ -536,6 +536,62 @@ module Azure
       )
     end
 
+    def event_hub_namespace(resource_group, namespace_name)
+      get(
+        url: link(location: "Microsoft.EventHub/namespaces/#{namespace_name}",
+                resource_group: resource_group),
+        api_version: '2017-04-01',
+      )
+    end
+
+    def event_hub_event_hub(resource_group, namespace_name, event_hub_name)
+      get(
+        url: link(location: "Microsoft.EventHub/namespaces/#{namespace_name}/eventhubs/#{event_hub_name}",
+                resource_group: resource_group),
+        api_version: '2017-04-01',
+      )
+    end
+
+    def event_hub_authorization_rule(resource_group, namespace_name, event_hub_name, authorization_rule_name)
+      get(
+        url: link(location: "Microsoft.EventHub/namespaces/#{namespace_name}/eventhubs/#{event_hub_name}/authorizationRules/#{authorization_rule_name}",
+                resource_group: resource_group),
+        api_version: '2017-04-01',
+      )
+    end
+
+    def iothub(resource_group, resource_name)
+      get(
+        url: link(location: "Microsoft.Devices/IotHubs/#{resource_name}",
+                resource_group: resource_group),
+        api_version: '2018-04-01',
+      )
+    end
+
+    def iothub_event_hub_consumer_group(resource_group, resource_name, event_hub_endpoint, consumer_group)
+      get(
+        url: link(location: "Microsoft.Devices/IotHubs/#{resource_name}/eventHubEndpoints/#{event_hub_endpoint}/ConsumerGroups/#{consumer_group}",
+                resource_group: resource_group),
+        api_version: '2018-04-01',
+      )
+    end
+
+    def iothub_event_hub_consumer_groups(resource_group, resource_name, event_hub_endpoint)
+      get(
+        url: link(location: "Microsoft.Devices/IotHubs/#{resource_name}/eventHubEndpoints/#{event_hub_endpoint}/ConsumerGroups",
+                resource_group: resource_group),
+        api_version: '2018-04-01',
+      )
+    end
+
+    def cosmosdb_database_account(resource_group, database_account_name)
+      get(
+        url: link(location: "Microsoft.DocumentDB/databaseAccounts/#{database_account_name}",
+                  resource_group: resource_group),
+        api_version: '2015-04-08',
+      )
+    end
+
     private
 
     def rest_client
