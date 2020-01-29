@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.10.0 -->
+<!-- latest_release 1.10.1 -->
+## [v1.10.1](https://github.com/inspec/inspec-azure/tree/v1.10.1) (2020-01-29)
+
+#### Merged Pull Requests
+- Feature/cosmos db [#175](https://github.com/inspec/inspec-azure/pull/175) ([MRushtonScratch](https://github.com/MRushtonScratch))
+<!-- latest_release -->
+
 ## [v1.10.0](https://github.com/inspec/inspec-azure/tree/v1.10.0) (2019-12-17)
 
 #### Merged Pull Requests
 - Offload user filtering to Azure API to avoid resource issues in large AD [#227](https://github.com/inspec/inspec-azure/pull/227) ([trickyearlobe](https://github.com/trickyearlobe))
-<!-- latest_release -->
 
 ## [v1.9.6](https://github.com/inspec/inspec-azure/tree/v1.9.6) (2019-11-29)
 
