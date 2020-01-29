@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.10.1 -->
+<!-- latest_release 1.11.0 -->
+## [v1.11.0](https://github.com/inspec/inspec-azure/tree/v1.11.0) (2020-01-29)
+
+#### Merged Pull Requests
+- cosmodb follow up [#230](https://github.com/inspec/inspec-azure/pull/230) ([rmoles](https://github.com/rmoles))
+<!-- latest_release -->
+
 ## [v1.10.1](https://github.com/inspec/inspec-azure/tree/v1.10.1) (2020-01-29)
 
 #### Merged Pull Requests
 - Feature/cosmos db [#175](https://github.com/inspec/inspec-azure/pull/175) ([MRushtonScratch](https://github.com/MRushtonScratch))
-<!-- latest_release -->
 
 ## [v1.10.0](https://github.com/inspec/inspec-azure/tree/v1.10.0) (2019-12-17)
 
