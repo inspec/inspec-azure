@@ -1,4 +1,14 @@
-name: inspec-azure-integration-tests
+name: Inspec Azure Integration Test Profile
+title: Inspec Azure Integration Test Profile
+maintainer: Chef Software, Inc.
+copyright: Chef Software, Inc.
+copyright_email: support@chef.io
+license: Apache-2.0
+summary: This profile is a simple wrapper around the controls defined in the integration test directory.
+version: 1
+inspec_version: '>= 4.18.39'
 depends:
-  - name: azure
-    path: ../../../
+  - name: this-depend-loads-resources
+    path: ../../..
+supports:
+  - platform: azure

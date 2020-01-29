@@ -21,8 +21,9 @@ class AzurermAdUsers < AzurermPluralResource
              .register_column(:user_types,     field: :userType)
              .install_filter_methods_on_resource(self, :table)
 
-  def initialize
-    resp = graph.users
+  def initialize(params = {})
+    @params = params
+    resp = graph.users(@params)
     return if has_error?(resp)
 
     @table = resp
@@ -35,6 +36,10 @@ class AzurermAdUsers < AzurermPluralResource
   end
 
   def to_s
-    'Azure Active Directory Users'
+    if @params[:filter]
+      "Azure Active Directory Users with filter( #{@params[:filter]} )"
+    else
+      'Azure Active Directory Users'
+    end
   end
 end

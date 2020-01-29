@@ -1,4 +1,4 @@
-vault_name = attribute('key_vault_name', default: nil)
+vault_name = input('key_vault_name', value: nil)
 
 control 'azurerm_key_vault_keys' do
 

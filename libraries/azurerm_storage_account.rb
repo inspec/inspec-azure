@@ -3,7 +3,7 @@
 require 'azurerm_resource'
 require 'date'
 
-class AzurermStorageAccout < AzurermSingularResource
+class AzurermStorageAccount < AzurermSingularResource
   name 'azurerm_storage_account'
   desc 'Verifies settings for a Azure Storage Account'
   example <<-EXAMPLE
@@ -43,6 +43,14 @@ class AzurermStorageAccout < AzurermSingularResource
 
     log_events = management.activity_log_alert_filtered(filter)
     log_events.any?
+  end
+
+  def queues
+    @queues ||= queue(name).queues
+  end
+
+  def queue_properties
+    @queue_properties ||= queue(name).queue_properties
   end
 
   def to_s

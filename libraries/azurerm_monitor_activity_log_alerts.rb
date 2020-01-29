@@ -16,6 +16,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
   FilterTable.create
              .register_column(:names, field: 'name')
              .register_column(:resource_group, field: 'resource_group')
+             .register_column(:location, field: 'location')
              .register_column(:operations, field: 'operations')
              .install_filter_methods_on_resource(self, :table)
 
@@ -36,7 +37,7 @@ class AzurermMonitorActivityLogAlerts < AzurermPluralResource
   def with_resource_group
     lambda do |group|
       # Get resource group from ID string
-      name = group.id.split('/')[4]
+      name = id_to_h(group.id)[:resource_groups]
       Azure::Response.create(group.members << :resource_group, group.values << name)
     end
   end

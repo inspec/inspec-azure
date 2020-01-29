@@ -65,7 +65,7 @@ Consider the following:
   - At the top attributes are defined for each property that will be tested.
   - The control is the InSpec control that will be tested when the integration test is run.
 - The attributes at the top associate an InSpec variable with an attribute as defined in Terraform.
-  - The attribute statements take the form of `var = attribute('tf_output', default: nil)`.
+  - The attribute statements take the form of `var = input('tf_output', value: nil)`.
   - Attributes' default statements should, for the most part, be nil.
 - Within the control, there should be three describe statements:
   - A `describe` statement that includes all of the available properties to be tested
@@ -77,11 +77,11 @@ Consider the following:
 - Update variables and Terraform outputs as needed.
 
 ```
-resource_group = attribute('resource_group',  default: nil)
-subnet         = attribute('subnet_name',     default: nil)
-tags           = attribute('subnet_tags',     default: nil)
-id             = attribute('subnet_id',       default: nil)
-location       = attribute('subnet_location', default: nil)
+resource_group = input('resource_group',  value: nil)
+subnet         = input('subnet_name',     value: nil)
+tags           = input('subnet_tags',     value: nil)
+id             = input('subnet_id',       value: nil)
+location       = input('subnet_location', value: nil)
 
 control 'azurerm_subnet' do
   describe azurerm_subnet(resource_group: resource_group, name: subnet) do
@@ -117,6 +117,9 @@ To determine which properties are available for a given resource, start by looki
 
 ## Create documentation in `docs/resources`
 Once everything is working, documentation must be added for the resources that have been added. Copy similar resource documents in `docs/resources/` and edit them as appropriate. Include enough examples to give a good idea how the resource works. Make sure to include any special case examples that might exist.
+After writing the documentation:
+- Run `bundle exec rake docs:resource_links`
+- Copy/Paste all display links in the Readme.md
 
 ## Create a pull request.
 - Prior to creating a pull request, make user to do the following:

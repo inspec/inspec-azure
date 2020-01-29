@@ -1,5 +1,9 @@
 # InSpec for Azure
 
+* **Project State: Maintained**
+
+For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
+
 [![Build Status](https://travis-ci.org/inspec/inspec-azure.svg?branch=master)](https://travis-ci.org/inspec/inspec-azure)
 
 This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
@@ -26,19 +30,20 @@ To create your account Service Principal Account:
 2. Click on `Azure Active Directory`.
 3. Click on `APP registrations`.
 4. Click on `New application registration`.
-5. Fill in a name and a Sign-on URL. Select `Web app / API` from the `Application Type` drop down. Save your application.
+5. Fill in a name and select `Web` from the `Application Type` drop down. Save your application.
 6. Note your Application ID. This is your `client_id` above.
-6. Click on `Settings`
-7. Click on `Keys`
-8. Create a new password. This value is your `client_secret` above.
-9. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
+7. Click on `Certificates & Settings`
+8. Click on `New client secret`
+9. Create a new password. This value is your `client_secret` above.
+10. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
 11. Note your Subscription ID can be found here.
-10. Click `Access Control (IAM)`
-11. Click Add
-13. Select the `contributor` role.
-12. Select the application you just created and save.
+12. Click `Access Control (IAM)`
+13. Click Add
+14. Select the `contributor` role.
+15. Select the application you just created and save.
 
-These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
+These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. 
+Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
 
 ### Use the Resources
 
@@ -52,15 +57,17 @@ $ inspec init profile my-profile
 Example inspec.yml:
 ```
 name: my-profile
-title: My own Oneview profile
+title: My own Azure profile
 version: 0.1.0
-inspec_version: '>= 2.2.7'
+inspec_version: '>= 4.6.9'
 depends:
   - name: inspec-azure
-    url: https://github.com/inspec/inspec-azure/archive/master.tar.gz
+    url: https://github.com/inspec/inspec-azure/archive/x.tar.gz
 supports:
   - platform: azure
 ```
+
+(For available inspec-azure versions, see this list of [inspec-azure versions](https://github.com/inspec/inspec-azure/releases).)
 
 ## Examples
 
@@ -114,17 +121,30 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_key_vault_key](docs/resources/azurerm_key_vault_key.md.erb)
 - [azurerm_key_vault_keys](docs/resources/azurerm_key_vault_keys.md.erb)
 - [azurerm_key_vault_secret](docs/resources/azurerm_key_vault_secret.md.erb)
-- [azurerm_key_vault_secrets](docs/resources/azurerm_key_vault_secrets.md)
+- [azurerm_key_vault_secrets](docs/resources/azurerm_key_vault_secrets.md.erb)
 - [azurerm_key_vaults](docs/resources/azurerm_key_vaults.md.erb)
+- [azurerm_locks](docs/resources/azurerm_locks.md.erb)
+- [azurerm_management_group](docs/resources/azurerm_management_group.md.erb)
+- [azurerm_management_groups](docs/resources/azurerm_management_groups.md.erb)
 - [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md.erb)
 - [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md.erb)
 - [azurerm_monitor_log_profile](docs/resources/azurerm_monitor_log_profile.md.erb)
 - [azurerm_monitor_log_profiles](docs/resources/azurerm_monitor_log_profiles.md.erb)
+- [azurerm_mysql_database](docs/resources/azurerm_mysql_database.md.erb)
+- [azurerm_mysql_databases](docs/resources/azurerm_mysql_databases.md.erb)
+- [azurerm_mysql_server](docs/resources/azurerm_mysql_server.md.erb)
+- [azurerm_mysql_servers](docs/resources/azurerm_mysql_servers.md.erb)
 - [azurerm_network_security_group](docs/resources/azurerm_network_security_group.md.erb)
 - [azurerm_network_security_groups](docs/resources/azurerm_network_security_groups.md.erb)
 - [azurerm_network_watcher](docs/resources/azurerm_network_watcher.md.erb)
 - [azurerm_network_watchers](docs/resources/azurerm_network_watchers.md.erb)
+- [azurerm_postgresql_database](docs/resources/azurerm_postgresql_database.md.erb)
+- [azurerm_postgresql_databases](docs/resources/azurerm_postgresql_databases.md.erb)
+- [azurerm_postgresql_server](docs/resources/azurerm_postgresql_server.md.erb)
+- [azurerm_postgresql_servers](docs/resources/azurerm_postgresql_servers.md.erb)
 - [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md.erb)
+- [azurerm_role_definition](docs/resources/azurerm_role_definition.md.erb)
+- [azurerm_role_definitions](docs/resources/azurerm_role_definitions.md.erb)
 - [azurerm_security_center_policies](docs/resources/azurerm_security_center_policies.md.erb)
 - [azurerm_security_center_policy](docs/resources/azurerm_security_center_policy.md.erb)
 - [azurerm_sql_database](docs/resources/azurerm_sql_database.md.erb)
@@ -135,11 +155,16 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_storage_account_blob_containers](docs/resources/azurerm_storage_account_blob_containers.md.erb)
 - [azurerm_subnet](docs/resources/azurerm_subnet.md.erb)
 - [azurerm_subnets](docs/resources/azurerm_subnets.md.erb)
+- [azurerm_subscription](docs/resources/azurerm_subscription.md.erb)
 - [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md.erb)
 - [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md.erb)
+- [azurerm_virtual_machine_disks](docs/resources/azurerm_virtual_machine_disks.md.erb)
 - [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md.erb)
 - [azurerm_virtual_network](docs/resources/azurerm_virtual_network.md.erb)
 - [azurerm_virtual_networks](docs/resources/azurerm_virtual_networks.md.erb)
+- [azurerm_webapp](docs/resources/azurerm_webapp.md.erb)
+- [azurerm_webapps](docs/resources/azurerm_webapps.md.erb)
+
 
 ## Connectors
 

@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../../libraries/support/azure/deprecations/strings_in_where_clause'
+require_relative '../../../../test_helper'
+require_relative '../../../../../../libraries/support/azure/deprecations/strings_in_where_clause'
 
 describe Azure::Deprecations::StringsInWhereClause do
   class DeprecatedExampleResource
