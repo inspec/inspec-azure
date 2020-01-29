@@ -15,7 +15,7 @@ variable "log_profile_default_location" {
 
 # azure_activity_log_alert vars
 variable "activity_log_alert" {
-  type = "map"
+  type = map(string)
 
   default = {
     "action_group" = "defaultActionGroup"

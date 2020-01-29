@@ -403,7 +403,7 @@ resource "azurerm_public_ip" "public_ip" {
   count                        = var.public_vm_count
   location                     = var.location
   resource_group_name          = azurerm_resource_group.rg.name
-  public_ip_address_allocation = "dynamic"
+  allocation_method            = "Dynamic"
 }
 
 resource "azurerm_network_interface" "nic2" {
@@ -567,7 +567,7 @@ resource "random_string" "lb-random" {
   upper   = false
 }
 module "azurerm_lb" {
-  source              = "modules/load_balancer"
+  source              = "./modules/load_balancer"
   use_loadbalancer    = "true"
   resource_group_name = azurerm_resource_group.rg.name
   lb_name             = "${random_string.lb-random.result}-lb"
