@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.11.0 -->
+<!-- latest_release 1.12.0 -->
+## [v1.12.0](https://github.com/inspec/inspec-azure/tree/v1.12.0) (2020-01-30)
+
+#### Merged Pull Requests
+- Add lib for load balancer and network interface [#161](https://github.com/inspec/inspec-azure/pull/161) ([mikaelkrief](https://github.com/mikaelkrief))
+<!-- latest_release -->
+
 ## [v1.11.0](https://github.com/inspec/inspec-azure/tree/v1.11.0) (2020-01-29)
 
 #### Merged Pull Requests
 - cosmodb follow up [#230](https://github.com/inspec/inspec-azure/pull/230) ([rmoles](https://github.com/rmoles))
-<!-- latest_release -->
 
 ## [v1.10.1](https://github.com/inspec/inspec-azure/tree/v1.10.1) (2020-01-29)
 
