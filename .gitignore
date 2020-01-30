@@ -1,6 +1,6 @@
 test/fixtures/vcr_cassettes
 .terraform
-terraform/.*-attributes.yml
+**/.*-attributes.yml
 terraform/.terraform/
 terraform/terraform.tfstate*
 terraform/terraform.tfstate.backup

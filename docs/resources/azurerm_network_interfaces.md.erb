@@ -1,18 +1,17 @@
 ---
-title: About the azurerm_mysql_servers Resource
+title: About the azurerm_network_interfaces Resource
 platform: azure
 ---
 
-# azurerm\_mysql\_servers
+# azurerm\_network\_interfaces
 
-Use the `azurerm_mysql_servers` InSpec audit resource to test properties and configuration of multiple Azure MySQL Servers.
-
+Use the `azurerm_network_interfaces` InSpec audit resource to test properties and configuration of Azure Network interfaces.
 <br />
 
 ## Azure REST API version
 
-This resource interacts with version `2017-12-01` of the Azure Management API. For more
-information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/mysql/servers/list).
+This resource interacts with version `2018-11-01` of the Azure Management API. For more
+information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networkinterface(preview)/list).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -36,19 +35,19 @@ You'll also need to setup your Azure credentials; see the resource pack
 
 ### Version
 
-This resource first became available in 1.6.0 of the inspec-azure resource pack.
+This resource first became available in 1.7.2 of the inspec-azure resource pack.
 
 ## Syntax
 
-An `azurerm_mysql_servers` resource block returns all Azure MySQL Servers, either within a Resource Group (if provided), or within an entire Subscription.
+An `azurerm_network_interfaces` resource block returns all Azure Network Interfaces, either within a Resource Group (if provided), or within an entire Subscription.
 
-    describe azurerm_mysql_servers do
+    describe azurerm_network_interfaces do
       ...
     end
-
+    
   or
-
-    describe azurerm_mysql_servers(resource_group: 'my-rg') do
+  
+    describe azurerm_network_interfaces(resource_group: 'my-rg') do
       ...
     end
 
@@ -58,11 +57,11 @@ An `azurerm_mysql_servers` resource block returns all Azure MySQL Servers, eithe
 
 The following examples show how to use this InSpec audit resource.
 
-### Check SQL Servers are present
+### Check Network interfaces are present
 
-    describe azurerm_mysql_servers do
+    describe azurerm_network_interfaces do
       it            { should exist }
-      its('names')  { should include 'my-server-name' }
+      its('names')  { should include 'my-network-interface-name' }
     end
 <br />
 
@@ -72,19 +71,19 @@ The following examples show how to use this InSpec audit resource.
 
 ### names
 
-Filters the results to include only those servers which match the given name. This is a string value.
+Filters the results to include only those network interfaces which match the given name. This is a string value.
 
-    describe azurerm_mysql_servers.where{ name.eql?('production-server-5') } do
+    describe azurerm_network_interfaces.where{ name.eql?('network-interface-5') } do
       it { should exist }
     end
-
+    
 * `location`
 
 ### location
 
 Filters the results to include only those servers which reside in a given location. This is a string value.
 
-    describe azurerm_mysql_servers.where{ location.eql?('eastus') } do
+    describe azurerm_network_interfaces.where{ location.eql?('eastus') } do
       it { should exist }
     end
 
@@ -92,22 +91,18 @@ Filters the results to include only those servers which reside in a given locati
 
 - `id`
 - `name`
-- `sku`
 - `location`
 - `properties`
 - `tags`
 - `type`
-
+    
 ### ids
 Azure resource ID.
 
 ### names
-SQL Server name, e.g. `my-sql-server`.
-
-    its('names') { should include 'my-sql-database' }
-
-### sku
-SKU of mysql server. This is billing information related properties of a server.
+Network interface name, e.g. `nic-name`.
+    
+    its('names') { should include 'nic-name' }
 
 ### locations
 Resource location, e.g. `eastus`.
@@ -115,13 +110,13 @@ Resource location, e.g. `eastus`.
     its('locations') { should_not include 'eastus' }
 
 ### properties
-A collection of additional configuration properties related to the MySQL Server, e.g. `administratorLogin`.
+A collection of additional configuration properties related to the Network interface, e.g. `ipConfigurations`.
 
 ### tag
-Resource tags applied to the MySQL Server.
+Resource tags applied to the Network interface.
 
 ### type
-The type of Resource, typically `Microsoft.DBforMySQL/servers`.
+The type of Resource, typically `Microsoft.Network/networkInterfaces`.
 
 ## Matchers
 
@@ -133,7 +128,7 @@ please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/
 The control will pass if the filter returns at least one result. Use
 `should_not` if you expect zero matches.
 
-    describe azurerm_mysql_servers do
+    describe azurerm_network_interfaces do
       it { should exist }
     end
 

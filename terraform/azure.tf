@@ -403,7 +403,7 @@ resource "azurerm_public_ip" "public_ip" {
   count                        = var.public_vm_count
   location                     = var.location
   resource_group_name          = azurerm_resource_group.rg.name
-  public_ip_address_allocation = "dynamic"
+  allocation_method            = "Dynamic"
 }
 
 resource "azurerm_network_interface" "nic2" {
@@ -502,7 +502,7 @@ resource "azurerm_sql_server" "sql_server" {
   resource_group_name          = azurerm_resource_group.rg.name
   location                     = var.location
   version                      = var.sql-server-version
-  administrator_login          = "iazAdmin"
+  administrator_login          = "inspec-azure"
   administrator_login_password = "P4assw0rd!"
 }
 
@@ -512,6 +512,68 @@ resource "azurerm_sql_database" "sql_database" {
   location            = var.location
   server_name         = azurerm_sql_server.sql_server.name
   depends_on          = [azurerm_sql_server.sql_server]
+}
+
+
+resource "random_string" "mysql_server" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_mysql_server" "mysql_server" {
+  name                = "mysql-svr-${random_string.sql.result}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = "2"
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = "5120"
+    backup_retention_days = "7"
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "iazAdmin"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "5.7"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_mysql_database" "mysql_database" {
+  name                = "mysqldb${random_string.sql.result}"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mysql_server.mysql_server.name
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
+}
+
+resource "azurerm_mysql_firewall_rule" "mysql_firewall_rule" {
+  name                = "mysql-srv-firewall"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mysql_server.mysql_server.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
+}
+
+resource "random_string" "lb-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+module "azurerm_lb" {
+  source              = "./modules/load_balancer"
+  use_loadbalancer    = "true"
+  resource_group_name = azurerm_resource_group.rg.name
+  lb_name             = "${random_string.lb-random.result}-lb"
+  location            = var.location
+  remote_port         = var.remote_port
+  lb_port             = var.lb_port
 }
 
 resource "tls_private_key" "key" {
@@ -568,46 +630,6 @@ resource "azurerm_app_service" "app_service" {
   identity {
     type = "SystemAssigned"
   }
-}
-
-resource "azurerm_mysql_server" "mysql" {
-  name                = "mysql-svr-${random_string.sql.result}"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
-
-  sku {
-    name     = "B_Gen5_2"
-    capacity = "2"
-    tier     = "Basic"
-    family   = "Gen5"
-  }
-
-  storage_profile {
-    storage_mb            = "5120"
-    backup_retention_days = "7"
-    geo_redundant_backup  = "Disabled"
-  }
-
-  administrator_login          = "iazAdmin"
-  administrator_login_password = "P4assw0rd!"
-  version                      = "5.7"
-  ssl_enforcement              = "Enabled"
-}
-
-resource "azurerm_mysql_database" "mysql" {
-  name                = "mysqldb${random_string.sql.result}"
-  resource_group_name = azurerm_resource_group.rg.name
-  server_name         = azurerm_mysql_server.mysql.name
-  charset             = "utf8"
-  collation           = "utf8_unicode_ci"
-}
-
-resource "azurerm_mysql_firewall_rule" "server_rule" {
-  name                = "mysql-srv-firewall"
-  resource_group_name = azurerm_resource_group.rg.name
-  server_name         = azurerm_mysql_server.mysql.name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "255.255.255.255"
 }
 
 resource "azurerm_postgresql_server" "postgresql" {

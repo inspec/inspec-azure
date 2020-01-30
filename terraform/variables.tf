@@ -15,7 +15,8 @@ variable "log_profile_default_location" {
 
 # azure_activity_log_alert vars
 variable "activity_log_alert" {
-  type    = "map"
+  type = map(string)
+
   default = {
     "action_group" = "defaultActionGroup"
     "log_alert"    = "defaultLogAlert"
@@ -72,4 +73,24 @@ variable "public_vm_count" {
 
 variable "sql-server-version" {
   default = "12.0"
+}
+
+variable "remote_port" {
+  type        = "map"
+  description = "Protocols to be used for remote vm access. [protocol, backend_port].  Frontend port will be automatically generated starting at 50000 and in the output."
+
+  default = {
+    ssh = ["Tcp", "22"]
+  }
+}
+
+variable "lb_port" {
+  type        = "map"
+  description = "Protocols to be used for lb health probes and rules. [frontend_port, protocol, backend_port]"
+
+  default = {
+    http      = ["80", "Tcp", "80", "Default"]
+    https     = ["443", "Tcp", "443", "SourceIP"]
+    http-test = ["990", "Tcp", "990", "SourceIPProtocol"]
+  }
 }

@@ -140,6 +140,14 @@ output "windows_vm_data_disks" {
     var.windows_internal_data_disk]
 }
 
+output "windows_vm_nic_name" {
+  value = azurerm_network_interface.nic3.name
+}
+
+output "linux_vm_nic_name" {
+  value = azurerm_network_interface.nic1.name
+}
+
 output "monitoring_agent_name" {
   value = var.monitoring_agent_name
 }
@@ -180,6 +188,20 @@ output "storage_account_blob_container" {
   value = azurerm_storage_container.blob.name
 }
 
+
+output "mysql_server_name" {
+  value = azurerm_mysql_server.mysql_server.name
+}
+
+output "mysql_database_name" {
+  value = azurerm_mysql_database.mysql_database.name
+}
+
+output "lb_name" {
+  value = module.azurerm_lb.azurerm_lb_name
+}
+
+
 output "cluster_fqdn" {
   value = azurerm_kubernetes_cluster.cluster.fqdn
 }
@@ -216,13 +238,6 @@ output "log_profile_name" {
   value = azurerm_monitor_log_profile.log_profile.name
 }
 
-output "mysql_server_name" {
-  value = azurerm_mysql_server.mysql.name
-}
-
-output "mysql_database_name" {
-  value = azurerm_mysql_database.mysql.name
-}
 
 output "postgresql_server_name" {
   value = azurerm_postgresql_server.postgresql.name

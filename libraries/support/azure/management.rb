@@ -529,6 +529,38 @@ module Azure
       )
     end
 
+    def load_balancer(resource_group, loadbalancer_name)
+      get(
+        url: link(location: "Microsoft.Network/loadBalancers/#{loadbalancer_name}",
+                  resource_group: resource_group),
+        api_version: '2018-11-01',
+      )
+    end
+
+    def load_balancers(resource_group)
+      get(
+        url: link(location: 'Microsoft.Network/loadBalancers/',
+                  resource_group: resource_group),
+        api_version: '2018-11-01',
+      )
+    end
+
+    def network_interface(resource_group, name)
+      get(
+        url: link(location: "Microsoft.Network/networkInterfaces/#{name}",
+                  resource_group: resource_group),
+        api_version: '2018-11-01',
+      )
+    end
+
+    def network_interfaces(resource_group)
+      get(
+        url: link(location: 'Microsoft.Network/networkInterfaces/',
+                  resource_group: resource_group),
+        api_version: '2018-11-01',
+      )
+    end
+
     def webapp_supported_stacks
       get(
         url: link(location: 'Microsoft.Web/availableStacks'),
