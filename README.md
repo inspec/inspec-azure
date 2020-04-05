@@ -15,6 +15,9 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 * Azure Service Principal Account
 * Azure Service Principal may read the Azure Active Directory
 
+## Optional
+* Inspec-bin installed
+
 ### Service Principal
 
 Your Azure Service Principal Account must have `contributor` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:

@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gem 'faraday',             '~> 0.15.0'
 gem 'faraday_middleware',  '~> 0.12.2'
-gem 'inspec-bin',          '~> 4.18.39'
 gem 'rake',                '~> 12.3', '>= 12.3.1'
 
 group :development do
@@ -12,6 +11,7 @@ group :development do
 end
 
 group :developmen, :test do
-  gem 'minitest', '~> 5.11.0'
-  gem 'rubocop',  '~> 0.71.0'
+  gem 'inspec-bin' , '~> 4.18.39'
+  gem 'minitest'   , '~> 5.11.0'
+  gem 'rubocop'    , '~> 0.71.0'
 end
