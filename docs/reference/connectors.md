@@ -103,7 +103,7 @@ two entries:
 
 ```
 $ export AZURE_SUBSCRIPTION_NUMBER=2
-$ bundle exec insepc exec . -t azure://
+$ bundle exec inspec exec . -t azure://
 ```
 
 ## Managed Service Identity Connector
