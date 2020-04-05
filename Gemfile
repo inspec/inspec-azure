@@ -11,7 +11,7 @@ group :development do
 end
 
 group :developmen, :test do
-  gem 'inspec-bin' , '~> 4.18.39'
-  gem 'minitest'   , '~> 5.11.0'
-  gem 'rubocop'    , '~> 0.71.0'
+  gem 'inspec-bin', '~> 4.18.39'
+  gem 'minitest',   '~> 5.11.0'
+  gem 'rubocop',    '~> 0.71.0'
 end
