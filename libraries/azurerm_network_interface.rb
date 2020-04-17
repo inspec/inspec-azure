@@ -34,11 +34,11 @@ class AzurermNetworkInterface < AzurermSingularResource
   end
 
   def has_private_address_ip?
-    !!properties.ipConfigurations[0].properties.privateIPAddress
+    !properties.ipConfigurations[0].properties.privateIPAddress.to_s.empty?
   end
 
   def has_public_address_ip?
-    !!properties.ipConfigurations[0].properties.publicIPAddress
+    !properties.ipConfigurations[0].properties.publicIPAddress.to_s.empty?
   end
 
   def to_s
