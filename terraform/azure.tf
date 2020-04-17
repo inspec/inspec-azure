@@ -25,6 +25,7 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
   tags = {
     CreatedBy = terraform.workspace
+    ExampleTag = "example"
   }
 }
 
