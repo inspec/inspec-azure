@@ -14,6 +14,7 @@ control 'azurerm_security_center_policy' do
 
   describe azurerm_security_center_policy(name: 'default') do
     it                                     { should exist }
+    # if this fails run 'az security auto-provisioning-setting update -n "default" --auto-provision "On"'
     it                                     { should have_auto_provisioning_enabled }
     its('id')                              { should eq("/subscriptions/#{ENV['AZURE_SUBSCRIPTION_ID']}/providers/Microsoft.Security/policies/default") }
     its('name')                            { should eq('default') }
