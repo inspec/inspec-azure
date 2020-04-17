@@ -386,6 +386,7 @@ resource "azurerm_monitor_log_profile" "log_profile" {
 
   locations = [
     "eastus",
+    "global",
   ]
 
   storage_account_id = azurerm_storage_account.sa.id
@@ -394,6 +395,7 @@ resource "azurerm_monitor_log_profile" "log_profile" {
     enabled = true
     days    = 365
   }
+  depends_on = [azurerm_storage_account.sa]
 }
 
 # MSI External Access VM
