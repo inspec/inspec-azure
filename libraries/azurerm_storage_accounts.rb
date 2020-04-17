@@ -12,7 +12,10 @@ class StorageAccounts < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:names, field: 'name')
+             .register_column(:names,    field: 'name')
+             .register_column(:type,     field: 'type')
+             .register_column(:location, field: 'location')
+             .register_column(:tags,     field: 'tags')
              .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table

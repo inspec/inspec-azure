@@ -45,6 +45,10 @@ class AzurermStorageAccount < AzurermSingularResource
     log_events.any?
   end
 
+  def has_encryption_enabled?
+    properties.encryption.services.blob.enabled || false
+  end
+
   def queues
     @queues ||= queue(name).queues
   end
