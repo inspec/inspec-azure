@@ -109,7 +109,7 @@ namespace :test do
   end
 
   task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
-    cmd = %W( bin/inspec exec #{INTEGRATION_DIR}
+    cmd = %W( bundle exec inspec exec #{INTEGRATION_DIR}
               --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter cli
               --no-distinct-exit
