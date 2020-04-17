@@ -101,7 +101,7 @@ is a string value.
 
 ### names
 
-The names property provides a list of all the Resource Group ids.
+The ids property provides a list of all the Resource Group ids.
 
     its('ids') { should include 'MyResourceGroupID' }
 
@@ -109,7 +109,7 @@ The names property provides a list of all the Resource Group names.
 
     its('names') { should include 'MyResourceGroup' }
     
-The names property provides a list of all the Resource Group tags.
+The tags property provides a list of all the Resource Group tags.
 
     its('tags') { should include '{MyResourceGroupTag=""}' }
 
