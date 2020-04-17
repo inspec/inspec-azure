@@ -8,7 +8,7 @@ control 'azurerm_resource_groups' do
   end
 
   describe azurerm_resource_groups.where(name: resource_group) do
-    its('tags.first') { should include("ExampleTag"=>"example") }
+    its('tags.first') { should include('ExampleTag'=>'example') }
   end
 
 end

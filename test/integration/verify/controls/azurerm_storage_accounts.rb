@@ -1,6 +1,6 @@
 resource_group  = input('resource_group',  value: nil)
 storage_account = input('storage_account', value: nil)
-location        = input('vnet_location',   value:nil)
+location        = input('vnet_location',   value: nil)
 
 control 'azurerm_storage_accounts' do
   describe azurerm_storage_accounts do
