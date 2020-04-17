@@ -12,7 +12,9 @@ class AzurermResourceGroups < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:names, field: 'name')
+             .register_column(:names, field: :name)
+             .register_column(:ids, field: :id)
+             .register_column(:tags, field: :tags)
              .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table
@@ -21,6 +23,11 @@ class AzurermResourceGroups < AzurermPluralResource
     resp = management.resource_groups
     return if has_error?(resp)
 
+    resp.map! do |r|
+      r=r.to_h
+      r[:tags]={} unless r[:tags]
+      r
+    end
     @table = resp
   end
 
