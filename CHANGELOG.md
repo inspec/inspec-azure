@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.12.0 -->
+<!-- latest_release 1.13.0 -->
+## [v1.13.0](https://github.com/inspec/inspec-azure/tree/v1.13.0) (2020-04-17)
+
+#### Merged Pull Requests
+- Add tags to resource group [#238](https://github.com/inspec/inspec-azure/pull/238) ([rmoles](https://github.com/rmoles))
+<!-- latest_release -->
+
 ## [v1.12.0](https://github.com/inspec/inspec-azure/tree/v1.12.0) (2020-01-30)
 
 #### Merged Pull Requests
 - Add lib for load balancer and network interface [#161](https://github.com/inspec/inspec-azure/pull/161) ([mikaelkrief](https://github.com/mikaelkrief))
-<!-- latest_release -->
 
 ## [v1.11.0](https://github.com/inspec/inspec-azure/tree/v1.11.0) (2020-01-29)
 
