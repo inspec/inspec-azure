@@ -9,6 +9,7 @@ gem 'rake',                '~> 12.3', '>= 12.3.1'
 
 group :development do
   gem 'pry', '~> 0.11.3'
+  gem 'pry-byebug'
 end
 
 group :developmen, :test do

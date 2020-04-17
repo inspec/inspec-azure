@@ -111,7 +111,7 @@ namespace :test do
   task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
     cmd = %W( bin/inspec exec #{INTEGRATION_DIR}
               --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
-              --reporter progress
+              --reporter cli
               --no-distinct-exit
               -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )
 
