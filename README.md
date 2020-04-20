@@ -32,12 +32,12 @@ To create your account Service Principal Account:
 4. Click on `New application registration`.
 5. Fill in a name and select `Web` from the `Application Type` drop down. Save your application.
 6. Note your Application ID. This is your `client_id` above.
-7. Click on `Certificates & Settings`
+7. Click on `Certificates & secrets`
 8. Click on `New client secret`
 9. Create a new password. This value is your `client_secret` above.
 10. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
 11. Note your Subscription ID can be found here.
-12. Click `Access Control (IAM)`
+12. Click `Access control (IAM)`
 13. Click Add
 14. Select the `contributor` role.
 15. Select the application you just created and save.
