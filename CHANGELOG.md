@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.14.0 -->
+<!-- latest_release 1.14.1 -->
+## [v1.14.1](https://github.com/inspec/inspec-azure/tree/v1.14.1) (2020-04-24)
+
+#### Merged Pull Requests
+- Fix azurerm_postgresql_server documentation [#242](https://github.com/inspec/inspec-azure/pull/242) ([rrey](https://github.com/rrey))
+<!-- latest_release -->
+
 ## [v1.14.0](https://github.com/inspec/inspec-azure/tree/v1.14.0) (2020-04-20)
 
 #### Merged Pull Requests
 - Add have_encryption_enabled to azurerm_storage_account and type, location, tags to azurerm_storage_accounts [#240](https://github.com/inspec/inspec-azure/pull/240) ([rmoles](https://github.com/rmoles))
-<!-- latest_release -->
 
 ## [v1.13.1](https://github.com/inspec/inspec-azure/tree/v1.13.1) (2020-04-17)
 
