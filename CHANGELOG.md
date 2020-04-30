@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.14.1 -->
+<!-- latest_release 1.14.2 -->
+## [v1.14.2](https://github.com/inspec/inspec-azure/tree/v1.14.2) (2020-04-30)
+
+#### Merged Pull Requests
+- Update README guide to reflect current Azure UI [#241](https://github.com/inspec/inspec-azure/pull/241) ([Schwad](https://github.com/Schwad))
+<!-- latest_release -->
+
 ## [v1.14.1](https://github.com/inspec/inspec-azure/tree/v1.14.1) (2020-04-24)
 
 #### Merged Pull Requests
 - Fix azurerm_postgresql_server documentation [#242](https://github.com/inspec/inspec-azure/pull/242) ([rrey](https://github.com/rrey))
-<!-- latest_release -->
 
 ## [v1.14.0](https://github.com/inspec/inspec-azure/tree/v1.14.0) (2020-04-20)
 
