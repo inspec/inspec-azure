@@ -92,7 +92,7 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   end
 
   def tcp?(properties)
-    properties['protocol'].casecmp?('TCP')
+    properties['protocol'].match?(/TCP|\*/)
   end
 
   def access_allow?(properties)
