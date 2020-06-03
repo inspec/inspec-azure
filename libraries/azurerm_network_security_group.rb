@@ -56,6 +56,13 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
   end
   RSpec::Matchers.alias_matcher :allow_rdp_from_internet, :be_allow_rdp_from_internet
 
+  SPECIFIC_CRITERIA = %i(specific_port access_allow direction_inbound tcp source_open).freeze
+  def allow_port_from_internet?(specific_port)
+    @specific_port = specific_port
+    matches_criteria?(SPECIFIC_CRITERIA, security_rules_properties)
+  end
+  RSpec::Matchers.alias_matcher :allow_port_from_internet, :be_allow_port_from_internet
+
   private
 
   def security_rules_properties
@@ -72,6 +79,10 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
 
   def rdp_port?(properties)
     matches_port?(destination_port_ranges(properties), '3389')
+  end
+
+  def specific_port?(properties)
+    matches_port?(destination_port_ranges(properties), @specific_port)
   end
 
   def destination_port_ranges(properties)
