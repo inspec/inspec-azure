@@ -44,19 +44,19 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
     @default_security_rules ||= @properties['defaultSecurityRules']
   end
 
-  SSH_CRITERIA = %i(ssh_port access_allow direction_inbound tcp source_open).freeze
+  SSH_CRITERIA = %i(ssh_port access_allow direction_inbound source_open).freeze
   def allow_ssh_from_internet?
     @allow_ssh_from_internet ||= matches_criteria?(SSH_CRITERIA, security_rules_properties)
   end
   RSpec::Matchers.alias_matcher :allow_ssh_from_internet, :be_allow_ssh_from_internet
 
-  RDP_CRITERIA = %i(rdp_port access_allow direction_inbound tcp source_open).freeze
+  RDP_CRITERIA = %i(rdp_port access_allow direction_inbound source_open).freeze
   def allow_rdp_from_internet?
     @allow_rdp_from_internet ||= matches_criteria?(RDP_CRITERIA, security_rules_properties)
   end
   RSpec::Matchers.alias_matcher :allow_rdp_from_internet, :be_allow_rdp_from_internet
 
-  SPECIFIC_CRITERIA = %i(specific_port access_allow direction_inbound tcp source_open).freeze
+  SPECIFIC_CRITERIA = %i(specific_port access_allow direction_inbound source_open).freeze
   def allow_port_from_internet?(specific_port)
     @specific_port = specific_port
     matches_criteria?(SPECIFIC_CRITERIA, security_rules_properties)
