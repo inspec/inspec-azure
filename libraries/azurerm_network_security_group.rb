@@ -91,7 +91,7 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
 
     return properties['destinationPortRanges'] if !properties_hash.include?(:destinationPortRange)
 
-    properties['destinationPortRanges'].push(properties['destinationPortRange'])
+    properties['destinationPortRanges'] + Array(properties['destinationPortRange'])
   end
 
   def matches_port?(ports, match_port)
