@@ -111,6 +111,13 @@ the Security Rules and Default Security Rules for unrestricted RDP access.
 
     it { should_not allow_rdp_from_internet }
 
+### allow\port\_from\_internet
+
+The allow\_port\_from\_internet property contains a boolean value determined by analysing
+the Security Rules and Default Security Rules for unrestricted access to a specified port.
+
+    it { should_not allow_port_from_internet('443') }
+
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
