@@ -160,6 +160,14 @@ output "network_security_group_id" {
   value = azurerm_network_security_group.nsg.id
 }
 
+output "network_security_group_insecure" {
+  value = azurerm_network_security_group.nsg_insecure.name
+}
+
+output "network_security_group_open" {
+  value = azurerm_network_security_group.nsg_open.name
+}
+
 output "activity_log_alert_name" {
   value = var.activity_log_alert["log_alert"]
 }

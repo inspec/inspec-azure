@@ -189,16 +189,82 @@ resource "azurerm_network_security_group" "nsg" {
   name                = "Inspec-NSG"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
+}
 
+resource "azurerm_network_security_group" "nsg_insecure" {
+  name                = "Inspec-NSG-Insecure"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_network_security_rule" "SSHAllow" {
+  name                       = "SSH-Allow"
+  priority                   = 100
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "*"
+  source_port_range          = "*"
+  destination_port_range     = "22"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+  resource_group_name        = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg_insecure.name
+}
+
+resource "azurerm_network_security_rule" "RDP-Allow" {
+  name                       = "RDP-Allow"
+  priority                   = 105
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "*"
+  source_port_range          = "*"
+  destination_port_range     = "3389"
+  source_address_prefix      = "Internet"
+  destination_address_prefix = "*"
+  resource_group_name        = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg_insecure.name
+}
+
+resource "azurerm_network_security_rule" "DB-Allow" {
+  name                       = "DB-Allow"
+  priority                   = 110
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "*"
+  source_port_range          = "*"
+  destination_port_ranges    = ["1433-1434", "1521", "4300-4350", "5000-6000"]
+  source_address_prefix      = "Internet"
+  destination_address_prefix = "*"
+  resource_group_name        = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg_insecure.name
+}
+
+resource "azurerm_network_security_rule" "File-Allow" {
+  name                       = "File-Allow"
+  priority                   = 120
+  direction                  = "Inbound"
+  access                     = "Allow"
+  protocol                   = "*"
+  source_port_range          = "*"
+  destination_port_ranges    = ["130-140", "445", "20-21", "69"]
+  source_address_prefix      = "0.0.0.0/0"
+  destination_address_prefix = "*"
+  resource_group_name        = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg_insecure.name
+}
+
+resource "azurerm_network_security_group" "nsg_open" {
+  name                = "Inspec-NSG-Open"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
   security_rule {
-    name                       = "SSH-RDP-Deny"
+    name                       = "Open-All-To-World"
     priority                   = 100
     direction                  = "Inbound"
-    access                     = "Deny"
-    protocol                   = "Tcp"
+    access                     = "Allow"
+    protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = ""
-    destination_port_ranges    = ["22", "3389"]
+    destination_port_range     = "*"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
