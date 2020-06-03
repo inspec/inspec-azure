@@ -44,15 +44,13 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
     @default_security_rules ||= @properties['defaultSecurityRules']
   end
 
-  SSH_CRITERIA = %i(ssh_port access_allow direction_inbound source_open).freeze
   def allow_ssh_from_internet?
-    @allow_ssh_from_internet ||= matches_criteria?(SSH_CRITERIA, security_rules_properties)
+    allow_port_from_internet?('22')
   end
   RSpec::Matchers.alias_matcher :allow_ssh_from_internet, :be_allow_ssh_from_internet
 
-  RDP_CRITERIA = %i(rdp_port access_allow direction_inbound source_open).freeze
   def allow_rdp_from_internet?
-    @allow_rdp_from_internet ||= matches_criteria?(RDP_CRITERIA, security_rules_properties)
+    allow_port_from_internet?('3389')
   end
   RSpec::Matchers.alias_matcher :allow_rdp_from_internet, :be_allow_rdp_from_internet
 
@@ -71,14 +69,6 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
 
   def matches_criteria?(criteria, properties)
     properties.any? { |property| criteria.all? { |method| send(:"#{method}?", property) } }
-  end
-
-  def ssh_port?(properties)
-    matches_port?(destination_port_ranges(properties), '22')
-  end
-
-  def rdp_port?(properties)
-    matches_port?(destination_port_ranges(properties), '3389')
   end
 
   def specific_port?(properties)
