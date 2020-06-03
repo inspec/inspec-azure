@@ -88,7 +88,7 @@ class AzurermNetworkSecurityGroup < AzurermSingularResource
 
     ports.select { |port| port.include?('-') }
          .collect { |range| range.split('-') }
-         .any? { |range| (range.first..range.last).cover?(match_port) }
+         .any? { |range| (range.first.to_i..range.last.to_i).cover?(match_port.to_i) }
   end
 
   def tcp?(properties)
