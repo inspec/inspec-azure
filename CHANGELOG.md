@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.14.2 -->
+<!-- latest_release 1.15.0 -->
+## [v1.15.0](https://github.com/inspec/inspec-azure/tree/v1.15.0) (2020-06-04)
+
+#### Merged Pull Requests
+- Add allow_port_from_internet matcher to azurerm_network_security_group [#248](https://github.com/inspec/inspec-azure/pull/248) ([gsreynolds](https://github.com/gsreynolds))
+<!-- latest_release -->
+
 ## [v1.14.2](https://github.com/inspec/inspec-azure/tree/v1.14.2) (2020-04-30)
 
 #### Merged Pull Requests
 - Update README guide to reflect current Azure UI [#241](https://github.com/inspec/inspec-azure/pull/241) ([Schwad](https://github.com/Schwad))
-<!-- latest_release -->
 
 ## [v1.14.1](https://github.com/inspec/inspec-azure/tree/v1.14.1) (2020-04-24)
 
