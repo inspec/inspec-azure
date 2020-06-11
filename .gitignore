@@ -8,3 +8,5 @@ terraform/*.plan
 .envrc
 inspec.lock
 Gemfile.lock
+.bundle
+vendor
