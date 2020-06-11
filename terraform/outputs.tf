@@ -290,3 +290,13 @@ output "consumer_group" {
 output "consumer_groups" {
   value = ["$Default", azurerm_iothub_consumer_group.inspecehtest_consumergroup.name]
 }
+
+output "azurerm_application_gateway_id" {
+  description = "the id for the azurerm_application_gateway resource"
+  value       = azurerm_application_gateway.network.id
+}
+
+output "azurerm_application_gateway_name" {
+  description = "the name for the azurerm_application_gateway resource"
+  value       = azurerm_application_gateway.network.name
+}
