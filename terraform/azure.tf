@@ -858,8 +858,14 @@ locals {
   redirect_configuration_name    = "${azurerm_virtual_network.app-gw.name}-rdrcfg"
 }
 
+resource "random_string" "appgw-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
 resource "azurerm_application_gateway" "network" {
-  name                = "example-appgateway"
+  name                = "${random_string.appgw-random.result}-appgw"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
