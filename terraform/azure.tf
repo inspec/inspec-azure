@@ -915,8 +915,13 @@ resource "azurerm_application_gateway" "network" {
     name                       = local.request_routing_rule_name
     rule_type                  = "Basic"
     http_listener_name         = local.listener_name
-    backend_address_pool_name  = local.backend_address_pool_name
-    backend_http_settings_name = local.http_setting_name
+    redirect_configuration_name = local.redirect_configuration_name
+  }
+
+  redirect_configuration {
+    name = local.redirect_configuration_name
+    target_url = "http://example.com"
+    redirect_type = "Permanent"
   }
 
   ssl_policy {
