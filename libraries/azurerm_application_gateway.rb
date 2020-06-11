@@ -16,7 +16,6 @@ class AzurermApplicationGateway < AzurermSingularResource
     name
     location
     type
-    sku
     properties
   ).freeze
 

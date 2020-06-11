@@ -17,7 +17,6 @@ class AzurermApplicationGateways < AzurermPluralResource
   FilterTable.create
              .register_column(:ids,        field: :id)
              .register_column(:names,      field: :name)
-             .register_column(:skus,       field: :sku)
              .register_column(:locations,  field: :location)
              .register_column(:properties, field: :properties)
              .register_column(:tags,       field: :tag)
