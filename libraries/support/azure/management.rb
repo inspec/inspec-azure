@@ -545,6 +545,22 @@ module Azure
       )
     end
 
+    def application_gateway(resource_group, application_gateway)
+      get(
+        url: link(location: "Microsoft.Network/applicationGateways/#{application_gateway}",
+                  resource_group: resource_group),
+        api_version: '2019-12-01',
+      )
+    end
+
+    def application_gateways(resource_group)
+      get(
+        url: link(location: 'Microsoft.Network/applicationGateways/',
+                  resource_group: resource_group),
+        api_version: '2019-12-01',
+      )
+    end
+
     def network_interface(resource_group, name)
       get(
         url: link(location: "Microsoft.Network/networkInterfaces/#{name}",
