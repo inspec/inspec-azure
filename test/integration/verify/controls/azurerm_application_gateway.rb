@@ -9,5 +9,6 @@ control 'azurerm_application_gateway' do
     its('name')       { should eq application_gateway_name }
     its('location')   { should_not be_nil }
     its('type')       { should eq 'Microsoft.Network/applicationGateways' }
+    its('properties.sslPolicy.policyName') { should eq 'AppGwSslPolicy20170401S' }
   end
 end
