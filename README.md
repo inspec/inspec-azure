@@ -112,13 +112,15 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_ad_users](docs/resources/azurerm_ad_users.md.erb)
 - [azurerm_aks_cluster](docs/resources/azurerm_aks_cluster.md.erb)
 - [azurerm_aks_clusters](docs/resources/azurerm_aks_clusters.md.erb)
+- [azurerm_application_gateway](docs/resources/azurerm_application_gateway.erb)
+- [azurerm_application_gateways](docs/resources/azurerm_application_gateways.erb)
 - [azurerm_cosmosdb_database_account](docs/resources/azurerm_cosmosdb_database_account.md.erb)
 - [azurerm_event_hub_authorization_rule](docs/resources/azurerm_event_hub_authorization_rule.md.erb)
 - [azurerm_event_hub_event_hub](docs/resources/azurerm_event_hub_event_hub.md.erb)
 - [azurerm_event_hub_namespace](docs/resources/azurerm_event_hub_namespace.md.erb)
+- [azurerm_iothub](docs/resources/azurerm_iothub.md.erb)
 - [azurerm_iothub_event_hub_consumer_group](docs/resources/azurerm_iothub_event_hub_consumer_group.md.erb)
 - [azurerm_iothub_event_hub_consumer_groups](docs/resources/azurerm_iothub_event_hub_consumer_groups.md.erb)
-- [azurerm_iothub](docs/resources/azurerm_iothub.md.erb)
 - [azurerm_key_vault](docs/resources/azurerm_key_vault.md.erb)
 - [azurerm_key_vault_key](docs/resources/azurerm_key_vault_key.md.erb)
 - [azurerm_key_vault_keys](docs/resources/azurerm_key_vault_keys.md.erb)
@@ -148,7 +150,7 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_postgresql_databases](docs/resources/azurerm_postgresql_databases.md.erb)
 - [azurerm_postgresql_server](docs/resources/azurerm_postgresql_server.md.erb)
 - [azurerm_postgresql_servers](docs/resources/azurerm_postgresql_servers.md.erb)
-- [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md.erb)
+- [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md)
 - [azurerm_role_definition](docs/resources/azurerm_role_definition.md.erb)
 - [azurerm_role_definitions](docs/resources/azurerm_role_definitions.md.erb)
 - [azurerm_security_center_policies](docs/resources/azurerm_security_center_policies.md.erb)
@@ -387,4 +389,3 @@ To disable optional components run `rake options[]` including only the optional 
 rake options[] # disable all optional components
 rake options[option_1] # enables option_1 disabling all other optional components
 ```
-
