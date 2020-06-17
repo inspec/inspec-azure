@@ -64,7 +64,6 @@ class AzurermVirtualMachines < AzurermPluralResource
   def with_data_disks
     lambda do |vm|
       disks = Array(vm.properties.storageProfile.dataDisks)
-      disks = disks.select { |disk| disk.key?(:managedDisk) }
 
       Azure::Response.create(vm.members << :data_disks, vm.values << disks.collect(&:name))
     end
