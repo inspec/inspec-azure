@@ -114,11 +114,11 @@ Gives a list of OS disk names for all the virtual machines in the resource group
 
 Gives a list of data disks for all the virtual machines in the resource group.
 
-    its('os_disks.sort') { should eq [['MyDisk1'], ['MyDisk2']] }
+    its('data_disks.sort') { should eq [['MyDisk1'], ['MyDisk2']] }
 
 Note that it returns an array of arrays. You may flatten them for testing:
 
-    its('os_disks.flatten.sort') { should eq ['MyDisk1', 'MyDisk2'] }
+    its('data_disks.flatten.sort') { should eq ['MyDisk1', 'MyDisk2'] }
 
 ### vm\_names
 

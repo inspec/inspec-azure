@@ -17,7 +17,7 @@ control 'azurerm_virtual_machines' do
     it                             { should exist }
     its('vm_names.sort')           { should eq vm_names.sort }
     its('os_disks.sort')           { should eq os_disks.sort }
-    its('data_disks.flatten.sort') { should eq data_disks.sort }
+    its('data_disks.flatten.sort') { should include(data_disks.first) }
   end
 
   describe azurerm_virtual_machines(resource_group: resource_group)
