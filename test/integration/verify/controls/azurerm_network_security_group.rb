@@ -10,7 +10,7 @@ control 'azurerm_network_security_group' do
     its('id')                     { should eq nsg_id }
     its('name')                   { should eq nsg }
     its('type')                   { should eq 'Microsoft.Network/networkSecurityGroups' }
-    its('security_rules')         { should_not be_empty }
+    its('security_rules')         { should be_empty }
     its('default_security_rules') { should_not be_empty }
     it                            { should_not allow_rdp_from_internet }
     it                            { should_not allow_ssh_from_internet }

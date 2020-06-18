@@ -52,7 +52,7 @@ Since this is an InSpec resource pack, it only defines InSpec resources. To use 
 #### Create a new profile
 
 ```
-$ inspec init profile my-profile
+$ inspec init profile --platform azure my-profile
 ```
 
 Example inspec.yml:
