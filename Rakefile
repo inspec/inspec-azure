@@ -53,9 +53,9 @@ namespace :syntax do
   desc 'InSpec syntax check'
   task :inspec do
     puts '-> Checking Inspec Control Syntax'
-    stdout, status = Open3.capture2("./bin/inspec vendor #{INTEGRATION_DIR} --overwrite &&
-                                     ./bin/inspec check #{INTEGRATION_DIR} &&
-                                     ./bin/inspec check .")
+    stdout, status = Open3.capture2("bundle exec inspec vendor #{INTEGRATION_DIR} --overwrite &&
+                                     bundle exec inspec check #{INTEGRATION_DIR} &&
+                                     bundle exec inspec check . && rm -rf #{INTEGRATION_DIR}/vendor")
     puts stdout
 
     %w{errors}.each do |type|
