@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.16.0 -->
+<!-- latest_release 1.16.1 -->
+## [v1.16.1](https://github.com/inspec/inspec-azure/tree/v1.16.1) (2020-06-18)
+
+#### Merged Pull Requests
+- Change file extensions from `.md.erb` to `.md` [#252](https://github.com/inspec/inspec-azure/pull/252) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.16.0](https://github.com/inspec/inspec-azure/tree/v1.16.0) (2020-06-12)
 
 #### Merged Pull Requests
 - Add application gateway resources [#250](https://github.com/inspec/inspec-azure/pull/250) ([gsreynolds](https://github.com/gsreynolds))
-<!-- latest_release -->
 
 ## [v1.15.0](https://github.com/inspec/inspec-azure/tree/v1.15.0) (2020-06-04)
 
