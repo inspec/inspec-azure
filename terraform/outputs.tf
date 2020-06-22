@@ -88,6 +88,14 @@ output "managed_data_disks" {
                           var.public_vm_count == 1 ? var.linux_external_data_disk : ""))
 }
 
+output "data_disks" {
+  description = "Virtual Machine data disk names that were created."
+  value = list(
+  azurerm_virtual_machine.vm_linux_internal.storage_data_disk[0].name,
+  azurerm_virtual_machine.vm_windows_internal.storage_data_disk[0].name
+  )
+}
+
 output "unencrypted_disk_name" {
   value = var.windows_internal_os_disk
 }
