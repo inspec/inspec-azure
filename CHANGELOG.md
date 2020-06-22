@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.16.2 -->
+<!-- latest_release 1.16.3 -->
+## [v1.16.3](https://github.com/inspec/inspec-azure/tree/v1.16.3) (2020-06-22)
+
+#### Merged Pull Requests
+- Fix integration tests to reflect the last update [#254](https://github.com/inspec/inspec-azure/pull/254) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.16.2](https://github.com/inspec/inspec-azure/tree/v1.16.2) (2020-06-18)
 
 #### Merged Pull Requests
 - Remove left-over folder created at `rake lint` task [#253](https://github.com/inspec/inspec-azure/pull/253) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.16.1](https://github.com/inspec/inspec-azure/tree/v1.16.1) (2020-06-18)
 
