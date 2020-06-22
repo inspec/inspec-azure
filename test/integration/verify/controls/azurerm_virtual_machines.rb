@@ -1,7 +1,7 @@
 resource_group     = input('resource_group',     value: nil)
 vm_names           = input('vm_names',           value: [])
 os_disks           = input('os_disks',           value: [])
-data_disks         = input('managed_data_disks', value: [])
+data_disks         = input('data_disks', value: [])
 
 windows_vm_names   = vm_names.select { |disk| disk.match(/windows/i) }
 linux_vm_names     = vm_names.select { |disk| disk.match(/linux/i) }
