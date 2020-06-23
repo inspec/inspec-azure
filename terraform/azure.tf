@@ -24,7 +24,7 @@ resource "azurerm_resource_group" "rg" {
   name     = "Inspec-Azure-${terraform.workspace}"
   location = var.location
   tags = {
-    CreatedBy = terraform.workspace
+    CreatedBy  = terraform.workspace
     ExampleTag = "example"
   }
 }
@@ -198,58 +198,58 @@ resource "azurerm_network_security_group" "nsg_insecure" {
 }
 
 resource "azurerm_network_security_rule" "SSHAllow" {
-  name                       = "SSH-Allow"
-  priority                   = 100
-  direction                  = "Inbound"
-  access                     = "Allow"
-  protocol                   = "*"
-  source_port_range          = "*"
-  destination_port_range     = "22"
-  source_address_prefix      = "*"
-  destination_address_prefix = "*"
-  resource_group_name        = azurerm_resource_group.rg.name
+  name                        = "SSH-Allow"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "22"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.nsg_insecure.name
 }
 
 resource "azurerm_network_security_rule" "RDP-Allow" {
-  name                       = "RDP-Allow"
-  priority                   = 105
-  direction                  = "Inbound"
-  access                     = "Allow"
-  protocol                   = "*"
-  source_port_range          = "*"
-  destination_port_range     = "3389"
-  source_address_prefix      = "Internet"
-  destination_address_prefix = "*"
-  resource_group_name        = azurerm_resource_group.rg.name
+  name                        = "RDP-Allow"
+  priority                    = 105
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "3389"
+  source_address_prefix       = "Internet"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.nsg_insecure.name
 }
 
 resource "azurerm_network_security_rule" "DB-Allow" {
-  name                       = "DB-Allow"
-  priority                   = 110
-  direction                  = "Inbound"
-  access                     = "Allow"
-  protocol                   = "*"
-  source_port_range          = "*"
-  destination_port_ranges    = ["1433-1434", "1521", "4300-4350", "5000-6000"]
-  source_address_prefix      = "Internet"
-  destination_address_prefix = "*"
-  resource_group_name        = azurerm_resource_group.rg.name
+  name                        = "DB-Allow"
+  priority                    = 110
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_ranges     = ["1433-1434", "1521", "4300-4350", "5000-6000"]
+  source_address_prefix       = "Internet"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.nsg_insecure.name
 }
 
 resource "azurerm_network_security_rule" "File-Allow" {
-  name                       = "File-Allow"
-  priority                   = 120
-  direction                  = "Inbound"
-  access                     = "Allow"
-  protocol                   = "*"
-  source_port_range          = "*"
-  destination_port_ranges    = ["130-140", "445", "20-21", "69"]
-  source_address_prefix      = "0.0.0.0/0"
-  destination_address_prefix = "*"
-  resource_group_name        = azurerm_resource_group.rg.name
+  name                        = "File-Allow"
+  priority                    = 120
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_ranges     = ["130-140", "445", "20-21", "69"]
+  source_address_prefix       = "0.0.0.0/0"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.nsg_insecure.name
 }
 
@@ -468,11 +468,11 @@ resource "azurerm_monitor_log_profile" "log_profile" {
 # MSI External Access VM
 # Use only when testing MSI access controls
 resource "azurerm_public_ip" "public_ip" {
-  name                         = "Inspec-PublicIP-1"
-  count                        = var.public_vm_count
-  location                     = var.location
-  resource_group_name          = azurerm_resource_group.rg.name
-  allocation_method            = "Dynamic"
+  name                = "Inspec-PublicIP-1"
+  count               = var.public_vm_count
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
 }
 
 resource "azurerm_network_interface" "nic2" {
@@ -630,6 +630,38 @@ resource "azurerm_mysql_firewall_rule" "mysql_firewall_rule" {
   end_ip_address      = "255.255.255.255"
 }
 
+resource "azurerm_mariadb_server" "mariadb_server" {
+  name                = "maridb-svr-${random_string.sql.result}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = "2"
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = "5120"
+    backup_retention_days = "7"
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "iazAdmin"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "10.2"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_mariadb_firewall_rule" "mariadb_firewall_rule" {
+  name                = "mariadb-srv-firewall"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.mariadb_server.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
+}
+
 resource "random_string" "lb-random" {
   length  = 10
   special = false
@@ -742,13 +774,13 @@ resource "azurerm_eventhub_namespace" "event_hub_namespace" {
   kafka_enabled       = true
 }
 
- resource "azurerm_eventhub" "event_hub" {
-     name                = "inspectesteh"
-     namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
-     resource_group_name = azurerm_resource_group.rg.name
-     partition_count     = 2
-     message_retention   = 1
- }
+resource "azurerm_eventhub" "event_hub" {
+  name                = "inspectesteh"
+  namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
+  resource_group_name = azurerm_resource_group.rg.name
+  partition_count     = 2
+  message_retention   = 1
+}
 
 resource "azurerm_eventhub_authorization_rule" "auth_rule_inspectesteh" {
   name                = "inspectesteh_endpoint"
@@ -765,8 +797,8 @@ resource "azurerm_iothub" "iothub" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku {
-    name = "S1"
-    tier = "Standard"
+    name     = "S1"
+    tier     = "Standard"
     capacity = 1
   }
 
@@ -781,13 +813,13 @@ resource "azurerm_iothub" "iothub" {
 
 
   route {
-    name            = "ExampleRoute"
-    source          = "DeviceLifecycleEvents"
-    condition       = "true"
-    endpoint_names  = [
+    name      = "ExampleRoute"
+    source    = "DeviceLifecycleEvents"
+    condition = "true"
+    endpoint_names = [
       "inspectesteh",
     ]
-    enabled         = true
+    enabled = true
   }
 }
 
@@ -904,8 +936,8 @@ resource "azurerm_application_gateway" "network" {
   }
 
   ssl_certificate {
-    name = "inspec.example.com"
-    data = filebase64("app-gw/inspec.example.com.pfx")
+    name     = "inspec.example.com"
+    data     = filebase64("app-gw/inspec.example.com.pfx")
     password = "InSpec1234"
   }
 
@@ -918,15 +950,15 @@ resource "azurerm_application_gateway" "network" {
   }
 
   request_routing_rule {
-    name                       = local.request_routing_rule_name
-    rule_type                  = "Basic"
-    http_listener_name         = local.listener_name
+    name                        = local.request_routing_rule_name
+    rule_type                   = "Basic"
+    http_listener_name          = local.listener_name
     redirect_configuration_name = local.redirect_configuration_name
   }
 
   redirect_configuration {
-    name = local.redirect_configuration_name
-    target_url = "http://example.com"
+    name          = local.redirect_configuration_name
+    target_url    = "http://example.com"
     redirect_type = "Permanent"
   }
 
@@ -934,7 +966,7 @@ resource "azurerm_application_gateway" "network" {
     # https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-policy-overview
     # disabled_protocols   = ["TLSv1_0", "TLSv1_1"]
     # min_protocol_version = "TLSv1_2"
-    policy_name          = "AppGwSslPolicy20170401S"
-    policy_type          = "Predefined"
+    policy_name = "AppGwSslPolicy20170401S"
+    policy_type = "Predefined"
   }
 }
