@@ -158,6 +158,30 @@ module Azure
       )
     end
 
+    def mariadb_server(resource_group, name)
+      get(
+        url: link(location: "Microsoft.DBforMariaDB/servers/#{name}",
+                  resource_group: resource_group),
+        api_version: '2018-06-01-preview',
+      )
+    end
+
+    def mariadb_server_firewall_rules(resource_group, server_name)
+      get(
+        url: link(location: "Microsoft.DBforMariaDB/servers/#{server_name}/firewallRules",
+                  resource_group: resource_group),
+        api_version: '2018-06-01-preview',
+      )
+    end
+
+    def mariadb_servers(resource_group)
+      get(
+        url: link(location: 'Microsoft.DBforMariaDB/servers/',
+                  resource_group: resource_group),
+        api_version: '2018-06-01-preview',
+      )
+    end
+
     def mysql_database(resource_group, server_name, database_name)
       get(
         url: link(location: "Microsoft.DBforMySQL/servers/#{server_name}/databases/#{database_name}",

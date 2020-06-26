@@ -20,7 +20,7 @@ output "vnet_address_space" {
 
 output "vnet_subnets" {
   value = [
-    azurerm_subnet.subnet.name]
+  azurerm_subnet.subnet.name]
 }
 
 output "vnet_dns_servers" {
@@ -78,21 +78,21 @@ output "location" {
 output "os_disks" {
   description = "Virtual Machine OS disk names that were created."
   value = compact(list(var.linux_internal_os_disk,
-                          var.windows_internal_os_disk,
-                          var.public_vm_count == 1 ? var.linux_external_os_disk : ""))
+    var.windows_internal_os_disk,
+  var.public_vm_count == 1 ? var.linux_external_os_disk : ""))
 }
 
 output "managed_data_disks" {
   description = "Virtual Machine OS disk names that were created."
   value = compact(list(var.windows_internal_data_disk,
-                          var.public_vm_count == 1 ? var.linux_external_data_disk : ""))
+  var.public_vm_count == 1 ? var.linux_external_data_disk : ""))
 }
 
 output "data_disks" {
   description = "Virtual Machine data disk names that were created."
   value = list(
-  azurerm_virtual_machine.vm_linux_internal.storage_data_disk[0].name,
-  azurerm_virtual_machine.vm_windows_internal.storage_data_disk[0].name
+    azurerm_virtual_machine.vm_linux_internal.storage_data_disk[0].name,
+    azurerm_virtual_machine.vm_windows_internal.storage_data_disk[0].name
   )
 }
 
@@ -118,9 +118,9 @@ output "unamaged_disk_name" {
 
 output "vm_names" {
   description = "Virtual Machine names that were created."
-  value       = concat(azurerm_virtual_machine.vm_windows_internal.*.name,
-                          azurerm_virtual_machine.vm_linux_internal.*.name,
-                          azurerm_virtual_machine.vm_linux_external.*.name)
+  value = concat(azurerm_virtual_machine.vm_windows_internal.*.name,
+    azurerm_virtual_machine.vm_linux_internal.*.name,
+  azurerm_virtual_machine.vm_linux_external.*.name)
 }
 
 output "windows_vm_name" {
@@ -145,7 +145,7 @@ output "windows_vm_os_disk" {
 
 output "windows_vm_data_disks" {
   value = [
-    var.windows_internal_data_disk]
+  var.windows_internal_data_disk]
 }
 
 output "windows_vm_nic_name" {
@@ -204,9 +204,12 @@ output "storage_account_blob_container" {
   value = azurerm_storage_container.blob.name
 }
 
-
 output "mysql_server_name" {
   value = azurerm_mysql_server.mysql_server.name
+}
+
+output "mariadb_server_name" {
+  value = azurerm_mariadb_server.mariadb_server.name
 }
 
 output "mysql_database_name" {
@@ -216,7 +219,6 @@ output "mysql_database_name" {
 output "lb_name" {
   value = module.azurerm_lb.azurerm_lb_name
 }
-
 
 output "cluster_fqdn" {
   value = azurerm_kubernetes_cluster.cluster.fqdn
