@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.16.3 -->
+<!-- latest_release 1.17.0 -->
+## [v1.17.0](https://github.com/inspec/inspec-azure/tree/v1.17.0) (2020-06-26)
+
+#### Merged Pull Requests
+- Add mariadb server resource [#256](https://github.com/inspec/inspec-azure/pull/256) ([dwizzle204](https://github.com/dwizzle204))
+<!-- latest_release -->
+
 ## [v1.16.3](https://github.com/inspec/inspec-azure/tree/v1.16.3) (2020-06-22)
 
 #### Merged Pull Requests
 - Fix integration tests to reflect the last update [#254](https://github.com/inspec/inspec-azure/pull/254) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.16.2](https://github.com/inspec/inspec-azure/tree/v1.16.2) (2020-06-18)
 
