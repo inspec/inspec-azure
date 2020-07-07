@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.17.0 -->
+<!-- latest_release 1.18.0 -->
+## [v1.18.0](https://github.com/inspec/inspec-azure/tree/v1.18.0) (2020-07-07)
+
+#### Merged Pull Requests
+- Add `tags` property to the azurerm_load_balancer resource [#261](https://github.com/inspec/inspec-azure/pull/261) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.17.0](https://github.com/inspec/inspec-azure/tree/v1.17.0) (2020-06-26)
 
 #### Merged Pull Requests
 - Add mariadb server resource [#256](https://github.com/inspec/inspec-azure/pull/256) ([dwizzle204](https://github.com/dwizzle204))
-<!-- latest_release -->
 
 ## [v1.16.3](https://github.com/inspec/inspec-azure/tree/v1.16.3) (2020-06-22)
 
