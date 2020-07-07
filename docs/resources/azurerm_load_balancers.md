@@ -94,7 +94,6 @@ Filters the results to include only those load balancers which reside in a given
 - `sku`
 - `location`
 - `properties`
-- `tags`
 - `type`
     
 ### ids
@@ -115,9 +114,6 @@ Resource location, e.g. `eastus`.
 
 ### properties
 A collection of additional configuration properties related to the Load Balancer, e.g. `loadBalancingRules`.
-
-### tag
-Resource tags applied to the Load balancer.
 
 ### type
 The type of Resource, typically `Microsoft.Network/loadBalancers`.

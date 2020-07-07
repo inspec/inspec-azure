@@ -18,6 +18,7 @@ class AzurermLoadBalancer < AzurermSingularResource
     type
     sku
     properties
+    tags
   ).freeze
 
   attr_reader(*ATTRS)
