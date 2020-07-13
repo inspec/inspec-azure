@@ -709,6 +709,66 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   }
 }
 
+
+resource "azurerm_storage_account" "hdinsight_storage_account" {
+  name                     = "hdinsightstorageaccount"
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_container" "hdinsight_storage_container" {
+  name = "hdinsightstoragecontainer"
+  storage_account_name  = azurerm_storage_account.hdinsight_storage_account.name
+  container_access_type = "private"
+}
+
+resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
+  name = "hdinsight-cluster"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  cluster_version     = "4.0"
+  tier                = "Standard"
+
+  component_version {
+    interactive_hive = "3.1"
+  }
+
+  gateway {
+    enabled  = true
+    username = "admin"
+    password = "hdinsight_llap"
+  }
+
+  storage_account {
+    storage_container_id = azurerm_storage_container.hdinsight_storage_container.id
+    storage_account_key  = azurerm_storage_account.hdinsight_storage_account.primary_access_key
+    is_default           = true
+  }
+
+  roles {
+    head_node {
+      vm_size               = "STANDARD_D13_V2"
+      username              = "admin"
+      password              = "hdinsight_llap"
+    }
+
+    worker_node {
+      vm_size               = "Standard_D14_V2"
+      username              = "admin"
+      password              = "hdinsight_llap"
+      target_instance_count = 1
+    }
+
+    zookeeper_node {
+      vm_size            = "Standard_A4_V2"
+      username           = "admin"
+      password           = "hdinsight_llap"
+    }
+  }
+}
+
 resource "azurerm_app_service_plan" "app_service_plan" {
   name                = "app-serv-plan-${random_pet.workspace.id}"
   location            = azurerm_resource_group.rg.location
