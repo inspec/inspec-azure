@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.18.1 -->
+<!-- latest_release 1.18.2 -->
+## [v1.18.2](https://github.com/inspec/inspec-azure/tree/v1.18.2) (2020-07-15)
+
+#### Merged Pull Requests
+- Added support for querying HDInsight cluster [#263](https://github.com/inspec/inspec-azure/pull/263) ([tboloo](https://github.com/tboloo))
+<!-- latest_release -->
+
 ## [v1.18.1](https://github.com/inspec/inspec-azure/tree/v1.18.1) (2020-07-14)
 
 #### Merged Pull Requests
 - Remove ruby 2.4 support and add ruby 2.7 support in CI [#264](https://github.com/inspec/inspec-azure/pull/264) ([rmoles](https://github.com/rmoles))
-<!-- latest_release -->
 
 ## [v1.18.0](https://github.com/inspec/inspec-azure/tree/v1.18.0) (2020-07-07)
 
