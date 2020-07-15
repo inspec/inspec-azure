@@ -68,6 +68,14 @@ module Azure
       )
     end
 
+    def hdinsight_cluster(resource_group, cluster_name)
+      get(
+        url: link(location: "Microsoft.HDInsight/clusters/#{cluster_name}",
+                  resource_group: resource_group),
+          api_version: '2015-03-01-preview',
+      )
+    end
+
     def key_vaults(resource_group)
       get(
         url: link(location: 'Microsoft.KeyVault/vaults',
