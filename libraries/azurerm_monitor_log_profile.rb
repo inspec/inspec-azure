@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermMonitorLogProfile < AzurermSingularResource
-  name 'azurerm_monitor_log_profile'
-  desc 'Verifies settings for a Azure Monitor Log Profile'
+  name "azurerm_monitor_log_profile"
+  desc "Verifies settings for a Azure Monitor Log Profile"
   example <<-EXAMPLE
     describe azurerm_monitor_log_profile(name: 'default') do
       it { should exist }
@@ -13,7 +13,7 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     properties
@@ -21,11 +21,11 @@ class AzurermMonitorLogProfile < AzurermSingularResource
     retention_days
     retention_enabled
     storage_account
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
-  def initialize(options = { name: 'default' })
+  def initialize(options = { name: "default" })
     resp = management.log_profile(options[:name])
     return if has_error?(resp)
 

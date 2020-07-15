@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermVirtualMachineDisk < AzurermSingularResource
-  name 'azurerm_virtual_machine_disk'
-  desc 'Verifies settings for Azure Virtual Machine Disks'
+  name "azurerm_virtual_machine_disk"
+  desc "Verifies settings for Azure Virtual Machine Disks"
   example <<-EXAMPLE
     describe azurerm_virtual_machine_disk(resource_group: 'example', name: 'vm-name') do
       it{ should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     managedBy
     sku
     properties
@@ -20,7 +20,7 @@ class AzurermVirtualMachineDisk < AzurermSingularResource
     tags
     id
     name
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

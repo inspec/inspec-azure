@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermHdinsightCluster < AzurermSingularResource
-  name 'azurerm_hdinsight_cluster'
-  desc 'Verifies settings for HDInsight Clusters'
+  name "azurerm_hdinsight_cluster"
+  desc "Verifies settings for HDInsight Clusters"
   example <<-EXAMPLE
     describe azurerm_hdinsight_cluster(resource_group: 'example', name: 'name') do
       its(name) { should eq 'name'}
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     etag
@@ -19,7 +19,7 @@ class AzurermHdinsightCluster < AzurermSingularResource
     location
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

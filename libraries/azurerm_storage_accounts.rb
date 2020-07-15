@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class StorageAccounts < AzurermPluralResource
-  name 'azurerm_storage_accounts'
-  desc 'Fetches all Azure Storage Accounts'
+  name "azurerm_storage_accounts"
+  desc "Fetches all Azure Storage Accounts"
   example <<-EXAMPLE
     describe azurerm_storage_accounts do
       its('names') { should include('default') }
@@ -12,11 +12,11 @@ class StorageAccounts < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:names,    field: 'name')
-             .register_column(:type,     field: 'type')
-             .register_column(:location, field: 'location')
-             .register_column(:tags,     field: 'tags')
-             .install_filter_methods_on_resource(self, :table)
+    .register_column(:names,    field: "name")
+    .register_column(:type,     field: "type")
+    .register_column(:location, field: "location")
+    .register_column(:tags,     field: "tags")
+    .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table
 
@@ -28,6 +28,6 @@ class StorageAccounts < AzurermPluralResource
   end
 
   def to_s
-    'Storage Accounts'
+    "Storage Accounts"
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'support/azure/response'
+require "support/azure/response"
 
 module Azure
   module Service
@@ -14,9 +14,9 @@ module Azure
       end
     end
 
-    EXEMPTED_ATTRIBUTES = %i(
+    EXEMPTED_ATTRIBUTES = %i{
       tags
-    ).freeze
+    }.freeze
     private_constant :EXEMPTED_ATTRIBUTES
 
     def with_cache(cache)
@@ -89,18 +89,18 @@ module Azure
 
       body = cache.fetch(url) if use_cache
 
-      params = { 'api-version' => api_version }.merge(params) if api_version
+      params = { "api-version" => api_version }.merge(params) if api_version
 
       body ||= rest_client.get(url,
                                params: params,
-                               headers: { Accept: 'application/json' }.merge(headers)).body
+                               headers: { Accept: "application/json" }.merge(headers)).body
 
       error_handler&.(body)
 
       if unwrap.respond_to?(:call)
         to_struct(unwrap.call(body, api_version))
       else
-        to_struct(body.fetch('value', body))
+        to_struct(body.fetch("value", body))
       end
     end
 
@@ -109,11 +109,11 @@ module Azure
 
       body = cache.fetch(url) if use_cache
 
-      params = { 'api-version' => api_version }.merge(params) if api_version
+      params = { "api-version" => api_version }.merge(params) if api_version
 
       body ||= rest_client.post(url,
                                 params: params,
-                                headers: { Accept: 'application/json' }.merge(headers),
+                                headers: { Accept: "application/json" }.merge(headers),
                                 body: req_body).body
 
       error_handler&.(body)
@@ -121,7 +121,7 @@ module Azure
       if unwrap.respond_to?(:call)
         to_struct(unwrap.call(body, api_version))
       else
-        to_struct(body.fetch('value', body))
+        to_struct(body.fetch("value", body))
       end
     end
   end

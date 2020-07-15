@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermSecurityCenterPolicy < AzurermSingularResource
-  name 'azurerm_security_center_policy'
-  desc 'Verifies settings for Security Center'
+  name "azurerm_security_center_policy"
+  desc "Verifies settings for Security Center"
   example <<-EXAMPLE
     describe azurerm_security_center_policy(name: 'default') do
       its('log_collection') { should eq('On') }
@@ -41,7 +41,7 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
 
   attr_reader(*ATTRS.keys, *SECURITY_CONTACT_ATTRS.keys)
 
-  def initialize(options = { name: 'default' })
+  def initialize(options = { name: "default" })
     resp = management.security_center_policy(options[:name])
     return if has_error?(resp)
 
@@ -61,7 +61,7 @@ class AzurermSecurityCenterPolicy < AzurermSingularResource
   end
 
   def has_auto_provisioning_enabled?
-    management.scp_auto_provisioning_settings.first.properties.autoProvision == 'On'
+    management.scp_auto_provisioning_settings.first.properties.autoProvision == "On"
   end
 
   def to_s

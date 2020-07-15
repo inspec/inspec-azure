@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermMariaDBServer < AzurermSingularResource
-  name 'azurerm_mariadb_server'
-  desc 'Verifies settings for an Azure MariaDB Server'
+  name "azurerm_mariadb_server"
+  desc "Verifies settings for an Azure MariaDB Server"
   example <<-EXAMPLE
     describe azure_mariadb_server(resource_group: 'rg-1', server_name: 'my-server-name') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     sku
@@ -19,7 +19,7 @@ class AzurermMariaDBServer < AzurermSingularResource
     type
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermCosmoDbDatabaseAccount < AzurermSingularResource
-  name 'azurerm_cosmosdb_database_account'
-  desc 'Verifies settings for CosmosDb Database Account'
+  name "azurerm_cosmosdb_database_account"
+  desc "Verifies settings for CosmosDb Database Account"
   example <<-EXAMPLE
     describe azurerm__cosmosdb_database_account(resource_group: 'example', cosmosdb_database_account: 'my-cosmos-db-account')  do
       its('name') { should eq 'my-cosmos-db-account'}
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     location
@@ -19,7 +19,7 @@ class AzurermCosmoDbDatabaseAccount < AzurermSingularResource
     kind
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

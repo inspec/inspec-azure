@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermAdUser < AzurermSingularResource
-  name 'azurerm_ad_user'
-  desc 'Verifies settings for an Azure Active Directory User'
+  name "azurerm_ad_user"
+  desc "Verifies settings for an Azure Active Directory User"
   example <<-EXAMPLE
     describe azurerm_ad_user(user_id: 'userId') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     objectId
     accountEnabled
     city
@@ -34,7 +34,7 @@ class AzurermAdUser < AzurermSingularResource
     usageLocation
     userPrincipalName
     userType
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
@@ -48,7 +48,7 @@ class AzurermAdUser < AzurermSingularResource
   end
 
   def guest?
-    @userType == 'Guest'
+    @userType == "Guest"
   end
 
   def to_s

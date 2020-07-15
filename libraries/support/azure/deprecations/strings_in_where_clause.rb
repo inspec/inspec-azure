@@ -15,10 +15,10 @@ module Azure
           end
 
           def warn_deprecation(key, value)
-            warn '[DEPRECATION] String detected in where clause. As of version 1.2 ' \
-              'where clauses should use a symbol. Please convert ' \
+            warn "[DEPRECATION] String detected in where clause. As of version 1.2 " \
+              "where clauses should use a symbol. Please convert " \
               "where('#{key}' => '#{value}') to where(#{key}: '#{value}'). " \
-              'Automatic conversion will be removed in version 2.0.'
+              "Automatic conversion will be removed in version 2.0."
           end
         end
       end

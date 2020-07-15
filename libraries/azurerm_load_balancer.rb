@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermLoadBalancer < AzurermSingularResource
-  name 'azurerm_load_balancer'
-  desc 'Verifies settings for an Azure Load Balancer'
+  name "azurerm_load_balancer"
+  desc "Verifies settings for an Azure Load Balancer"
   example <<-EXAMPLE
     describe azurerm_load_balancer(resource_group: 'rg-1', loadbalancer_name: 'lb-1') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     location
@@ -19,7 +19,7 @@ class AzurermLoadBalancer < AzurermSingularResource
     sku
     properties
     tags
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

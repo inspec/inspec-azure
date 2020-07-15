@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermRoleDefinitions < AzurermPluralResource
-  name 'azurerm_role_definitions'
-  desc 'Verifies settings for a collection of Azure Roles'
+  name "azurerm_role_definitions"
+  desc "Verifies settings for a collection of Azure Roles"
   example <<-EXAMPLE
     describe azurerm_role_definitions do
       its('names') { should include('role') }
@@ -12,10 +12,10 @@ class AzurermRoleDefinitions < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:ids, field: :id)
-             .register_column(:names, field: :name)
-             .register_column(:properties, field: :properties)
-             .install_filter_methods_on_resource(self, :table)
+    .register_column(:ids, field: :id)
+    .register_column(:names, field: :name)
+    .register_column(:properties, field: :properties)
+    .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table
 
@@ -27,6 +27,6 @@ class AzurermRoleDefinitions < AzurermPluralResource
   end
 
   def to_s
-    'Role Definition'
+    "Role Definition"
   end
 end

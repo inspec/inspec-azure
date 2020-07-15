@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermVirtualMachine < AzurermSingularResource
-  name 'azurerm_virtual_machine'
-  desc 'Verifies settings for an Azure Virtual Machine'
+  name "azurerm_virtual_machine"
+  desc "Verifies settings for an Azure Virtual Machine"
   example <<-EXAMPLE
     describe azurerm_virtual_machine(resource_group: 'example', name: 'vm-name') do
       it { should have_monitoring_agent_installed }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     location
@@ -20,7 +20,7 @@ class AzurermVirtualMachine < AzurermSingularResource
     tags
     type
     zones
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
@@ -53,7 +53,7 @@ class AzurermVirtualMachine < AzurermSingularResource
 
   def installed_extensions_names
     @installed_extensions_names ||= Array(resources).map do |extension|
-      extension['name']
+      extension["name"]
     end
   end
 
@@ -64,7 +64,7 @@ class AzurermVirtualMachine < AzurermSingularResource
       status = extension.properties.provisioningState
       type   = extension.properties.type
 
-      type == 'MicrosoftMonitoringAgent' && status == 'Succeeded'
+      type == "MicrosoftMonitoringAgent" && status == "Succeeded"
     end
   end
 

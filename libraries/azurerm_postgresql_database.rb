@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermPostgreSQLDatabase < AzurermSingularResource
-  name 'azurerm_postgresql_database'
-  desc 'Verifies settings for an Azure PostgreSQL Database'
+  name "azurerm_postgresql_database"
+  desc "Verifies settings for an Azure PostgreSQL Database"
   example <<-EXAMPLE
     describe azure_postgresql_database(resource_group: 'rg-1', server_name: 'psql-server-1' database_name: 'customer-db') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     type
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

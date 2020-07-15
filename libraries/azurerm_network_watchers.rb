@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermNetworkWatchers < AzurermPluralResource
-  name 'azurerm_network_watchers'
-  desc 'Verifies settings for Network Watchers'
+  name "azurerm_network_watchers"
+  desc "Verifies settings for Network Watchers"
   example <<-EXAMPLE
     azurerm_network_watchers(resource_group: 'example') do
       it{ should exist }
@@ -14,8 +14,8 @@ class AzurermNetworkWatchers < AzurermPluralResource
   attr_reader :table
 
   FilterTable.create
-             .register_column(:names, field: :name)
-             .install_filter_methods_on_resource(self, :table)
+    .register_column(:names, field: :name)
+    .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group = nil)
     resource_group = resource_group[:resource_group] if resource_group.is_a?(Hash)
@@ -28,6 +28,6 @@ class AzurermNetworkWatchers < AzurermPluralResource
   include Azure::Deprecations::StringsInWhereClause
 
   def to_s
-    'Network Watchers'
+    "Network Watchers"
   end
 end

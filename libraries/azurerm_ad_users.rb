@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
-require 'json'
+require "azurerm_resource"
+require "json"
 
 class AzurermAdUsers < AzurermPluralResource
-  name 'azurerm_ad_users'
-  desc 'Verifies settings for a collection of Azure Active Directory Users'
+  name "azurerm_ad_users"
+  desc "Verifies settings for a collection of Azure Active Directory Users"
   example <<-EXAMPLE
     describe azurerm_ad_users do
         it  { should exist }
@@ -15,11 +15,11 @@ class AzurermAdUsers < AzurermPluralResource
   attr_reader :table
 
   FilterTable.create
-             .register_column(:object_ids,     field: :objectId)
-             .register_column(:display_names,  field: :displayName)
-             .register_column(:mails,          field: :mail)
-             .register_column(:user_types,     field: :userType)
-             .install_filter_methods_on_resource(self, :table)
+    .register_column(:object_ids,     field: :objectId)
+    .register_column(:display_names,  field: :displayName)
+    .register_column(:mails,          field: :mail)
+    .register_column(:user_types,     field: :userType)
+    .install_filter_methods_on_resource(self, :table)
 
   def initialize(params = {})
     @params = params
@@ -32,14 +32,14 @@ class AzurermAdUsers < AzurermPluralResource
   include Azure::Deprecations::StringsInWhereClause
 
   def guest_accounts
-    @guest_accounts ||= where(userType: 'Guest').mails
+    @guest_accounts ||= where(userType: "Guest").mails
   end
 
   def to_s
     if @params[:filter]
       "Azure Active Directory Users with filter( #{@params[:filter]} )"
     else
-      'Azure Active Directory Users'
+      "Azure Active Directory Users"
     end
   end
 end

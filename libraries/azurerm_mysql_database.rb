@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermMySqlDatabase < AzurermSingularResource
-  name 'azurerm_mysql_database'
-  desc 'Verifies settings for an Azure MySQL Database'
+  name "azurerm_mysql_database"
+  desc "Verifies settings for an Azure MySQL Database"
   example <<-EXAMPLE
     describe azure_mysql_database(resource_group: 'rg-1', server_name: 'mysql-server-1' database_name: 'customer-db') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     type
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

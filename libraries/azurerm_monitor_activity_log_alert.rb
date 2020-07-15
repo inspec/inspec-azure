@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermMonitorActivityLogAlert < AzurermSingularResource
-  name 'azurerm_monitor_activity_log_alert'
-  desc 'Verifies settings for a Azure Monitor Activity Log Alert'
+  name "azurerm_monitor_activity_log_alert"
+  desc "Verifies settings for a Azure Monitor Activity Log Alert"
   example <<-EXAMPLE
     describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       it { should exist }
@@ -12,13 +12,13 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     conditions
     operations
     scopes
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
@@ -50,6 +50,6 @@ class AzurermMonitorActivityLogAlert < AzurermSingularResource
   # @param [Hash] 'allOf' conditions from response properties
   # @return [Array] of operation strings
   def collect_operations(conditions)
-    conditions.find_all { |x| x.field == 'operationName' }.collect(&:equals)
+    conditions.find_all { |x| x.field == "operationName" }.collect(&:equals)
   end
 end

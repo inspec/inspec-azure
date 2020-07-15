@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
-require 'date'
+require "azurerm_resource"
+require "date"
 
 class AzurermStorageAccount < AzurermSingularResource
-  name 'azurerm_storage_account'
-  desc 'Verifies settings for a Azure Storage Account'
+  name "azurerm_storage_account"
+  desc "Verifies settings for a Azure Storage Account"
   example <<-EXAMPLE
     describe azurerm_storage_account(resource_group: resource_name, name: 'default') do
       it { should exist }
@@ -13,15 +13,15 @@ class AzurermStorageAccount < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
-  def initialize(name: 'default', resource_group: nil)
+  def initialize(name: "default", resource_group: nil)
     storage_account = management.storage_account(resource_group, name)
     return if has_error?(storage_account)
 
@@ -32,7 +32,7 @@ class AzurermStorageAccount < AzurermSingularResource
 
   def has_recently_generated_access_key?
     now = Time.now
-    ninety_days_ago = ((60*60)*(24*90))
+    ninety_days_ago = ((60 * 60) * (24 * 90))
     upper_bound = to_utc(now)
     lower_bound = to_utc(now - ninety_days_ago)
 

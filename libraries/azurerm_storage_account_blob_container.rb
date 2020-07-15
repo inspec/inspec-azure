@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermStorageAccountBlobContainer < AzurermSingularResource
-  name 'azurerm_storage_account_blob_container'
-  desc 'Verifies settings for a Azure Storage Account Blob Container'
+  name "azurerm_storage_account_blob_container"
+  desc "Verifies settings for a Azure Storage Account Blob Container"
   example <<-EXAMPLE
     describe azurerm_storage_account_blob_container(resource_group: 'rg',
                                                     storage_account_name: 'default',
@@ -14,13 +14,13 @@ class AzurermStorageAccountBlobContainer < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     etag
     properties
     type
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

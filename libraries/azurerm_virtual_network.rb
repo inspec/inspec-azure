@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermVirtualNetwork < AzurermSingularResource
-  name 'azurerm_virtual_network'
-  desc 'Verifies settings for an Azure Virtual Network'
+  name "azurerm_virtual_network"
+  desc "Verifies settings for an Azure Virtual Network"
   example <<-EXAMPLE
     describe azurerm_virtual_network(resource_group: 'example', name: 'vnet-name') do
       it { should have_monitoring_agent_installed }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     location
     type
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

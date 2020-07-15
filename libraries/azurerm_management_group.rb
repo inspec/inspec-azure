@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermManagementGroup < AzurermSingularResource
-  name 'azurerm_management_group'
-  desc 'Verifies settings for an Azure Management Group'
+  name "azurerm_management_group"
+  desc "Verifies settings for an Azure Management Group"
   example <<-EXAMPLE
     describe azurerm_management_group(group_id: 'example-group') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = [
-    :id,
-    :type,
-    :name,
-    :parent,
-  ].freeze
+  ATTRS = %i{
+    id
+    type
+    name
+    parent
+  }.freeze
 
   PROPERTY_ATTRS = {
     children:     :children,

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermVirtualNetworkss < AzurermPluralResource
-  name 'azurerm_virtual_networks'
-  desc 'Verifies settings for Azure Virtual Networks'
+  name "azurerm_virtual_networks"
+  desc "Verifies settings for Azure Virtual Networks"
   example <<-EXAMPLE
     azurerm_virtual_networks(resource_group: 'example') do
       it{ should exist }
@@ -12,8 +12,8 @@ class AzurermVirtualNetworkss < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:names, field: :name)
-             .install_filter_methods_on_resource(self, :table)
+    .register_column(:names, field: :name)
+    .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table
 
@@ -27,6 +27,6 @@ class AzurermVirtualNetworkss < AzurermPluralResource
   include Azure::Deprecations::StringsInWhereClause
 
   def to_s
-    'Azure Virtual Networks'
+    "Azure Virtual Networks"
   end
 end

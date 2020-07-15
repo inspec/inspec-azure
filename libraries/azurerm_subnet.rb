@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermSubnet < AzurermSingularResource
-  name 'azurerm_subnet'
-  desc 'Verifies settings for an Azure Virtual Network Subnet'
+  name "azurerm_subnet"
+  desc "Verifies settings for an Azure Virtual Network Subnet"
   example <<-EXAMPLE
     describe azurerm_subnet(resource_group: 'example',vnet: 'virtual-network-name' name: 'subnet-name') do
       it { should exist }
@@ -12,12 +12,12 @@ class AzurermSubnet < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     type
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
@@ -30,11 +30,12 @@ class AzurermSubnet < AzurermSingularResource
   end
 
   def address_prefix
-    properties['addressPrefix']
+    properties["addressPrefix"]
   end
 
   def nsg
     return nil unless properties.respond_to?(:networkSecurityGroup)
+
     @nsg ||= id_to_h(properties.networkSecurityGroup.id)[:network_security_groups]
   end
 

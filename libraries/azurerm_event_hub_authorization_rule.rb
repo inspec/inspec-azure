@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermEventHubAuthorizationRule < AzurermSingularResource
-  name 'azurerm_event_hub_authorization_rule'
-  desc 'Verifies settings for Event Hub Authorization Rule'
+  name "azurerm_event_hub_authorization_rule"
+  desc "Verifies settings for Event Hub Authorization Rule"
   example <<-EXAMPLE
     describe azurerm_event_hub_authorization_rule(resource_group: 'example', namespace_name: 'namespace-ns', event_hub_endpoint: 'eventhub', authorization_rule_name: 'auth-rule'") do
       its(name) { should eq 'name'}
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     type
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

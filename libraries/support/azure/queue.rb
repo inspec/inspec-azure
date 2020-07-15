@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'ostruct'
-require 'json'
-require 'active_support/core_ext/hash'
+require "ostruct"
+require "json"
+require "active_support/core_ext/hash"
 
 module Azure
   class Queue
@@ -10,17 +10,17 @@ module Azure
 
     def initialize(queue_name, backend)
       @required_attrs = []
-      @page_link_name = 'nextMarker'
+      @page_link_name = "nextMarker"
       @rest_client    = Azure::Rest.new(client(queue_name, backend))
     end
 
     def queues
       catch_404 do
         get(
-          url: '?comp=list',
-          headers: { 'x-ms-version' => '2017-11-09' },
+          url: "?comp=list",
+          headers: { "x-ms-version" => "2017-11-09" },
           api_version: nil,
-          unwrap: from_xml,
+          unwrap: from_xml
         )
       end
     end
@@ -28,10 +28,10 @@ module Azure
     def queue_properties
       catch_404 do
         get(
-          url: '/?restype=service&comp=properties',
-          headers: { 'x-ms-version' => '2017-11-09' },
+          url: "/?restype=service&comp=properties",
+          headers: { "x-ms-version" => "2017-11-09" },
           api_version: nil,
-          unwrap: from_xml,
+          unwrap: from_xml
         ).storage_service_properties
       end
     end
@@ -45,13 +45,13 @@ module Azure
         {
           base_url: "https://#{queue}.queue.core.windows.net",
           credentials: auth_token(backend),
-        },
+        }
       )
     end
 
     def auth_token(backend)
       begin
-        credentials = backend.instance_variable_get('@credentials')
+        credentials = backend.instance_variable_get("@credentials")
         tenant = credentials[:tenant_id]
         client = credentials[:client_id]
         secret = credentials[:client_secret]
@@ -60,8 +60,8 @@ module Azure
       end
 
       settings = MsRestAzure::ActiveDirectoryServiceSettings.get_azure_settings
-      settings.authentication_endpoint = 'https://login.microsoftonline.com/'
-      settings.token_audience = 'https://storage.azure.com/'
+      settings.authentication_endpoint = "https://login.microsoftonline.com/"
+      settings.token_audience = "https://storage.azure.com/"
 
       ::MsRest::TokenCredentials.new(::MsRestAzure::ApplicationTokenProvider.new(tenant, client, secret, settings))
     end

@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermIotHubEventHubConsumerGroup < AzurermSingularResource
-  name 'azurerm_iothub_event_hub_consumer_group'
-  desc 'Verifies settings for Iot Hub Event HUb Consumer Group'
+  name "azurerm_iothub_event_hub_consumer_group"
+  desc "Verifies settings for Iot Hub Event HUb Consumer Group"
   example <<-EXAMPLE
     describe azurerm_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name 'my-iot-hub', event_hub_endpoint: 'myeventhub', consumer_group: 'my-consumer-group') do
       its(name) { should eq 'name'}
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     type
     properties
     etag
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermRoleDefinition < AzurermSingularResource
-  name 'azurerm_role_definition'
-  desc 'Verifies settings for an Azure Role'
+  name "azurerm_role_definition"
+  desc "Verifies settings for an Azure Role"
   example <<-EXAMPLE
     describe azurerm_role_definition(name: 'Mail-Account') do
       it                { should exist }
@@ -25,9 +25,9 @@ class AzurermRoleDefinition < AzurermSingularResource
     @role_name    = resp.properties.roleName
     @type         = resp.type
     @role_type    = resp.properties.type
-    @assignable_scopes        = resp.properties.assignableScopes
-    @permissions_allowed      = resp.properties.permissions.map(&:actions).flatten!
-    @permissions_not_allowed  = resp.properties.permissions.map(&:notActions).flatten!
+    @assignable_scopes = resp.properties.assignableScopes
+    @permissions_allowed = resp.properties.permissions.map(&:actions).flatten!
+    @permissions_not_allowed = resp.properties.permissions.map(&:notActions).flatten!
   end
 
   def to_s

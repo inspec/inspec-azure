@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermNetworkInterface < AzurermSingularResource
-  name 'azurerm_network_interface'
-  desc 'Verifies settings for an Azure Network Interface'
+  name "azurerm_network_interface"
+  desc "Verifies settings for an Azure Network Interface"
   example <<-EXAMPLE
     describe azure_network_interface(resource_group: 'rg-1', name: 'my-nic-name') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     location
     type
     properties
     tags
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

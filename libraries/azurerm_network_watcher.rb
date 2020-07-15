@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermNetworkWatcher < AzurermSingularResource
-  name 'azurerm_network_watcher'
-  desc 'Verifies settings for Network Watchers'
+  name "azurerm_network_watcher"
+  desc "Verifies settings for Network Watchers"
   example <<-EXAMPLE
     describe azurerm_network_watcher(resource_group: 'example', name: 'name') do
       its(name) { should eq 'name'}
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     etag
@@ -19,7 +19,7 @@ class AzurermNetworkWatcher < AzurermSingularResource
     location
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
   attr_accessor(:nsg)
@@ -40,6 +40,7 @@ class AzurermNetworkWatcher < AzurermSingularResource
 
   def flow_logs
     return nil if @nsg.nil?
+
     @flow_logs ||= management.network_watcher_flow_log_status(@resource_group, name, nsg)
   end
 

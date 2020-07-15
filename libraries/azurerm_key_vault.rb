@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermKeyVault < AzurermSingularResource
-  name 'azurerm_key_vault'
-  desc 'Verifies settings and configuration for an Azure Key Vault'
+  name "azurerm_key_vault"
+  desc "Verifies settings and configuration for an Azure Key Vault"
   example <<-EXAMPLE
     describe azurerm_key_vault(resource_group: 'rg-1', vault_name: 'vault-1') do
       it            { should exist }
@@ -12,14 +12,14 @@ class AzurermKeyVault < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     location
     type
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

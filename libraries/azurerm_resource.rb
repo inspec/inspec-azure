@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'support/azure'
-require 'active_support/core_ext/string/inflections'
+require "support/azure"
+require "active_support/core_ext/string/inflections"
 
 class AzurermResource < Inspec.resource(1)
-  name 'azurerm_resource'
-  desc 'Base class for azurerm resources.'
-  supports platform: 'azure'
+  name "azurerm_resource"
+  desc "Base class for azurerm resources."
+  supports platform: "azure"
 
   def management
     Azure::Management.instance.with_backend(inspec.backend)
@@ -50,18 +50,19 @@ class AzurermResource < Inspec.resource(1)
   # "/subscriptions/xxx/resourceGroups/my-rg/providers/Microsoft.Compute/disks/my-disk"
   # becomes {:subscriptions => 'xxx', :resource_groups => 'my-rg', :providers => 'Microsoft.Compute', :disks => 'my-disk'}
   def id_to_h(azure_id)
-    raise ArgumentError, "`#{azure_id}` is not a valid Azure ID." unless !azure_id.nil? && azure_id.start_with?('/subscriptions')
+    raise ArgumentError, "`#{azure_id}` is not a valid Azure ID." unless !azure_id.nil? && azure_id.start_with?("/subscriptions")
 
     begin
-      split = azure_id.split('/').reject!(&:empty?)
+      split = azure_id.split("/").reject!(&:empty?)
       raise unless !split.empty? && split.length.even?
+
       hash = {}
 
       i = 0
       counter = 0
-      while counter < split.length/2
+      while counter < split.length / 2
         k = split[i].underscore.to_sym
-        v = split[i+1]
+        v = split[i + 1]
         hash[k] = v
         i += 2
         counter += 1

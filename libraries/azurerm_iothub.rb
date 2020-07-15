@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermIotHub < AzurermSingularResource
-  name 'azurerm_iothub'
-  desc 'Verifies settings for Iot Hub'
+  name "azurerm_iothub"
+  desc "Verifies settings for Iot Hub"
   example <<-EXAMPLE
     describe azurerm_iothub(resource_group: 'example', resource_name: 'my-iot-hub') do
       its(name) { should eq 'name'}
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     id
     type
@@ -20,7 +20,7 @@ class AzurermIotHub < AzurermSingularResource
     tags
     etag
     sku
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

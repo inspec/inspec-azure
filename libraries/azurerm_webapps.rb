@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermWebapps < AzurermPluralResource
-  name 'azurerm_webapps'
-  desc 'Verifies settings for Webapps'
+  name "azurerm_webapps"
+  desc "Verifies settings for Webapps"
   example <<-EXAMPLE
     azurerm_webapps(resource_group: 'example') do
       it{ should exist }
@@ -12,9 +12,9 @@ class AzurermWebapps < AzurermPluralResource
   EXAMPLE
 
   FilterTable.create
-             .register_column(:names, field: 'name')
-             .register_column(:properties, field: 'properties')
-             .install_filter_methods_on_resource(self, :table)
+    .register_column(:names, field: "name")
+    .register_column(:properties, field: "properties")
+    .install_filter_methods_on_resource(self, :table)
 
   attr_reader :table
 
@@ -26,6 +26,6 @@ class AzurermWebapps < AzurermPluralResource
   end
 
   def to_s
-    'Webapps'
+    "Webapps"
   end
 end

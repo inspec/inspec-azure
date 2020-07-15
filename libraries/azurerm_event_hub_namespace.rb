@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermEventHubNamespace < AzurermSingularResource
-  name 'azurerm_event_hub_namespace'
-  desc 'Verifies settings for Event Hub Namespace'
+  name "azurerm_event_hub_namespace"
+  desc "Verifies settings for Event Hub Namespace"
   example <<-EXAMPLE
     describe azurerm_event_hub_namespace(resource_group: 'example', namespace_name: 'namespace-ns') do
       its(name) { should eq 'name'}
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     name
     sku
     id
@@ -19,7 +19,7 @@ class AzurermEventHubNamespace < AzurermSingularResource
     location
     properties
     tags
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

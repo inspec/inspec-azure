@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'faraday_middleware'
+require "faraday"
+require "faraday_middleware"
 
 module Azure
   class Rest
-    USER_AGENT        = 'User-Agent'
-    INSPEC_USER_AGENT = 'pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'
+    USER_AGENT        = "User-Agent"
+    INSPEC_USER_AGENT = "pid-18d63047-6cdf-4f34-beed-62f01fc73fc2"
 
     attr_reader :host, :resource, :credentials
 
     def initialize(client)
       @host        = client.base_url
       @resource    = client.base_url.to_s
-      @resource    += '/' unless @resource.end_with?('/')
+      @resource += "/" unless @resource.end_with?("/")
       @credentials = client.credentials
     end
 
@@ -50,7 +50,7 @@ module Azure
                       interval:            0.05,
                       interval_randomness: 0.5,
                       backoff_factor:      2,
-                      exceptions:          ['Timeout::Error']
+                      exceptions:          ["Timeout::Error"]
         conn.response :json, content_type: /\bjson$/
         conn.adapter  Faraday.default_adapter
       end

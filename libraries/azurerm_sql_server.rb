@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermSqlServer < AzurermSingularResource
-  name 'azurerm_sql_server'
-  desc 'Verifies settings for an Azure SQL Server'
+  name "azurerm_sql_server"
+  desc "Verifies settings for an Azure SQL Server"
   example <<-EXAMPLE
     describe azure_sql_server(resource_group: 'rg-1', server_name: 'my-server-name') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     kind
@@ -19,7 +19,7 @@ class AzurermSqlServer < AzurermSingularResource
     type
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

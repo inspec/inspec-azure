@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermSqlDatabase < AzurermSingularResource
-  name 'azurerm_sql_database'
-  desc 'Verifies settings for an Azure SQL Database'
+  name "azurerm_sql_database"
+  desc "Verifies settings for an Azure SQL Database"
   example <<-EXAMPLE
     describe azure_sql_database(resource_group: 'rg-1', server_name: 'sql-server-1' database_name: 'customer-db') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     kind
@@ -19,7 +19,7 @@ class AzurermSqlDatabase < AzurermSingularResource
     type
     sku
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

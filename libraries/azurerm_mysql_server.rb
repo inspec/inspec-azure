@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermMySqlServer < AzurermSingularResource
-  name 'azurerm_mysql_server'
-  desc 'Verifies settings for an Azure My SQL Server'
+  name "azurerm_mysql_server"
+  desc "Verifies settings for an Azure My SQL Server"
   example <<-EXAMPLE
     describe azure_mysql_server(resource_group: 'rg-1', server_name: 'my-server-name') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     sku
@@ -19,7 +19,7 @@ class AzurermMySqlServer < AzurermSingularResource
     type
     tags
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

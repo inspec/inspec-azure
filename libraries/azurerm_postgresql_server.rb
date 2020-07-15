@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
-require 'ostruct'
+require "azurerm_resource"
+require "ostruct"
 
 class AzurermPostgreSQLServer < AzurermSingularResource
-  name 'azurerm_postgresql_server'
-  desc 'Verifies settings for an Azure PostgreSQL Server'
+  name "azurerm_postgresql_server"
+  desc "Verifies settings for an Azure PostgreSQL Server"
   example <<-EXAMPLE
     describe azure_postgresql_server(resource_group: 'rg-1', server_name: 'psql-srv') do
       it { should exist }
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
     location
     sku
     type
     properties
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
@@ -39,7 +39,7 @@ class AzurermPostgreSQLServer < AzurermSingularResource
     @configurations ||= OpenStruct.new(
       management.postgresql_server_configurations(@resource_group, @server_name)
                 .map { |c| [c.name, c] }
-                .to_h,
+                .to_h
     )
   end
 

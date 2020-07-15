@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermKeyVaultKey < AzurermSingularResource
-  name 'azurerm_key_vault_key'
-  desc 'Verifies configuration for an Azure Key within a Vault'
+  name "azurerm_key_vault_key"
+  desc "Verifies configuration for an Azure Key within a Vault"
   example <<-EXAMPLE
     describe azurerm_key_vault_key('vault-101', 'key') do
       it                        { should exist }
@@ -12,12 +12,12 @@ class AzurermKeyVaultKey < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     attributes
     key
     managed
     tags
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 
@@ -41,7 +41,7 @@ class AzurermKeyVaultKey < AzurermSingularResource
 
   private
 
-  VALID_VERSION_REGEX = Regexp.new('^([0-9a-f]{32})$')
+  VALID_VERSION_REGEX = Regexp.new("^([0-9a-f]{32})$")
 
   def valid_version?(version)
     version.downcase.scan(VALID_VERSION_REGEX).any?
@@ -49,7 +49,7 @@ class AzurermKeyVaultKey < AzurermSingularResource
 
   def key_version(vault_name, key_name)
     vault(vault_name).key_versions(key_name)
-                     .max_by { |obj| obj.attributes.created }
-                     .kid.partition("/keys/#{key_name}/").last
+      .max_by { |obj| obj.attributes.created }
+      .kid.partition("/keys/#{key_name}/").last
   end
 end

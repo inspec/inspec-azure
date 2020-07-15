@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'azurerm_resource'
+require "azurerm_resource"
 
 class AzurermSubscription < AzurermSingularResource
-  name 'azurerm_subscription'
-  desc 'Verifies settings for the current Azure Subscription'
+  name "azurerm_subscription"
+  desc "Verifies settings for the current Azure Subscription"
   example <<-EXAMPLE
     describe azurerm_subscription do
       its('name') { should eq 'subscription-name' }
@@ -12,10 +12,10 @@ class AzurermSubscription < AzurermSingularResource
     end
   EXAMPLE
 
-  ATTRS = %i(
+  ATTRS = %i{
     id
     name
-  ).freeze
+  }.freeze
 
   attr_reader(*ATTRS)
 

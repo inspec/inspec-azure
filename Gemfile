@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'faraday',             '~> 0.15.0'
-gem 'faraday_middleware',  '~> 0.12.2'
-gem 'inspec-bin',          '>= 4.18.0'
-gem 'rake',                '~> 12.3', '>= 12.3.1'
+gem "faraday",             "~> 0.15.0"
+gem "faraday_middleware",  "~> 0.12.2"
+gem "inspec-bin",          ">= 4.18.0"
+gem "rake",                "~> 12.3", ">= 12.3.1"
 
 group :development do
-  gem 'pry', '~> 0.11.3'
-  gem 'pry-byebug'
+  gem "pry", "~> 0.11.3"
+  gem "pry-byebug"
 end
 
 group :developmen, :test do
-  gem 'minitest', '~> 5.11.0'
-  gem 'rubocop',  '~> 0.71.0'
+  gem "minitest",  "~> 5.11.0"
+  gem "chefstyle", "= 1.2.0"
 end

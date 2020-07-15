@@ -1,15 +1,15 @@
-require 'inspec/resource'
+require "inspec/resource"
 
-require_relative '../test_helper'
-require_relative '../../../libraries/azurerm_resource'
-require_relative '../../../libraries/azurerm_subscription'
+require_relative "../test_helper"
+require_relative "../../../libraries/azurerm_resource"
+require_relative "../../../libraries/azurerm_subscription"
 
 class AzurermResourceTest < Minitest::Test
   def setup
     @resource = AzurermResource.new
-    @resource.instance_variable_set('@__resource_name__', 'azurerm_resource')
-    @sub = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxx'
-    @resource_group = 'my-rg'
+    @resource.instance_variable_set("@__resource_name__", "azurerm_resource")
+    @sub = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxx"
+    @resource_group = "my-rg"
   end
 
   def test_valid_conversion
@@ -20,8 +20,8 @@ class AzurermResourceTest < Minitest::Test
     assert_equal(result.class.name,        Hash.name)
     assert_equal(result[:subscriptions],   @sub)
     assert_equal(result[:resource_groups], @resource_group)
-    assert_equal(result[:providers],       'Microsoft.Compute')
-    assert_equal(result[:disks],           'data-disk')
+    assert_equal(result[:providers],       "Microsoft.Compute")
+    assert_equal(result[:disks],           "data-disk")
   end
 
   def test_id_not_set
@@ -32,7 +32,7 @@ class AzurermResourceTest < Minitest::Test
 
   def test_id_invalid
     assert_raises ArgumentError do
-      @resource.send(:id_to_h, 'not a valid ID')
+      @resource.send(:id_to_h, "not a valid ID")
     end
   end
 
