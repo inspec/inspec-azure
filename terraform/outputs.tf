@@ -310,3 +310,8 @@ output "application_gateway_name" {
   description = "the name for the azurerm_application_gateway resource"
   value       = azurerm_application_gateway.network.name
 }
+
+output "hdinsight_cluster_name" {
+  description = "HDINSIGHT cluster name."
+  value       = azurerm_hdinsight_interactive_query_cluster.hdinsight_cluster.name
+}
