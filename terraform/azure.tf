@@ -711,7 +711,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 
 
 resource "azurerm_storage_account" "hdinsight_storage_account" {
-  name                     = "hdinsightstorageaccount"
+  name                     = "hdinsight${random_string.storage_account.result}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
@@ -719,13 +719,13 @@ resource "azurerm_storage_account" "hdinsight_storage_account" {
 }
 
 resource "azurerm_storage_container" "hdinsight_storage_container" {
-  name = "hdinsightstoragecontainer"
+  name = "hdinsight${random_string.storage_account.result}"
   storage_account_name  = azurerm_storage_account.hdinsight_storage_account.name
   container_access_type = "private"
 }
 
 resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
-  name = "hdinsight-cluster"
+  name = "hdinsight6fbw66f8ch"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   cluster_version     = "4.0"
@@ -737,8 +737,8 @@ resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
 
   gateway {
     enabled  = true
-    username = "admin"
-    password = "hdinsight_llap"
+    username = "inspec_test_user"
+    password = "F8Sr'{DN"
   }
 
   storage_account {
@@ -750,21 +750,21 @@ resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
   roles {
     head_node {
       vm_size               = "STANDARD_D13_V2"
-      username              = "admin"
-      password              = "hdinsight_llap"
+      username              = "inspec_test_user_head"
+      password              = "r<u@8Kj#"
     }
 
     worker_node {
       vm_size               = "Standard_D14_V2"
-      username              = "admin"
-      password              = "hdinsight_llap"
+      username              = "inspec_test_user_worker"
+      password              = "ny'$YW5y"
       target_instance_count = 1
     }
 
     zookeeper_node {
       vm_size            = "Standard_A4_V2"
-      username           = "admin"
-      password           = "hdinsight_llap"
+      username           = "inspec_test_user_zookeeper"
+      password           = "Nv$h9g<d"
     }
   }
 }
