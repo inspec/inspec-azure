@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.18.3 -->
+<!-- latest_release 1.18.4 -->
+## [v1.18.4](https://github.com/inspec/inspec-azure/tree/v1.18.4) (2020-07-17)
+
+#### Merged Pull Requests
+- Fix hdinsight control [#269](https://github.com/inspec/inspec-azure/pull/269) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.18.3](https://github.com/inspec/inspec-azure/tree/v1.18.3) (2020-07-17)
 
 #### Merged Pull Requests
 - Fix hdinsight parameters in terraform file [#268](https://github.com/inspec/inspec-azure/pull/268) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.18.2](https://github.com/inspec/inspec-azure/tree/v1.18.2) (2020-07-15)
 
