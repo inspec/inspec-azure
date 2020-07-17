@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.18.2 -->
+<!-- latest_release 1.18.3 -->
+## [v1.18.3](https://github.com/inspec/inspec-azure/tree/v1.18.3) (2020-07-17)
+
+#### Merged Pull Requests
+- Fix hdinsight parameters in terraform file [#268](https://github.com/inspec/inspec-azure/pull/268) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.18.2](https://github.com/inspec/inspec-azure/tree/v1.18.2) (2020-07-15)
 
 #### Merged Pull Requests
 - Added support for querying HDInsight cluster [#263](https://github.com/inspec/inspec-azure/pull/263) ([tboloo](https://github.com/tboloo))
-<!-- latest_release -->
 
 ## [v1.18.1](https://github.com/inspec/inspec-azure/tree/v1.18.1) (2020-07-14)
 
