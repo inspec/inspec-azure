@@ -94,3 +94,8 @@ variable "lb_port" {
     http-test = ["990", "Tcp", "990", "SourceIPProtocol"]
   }
 }
+
+variable "hd_insight_count" {
+  # This is added due to resource constraints.
+  default = 0
+}
