@@ -313,5 +313,5 @@ output "application_gateway_name" {
 
 output "hdinsight_cluster_name" {
   description = "HDINSIGHT cluster name."
-  value       = azurerm_hdinsight_interactive_query_cluster.hdinsight_cluster.name
+  value = var.hd_insight_count > 0 ? azurerm_hdinsight_interactive_query_cluster.hdinsight_cluster.0.name : ""
 }

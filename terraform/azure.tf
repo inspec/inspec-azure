@@ -711,6 +711,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 
 
 resource "azurerm_storage_account" "hdinsight_storage_account" {
+  count                    = var.hd_insight_count
   name                     = "hdinsight${random_string.storage_account.result}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
@@ -719,13 +720,15 @@ resource "azurerm_storage_account" "hdinsight_storage_account" {
 }
 
 resource "azurerm_storage_container" "hdinsight_storage_container" {
-  name = "hdinsight${random_string.storage_account.result}"
-  storage_account_name  = azurerm_storage_account.hdinsight_storage_account.name
+  count                 = var.hd_insight_count
+  name                  = "hdinsight${random_string.storage_account.result}"
+  storage_account_name  = azurerm_storage_account.hdinsight_storage_account[0].name
   container_access_type = "private"
 }
 
 resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
-  name = "hdinsight6fbw66f8ch"
+  count               = var.hd_insight_count
+  name                = "hdinsight6fbw66f8ch"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   cluster_version     = "4.0"
@@ -742,8 +745,8 @@ resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
   }
 
   storage_account {
-    storage_container_id = azurerm_storage_container.hdinsight_storage_container.id
-    storage_account_key  = azurerm_storage_account.hdinsight_storage_account.primary_access_key
+    storage_container_id = azurerm_storage_container.hdinsight_storage_container[0].id
+    storage_account_key  = azurerm_storage_account.hdinsight_storage_account[0].primary_access_key
     is_default           = true
   }
 

@@ -2,6 +2,7 @@ resource_group = input('resource_group', value: nil)
 cluster_name = input('hdinsight_cluster_name', value: nil)
 
 control 'azurerm_hdinsight_cluster' do
+  only_if { ENV['HDINSIGHT'] }
   describe azurerm_hdinsight_cluster(resource_group: resource_group, name: cluster_name) do
     it                                                       { should exist }
     its('name')                                              { should cmp cluster_name }
