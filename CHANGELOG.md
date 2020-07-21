@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.18.4 -->
+<!-- latest_release 1.18.5 -->
+## [v1.18.5](https://github.com/inspec/inspec-azure/tree/v1.18.5) (2020-07-21)
+
+#### Merged Pull Requests
+- Make HDINSIGHT integration tests optional due to resource constraint [#271](https://github.com/inspec/inspec-azure/pull/271) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.18.4](https://github.com/inspec/inspec-azure/tree/v1.18.4) (2020-07-17)
 
 #### Merged Pull Requests
 - Fix hdinsight control [#269](https://github.com/inspec/inspec-azure/pull/269) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.18.3](https://github.com/inspec/inspec-azure/tree/v1.18.3) (2020-07-17)
 
