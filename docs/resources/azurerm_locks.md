@@ -1,14 +1,19 @@
----
-title: About the azurerm_locks Resource
-platform: azure
----
++++
+title = "azurerm_locks resource"
+draft = false
+platform = "azure"
 
-# azurerm\_locks
+[menu]
+  [menu.inspec]
+    title = "azurerm_locks"
+    identifier = "inspec/resources/azure/azurerm_locks.md azurerm_locks resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_locks.md)
 
 Use the `azurerm_locks` InSpec audit resource to test properties of
 some or all Azure Resource Locks.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -47,8 +52,6 @@ An `azurerm_locks` resource block returns all Locks on a given Resource.
       ...
     end
 
-<br />
-
 ## Examples
 
 The following examples show how to use this InSpec audit resource.
@@ -61,14 +64,14 @@ The following examples show how to use this InSpec audit resource.
 
 ## Filter Criteria
 
-* `ids`
-* `names`
-* `properties`
+- `ids`
+- `names`
+- `properties`
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

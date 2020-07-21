@@ -1,15 +1,20 @@
----
-title: About the azurerm_virtual_machine_disk Resource
-platform: azure
----
++++
+title = "azurerm_virtual_machine_disk resource"
+draft = false
+platform = "azure"
 
-# azurerm\_virtual\_machine\_disk
+[menu]
+  [menu.inspec]
+    title = "azurerm_virtual_machine_disk"
+    identifier = "inspec/resources/azure/azurerm_virtual_machine_disk.md azurerm_virtual_machine_disk resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_virtual_machine_disk.md)
 
 Use the `azurerm_virtual_machine_disk` InSpec audit resource to test properties related to
 a virtual machine's disk. This resource will only support managed disks. If your disk is
 not managed it will not `exist` to the matcher.
-
-<br />
 
 ## Azure REST API version
 
@@ -26,7 +31,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -48,8 +53,6 @@ The `resource_group` and `name` must be given as parameters.
       ...
     end
 
-<br />
-
 ## Examples
 
     # If a disk is found it will exist
@@ -62,11 +65,9 @@ The `resource_group` and `name` must be given as parameters.
       its('encryption_enabled') { should be true }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group`, `name`
+- `resource_group`, `name`
 
 ## Parameter Examples
 
@@ -77,15 +78,15 @@ The `resource_group` and `name` must be given as parameters.
 
 ## Attributes
 
-  - `id`
-  - `name`
-  - `managedBy`
-  - `sku`
-  - `properties`
-  - `type`
-  - `location`
-  - `tags`
-  - `encryption_enabled`
+- `id`
+- `name`
+- `managedBy`
+- `sku`
+- `properties`
+- `type`
+- `location`
+- `tags`
+- `encryption_enabled`
 
 ### id
 
@@ -94,7 +95,7 @@ The disk's unique identifier.
     its('id') { should eq(id) }
 
 Id will be in the
-    format:
+format:
 
     /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/myManagedDisk
 
@@ -111,7 +112,7 @@ The resource managing the disk if it is attached to a virtual machine.
     its('managedBy') { should eq(ResourceId) }
 
 ResourceId will be in the
-    format:
+format:
 
     /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/myManagedDisk
 
@@ -143,7 +144,7 @@ The disk's tags. Will be a hash of key/value pairs.
 
     its('tags') { should eq({ 'department' => 'IT' })
 
-### encryption\_enabled
+### encryption_enabled
 
 If the disk is encrypted or not (`true`|`false`).
 
@@ -152,7 +153,7 @@ If the disk is encrypted or not (`true`|`false`).
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -167,7 +168,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

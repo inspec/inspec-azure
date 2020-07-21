@@ -1,14 +1,19 @@
----
-title: About the azurerm_management_group Resource
-platform: azure
----
++++
+title = "azurerm_management_group resource"
+draft = false
+platform = "azure"
 
-# azurerm\_management\_group
+[menu]
+  [menu.inspec]
+    title = "azurerm_management_group"
+    identifier = "inspec/resources/azure/azurerm_management_group.md azurerm_management_group resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_management_group.md)
 
 Use the `azurerm_management_group` InSpec audit resource to test properties related to a
 management group.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -53,54 +58,53 @@ Optionally, you may use the `expand`, `recurse` and/or `filter` parameters.
       ...
     end
 
-<br />
-
 ## Examples
 
-  describe azurerm_management_group(group_id: '20000000-0000-0000-0000-000000000000', expand: 'children', recurse: true) do
-    it                            { should exist }
-    its('id')                     { should eq '/providers/Microsoft.Management/managementGroups/20000000-0000-0000-0000-000000000000' }
-    its('type')                   { should eq '/providers/Microsoft.Management/managementGroups' }
-    its('name')                   { should eq '20000000-0000-0000-0000-000000000000' }
-    its('display_name')           { should eq 'Management Group Display Name One' }
-    its('tenant_id')              { should eq '56700000-0000-0000-0000-000000000000' }
-    its('parent_name')            { should eq '10000000-0000-0000-0000-000000000000' }
-    its('parent_id')              { should eq '/providers/Microsoft.Management/managementGroups/10000000-0000-0000-0000-000000000000' }
-    its('parent_display_name')    { should eq 'Tenant Root Group' }
-    its('children_display_names') { should include('Management Group Display Name Child') }
-    its('children_ids')           { should include('/providers/Microsoft.Management/managementGroups/40000000-0000-0000-0000-000000000000') }
-    its('children_names')         { should include('40000000-0000-0000-0000-000000000000') }
-    its('children_types')         { should include('/providers/Microsoft.Management/managementGroups') }
-  end
+describe azurerm_management_group(group_id: '20000000-0000-0000-0000-000000000000', expand: 'children', recurse: true) do
+it { should exist }
+its('id') { should eq '/providers/Microsoft.Management/managementGroups/20000000-0000-0000-0000-000000000000' }
+its('type') { should eq '/providers/Microsoft.Management/managementGroups' }
+its('name') { should eq '20000000-0000-0000-0000-000000000000' }
+its('display_name') { should eq 'Management Group Display Name One' }
+its('tenant_id') { should eq '56700000-0000-0000-0000-000000000000' }
+its('parent_name') { should eq '10000000-0000-0000-0000-000000000000' }
+its('parent_id') { should eq '/providers/Microsoft.Management/managementGroups/10000000-0000-0000-0000-000000000000' }
+its('parent_display_name') { should eq 'Tenant Root Group' }
+its('children_display_names') { should include('Management Group Display Name Child') }
+its('children_ids') { should include('/providers/Microsoft.Management/managementGroups/40000000-0000-0000-0000-000000000000') }
+its('children_names') { should include('40000000-0000-0000-0000-000000000000') }
+its('children_types') { should include('/providers/Microsoft.Management/managementGroups') }
+end
 
-  describe azurerm_management_group(group_id: '40000000-0000-0000-0000-000000000000', expand: 'children', recurse: true) do
-    it                            { should exist }
-    its('id')                     { should eq '/providers/Microsoft.Management/managementGroups/40000000-0000-0000-0000-000000000000' }
-    its('type')                   { should eq '/providers/Microsoft.Management/managementGroups' }
-    its('name')                   { should eq '40000000-0000-0000-0000-000000000000' }
-    its('display_name')           { should eq 'Management Group Display Name Child' }
-    its('tenant_id')              { should eq '56700000-0000-0000-0000-000000000000' }
-    its('parent_name')            { should eq '20000000-0000-0000-0000-000000000000' }
-    its('parent_id')              { should eq '/providers/Microsoft.Management/managementGroups/20000000-0000-0000-0000-000000000000' }
-    its('parent_display_name')    { should eq 'Management Group Display Name One' }
-    its('children_display_names') { should eq [] }
-    its('children_ids')           { should eq [] }
-    its('children_names')         { should eq [] }
-    its('children_types')         { should eq [] }
-  end
-
-<br />
+describe azurerm_management_group(group_id: '40000000-0000-0000-0000-000000000000', expand: 'children', recurse: true) do
+it { should exist }
+its('id') { should eq '/providers/Microsoft.Management/managementGroups/40000000-0000-0000-0000-000000000000' }
+its('type') { should eq '/providers/Microsoft.Management/managementGroups' }
+its('name') { should eq '40000000-0000-0000-0000-000000000000' }
+its('display_name') { should eq 'Management Group Display Name Child' }
+its('tenant_id') { should eq '56700000-0000-0000-0000-000000000000' }
+its('parent_name') { should eq '20000000-0000-0000-0000-000000000000' }
+its('parent_id') { should eq '/providers/Microsoft.Management/managementGroups/20000000-0000-0000-0000-000000000000' }
+its('parent_display_name') { should eq 'Management Group Display Name One' }
+its('children_display_names') { should eq [] }
+its('children_ids') { should eq [] }
+its('children_names') { should eq [] }
+its('children_types') { should eq [] }
+end
 
 ## Parameters
 
-  - `group_id`, `expand`, `recurse`, `filter`
+- `group_id`
+- `expand`
+- `recurse`
+- `filter`
 
 ## Parameter Examples
 
-### group\_id (required)
+### group_id (required)
 
 Defines the group id of the management group that you wish
-    to test.
+to test.
 
     describe azurerm_management_group(group_id: 'MyGroupId') do
       ...
@@ -109,7 +113,7 @@ Defines the group id of the management group that you wish
 ### expand (optional)
 
 Query string parameter allows clients to request inclusion of children
-    so that you can test them.
+so that you can test them.
 
     describe azurerm_management_group(group_id: 'MyGroupId', expand: 'children') do
       ...
@@ -118,8 +122,8 @@ Query string parameter allows clients to request inclusion of children
 ### recurse (optional)
 
 Setting this to true allows clients to request inclusion of entire hierarchy in
-    the response payload. Note that `expand: 'children'` must be passed up if
-    `recurse` is set to `true`.
+the response payload. Note that `expand: 'children'` must be passed up if
+`recurse` is set to `true`.
 
     describe azurerm_management_group(group_id: 'MyGroupId', expand: 'children', recurse: true) do
       ...
@@ -135,18 +139,18 @@ A filter which allows the exclusion of subscriptions from results (i.e. `filter:
 
 ## Attributes
 
-  - `id`
-  - `type`
-  - `name`
-  - `tenant_id`
-  - `parent_name`
-  - `parent_id`
-  - `parent_display_name`
-  - `children_display_names`
-  - `children_ids`
-  - `children_names`
-  - `children_roles`
-  - `children_types`
+- `id`
+- `type`
+- `name`
+- `tenant_id`
+- `parent_name`
+- `parent_id`
+- `parent_display_name`
+- `children_display_names`
+- `children_ids`
+- `children_names`
+- `children_roles`
+- `children_types`
 
 ### id
 
@@ -155,7 +159,7 @@ The management group id.
     its('id') { should eq('/providers/Microsoft.Management/managementGroups/MyGroupId') }
 
 id will be in
-    format:
+format:
 
     '/providers/Microsoft.Management/managementGroups/<GROUP_ID>'
 
@@ -190,7 +194,7 @@ The management group parent id
     its('parent_id') { should eq('/providers/Microsoft.Management/managementGroups/MyGroupsParentId') }
 
 parent_id will be in
-    format:
+format:
 
     '/providers/Microsoft.Management/managementGroups/<GROUP_ID>'
 
@@ -230,11 +234,10 @@ The management group
 
     its('children_types') { should include('') }
 
-
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -249,7 +252,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

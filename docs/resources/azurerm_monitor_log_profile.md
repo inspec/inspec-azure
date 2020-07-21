@@ -1,14 +1,19 @@
----
-title: About the azurerm_monitor_log_profile Resource
-platform: azure
----
++++
+title = "azurerm_monitor_log_profile resource"
+draft = false
+platform = "azure"
 
-# azurerm\_monitor\_log\_profile
+[menu]
+  [menu.inspec]
+    title = "azurerm_monitor_log_profile"
+    identifier = "inspec/resources/azure/azurerm_monitor_log_profile.md azurerm_monitor_log_profile resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_monitor_log_profile.md)
 
 Use the `azurerm_monitor_log_profile` InSpec audit resource to test properties
 of an Azure Monitor Log Profile.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -43,8 +48,6 @@ An `azurerm_monitor_log_profile` resource block identifies a Log Profile by name
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Test that a Log Profile exists
@@ -59,11 +62,9 @@ An `azurerm_monitor_log_profile` resource block identifies a Log Profile by name
       its('retention_enabled') { should be true }
     end
 
-<br />
-
 ## Parameters
 
-  - `name`
+- `name`
 
 ## Parameter Examples
 
@@ -75,16 +76,16 @@ The name of the Log Profile.
 
 ## Attributes
 
-  - `retention_enabled`
-  - `retention_days`
+- `retention_enabled`
+- `retention_days`
 
-### retention\_enabled
+### retention_enabled
 
 Determine if retention is enabled
 
     its('retention_enabled') { should be true }
 
-### retention\_days
+### retention_days
 
 Determine number of days retention is enabled for
 
@@ -93,7 +94,7 @@ Determine number of days retention is enabled for
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -108,7 +109,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

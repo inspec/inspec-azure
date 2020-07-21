@@ -1,9 +1,16 @@
----
-title: About the azurerm_security_center_policy Resource
-platform: azure
----
++++
+title = "azurerm_security_center_policy resource"
+draft = false
+platform = "azure"
 
-# azurerm\_security\_center\_policy
+[menu]
+  [menu.inspec]
+    title = "azurerm_security_center_policy"
+    identifier = "inspec/resources/azure/azurerm_security_center_policy.md azurerm_security_center_policy resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_security_center_policy.md)
 
 Use the `azurerm_security_center_policy` InSpec audit resource to test properties
 of the `default` Security Center Policy. Azure currently only supports looking
@@ -15,9 +22,7 @@ resources within this subscription. These settings will generate alerts if
 something is found to violate the recommendations. This resource allows you to
 inspect what alerts you have configured for your account.
 
-<br />
-
-## Azure REST API version
+## Azure REST API Version
 
 This resource interacts with version `2015-06-01-Preview` of the Azure
 Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/previous-versions/azure/reference/mt704062%28v%3dazure.100%29).
@@ -32,7 +37,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -56,8 +61,6 @@ If no policy is given the default one will be used.
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Assert that the default Security Center Policy exists
@@ -78,11 +81,9 @@ If no policy is given the default one will be used.
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `name`
+- `name`
 
 ## Parameter Examples
 
@@ -95,32 +96,32 @@ will search for the `default` Security Center Policy (Optional).
 
 ## Attributes
 
-  - `id`
-  - `name`
-  - `log_collection`
-  - `patch`
-  - `baseline`
-  - `anti_malware`
-  - `disk_encryption`
-  - `network_security_groups`
-  - `web_application_firewall`
-  - `next_generation_firewall`
-  - `vulnerability_assessment`
-  - `storage_encryption`
-  - `just_in_time_network_access`
-  - `app_whitelisting`
-  - `sql_auditing`
-  - `sql_transparent_data_encryption`
-  - `notifications_enabled`,
-  - `send_security_email_to_admin`
-  - `contact_emails`
-  - `contact_phone`
-  - `pricing_tier`
+- `id`
+- `name`
+- `log_collection`
+- `patch`
+- `baseline`
+- `anti_malware`
+- `disk_encryption`
+- `network_security_groups`
+- `web_application_firewall`
+- `next_generation_firewall`
+- `vulnerability_assessment`
+- `storage_encryption`
+- `just_in_time_network_access`
+- `app_whitelisting`
+- `sql_auditing`
+- `sql_transparent_data_encryption`
+- `notifications_enabled`,
+- `send_security_email_to_admin`
+- `contact_emails`
+- `contact_phone`
+- `pricing_tier`
 
 ### id
 
 The id of the Security Center
-    Policy.
+Policy.
 
     its('id') { should eq('/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Security/policies/default') }
 
@@ -130,13 +131,13 @@ The name of the Security Center Policy.
 
     its('name') { should eq('default') }
 
-### log\_collection
+### log_collection
 
 Log collection indicates if the monitoring agent will collect security data (`On`|`Off`).
 
     its('log_collection') { should eq('On') }
 
-### pricing\_tier
+### pricing_tier
 
 Cost/Feature Model under which the subscription is operating (`Standard`|`Free`).
 
@@ -155,101 +156,101 @@ Baseline indicates if OS vulnerabilities recommendations for virtual machines ar
 
     its('baseline') { should eq('On') }
 
-### anti\_malware
+### anti_malware
 
 Anti-Malware indicates if endpoint protection recommendations for virtual machines are
 enabled (`On`|`Off`).
 
     its('anti_malware') { should eq('On') }
 
-### disk\_encryption
+### disk_encryption
 
 Disk Encryption indicates if recommendations for virtual machines are enabled
 (`On`|`Off`).
 
     its('disk_encryption') { should eq('On') }
 
-### network\_security\_groups
+### network_security_groups
 
 Network security groups indicates if recommendations for virtual machines are enabled
 (`On`|`Off`).
 
     its('network_security_groups') { should eq('On') }
 
-### web\_application\_firewall
+### web_application_firewall
 
 Web application firewall indicates if recommendations for virtual machines are enabled
 (`On`|`Off`).
 
     its('web_application_firewall') { should eq('On') }
 
-### next\_generation\_firewall
+### next_generation_firewall
 
 Next generation firewall indicates if recommendations for virtual machines are enabled
 (`On`|`Off`).
 
     its('next_generation_firewall') { should eq('On') }
 
-### vulnerability\_assessment
+### vulnerability_assessment
 
 Vulnerability assessment indicates if recommendations for virtual machines are enabled
 (`On`|`Off`).
 
     its('vulnerability_assessment') { should eq('On') }
 
-### storage\_encryption
+### storage_encryption
 
 Storage Encryption indicates if new data in Azure Blobs and Files will be encrypted by default (`On`|`Off`).
 
     its('storage_encryption') { should eq('On') }
 
-### just\_in\_time\_network\_access
+### just_in_time_network_access
 
 Just in time network access indicates if recommendations for virtual machines are enabled
 (`On`|`Off`).
 
     its('just_in_time_network_access') { should eq('On') }
 
-### app\_whitelisting
+### app_whitelisting
 
 App whitelisting indicates if adaptive application controls are enabled (`On`|`Off`).
 
     its('app_whitelisting') { should eq('On') }
 
-### sql\_auditing
+### sql_auditing
 
 SQL auditing indicates if auditing and threat detection recommendations are enabled
 (`On`|`Off`).
 
     its('sql_auditing') { should eq('On') }
 
-### sql\_transparent\_data\_encryption
+### sql_transparent_data_encryption
 
 SQL transparent data encryption indicates if recommendations are enabled (`On`|`Off`).
 
     its('sql_transparent_data_encryption') { should eq('On') }
 
-### notifications\_enabled
+### notifications_enabled
 
 Notifications enabled indicates if security alerts are emailed to the security contact
 (`true`|`false`).
 
     its('notifications_enabled') { should eq(true) }
 
-### send\_security\_email\_to\_admin
+### send_security_email_to_admin
 
 Send security email to admin indicates if the subscription admin will receive security
 alerts (`true`|`false`).
 
     its('send_security_email_to_admin') { should eq(true) }
 
-### contact\_emails
+### contact_emails
 
 Contact emails contains a list of security email addresses.
 
     its('contact_emails') { should include('security@example.com') }
 
-### contact\_phone
+### contact_phone
 
 Contact phone contains the security contact phone number.
 
@@ -258,7 +259,7 @@ Contact phone contains the security contact phone number.
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -273,7 +274,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

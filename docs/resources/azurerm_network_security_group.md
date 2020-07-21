@@ -1,14 +1,19 @@
----
-title: About the azurerm_network_security_group Resource
-platform: azure
----
++++
+title = "azurerm_network_security_group resource"
+draft = false
+platform = "azure"
 
-# azurerm\_network\_security\_group
+[menu]
+  [menu.inspec]
+    title = "azurerm_network_security_group"
+    identifier = "inspec/resources/azure/azurerm_network_security_group.md azurerm_network_security_group resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_network_security_group.md)
 
 Use the `azurerm_network_security_group` InSpec audit resource to test properties of an
 Azure Network Security Group.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -39,13 +44,11 @@ You'll also need to setup your Azure credentials; see the resource pack
 
 An `azurerm_network_security_group` resource block identifies a Network Security Group by
 name and Resource
-    Group.
+Group.
 
     describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       ...
     end
-
-<br />
 
 ## Examples
 
@@ -61,17 +64,15 @@ name and Resource
       it { should allow_ssh_from_internet }
     end
 
-<br />
-
 ## Parameters
 
-  - `name`
-  - `resource_group`
+- `name`
+- `resource_group`
 
 ## Parameter Examples
 
 The Resource Group as well as the Network Security Group
-    name.
+name.
 
     describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do
       it { should allow_rdp_from_internet }
@@ -79,41 +80,41 @@ The Resource Group as well as the Network Security Group
 
 ## Attributes
 
-  - `security_rules`
-  - `default_security_rules`
-  - `allow_ssh_from_internet`
-  - `allow_rdp_from_internet`
-  - `properties`
+- `security_rules`
+- `default_security_rules`
+- `allow_ssh_from_internet`
+- `allow_rdp_from_internet`
+- `properties`
 
-### security\_rules
+### security_rules
 
-The security\_rules property contains the set of Security Rules.
+The security_rules property contains the set of Security Rules.
 
     its('security_rules') { should_not be_empty }
 
-### default\_security\_rules
+### default_security_rules
 
-The default\_security\_rules property contains the set of Default Security Rules.
+The default_security_rules property contains the set of Default Security Rules.
 
     its('default_security_rules') { should_not be_empty }
 
-### allow\_ssh\_from\_internet
+### allow_ssh_from_internet
 
-The allow\_ssh\_from\_internet property contains a boolean value determined by analysing
+The allow_ssh_from_internet property contains a boolean value determined by analysing
 the Security Rules and Default Security Rules for unrestricted SSH access.
 
     it { should_not allow_ssh_from_internet }
 
-### allow\_rdp\_from\_internet
+### allow_rdp_from_internet
 
-The allow\_rdp\_from\_internet property contains a boolean value determined by analysing
+The allow_rdp_from_internet property contains a boolean value determined by analysing
 the Security Rules and Default Security Rules for unrestricted RDP access.
 
     it { should_not allow_rdp_from_internet }
 
-### allow\port\_from\_internet
+### allow\port_from_internet
 
-The allow\_port\_from\_internet property contains a boolean value determined by analysing
+The allow_port_from_internet property contains a boolean value determined by analysing
 the Security Rules and Default Security Rules for unrestricted access to a specified port.
 
     it { should_not allow_port_from_internet('443') }
@@ -121,7 +122,7 @@ the Security Rules and Default Security Rules for unrestricted access to a speci
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -136,7 +137,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

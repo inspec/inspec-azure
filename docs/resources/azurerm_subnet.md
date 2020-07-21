@@ -1,14 +1,19 @@
----
-title: About the azurerm_subnet Resource
-platform: azure
----
++++
+title = "azurerm_subnet resource"
+draft = false
+platform = "azure"
 
-# azurerm\_subnet
+[menu]
+  [menu.inspec]
+    title = "azurerm_subnet"
+    identifier = "inspec/resources/azure/azurerm_subnet.md azurerm_subnet resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_subnet.md)
 
 Use the `azurerm_subnet` InSpec audit resource to test properties related to a
 subnet for a given virtual network.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -48,33 +53,35 @@ Since subnet must be in the context of a virtual network, this parameter had to 
       ...
     end
 
-<br />
-
 ## Examples
-### Ensure that the subnet exists for a given virtual network.
+
+### Ensure That the Subnet Exists for a given Virtual Network
+
     describe azurerm_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
       it { should exist }
     end
 
-### Ensure that the subnets address prefix is configured as expected.
+### Ensure That the Subnets Address Prefix Is Configured as Expected
+
     describe azurerm_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
         its('address_prefix') { should eq [192.168.0.0/24] }
     end
 
-### Ensure that the subnet is attached to the right network security group.
+### Ensure That the Subnet Is Attached to the Right Network Security Group
+
     describe azurerm_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
         its('nsg') { should eq 'NetworkSecurityGroupName'}
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group`, `vnet`, `name`
+- `resource_group`
+- `vnet`
+- `name`
 
 ## Parameter Examples
 
-### resource\_group (required)
+### resource_group (required)
 
 Defines the resource group of the subnet that you wish to test resides in.
 
@@ -90,7 +97,6 @@ Defines the virtual network that the subnet that you wish to test is a part of.
       ...
     end
 
-
 ### name (required)
 
 Defines the name of the subnet that you wish to test.
@@ -101,11 +107,11 @@ Defines the name of the subnet that you wish to test.
 
 ## Attributes
 
-  - `id`
-  - `name`
-  - `type`
-  - `address_prefix`
-  - `nsg`
+- `id`
+- `name`
+- `type`
+- `address_prefix`
+- `nsg`
 
 ### id
 
@@ -114,7 +120,7 @@ The subnet's id.
     its('id') { should eq(id) }
 
 Id will be in
-    format:
+format:
 
     '/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/Inspec-Azure-mmclane/providers/Microsoft.Network/virtualNetworks/Inspec-VNet/subnets/Inspec-Subnet'
 
@@ -130,7 +136,7 @@ The virtual network's resource type.
 
     its('type') { should eq 'Microsoft.Network/virtualNetworks/subnets' }
 
-### address\_prefix
+### address_prefix
 
 The address prefix for the subnet.
 
@@ -145,7 +151,7 @@ The network security group attached to the subnet.
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -160,7 +166,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

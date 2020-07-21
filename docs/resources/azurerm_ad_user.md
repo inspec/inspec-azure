@@ -1,14 +1,19 @@
----
-title: About the azurerm_ad_user Resource
-platform: azure
----
++++
+title = "azurerm_ad_user resource"
+draft = false
+platform = "azure"
 
-# azurerm\_ad\_user
+[menu]
+  [menu.inspec]
+    title = "azurerm_ad_user"
+    identifier = "inspec/resources/azure/azurerm_ad_user.md azurerm_ad_user resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_ad_user.md)
 
 Use the `azurerm_ad_user` InSpec audit resource to test properties of
 an Azure Active Directory user within a Tenant.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -47,8 +52,6 @@ The `user_id` must be given as a parameter.
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If an Active Directory user account is referenced with a valid ID
@@ -63,49 +66,48 @@ If an Active Directory user account is referenced with an invalid ID
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `user_id`
+- `user_id`
 
 ## Parameter Examples
 
-    # user_id is a required parameter
+`user_id` is a required parameter.
+
     describe azurerm_ad_user(user_id: 'MyUserId') do
         ...
     end
 
 ## Attributes
 
-  - `object_id`
-  - `account_enabled`
-  - `city`
-  - `country`
-  - `department`
-  - `displayName`
-  - `facsimile_telephone_number`
-  - `given_name`
-  - `job_title`
-  - `mail`
-  - `mail_nickname`
-  - `mobile`
-  - `password_policies`
-  - `password_profile`
-  - `postal_code`
-  - `state`
-  - `street_address`
-  - `surname`
-  - `telephone_number`
-  - `usage_location`
-  - `user_principal_name`
-  - `user_type`
+- `object_id`
+- `account_enabled`
+- `city`
+- `country`
+- `department`
+- `displayName`
+- `facsimile_telephone_number`
+- `given_name`
+- `job_title`
+- `mail`
+- `mail_nickname`
+- `mobile`
+- `password_policies`
+- `password_profile`
+- `postal_code`
+- `state`
+- `street_address`
+- `surname`
+- `telephone_number`
+- `usage_location`
+- `user_principal_name`
+- `user_type`
 
-### object\_id
+### object_id
 
 The user's object ID.
 
-### account\_enabled
+### account_enabled
 
 Whether the account is enabled.
 
@@ -125,15 +127,15 @@ The user's department.
 
 The display name of the user.
 
-### facsimile\_telephone\_number
+### facsimile_telephone_number
 
 the user's facsimile (fax) number.
 
-### given\_name
+### given_name
 
 the given name for the user.
 
-### job\_title
+### job_title
 
 the user's job title.
 
@@ -141,7 +143,7 @@ the user's job title.
 
 the primary email address of the user.
 
-### mail\_nickname
+### mail_nickname
 
 The mail alias for the user.
 
@@ -149,15 +151,15 @@ The mail alias for the user.
 
 The user's mobile (cell) phone number.
 
-### password\_policies
+### password_policies
 
 The password policies for the user.
 
-### password\_profile
+### password_profile
 
 The password profile for the user.
 
-### postal\_code
+### postal_code
 
 The user's postal (ZIP) code.
 
@@ -165,7 +167,7 @@ The user's postal (ZIP) code.
 
 The user's state.
 
-### street\_address
+### street_address
 
 The user's street address.
 
@@ -173,28 +175,28 @@ The user's street address.
 
 The user's surname (family name or last name).
 
-### telephone\_number
+### telephone_number
 
 The user's telephone number.
 
-### usage\_location
+### usage_location
 
 A two letter country code (ISO standard 3166). Required for users that will be
 assigned licenses due to legal requirement to check for availability of
 services in countries. Examples include: "US", "JP", and "GB".
 
-### user\_principal\_name
+### user_principal_name
 
 The principal name of the user.
 
-### user\_type
+### user_type
 
 A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`). Given the example response in their documentation:
 
@@ -227,7 +229,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 
@@ -242,7 +244,5 @@ have permissions to read User data from the Azure Graph RBAC API.
 
 Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
 for information on how to grant these permissions to your application.
-
-<br />
 
 Note: An Azure Admin must grant your application these permissions.

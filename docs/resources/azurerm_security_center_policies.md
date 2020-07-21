@@ -1,9 +1,16 @@
----
-title: About the azurerm_security_center_policies Resource
-platform: azure
----
++++
+title = "azurerm_security_center_policies resource"
+draft = false
+platform = "azure"
 
-# azurerm\_security\_center\_policies
+[menu]
+  [menu.inspec]
+    title = "azurerm_security_center_policies"
+    identifier = "inspec/resources/azure/azurerm_security_center_policies.md azurerm_security_center_policies resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_security_center_policies.md)
 
 Use the `azurerm_security_center_policies` InSpec audit resource to test
 properties of some or all Azure Security Center Policies.
@@ -11,12 +18,10 @@ properties of some or all Azure Security Center Policies.
 Security Center Policies are defined for each Resource Group. A Security Center Policy
 called `default` also exists for every subscription.
 
-<br />
-
 ## Azure REST API version
 
 This resource interacts with version `2015-06-01-Preview` of the Azure
-Management API. For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/previous-versions/azure/reference/mt704061(v%3dazure.100)).
+Management API. For more information see the [official Azure documentation](<https://docs.microsoft.com/en-us/previous-versions/azure/reference/mt704061(v%3dazure.100)>).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -28,7 +33,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -52,8 +57,6 @@ exist.
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Check for a Security Center Policy
@@ -68,11 +71,9 @@ exist.
       it { should exist }
     end
 
-<br />
-
 ## Filter Criteria
 
-  - `names`
+- `names`
 
 ### names
 
@@ -88,7 +89,7 @@ name. This is a string value.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

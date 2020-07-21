@@ -1,14 +1,19 @@
----
-title: About the azurerm_role_definitions Resource
-platform: azure
----
++++
+title = "azurerm_role_definitions resource"
+draft = false
+platform = "azure"
 
-# azurerm\_role\_definitions
+[menu]
+  [menu.inspec]
+    title = "azurerm_role_definitions"
+    identifier = "inspec/resources/azure/azurerm_role_definitions.md azurerm_role_definitions resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_role_definitions.md)
 
 Use the `azurerm_role_definitions` InSpec audit resource to test properties of
 some or all Azure Role Definitions.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -47,17 +52,15 @@ An `azurerm_role_definitions` resource block returns all Role definitions within
       ...
     end
 
-<br />
-
 ## Examples
 
 The following examples show how to use this InSpec audit resource.
 
 ### Check a role has the correct permissions are present
 
-  describe azurerm_role_definitions.where{name.eql?('Custom-Admin')} do
-    its ('properties.first.permissions.first')  { should have_attributes(actions: ['*']) }
-  end
+describe azurerm_role_definitions.where{name.eql?('Custom-Admin')} do
+its ('properties.first.permissions.first') { should have_attributes(actions: ['*']) }
+end
 
 ### Check a role does not have certain permissions
 
@@ -71,11 +74,7 @@ The following examples show how to use this InSpec audit resource.
       ]) }
     end
 
-<br />
-
 ## Filter Criteria
-
-* `names`
 
 ### names
 
@@ -88,9 +87,9 @@ name. This is a string value.
 
 ## Properties
 
-* `ids`
-* `names`
-* `properties`
+- `ids`
+- `names`
+- `properties`
 
 ### ids
 
@@ -98,16 +97,16 @@ The Object IDs of the Roles.
 
 ### names
 
-  The names of the Roles. For a built-in role this will be an Azure generated UUID. For a CustomRole this will be the name you specified on creation.
+The names of the Roles. For a built-in role this will be an Azure generated UUID. For a CustomRole this will be the name you specified on creation.
 
 ### properties
 
-  Additional properties available for the Roles. May be accessed with dot notation in controls.
+Additional properties available for the Roles. May be accessed with dot notation in controls.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

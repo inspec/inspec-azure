@@ -1,13 +1,20 @@
----
-title: About the azurerm_iothub_event_hub_consumer_group Resource
-platform: azure
----
++++
+title = "azurerm_iothub_event_hub_consumer_group resource"
+draft = false
+platform = "azure"
 
-# azurerm\_iothub\_event\_hub\_consumer\_group
+[menu]
+  [menu.inspec]
+    title = "azurerm_iothub_event_hub_consumer_group"
+    identifier = "inspec/resources/azure/azurerm_iothub_event_hub_consumer_group.md azurerm_iothub_event_hub_consumer_group resource"
+    parent = "inspec/resources/azure"
++++
 
-Use the `azurerm_iothub_event_hub_consumer_group` InSpec audit resource to test properties and configuration of
-an Azure IoT Hub Event Hub Consumer Group within a Resource Group.
-<br />
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_iothub_event_hub_consumer_group.md)
+
+Use the `azurerm_iothub_event_hub_consumer_group` InSpec audit resource to test
+properties and configuration of an Azure IoT Hub Event Hub Consumer Group within
+a Resource Group.
 
 ## Azure REST API version
 
@@ -24,7 +31,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -46,8 +53,6 @@ The `resource_group`, `resource_name`, `event_hub_endpoint` and `consumer_group`
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If an IoT Hub Event Hub Consumer Group is referenced with a valid `Resource Group`, `Resource Name`, `Event Hub Endpoint` and `Consumer Group`
@@ -62,14 +67,12 @@ If an IoT Hub Event Hub Consumer Group is referenced with an invalid `Resource G
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the IoT Hub belongs.
-  - `resource_name` - The unique name of the IoT Hub.
-  - `event_hub_endpoint` - The unique name of the IoT Hub Endpoint
-  - `consumer_group` - The unique name of the IoI Hub Endpoint consumer group
+- `resource_group` - The resource Group to which the IoT Hub belongs.
+- `resource_name` - The unique name of the IoT Hub.
+- `event_hub_endpoint` - The unique name of the IoT Hub Endpoint
+- `consumer_group` - The unique name of the IoI Hub Endpoint consumer group
 
 ## Attributes
 
@@ -80,24 +83,29 @@ If an IoT Hub Event Hub Consumer Group is referenced with an invalid `Resource G
 - `properties`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 The Event Hub-compatible consumer group identifier, e.g. `my-consumer-group`.
 
 ### type
+
 The type of Resource, typically `Microsoft.Devices/IotHubs/EventHubEndpoints/ConsumerGroups`.
 
 ### properties
+
 A collection of additional configuration properties related to the IoT Hub Consumer Group, e.g. `created`.
 
 ### etag
+
 The etag applied to the IoT Hub Consumer Group.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -112,7 +120,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

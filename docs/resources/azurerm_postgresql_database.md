@@ -1,13 +1,19 @@
----
-title: About the azurerm_postgresql_database Resource
-platform: azure
----
++++
+title = "azurerm_postgresql_database resource"
+draft = false
+platform = "azure"
 
-# azurerm\_postgresql\_database
+[menu]
+  [menu.inspec]
+    title = "azurerm_postgresql_database"
+    identifier = "inspec/resources/azure/azurerm_postgresql_database.md azurerm_postgresql_database resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_postgresql_database.md)
 
 Use the `azurerm_postgresql_database` InSpec audit resource to test properties and configuration of
 an Azure PostgreSQL Database on a PostgreSQL Server.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -46,8 +52,6 @@ The `resource_group`, `server_name` and `database_name` must be given as a param
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If a PostgreSQL Database is referenced with a valid `Resource Group`, `Server Name` and `Database name`
@@ -62,13 +66,12 @@ If a PostgreSQL Database is referenced with an invalid `Resource Group`, `Server
     describe azurerm_postgresql_database(resource_group: 'inspec-rg', server_name: 'customer_server', database_name: 'invalid-db-name') do
       it { should_not exist }
     end
-<br />
 
 ## Parameters
 
-  - `resource_group` - The resource Group to which the PostgreSQL Server belongs.
-  - `server_name` - The unique name of the PostgreSQL Server.
-  - `database_name` - The unique name of the PostgreSQL Database.
+- `resource_group` - The resource Group to which the PostgreSQL Server belongs.
+- `server_name` - The unique name of the PostgreSQL Server.
+- `database_name` - The unique name of the PostgreSQL Database.
 
 ## Attributes
 
@@ -78,21 +81,25 @@ If a PostgreSQL Database is referenced with an invalid `Resource Group`, `Server
 - `properties`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 SQL Server name, e.g. `customer-database`.
 
 ### type
+
 The type of Resource, typically `Microsoft.DBforPostgreSQL/servers/databases`.
 
 ### properties
+
 A collection of additional configuration properties related to the PostgreSQL Database, e.g. `collation`.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -107,7 +114,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

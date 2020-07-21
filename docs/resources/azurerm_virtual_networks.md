@@ -1,14 +1,19 @@
----
-title: About the azurerm_virtual_networks Resource
-platform: azure
----
++++
+title = "azurerm_virtual_networks resource"
+draft = false
+platform = "azure"
 
-# azurerm\_virtual\_networks
+[menu]
+  [menu.inspec]
+    title = "azurerm_virtual_networks"
+    identifier = "inspec/resources/azure/azurerm_virtual_networks.md azurerm_virtual_networks resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_virtual_networks.md)
 
 Use the `azurerm_virtual_networks` InSpec audit resource to test properties related to
 virtual networks for a resource group.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -53,21 +58,18 @@ The `resource_group` must be given as a parameter.
     describe azurerm_virtual_networks(resource_group: 'MyResourceGroup') do
       it { should exist }
     end
-<br />
 
 ## Parameters
 
-  - `resource_group`
+- `resource_group`
 
 ### Parameter Examples
 
-### resource\_group (required)
+### resource_group (required)
 
     describe azurerm_virtual_networks(resource_group: 'MyResourceGroup') do
       ...
     end
-
-<br />
 
 ### name
 
@@ -86,7 +88,7 @@ Filters the results to only those that match the given name.
 
 ## Attributes
 
-  - `names`
+- `names`
 
 ### names
 
@@ -98,7 +100,7 @@ Gives a list of all the virtual network names in the resource group.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

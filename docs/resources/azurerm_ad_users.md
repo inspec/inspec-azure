@@ -1,14 +1,19 @@
----
-title: About the azurerm_ad_users Resource
-platform: azure
----
++++
+title = "azurerm_ad_users resource"
+draft = false
+platform = "azure"
 
-# azurerm\_ad\_users
+[menu]
+  [menu.inspec]
+    title = "azurerm_ad_users"
+    identifier = "inspec/resources/azure/azurerm_ad_users.md azurerm_ad_users resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_ad_users.md)
 
 Use the `azurerm_ad_users` InSpec audit resource to test properties of
 some or all Azure Active Directory users within a Tenant.
-
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +29,7 @@ please open an issue or submit a pull request using the updated version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -47,8 +52,6 @@ contained within the configured Tenant and then tests that group group of users.
       ...
     end
 
-<br />
-
 ## Examples
 
 The following examples show how to use this InSpec audit resource.
@@ -65,11 +68,9 @@ The following examples show how to use this InSpec audit resource.
       it { should_not exist }
     end
 
-<br />
-
 ## Filter Criteria
 
-* `names`
+- `names`
 
 ### names
 
@@ -82,18 +83,18 @@ name. This is a string value.
 
 ## Properties
 
-* `object_ids`
-* `display_names`
-* `mails`
-* `user_types`
+- `object_ids`
+- `display_names`
+- `mails`
+- `user_types`
 
-### object\_ids
+### object_ids
 
 The azureIds property provides a list of all User's Azure IDs.
 
     its('azure_ids') { should include '44211066-f292-4546-8ced-2ab0e0911f44' }
 
-### display\_names
+### display_names
 
 The displayNames property provides a list of all the User display names.
 
@@ -105,7 +106,7 @@ The mails property provides a list of all the User email addresses, where presen
 
     its('mails') { should include 'admin@example.com' }
 
-### user\_types
+### user_types
 
 The userTypes property provides a list of all User Types for all users.
 
@@ -114,7 +115,7 @@ The userTypes property provides a list of all User Types for all users.
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 
@@ -132,7 +133,5 @@ have permissions to read User data from the Azure Graph RBAC API.
 
 Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
 for information on how to grant these permissions to your application.
-
-<br />
 
 Note: An Azure Admin must grant your application these permissions.

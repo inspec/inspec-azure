@@ -1,12 +1,18 @@
----
-title: About the azurerm_storage_account_blob_containers Resource
-platform: azure
----
++++
+title = "azurerm_storage_account_blob_containers resource"
+draft = false
+platform = "azure"
 
-# azurerm\_storage\_account\_blob\_containers
+[menu]
+  [menu.inspec]
+    title = "azurerm_storage_account_blob_containers"
+    identifier = "inspec/resources/azure/azurerm_storage_account_blob_containers.md azurerm_storage_account_blob_containers resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_storage_account_blob_containers.md)
 
 Use the `azurerm_storage_account_blob_containers` InSpec audit resource to test properties and configuration of Blob Containers within an Azure Storage Account.
-<br />
 
 ## Azure REST API version
 
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -38,6 +44,7 @@ You'll also need to setup your Azure credentials; see the resource pack
 This resource first became available in 1.3.0 of the inspec-azure resource pack.
 
 ## Syntax
+
 An `azurerm_storage_account_blob_containers` block returns all Blob Containers within a given Azure Storage Account.
 
 The `resource_group` and `storage_account_name` must be given as parameters.
@@ -45,8 +52,6 @@ The `resource_group` and `storage_account_name` must be given as parameters.
     describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
         ...
     end
-
-<br />
 
 ## Examples
 
@@ -60,9 +65,9 @@ The following examples show how to use this InSpec audit resource.
 
 ## Filter Criteria
 
-* `ids`
-* `names`
-* `etags`
+- `ids`
+- `names`
+- `etags`
 
 ### names
 
@@ -77,22 +82,25 @@ Filters the results to include only those containers which match the given name.
 - `ids`
 - `names`
 - `etags`
-    
+
 ### ids
+
 Azure resource ID.
 
 ### names
+
 Blob Container name, e.g. `my-blob-container`.
-    
+
     its('names') { should include 'my-blob-container' }
 
 ### etags
-The etag of the Resource, e.g. ` \"0x8D592D74CC20EBA\"`.
+
+The etag of the Resource, e.g. `\"0x8D592D74CC20EBA\"`.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

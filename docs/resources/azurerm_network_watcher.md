@@ -1,14 +1,19 @@
----
-title: About the azurerm_network_watcher Resource
-platform: azure
----
++++
+title = "azurerm_network_watcher resource"
+draft = false
+platform = "azure"
 
-# azurerm\_network\_watcher
+[menu]
+  [menu.inspec]
+    title = "azurerm_network_watcher"
+    identifier = "inspec/resources/azure/azurerm_network_watcher.md azurerm_network_watcher resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_network_watcher.md)
 
 Use the `azurerm_network_watcher` InSpec audit resource to test properties of an Azure
 Network Watcher.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -44,8 +49,6 @@ resource group.
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Test that an example Resource Group has the specified Network Watcher
@@ -60,12 +63,10 @@ resource group.
       its('provisioning_state') { should eq 'Succeeded' }
     end
 
-<br />
-
 ## Parameters
 
-  - `name`
-  - `resource_group`
+- `name`
+- `resource_group`
 
 ## Parameter Examples
 
@@ -77,18 +78,18 @@ The Resource Group as well as the Network Watcher name.
 
 ## Attributes
 
-  - `provisioning_state`
+- `provisioning_state`
 
-### provisioning\_state
+### provisioning_state
 
-The provisioning\_state field can be checked for the value of the Provisioning State.
+The provisioning_state field can be checked for the value of the Provisioning State.
 
     its('provisioning_state') { should eq 'Succeeded' }
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -103,7 +104,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

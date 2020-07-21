@@ -1,16 +1,23 @@
----
-title: About the azurerm_network_interface Resource
-platform: azure
----
++++
+title = "azurerm_network_interface resource"
+draft = false
+platform = "azure"
 
-# azurerm\_network\_interface
+[menu]
+  [menu.inspec]
+    title = "azurerm_network_interface"
+    identifier = "inspec/resources/azure/azurerm_network_interface.md azurerm_network_interface resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_network_interface.md)
 
 Use the `azurerm_network_interface` InSpec audit resource to test properties and configuration of Azure Network Interface.
-<br />
 
 ## Azure REST API version
+
 This resource interacts with version `2018-11-01` of the Azure Management API. For more
-information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networkinterface(preview)/get).
+information see the [Official Azure Documentation](<https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networkinterface(preview)/get>).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -22,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -44,8 +51,6 @@ The `resource_group` and `name` must be given as a parameter.
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If a Network Interface is referenced with a valid `Resource Group` and `Name`
@@ -60,12 +65,10 @@ If a Network Interface is referenced with an invalid `Resource Group` or `Name`
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the Network Interface belongs.
-  - `name` - The unique name of the Network interface.
+- `resource_group` - The resource Group to which the Network Interface belongs.
+- `name` - The unique name of the Network interface.
 
 ## Attributes
 
@@ -79,33 +82,41 @@ If a Network Interface is referenced with an invalid `Resource Group` or `Name`
 - `public_ip`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 Network interface name, e.g. `vm-nic`.
 
 ### location
+
 Resource location, e.g. `eastus`.
 
 ### properties
+
 A collection of additional configuration properties related to the Network interface, e.g. `ipConfigurations`.
 
 ### tags
+
 Resource tags applied to the Network Interface.
 
 ### type
+
 The type of Resource, typically `Microsoft.Network/networkInterfaces`.
 
 ### private_ip
+
 The Network interface private IP.
 
 ### public_ip
+
 The Network interface public IP.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -120,7 +131,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

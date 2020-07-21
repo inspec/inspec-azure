@@ -1,14 +1,19 @@
----
-title: About the azurerm_virtual_machines Resource
-platform: azure
----
++++
+title = "azurerm_virtual_machines resource"
+draft = false
+platform = "azure"
 
-# azurerm\_virtual\_machines
+[menu]
+  [menu.inspec]
+    title = "azurerm_virtual_machines"
+    identifier = "inspec/resources/azure/azurerm_virtual_machines.md azurerm_virtual_machines resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_virtual_machines.md)
 
 Use the `azurerm_virtual_machines` InSpec audit resource to test properties related to
 virtual machines for a resource group.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -59,25 +64,23 @@ The `resource_group` must be given as a parameter.
       it { should exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group`
+- `resource_group`
 
 ### Parameter Examples
 
-### resource\_group (required)
+#### resource_group (required)
 
     describe azurerm_virtual_machines(resource_group: 'MyResourceGroup') do
       ...
     end
 
-<br />
-
 ## Filter Criteria
 
-  - `platform`, `name`, `os_disk`
+- `platform`
+- `name`
+- `os_disk`
 
 ### platform
 
@@ -100,27 +103,27 @@ Filters the result to only those that match the given name.
 
 ## Attributes
 
-  - `os_disks`
-  - `data_disks`
-  - `vm_names`
+- `os_disks`
+- `data_disks`
+- `vm_names`
 
-### os\_disks
+### os_disks
 
 Gives a list of OS disk names for all the virtual machines in the resource group.
 
     its('os_disks.sort') { should eq ['MyDisk1', 'MyDisk2'] }
 
-### data\_disks
+### data_disks
 
 Gives a list of data disks for all the virtual machines in the resource group.
 
-    its('data_disks.sort') { should eq [['MyDisk1'], ['MyDisk2']] }
+    its('os_disks.sort') { should eq [['MyDisk1'], ['MyDisk2']] }
 
 Note that it returns an array of arrays. You may flatten them for testing:
 
-    its('data_disks.flatten.sort') { should eq ['MyDisk1', 'MyDisk2'] }
+    its('os_disks.flatten.sort') { should eq ['MyDisk1', 'MyDisk2'] }
 
-### vm\_names
+### vm_names
 
 Gives a list of all the virtual machine names in the resource group.
 
@@ -130,7 +133,7 @@ Gives a list of all the virtual machine names in the resource group.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

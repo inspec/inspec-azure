@@ -1,14 +1,19 @@
----
-title: About the azurerm_virtual_machine_disks Resource
-platform: azure
----
++++
+title = "azurerm_virtual_machine_disks resource"
+draft = false
+platform = "azure"
 
-# azurerm_virtual_machine_disks
+[menu]
+  [menu.inspec]
+    title = "azurerm_virtual_machine_disks"
+    identifier = "inspec/resources/azure/azurerm_virtual_machine_disks.md azurerm_virtual_machine_disks resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_virtual_machine_disks.md)
 
 Use the `azurerm_virtual_machine_disks` InSpec audit resource to test properties of
 some or all Azure Disks within a subscription.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -47,8 +52,6 @@ An `azurerm_virtual_machine_disks` resource block returns all Azure Disks in a s
       ...
     end
 
-<br />
-
 ## Examples
 
 The following examples show how to use this InSpec audit resource.
@@ -65,22 +68,20 @@ The following examples show how to use this InSpec audit resource.
       it { should_not exist }
     end
 
-<br />
-
 ## Filter Criteria
 
-* `ids`
-* `names`
-* `properties`
-* `tags`
-* `locations`
-* `attached`
-* `resource_groups`
+- `ids`
+- `names`
+- `properties`
+- `tags`
+- `locations`
+- `attached`
+- `resource_groups`
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

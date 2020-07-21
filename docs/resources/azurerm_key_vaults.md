@@ -1,12 +1,18 @@
----
-title: About the `azurerm_key_vaults` Resource
-platform: azure
----
++++
+title = "azurerm_key_vaults resource"
+draft = false
+platform = "azure"
 
-# azurerm\_key\_vaults
+[menu]
+  [menu.inspec]
+    title = "azurerm_key_vaults"
+    identifier = "inspec/resources/azure/azurerm_key_vaults.md azurerm_key_vaults resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_key_vaults.md)
 
 Use the `azurerm_key_vaults` InSpec audit resource to test properties and configuration of Azure Key Vaults.
-<br />
 
 ## Azure REST API version
 
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -40,12 +46,10 @@ This resource first became available in 1.2.0 of the inspec-azure resource pack.
 ## Syntax
 
 An `azurerm_key_vaults` resource block returns all Azure Key Vaults within a Resource Group.
-  
+
     describe azurerm_key_vaults(resource_group: 'my-rg') do
       ...
     end
-
-<br />
 
 ## Examples
 
@@ -57,11 +61,8 @@ The following examples show how to use this InSpec audit resource.
       it            { should exist }
       its('names')  { should include 'vault-101' }
     end
-<br />
 
 ## Filter Criteria
-
-* `names`
 
 ### names
 
@@ -71,8 +72,6 @@ name. This is a string value.
     describe azurerm_key_vaults(resource_group: 'my-rg').where{ name.eql?('vault-101') } do
       it { should exist }
     end
-    
-* `location`
 
 ### location
 
@@ -90,33 +89,39 @@ Filters the results to include only those vaults which reside in a given locatio
 - `type`
 - `tags`
 - `properties`
-    
+
 ### ids
+
 Azure resource ID.
 
 ### names
+
 Key Vault name, e.g. `vault-101`.
-    
+
     its('names') { should include 'vault-101' }
 
 ### locations
+
 Resource location, e.g. `eastus`.
 
     its('locations') { should_not include 'eastus' }
 
 ### type
+
 The type of Resource, typically `Microsoft.KeyVault/vaults`.
 
 ### tag
+
 Resource tags applied to the Key Vault.
 
 ### properties
+
 A collection of additional configuration properties related to the Key Vault, e.g. `vaultUri`.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

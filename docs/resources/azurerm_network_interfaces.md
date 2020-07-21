@@ -1,17 +1,23 @@
----
-title: About the azurerm_network_interfaces Resource
-platform: azure
----
++++
+title = "azurerm_network_interfaces resource"
+draft = false
+platform = "azure"
 
-# azurerm\_network\_interfaces
+[menu]
+  [menu.inspec]
+    title = "azurerm_network_interfaces"
+    identifier = "inspec/resources/azure/azurerm_network_interfaces.md azurerm_network_interfaces resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_network_interfaces.md)
 
 Use the `azurerm_network_interfaces` InSpec audit resource to test properties and configuration of Azure Network interfaces.
-<br />
 
 ## Azure REST API version
 
 This resource interacts with version `2018-11-01` of the Azure Management API. For more
-information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networkinterface(preview)/list).
+information see the [Official Azure Documentation](<https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networkinterface(preview)/list>).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -39,19 +45,18 @@ This resource first became available in 1.7.2 of the inspec-azure resource pack.
 
 ## Syntax
 
-An `azurerm_network_interfaces` resource block returns all Azure Network Interfaces, either within a Resource Group (if provided), or within an entire Subscription.
+An `azurerm_network_interfaces` resource block returns all Azure Network Interfaces,
+either within a Resource Group (if provided), or within an entire Subscription.
 
     describe azurerm_network_interfaces do
       ...
     end
-    
-  or
-  
+
+or
+
     describe azurerm_network_interfaces(resource_group: 'my-rg') do
       ...
     end
-
-<br />
 
 ## Examples
 
@@ -63,11 +68,8 @@ The following examples show how to use this InSpec audit resource.
       it            { should exist }
       its('names')  { should include 'my-network-interface-name' }
     end
-<br />
 
 ## Filter Criteria
-
-* `names`
 
 ### names
 
@@ -76,8 +78,6 @@ Filters the results to include only those network interfaces which match the giv
     describe azurerm_network_interfaces.where{ name.eql?('network-interface-5') } do
       it { should exist }
     end
-    
-* `location`
 
 ### location
 
@@ -95,33 +95,39 @@ Filters the results to include only those servers which reside in a given locati
 - `properties`
 - `tags`
 - `type`
-    
+
 ### ids
+
 Azure resource ID.
 
 ### names
+
 Network interface name, e.g. `nic-name`.
-    
+
     its('names') { should include 'nic-name' }
 
 ### locations
+
 Resource location, e.g. `eastus`.
 
     its('locations') { should_not include 'eastus' }
 
 ### properties
+
 A collection of additional configuration properties related to the Network interface, e.g. `ipConfigurations`.
 
 ### tag
+
 Resource tags applied to the Network interface.
 
 ### type
+
 The type of Resource, typically `Microsoft.Network/networkInterfaces`.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

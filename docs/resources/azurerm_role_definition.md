@@ -1,14 +1,19 @@
----
-title: About the azurerm_role_definition Resource
-platform: azure
----
++++
+title = "azurerm_role_definition resource"
+draft = false
+platform = "azure"
 
-# azurerm\_role\_definition
+[menu]
+  [menu.inspec]
+    title = "azurerm_role_definition"
+    identifier = "inspec/resources/azure/azurerm_role_definition.md azurerm_role_definition resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_role_definition.md)
 
 Use the `azurerm_role_definition` InSpec audit resource to test properties of
 an Azure Role Definition.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -47,8 +52,6 @@ The `name` of the Role must be given as a parameter. For built-in roles, such as
       ...
     end
 
-<br />
-
 ## Examples
 
 Ensure a given role has a specific permission
@@ -60,52 +63,55 @@ Ensure a given role has a specific permission
         its('permissions_allowed') { should_not include '*'}
     end
 
-<br />
-
-
 ## Attributes
 
-  - `id`
-  - `name`
-  - `role_name`
-  - `type`
-  - `role_type`
-  - `assignable_scopes`
-  - `permissions_allowed`
-  - `permissions_not_allowed`
+- `id`
+- `name`
+- `role_name`
+- `type`
+- `role_type`
+- `assignable_scopes`
+- `permissions_allowed`
+- `permissions_not_allowed`
 
+### id
 
-  ### id
-  The object ID of the Role
+The object ID of the Role
 
-  ### name
-  The name of the Role. For a built-in role this will be an Azure generated UUID. For a CustomRole this will be the name you specified on creation.
+### name
 
-  ### role_name
-  The human readable name of the Role.
+The name of the Role. For a built-in role this will be an Azure generated UUID. For a CustomRole this will be the name you specified on creation.
 
-  ### type
-  The type of the object, e.g. `Microsoft.Authorization/roleDefinitions`
+### role_name
 
-  ### role_type
-  `BuiltInRole` or `CustomRole`
+The human readable name of the Role.
 
-  ### assignable_scopes
-  Role Assignable scopes.
+### type
 
-  ### permissions_allowed
-  Provider permissions granted with this role.
+The type of the object, e.g. `Microsoft.Authorization/roleDefinitions`
 
-  ### permissions_not_allowed
-  Provider permissions blocked with this role.
+### role_type
+
+`BuiltInRole` or `CustomRole`
+
+### assignable_scopes
+
+Role Assignable scopes.
+
+### permissions_allowed
+
+Provider permissions granted with this role.
+
+### permissions_not_allowed
+
+Provider permissions blocked with this role.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`). Given the example response in their documentation:
-
 
 The API may not always return keys that do not have any associated data. There
 may be cases where the deeply nested property may not have the desired
@@ -118,7 +124,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

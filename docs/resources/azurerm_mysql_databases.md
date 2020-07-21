@@ -1,12 +1,18 @@
----
-title: About the azurerm_mysql_databases Resource
-platform: azure
----
++++
+title = "azurerm_mysql_databases resource"
+draft = false
+platform = "azure"
 
-# azurerm\_mysql\_databases
+[menu]
+  [menu.inspec]
+    title = "azurerm_mysql_databases"
+    identifier = "inspec/resources/azure/azurerm_mysql_databases.md azurerm_mysql_databases resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_mysql_databases.md)
 
 Use the `azurerm_mysql_databases` InSpec audit resource to test properties and configuration of Azure MySQL Databases.
-<br />
 
 ## Azure REST API version
 
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -37,7 +43,6 @@ You'll also need to setup your Azure credentials; see the resource pack
 
 This resource first became available in 1.6.0 of the inspec-azure resource pack.
 
-
 ## Syntax
 
 An `azurerm_mysql_databases` resource block returns all MySQL Databases on a MySQL Server, within a Rsource Group.
@@ -45,8 +50,6 @@ An `azurerm_mysql_databases` resource block returns all MySQL Databases on a MyS
     describe azurerm_mysql_databases(resource_group: ..., server_name: ...) do
       ...
     end
-
-<br />
 
 ## Examples
 
@@ -58,11 +61,10 @@ The following examples show how to use this InSpec audit resource.
       it            { should exist }
       its('names')  { should include 'my-database-name' }
     end
-<br />
 
 ## Filter Criteria
 
-* `azure_mysql_databases` resources are filterable on all available properties. Below are some examples.
+- `azure_mysql_databases` resources are filterable on all available properties. Below are some examples.
 
 ### names
 
@@ -73,9 +75,6 @@ name. This is a string value.
       it { should exist }
     end
 
-    
-* `location`
-
 ### location
 
 Filters the results to include only those resource groups that reside in a given location. This is a string value.
@@ -83,7 +82,6 @@ Filters the results to include only those resource groups that reside in a given
     describe azurerm_mysql_databases(resource_group: 'rg', server_name: 'server').where{ location.eql?('eastus') } do
       it { should exist }
     end
-
 
 ## Attributes
 
@@ -93,24 +91,27 @@ Filters the results to include only those resource groups that reside in a given
 - `properties`
 
 ### ids
+
 Azure resource ID.
 
 ### names
+
 SQL Database name, e.g. `my-sql-database`.
 
     its('names') { should include 'my-sql-database' }
 
 ### type
+
 The type of Resource, typically `Microsoft.Sql/servers/databases`.
 
-
 ### properties
+
 A collection of additional configuration properties related to the MySQL Database, e.g. `collation`.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

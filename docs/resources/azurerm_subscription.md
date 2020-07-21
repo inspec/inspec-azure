@@ -1,14 +1,19 @@
----
-title: About the azurerm_subscription Resource
-platform: azure
----
++++
+title = "azurerm_subscription resource"
+draft = false
+platform = "azure"
 
-# azurerm\_subscription
+[menu]
+  [menu.inspec]
+    title = "azurerm_subscription"
+    identifier = "inspec/resources/azure/azurerm_subscription.md azurerm_subscription resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_subscription.md)
 
 Use the `azurerm_subscription` InSpec audit resource to test properties related to the current subscription
 subscription.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -48,16 +53,14 @@ specified in your environment/service principal.
       ...
     end
 
-<br />
-
 ## Examples
-### Ensure a location is available in a subscription.
+
+### Ensure a Location Is Available in a Subscription
+
     describe azurerm_subscription do
       its('name')      { should eq 'subscription name' }
       its('locations') { should include 'eastus' }
     end
-
-<br />
 
 ## Parameters
 
@@ -65,9 +68,9 @@ No parameters required.
 
 ## Attributes
 
-  - `id`
-  - `name`
-  - `locations`
+- `id`
+- `name`
+- `locations`
 
 ### id
 
@@ -87,7 +90,7 @@ An array of locations available in this subscription.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

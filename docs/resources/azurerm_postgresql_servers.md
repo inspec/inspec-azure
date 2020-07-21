@@ -1,12 +1,18 @@
----
-title: About the azurerm_postgresql_servers Resource
-platform: azure
----
++++
+title = "azurerm_postgresql_servers resource"
+draft = false
+platform = "azure"
 
-# azurerm\_postgresql\_servers
+[menu]
+  [menu.inspec]
+    title = "azurerm_postgresql_servers"
+    identifier = "inspec/resources/azure/azurerm_postgresql_servers.md azurerm_postgresql_servers resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_postgresql_servers.md)
 
 Use the `azurerm_postgresql_servers` InSpec audit resource to test properties and configuration of multiple Azure PostgreSQL Servers.
-<br />
 
 ## Azure REST API version
 
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -45,13 +51,11 @@ An `azurerm_postgresql_servers` resource block returns all Azure PostgreSQL Serv
       ...
     end
 
-  or
+or
 
     describe azurerm_postgresql_servers(resource_group: 'my-rg') do
       ...
     end
-
-<br />
 
 ## Examples
 
@@ -63,11 +67,8 @@ The following examples show how to use this InSpec audit resource.
       it            { should exist }
       its('names')  { should include 'my-server-name' }
     end
-<br />
 
 ## Filter Criteria
-
-* `names`
 
 ### names
 
@@ -76,8 +77,6 @@ Filters the results to include only those servers which match the given name. Th
     describe azurerm_postgresql_servers.where{ name.eql?('production-server-5') } do
       it { should exist }
     end
-
-* `location`
 
 ### location
 
@@ -97,32 +96,37 @@ Filters the results to include only those servers which reside in a given locati
 - `type`
 
 ### ids
+
 Azure resource ID.
 
 ### names
+
 SQL Server name, e.g. `my-sql-server`.
 
     its('names') { should include 'my-sql-database' }
 
 ### sku
+
 SKU of the server. This is billing information related properties of a server.
 
 ### locations
+
 Resource location, e.g. `eastus`.
 
     its('locations') { should_not include 'eastus' }
 
 ### properties
+
 A collection of additional configuration properties related to the PostgreSQL Server, e.g. `administratorLogin`.
 
-
 ### type
+
 The type of Resource, typically `Microsoft.DBforPostgreSQL/servers`.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

@@ -1,14 +1,19 @@
----
-title: About the azurerm_virtual_machine Resource
-platform: azure
----
++++
+title = "azurerm_virtual_machine resource"
+draft = false
+platform = "azure"
 
-# azurerm\_virtual\_machine
+[menu]
+  [menu.inspec]
+    title = "azurerm_virtual_machine"
+    identifier = "inspec/resources/azure/azurerm_virtual_machine.md azurerm_virtual_machine resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_virtual_machine.md)
 
 Use the `azurerm_virtual_machine` InSpec audit resource to test properties related to a
 virtual machine.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -42,41 +47,38 @@ This resource first became available in 1.0.0 of the inspec-azure resource pack.
 ## Syntax
 
 The `resource_group` and virtual machine `name` must be given as
-    parameters.
+parameters.
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       ...
     end
 
-<br />
-
 ## Examples
 
-### Ensure that the virtual machine has the expected data disks
+### Ensure That the Virtual Machine Has the Expected Data Disks
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       its('data_disks') { should include 'DataDisk1' }
       its('data_disks') { should include 'DataDisk2' }
     end
 
-### Ensure that the virtual machine has the expected monitoring agent installed
+### Ensure That the Virtual Machine Has the Expected Monitoring Agent Installed
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       it { should have_monitoring_agent_installed }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group`, `name`
+- `resource_group`
+- `name`
 
 ## Parameter Examples
 
-### resource\_group (required)
+### resource_group (required)
 
 Defines the resource group that the virtual machine that you wish to test resides
-    in.
+in.
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       ...
@@ -85,7 +87,7 @@ Defines the resource group that the virtual machine that you wish to test reside
 ### name (required)
 
 Defines the name of the virtual machine that you wish to
-    test.
+test.
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       ...
@@ -93,19 +95,19 @@ Defines the name of the virtual machine that you wish to
 
 ## Attributes
 
-  - `id`
-  - `name`
-  - `location`
-  - `properties`
-  - `resources`
-  - `tags`
-  - `type`
-  - `zones`
-  - `installed_extensions_types`
-  - `installed_extensions_names`
-  - `monitoring_agent_installed`
-  - `os_disk_name`
-  - `data_disk_names`
+- `id`
+- `name`
+- `location`
+- `properties`
+- `resources`
+- `tags`
+- `type`
+- `zones`
+- `installed_extensions_types`
+- `installed_extensions_names`
+- `monitoring_agent_installed`
+- `os_disk_name`
+- `data_disk_names`
 
 ### id
 
@@ -114,7 +116,7 @@ The virtual machine's id.
     its('id') { should eq(id) }
 
 Id will be in
-    format:
+format:
 
     '/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/MyResourceGroup/providers/Microsoft.Compute/virtualMachines/MyVirtualMachine'
 
@@ -148,25 +150,25 @@ The virtual machine's availability zones.
 
     its('zones') should include('zone1', 'zone2')
 
-### os\_disk\_name
+### os_disk_name
 
 The virtual machine's operating system disk name.
 
     its('os_disk_name') { should eq('OsDiskName') }
 
-### data\_disk\_names
+### data_disk_names
 
 The virtual machine's data disk names.
 
     its('data_disk_names') { should include('DataDisk1') }
 
-### installed\_extensions\_types
+### installed_extensions_types
 
 List of all installed extensions' types for the virtual machine.
 
     its('installed_extensions_types') { should eq(['ExtensionType']) }
 
-### installed\_extensions\_names
+### installed_extensions_names
 
 List of all installed extensions' names for the virtual machine.
 
@@ -175,7 +177,7 @@ List of all installed extensions' names for the virtual machine.
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -190,7 +192,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 
@@ -204,7 +206,7 @@ page](https://www.inspec.io/docs/reference/matchers/).
       it { should_not exist }
     end
 
-### have\_only\_approved\_extensions
+### have_only_approved_extensions
 
     # Check if a virtual machine has only approved extensions. If an extension
     # is used that's not in the list then the check will fail.
@@ -212,14 +214,14 @@ page](https://www.inspec.io/docs/reference/matchers/).
       it { should have_only_approved_extensions(['ApprovedExtension', 'OtherApprovedExtensions']) }
     end
 
-### have\_monitoring\_agent\_installed
+### have_monitoring_agent_installed
 
     # Will be true if the MicrosoftMonitoringAgent is installed (Windows only)
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
       it { should have_monitoring_agent_installed }
     end
 
-### have\_endpoint\_protection\_installed
+### have_endpoint_protection_installed
 
     # Will be true if any of the given extensions are installed.
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do

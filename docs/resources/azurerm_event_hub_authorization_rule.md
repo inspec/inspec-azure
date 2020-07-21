@@ -1,13 +1,19 @@
----
-title: About the azurerm_event_hub_authorization_rule Resource
-platform: azure
----
++++
+title = "azurerm_event_hub_authorization_rule resource"
+draft = false
+platform = "azure"
 
-# azurerm\_event\_hub\_authorization\_rule
+[menu]
+  [menu.inspec]
+    title = "azurerm_event_hub_authorization_rule"
+    identifier = "inspec/resources/azure/azurerm_event_hub_authorization_rule.md azurerm_event_hub_authorization_rule resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_event_hub_authorization_rule.md)
 
 Use the `azurerm_event_hub_authorization_rule` InSpec audit resource to test properties and configuration of
 an Azure Event Hub Authorization Rule within a Resource Group.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -46,8 +52,6 @@ The `resource_group`, `namespace_name`, `event_hub_name` and `authorization_rule
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If an Event Hub Authorization Rule is referenced with a valid `Resource Group`, `Namespace Name`, `Event Hub Name` and `Authorization Rule Name`
@@ -62,14 +66,12 @@ If a Event Hub Authorization Rule is referenced with an invalid `Resource Group`
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the Event Hub Namespace belongs.
-  - `namespace_name` - The unique name of the Event Hub Namespace.
-  - `event_hub_name` - The unique name of the Event Hub Name.
-  - `authorization_rule_name` - The unique name of the Event Hub Authorization Rule.
+- `resource_group` - The resource Group to which the Event Hub Namespace belongs.
+- `namespace_name` - The unique name of the Event Hub Namespace.
+- `event_hub_name` - The unique name of the Event Hub Name.
+- `authorization_rule_name` - The unique name of the Event Hub Authorization Rule.
 
 ## Attributes
 
@@ -79,21 +81,25 @@ If a Event Hub Authorization Rule is referenced with an invalid `Resource Group`
 - `type`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 Event Hub Authorization Rule name, e.g. `my-auth-rule`.
 
 ### properties
+
 A collection of additional configuration properties related to the Event Hub Authorization Rule, eg. `rights`
 
 ### type
+
 The type of Resource, typically `Microsoft.EventHub/Namespaces/EventHubs/AuthorizationRules`.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -108,7 +114,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

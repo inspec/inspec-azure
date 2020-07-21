@@ -1,14 +1,19 @@
----
-title: About the azurerm_subnets Resource
-platform: azure
----
++++
+title = "azurerm_subnets resource"
+draft = false
+platform = "azure"
 
-# azurerm\_subnets
+[menu]
+  [menu.inspec]
+    title = "azurerm_subnets"
+    identifier = "inspec/resources/azure/azurerm_subnets.md azurerm_subnets resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_subnets.md)
 
 Use the `azurerm\_subnets` InSpec audit resource to test properties related to
 subnets for a resource group.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -53,15 +58,15 @@ The `resource_group` and 'vnet' must be given as a parameter.
     describe azurerm_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName') do
       it { should exist }
     end
-<br />
 
 ## Parameters
 
-  - `resource_group`, 'vnet'
+- `resource_group`
+- 'vnet'
 
 ### Parameter Examples
 
-### resource\_group (required)
+### resource_group (required)
 
 Defines the resource group of the subnet that you wish to test resides in.
 
@@ -77,8 +82,6 @@ Defines the virtual network that the subnet that you wish to test is a part of.
       ...
     end
 
-<br />
-
 ### name
 
 Filters the results to only those that match the given name.
@@ -91,7 +94,7 @@ Filters the results to only those that match the given name.
 
 ## Attributes
 
-  - `names`
+- `names`
 
 ### names
 
@@ -103,7 +106,7 @@ Gives a list of all the subnet names in the virtual network.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

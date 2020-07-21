@@ -1,13 +1,19 @@
----
-title: About the azurerm_cosmosdb_database_account Resource
-platform: azure
----
++++
+title = "azurerm_cosmosdb_database_account resource"
+draft = false
+platform = "azure"
 
-# azurerm\_cosmosdb\_database\_account
+[menu]
+  [menu.inspec]
+    title = "azurerm_cosmosdb_database_account"
+    identifier = "inspec/resources/azure/azurerm_cosmosdb_database_account.md azurerm_cosmosdb_database_account resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_cosmosdb_database_account.md)
 
 Use the `azurerm_cosmosdb_database_account` InSpec audit resource to test properties and configuration of
 an Azure CosmosDb Database Account within a Resource Group.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -46,8 +52,6 @@ The `resource_group` and `cosmosdb_database_account` must be given as a paramete
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If an CosmosDb Database Account is referenced with a valid `Resource Group` and `CosmosDb Database Account`
@@ -62,12 +66,10 @@ If an CosmosDb Database Account is referenced with an invalid `Resource Group` a
       it { should not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the CosmosDb Database Account belongs.
-  - `cosmosdb_database_account` - The unique name of the CosmosDb Database Account.
+- `resource_group` - The resource Group to which the CosmosDb Database Account belongs.
+- `cosmosdb_database_account` - The unique name of the CosmosDb Database Account.
 
 ## Attributes
 
@@ -80,24 +82,31 @@ If an CosmosDb Database Account is referenced with an invalid `Resource Group` a
 - `properties`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 CosmosDb Database Account name, e.g. `my-cosmosdb-account`.
 
 ### location
+
 Resource location, e.g. `eastus`.
 
 ### type
+
 The type of Resource, typically `Microsoft.DocumentDB/databaseAccounts`.
 
 ### kind
+
 Indicates the type of database account, e.g. `GlobalDocumentDB`, `MongoDB`
 
 ### tags
+
 Resource tags applied to the ComsosDb Account.
 
 ### properties
+
 A collection of additional configuration properties related to the CosmosDb Database Account, e.g. `Capability, ConsistencyPolicy, DatabaseAccountKind`.
 
 For a full list of properties please take a look at the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/cosmos-db-resource-provider/databaseaccounts/get#definitions)
@@ -105,7 +114,7 @@ For a full list of properties please take a look at the [Azure documentation](ht
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -120,13 +129,13 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 
-  describe azurerm_cosmosdb_database_account(resource_group: 'my-rg', cosmosdb_database_account 'my-cosmos-db') do
-    it { should exist }
-  end
+describe azurerm_cosmosdb_database_account(resource_group: 'my-rg', cosmosdb_database_account 'my-cosmos-db') do
+it { should exist }
+end
 
 ## Azure Permissions
 

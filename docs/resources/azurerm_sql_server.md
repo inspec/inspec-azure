@@ -1,13 +1,19 @@
----
-title: About the azurerm_sql_server Resource
-platform: azure
----
++++
+title = "azurerm_sql_server resource"
+draft = false
+platform = "azure"
 
-# azurerm\_sql\_server
+[menu]
+  [menu.inspec]
+    title = "azurerm_sql_server"
+    identifier = "inspec/resources/azure/azurerm_sql_server.md azurerm_sql_server resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_sql_server.md)
 
 Use the `azurerm_sql_server` InSpec audit resource to test properties and configuration of
 an Azure SQL Server within a Resource Group.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -46,8 +52,6 @@ The `resource_group` and `server_name` must be given as a parameter.
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If a SQL Server is referenced with a valid `Resource Group` and `Server Name`
@@ -62,12 +66,10 @@ If a SQL Server is referenced with an invalid `Resource Group` or `Server Name`
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the SQL Server belongs.
-  - `server_name` - The unique name of the SQL Server.
+- `resource_group` - The resource Group to which the SQL Server belongs.
+- `server_name` - The unique name of the SQL Server.
 
 ## Attributes
 
@@ -80,30 +82,37 @@ If a SQL Server is referenced with an invalid `Resource Group` or `Server Name`
 - `type`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 SQL Server name, e.g. `my-sql-server`.
 
 ### kind
+
 Kind of sql server. This is metadata used for the Azure portal experience.
 
 ### location
+
 Resource location, e.g. `eastus`.
 
 ### properties
+
 A collection of additional configuration properties related to the SQL Server, e.g. `administratorLogin`.
 
 ### tags
+
 Resource tags applied to the SQL Server.
 
 ### type
+
 The type of Resource, typically `Microsoft.Sql/servers`.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -118,7 +127,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

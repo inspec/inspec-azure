@@ -1,12 +1,18 @@
----
-title: About the azurerm_sql_databases Resource
-platform: azure
----
++++
+title = "azurerm_sql_databases resource"
+draft = false
+platform = "azure"
 
-# azurerm\_sql\_databases
+[menu]
+  [menu.inspec]
+    title = "azurerm_sql_databases"
+    identifier = "inspec/resources/azure/azurerm_sql_databases.md azurerm_sql_databases resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_sql_databases.md)
 
 Use the `azurerm_sql_databases` InSpec audit resource to test properties and configuration of Azure SQL Databases.
-<br />
 
 ## Azure REST API version
 
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -45,8 +51,6 @@ An `azurerm_sql_databases` resource block returns all SQL Databases on a SQL Ser
       ...
     end
 
-<br />
-
 ## Examples
 
 The following examples show how to use this InSpec audit resource.
@@ -57,11 +61,10 @@ The following examples show how to use this InSpec audit resource.
       it            { should exist }
       its('names')  { should include 'my-database-name' }
     end
-<br />
 
 ## Filter Criteria
 
-* `azure_sql_databases` resources are filterable on all available properties. Below are some examples.
+- `azure_sql_databases` resources are filterable on all available properties. Below are some examples.
 
 ### names
 
@@ -71,8 +74,6 @@ name. This is a string value.
     describe azurerm_sql_databases(resource_group: 'rg', server_name: 'server').where{ name.eql?('production-database') } do
       it { should exist }
     end
-    
-* `location`
 
 ### location
 
@@ -93,34 +94,41 @@ Filters the results to include only those resource groups that reside ina given 
 - `properties`
 
 ### ids
+
 Azure resource ID.
 
 ### names
+
 SQL Database name, e.g. `my-sql-database`.
-    
+
     its('names') { should include 'my-sql-database' }
 
 ### kinds
+
 Kind of sql database. This is metadata used for the Azure portal experience.
 
 ### locations
+
 Resource location, e.g. `eastus`.
 
     its('locations') { should_not include 'eastus' }
 
 ### type
+
 The type of Resource, typically `Microsoft.Sql/servers/databases`.
 
 ### sku
+
 The name and tier of the SKU.
 
 ### properties
+
 A collection of additional configuration properties related to the SQL Database, e.g. `collation`.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

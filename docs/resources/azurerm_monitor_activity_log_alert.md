@@ -1,14 +1,19 @@
----
-title: About the azurerm_monitor_activity_log_alert Resource
-platform: azure
----
++++
+title = "azurerm_monitor_activity_log_alert resource"
+draft = false
+platform = "azure"
 
-# azurerm\_monitor\_activity\_log\_alert
+[menu]
+  [menu.inspec]
+    title = "azurerm_monitor_activity_log_alert"
+    identifier = "inspec/resources/azure/azurerm_monitor_activity_log_alert.md azurerm_monitor_activity_log_alert resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_monitor_activity_log_alert.md)
 
 Use the `azurerm_monitor_activity_log_alert` InSpec audit resource to test properties
 of an Azure Monitor Activity Log Alert.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -44,8 +49,6 @@ name and resource group.
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Test that an example resource has an Activity Log Alert
@@ -60,17 +63,15 @@ name and resource group.
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
     end
 
-<br />
-
 ## Parameters
 
-  - `name`
-  - `resource_group`
+- `name`
+- `resource_group`
 
 ## Parameter Examples
 
 The resource group as well as the Activty Log Alert
-    name.
+name.
 
     describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
@@ -78,9 +79,13 @@ The resource group as well as the Activty Log Alert
 
 ## Attributes
 
-  For more information on these attributes see [Azure REST API documentation](https://docs.microsoft.com/en-us/rest/api/monitor/activitylogalerts/get#activitylogalertresource).
+For more information on these attributes see [Azure REST API documentation](https://docs.microsoft.com/en-us/rest/api/monitor/activitylogalerts/get#activitylogalertresource).
 
-  - `id`,`name`,`operations`,`properties`,`conditions`
+- `id`
+- `name`
+- `operations`
+- `properties`
+- `conditions`
 
 ### id
 
@@ -124,11 +129,10 @@ this list.
 
     its('properties.scopes') { should include 'subscriptions/SUBSCRIPTION_ID' }
 
-
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -143,7 +147,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

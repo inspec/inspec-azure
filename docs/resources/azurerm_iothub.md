@@ -1,13 +1,19 @@
----
-title: About the azurerm_iothub Resource
-platform: azure
----
++++
+title = "azurerm_iothub resource"
+draft = false
+platform = "azure"
 
-# azurerm\_iothub
+[menu]
+  [menu.inspec]
+    title = "azurerm_iothub"
+    identifier = "inspec/resources/azure/azurerm_iothub.md azurerm_iothub resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_iothub.md)
 
 Use the `azurerm_iothub` InSpec audit resource to test properties and configuration of
 an Azure Event Hub Namespace within a Resource Group.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -46,8 +52,6 @@ The `resource_group` and `resource_name` must be given as a parameter.
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If an IoT Hub is referenced with a valid `Resource Group` and `Resource Name`
@@ -62,12 +66,10 @@ If an IoT Hub is referenced with an invalid `Resource Group` or `Resource Name`
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the IoT Hub belongs.
-  - `resource_name` - The unique name of the IoT Hub.
+- `resource_group` - The resource Group to which the IoT Hub belongs.
+- `resource_name` - The unique name of the IoT Hub.
 
 ## Attributes
 
@@ -81,35 +83,43 @@ If an IoT Hub is referenced with an invalid `Resource Group` or `Resource Name`
 - `sku`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 IoT Hub name, e.g. `my-iot-hub`.
 
 ### type
+
 The type of Resource, typically `Microsoft.Devices/IotHubs`.
 
 ### location
+
 Resource location, e.g. `eastus`.
 
 ### properties
+
 A collection of additional configuration properties related to the IoT Hub, e.g. `eventHubEndpoints,routing,messagingEndpoints`.
 
 For a full list of properties please take a look at the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/iothub/iothubresource/get#definitions)
 
 ### tags
+
 Resource tags applied to the IoT Hub.
 
 ### etag
+
 The etag applied to the IoT Hub.
 
 ### sku
+
 SKU properties for the IoT Hub. Such as sku name, billing tier and capacity.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -124,7 +134,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

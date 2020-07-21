@@ -1,12 +1,18 @@
----
-title: About the `azurerm_key_vault_secrets` Resource
-platform: azure
----
++++
+title = "azurerm_key_vault_secrets resource"
+draft = false
+platform = "azure"
 
-# azurerm\_key\_vault\_secrets
+[menu]
+  [menu.inspec]
+    title = "azurerm_key_vault_secrets"
+    identifier = "inspec/resources/azure/azurerm_key_vault_secrets.md azurerm_key_vault_secrets resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_key_vault_secrets.md)
 
 Use the `azurerm_key_vault_secrets` InSpec audit resource to test properties and configuration of Azure Secrets within Vaults.
-<br />
 
 ## Azure REST API version
 
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -40,12 +46,10 @@ This resource first became available in 1.3.0 of the inspec-azure resource pack.
 ## Syntax
 
 An `azurerm_key_vault_secrets` resource block returns all Secrets within a Vault.
-  
+
     describe azurerm_key_vault_secrets('my-vault') do
       ...
     end
-
-<br />
 
 ## Examples
 
@@ -59,11 +63,10 @@ The following examples show how to use this InSpec audit resource.
          its('attributes.exp')    { should_not be_nil  }
        end
     end
-<br />
 
 ## Filter Criteria
 
-All fields described in [Attributes](##-Attributes) can be used to filter. Below is an example using `managed`.
+All fields described in [Attributes](#attributes) can be used to filter. Below is an example using `managed`.
 
 ### managed
 
@@ -75,31 +78,36 @@ Filters the results to include only those Secrets which are not managed by the V
 
 ## Attributes
 
- -   `id`
- -   `attributes`
- -   `contentType`
- -   `managed`
- -   `tags`
+- `id`
+- `attributes`
+- `contentType`
+- `managed`
+- `tags`
 
 ### id
+
 Secret identifier.
 
 ### attributes
+
 The secret management attributes.
 
 ### contentType
+
 Type of the secret value such as a password.
 
 ### managed
+
 True if the secret's lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.
 
 ### tags
+
 Resource tags applied to the Key.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

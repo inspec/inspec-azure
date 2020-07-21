@@ -1,14 +1,19 @@
----
-title: About the azurerm_monitor_log_profiles Resource
-platform: azure
----
++++
+title = "azurerm_monitor_log_profiles resource"
+draft = false
+platform = "azure"
 
-# azurerm\_monitor\_log\_profiles
+[menu]
+  [menu.inspec]
+    title = "azurerm_monitor_log_profiles"
+    identifier = "inspec/resources/azure/azurerm_monitor_log_profiles.md azurerm_monitor_log_profiles resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_monitor_log_profiles.md)
 
 Use the `azurerm_monitor_log_profiles` InSpec audit resource to verify that a Log Profile
 exists.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -43,8 +48,6 @@ An `azurerm_monitor_log_profiles` resource block identifies a Log Profile by nam
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Test that an example resource has a Log Profile
@@ -53,11 +56,9 @@ An `azurerm_monitor_log_profiles` resource block identifies a Log Profile by nam
       its('names') { should include('ExampleProfile') }
     end
 
-<br />
-
 ## Attributes
 
-  - `names`
+- `names`
 
 ### names
 
@@ -69,7 +70,7 @@ The name of the Log Profile
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

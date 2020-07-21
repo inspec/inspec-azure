@@ -1,13 +1,19 @@
----
-title: About the azurerm_key_vault_secret Resource
-platform: azure
----
++++
+title = "azurerm_key_vault_secret resource"
+draft = false
+platform = "azure"
 
-# azurerm\_key\_vault\_secret
+[menu]
+  [menu.inspec]
+    title = "azurerm_key_vault_secret"
+    identifier = "inspec/resources/azure/azurerm_key_vault_secret.md azurerm_key_vault_secret resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_key_vault_secret.md)
 
 Use the `azurerm_key_vault_secret` InSpec audit resource to test properties and configuration of
 an Azure Secret within a Vault.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -49,8 +55,6 @@ You may also specify a `secret_version` - if no version is specified, the most r
         its('value') { should_not be_nil }
     end
 
-<br />
-
 ## Examples
 
 If a Key Vault Secret is referenced with a valid `Vault Name`, `Secret Name` and `Secret Version`
@@ -65,49 +69,54 @@ If a Key Vault Secret is referenced with an invalid `Vault Name` or `Secret Name
         it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `vault_name`      - The name of the Key Vault.
-  - `secret_name`     - The name of the Key.
-  - `secret_version` (Optional) - The version of a Key, e.g. `7df9bf2c3b4347bab213ebe233f0e350`.
+- `vault_name` - The name of the Key Vault.
+- `secret_name` - The name of the Key.
+- `secret_version` (Optional) - The version of a Key, e.g. `7df9bf2c3b4347bab213ebe233f0e350`.
 
 ## Attributes
 
-  -  `id`
-  -  `value`
-  -  `attributes`
-  -  `kid`
-  -  `content_type`
-  -  `managed`
-  -  `tags`
+- `id`
+- `value`
+- `attributes`
+- `kid`
+- `content_type`
+- `managed`
+- `tags`
 
 ### id
+
 The secret id.
 
 ### value
+
 The secret value.
 
 ### attributes
+
 The secret management attributes.
 
 ### kid
+
 If this is a secret backing a KV certificate, then this field specifies the corresponding key backing the KV certificate.
 
-### content\_type
+### content_type
+
 The content type of the secret.
 
 ### managed
+
 True if the secret's lifetime is managed by key vault. If this is a secret backing a certificate, then managed will be true.
 
 ### tags
+
 Resource tags applied to the Secret.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -122,7 +131,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

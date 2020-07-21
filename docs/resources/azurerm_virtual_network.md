@@ -1,14 +1,19 @@
----
-title: About the azurerm_virtual_network Resource
-platform: azure
----
++++
+title = "azurerm_virtual_network resource"
+draft = false
+platform = "azure"
 
-# azurerm\_virtual\_network
+[menu]
+  [menu.inspec]
+    title = "azurerm_virtual_network"
+    identifier = "inspec/resources/azure/azurerm_virtual_network.md azurerm_virtual_network resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_virtual_network.md)
 
 Use the `azurerm_virtual_network` InSpec audit resource to test properties related to a
 virtual network.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -42,40 +47,41 @@ This resource first became available in 1.1.0 of the inspec-azure resource pack.
 ## Syntax
 
 The `resource_group` and virtual network `name` must be given as
-    parameters.
+parameters.
 
     describe azurerm_virtual_network(resource_group: 'MyResourceGroup', name: 'MyVnetName') do
       ...
     end
 
-<br />
-
 ## Examples
-### Ensure that the virtual network exists in the East US region
+
+### Ensure That the Virtual Network Exists in the East US Region
+
     describe azurerm_virtual_network(resource_group: resource_group, name: 'MyVnetName') do
       it               { should exist }
       its('location')  { should eq 'East US' }
     end
 
-### Ensure that the virtual network's dns servers are configured as expected.
+### Ensure That the Virtual Network's Dns Servers Are Configured as Expected
+
     describe azurerm_virtual_network(resource_group: resource_group, name: 'MyVnetName') do
         its('dns_servers') { should eq ["192.168.0.6"] }
     end
 
-### Ensure that the virtual network's address space is configured as expected.
+### Ensure That the Virtual Network's Address Space Is Configured as Expected
+
     describe azurerm_virtual_network(resource_group: resource_group, name: 'MyVnetName') do
         its('address_space') { should eq ["192.168.0.0/24"] }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group`, `name`
+- `resource_group`
+- `name`
 
 ## Parameter Examples
 
-### resource\_group (required)
+### resource_group (required)
 
 Defines the resource group that the virtual network that you wish to test resides in.
 
@@ -93,17 +99,17 @@ Defines the name of the virtual network that you wish to test.
 
 ## Attributes
 
-  - `id`
-  - `name`
-  - `location`
-  - `tags`
-  - `type`
-  - `subnets`
-  - `address_space`
-  - `dns_servers`
-  - `vnet_peerings`
-  - `enable_ddos_protection`
-  - `enable_vm_protection`
+- `id`
+- `name`
+- `location`
+- `tags`
+- `type`
+- `subnets`
+- `address_space`
+- `dns_servers`
+- `vnet_peerings`
+- `enable_ddos_protection`
+- `enable_vm_protection`
 
 ### id
 
@@ -112,7 +118,7 @@ The virtual network's id.
     its('id') { should eq(id) }
 
 Id will be in
-    format:
+format:
 
     '/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/Inspec-Azure-mmclane/providers/Microsoft.Network/virtualNetworks/MyVnetName'
 
@@ -146,33 +152,32 @@ The list of subnet names that are attached to this virtual network.
 
     its('subnets') { should eq ["MySubnetName"] }
 
-### address\_space
+### address_space
 
 The list of address spaces used by the virtual network.
 
     its('address_space') { should eq ["x.x.x.x/x"] }
 
-### dns\_servers
+### dns_servers
 
-The list of DNS servers configured for the virtual network.  The virtual network returns these IP addresses
+The list of DNS servers configured for the virtual network. The virtual network returns these IP addresses
 when virtual machines makes a DHCP request.
 
     its('dns_servers') { should eq ["x.x.x.x", "x.x.x.x"] }
 
-### vnet\_peerings
+### vnet_peerings
 
 A mapping of names and the virtual network ids of the virtual network peerings.
 
     its('vnet_peerings') { should eq "MyVnetPeeringConnection"=>"PeeringConnectionID"}
 
-### enable\_ddos\_protection
+### enable_ddos_protection
 
 Boolean value showing if Azure DDoS standard protection is enabled on the virtual network.
 
-
     its('enable_ddos_protection') { should eq true }
 
-### enable\_vm\_protection
+### enable_vm_protection
 
 Boolean value showing if the virtual network has VM protection enabled.
 
@@ -181,7 +186,7 @@ Boolean value showing if the virtual network has VM protection enabled.
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -196,7 +201,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

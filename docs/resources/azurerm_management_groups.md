@@ -1,14 +1,19 @@
----
-title: About the azurerm_management_groups Resource
-platform: azure
----
++++
+title = "azurerm_management_groups resource"
+draft = false
+platform = "azure"
 
-# azurerm\_management\_groups
+[menu]
+  [menu.inspec]
+    title = "azurerm_management_groups"
+    identifier = "inspec/resources/azure/azurerm_management_groups.md azurerm_management_groups resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_management_groups.md)
 
 Use the `azurerm_management_groups` InSpec audit resource to test properties related to
 management groups.
-
-<br />
 
 ## Azure REST API version
 
@@ -25,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it,
+pack](/inspec/glossary/#resource-pack). To use it,
 add the following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -41,23 +46,21 @@ You'll also need to setup your Azure credentials; see the resource pack
       ...
     end
 
-<br />
-
 ## Examples
 
-### Check attributes of all management groups
+### Check Attributes of All Management Groups
 
-  describe azurerm_management_groups do
-    its('ids')           { should include "/providers/Microsoft.Management/managementGroups/mg_id" }
-    its('names')         { should include "parent_mg" }
-    its('types')         { should include '/providers/Microsoft.Management/managementGroups' }
-  end
+describe azurerm_management_groups do
+its('ids') { should include "/providers/Microsoft.Management/managementGroups/mg_id" }
+its('names') { should include "parent_mg" }
+its('types') { should include '/providers/Microsoft.Management/managementGroups' }
+end
 
-### Filter results to inspect the properties of specific Management Group.
-  describe azurerm_management_groups.where(name: 'mg_parent').entries.first do
-    its('properties') { should have_attributes(:tenantId => tenant_id, :displayName => parent_dn)}
-  end
-<br />
+### Filter Results to Inspect the Properties of Specific Management Group
+
+describe azurerm_management_groups.where(name: 'mg_parent').entries.first do
+its('properties') { should have_attributes(:tenantId => tenant_id, :displayName => parent_dn)}
+end
 
 ## Parameters
 
@@ -65,10 +68,10 @@ N/A
 
 ## Attributes
 
-  - `ids`
-  - `types`
-  - `names`
-  - `properties`
+- `ids`
+- `types`
+- `names`
+- `properties`
 
 ### ids
 
@@ -89,7 +92,7 @@ Additional properties relating to management groups.
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -104,7 +107,7 @@ requests are always welcome.
 
 This InSpec audit resource has no special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 
@@ -115,9 +118,9 @@ The control will pass if the filter returns at least one result. Use
       it { should exist }
     end
 
-
 ## Azure Permissions
 
 Your [Service
 Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-must be setup with a `Contributor` or `Management Group Contributor` role on the Tenant Root Group or the specific management group(s) you wish to test.
+must be setup with a `Contributor` or `Management Group Contributor` role on the
+Tenant Root Group or the specific management group(s) you wish to test.

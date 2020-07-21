@@ -1,13 +1,19 @@
----
-title: About the azurerm_key_vault Resource
-platform: azure
----
++++
+title = "azurerm_key_vault resource"
+draft = false
+platform = "azure"
 
-# azurerm\_key\_vault
+[menu]
+  [menu.inspec]
+    title = "azurerm_key_vault"
+    identifier = "inspec/resources/azure/azurerm_key_vault.md azurerm_key_vault resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_key_vault.md)
 
 Use the `azurerm_key_vault` InSpec audit resource to test properties and configuration of
 an Azure Key Vault.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -44,10 +50,8 @@ The `resource_group` and `vault_name` must be given as a parameter.
 
     describe azurerm_key_vault(resource_group: 'inspec-resource-group', vault_name: 'vault-101') do
       it            { should exist }
-      its('name')   { should eq('vault-101') }    
+      its('name')   { should eq('vault-101') }
     end
-
-<br />
 
 ## Examples
 
@@ -63,13 +67,10 @@ If a Key Vault is referenced with an invalid `Resource Group` or `Vault Name`
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the Key Vault belongs.
-  - `vault_name` - The unique name of the Key Vault.
-
+- `resource_group` - The resource Group to which the Key Vault belongs.
+- `vault_name` - The unique name of the Key Vault.
 
 ## Attributes
 
@@ -81,27 +82,33 @@ If a Key Vault is referenced with an invalid `Resource Group` or `Vault Name`
 - `properties`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 Key Vault name, e.g. `vault-101`.
 
 ### location
+
 Resource location, e.g. `eastus`.
 
 ### type
+
 The type of Resource, typically `Microsoft.KeyVault/vaults`.
 
 ### tags
+
 Resource tags applied to the Key Vault.
 
 ### properties
+
 A collection of additional configuration properties related to the Key Vault, e.g. `vaultUri`.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -116,7 +123,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

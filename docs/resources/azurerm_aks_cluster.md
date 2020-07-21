@@ -1,13 +1,18 @@
----
-title: About the azurerm_aks_cluster Resource
-platform: azure
----
++++
+title = "azurerm_aks_cluster resource"
+draft = false
+platform = "azure"
 
-# azurerm\_aks\_cluster
+[menu]
+  [menu.inspec]
+    title = "azurerm_aks_cluster"
+    identifier = "inspec/resources/azure/azurerm_aks_cluster.md azurerm_aks_cluster resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_aks_cluster.md)
 
 Use the `azurerm_aks_cluster` InSpec audit resource to test properties of an Azure AKS Cluster.
-
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -41,8 +46,6 @@ An `azurerm_aks_cluster` resource block identifies an AKS Cluster by name and Re
     describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
       ...
     end
-
-<br />
 
 ## Examples
 
@@ -64,12 +67,10 @@ An `azurerm_aks_cluster` resource block identifies an AKS Cluster by name and Re
       its('properties.agentPoolProfiles.first.count') { should cmp 5 }
     end
 
-<br />
-
 ## Parameters
 
-  - `name`
-  - `resource_group`
+- `name`
+- `resource_group`
 
 ## Parameter Examples
 
@@ -101,11 +102,10 @@ control 'azurerm_aks_cluster' do
 end
 ```
 
-
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -120,7 +120,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

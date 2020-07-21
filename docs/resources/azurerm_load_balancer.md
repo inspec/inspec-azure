@@ -1,17 +1,24 @@
----
-title: About the azurerm_load_balancer Resource
-platform: azure
----
++++
+title = "azurerm_load_balancer resource"
+draft = false
+platform = "azure"
 
-# azurerm\_load\_balancer
+[menu]
+  [menu.inspec]
+    title = "azurerm_load_balancer"
+    identifier = "inspec/resources/azure/azurerm_load_balancer.md azurerm_load_balancer resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_load_balancer.md)
 
 Use the `azurerm_load_balancer` InSpec audit resource to test properties and configuration of
 an Azure Load Balancer.
-<br />
 
 ## Azure REST API version
-This resource interacts with version `2018-11-01` of the Azure Management API. For more
-information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/load-balancer/loadbalancers/get).
+
+This resource interacts with version `2018-11-01` of the Azure Management API.
+For more information see the [Official Azure Documentation](https://docs.microsoft.com/en-us/rest/api/load-balancer/loadbalancers/get).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -23,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -45,8 +52,6 @@ The `resource_group` and `loadbalancer_name` must be given as a parameter.
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If a Load Balancer is referenced with a valid `Resource Group` and `Load balancer Name`
@@ -61,12 +66,10 @@ If a Load Balancer is referenced with an invalid `Resource Group` or `Load balan
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the Load Balancer belongs.
-  - `loadbalancer_name` - The unique name of the Load balancer.
+- `resource_group` - The resource Group to which the Load Balancer belongs.
+- `loadbalancer_name` - The unique name of the Load balancer.
 
 ## Attributes
 
@@ -79,30 +82,37 @@ If a Load Balancer is referenced with an invalid `Resource Group` or `Load balan
 - `type`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 Load Balancer name, e.g. `lb-1`.
 
 ### sku
+
 SKU of load balancer. This is billing information related properties of a load balancer.
 
 ### location
+
 Resource location, e.g. `eastus`.
 
 ### properties
+
 A collection of additional configuration properties related to the Load balancer, e.g. `loadBalancingRules`.
 
 ### tags
+
 Resource tags applied to the Load balancer.
 
 ### type
+
 The type of Resource, typically `Microsoft.Network/loadBalancers`.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -117,12 +127,12 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 
 describe azurerm_load_balancer(resource_group: 'my-rg', loadbalancer_name: 'lb-1') do
-  it { should exist }
+it { should exist }
 end
 
 ## Azure Permissions

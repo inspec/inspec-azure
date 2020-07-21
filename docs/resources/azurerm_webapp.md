@@ -1,13 +1,18 @@
----
-title: About the azurerm_webapp Resource
-platform: azure
----
++++
+title = "azurerm_webapp resource"
+draft = false
+platform = "azure"
 
-# azurerm\_webapp
+[menu]
+  [menu.inspec]
+    title = "azurerm_webapp"
+    identifier = "inspec/resources/azure/azurerm_webapp.md azurerm_webapp resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_webapp.md)
 
 Use the `azurerm_webapp` InSpec audit resource to test properties of an Azure Webapp.
-
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -42,11 +47,12 @@ An `azurerm_webapp` resource block identifies an AppService Webapp by name and R
       ...
     end
 
-<br />
-
 ## Examples
 
-### Test that an example Resource Group has the specified Webapp and verify it's authentication settings are enabled. Verify HTTP 2.0 is enabled. 
+### Test and Verify That Resource Group Has Specified Webapp
+
+Test that an example Resource Group has the specified Webapp and verify it's
+authentication settings are enabled. Verify HTTP 2.0 is enabled.
 
     describe azurerm_webapp(resource_group: 'example', name: 'webapp_name') do
       it { should exist }
@@ -54,23 +60,22 @@ An `azurerm_webapp` resource block identifies an AppService Webapp by name and R
       its('configuration.properties') { should have_attributes(http20Enabled: true) }
     end
 
-### Test Webapp to ensure it's using the latest supported version of .NET
+### Test Webapp to Ensure It's Using the Latest Supported Version Of .Net
 
     describe azurerm_webapp(resource_group: resource_group, name: wa_name) do
       it { should be_using_latest('aspnet') }
     end
 
-### Test Webapp to ensure it's using the latest supported version of Python
+### Test Webapp to Ensure It's Using the Latest Supported Version of Python
 
     describe azurerm_webapp(resource_group: resource_group, name: wa_name) do
       it { should be_using_latest('python') }
     end
-<br />
 
 ## Parameters
 
-  - `name`
-  - `resource_group`
+- `name`
+- `resource_group`
 
 ## Parameter Examples
 
@@ -86,13 +91,13 @@ The Resource Group as well as the Webapp name.
 
 ## Attributes
 
-  - `id`
-  - `name`
-  - `location`
-  - `properties`
-  - `identity`
-  - `auth_settings`
-  - `configuration`
+- `id`
+- `name`
+- `location`
+- `properties`
+- `identity`
+- `auth_settings`
+- `configuration`
 
 All of the attributes are avialable via dot notation. This is an example of the currently available attributes.
 
@@ -108,11 +113,10 @@ control 'azurerm_webapp' do
 end
 ```
 
-
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](#-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -127,19 +131,20 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### using_latest?(stack)
 
 Asserts whether the deployed Azure WebApp is using the latest supported version of the given language/stack.
-Supported stacks (i.e. python, java, php, node) can be found in the `properties` section of WebApp Configuration [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/getconfiguration#siteconfigresource).
+Supported stacks (i.e. python, java, php, node) can be found in the `properties`
+section of WebApp Configuration [documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/getconfiguration#siteconfigresource).
 
 ```
-        it { should be_using_latest('php') }
-        it { should be_using_latest('java') }
-        it { should be_using_latest('python') }
-        it { should be_using_latest('aspnet') }
-        it { should be_using_latest('dotnetcore') }
+it { should be_using_latest('php') }
+it { should be_using_latest('java') }
+it { should be_using_latest('python') }
+it { should be_using_latest('aspnet') }
+it { should be_using_latest('dotnetcore') }
 ```
 
 ### exists

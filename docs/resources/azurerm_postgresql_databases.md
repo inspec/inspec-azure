@@ -1,12 +1,18 @@
----
-title: About the azurerm_postgresql_databases Resource
-platform: azure
----
++++
+title = "azurerm_postgresql_databases resource"
+draft = false
+platform = "azure"
 
-# azurerm\_postgresql\_databases
+[menu]
+  [menu.inspec]
+    title = "azurerm_postgresql_databases"
+    identifier = "inspec/resources/azure/azurerm_postgresql_databases.md azurerm_postgresql_databases resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_postgresql_databases.md)
 
 Use the `azurerm_postgresql_databases` InSpec audit resource to test properties and configuration of Azure PostgreSQL Databases.
-<br />
 
 ## Azure REST API version
 
@@ -23,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -45,8 +51,6 @@ An `azurerm_postgresql_databases` resource block returns all Databases on a Post
       ...
     end
 
-<br />
-
 ## Examples
 
 The following examples show how to use this InSpec audit resource.
@@ -57,11 +61,10 @@ The following examples show how to use this InSpec audit resource.
       it            { should exist }
       its('names')  { should include 'my-database-name' }
     end
-<br />
 
 ## Filter Criteria
 
-* `azure_postgresql_databases` resources are filterable on all available properties. Below are some examples.
+- `azure_postgresql_databases` resources are filterable on all available properties. Below are some examples.
 
 ### names
 
@@ -80,24 +83,27 @@ name. This is a string value.
 - `properties`
 
 ### ids
+
 Azure resource ID.
 
 ### names
+
 SQL Database name, e.g. `my-sql-database`.
 
     its('names') { should include 'my-sql-database' }
 
 ### type
+
 The type of Resource, typically `Microsoft.Sql/servers/databases`.
 
-
 ### properties
+
 A collection of additional configuration properties related to the PostgreSQL Database.
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers,
-please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
 

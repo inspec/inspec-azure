@@ -1,13 +1,19 @@
----
-title: About the azurerm_event_hub_event_hub Resource
-platform: azure
----
++++
+title = "azurerm_event_hub_event_hub resource"
+draft = false
+platform = "azure"
 
-# azurerm\_event\_hub\_event\_hub
+[menu]
+  [menu.inspec]
+    title = "azurerm_event_hub_event_hub"
+    identifier = "inspec/resources/azure/azurerm_event_hub_event_hub.md azurerm_event_hub_event_hub resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_event_hub_event_hub.md)
 
 Use the `azurerm_event_hub_event_hub` InSpec audit resource to test properties and configuration of
 an Azure Event Hub Event Hub within a Resource Group.
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +30,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -46,8 +52,6 @@ The `resource_group`, `namespace_name` and `event_hub_name` must be given as a p
       it { should exist }
     end
 
-<br />
-
 ## Examples
 
 If an Event Hub Event Hub is referenced with a valid `Resource Group`, `Namespace Name` and `Event Hub Name`
@@ -62,13 +66,11 @@ If a Event Hub Event Hub is referenced with an invalid `Resource Group`, `Namesp
       it { should_not exist }
     end
 
-<br />
-
 ## Parameters
 
-  - `resource_group` - The resource Group to which the Event Hub Event Hub belongs.
-  - `namespace_name` - The unique name of the Event Hub Namespace.
-  - `event_hub_name` - The unique name of the Event Hub Name.
+- `resource_group` - The resource Group to which the Event Hub Event Hub belongs.
+- `namespace_name` - The unique name of the Event Hub Namespace.
+- `event_hub_name` - The unique name of the Event Hub Name.
 
 ## Attributes
 
@@ -78,21 +80,25 @@ If a Event Hub Event Hub is referenced with an invalid `Resource Group`, `Namesp
 - `properties`
 
 ### id
+
 Azure resource ID.
 
 ### name
+
 Event Hub name, e.g. `myeventhub`.
 
 ### type
+
 The type of Resource, typically `Microsoft.EventHub/Namespaces/EventHubs`.
 
 ### properties
+
 A collection of additional configuration properties related to the Event Hub Event Hub, e.g. `messageRetentionInDays, partitionCount, status`.
 
 ### Other Attributes
 
 There are additional attributes that may be accessed that we have not
-documented. Please take a look at the [Azure documentation](##-Azure-REST-API-version).
+documented. Please take a look at the [Azure documentation](#azure-rest-api-version).
 Any attribute in the response may be accessed with the key names separated by
 dots (`.`).
 
@@ -107,7 +113,7 @@ requests are always welcome.
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

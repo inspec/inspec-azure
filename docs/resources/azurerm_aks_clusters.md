@@ -1,13 +1,18 @@
----
-title: About the azurerm_aks_clusters Resource
-platform: azure
----
++++
+title = "azurerm_aks_clusters resource"
+draft = false
+platform = "azure"
 
-# azurerm\_aks\_clusters
+[menu]
+  [menu.inspec]
+    title = "azurerm_aks_clusters"
+    identifier = "inspec/resources/azure/azurerm_aks_clusters.md azurerm_aks_clusters resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_aks_clusters.md)
 
 Use the `azurerm_aks_clusters` InSpec audit resource to enumerate AKS Clusters.
-
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -43,8 +48,6 @@ Resource Group.
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Test that an example Resource Group has the named AKS Cluster
@@ -53,11 +56,9 @@ Resource Group.
       its('names') { should include('ClusterName') }
     end
 
-<br />
-
 ## Properties
 
-  - `names`
+- `names`
 
 ### names
 
@@ -69,7 +70,7 @@ The name of the AKS Cluster
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 

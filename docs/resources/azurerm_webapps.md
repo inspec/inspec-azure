@@ -1,13 +1,18 @@
----
-title: About the azurerm_webapps Resource
-platform: azure
----
++++
+title = "azurerm_webapps resource"
+draft = false
+platform = "azure"
 
-# azurerm\_webapps
+[menu]
+  [menu.inspec]
+    title = "azurerm_webapps"
+    identifier = "inspec/resources/azure/azurerm_webapps.md azurerm_webapps resource"
+    parent = "inspec/resources/azure"
++++
+
+[\[edit on GitHub\]](https://github.com/inspec/inspec-azure/blob/master/docs/resources/azurerm_webapps.md)
 
 Use the `azurerm_webapps` InSpec audit resource to enumerate Webapps.
-
-<br />
 
 ## Azure REST API version
 
@@ -24,7 +29,7 @@ version.
 ### Installation
 
 This resource is available in the `inspec-azure` [resource
-pack](https://www.inspec.io/docs/reference/glossary/#resource-pack). To use it, add the
+pack](/inspec/glossary/#resource-pack). To use it, add the
 following to your `inspec.yml` in your top-level profile:
 
     depends:
@@ -43,8 +48,6 @@ Resource Group.
       ...
     end
 
-<br />
-
 ## Examples
 
 ### Test that an example Resource Group has the named Webapps
@@ -53,11 +56,9 @@ Resource Group.
       its('names') { should include('webapp_name') }
     end
 
-<br />
-
 ## Properties
 
-  - `names`
+- `names`
 
 ### names
 
@@ -69,7 +70,7 @@ The name of the Webapp
 
 This InSpec audit resource has the following special matchers. For a full list of
 available matchers, please visit our [Universal Matchers
-page](https://www.inspec.io/docs/reference/matchers/).
+page](/inspec/matchers/).
 
 ### exists
 
