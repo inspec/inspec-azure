@@ -150,6 +150,7 @@ The following resources are available in the InSpec Azure Resource Pack
 - [azurerm_postgresql_databases](docs/resources/azurerm_postgresql_databases.md.erb)
 - [azurerm_postgresql_server](docs/resources/azurerm_postgresql_server.md.erb)
 - [azurerm_postgresql_servers](docs/resources/azurerm_postgresql_servers.md.erb)
+- [azurerm_public_ip](docs/resources/azurerm_public_ip.md)
 - [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md)
 - [azurerm_role_definition](docs/resources/azurerm_role_definition.md.erb)
 - [azurerm_role_definitions](docs/resources/azurerm_role_definitions.md.erb)

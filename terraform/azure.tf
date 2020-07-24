@@ -1033,3 +1033,17 @@ resource "azurerm_application_gateway" "network" {
     policy_type = "Predefined"
   }
 }
+
+resource "random_string" "ip-address-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_public_ip" "public_ip_address" {
+  count               = var.public_ip_address_count
+  name                = random_string.ip-address-random.result
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
+}
