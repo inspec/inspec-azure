@@ -287,6 +287,14 @@ module Azure
       )
     end
 
+    def public_ip(resource_group, address_name)
+      get(
+        url: link(location: "Microsoft.Network/publicIPAddresses/#{address_name}",
+                  resource_group: resource_group),
+        api_version: '2020-05-01',
+      )
+    end
+
     def resource_groups
       get(
         url: link(location: 'resourcegroups', provider: false),
