@@ -613,15 +613,15 @@ module Azure
       get(
         url: link(location: "Microsoft.Network/publicIPAddresses/#{name}",
                   resource_group: resource_group),
-        api_version: '2020-05-01',
+        api_version: '2018-07-01',
       )
     end
 
-    def public_ip_addresses(resource_group, name)
+    def public_ip_addresses(resource_group)
       get(
         url: link(location: 'Microsoft.Network/publicIPAddresses/',
                   resource_group: resource_group),
-        api_version: '2020-05-01',
+        api_version: '2018-07-01',
       )
     end
 
