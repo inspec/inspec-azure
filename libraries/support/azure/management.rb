@@ -609,6 +609,22 @@ module Azure
       )
     end
 
+    def public_ip_address(resource_group, name)
+      get(
+        url: link(location: "Microsoft.Network/publicIPAddresses/#{name}",
+                  resource_group: resource_group),
+        api_version: '2020-05-01',
+      )
+    end
+
+    def public_ip_addresses(resource_group, name)
+      get(
+        url: link(location: 'Microsoft.Network/publicIPAddresses/',
+                  resource_group: resource_group),
+        api_version: '2020-05-01',
+      )
+    end
+
     def webapp_supported_stacks
       get(
         url: link(location: 'Microsoft.Web/availableStacks'),
