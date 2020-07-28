@@ -71,6 +71,10 @@ output "network_watcher_id" {
   value = azurerm_network_watcher.rg.*.id
 }
 
+output "public_ip_address_name" {
+  value = azurerm_public_ip.test.name
+}
+
 output "location" {
   value = var.location
 }
