@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.19.1 -->
+<!-- latest_release 1.19.2 -->
+## [v1.19.2](https://github.com/inspec/inspec-azure/tree/v1.19.2) (2020-08-03)
+
+#### Merged Pull Requests
+- Fixed broken documentation links [#265](https://github.com/inspec/inspec-azure/pull/265) ([tboloo](https://github.com/tboloo))
+<!-- latest_release -->
+
 ## [v1.19.1](https://github.com/inspec/inspec-azure/tree/v1.19.1) (2020-08-03)
 
 #### Merged Pull Requests
 - Zeepeetek feature/docs cleanup [#276](https://github.com/inspec/inspec-azure/pull/276) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.19.0](https://github.com/inspec/inspec-azure/tree/v1.19.0) (2020-08-03)
 
