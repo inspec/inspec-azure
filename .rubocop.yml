@@ -2,6 +2,8 @@
 AllCops:
   Exclude:
   - bin/**/*
+  - vendor/**/*
+  - dev/**/*
 AlignParameters:
   Enabled: true
 BlockDelimiters:
@@ -32,17 +34,17 @@ Layout/EmptyLineAfterGuardClause:
 Layout/SpaceAroundOperators:
   Enabled: false
 MethodLength:
-  Max: 40
+  Max: 60
 Metrics/AbcSize:
-  Max: 33
+  Max: 75
 Metrics/BlockLength:
   Max: 50
 Metrics/ClassLength:
   Enabled: false
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 25
 Metrics/PerceivedComplexity:
-  Max: 11
+  Max: 25
 Naming/FileName:
   Enabled: false
 Naming/PredicateName:
@@ -103,4 +105,6 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 Style/UnlessElse:
+  Enabled: false
+Style/ClassVars:
   Enabled: false

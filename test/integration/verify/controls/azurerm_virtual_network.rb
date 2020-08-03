@@ -34,3 +34,12 @@ control 'azurerm_virtual_network' do
     it { should_not exist }
   end
 end
+
+control 'azure_virtual_network' do
+  impact 1.0
+  title 'Ensure that azure_virtual_network supports `resource_id` as a parameter.'
+
+  describe azure_virtual_network(resource_id: vnet_id) do
+    its('name') { should cmp vnet }
+  end
+end

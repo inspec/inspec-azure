@@ -37,3 +37,12 @@ control 'azurerm_virtual_machine' do
     its('properties.osProfile.linuxConfiguration.ssh') { should be_nil }
   end
 end
+
+control 'azure_virtual_machine' do
+  impact 1.0
+  title 'Ensure azure_virtual_machine accepts resource_id and tests resource_group as a property.'
+  describe azure_virtual_machine(resource_id: win_id) do
+    its('name') { should eq win_name }
+    its('resource_group') { should eq resource_group }
+  end
+end

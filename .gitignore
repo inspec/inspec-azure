@@ -10,3 +10,5 @@ inspec.lock
 Gemfile.lock
 .bundle
 vendor
+.idea
+

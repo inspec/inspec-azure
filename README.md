@@ -71,49 +71,163 @@ supports:
 
 (For available inspec-azure versions, see this list of [inspec-azure versions](https://github.com/inspec/inspec-azure/releases).)
 
-## Examples
-
-Verify properties of an Azure VM
-
-```ruby
-control 'azurerm_virtual_machine' do
-  describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'prod-web-01') do
-    it                                { should exist }
-    it                                { should have_monitoring_agent_installed }
-    it                                { should_not have_endpoint_protection_installed([]) }
-    it                                { should have_only_approved_extensions(['MicrosoftMonitoringAgent']) }
-    its('type')                       { should eq 'Microsoft.Compute/virtualMachines' }
-    its('installed_extensions_types') { should include('MicrosoftMonitoringAgent') }
-    its('installed_extensions_names') { should include('LogAnalytics') }
-  end
-end
-```
-
-Verify properties of a security group
-
-```ruby
-control 'azure_network_security_group' do
-  describe azure_network_security_group(resource_group: 'ProductionResourceGroup', name: 'ProdServers') do
-    it                            { should exist }
-    its('type')                   { should eq 'Microsoft.Network/networkSecurityGroups' }
-    its('security_rules')         { should_not be_empty }
-    its('default_security_rules') { should_not be_empty }
-    it                            { should_not allow_rdp_from_internet }
-    it                            { should_not allow_ssh_from_internet }
-  end
-end
-```
-
 ## Resource Documentation
 
-The following resources are available in the InSpec Azure Resource Pack
+The following generic resources and the static resources derived from them, starting with `azure_`, are available in the InSpec Azure Resource Pack version X.Y.Z onwards.
+The static resources are fully backward compatible with their `azurerm_` counterparts. 
+
+- [azure_generic_resource](docs/resources/azure_generic_resource.md)
+- [azure_generic_resources](docs/resources/azure_generic_resources.md)
+- [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
+- [azure_graph_generic_resources](docs/resources/azure_graph_generic_resources.md)
+- [azure_graph_user](docs/resources/azure_graph_user.md)
+- [azure_graph_users](docs/resources/azure_graph_users.md)
+- [azure_key_vault](docs/resources/azure_key_vault.md)
+- [azure_key_vaults](docs/resources/azure_key_vaults.md)
+- [azure_mysql_server](docs/resources/azure_mysql_server.md)
+- [azure_mysql_servers](docs/resources/azure_mysql_servers.md)
+- [azure_network_security_group](docs/resources/azure_network_security_group.md)
+- [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
+- [azure_subnet](docs/resources/azure_subnet.md)
+- [azure_subnets](docs/resources/azure_subnets.md)
+- [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
+- [azure_virtual_machines](docs/resources/azure_virtual_machines.md)
+- [azure_virtual_network](docs/resources/azure_virtual_network.md)
+- [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
+
+With the generic resources:
+
+- An Azure cloud resource that this resource pack does not have a static InSpec resource can be tested.
+- Azure resources from different resource providers and resource groups can be tested at the same time.
+- Server side filtering can be used for more efficient tests.
+    
+For more details and different use cases, please refer to the specific resource pages.
+
+## Examples
+
+### Interrogate All Resources that Have `project_A` in Their Names within Your Subscription Regardless of Their Type and Resource Group  
+  
+```ruby
+azure_generic_resources(substring_of_name: 'project_A').ids.each do |id|
+  describe azure_generic_resource(resource_id: id) do
+    its('location') { should eq 'eastus' }
+  end
+end
+``` 
+
+### Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value
+    
+```ruby
+azure_generic_resources(tag_name: 'project_A').ids.each do |id|
+  describe azure_generic_resource(resource_id: id) do
+    its('location') { should eq 'eastus' }
+  end
+end
+``` 
+
+### Verify Properties of an Azure Virtual Machine
+
+```ruby
+describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'prod-web-01') do
+  it { should exist }
+  it { should have_monitoring_agent_installed }
+  it { should_not have_endpoint_protection_installed([]) }
+  it { should have_only_approved_extensions(['MicrosoftMonitoringAgent']) }
+  its('type') { should eq 'Microsoft.Compute/virtualMachines' }
+  its('installed_extensions_types') { should include('MicrosoftMonitoringAgent') }
+  its('installed_extensions_names') { should include('LogAnalytics') }
+end
+```
+
+### Verify Properties of a Network Security Group
+
+```ruby
+describe azure_network_security_group(resource_group: 'ProductionResourceGroup', name: 'ProdServers') do
+  it { should exist }
+  its('type') { should eq 'Microsoft.Network/networkSecurityGroups' }
+  its('security_rules') { should_not be_empty }
+  its('default_security_rules') { should_not be_empty }
+  it { should_not allow_rdp_from_internet }
+  it { should_not allow_ssh_from_internet }
+  it { should allow(source_ip_range: '0.0.0.0', destination_port: '22', direction: 'inbound') }
+  it { should allow_in(service_tag: 'Internet', port: %w{1433-1434 1521 4300-4350 5000-6000}) } 
+end
+```
+
+## Parameters Applicable To All Resources 
+
+The generic resources and their derivations support following parameters unless stated otherwise in their specific resource page.
+
+### `api_version`
+
+As an Azure resource provider enables new features, it releases a new version of the REST API. They are generally in the format of `2020-01-01`.
+InSpec Azure resources can be forced to use a specific version of the API to eliminate the behavioural changes between the tests using different API versions.
+The latest version will be used unless a specific version is provided.
+
+```ruby
+describe azure_virtual_machine(resource_group: 'my_group', name: 'my_VM', api_version: '2020-01-01') do
+  its('api_version_used_for_query_state') { should eq 'user_provided' }
+  its('api_version_used_for_query') { should eq '2020-01-01' }
+end
+
+# `default` api version can be used if it is supported by the resource provider.
+describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', name: 'my_VM', api_version: 'default') do
+  its('api_version_used_for_query_state') { should eq 'default' }
+end
+
+# `latest` version will be used if it is not provided
+describe azure_virtual_networks do
+  its('api_version_used_for_query_state') { should eq 'latest' }
+end
+
+# `latest` version will be used if the provided is invalid
+describe azure_network_security_groups(resource_group: 'my_group', api_version: 'invalid_api_version') do
+  its('api_version_used_for_query_state') { should eq 'latest' }
+end
+```
+
+### `endpoint`
+
+Microsoft Azure cloud services are available through a global and three national network of datacenter as described [here](https://docs.microsoft.com/en-us/graph/deployments).
+The preferred data center can be defined via `endpoint` parameter.
+Azure Global Cloud will be used if not provided.
+
+- `azure_cloud` (default)
+- `azure_china_cloud`
+- `azure_us_government_L4`
+- `azure_us_government_L5`
+- `azure_german_cloud`
+
+```ruby
+describe azure_virtual_machines(endpoint: 'azure_german_cloud') do
+  it { should exist }
+end
+```
+
+It can be defined as an environment variable or a resource parameter (has priority).
+
+The predefined environment variables for each cloud deployments can be found [here](libraries/backend/helpers.rb#L64).
+
+### http_client parameters
+
+The behavior of the http client can be defined with the following parameters:
+
+- `azure_retry_limit`: Maximum number of retries (default - `2`, Integer).
+- `azure_retry_backoff`: Pause in seconds between retries (default - `0`, Integer).
+- `azure_retry_backoff_factor`: The amount to multiply each successive retry's interval amount by (default - `1`, Integer).
+
+They can be defined as environment variables or resource parameters (has priority).
+
+<hr>
+
+> <b>WARNING</b> The following resources do not support **api_version**, **endpoint** and **http_client** parameters and they will be deprecated in the InSpec Azure version **2**. 
 
 - [azurerm_ad_user](docs/resources/azurerm_ad_user.md)
 - [azurerm_ad_users](docs/resources/azurerm_ad_users.md)
 - [azurerm_aks_cluster](docs/resources/azurerm_aks_cluster.md)
 - [azurerm_aks_clusters](docs/resources/azurerm_aks_clusters.md)
-- [azurerm_application_gateway](docs/resources/azurerm_application_gateway.md)
-- [azurerm_application_gateways](docs/resources/azurerm_application_gateways.md)
+- [azurerm_application_gateway](docs/resources/azurerm_application_gateway)
+- [azurerm_application_gateways](docs/resources/azurerm_application_gateways)
 - [azurerm_cosmosdb_database_account](docs/resources/azurerm_cosmosdb_database_account.md)
 - [azurerm_event_hub_authorization_rule](docs/resources/azurerm_event_hub_authorization_rule.md)
 - [azurerm_event_hub_event_hub](docs/resources/azurerm_event_hub_event_hub.md)
@@ -181,9 +295,38 @@ See [Connectors](docs/reference/connectors.md) for more information on the diffe
 
 ## Development
 
-If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). The following instructions will help you get your development environment setup to run integration tests.
+If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-### Getting Started
+### Developing a Static Resources
+
+The easiest way to start is checking the existing static resources. They have detailed information on how to leverage the backend class within their comments.
+
+The common parameters are:
+- `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author.
+- `display_name`: A generic one will be created unless defined.
+- `required_parameters`: Define mandatory parameters. The `resource_group` and resource `name` in the singular resources are default mandatory in the base class.
+- `allowed_parameters`: Define optional parameters. The `resource_group` is default optional, but this can be made mandatory in the static resource. 
+
+### Singular Resources
+
+- In most cases `resource_group` and resource `name` should be required from the users and a single API call would be enough for creating methods on the  resource.
+See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
+- If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
+- If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
+- If it is necessary to make an additional API call within a static method, the `get_resource` should be used. See [azure_key_vaults](libraries/azure_key_vault.rb). 
+
+### Plural Resources
+
+- A standard plural resource does not require a parameter, except optional `resource_group`. See [azure_mysql_servers](libraries/azure_mysql_servers.rb).
+- All plural resources use [FilterTable](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md) to be able to provide filtering within returned resources. The filter criteria must be defined `table_schema` Hash variable.
+- If the properties of the resource are to be manipulated before populating the FilterTable, a `populate_table` method has to be defined. See [azure_virtual_machines](libraries/azure_virtual_machines.rb).
+- If the resources exist in another resource, such as subnets of a virtual network, a `resource_path` has to be created. 
+For that, the identifiers of the parent resource, `resource_group` and virtual network name `vnet`, must be required from the users. 
+See [azure_subnets](libraries/azure_subnets.rb).
+
+The following instructions will help you get your development environment setup to run integration tests.
+
+### Setting the Environment Variables
 
 Copy `.envrc-example` to `.envrc` and fill in the fields with the values from your account.
 
@@ -224,8 +367,7 @@ This environment may be used to run your profile against or to run integration t
 
 ### Remote State
 
-Remote state has been removed. The first time you run Terraform after having
-remote state removed you will be presented with a message like:
+Remote state has been removed. The first time you run Terraform after having remote state removed you will be presented with a message like:
 
 ```
 Do you want to migrate all workspaces to "local"?
@@ -253,89 +395,54 @@ Creating a new environment:
 rake azure:login
 rake tf:apply
 ```
-
 Creating a new environment with a Network Watcher:
-
 ```
 rake azure:login
 rake network_watcher tf:apply
 ```
-
 You may only have a single Network Watcher per a subscription. Use this carefully if you are working with other team members.
-
 Updating a running environment (e.g. when you change the .tf file):
-
 ```
 rake azure:login
 rake tf:apply
 ```
-
 Checking if your state has diverged from your plan:
-
 ```
 rake azure:login
 rake tf:plan
 ```
-
 Destroying your environment:
 ```
 rake azure:login
 rake tf:destroy
 ```
-
-### Running integration tests
-
-To start up an environment and run all tests:
+To run Rubocop and Syntax check for Ruby and InSpec:
 ```
-bundle
-rake azure:login
-rake azure
+rake test:lint
 ```
-
-### Development
-
-To run all tests:
+To run unit tests:
 ```
-bundle
-rake
+rake test:unit
 ```
-
 To run integration tests:
 ```
-bundle
 rake test:integration
 ```
-
+To run all tests:
+```
+rake
+```
 To run integration tests including a Network Watcher:
 ```
-bundle
 rake network_watcher test:integration
 ```
-
-To run a control called `azurerm_virtual_machine`:
-```
-bundle
-rake test:integration[azurerm_virtual_machine]
-```
-
-You may run multiple controls:
-```
-bundle
-rake test:integration[azure_resource_group,azurerm_virtual_machine]
-```
-
 ### Optional Components
 
-By default, rake tasks will only use core components. Optional components have
-associated integrations that will be skipped unless you enable these. We have
-the following optional pieces that may be managed with Terraform.
+By default, rake tasks will only use core components. Optional components have associated integrations that will be skipped unless you enable these. We have the following optional pieces that may be managed with Terraform.
 
 #### Network Watcher
 
-Network Watcher may be enabled to run integration tests related to the Network
-Watcher. We recommend leaving this disabled unless you are specifically working
-on related resources. You may only have one Network Watcher enabled per an
-Azure subscription at a time. To enable Network Watcher:
+Network Watcher may be enabled to run integration tests related to the Network Watcher. We recommend leaving this disabled unless you are specifically working on related resources. You may only have one Network Watcher enabled per an Azure subscription at a time. To enable Network Watcher:
 
 ```
 rake options[network_watcher]
@@ -345,13 +452,10 @@ rake tf:apply
 
 #### Graph API
 
-Graph API support may be enabled to test with `azure_ad` related resources.
-Graph requires granting "Active Directory Read" to the Service Principal. If
-your account does not have access leave this disabled.
-
-Please refer to the [Microsoft
-Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application)
-for information on how to grant these permissions to your application.
+Graph API support may be enabled to test with `azure_graph` related resources.
+Each resource requires specific privileges granted to your service principal.
+Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
+If your account does not have access, leave this disabled.
 
 Note: An Azure Administrator must grant your application these permissions.
 
@@ -364,10 +468,7 @@ rake tf:apply
 #### Managed Service Identity
 
 Managed Service Identity (MSI) is another way to connect to the Azure APIs.
-This option starts an additonal virtual machine with MSI enabled and a public
-ip address. You will need to put a hole in your firewall to connect to the
-virtual machine. You will also need to grant the `contributor` role to this
-identity for your subscription.
+This option starts an additional virtual machine with MSI enabled and a public ip address. You will need to put a hole in your firewall to connect to the virtual machine. You will also need to grant the `contributor` role to this identity for your subscription.
 
 ```
 rake options[msi]
@@ -386,6 +487,7 @@ rake tf:apply
 ```
 
 To disable optional components run `rake options[]` including only the optional components you wish to enable. Any omitted component will be disabled.
+
 ```
 rake options[] # disable all optional components
 rake options[option_1] # enables option_1 disabling all other optional components
