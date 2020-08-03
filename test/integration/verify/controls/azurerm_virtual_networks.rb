@@ -18,3 +18,12 @@ control 'azurerm_virtual_networks' do
     it { should exist }
   end
 end
+
+control 'azure_virtual_networks' do
+  impact 1.0
+  title 'Ensure that the resource tests all virtual networks in a subscription.'
+
+  describe azure_virtual_networks do
+    it { should exist }
+  end
+end

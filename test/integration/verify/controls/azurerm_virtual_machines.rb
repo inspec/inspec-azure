@@ -40,3 +40,19 @@ control 'azurerm_virtual_machines' do
     it { should_not exist }
   end
 end
+
+control 'azure_virtual_machines' do
+  impact 1.0
+  title 'Ensure azure_virtual_machines works without providing resource_group.'
+
+  describe azure_virtual_machines do
+    it { should exist }
+  end
+
+  # In depth test with singular resource
+  azure_virtual_machines.ids.each do |id|
+    describe azure_virtual_machine(resource_id: id) do
+      it { should exist }
+    end
+  end
+end

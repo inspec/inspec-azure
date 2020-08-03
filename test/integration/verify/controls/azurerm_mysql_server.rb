@@ -14,3 +14,16 @@ control 'azurerm_mysql_server' do
     its('properties') { should have_attributes(version: '5.7') }
   end
 end
+
+control 'azure_mysql_server' do
+
+  impact 1.0
+  title 'Ensure resource_id is supported.'
+
+  resource_id = azure_mysql_server(resource_group: resource_group, server_name: mysql_server_name).id
+
+  describe azure_mysql_server(resource_id: resource_id) do
+    it { should exist }
+    its('name') { should eq mysql_server_name }
+  end
+end

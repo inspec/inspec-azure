@@ -56,3 +56,16 @@ control 'azurerm_network_security_group' do
     it { should_not exist }
   end
 end
+
+control 'azure_network_security_group' do
+
+  describe azure_network_security_group(resource_group: resource_group, name: nsg_insecure) do
+    it { should allow_in(ip_range: '0.0.0.0', port: '22') }
+    it { should allow(source_ip_range: '0.0.0.0', destination_port: '22', direction: 'inbound') }
+    it { should allow_in(service_tag: 'Internet', port: %w{1433-1434 1521 4300-4350 5000-6000}) }
+    it { should allow(source_service_tag: 'Internet', destination_port: %w{1433-1434 1521 4300-4350 5000-6000}, direction: 'inbound') }
+    it { should allow_in(service_tag: 'Internet', port: '3389') }
+    it { should allow(source_service_tag: 'Internet', destination_port: '3389', direction: 'inbound') }
+  end
+
+end

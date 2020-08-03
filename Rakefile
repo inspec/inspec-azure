@@ -52,7 +52,7 @@ end
 namespace :syntax do
   desc 'InSpec syntax check'
   task :inspec do
-    puts '-> Checking Inspec Control Syntax'
+    puts '-> Checking InSpec Control Syntax'
     stdout, status = Open3.capture2("bundle exec inspec vendor #{INTEGRATION_DIR} --overwrite &&
                                      bundle exec inspec check #{INTEGRATION_DIR} &&
                                      bundle exec inspec check . && rm -rf #{INTEGRATION_DIR}/vendor")
@@ -68,7 +68,7 @@ namespace :syntax do
   desc 'Ruby syntax check'
   task :ruby do
     puts '-> Checking Ruby Syntax'
-    files = %w{Gemfile Rakefile} + Dir['./**/*.rb']
+    files = %w{Gemfile Rakefile} + Dir['./lib*/**/*.rb'] + Dir['./test/**/*.rb']
 
     files.each do |file|
       sh('ruby', '-c', file) do |ok, res|
@@ -105,6 +105,8 @@ namespace :test do
   Rake::TestTask.new(:unit) do |t|
     t.libs << 'test/unit'
     t.libs << 'libraries'
+    t.warning = false
+    t.verbose = true
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 

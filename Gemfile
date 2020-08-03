@@ -12,7 +12,14 @@ group :development do
   gem 'pry-byebug'
 end
 
-group :developmen, :test do
+group :development, :test do
   gem 'minitest', '~> 5.11.0'
   gem 'rubocop',  '~> 0.71.0'
+end
+
+group :generic_resources do
+  gem 'dotenv'
+  gem 'facets', require: false
+  gem 'faraday-http-cache'
+  gem 'ipaddr'
 end
