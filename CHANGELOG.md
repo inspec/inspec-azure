@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.19.0 -->
+<!-- latest_release 1.19.1 -->
+## [v1.19.1](https://github.com/inspec/inspec-azure/tree/v1.19.1) (2020-08-03)
+
+#### Merged Pull Requests
+- Zeepeetek feature/docs cleanup [#276](https://github.com/inspec/inspec-azure/pull/276) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.19.0](https://github.com/inspec/inspec-azure/tree/v1.19.0) (2020-08-03)
 
 #### Merged Pull Requests
 - Added support for querying public IP address [#273](https://github.com/inspec/inspec-azure/pull/273) ([tboloo](https://github.com/tboloo))
-<!-- latest_release -->
 
 ## [v1.18.5](https://github.com/inspec/inspec-azure/tree/v1.18.5) (2020-07-21)
 
