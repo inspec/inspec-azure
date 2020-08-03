@@ -680,6 +680,22 @@ module Azure
       )
     end
 
+    def api_management(resource_group, api_management)
+      get(
+        url: link(location: "Microsoft.ApiManagement/service/#{api_management}",
+                  resource_group: resource_group),
+        api_version: '2019-12-01',
+      )
+    end
+
+    def api_managements(resource_group)
+      get(
+        url: link(location: 'Microsoft.ApiManagement/service/',
+                  resource_group: resource_group),
+        api_version: '2019-12-01',
+      )
+    end
+
     private
 
     def rest_client
