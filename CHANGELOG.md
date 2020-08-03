@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.18.5 -->
+<!-- latest_release 1.19.0 -->
+## [v1.19.0](https://github.com/inspec/inspec-azure/tree/v1.19.0) (2020-08-03)
+
+#### Merged Pull Requests
+- Added support for querying public IP address [#273](https://github.com/inspec/inspec-azure/pull/273) ([tboloo](https://github.com/tboloo))
+<!-- latest_release -->
+
 ## [v1.18.5](https://github.com/inspec/inspec-azure/tree/v1.18.5) (2020-07-21)
 
 #### Merged Pull Requests
 - Make HDINSIGHT integration tests optional due to resource constraint [#271](https://github.com/inspec/inspec-azure/pull/271) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.18.4](https://github.com/inspec/inspec-azure/tree/v1.18.4) (2020-07-17)
 
