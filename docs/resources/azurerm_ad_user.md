@@ -3,6 +3,8 @@ title: About the azurerm_ad_user Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_graph_user`](azure_graph_user.md) InSpec audit resource.
+
 # azurerm\_ad\_user
 
 Use the `azurerm_ad_user` InSpec audit resource to test properties of

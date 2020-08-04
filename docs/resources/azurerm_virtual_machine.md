@@ -3,6 +3,8 @@ title: About the azurerm_virtual_machine Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_virtual_machine`](azure_virtual_machine.md) InSpec audit resource.
+
 # azurerm\_virtual\_machine
 
 Use the `azurerm_virtual_machine` InSpec audit resource to test properties related to a
@@ -55,8 +57,7 @@ The `resource_group` and virtual machine `name` must be given as
 ### Ensure that the virtual machine has the expected data disks
 
     describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
-      its('data_disks') { should include 'DataDisk1' }
-      its('data_disks') { should include 'DataDisk2' }
+      its('data_disk_names') { should include 'DataDisk1' }
     end
 
 ### Ensure that the virtual machine has the expected monitoring agent installed

@@ -3,6 +3,8 @@ title: About the azurerm_virtual_machines Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_virtual_machines`](azure_virtual_machines.md) InSpec audit resource.
+
 # azurerm\_virtual\_machines
 
 Use the `azurerm_virtual_machines` InSpec audit resource to test properties related to

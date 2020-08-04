@@ -1,0 +1,103 @@
+---
+title: About the azure_mysql_servers Resource
+platform: azure
+---
+
+# azure_mysql_servers
+
+Use the `azure_mysql_servers` InSpec audit resource to test properties and configuration of multiple Azure MySQL Servers.
+## Azure REST API version, endpoint and http client parameters
+
+This resource interacts with api versions supported by the resource provider.
+The `api_version` can be defined as a resource parameter.
+If not provided, the latest version will be used.
+For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+
+Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used .
+For more information, refer to the resource pack [README](../../README.md). 
+
+## Availability
+
+### Installation
+
+This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). To use it, add the following to your `inspec.yml` in your top-level profile:
+```yaml
+depends:
+  - name: inspec-azure
+    git: https://github.com/inspec/inspec-azure.git
+```
+You'll also need to setup your Azure credentials; see the resource pack [README](../../README.md).
+
+## Syntax
+
+An `azure_mysql_servers` resource block returns all Azure MySQL Servers, either within a Resource Group (if provided), or within an entire Subscription.
+```ruby
+describe azure_mysql_servers do
+  #...
+end
+```
+or
+```ruby
+describe azure_mysql_servers(resource_group: 'my-rg') do
+  #...
+end
+```
+## Parameters
+
+- `resource_group` (Optional)
+
+## Properties
+
+|Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
+|---------------|--------------------------------------------------------------------------------------|-----------------|
+| ids           | A list of the unique resource ids.                                                   | `id`            |
+| locations     | A list of locations for all the virtual networks.                                    | `location`      |
+| names         | A list of all the virtual network names.                                             | `name`          |
+| tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
+| skus          | A list of the SKUs (pricing tiers) of the server.                                    | `sku`           |
+| properties    | A list of properties for all the key vaults.                                         | `properties`    |
+
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
+
+## Examples
+
+### Check MySQL Servers are present
+```ruby
+describe azure_mysql_servers do
+  it            { should exist }
+  its('names')  { should include 'my-server-name' }
+end
+```
+### Filters the Results to Include Only Those Servers which Include the Given Name (Client Side Filtering)
+```ruby
+describe azure_mysql_servers.where{ name.include?('production') } do
+  it { should exist }
+end
+```
+## Filters the Results to Include Only Those Servers which Reside in a Given Location (Client Side Filtering)
+```ruby
+describe azure_mysql_servers.where{ location.eql?('westeurope') } do
+  it { should exist }
+end
+```    
+## Filters the Results to Include Only Those Servers which Reside in a Given Location and Include the Given Name (Server Side Filtering - Recommended)
+```ruby
+describe azure_generic_resources(resource_provider: 'Microsoft.DBforMySQL/servers', substring_of_name: 'production', location: 'westeurope') do
+  it {should exist}  
+end
+```
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+```ruby
+describe azure_mysql_servers do
+  it { should exist }
+end
+```
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

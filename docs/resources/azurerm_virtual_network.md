@@ -3,6 +3,8 @@ title: About the azurerm_virtual_network Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_virtual_network`](azure_virtual_network.md) InSpec audit resource.
+
 # azurerm\_virtual\_network
 
 Use the `azurerm_virtual_network` InSpec audit resource to test properties related to a
