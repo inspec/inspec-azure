@@ -7,7 +7,7 @@ win_tags                  = input('windows_vm_tags',       value: nil)
 control 'azure_generic_resource' do
   describe azure_generic_resource(resource_group: resource_group, name: win_name) do
     it { should exist }
-    its('id') { should eq win_id }
+    its('id') { should cmp win_id }
     its('name') { should eq win_name }
     its('location') { should eq win_location }
     its('tags') { should eq win_tags }
