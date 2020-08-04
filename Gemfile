@@ -2,13 +2,13 @@
 
 source 'https://rubygems.org'
 
-gem 'faraday',             '~> 0.15.0'
-gem 'faraday_middleware',  '~> 0.12.2'
-gem 'inspec-bin',          '>= 4.18.0'
-gem 'rake',                '~> 12.3', '>= 12.3.1'
+gem 'faraday'
+gem 'faraday_middleware'
+gem 'inspec-bin'
+gem 'rake'
 
 group :development do
-  gem 'pry', '~> 0.11.3'
+  gem 'pry'
   gem 'pry-byebug'
 end
 
@@ -20,6 +20,5 @@ end
 group :generic_resources do
   gem 'dotenv'
   gem 'facets', require: false
-  gem 'faraday-http-cache'
   gem 'ipaddr'
 end

@@ -84,10 +84,7 @@ class AzureGraphGenericResources < AzureResourceBase
     next_link = @resource[:"@odata.nextLink"]
     unless next_link.nil?
       loop do
-        url_parsed = URI.parse(next_link)
-        query_hash = URI.decode_www_form(url_parsed.query).to_h
-        url = next_link.split('?')[0]
-        api_response = @azure.rest_get_call(url, query[:api_version], query_hash)
+        api_response = @azure.rest_get_call(next_link)
         @resources += api_response[:value]
         return if failed_resource?
         next_link = api_response[:"@odata.nextLink"]
@@ -99,7 +96,7 @@ class AzureGraphGenericResources < AzureResourceBase
       @table_schema = {}
     else
       # Create FilterTable layout dynamically.
-      # Column names will be in snakecase and the pluralized form of the `select` parameters.
+      # Column names will be in snake_case and the pluralized form of the `select` parameters.
       @table_schema = @table.first.keys.each_with_object([{ column: :ids, field: :id }]) do |k, acc|
         unless k == :id
           acc << { column: k.to_s.pluralize.snakecase.to_sym, field: k }

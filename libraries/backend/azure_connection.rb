@@ -86,9 +86,8 @@ class AzureConnection
   #
   # @return [Hash] The HTTP response body as a JSON object. Properties can be accessed via symbol key names.
   # @param url [String] The url without any parameters or headers.
-  # @param api_version [String] The api version of the target Azure API endpoint, `2020-06-01`.
   # @param params [Hash] The query parameters without the api version.
-  def rest_get_call(url, api_version, params = {})
+  def rest_get_call(url, params = {})
     # Update access token if expired.
     uri = URI(url)
     resource = "#{uri.scheme}://#{uri.host}"
@@ -100,9 +99,9 @@ class AzureConnection
     headers['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
     headers['Content-Type'] = 'application/json'
     # For graph api, api_version is embedded into the url
-    params['api-version'] = api_version unless resource == graph_api_endpoint_url
-    resp = @connection.get(url) do |req|
-      req.params = params
+    # params['api-version'] = api_version unless resource == graph_api_endpoint_url || url.to_s.include?('?api-version=')
+    resp = @connection.get(uri) do |req|
+      req.params =  req.params.merge(params) unless params.empty?
       req.headers = headers
     end
     if resp.status == 200
