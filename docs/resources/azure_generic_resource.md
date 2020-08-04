@@ -12,7 +12,7 @@ Use the `azure_generic_resource` Inspec audit resource to test any valid Azure r
 ### Installation
 
 This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). 
-For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md###Service_Principal).
+For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
 ```ruby

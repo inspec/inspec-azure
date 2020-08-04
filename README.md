@@ -73,8 +73,8 @@ supports:
 
 ## Resource Documentation
 
-The following generic resources and the static resources derived from them, starting with `azure_`, are available in the InSpec Azure Resource Pack version X.Y.Z onwards.
-The static resources are fully backward compatible with their `azurerm_` counterparts. 
+The following is a list of generic resources and static resources. 
+The static resources derived from the generic resources prepended with `azure_` are fully backward compatible with their `azurerm_` counterparts. 
 
 - [azure_generic_resource](docs/resources/azure_generic_resource.md)
 - [azure_generic_resources](docs/resources/azure_generic_resources.md)
@@ -97,7 +97,7 @@ The static resources are fully backward compatible with their `azurerm_` counter
 
 With the generic resources:
 
-- An Azure cloud resource that this resource pack does not have a static InSpec resource can be tested.
+- Azure cloud resources that this resource pack does not include a static InSpec resource for can be tested.
 - Azure resources from different resource providers and resource groups can be tested at the same time.
 - Server side filtering can be used for more efficient tests.
     
