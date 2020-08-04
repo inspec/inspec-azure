@@ -21,14 +21,8 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). To use it, add the following to your `inspec.yml` in your top-level profile:
-```yaml
-depends:
-  - name: inspec-azure
-    git: https://github.com/inspec/inspec-azure.git
-```
-You'll also need to setup your Azure credentials; see the resource pack
-[README](https://github.com/inspec/inspec-azure#inspec-for-azure).
+This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). 
+For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ### Version
 

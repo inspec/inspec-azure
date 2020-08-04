@@ -11,4 +11,4 @@ Gemfile.lock
 .bundle
 vendor
 .idea
-
+.env

@@ -186,7 +186,7 @@ class AzureResourceBase < Inspec.resource(1)
   def construct_resource_id
     required_arguments = %i(resource_group name resource_provider)
     raise ArgumentError, "Following parameters should be provided to construct a resource_id: #{required_arguments}" \
-      unless required_arguments.all? { |r_p| @opts.keys.include?(r_p) }
+      unless required_arguments.all? { |resource_provider| @opts.keys.include?(resource_provider) }
     id_in_list = [
       "/subscriptions/#{@azure.credentials[:subscription_id]}",
       'resourceGroups', @opts[:resource_group],

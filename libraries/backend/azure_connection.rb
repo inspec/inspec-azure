@@ -63,7 +63,8 @@ class AzureConnection
     }
     # Validate the presence of credentials.
     unless @credentials.values.compact.size == 4
-      raise UnsuccessfulAPIQuery::MissingCredentials, "All of the following have to be provided: #{@credentials.keys}.\n"\
+      raise UnsuccessfulAPIQuery::MissingCredentials, 'The following must be set in the Environment:'\
+        " #{@credentials.keys}.\n"\
         "Provided: #{@credentials}"
     end
 
@@ -99,7 +100,6 @@ class AzureConnection
     headers['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
     headers['Content-Type'] = 'application/json'
     # For graph api, api_version is embedded into the url
-    # params['api-version'] = api_version unless resource == graph_api_endpoint_url || url.to_s.include?('?api-version=')
     resp = @connection.get(uri) do |req|
       req.params =  req.params.merge(params) unless params.empty?
       req.headers = headers
