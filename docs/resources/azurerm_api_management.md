@@ -33,9 +33,6 @@ following to your `inspec.yml` in your top-level profile:
 You'll also need to setup your Azure credentials; see the resource pack
 [README](https://github.com/inspec/inspec-azure#inspec-for-azure).
 
-### Version
-
-
 ## Syntax
 
 The `resource_group` and `api_management_name` must be given as a parameter.
@@ -85,7 +82,7 @@ Api Management Service name, e.g. `apim01`.
 Resource location, e.g. `eastus`.
 
 ### properties
-A collection of additional configuration properties related to the Application Gateway, e.g. `frontendIPConfigurations`.
+A collection of additional configuration properties related to the API Management Service, e.g. `publisherEmail`.
 
 ### type
 The type of Resource, typically `Microsoft.ApiManagement/service`.

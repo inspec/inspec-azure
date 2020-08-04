@@ -19,7 +19,8 @@ class AzurermApiManagements < AzurermPluralResource
              .register_column(:names,      field: :name)
              .register_column(:locations,  field: :location)
              .register_column(:properties, field: :properties)
-             .register_column(:types,      field: :type)
+             .register_column(:tags, field: :tags)
+             .register_column(:types, field: :type)
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(resource_group: nil)

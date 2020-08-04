@@ -5,7 +5,7 @@ platform: azure
 
 # azurerm\_api\_managements
 
-Use the `azurerm_api_managements` InSpec audit resource to test properties and configuration of Azure Application Gateways.
+Use the `azurerm_api_managements` InSpec audit resource to test properties and configuration of Azure Api Management Service.
 <br />
 
 ## Azure REST API version
@@ -57,7 +57,7 @@ An `azurerm_api_managements` resource block returns all Azure Api Management Ser
 
 The following examples show how to use this InSpec audit resource.
 
-### Check Application Gateways  are present
+### Check Api Management Services  are present
 
     describe azurerm_api_managements do
       it            { should exist }
@@ -67,9 +67,9 @@ The following examples show how to use this InSpec audit resource.
 
 ## Filter Criteria
 
-* `names`
+* `name`
 
-### names
+### name
 
 Filters the results to include only those Application Gateways which match the given name. This is a string value.
 
@@ -89,11 +89,12 @@ Filters the results to include only those Application Gateways which reside in a
 
 ## Attributes
 
-- `id`
-- `name`
-- `location`
+- `ids`
+- `names
+- `locations`
 - `properties`
-- `type`
+- `tags`
+- `types`
 
 ### ids
 Azure resource ID.
@@ -110,13 +111,13 @@ Resource location, e.g. `eastus`.
     its('locations') { should_not include 'eastus' }
 
 ### properties
-A collection of additional configuration properties related to the Application Gateway, e.g. `frontendIPConfigurations`.
+A collection of additional configuration properties related to the API Management Service, e.g. `publisherEmail`.
 
-### tag
-Resource tags applied to the Application Gateway.
+### tags
+Resource tags applied to the Api Management Service.
 
-### type
-The type of Resource, typically `Microsoft.Network/applicationGateways`.
+### types
+The type of Resource, typically `Microsoft.ApiManagement/service`.
 
 ## Matchers
 

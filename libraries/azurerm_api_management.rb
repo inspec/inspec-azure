@@ -17,18 +17,19 @@ class AzurermApiManagement < AzurermSingularResource
     location
     type
     properties
+    tags
   ).freeze
 
   attr_reader(*ATTRS)
 
   def initialize(resource_group: nil, api_management_name: nil)
-    api_management = management. api_management(resource_group, api_management_name)
+    api_management = management.api_management(resource_group, api_management_name)
     return if has_error?(api_management)
 
     assign_fields(ATTRS, api_management)
 
     @resource_group = resource_group
-    @application_gateway_name = api_management_name
+    @api_management_name = api_management_name
     @exists = true
   end
 
