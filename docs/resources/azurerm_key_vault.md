@@ -3,6 +3,8 @@ title: About the azurerm_key_vault Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_key_vault`](azure_key_vault.md) InSpec audit resource.
+
 # azurerm\_key\_vault
 
 Use the `azurerm_key_vault` InSpec audit resource to test properties and configuration of

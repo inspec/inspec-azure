@@ -3,6 +3,7 @@ title: About the azurerm_mysql_server Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_mysql_server`](azure_mysql_server.md) InSpec audit resource.
 
 # azurerm\_mysql\_server
 

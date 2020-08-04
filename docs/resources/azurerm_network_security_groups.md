@@ -3,6 +3,8 @@ title: About the azurerm_network_security_groups Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_network_security_groups`](azure_network_security_groups.md) InSpec audit resource.
+
 # azurerm\_network\_security\_groups
 
 Use the `azurerm_network_security_groups` InSpec audit resource to enumerate Network

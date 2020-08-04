@@ -3,6 +3,8 @@ title: About the azurerm_subnet Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_subnet`](azure_subnet.md) InSpec audit resource.
+
 # azurerm\_subnet
 
 Use the `azurerm_subnet` InSpec audit resource to test properties related to a
