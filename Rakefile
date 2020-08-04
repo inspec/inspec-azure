@@ -115,7 +115,8 @@ namespace :test do
               --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter cli
               --no-distinct-exit
-              -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']} )
+              -t azure://#{ENV['AZURE_SUBSCRIPTION_ID']}
+              --chef-license accept-silent )
 
     if args[:controls]
       sh(*cmd, '--controls', args[:controls], *args.extras)
