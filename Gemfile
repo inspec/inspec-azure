@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-
+gem 'bundle'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'inspec-bin'
@@ -21,5 +21,4 @@ group :generic_resources do
   gem 'dotenv'
   gem 'facets', require: false
   gem 'ipaddr'
-  gem 'require_all'
 end

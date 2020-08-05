@@ -1,4 +1,5 @@
 require_relative 'helper'
+require_relative '../../../libraries/azure_virtual_machines'
 
 class AzureVirtualMachinesConstructorTest < Minitest::Test
   # resource_type should not be allowed.

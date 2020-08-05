@@ -1,4 +1,5 @@
 require_relative 'helper'
+require_relative '../../../libraries/azure_virtual_machine'
 
 class AzureVirtualMachineConstructorTest < Minitest::Test
   def test_empty_param_not_ok

@@ -1,4 +1,3 @@
-require 'pp'
 require_relative 'backend/azure_connection'
 require 'rspec/expectations'
 require 'facets/string'
