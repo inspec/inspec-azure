@@ -12,4 +12,5 @@ Gemfile.lock
 vendor
 .idea
 .env
+.env-api-version
 .ruby-version
