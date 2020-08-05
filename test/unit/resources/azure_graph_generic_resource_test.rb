@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../../../libraries/azure_graph_generic_resource'
+require 'azure_graph_generic_resource'
 
 class AzureGraphGenericResourceConstructorTest < Minitest::Test
   # Generic resource requires a parameter.

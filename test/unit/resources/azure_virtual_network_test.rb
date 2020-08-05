@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../../../libraries/azure_virtual_network'
+require 'azure_virtual_network'
 
 class AzureVirtualNetworkConstructorTest < Minitest::Test
   def test_empty_param_not_ok

@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../../../libraries/azure_network_security_group'
+require 'azure_network_security_group'
 
 class AzureNetworkSecurityGroupConstructorTest < Minitest::Test
   def test_empty_param_not_ok
