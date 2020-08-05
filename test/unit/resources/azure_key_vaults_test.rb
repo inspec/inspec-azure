@@ -1,4 +1,5 @@
 require_relative 'helper'
+require_relative '../../../libraries/azure_key_vaults'
 
 class AzureKeyVaultsConstructorTest < Minitest::Test
   def test_resource_provider_not_ok

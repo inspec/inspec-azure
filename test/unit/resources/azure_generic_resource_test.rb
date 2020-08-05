@@ -1,4 +1,5 @@
 require_relative 'helper'
+require_relative '../../../libraries/azure_generic_resource'
 
 class AzureGenericResourceConstructorTest < Minitest::Test
   # Generic resource requires a parameter.
