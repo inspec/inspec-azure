@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'azure_network_security_groups'
 
 class AzureNetworkSecurityGroupsConstructorTest < Minitest::Test
   # resource_type should not be allowed.

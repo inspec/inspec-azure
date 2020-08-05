@@ -1,5 +1,3 @@
-require 'rubygems'
-require 'bundler/setup'
 require 'pp'
 require_relative 'backend/azure_connection'
 require 'rspec/expectations'
@@ -431,7 +429,7 @@ class AzureResourceBase < Inspec.resource(1)
     api_version_suggested_list = e.suggested_api_version
     message = "Incompatible api version is provided.\n"\
     "The list of api versions suggested by the Azure REST API is #{api_version_suggested_list}.\n #{e.message}"\
-    'Note that this list includes the invalid api version and it should be removed before using the list.'
+    'Note that if this list includes the invalid api version and it should be removed before using the list.'
     resource_fail(message)
   rescue UnsuccessfulAPIQuery::ResourceNotFound => e
     empty_response_warn(e.message)

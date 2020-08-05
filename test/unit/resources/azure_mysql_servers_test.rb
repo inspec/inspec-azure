@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'azure_mysql_servers'
 
 class AzureMysqlServersConstructorTest < Minitest::Test
   # resource_type should not be allowed.

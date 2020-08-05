@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'azure_key_vault'
 
 class AzureKeyVaultConstructorTest < Minitest::Test
   def test_empty_param_not_ok

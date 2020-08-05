@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'azure_virtual_networks'
 
 class AzureVirtualNetworksConstructorTest < Minitest::Test
   # resource_type should not be allowed.
