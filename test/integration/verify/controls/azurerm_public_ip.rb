@@ -9,7 +9,6 @@ control 'azurerm_public_ip' do
     its('type')                                              { should cmp 'Microsoft.Network/publicIPAddresses' }
     its('properties.provisioningState')                      { should cmp 'Succeeded' }
     its('properties.publicIPAddressVersion')                 { should eq 'IPv4' }
-    its('sku.name')                                          { should eq 'Standard' }
   end
 
   describe azurerm_public_ip(resource_group: resource_group, name: 'fake') do
