@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require 'rubygems'
-require 'bundler/setup'
 require 'facets/string'
 require_relative 'azure_environment'
 
@@ -90,6 +88,7 @@ end
 #   https://docs.microsoft.com/en-us/azure/active-directory/develop/microsoft-graph-intro
 class AzureEnvironments
   # Following data can be modified if necessary.
+  # TODO: Update API versions if there is a newer version available.
   ENDPOINTS = {
     'azure_cloud' => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.resource_manager_endpoint_url,
@@ -98,36 +97,35 @@ class AzureEnvironments
       graph_api_endpoint_url: 'https://graph.microsoft.com',
       graph_api_endpoint_api_version: 'v1.0',
     },
-  # TODO: Find the api_version(s) for the following endpoints.
-  # The latest version can be acquired from the error message if the current ones don't work.
-  'azure_china_cloud' => {
-    resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.resource_manager_endpoint_url,
-    active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.active_directory_endpoint_url,
-    resource_manager_endpoint_api_version: '2020-01-01',
-    graph_api_endpoint_url: 'https://microsoftgraph.chinacloudapi.cn',
-    graph_api_endpoint_url_api_version: 'v1.0',
-  },
-  'azure_us_government_L4' => {
-    resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
-    active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
-    resource_manager_endpoint_api_version: '2020-01-01',
-    graph_api_endpoint_url: 'https://graph.microsoft.us',
-    graph_api_endpoint_url_api_version: 'v1.0',
-  },
-  'azure_us_government_L5' => {
-    resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
-    active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
-    resource_manager_endpoint_api_version: '2020-01-01',
-    graph_api_endpoint_url: 'https://dod-graph.microsoft.us',
-    graph_api_endpoint_url_api_version: 'v1.0',
-  },
-  'azure_german_cloud' => {
-    resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.resource_manager_endpoint_url,
-    active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.active_directory_endpoint_url,
-    resource_manager_endpoint_api_version: '2020-01-01',
-    graph_api_endpoint_url: 'https://graph.microsoft.de',
-    graph_api_endpoint_url_api_version: 'v1.0',
-  },
+    # The latest version can be acquired from the error message if the current ones don't work.
+    'azure_china_cloud' => {
+      resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.resource_manager_endpoint_url,
+      active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.active_directory_endpoint_url,
+      resource_manager_endpoint_api_version: '2020-01-01',
+      graph_api_endpoint_url: 'https://microsoftgraph.chinacloudapi.cn',
+      graph_api_endpoint_url_api_version: 'v1.0',
+    },
+    'azure_us_government_L4' => {
+      resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
+      active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
+      resource_manager_endpoint_api_version: '2020-01-01',
+      graph_api_endpoint_url: 'https://graph.microsoft.us',
+      graph_api_endpoint_url_api_version: 'v1.0',
+    },
+    'azure_us_government_L5' => {
+      resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
+      active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
+      resource_manager_endpoint_api_version: '2020-01-01',
+      graph_api_endpoint_url: 'https://dod-graph.microsoft.us',
+      graph_api_endpoint_url_api_version: 'v1.0',
+    },
+    'azure_german_cloud' => {
+      resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.resource_manager_endpoint_url,
+      active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.active_directory_endpoint_url,
+      resource_manager_endpoint_api_version: '2020-01-01',
+      graph_api_endpoint_url: 'https://graph.microsoft.de',
+      graph_api_endpoint_url_api_version: 'v1.0',
+    },
   }.freeze
 
   # @return [String] the resource management endpoint
