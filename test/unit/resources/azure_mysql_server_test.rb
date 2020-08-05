@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../../../libraries/azure_mysql_server'
+require 'azure_mysql_server'
 
 class AzureMysqlServerConstructorTest < Minitest::Test
   def test_empty_param_not_ok

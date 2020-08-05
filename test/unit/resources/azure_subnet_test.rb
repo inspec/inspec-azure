@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../../../libraries/azure_subnet'
+require 'azure_subnet'
 
 class AzureSubnetConstructorTest < Minitest::Test
   def test_empty_param_not_ok

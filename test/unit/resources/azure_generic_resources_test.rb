@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative '../../../libraries/azure_generic_resources'
+require 'azure_generic_resources'
 
 class AzureGenericResourcesConstructorTest < Minitest::Test
   # resource_id is not allowed
