@@ -97,9 +97,9 @@ class AzureGraphGenericResources < AzureResourceBase
     else
       # Create FilterTable layout dynamically.
       # Column names will be in snake_case and the pluralized form of the `select` parameters.
-      @table_schema = @table.first.keys.each_with_object([{ column: :ids, field: :id }]) do |k, acc|
-        unless k == :id
-          acc << { column: k.to_s.pluralize.snakecase.to_sym, field: k }
+      @table_schema = @table.first.keys.each_with_object([{ column: :ids, field: :id }]) do |t_key, table_schema|
+        unless t_key == :id
+          table_schema << { column: t_key.to_s.pluralize.snakecase.to_sym, field: t_key }
         end
       end
     end

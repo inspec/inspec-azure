@@ -1,11 +1,10 @@
 require_relative 'backend/azure_connection'
-require 'rspec/expectations'
 require 'facets/string'
 require 'dotenv'
 
-# `../.env` is the correct relative path from this file, however,
-#   InSpec runs this file from the root directory, hence the `.env`.
-Dotenv.load('.env', '../.env')
+# `../.env-api-version` is the correct relative path from this file, however,
+#   InSpec runs this file from the root directory, hence the `.env-api-version`.
+Dotenv.load('.env-api-version', '../.env-api-version')
 ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h
 
 # Base class for Azure resources.
@@ -340,7 +339,7 @@ class AzureResourceBase < Inspec.resource(1)
       ENV["#{provider}__#{resource_type_env}__latest"] = latest_api_version
       ENV["#{provider}__#{resource_type_env}__default"] = \
         resource_type_details[:defaultApiVersion].nil? ? 'use_latest' : resource_type_details[:defaultApiVersion]
-      File.open('.env', 'a') do |file|
+      File.open('.env-api-version', 'a') do |file|
         file.puts "#{provider}__#{resource_type_env}__latest=#{latest_api_version}" unless latest_api_version.nil?
         file.puts "#{provider}__#{resource_type_env}__default=#{ENV["#{provider}__#{resource_type_env}__default"]}"
       end
