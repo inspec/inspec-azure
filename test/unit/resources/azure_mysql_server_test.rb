@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'azure_mysql_server'
 
 class AzureMysqlServerConstructorTest < Minitest::Test
   def test_empty_param_not_ok

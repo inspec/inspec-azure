@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'azure_network_security_group'
 
 class AzureNetworkSecurityGroupConstructorTest < Minitest::Test
   def test_empty_param_not_ok

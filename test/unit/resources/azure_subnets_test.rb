@@ -1,5 +1,4 @@
 require_relative 'helper'
-require 'azure_subnets'
 
 class AzureSubnetsConstructorTest < Minitest::Test
   # resource_provider should not be allowed.

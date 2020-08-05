@@ -21,4 +21,5 @@ group :generic_resources do
   gem 'dotenv'
   gem 'facets', require: false
   gem 'ipaddr'
+  gem 'require_all'
 end
