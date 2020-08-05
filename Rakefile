@@ -105,7 +105,6 @@ namespace :test do
   Rake::TestTask.new(:unit) do |t|
     t.libs << 'test/unit'
     t.libs << 'libraries'
-    t.warning = false
     t.verbose = true
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
