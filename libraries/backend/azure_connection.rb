@@ -62,8 +62,8 @@ class AzureConnection
       subscription_id: ENV['AZURE_SUBSCRIPTION_ID'],
     }
     # Validate the presence of credentials.
-    unless @credentials.values.compact.size == 4
-      raise UnsuccessfulAPIQuery::MissingCredentials, 'The following must be set in the Environment:'\
+    unless @credentials.values.compact.delete_if(&:empty?).size == 4
+      raise HTTPClientError::MissingCredentials, 'The following must be set in the Environment:'\
         " #{@credentials.keys}.\n"\
         "Provided: #{@credentials}"
     end

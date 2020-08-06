@@ -2,10 +2,10 @@
 
 set -ueo pipefail
 
-export AZURE_SUBSCRIPTION_ID=
-export AZURE_CLIENT_ID=
-export AZURE_TENANT_ID=
-export AZURE_CLIENT_SECRET=
+export AZURE_SUBSCRIPTION_ID=placeHolder
+export AZURE_CLIENT_ID=placeHolder
+export AZURE_TENANT_ID=placeHolder
+export AZURE_CLIENT_SECRET=placeHolder
 
 echo "--- system details"
 uname -a

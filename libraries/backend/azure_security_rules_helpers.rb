@@ -217,12 +217,12 @@ class NormalizeSecurityRule
   #
   def extract_ports(sources)
     return PORT_RANGE if sources.any? { |s| s == '*' }
-    sources.each_with_object([]) do |s, acc|
+    sources.each_with_object([]) do |s, ports|
       if s.include?('-')
         from, to = s.split('-')
-        acc << [*from..to]
+        ports << [*from..to]
       else
-        acc << s
+        ports << s
       end
     end.flatten.sort
   end
@@ -232,11 +232,11 @@ class NormalizeSecurityRule
   #
   def extract_ip_addresses(sources)
     service_tags = []
-    ip_addresses = sources.each_with_object([]) do |source, acc|
+    ip_addresses = sources.each_with_object([]) do |source, ip_adds|
       if source == '*'
-        acc << IPAddr.new('0.0.0.0/0')
+        ip_adds << IPAddr.new('0.0.0.0/0')
       elsif source.match?(CIDR_IPV4_REG) || source.match?(CIDR_IPV6_REG)
-        acc << IPAddr.new(source)
+        ip_adds << IPAddr.new(source)
       else
         service_tags << source
       end

@@ -11,8 +11,6 @@ class AzureGraphGenericResource < AzureResourceBase
 
   def initialize(opts = {}, static_resource = false)
     super(opts)
-    # This will be false in the base class if AzureConnection fails.
-    return unless http_client_ready?
 
     # A Graph API HTTP request is in the form of:
     #   {HTTP method} https://graph.microsoft.com/{version}/{resource}?{query-parameters}

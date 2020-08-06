@@ -14,8 +14,6 @@ class AzureGenericResources < AzureResourceBase
   def initialize(opts = {}, static_resource = false)
     # A HTTP client will be created in the backend.
     super(opts)
-    # This will be false in the base class if AzureConnection fails.
-    return unless http_client_ready?
 
     @display_name = @opts.slice(:resource_group, :resource_path, :name, :resource_provider, :tag_name, :tag_value).values.join(' ')
     if static_resource
