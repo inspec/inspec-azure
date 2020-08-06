@@ -33,10 +33,6 @@ following to your `inspec.yml` in your top-level profile:
 You'll also need to setup your Azure credentials; see the resource pack
 [README](https://github.com/inspec/inspec-azure#inspec-for-azure).
 
-### Version
-
-This resource first became available in 
-
 ## Syntax
 
 An `azurerm_api_managements` resource block returns all Azure Api Management Services, either within a Resource Group (if provided), or within an entire Subscription.
