@@ -51,24 +51,18 @@ class AzureResourceBase < Inspec.resource(1)
     # Fail resource if the http client is not properly set up.
     begin
       @azure = AzureConnection.new(@client_args)
-    rescue StandardError => e
-      message = "Connection error.\n#{e.message}"
+    rescue HTTPClientError::MissingCredentials => e
+      message = "HTTP Client Error.\n#{e.message}"
       resource_fail(message)
-      @http_client_ready = false
-    else
-      @http_client_ready = true
+      raise HTTPClientError, message
+    rescue StandardError => e
+      message = "Resource is failed due to #{e}"
+      resource_fail(message)
+      raise StandardError, message
     end
   end
 
   private
-
-  # @return [TrueClass, FalseClass] The status of the connection with the Azure Rest API.
-  #
-  # @example usage:
-  #   return unless http_client_ready?
-  def http_client_ready?
-    @http_client_ready ||= false
-  end
 
   # A Graph API HTTP request is in the form of:
   #   {HTTP method} https://graph.microsoft.com/{version}/{resource}?{query-parameters}

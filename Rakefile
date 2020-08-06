@@ -106,6 +106,7 @@ namespace :test do
     t.libs << 'test/unit'
     t.libs << 'libraries'
     t.verbose = true
+    t.warning = false
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 

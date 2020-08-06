@@ -15,8 +15,7 @@ require_relative 'azure_environment'
 #     rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
 #       api_version_suggested = e.get_suggested_api
 #
-class UnsuccessfulAPIQuery
-  class MissingCredentials < StandardError; end
+class UnsuccessfulAPIQuery < StandardError
   class ResourceNotFound < StandardError; end
   class UnexpectedHTTPResponse < StandardError
     class InvalidApiVersionParameter < StandardError
@@ -57,6 +56,10 @@ class UnsuccessfulAPIQuery
       end
     end
   end
+end
+
+class HTTPClientError < StandardError
+  class MissingCredentials < StandardError; end
 end
 
 # Decide whether to include preview api-versions in the api_Version list.
