@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-gem 'bundle'
+
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'inspec-bin'
