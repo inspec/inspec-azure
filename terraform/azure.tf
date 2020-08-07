@@ -828,8 +828,14 @@ resource "azurerm_postgresql_database" "postgresql" {
   collation           = "English_United States.1252"
 }
 
+resource "random_string" "event_hub" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
 resource "azurerm_eventhub_namespace" "event_hub_namespace" {
-  name                = "inspectestehnamespace"
+  name                = "inspec${random_string.event_hub.result}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "Standard"
@@ -893,9 +899,14 @@ resource "azurerm_iothub_consumer_group" "inspecehtest_consumergroup" {
   resource_group_name    = azurerm_resource_group.rg.name
 }
 
+resource "random_string" "cosmo_db" {
+  length  = 10
+  special = false
+  upper   = false
+}
 
 resource "azurerm_cosmosdb_account" "inspectest_cosmosdb" {
-  name                = "inspectest-cosmosdb"
+  name                = "inspec${random_string.cosmo_db.result}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   offer_type          = "Standard"
