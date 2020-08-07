@@ -11,6 +11,7 @@ require_relative 'azure_environment'
 #
 # If the API returns an invalid api_version error,
 # the suggested api_version can be acquired from the error message and used at consecutive calls.
+#
 # E.g.:
 #     rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
 #       api_version_suggested = e.get_suggested_api
