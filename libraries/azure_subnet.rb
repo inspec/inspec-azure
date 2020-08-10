@@ -1,4 +1,4 @@
-require_relative 'azure_generic_resource'
+require 'azure_generic_resource'
 
 class AzureSubnet < AzureGenericResource
   name 'azure_subnet'

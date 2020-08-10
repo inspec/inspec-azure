@@ -1,10 +1,10 @@
-require_relative 'backend/azure_connection'
+require 'backend/azure_require'
 require 'facets/string'
 require 'dotenv'
 
-# `../.env-api-version` is the correct relative path from this file, however,
-#   InSpec runs this file from the root directory, hence the `.env-api-version`.
-Dotenv.load('.env-api-version', '../.env-api-version')
+# `../.env-azure-api-versions` is the correct relative path from this file, however,
+#   InSpec runs this file from the root directory, hence the `.env-azure-api-versions`.
+Dotenv.load('.env-azure-api-versions', '../.env-azure-api-versions')
 ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h
 
 # Base class for Azure resources.
@@ -328,12 +328,12 @@ class AzureResourceBase < Inspec.resource(1)
       api_versions = resource_type_details[:apiVersions]
       api_versions_stable = api_versions.reject { |a| a.include?('preview') }
       api_versions_preview = api_versions.select { |a| a.include?('preview') }
-      # If the latest stable version is older than 2 years than try preview versions.
-      latest_api_version = normalize_api_list(2, api_versions_stable, api_versions_preview).first
+      # If the latest stable version is older than 2 years than use preview versions.
+      latest_api_version = Helpers.normalize_api_list(2, api_versions_stable, api_versions_preview).first
       ENV["#{provider}__#{resource_type_env}__latest"] = latest_api_version
       ENV["#{provider}__#{resource_type_env}__default"] = \
         resource_type_details[:defaultApiVersion].nil? ? 'use_latest' : resource_type_details[:defaultApiVersion]
-      File.open('.env-api-version', 'a') do |file|
+      File.open('.env-azure-api-versions', 'a') do |file|
         file.puts "#{provider}__#{resource_type_env}__latest=#{latest_api_version}" unless latest_api_version.nil?
         file.puts "#{provider}__#{resource_type_env}__default=#{ENV["#{provider}__#{resource_type_env}__default"]}"
       end
@@ -551,22 +551,12 @@ class AzureResourceDynamicMethods
   # @param object AzureResourceProbe|AzureResource  The object on which the methods should be created.
   # @param data variant The data from which the methods should be created
   def create_methods(object, data)
-    # Check the type of data as this affects the setup of the methods
-    # If it is an Azure Generic Resource then setup methods for each of
-    # the instance variables
-    case data.class.to_s
-    when /^Azure::Resources::Mgmt::.*::Models::GenericResource$/,
-        /^Azure::Resources::Mgmt::.*::Models::ResourceGroup$/
-      # iterate around the instance variables
-      data.instance_variables.each do |var|
-        create_method(object, var.to_s.delete('@'), data.instance_variable_get(var))
-      end
-      # When the data is a Hash object iterate around each of the key value pairs and
-      # create a method for each one.
-    when 'Hash'
+    if data.is_a?(Hash)
       data.each do |key, value|
         create_method(object, key, value)
       end
+    else
+      raise ArgumentError, "Unsupported data type: #{data.class}. Expected Hash."
     end
   end
 
@@ -595,13 +585,6 @@ class AzureResourceDynamicMethods
       object.define_singleton_method name do
         return_value
       end
-    when /^Azure::Resources::Mgmt::.*::Models::ResourceGroupProperties$/
-      # This is a special case where the properties of the resource group is not a simple JSON model
-      # This is because the plugin is using the Azure SDK to get this information so it is an SDK object
-      # that has to be interrogated in a different way. This is the only object type that behaves like this
-      value.instance_variables.each do |var|
-        create_method(object, var.to_s.delete('@'), value.instance_variable_get(var))
-      end
     when 'Array'
       # Some things are just string or integer arrays
       # Check this by seeing if the first element is a string / integer / boolean or
@@ -624,42 +607,6 @@ class AzureResourceDynamicMethods
   end
 end
 
-# Class object to maintain a count of the Azure Resource types that are found
-# when a less specific test is carried out. For example if all the resoures of a resource
-# group are called for, there will be variaous types and number of those types.
-#
-# Each type is namespaced, so for example a virtual machine has the type 'Microsoft.Compute/virtualMachines'
-# This is broken down into the 'Microsoft' class with the type 'Compute/virtualMachines'
-# This has been done for two reasons:
-#  1. Enable the dotted notation to work in the test
-#  2. Allow third party resource types ot be catered for if they are ever enabled by Microsoft
-#
-# @author Russell Seymour
-# @since 0.2.0
-class AzureResourceTypeCounts
-  # Constructor to setup a new class for a specific Azure Resource type.
-  # It should be passed a hashtable with information such as:
-  #   {
-  #     "Compute/virtualMachines" => 2,
-  #     "Network/networkInterfaces" => 3
-  #   }
-  # This will result in two methods being created on the class:
-  #  - Compute/virtualNetworks
-  #  - Network/networkInterfaces
-  # Each of which will return the corresponding count value
-  #
-  # @param counts [Hash] Hash table of types and the count of each one
-  #
-  # @return AzureResourceTypeCounts
-  def initialize(counts)
-    counts.each do |type, count|
-      define_singleton_method type do
-        count
-      end
-    end
-  end
-end
-
 # Class object that is created for each element that is returned by Azure.
 # This is what is interrogated by Inspec. If they are nested hashes, then this results
 # in nested AzureResourceProbe objects.
@@ -670,8 +617,7 @@ end
 #    AzureResource -> AzureResourceProbe -> AzureResourceProbe
 #
 # The methods for each of the classes are dynamically defined at run time and will
-# match the items that are retrieved from Azure. See the 'test/integration/verify/controls' for
-# examples
+# match the items that are retrieved from Azure. See the 'test/integration/verify/controls' for examples
 #
 # This class will not be called externally
 #
@@ -710,7 +656,9 @@ class AzureResourceProbe
   #
   # @param [String, Hash] opt Name (or Name=>Value) of the item to look for in the @item property
   def include?(opt)
-    raise ArgumentError, 'Key or Key:Value pair should be provided.' unless opt.is_a?(Symbol) || opt.is_a?(Hash) || opt.is_a?(String)
+    unless opt.is_a?(Symbol) || opt.is_a?(Hash) || opt.is_a?(String)
+      raise ArgumentError, 'Key or Key:Value pair should be provided.'
+    end
     if opt.is_a?(Hash)
       raise ArgumentError, 'Only one item can be provided' if opt.keys.size > 1
       return @item[opt.keys.first] == opt.values.first
@@ -755,10 +703,6 @@ class NullResponse
     false
   end
 
-  # Prevent undefined method error by returning nil.
-  # This will prevent breaking a test when queried a non-existing method.
-  # @return [NilClass]
-  # @see https://github.com/inspec/inspec-azure/blob/master/libraries/support/azure/response.rb
   def method_missing(method_name, *args, &block)
     if respond_to?(method_name)
       super
@@ -770,9 +714,5 @@ class NullResponse
   # This is a RuboCop requirement.
   def respond_to_missing?(*several_variants)
     super
-  end
-
-  def to_s
-    nil
   end
 end

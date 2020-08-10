@@ -1,4 +1,4 @@
-require_relative 'azure_backend'
+require 'azure_backend'
 
 class AzureGraphGenericResources < AzureResourceBase
   name 'azure_graph_generic_resources'

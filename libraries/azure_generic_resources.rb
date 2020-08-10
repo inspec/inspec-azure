@@ -1,4 +1,4 @@
-require_relative 'azure_backend'
+require 'azure_backend'
 
 class AzureGenericResources < AzureResourceBase
   name 'azure_generic_resources'

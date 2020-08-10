@@ -1,5 +1,5 @@
-require_relative 'azure_generic_resource'
-require_relative 'backend/azure_security_rules_helpers'
+require 'azure_generic_resource'
+require 'backend/azure_security_rules_helpers'
 require 'rspec/expectations'
 
 class AzureNetworkSecurityGroup < AzureGenericResource

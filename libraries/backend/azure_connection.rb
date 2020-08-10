@@ -5,7 +5,7 @@ require 'faraday'
 require 'faraday_middleware'
 require 'uri'
 require 'pp'
-require_relative 'helpers'
+require 'backend/helpers'
 
 # Client class to manage the Azure REST API connection.
 #
@@ -15,7 +15,7 @@ require_relative 'helpers'
 #   - authenticate with Azure Rest API and gets an access token.
 #   - make the access token available to use.
 class AzureConnection
-  @@token_data = Hash.recursive
+  @@token_data = HashRecursive.recursive
   # This will be included in headers for statistical purposes.
   INSPEC_USER_AGENT = 'pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'
 

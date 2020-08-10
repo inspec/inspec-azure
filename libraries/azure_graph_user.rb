@@ -1,4 +1,4 @@
-require_relative 'azure_graph_generic_resource'
+require 'azure_graph_generic_resource'
 
 class AzureGraphUser < AzureGraphGenericResource
   name 'azure_graph_user'
