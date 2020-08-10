@@ -1,4 +1,4 @@
-require_relative 'azure_generic_resource'
+require 'azure_generic_resource'
 
 class AzureVirtualNetwork < AzureGenericResource
   name 'azure_virtual_network'

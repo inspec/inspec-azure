@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'facets/string'
-require_relative 'azure_environment'
+require 'backend/azure_environment'
 
 # TODO: This file should be updated at every release.
 # Source:
@@ -52,7 +52,7 @@ class UnsuccessfulAPIQuery < StandardError
           preview_api_versions.delete(wrong_api_version) if preview_api_versions.include?(wrong_api_version)
         end
         age_criteria = 2
-        n_a_l = normalize_api_list(age_criteria, stable_api_versions, preview_api_versions)
+        n_a_l = Helpers.normalize_api_list(age_criteria, stable_api_versions, preview_api_versions)
         n_a_l.first
       end
     end
@@ -61,23 +61,6 @@ end
 
 class HTTPClientError < StandardError
   class MissingCredentials < StandardError; end
-end
-
-# Decide whether to include preview api-versions in the api_Version list.
-# If the latest stable is too old (based on the age_criteria) and there is a newer preview,
-#   then return the preview versions as well.
-def normalize_api_list(age_criteria, stable_versions, preview_versions)
-  return stable_versions if preview_versions.empty?
-  return preview_versions if stable_versions.empty?
-  r_stable_versions = stable_versions.sort.reverse
-  return_list = r_stable_versions
-  r_preview_versions = preview_versions.sort.reverse
-  latest_stable_year = r_stable_versions.first[0..3].to_i
-  latest_preview_year = r_preview_versions.first[0..3].to_i
-  if latest_stable_year < (Time.now.year - age_criteria) && latest_preview_year > latest_stable_year
-    return_list += r_preview_versions
-  end
-  return_list.sort.reverse
 end
 
 # Create necessary Azure environment variables and provide access to them
@@ -177,7 +160,7 @@ class AzureEnvironments
 end
 
 # Make Hash return {} when accessing undefined keys.
-class Hash
+class HashRecursive < Hash
   def self.recursive
     new { |hash, key| hash[key] = recursive }
   end
@@ -330,5 +313,22 @@ module Helpers
     #   resource_provider => "virtualMachines/extensions"
     resource_type = [interim_array[1], interim_array[3]].compact.join('/')
     [resource_group, provider, resource_type]
+  end
+
+  # Decide whether to include preview api-versions in the api_Version list.
+  # If the latest stable is too old (based on the age_criteria) and there is a newer preview,
+  #   then return the preview versions as well.
+  def self.normalize_api_list(age_criteria, stable_versions, preview_versions)
+    return stable_versions if preview_versions.empty?
+    return preview_versions if stable_versions.empty?
+    r_stable_versions = stable_versions.sort.reverse
+    return_list = r_stable_versions
+    r_preview_versions = preview_versions.sort.reverse
+    latest_stable_year = r_stable_versions.first[0..3].to_i
+    latest_preview_year = r_preview_versions.first[0..3].to_i
+    if latest_stable_year < (Time.now.year - age_criteria) && latest_preview_year > latest_stable_year
+      return_list += r_preview_versions
+    end
+    return_list.sort.reverse
   end
 end

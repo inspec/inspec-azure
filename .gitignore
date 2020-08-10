@@ -12,5 +12,5 @@ Gemfile.lock
 vendor
 .idea
 .env
-.env-api-version
+.env-azure-api-versions
 .ruby-version

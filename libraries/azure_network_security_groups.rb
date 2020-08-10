@@ -1,4 +1,4 @@
-require_relative 'azure_generic_resources'
+require 'azure_generic_resources'
 
 class AzureNetworkSecurityGroups < AzureGenericResources
   name 'azure_network_security_groups'

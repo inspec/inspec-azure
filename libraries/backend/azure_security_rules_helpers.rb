@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
-require_relative 'helpers'
+require 'backend/helpers'
 
 # Normalise Azure security rules to make them comparable with criteria or other security rules.
 #

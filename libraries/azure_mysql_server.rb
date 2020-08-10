@@ -1,4 +1,4 @@
-require_relative 'azure_generic_resource'
+require 'azure_generic_resource'
 
 class AzureMysqlServer < AzureGenericResource
   name 'azure_mysql_server'
