@@ -752,9 +752,9 @@ resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
 
   roles {
     head_node {
-      vm_size               = "STANDARD_D13_V2"
-      username              = "inspec_test_user_head"
-      password              = "r<u@8Kj#"
+      vm_size  = "STANDARD_D13_V2"
+      username = "inspec_test_user_head"
+      password = "r<u@8Kj#"
     }
 
     worker_node {
@@ -765,9 +765,9 @@ resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
     }
 
     zookeeper_node {
-      vm_size            = "Standard_A4_V2"
-      username           = "inspec_test_user_zookeeper"
-      password           = "Nv$h9g<d"
+      vm_size  = "Standard_A4_V2"
+      username = "inspec_test_user_zookeeper"
+      password = "Nv$h9g<d"
     }
   }
 }
@@ -1057,4 +1057,32 @@ resource "azurerm_public_ip" "public_ip_address" {
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
+}
+
+resource "random_string" "apim-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_api_management" "apim01" {
+  name                = "{random_string.apim-random.result}-apim"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  publisher_name      = "My Inspec"
+  publisher_email     = "company@inspec.io"
+
+  sku_name = "Developer_1"
+
+  policy {
+    xml_content = <<XML
+    <policies>
+      <inbound />
+      <backend />
+      <outbound />
+      <on-error />
+    </policies>
+XML
+
+  }
 }
