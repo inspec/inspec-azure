@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.19.4 -->
+<!-- latest_release 1.19.5 -->
+## [v1.19.5](https://github.com/inspec/inspec-azure/tree/v1.19.5) (2020-08-11)
+
+#### Merged Pull Requests
+- Add API Management [#279](https://github.com/inspec/inspec-azure/pull/279) ([dwizzle204](https://github.com/dwizzle204))
+<!-- latest_release -->
+
 ## [v1.19.4](https://github.com/inspec/inspec-azure/tree/v1.19.4) (2020-08-07)
 
 #### Merged Pull Requests
 - Randomize resource names [#280](https://github.com/inspec/inspec-azure/pull/280) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.19.3](https://github.com/inspec/inspec-azure/tree/v1.19.3) (2020-08-05)
 
