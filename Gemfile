@@ -17,6 +17,3 @@ group :development, :test do
   gem 'rubocop',  '~> 0.71.0'
 end
 
-group :generic_resources do
-  gem 'ipaddr'
-end
