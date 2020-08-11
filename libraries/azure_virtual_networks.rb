@@ -94,7 +94,7 @@ class AzurermVirtualNetworks < AzureVirtualNetworks
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn resource_deprecation_message(@__resource_name__, AzureVirtualNetworks.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureVirtualNetworks.name)
     super
   end
 end

@@ -1,10 +1,5 @@
 require 'backend/azure_require'
-require 'facets/string'
-require 'dotenv'
 
-# `../.env-azure-api-versions` is the correct relative path from this file, however,
-#   InSpec runs this file from the root directory, hence the `.env-azure-api-versions`.
-Dotenv.load('.env-azure-api-versions', '../.env-azure-api-versions')
 ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h
 
 # Base class for Azure resources.
@@ -328,15 +323,11 @@ class AzureResourceBase < Inspec.resource(1)
       api_versions = resource_type_details[:apiVersions]
       api_versions_stable = api_versions.reject { |a| a.include?('preview') }
       api_versions_preview = api_versions.select { |a| a.include?('preview') }
-      # If the latest stable version is older than 2 years than use preview versions.
+      # If the latest stable version is older than 2 years then use preview versions.
       latest_api_version = Helpers.normalize_api_list(2, api_versions_stable, api_versions_preview).first
       ENV["#{provider}__#{resource_type_env}__latest"] = latest_api_version
       ENV["#{provider}__#{resource_type_env}__default"] = \
         resource_type_details[:defaultApiVersion].nil? ? 'use_latest' : resource_type_details[:defaultApiVersion]
-      File.open('.env-azure-api-versions', 'a') do |file|
-        file.puts "#{provider}__#{resource_type_env}__latest=#{latest_api_version}" unless latest_api_version.nil?
-        file.puts "#{provider}__#{resource_type_env}__default=#{ENV["#{provider}__#{resource_type_env}__default"]}"
-      end
       if api_version_status == 'default'
         if resource_type_details[:defaultApiVersion].nil?
           # This will be used to inform caller function about the actual status of the returned api version.
@@ -714,5 +705,9 @@ class NullResponse
   # This is a RuboCop requirement.
   def respond_to_missing?(*several_variants)
     super
+  end
+
+  def to_s
+    'Do not exist.'
   end
 end

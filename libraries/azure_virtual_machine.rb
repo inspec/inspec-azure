@@ -111,7 +111,7 @@ class AzurermVirtualMachine < AzureVirtualMachine
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn resource_deprecation_message(@__resource_name__, AzureVirtualMachine.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureVirtualMachine.name)
     super
   end
 end

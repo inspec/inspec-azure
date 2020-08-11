@@ -18,7 +18,5 @@ group :development, :test do
 end
 
 group :generic_resources do
-  gem 'dotenv'
-  gem 'facets', require: false
   gem 'ipaddr'
 end

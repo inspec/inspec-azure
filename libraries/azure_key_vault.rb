@@ -98,7 +98,7 @@ class AzurermKeyVault < AzureKeyVault
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn resource_deprecation_message(@__resource_name__, AzureKeyVault.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVault.name)
     super
   end
 end
