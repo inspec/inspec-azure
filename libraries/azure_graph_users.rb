@@ -79,7 +79,7 @@ class AzurermAdUsers < AzureGraphUsers
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn resource_deprecation_message(@__resource_name__, AzureGraphUsers.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureGraphUsers.name)
     super
   end
 end

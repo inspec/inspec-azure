@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'facets/string'
 require 'backend/azure_environment'
 
 # TODO: This file should be updated at every release.
@@ -166,13 +165,6 @@ class HashRecursive < Hash
   end
 end
 
-# Deprecation message for the old resources.
-def resource_deprecation_message(old_resource_name, new_resource_class)
-  "DEPRECATION: `#{old_resource_name}` uses the new resource `#{new_resource_class}` under the hood. "\
-  "#{old_resource_name} will be deprecated soon and it is advised to switch to the fully backward compatible new resource. "\
-  'Please see the documentation for the additional features available.'
-end
-
 module Helpers
   # @see https://github.com/inspec/inspec-aws/blob/master/libraries/aws_backend.rb#L209
   #
@@ -330,5 +322,12 @@ module Helpers
       return_list += r_preview_versions
     end
     return_list.sort.reverse
+  end
+
+  # Deprecation message for the old resources.
+  def self.resource_deprecation_message(old_resource_name, new_resource_class)
+    "DEPRECATION: `#{old_resource_name}` uses the new resource `#{new_resource_class}` under the hood. "\
+  "#{old_resource_name} will be deprecated soon and it is advised to switch to the fully backward compatible new resource. "\
+  'Please see the documentation for the additional features available.'
   end
 end

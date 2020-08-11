@@ -100,7 +100,7 @@ class AzurermSubnets < AzureSubnets
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn resource_deprecation_message(@__resource_name__, AzureSubnets.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSubnets.name)
     super
   end
 end

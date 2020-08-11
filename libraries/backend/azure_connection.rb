@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require 'rubygems'
-require 'bundler/setup'
 require 'faraday'
 require 'faraday_middleware'
 require 'uri'

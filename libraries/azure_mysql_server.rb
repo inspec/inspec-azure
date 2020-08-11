@@ -86,7 +86,7 @@ class AzurermMysqlServer < AzureMysqlServer
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn resource_deprecation_message(@__resource_name__, AzureMysqlServer.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMysqlServer.name)
     super
   end
 end

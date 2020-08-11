@@ -92,7 +92,7 @@ class AzurermNetworkSecurityGroups < AzureNetworkSecurityGroups
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn resource_deprecation_message(@__resource_name__, AzureNetworkSecurityGroups.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkSecurityGroups.name)
     super
   end
 end
