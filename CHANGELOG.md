@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.19.5 -->
+<!-- latest_release 1.19.6 -->
+## [v1.19.6](https://github.com/inspec/inspec-azure/tree/v1.19.6) (2020-08-12)
+
+#### Merged Pull Requests
+- Fix terraform file failing the integration tests [#282](https://github.com/inspec/inspec-azure/pull/282) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.19.5](https://github.com/inspec/inspec-azure/tree/v1.19.5) (2020-08-11)
 
 #### Merged Pull Requests
 - Add API Management [#279](https://github.com/inspec/inspec-azure/pull/279) ([dwizzle204](https://github.com/dwizzle204))
-<!-- latest_release -->
 
 ## [v1.19.4](https://github.com/inspec/inspec-azure/tree/v1.19.4) (2020-08-07)
 
