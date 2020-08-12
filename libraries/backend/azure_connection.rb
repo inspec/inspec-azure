@@ -1,8 +1,4 @@
 # frozen_string_literal: true
-require 'faraday'
-require 'faraday_middleware'
-require 'uri'
-require 'pp'
 require 'backend/helpers'
 
 # Client class to manage the Azure REST API connection.
