@@ -323,6 +323,6 @@ output "ip_address_name" {
 
 output "api_management_name" {
   description = "the name for the azurerm_api_management resource"
-  value       = azurerm_api_management.apim01.name
+  value       = var.api_management_count > 0 ? azurerm_api_management.apim01[0].name : ""
 }
 
