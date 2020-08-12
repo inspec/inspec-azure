@@ -287,6 +287,14 @@ module Azure
       )
     end
 
+    def public_ip(resource_group, address_name)
+      get(
+        url: link(location: "Microsoft.Network/publicIPAddresses/#{address_name}",
+                  resource_group: resource_group),
+        api_version: '2020-05-01',
+      )
+    end
+
     def resource_groups
       get(
         url: link(location: 'resourcegroups', provider: false),
@@ -669,6 +677,22 @@ module Azure
         url: link(location: "Microsoft.DocumentDB/databaseAccounts/#{database_account_name}",
                   resource_group: resource_group),
         api_version: '2015-04-08',
+      )
+    end
+
+    def api_management(resource_group, api_management)
+      get(
+        url: link(location: "Microsoft.ApiManagement/service/#{api_management}",
+                  resource_group: resource_group),
+        api_version: '2019-12-01',
+      )
+    end
+
+    def api_managements(resource_group)
+      get(
+        url: link(location: 'Microsoft.ApiManagement/service/',
+                  resource_group: resource_group),
+        api_version: '2019-12-01',
       )
     end
 

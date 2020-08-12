@@ -57,13 +57,13 @@ An `azurerm_aks_cluster` resource block identifies an AKS Cluster by name and Re
 
 ### Test that a specified AKS cluster was successfully provisioned
 
-    describe azurerm_network_security_group(resource_group: 'example', name: 'ClusterName') do
+    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
       its('properties.provisioningState') { should cmp 'Succeeded' }
     end
 
 ### Test that a specified AKS cluster the correct number of nodes in pool
 
-    describe azurerm_network_security_group(resource_group: 'example', name: 'ClusterName') do
+    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
       its('properties.agentPoolProfiles.first.count') { should cmp 5 }
     end
 
