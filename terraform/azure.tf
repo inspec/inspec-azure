@@ -1066,7 +1066,8 @@ resource "random_string" "apim-random" {
 }
 
 resource "azurerm_api_management" "apim01" {
-  name                = "{random_string.apim-random.result}-apim"
+  count               = var.api_management_count
+  name                = "${random_string.apim-random.result}-apim"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   publisher_name      = "My Inspec"

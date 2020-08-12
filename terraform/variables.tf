@@ -104,3 +104,8 @@ variable "public_ip_address_count" {
   # This is added due to resource constraints.
   default = 1
 }
+
+variable "api_management_count" {
+  # This is added due to resource constraints.
+  default = 0
+}
