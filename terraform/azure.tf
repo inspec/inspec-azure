@@ -711,7 +711,8 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 
 
 resource "azurerm_storage_account" "hdinsight_storage_account" {
-  name                     = "hdinsightstorageaccount"
+  count                    = var.hd_insight_count
+  name                     = "hdinsight${random_string.storage_account.result}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
@@ -719,13 +720,15 @@ resource "azurerm_storage_account" "hdinsight_storage_account" {
 }
 
 resource "azurerm_storage_container" "hdinsight_storage_container" {
-  name = "hdinsightstoragecontainer"
-  storage_account_name  = azurerm_storage_account.hdinsight_storage_account.name
+  count                 = var.hd_insight_count
+  name                  = "hdinsight${random_string.storage_account.result}"
+  storage_account_name  = azurerm_storage_account.hdinsight_storage_account[0].name
   container_access_type = "private"
 }
 
 resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
-  name = "hdinsight-cluster"
+  count               = var.hd_insight_count
+  name                = "hdinsight6fbw66f8ch"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   cluster_version     = "4.0"
@@ -737,34 +740,34 @@ resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
 
   gateway {
     enabled  = true
-    username = "admin"
-    password = "hdinsight_llap"
+    username = "inspec_test_user"
+    password = "F8Sr'{DN"
   }
 
   storage_account {
-    storage_container_id = azurerm_storage_container.hdinsight_storage_container.id
-    storage_account_key  = azurerm_storage_account.hdinsight_storage_account.primary_access_key
+    storage_container_id = azurerm_storage_container.hdinsight_storage_container[0].id
+    storage_account_key  = azurerm_storage_account.hdinsight_storage_account[0].primary_access_key
     is_default           = true
   }
 
   roles {
     head_node {
-      vm_size               = "STANDARD_D13_V2"
-      username              = "admin"
-      password              = "hdinsight_llap"
+      vm_size  = "STANDARD_D13_V2"
+      username = "inspec_test_user_head"
+      password = "r<u@8Kj#"
     }
 
     worker_node {
       vm_size               = "Standard_D14_V2"
-      username              = "admin"
-      password              = "hdinsight_llap"
+      username              = "inspec_test_user_worker"
+      password              = "ny'$YW5y"
       target_instance_count = 1
     }
 
     zookeeper_node {
-      vm_size            = "Standard_A4_V2"
-      username           = "admin"
-      password           = "hdinsight_llap"
+      vm_size  = "Standard_A4_V2"
+      username = "inspec_test_user_zookeeper"
+      password = "Nv$h9g<d"
     }
   }
 }
@@ -825,8 +828,14 @@ resource "azurerm_postgresql_database" "postgresql" {
   collation           = "English_United States.1252"
 }
 
+resource "random_string" "event_hub" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
 resource "azurerm_eventhub_namespace" "event_hub_namespace" {
-  name                = "inspectestehnamespace"
+  name                = "inspec${random_string.event_hub.result}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "Standard"
@@ -890,9 +899,14 @@ resource "azurerm_iothub_consumer_group" "inspecehtest_consumergroup" {
   resource_group_name    = azurerm_resource_group.rg.name
 }
 
+resource "random_string" "cosmo_db" {
+  length  = 10
+  special = false
+  upper   = false
+}
 
 resource "azurerm_cosmosdb_account" "inspectest_cosmosdb" {
-  name                = "inspectest-cosmosdb"
+  name                = "inspec${random_string.cosmo_db.result}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   offer_type          = "Standard"
@@ -1028,5 +1042,47 @@ resource "azurerm_application_gateway" "network" {
     # min_protocol_version = "TLSv1_2"
     policy_name = "AppGwSslPolicy20170401S"
     policy_type = "Predefined"
+  }
+}
+
+resource "random_string" "ip-address-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_public_ip" "public_ip_address" {
+  count               = var.public_ip_address_count
+  name                = random_string.ip-address-random.result
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
+}
+
+resource "random_string" "apim-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_api_management" "apim01" {
+  name                = "{random_string.apim-random.result}-apim"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  publisher_name      = "My Inspec"
+  publisher_email     = "company@inspec.io"
+
+  sku_name = "Developer_1"
+
+  policy {
+    xml_content = <<XML
+    <policies>
+      <inbound />
+      <backend />
+      <outbound />
+      <on-error />
+    </policies>
+XML
+
   }
 }

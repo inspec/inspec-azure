@@ -310,3 +310,19 @@ output "application_gateway_name" {
   description = "the name for the azurerm_application_gateway resource"
   value       = azurerm_application_gateway.network.name
 }
+
+output "hdinsight_cluster_name" {
+  description = "HDINSIGHT cluster name."
+  value       = var.hd_insight_count > 0 ? azurerm_hdinsight_interactive_query_cluster.hdinsight_cluster.0.name : ""
+}
+
+output "ip_address_name" {
+  description = "tha name of the azurerm_public_ip"
+  value       = var.public_ip_address_count > 0 ? azurerm_public_ip.public_ip_address[0].name : ""
+}
+
+output "api_management_name" {
+  description = "the name for the azurerm_api_management resource"
+  value       = azurerm_api_management.apim01.name
+}
+

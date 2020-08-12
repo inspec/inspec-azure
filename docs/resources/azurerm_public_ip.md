@@ -1,18 +1,18 @@
 ---
-title: About the azurerm_aks_cluster Resource
+title: About the azurerm_public_ip Resource
 platform: azure
 ---
 
-# azurerm\_aks\_cluster
+# azurerm\_public\_ip
 
-Use the `azurerm_aks_cluster` InSpec audit resource to test properties of an Azure AKS Cluster.
+Use the `azurerm_public_ip` InSpec audit resource to test properties of an Azure Public IP address.
 
 <br />
 
 ## Azure REST API version
 
-This resource interacts with version `2018-03-31` of the Azure Management API.
-For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get).
+This resource interacts with version `2020-05-01` of the Azure Management API.
+For more information see the [official Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/publicipaddresses/get).
 
 At the moment, there doesn't appear to be a way to select the version of the
 Azure API docs. If you notice a newer version being referenced in the official
@@ -36,9 +36,9 @@ You'll also need to setup your Azure credentials; see the resource pack
 
 ## Syntax
 
-An `azurerm_aks_cluster` resource block identifies an AKS Cluster by name and Resource Group.
+An `azurerm_public_ip` resource block identifies a public IP address by name and Resource Group.
 
-    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+    describe azurerm_public_ip(resource_group: 'example', name: 'addressName') do
       ...
     end
 
@@ -46,22 +46,16 @@ An `azurerm_aks_cluster` resource block identifies an AKS Cluster by name and Re
 
 ## Examples
 
-### Test that an example Resource Group has the specified AKS Cluster
+### Test that an example Resource Group has the specified IP address
 
-    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+    describe azurerm_public_ip(resource_group: 'example', name: 'public_ip_address') do
       it { should exist }
     end
 
-### Test that a specified AKS cluster was successfully provisioned
+### Test that a specified IP address IP is correct 
 
-    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-      its('properties.provisioningState') { should cmp 'Succeeded' }
-    end
-
-### Test that a specified AKS cluster the correct number of nodes in pool
-
-    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-      its('properties.agentPoolProfiles.first.count') { should cmp 5 }
+    describe azurerm_public_ip(resource_group: 'example', name: 'ClusterName') do
+      its('properties.ipAddress') { should cmp '51.224.11.75' }
     end
 
 <br />
@@ -73,9 +67,9 @@ An `azurerm_aks_cluster` resource block identifies an AKS Cluster by name and Re
 
 ## Parameter Examples
 
-The Resource Group as well as the AKS Cluster name.
+The Resource Group as well as the IP address name.
 
-    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+    describe azurerm_public_ip(resource_group: 'example', name: 'public_ip_address') do
       it { should exist }
     end
 
@@ -84,19 +78,12 @@ The Resource Group as well as the AKS Cluster name.
 All of the attributes are avialable via dot notation. This is an example of the currently available attributes.
 
 ```
-control 'azurerm_aks_cluster' do
-  describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+control 'azurerm_public_ip' do
+  describe azurerm_public_ip(resource_group: 'example', name: 'address_name') do
     it { should exist }
-    its('properties.provisioningState') { should cmp 'Succeeded' }
-    its('properties.kubernetesVersion') { should cmp '1.11.3' }
-    its('properties.dnsPrefix') { should cmp 'ClusterName' }
-    its('properties.fqdn') { should cmp 'ClusterName' }
-    its('properties.agentPoolProfiles.first.name') { should cmp 'agentpool' }
-    its('properties.agentPoolProfiles.first.count') { should cmp 3 }
-    its('properties.agentPoolProfiles.first.vmSize') { should cmp 'Standard_DS2_V2' }
-    its('properties.agentPoolProfiles.first.storageProfile') { should cmp 'ManagedDisks' }
-    its('properties.agentPoolProfiles.first.maxPods') { should cmp 110 }
-    its('properties.agentPoolProfiles.first.osType') { should cmp 'Linux' }
+    its('location') { should cmp 'westeurope' }
+    its('properties.publicIPAddressVersion') { should eq 'IPv4' }
+    its('sku.name') { should eq 'Standard' }
   end
 end
 ```
@@ -127,13 +114,13 @@ page](https://www.inspec.io/docs/reference/matchers/).
 The control will pass if the resource returns a result. Use `should_not` if you expect
 zero matches.
 
-    # If we expect 'ClusterName' to always exist
-    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+    # If we expect 'AddressName' to always exist
+    describe azurerm_public_ip(resource_group: 'example', name: 'AddressName') do
       it { should exist }
     end
 
-    # If we expect 'ClusterName' to never exist
-    describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+    # If we expect 'AddressName' to never exist
+    describe azurerm_public_ip(resource_group: 'example', name: 'AddressName') do
       it { should_not exist }
     end
 
