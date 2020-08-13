@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.19.6 -->
+<!-- latest_release 1.19.7 -->
+## [v1.19.7](https://github.com/inspec/inspec-azure/tree/v1.19.7) (2020-08-13)
+
+#### Merged Pull Requests
+- Changed readme from v0.11.7 to v0.12.0 of Terraform. [#284](https://github.com/inspec/inspec-azure/pull/284) ([voojoe](https://github.com/voojoe))
+<!-- latest_release -->
+
 ## [v1.19.6](https://github.com/inspec/inspec-azure/tree/v1.19.6) (2020-08-12)
 
 #### Merged Pull Requests
 - Fix terraform file failing the integration tests [#282](https://github.com/inspec/inspec-azure/pull/282) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.19.5](https://github.com/inspec/inspec-azure/tree/v1.19.5) (2020-08-11)
 
