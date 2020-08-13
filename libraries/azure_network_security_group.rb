@@ -86,6 +86,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     normalized_security_rules.go_compare(rules, criteria)
   end
   RSpec::Matchers.alias_matcher :allow, :be_allow
+  alias allowed? allow?
 
   # @example
   #   it { should allow_in(service_tag: 'VirtualNetwork') }
@@ -101,6 +102,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     allow?(criteria)
   end
   RSpec::Matchers.alias_matcher :allow_in, :be_allow_in
+  alias allowed_in? allow_in?
 
   # @example
   #   See AzureNetworkSecurityGroup#allow_in?
@@ -113,6 +115,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     allow?(criteria)
   end
   RSpec::Matchers.alias_matcher :allow_out, :be_allow_out
+  alias allowed_out? allow_out?
 
   def normalized_security_rules
     @normalized_security_rules ||= ConsolidateSecurityRules.new(default_security_rules + security_rules)
