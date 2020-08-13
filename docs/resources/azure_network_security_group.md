@@ -54,9 +54,12 @@ Either one of the parameter sets can be provided for a valid query:
 | allow_ssh_from_internet<superscript>*</superscript>    | A boolean value determined by analysing the security rules and default security rules for unrestricted SSH access. `it { should_not allow_ssh_from_internet }` |
 | allow_rdp_from_internet<superscript>*</superscript>    | A boolean value determined by analysing the security rules and default security rules for unrestricted RDP access. `it { should_not allow_rdp_from_internet }` |
 | allow_port_from_internet<superscript>*</superscript>   | A boolean value determined by analysing the security rules and default security rules for unrestricted access to a specified port. `it { should_not allow_port_from_internet('443') }` |
-| allow<superscript>**</superscript>                     | Indicates if a provided criteria is complaint with the security rules including the default ones. `it { should allow(source_ip_range: '10.0.0.0/24'), direction: 'inbound' }` |
-| allow_in<superscript>**</superscript>                  | Indicates if a provided criteria is complaint with the **inbound** security rules including the default ones. `it { should_not allow_in(service_tag: 'Internet') }` |
-| allow_out<superscript>**</superscript>                 | Indicates if a provided criteria is complaint with the **outbound** security rules including the default ones. `it { should_not allow_out(service_tag: 'Internet') }` |
+| allow?<superscript>**</superscript>                     | Indicates if a provided criteria is complaint with the security rules including the default ones. `it { should allow(source_ip_range: '10.0.0.0/24'), direction: 'inbound' }` |
+| allowed?<superscript>**</superscript>                     | Alias for `allow?`. `it { should be_allowed(source_ip_range: '10.0.0.0/24'), direction: 'inbound' }` |
+| allow_in?<superscript>**</superscript>                  | Indicates if a provided criteria is complaint with the **inbound** security rules including the default ones. `it { should_not allow_in(service_tag: 'Internet') }` |
+| allowed_in?<superscript>**</superscript>                  | Alias for `allow_in?`. `it { should_not be_allowed_in(service_tag: 'Internet') }` |
+| allow_out?<superscript>**</superscript>                 | Indicates if a provided criteria is complaint with the **outbound** security rules including the default ones. `it { should_not allow_out(service_tag: 'Internet') }` |
+| allowed_out?<superscript>**</superscript>                 | Alias for `allow_out?`. `it { should_not be_allowed_out(service_tag: 'Internet') }` |
 
 <superscript>*</superscript> These properties do not take the priorities of security rules into account.
 For example, if there are two security rules and one of them is allowing SSH from internet while the other one is prohibiting, `allow_ssh_from_internet` will pass without comparing the priority of the conflicting security rules.
