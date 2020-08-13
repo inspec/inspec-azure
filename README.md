@@ -214,7 +214,7 @@ $env:AZURE_TENANT_ID="<tenant id>"
 
 ### Starting an Environment
 
-First ensure your system has [Terraform](https://www.terraform.io/intro/getting-started/install.html) (Version 0.11.7) installed.
+First ensure your system has [Terraform](https://www.terraform.io/intro/getting-started/install.html) (Version 0.12.0) installed.
 
 This environment may be used to run your profile against or to run integration tests on it. We are using [Terraform workspaces](https://www.terraform.io/docs/state/workspaces.html) to allow for teams to have completely unique environments without affecting each other.
 
