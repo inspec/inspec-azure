@@ -100,14 +100,27 @@ namespace :azure do
   end
 end
 
+# Minitest
+Rake::TestTask.new(:unit) do |t|
+  t.libs << 'test/unit'
+  t.libs << 'libraries'
+  t.verbose = true
+  t.warning = false
+  t.test_files = FileList['test/unit/**/*_test.rb']
+end
+
 namespace :test do
 
-  Rake::TestTask.new(:unit) do |t|
-    t.libs << 'test/unit'
-    t.libs << 'libraries'
-    t.verbose = true
-    t.warning = false
-    t.test_files = FileList['test/unit/**/*_test.rb']
+  task :unit do
+    ENV['AZURE_SUBSCRIPTION_ID']='placeHolder' if !ENV['AZURE_SUBSCRIPTION_ID']
+    ENV['AZURE_CLIENT_ID']='placeHolder' if !ENV['AZURE_CLIENT_ID']
+    ENV['AZURE_TENANT_ID']='placeHolder' if !ENV['AZURE_TENANT_ID']
+    ENV['AZURE_CLIENT_SECRET']='placeHolder' if !ENV['AZURE_CLIENT_SECRET']
+    Rake::Task['unit'].execute
+    ENV['AZURE_SUBSCRIPTION_ID']=nil if ENV['AZURE_SUBSCRIPTION_ID']=='placeHolder'
+    ENV['AZURE_CLIENT_ID']=nil if ENV['AZURE_CLIENT_ID']=='placeHolder'
+    ENV['AZURE_TENANT_ID']=nil if ENV['AZURE_TENANT_ID']=='placeHolder'
+    ENV['AZURE_CLIENT_SECRET']=nil if ENV['AZURE_CLIENT_SECRET']=='placeHolder'
   end
 
   task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
