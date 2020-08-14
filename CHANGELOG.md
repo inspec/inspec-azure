@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.19.7 -->
+<!-- latest_release 1.20.0 -->
+## [v1.20.0](https://github.com/inspec/inspec-azure/tree/v1.20.0) (2020-08-14)
+
+#### Merged Pull Requests
+- Add new backend class [#277](https://github.com/inspec/inspec-azure/pull/277) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.19.7](https://github.com/inspec/inspec-azure/tree/v1.19.7) (2020-08-13)
 
 #### Merged Pull Requests
 - Changed readme from v0.11.7 to v0.12.0 of Terraform. [#284](https://github.com/inspec/inspec-azure/pull/284) ([voojoe](https://github.com/voojoe))
-<!-- latest_release -->
 
 ## [v1.19.6](https://github.com/inspec/inspec-azure/tree/v1.19.6) (2020-08-12)
 
