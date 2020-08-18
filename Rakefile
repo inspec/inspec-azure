@@ -176,6 +176,14 @@ namespace :tf do
     Rake::Task['attributes:write'].invoke
   end
 
+  task :apply_only do
+    Dir.chdir(TERRAFORM_DIR) do
+      sh('terraform', 'apply', 'inspec-azure.plan')
+    end
+
+    Rake::Task['attributes:write'].invoke
+  end
+
   desc 'Destroys the Terraform environment'
   task destroy: [:workspace] do
     Dir.chdir(TERRAFORM_DIR) do
