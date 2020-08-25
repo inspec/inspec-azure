@@ -10,7 +10,7 @@ control 'azurerm_event_hub_event_hub' do
     its('type') { should eq 'Microsoft.EventHub/Namespaces/EventHubs' }
   end
 
-  describe azurerm_event_hub_event_hub(resource_group: resource_group, namespace_name: 'fake-ns', event_hub_name: 'fake-event-hub') do
+  describe azurerm_event_hub_event_hub(resource_group: resource_group, namespace_name: event_hub_namespace_name, event_hub_name: 'fake-event-hub') do
     it { should_not exist }
   end
 end
