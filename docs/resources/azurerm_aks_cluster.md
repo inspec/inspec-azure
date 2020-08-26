@@ -3,6 +3,8 @@ title: About the azurerm_aks_cluster Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_aks_cluster`](azure_aks_cluster.md) InSpec audit resource.
+
 # azurerm\_aks\_cluster
 
 Use the `azurerm_aks_cluster` InSpec audit resource to test properties of an Azure AKS Cluster.

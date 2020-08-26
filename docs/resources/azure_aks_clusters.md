@@ -1,11 +1,11 @@
 ---
-title: About the azure_mysql_servers Resource
+title: About the azure_aks_clusters Resource
 platform: azure
 ---
 
-# azure_mysql_servers
+# azure_aks_clusters
 
-Use the `azure_mysql_servers` InSpec audit resource to test properties and configuration of multiple Azure MySQL Servers.
+Use the `azure_aks_clusters` InSpec audit resource to test properties and configuration of multiple Azure AKS Clusters.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,15 +26,15 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_mysql_servers` resource block returns all Azure MySQL Servers, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_aks_clusters` resource block returns all AKS Clusters, either within a Resource Group (if provided), or within an entire Subscription.
 ```ruby
-describe azure_mysql_servers do
+describe azure_aks_clusters do
   #...
 end
 ```
 or
 ```ruby
-describe azure_mysql_servers(resource_group: 'my-rg') do
+describe azure_aks_clusters(resource_group: 'my-rg') do
   #...
 end
 ```
@@ -50,36 +50,16 @@ end
 | locations     | A list of locations for all the virtual networks.                                    | `location`      |
 | names         | A list of all the virtual network names.                                             | `name`          |
 | tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
-| skus          | A list of the SKUs (pricing tiers) of the server.                                    | `sku`           |
 | properties    | A list of properties for all the key vaults.                                         | `properties`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
 
 ## Examples
 
-### Check MySQL Servers are present
+### Test that an Example Resource Group has the Named AKS Cluster
 ```ruby
-describe azure_mysql_servers do
-  it            { should exist }
-  its('names')  { should include 'my-server-name' }
-end
-```
-### Filters the Results to Include Only Those Servers which Include the Given Name (Client Side Filtering)
-```ruby
-describe azure_mysql_servers.where{ name.include?('production') } do
-  it { should exist }
-end
-```
-## Filters the Results to Include Only Those Servers which Reside in a Given Location (Client Side Filtering)
-```ruby
-describe azure_mysql_servers.where{ location.eql?('westeurope') } do
-  it { should exist }
-end
-```    
-## Filters the Results to Include Only Those Servers which Reside in a Given Location and Include the Given Name (Server Side Filtering - Recommended)
-```ruby
-describe azure_generic_resources(resource_provider: 'Microsoft.DBforMySQL/servers', substring_of_name: 'production', location: 'westeurope') do
-  it {should exist}  
+describe azure_aks_clusters(resource_group: 'ExampleGroup') do
+  its('names') { should include('ClusterName') }
 end
 ```
 ## Matchers
@@ -90,8 +70,14 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-describe azure_mysql_servers do
+# If we expect 'ExampleGroup' Resource Group to have AKS Clusters
+describe azure_aks_clusters(resource_group: 'ExampleGroup') do
   it { should exist }
+end
+
+# If we expect 'EmptyExampleGroup' Resource Group to not have AKS Clusters
+describe azure_aks_clusters(resource_group: 'EmptyExampleGroup') do
+  it { should_not exist }
 end
 ```
 ## Azure Permissions
