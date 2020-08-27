@@ -73,13 +73,33 @@ supports:
 
 ## Resource Documentation
 
-The following is a list of generic resources and static resources. 
-The static resources derived from the generic resources prepended with `azure_` are fully backward compatible with their `azurerm_` counterparts. 
+The following is a list of generic resources.
 
 - [azure_generic_resource](docs/resources/azure_generic_resource.md)
 - [azure_generic_resources](docs/resources/azure_generic_resources.md)
 - [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
 - [azure_graph_generic_resources](docs/resources/azure_graph_generic_resources.md)
+ 
+With the generic resources:
+
+- Azure cloud resources that this resource pack does not include a static InSpec resource for can be tested.
+- Azure resources from different resource providers and resource groups can be tested at the same time.
+- Server side filtering can be used for more efficient tests.
+ 
+The following is a list of static resources. 
+The static resources derived from the generic resources prepended with `azure_` are fully backward compatible with their `azurerm_` counterparts. 
+
+- [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
+- [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
+- [azure_api_management](docs/resources/azure_api_management.md)
+- [azure_api_managements](docs/resources/azure_api_managements.md)
+- [azure_application_gateway](docs/resources/azure_application_gateway.md)
+- [azure_application_gateways](docs/resources/azure_application_gateways.md)
+- [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
+- [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md)
+- [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
+- [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
+- [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md)
 - [azure_graph_user](docs/resources/azure_graph_user.md)
 - [azure_graph_users](docs/resources/azure_graph_users.md)
 - [azure_key_vault](docs/resources/azure_key_vault.md)
@@ -88,6 +108,7 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_mysql_servers](docs/resources/azure_mysql_servers.md)
 - [azure_network_security_group](docs/resources/azure_network_security_group.md)
 - [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
+- [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_subnet](docs/resources/azure_subnet.md)
 - [azure_subnets](docs/resources/azure_subnets.md)
 - [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
@@ -95,11 +116,7 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
 
-With the generic resources:
 
-- Azure cloud resources that this resource pack does not include a static InSpec resource for can be tested.
-- Azure resources from different resource providers and resource groups can be tested at the same time.
-- Server side filtering can be used for more efficient tests.
     
 For more details and different use cases, please refer to the specific resource pages.
 

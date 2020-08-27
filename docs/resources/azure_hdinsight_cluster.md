@@ -1,11 +1,11 @@
 ---
-title: About the azure_aks_cluster Resource
+title: About the azure_hdinsight_cluster Resource
 platform: azure
 ---
 
-# azure_aks_cluster
+# azure_hdinsight_cluster
 
-Use the `azure_aks_cluster` InSpec audit resource to test properties of an Azure AKS Cluster.
+Use the `azure_hdinsight_cluster` InSpec audit resource to test properties of an Azure HDInsight Cluster.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,9 +26,9 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_aks_cluster` resource block identifies an AKS Cluster by `name` and `resource_group`.
+An `azure_hdinsight_cluster` resource block identifies a HDInsight Cluster by `name` and `resource_group`.
 ```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName') do
   it { should exist }
 end
 ```
@@ -36,9 +36,9 @@ end
 
 | Name                           | Description                                                                       |
 |--------------------------------|-----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| name                           | Name of the AKS cluster to test. `ClusterName`                                      |
-| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ContainerService/managedClusters/{ClusterName}` |
+| resource_group                 | Azure resource group that the targeted resource resides in. `resourceGroupName`   |
+| name                           | The unique name of the cluster. `clusterName`                                     |
+| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}` |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
@@ -46,31 +46,30 @@ Either one of the parameter sets can be provided for a valid query:
 
 ## Properties
 
-| Property          | Description |
-|-------------------|-------------|
-| identity          | The identity of the managed cluster, if configured. It is a [managed cluster identity object](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedclusteridentity). |
-| sku               | The SKU (pricing tier) of the resource. |
+| Property                          | Description |
+|-----------------------------------|-------------|
+| properties.clusterVersion         | The version of the cluster. |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedcluster) for other properties available. 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/hdinsight/clusters/get) for other properties available. 
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-### Test that an AKS Cluster has the Desired Network Plug-in
+### Test that a Specified HDInsight Cluster is Successfully Provisioned
 ```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-  its('properties.networkProfile.networkPlugin') { should cmp 'kubenet' }
+describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName') do
+  its('properties.provisioningState') { should cmp 'Succeeded' }
 end
 ```
-### Test that a Specified AKS Cluster has the Correct Number of Nodes in Pool
+### Test the Version of a HDInsight Cluster
 ```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-  its('properties.agentPoolProfiles.first.count') { should cmp 5 }
+describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName') do
+  its('properties.clusterVersion') { should cmp  '4.0' }
 end
 ```
-See [integration tests](../../test/integration/verify/controls/azurerm_aks_cluster.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azurerm_hdinsight_cluster.rb) for more examples.
 
 ## Matchers
 
@@ -78,13 +77,13 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-# If we expect 'ClusterName' to always exist
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+# If we expect the resource to always exist
+describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName') do
   it { should exist }
 end
 
-# If we expect 'ClusterName' to never exist
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+# If we expect the resource not to exist
+describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName') do
   it { should_not exist }
 end
 ```

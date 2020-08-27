@@ -1,11 +1,11 @@
 ---
-title: About the azure_aks_cluster Resource
+title: About the azure_application_gateway Resource
 platform: azure
 ---
 
-# azure_aks_cluster
+# azure_application_gateway
 
-Use the `azure_aks_cluster` InSpec audit resource to test properties of an Azure AKS Cluster.
+Use the `azure_application_gateway` InSpec audit resource to test properties and configuration of an Azure Application Gateway.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,9 +26,9 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_aks_cluster` resource block identifies an AKS Cluster by `name` and `resource_group`.
+The `resource_group` and `name` must be given as a parameter.
 ```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+describe azure_application_gateway(resource_group: 'inspec-resource-group-9', name: 'example_lb') do
   it { should exist }
 end
 ```
@@ -37,40 +37,36 @@ end
 | Name                           | Description                                                                       |
 |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| name                           | Name of the AKS cluster to test. `ClusterName`                                      |
-| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ContainerService/managedClusters/{ClusterName}` |
+| name                           | The unique name of the targeted resource. `gatewayName`                           |
+| application_gateway_name       | Alias for the `name` parameter.                                                   |
+| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/applicationGateways/{gatewayName}` |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
 - `resource_group` and `name`
+- `resource_group` and `application_gateway_name`
 
 ## Properties
 
 | Property          | Description |
 |-------------------|-------------|
-| identity          | The identity of the managed cluster, if configured. It is a [managed cluster identity object](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedclusteridentity). |
-| sku               | The SKU (pricing tier) of the resource. |
+| identity          | The identity of the application gateway, if configured. It is a [managed service identity object](https://docs.microsoft.com/en-us/rest/api/application-gateway/applicationgateways/get#managedserviceidentity). |
+| zones             | A list of availability zones denoting where the resource needs to come from. |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedcluster) for other properties available. 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/application-gateway/applicationgateways/get#applicationgateway) for other properties available. 
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-### Test that an AKS Cluster has the Desired Network Plug-in
+### Test the SSL Policy Name of an Application Gateway
 ```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-  its('properties.networkProfile.networkPlugin') { should cmp 'kubenet' }
+describe azurerm_application_gateway(resource_group: resource_group, application_gateway_name: application_gateway_name) do
+  its('properties.sslPolicy.policyName') { should eq 'AppGwSslPolicy20170401S' }
 end
 ```
-### Test that a Specified AKS Cluster has the Correct Number of Nodes in Pool
-```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-  its('properties.agentPoolProfiles.first.count') { should cmp 5 }
-end
-```
-See [integration tests](../../test/integration/verify/controls/azurerm_aks_cluster.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azurerm_application_gateway.rb) for more examples.
 
 ## Matchers
 
@@ -78,13 +74,13 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-# If we expect 'ClusterName' to always exist
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+# If we expect 'appgw-1' to always exist
+describe azure_application_gateway(resource_group: 'example', name: 'appgw-1') do
   it { should exist }
 end
 
-# If we expect 'ClusterName' to never exist
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+# If we expect 'appgw-1' to never exist
+describe azure_application_gateway(resource_group: 'example', name: 'appgw-1') do
   it { should_not exist }
 end
 ```

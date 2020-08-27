@@ -11,7 +11,7 @@ Use the `azure_generic_resource` Inspec audit resource to test any valid Azure r
 
 ### Installation
 
-This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
@@ -63,12 +63,14 @@ The following properties are applicable to almost all resources.
 
 | Property   | Description |
 |------------|-------------|
-| id         | The unique resource identifier.|
-| name       | The name of the resource. |
-| type       | The resource type. |
-| location   | The location of the resource. |
-| tags       | The tag `key:value pairs` if defined on the resource. |
-| properties | The resource properties. |
+| id         | The unique resource identifier.                          |
+| name       | The name of the resource.                                |
+| type       | The resource type.                                       |
+| location   | The location of the resource.                            |
+| tags       | The tag `key:value pairs` if defined on the resource.    |
+| properties | The resource properties.                                 |
+
+For more properties, refer to [Azure documents](https://docs.microsoft.com/en-us/rest/api/resources/resources/list#genericresourceexpanded).
 
 ## Examples
 
@@ -83,8 +85,6 @@ describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') d
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
 ```
-
-
 ### Test the API Version Used for the Query
 ```ruby
 describe azure_generic_resource(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}', api_version: '2017-01-01') do
@@ -92,8 +92,6 @@ describe azure_generic_resource(resource_id: '/subscriptions/{subscriptionId}/re
   its('api_version_used_for_query') { should eq '2017-01-01' }
 end
 ```
-
-    
 ### Test the Tags if Include Specific Values
 ```ruby
 describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') do
@@ -103,7 +101,6 @@ describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') d
   its('tags') { should include('name') }    # regardless of the value
 end
 ```
-
 For more examples, please see the [integration tests](/test/integration/verify/controls/azure_generic_resource.rb).
 
 ## Matchers

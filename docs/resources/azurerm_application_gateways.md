@@ -3,6 +3,8 @@ title: About the azurerm_application_gateways Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_application_gateways`](azure_application_gateways.md) InSpec audit resource.
+
 # azurerm\_Load\_balancers
 
 Use the `azurerm_application_gateways` InSpec audit resource to test properties and configuration of Azure Application Gateways.

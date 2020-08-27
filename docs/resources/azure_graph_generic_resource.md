@@ -20,17 +20,15 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
-
 ```ruby
 describe azure_graph_generic_resource(resource: 'resource', id: 'GUID', select: %w(attributes to be tested)) do
   its('property') { should eq 'value' }
 end
 ```
-
 where
 
 - Resource parameters are used to query Azure Graph API endpoint for the resource to be tested.

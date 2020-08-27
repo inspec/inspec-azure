@@ -3,6 +3,8 @@ title: About the azurerm_api_managements Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_api_managements`](azure_api_managements.md) InSpec audit resource.
+
 # azurerm\_api\_managements
 
 Use the `azurerm_api_managements` InSpec audit resource to test properties and configuration of Azure Api Management Service.

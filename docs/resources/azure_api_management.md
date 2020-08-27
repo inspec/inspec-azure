@@ -1,11 +1,11 @@
 ---
-title: About the azure_aks_cluster Resource
+title: About the azure_api_management Resource
 platform: azure
 ---
 
-# azure_aks_cluster
+# azure_api_management
 
-Use the `azure_aks_cluster` InSpec audit resource to test properties of an Azure AKS Cluster.
+Use the `azure_api_management` InSpec audit resource to test properties and configuration of an Azure API Management Service.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,9 +26,9 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_aks_cluster` resource block identifies an AKS Cluster by `name` and `resource_group`.
+The `resource_group` and `name` must be given as a parameter.
 ```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+describe azure_api_management(resource_group: 'inspec-resource-group-9', name: 'apim01') do
   it { should exist }
 end
 ```
@@ -37,40 +37,36 @@ end
 | Name                           | Description                                                                       |
 |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| name                           | Name of the AKS cluster to test. `ClusterName`                                      |
-| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ContainerService/managedClusters/{ClusterName}` |
+| name                           | The unique name of the API Management Service. `apim01`                           |
+| api_management_name            | Alias for the `name` parameter.                                                    |
+| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ApiManagement/service/{apim01}` |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
 - `resource_group` and `name`
+- `resource_group` and `api_management_name`
 
 ## Properties
 
 | Property          | Description |
 |-------------------|-------------|
-| identity          | The identity of the managed cluster, if configured. It is a [managed cluster identity object](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedclusteridentity). |
+| identity          | Managed service identity of the Api Management service. It is an [api management service identity object](https://docs.microsoft.com/en-us/rest/api/apimanagement/2019-12-01/apimanagementservice/get#apimanagementserviceidentity). |
 | sku               | The SKU (pricing tier) of the resource. |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedcluster) for other properties available. 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/apimanagement/2019-12-01/apimanagementservice/get#apimanagementserviceresource) for other properties available. 
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-### Test that an AKS Cluster has the Desired Network Plug-in
+### Test API Management Service's Publisher Email Value
 ```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-  its('properties.networkProfile.networkPlugin') { should cmp 'kubenet' }
+describe azurerm_api_management(resource_group: resource_group, api_management_name: api_management_name) do
+  its('properties.publisherEmail') { should eq 'company@inspec.io' }
 end
 ```
-### Test that a Specified AKS Cluster has the Correct Number of Nodes in Pool
-```ruby
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-  its('properties.agentPoolProfiles.first.count') { should cmp 5 }
-end
-```
-See [integration tests](../../test/integration/verify/controls/azurerm_aks_cluster.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azurerm_api_management.rb) for more examples.
 
 ## Matchers
 
@@ -78,16 +74,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-# If we expect 'ClusterName' to always exist
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+# If we expect 'apim01' to always exist
+describe azure_api_management(resource_group: 'example', name: 'apim01') do
   it { should exist }
 end
 
-# If we expect 'ClusterName' to never exist
-describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+# If we expect 'apim01' to never exist
+describe azure_api_management(resource_group: 'example', name: 'apim01') do
   it { should_not exist }
 end
 ```
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
+

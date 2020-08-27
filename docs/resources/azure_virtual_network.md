@@ -21,7 +21,7 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
@@ -55,7 +55,7 @@ Either one of the parameter sets can be provided for a valid query:
 | enable_ddos\_protection | Boolean value showing if Azure DDoS standard protection is enabled on the virtual network. `its('enable_ddos_protection') { should eq true }` |
 | enable_vm_protection | Boolean value showing if the virtual network has VM protection enabled. `its('enable_vm_protection') { should eq false }` |
 
-For parameters applicable to all resources, such as `type`, `name`, `id`, `location`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#parameters).
+For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/virtualnetworks/get#virtualnetwork) for other properties available. 
 Any property in the response may be accessed with the key names separated by dots (`.`).

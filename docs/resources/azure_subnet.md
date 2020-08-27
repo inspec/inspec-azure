@@ -21,7 +21,7 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
@@ -50,7 +50,7 @@ Either one of the parameter sets can be provided for a valid query:
 | address_prefix | The address prefix for the subnet. `its('address_prefix') { should eq "x.x.x.x/x" }` |
 | nsg            | The network security group attached to the subnet. `its('nsg') { should eq 'MyNetworkSecurityGroupName' }` |
 
-For parameters applicable to all resources, such as `type`, `name`, `id`, `location`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#parameters).
+For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/subnets/get#subnet) for other properties available. 
 Any property in the response may be accessed with the key names separated by dots (`.`).

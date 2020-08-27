@@ -1,11 +1,11 @@
 ---
-title: About the azure_key_vaults Resource
+title: About the azure_api_managements Resource
 platform: azure
 ---
 
-# azure_key_vaults
+# azure_api_managements
 
-Use the `azure_key_vaults` InSpec audit resource to test properties related to key vaults for a resource group or the entire subscription.
+Use the `azure_api_managements` InSpec audit resource to test properties and configuration of Azure API Management Services.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,15 +26,15 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_key_vaults` resource block returns all Azure key vaults, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_api_managements` resource block returns all Azure Api Management Services, either within a Resource Group (if provided), or within an entire Subscription.
 ```ruby
-describe azure_key_vaults do
+describe azure_api_managements do
   #...
 end
 ```
 or
 ```ruby
-describe azure_key_vaults(resource_group: 'my-rg') do
+describe azure_api_managements(resource_group: 'my-rg') do
   #...
 end
 ```
@@ -47,33 +47,26 @@ end
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
-| names         | A list of all the key vault names.                                                   | `name`          |
-| tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
-| types         | A list of types of all the key vaults.                                               | `type`          |
-| locations     | A list of locations for all the key vaults.                                          | `location`      |
-| properties    | A list of properties for all the key vaults.                                         | `properties`    |
+| locations     | A list of locations for all the resources being interrogated.                        | `location`      |
+| names         | A list of all the resources being interrogated.                                      | `name`          |
+| tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
+| types         | A list of the types of resources being interrogated.                                 | `type`          |
+| properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
-  
+
 ## Examples
 
-### Loop through Key Vaults by Their Ids  
+### Check Api Management Services are Present
 ```ruby
-azure_key_vaults.ids.each do |id|
-  describe azure_key_vault(resource_id: id) do
-    it { should exist }
-  end
-end  
-```     
-### Test that There are Key Vaults that Includes a Certain String in their Names (Client Side Filtering)   
-```ruby
-describe azure_key_vaults.where { name.include?('deployment') } do
-  it { should exist }
+describe azure_api_managements do
+  it            { should exist }
+  its('names')  { should include 'my-apim' }
 end
-```    
-### Test that There are Key Vaults that Includes a Certain String in their Names (Server Side Filtering via Generic Resource - Recommended)   
+```
+### Filter the Results to Include Only those with Names Match the Given String Value
 ```ruby
-describe azure_generic_resources(resource_provider: 'Microsoft.KeyVault/vaults', substring_of_name: 'deployment') do
+describe azure_api_managements.where{ name.eql?('production-apim-01') } do
   it { should exist }
 end
 ```
@@ -82,17 +75,20 @@ end
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
+
+The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-# Should not exist if no key vaults are in the resource group
-describe azure_key_vaults(resource_group: 'MyResourceGroup') do
-  it { should_not exist }
+# If we expect 'ExampleGroup' Resource Group to have API Management Services
+describe azure_api_managements(resource_group: 'ExampleGroup') do
+  it { should exist }
 end
 
-# Should exist if the filter returns at least one key vault
-describe azure_key_vaults(resource_group: 'MyResourceGroup') do
-  it { should exist }
+# If we expect 'EmptyExampleGroup' Resource Group to not have API Management Services
+describe azure_api_managements(resource_group: 'EmptyExampleGroup') do
+  it { should_not exist }
 end
 ```
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
+
