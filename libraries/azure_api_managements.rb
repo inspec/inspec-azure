@@ -36,14 +36,6 @@ class AzureApiManagements < AzureGenericResources
       { column: :properties, field: :properties },
     ]
 
-    # Talk to Azure Rest API and gather resources data in @resources.
-    # Paginate if necessary.
-    # Use the `populate_table` method (if defined) for filling the @table with the desired resource attributes.
-    get_resources
-
-    # Check if the resource is failed.
-    return if failed_resource?
-
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
   end

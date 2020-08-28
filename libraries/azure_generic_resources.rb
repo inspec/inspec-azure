@@ -34,6 +34,7 @@ class AzureGenericResources < AzureResourceBase
       }.each_with_object({}) { |(k, v), acc| acc[k] = v unless v.nil? }
       validate_parameters(**parameters_to_validate)
       @display_name = @opts[:display_name] unless @opts[:display_name].nil?
+      get_resources(opts[:resource_path])
       return
     end
 

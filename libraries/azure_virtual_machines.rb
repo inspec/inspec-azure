@@ -65,14 +65,6 @@ class AzureVirtualMachines < AzureGenericResources
       { column: :tags, field: :tags },
     ]
 
-    # Before calling the `get_resources` method, a private `populate_table` method has to be defined.
-    #
-    # Talk to Azure Rest API and gather resources data in @resources.
-    # Paginate if necessary.
-    # Use the `populate_table` method for filling the @table with the desired resource attributes according to the
-    #   `table_schema` layout.
-    get_resources
-
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
   end
