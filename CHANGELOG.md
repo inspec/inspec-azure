@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.20.1 -->
+<!-- latest_release 1.21.0 -->
+## [v1.21.0](https://github.com/inspec/inspec-azure/tree/v1.21.0) (2020-08-28)
+
+#### Merged Pull Requests
+- Re-write more resources with the new backend [#286](https://github.com/inspec/inspec-azure/pull/286) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.20.1](https://github.com/inspec/inspec-azure/tree/v1.20.1) (2020-08-18)
 
 #### Merged Pull Requests
 - Add apply_only rake task [#285](https://github.com/inspec/inspec-azure/pull/285) ([rmoles](https://github.com/rmoles))
-<!-- latest_release -->
 
 ## [v1.20.0](https://github.com/inspec/inspec-azure/tree/v1.20.0) (2020-08-14)
 
