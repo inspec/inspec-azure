@@ -2,7 +2,7 @@ require 'azure_generic_resource'
 
 class AzureEventHubEventHub < AzureGenericResource
   name 'azure_event_hub_event_hub'
-  desc 'Verifies settings for Event Hub Event Hub'
+  desc 'Verifies settings for Event Hub description'
   example <<-EXAMPLE
     describe azure_event_hub_event_hub(resource_group: 'example', namespace_name: 'namespace-ns', event_hub_name: 'eventHubName') do
       its(name) { should eq 'name'}
@@ -30,7 +30,7 @@ end
 # This is for backward compatibility.
 class AzurermEventHubEventHub < AzureEventHubEventHub
   name 'azurerm_event_hub_event_hub'
-  desc 'Verifies settings for Event Hub Event Hub'
+  desc 'Verifies settings for Event Hub description'
   example <<-EXAMPLE
     describe azurerm_event_hub_event_hub(resource_group: 'example', namespace_name: 'namespace-ns', event_hub_name: 'eventHubName') do
       its(name) { should eq 'name'}

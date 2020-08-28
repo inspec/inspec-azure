@@ -673,7 +673,7 @@ class AzureResourceProbe
   end
 
   def to_s
-    "Property is missing! The following are available: #{item.keys.map(&:to_s)}"
+    "Property is missing! The following properties are available: #{item.keys.map(&:to_s)}"
   end
 end
 
