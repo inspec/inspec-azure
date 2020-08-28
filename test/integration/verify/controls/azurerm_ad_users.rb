@@ -9,4 +9,8 @@ control 'azurerm_ad_users' do
     its('mails')               { should_not be_empty }
     its('guest_accounts.size') { should cmp guest_accounts }
   end
+
+  describe azurerm_ad_users(filter: "userType eq 'Guest'") do
+    its('guest_accounts.size') { should cmp guest_accounts }
+  end
 end
