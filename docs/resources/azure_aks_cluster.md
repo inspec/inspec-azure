@@ -64,6 +64,15 @@ describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
   its('properties.networkProfile.networkPlugin') { should cmp 'kubenet' }
 end
 ```
+
+### Loop through All Clusters within The Subscription
+```ruby
+azure_aks_clusters.ids.each do |resource_id|
+  describe azure_aks_cluster(resource_id: resource_id) do
+    its('properties.networkProfile.networkPlugin') { should cmp 'kubenet' }
+  end
+end 
+```
 ### Test that a Specified AKS Cluster has the Correct Number of Nodes in Pool
 ```ruby
 describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
