@@ -3,6 +3,8 @@ title: About the azurerm_hdinsight_cluster Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_hdinsight_cluster`](azure_hdinsight_cluster.md) InSpec audit resource.
+
 # azurerm\_hdinsight\_cluster
 
 Use the `azurerm_hdinsight_cluster` InSpec audit resource to test properties of an Azure HDInsight Cluster.

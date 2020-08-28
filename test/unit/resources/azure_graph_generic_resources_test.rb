@@ -21,10 +21,4 @@ class AzureGraphGenericResourcesConstructorTest < Minitest::Test
                                      filter: { name: 'some_id' }, filter_free_text: %w{some_filter})
     end
   end
-
-  def test_filter_is_hash
-    assert_raises(ArgumentError) do
-      AzureGraphGenericResources.new(resource: 'users', filter: 'some_filter')
-    end
-  end
 end

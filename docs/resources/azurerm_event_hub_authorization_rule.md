@@ -3,6 +3,8 @@ title: About the azurerm_event_hub_authorization_rule Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_event_hub_authorization_rule`](azure_event_hub_authorization_rule.md) InSpec audit resource.
+
 # azurerm\_event\_hub\_authorization\_rule
 
 Use the `azurerm_event_hub_authorization_rule` InSpec audit resource to test properties and configuration of
@@ -40,9 +42,9 @@ This resource first became available in 1.11.0 of the inspec-azure resource pack
 
 ## Syntax
 
-The `resource_group`, `namespace_name`, `event_hub_name` and `authorization_rule_name` must be given as a parameter.
+The `resource_group`, `namespace_name`, `event_hub_endpoint` and `authorization_rule` must be given as a parameter.
 
-    describe azurerm_event_hub_authorization_rule(resource_group: 'my-rg', namespace_name 'my-event-hub-ns', event_hub_name: 'myeventhub', authorization_rule_name: 'my-auth-rule') do
+    describe azurerm_event_hub_authorization_rule(resource_group: 'my-rg', namespace_name: 'my-event-hub-ns', event_hub_endpoint: 'myeventhub', authorization_rule: 'my-auth-rule') do
       it { should exist }
     end
 

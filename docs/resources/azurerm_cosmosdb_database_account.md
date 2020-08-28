@@ -3,6 +3,8 @@ title: About the azurerm_cosmosdb_database_account Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_cosmosdb_database_account`](azure_cosmosdb_database_account.md) InSpec audit resource.
+
 # azurerm\_cosmosdb\_database\_account
 
 Use the `azurerm_cosmosdb_database_account` InSpec audit resource to test properties and configuration of

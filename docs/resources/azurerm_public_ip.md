@@ -3,6 +3,8 @@ title: About the azurerm_public_ip Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_public_ip`](azure_public_ip.md) InSpec audit resource.
+
 # azurerm\_public\_ip
 
 Use the `azurerm_public_ip` InSpec audit resource to test properties of an Azure Public IP address.

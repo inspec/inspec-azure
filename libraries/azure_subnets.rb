@@ -50,6 +50,7 @@ class AzureSubnets < AzureGenericResources
     opts[:display_name] = "Subnets for #{opts[:vnet]} Virtual Network"
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
+    opts[:resource_path] = [opts[:vnet], 'subnets'].join('/')
 
     # static_resource parameter must be true for setting the scene in the backend.
     super(opts, true)
@@ -66,18 +67,6 @@ class AzureSubnets < AzureGenericResources
       { column: :etags, field: :etag },
       { column: :ids, field: :id },
     ]
-
-    # Construct and provide the `resource_path`.
-    resource_path = "#{@opts[:vnet]}/subnets"
-    # All of the following tasks will be done via `get_resource` method:
-    #   - Talk to Azure Rest API and gather resources data in @resources.
-    #   - Paginate if necessary.
-    #   - Use the `populate_table` method for filling the @table with the desired resource attributes according to the
-    #   table_schema layout.
-    get_resources(resource_path)
-
-    # Check if the resource is failed.
-    return if failed_resource?
 
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)

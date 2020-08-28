@@ -11,7 +11,7 @@ control 'azurerm_event_hub_authorization_rule' do
     its('type') { should eq 'Microsoft.EventHub/Namespaces/EventHubs/AuthorizationRules' }
   end
 
-  describe azurerm_event_hub_authorization_rule(resource_group: resource_group, namespace_name: 'fake-ns', event_hub_endpoint: 'fake-event-hub') do
+  describe azurerm_event_hub_authorization_rule(resource_group: resource_group, namespace_name: event_hub_namespace_name, event_hub_endpoint: event_hub_endpoint, authorization_rule: 'fake') do
     it { should_not exist }
   end
 end

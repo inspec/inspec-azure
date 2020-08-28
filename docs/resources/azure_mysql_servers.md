@@ -6,6 +6,7 @@ platform: azure
 # azure_mysql_servers
 
 Use the `azure_mysql_servers` InSpec audit resource to test properties and configuration of multiple Azure MySQL Servers.
+
 ## Azure REST API version, endpoint and http client parameters
 
 This resource interacts with api versions supported by the resource provider.
@@ -20,7 +21,7 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the `inspec-azure` [resource pack](/inspec/glossary/#resource-pack). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
@@ -46,11 +47,11 @@ end
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
-| locations     | A list of locations for all the virtual networks.                                    | `location`      |
-| names         | A list of all the virtual network names.                                             | `name`          |
+| locations     | A list of locations for all the resources being interrogated.                        | `location`      |
+| names         | A list of all the resources being interrogated.                                      | `name`          |
 | tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
-| skus          | A list of the SKUs (pricing tiers) of the server.                                    | `sku`           |
-| properties    | A list of properties for all the key vaults.                                         | `properties`    |
+| skus          | A list of the SKUs (pricing tiers) of the servers.                                   | `sku`           |
+| properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
 

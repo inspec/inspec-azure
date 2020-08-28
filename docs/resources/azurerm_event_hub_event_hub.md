@@ -3,6 +3,8 @@ title: About the azurerm_event_hub_event_hub Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_event_hub_event_hub`](azure_event_hub_event_hub.md) InSpec audit resource.
+
 # azurerm\_event\_hub\_event\_hub
 
 Use the `azurerm_event_hub_event_hub` InSpec audit resource to test properties and configuration of

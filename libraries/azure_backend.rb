@@ -640,10 +640,8 @@ class AzureResourceProbe
     @count = item.length
   end
 
-  # Allows resources to respond to the include test
+  # Allows resources to respond to the `include` test
   # This means that things like tags can be checked for and then their value tested
-  #
-  # @author Russell Seymour
   #
   # @param [String, Hash] opt Name (or Name=>Value) of the item to look for in the @item property
   def include?(opt)
@@ -672,6 +670,10 @@ class AzureResourceProbe
   # This is a RuboCop requirement.
   def respond_to_missing?(*several_variants)
     super
+  end
+
+  def to_s
+    "Property is missing! The following properties are available: #{item.keys.map(&:to_s)}"
   end
 end
 
@@ -705,9 +707,5 @@ class NullResponse
   # This is a RuboCop requirement.
   def respond_to_missing?(*several_variants)
     super
-  end
-
-  def to_s
-    'Do not exist.'
   end
 end

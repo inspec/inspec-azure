@@ -56,7 +56,13 @@ class AzureGraphGenericResources < AzureResourceBase
       raise ArgumentError, 'Either `:filter` or `:filter_free_text` should be provided.'
     end
     if @opts[:filter]
-      query_parameters['$filter'] = Helpers.odata_query(@opts[:filter])
+      if @opts[:filter].is_a?(String)
+        # This is for backward compatibility.
+        # Same feature is supported via `filter_free_text` parameter as well.
+        query_parameters['$filter'] = @opts[:filter]
+      else
+        query_parameters['$filter'] = Helpers.odata_query(@opts[:filter])
+      end
     end
 
     # This will allow passing:
