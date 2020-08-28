@@ -67,6 +67,11 @@ describe azure_event_hub_authorization_rule(resource_group: 'my-rg', namespace_n
   its('name') { should cmp 'my-auth-rule' }
 end
 ```
+```ruby
+describe azure_event_hub_authorization_rule(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/authorizationRules/{authorizationRuleName}') do
+  its('name') { should cmp 'my-auth-rule' }
+end
+```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).

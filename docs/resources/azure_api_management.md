@@ -62,8 +62,17 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ### Test API Management Service's Publisher Email Value
 ```ruby
-describe azurerm_api_management(resource_group: resource_group, api_management_name: api_management_name) do
+describe azure_api_management(resource_group: resource_group, api_management_name: api_management_name) do
   its('properties.publisherEmail') { should eq 'company@inspec.io' }
+end
+```
+
+### Loop through Resources via Plural Resource
+```ruby
+azure_api_managements.ids.each do |resource_id|
+  describe azure_api_management(resource_id: resource_id) do
+    its('properties.publisherEmail') { should eq 'company@inspec.io' }
+  end
 end
 ```
 See [integration tests](../../test/integration/verify/controls/azurerm_api_management.rb) for more examples.

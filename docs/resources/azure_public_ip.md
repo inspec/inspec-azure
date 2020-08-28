@@ -63,6 +63,11 @@ describe azure_public_ip(resource_group: 'example', name: 'publicIpAddressName')
   its('properties.ipAddress') { should cmp '51.224.11.75' }
 end
 ``` 
+```ruby
+describe azure_public_ip(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}') do
+  its('properties.ipAddress') { should cmp '51.224.11.75' }
+end
+``` 
 See [integration tests](../../test/integration/verify/controls/azurerm_public_ip.rb) for more examples.
 
 ## Matchers

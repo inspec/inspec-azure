@@ -65,6 +65,11 @@ describe azure_event_hub_namespace(resource_group: 'my-rg', namespace_name: 'my-
   its('properties.kafkaEnabled') { should be true }
 end
 ```
+```ruby
+describe azure_event_hub_namespace(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}') do
+  its('properties.kafkaEnabled') { should be true }
+end
+```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).

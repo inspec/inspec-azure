@@ -66,6 +66,11 @@ describe azure_event_hub_event_hub(resource_group: 'my-rg', namespace_name: 'my-
   its('properties.messageRetentionInDays') { should cmp 4 }
 end
 ```
+```ruby
+describe azure_event_hub_event_hub(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}') do
+  its('properties.messageRetentionInDays') { should cmp 4 }
+end
+```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).

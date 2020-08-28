@@ -63,6 +63,11 @@ describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName')
   its('properties.provisioningState') { should cmp 'Succeeded' }
 end
 ```
+```ruby
+describe azure_hdinsight_cluster(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}') do
+  its('properties.provisioningState') { should cmp 'Succeeded' }
+end
+```
 ### Test the Version of a HDInsight Cluster
 ```ruby
 describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName') do

@@ -66,6 +66,11 @@ describe azure_cosmosdb_database_account(resource_group: 'my-rg', name: 'my-cosm
   its('properties.publicNetworkAccess') { should cmp 'Enabled' }
 end
 ```
+```ruby
+describe azure_cosmosdb_database_account(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}') do
+  its('properties.publicNetworkAccess') { should cmp 'Enabled' }
+end
+```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).

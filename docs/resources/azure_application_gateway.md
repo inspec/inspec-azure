@@ -62,10 +62,16 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ### Test the SSL Policy Name of an Application Gateway
 ```ruby
-describe azurerm_application_gateway(resource_group: resource_group, application_gateway_name: application_gateway_name) do
+describe azure_application_gateway(resource_group: 'resource_group', application_gateway_name: 'application_gateway_name') do
   its('properties.sslPolicy.policyName') { should eq 'AppGwSslPolicy20170401S' }
 end
 ```
+```ruby
+describe azure_application_gateway(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/applicationGateways/{gatewayName}') do
+  its('properties.sslPolicy.policyName') { should eq 'AppGwSslPolicy20170401S' }
+end
+```
+
 See [integration tests](../../test/integration/verify/controls/azurerm_application_gateway.rb) for more examples.
 
 ## Matchers
