@@ -3,6 +3,9 @@ title: About the azurerm_load_balancer Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_load_balancer`](azure_load_balancer.md) InSpec audit resource.
+
+
 # azurerm\_load\_balancer
 
 Use the `azurerm_load_balancer` InSpec audit resource to test properties and configuration of

@@ -11,7 +11,7 @@ control 'azurerm_iothub_event_hub_consumer_group' do
     its('type') { should eq 'Microsoft.Devices/IotHubs/EventHubEndpoints/ConsumerGroups' }
   end
 
-  describe azurerm_iothub_event_hub_consumer_group(resource_group: resource_group, resource_name: 'fake', event_hub_endpoint: 'i-do-not-exist', consumer_group: 'invalid-consumer-group') do
+  describe azurerm_iothub_event_hub_consumer_group(resource_group: resource_group, resource_name: iothub_resource_name, event_hub_endpoint: iothub_event_hub_endpoint, consumer_group: 'invalid-consumer-group') do
     it { should_not exist }
   end
 end

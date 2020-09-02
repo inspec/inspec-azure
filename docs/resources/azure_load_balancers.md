@@ -1,11 +1,11 @@
 ---
-title: About the azure_api_managements Resource
+title: About the azure_load_balancers Resource
 platform: azure
 ---
 
-# azure_api_managements
+# azure_load_balancers
 
-Use the `azure_api_managements` InSpec audit resource to test properties and configuration of Azure API Management Services.
+Use the `azure_load_balancers` InSpec audit resource to test properties and configuration of Azure Load Balancers.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,15 +26,15 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_api_managements` resource block returns all Azure Api Management Services, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_load_balancers` resource block returns all Azure Load Balancers, either within a Resource Group (if provided), or within an entire Subscription.
 ```ruby
-describe azure_api_managements do
+describe azure_load_balancers do
   #...
 end
 ```
 or
 ```ruby
-describe azure_api_managements(resource_group: 'my-rg') do
+describe azure_load_balancers(resource_group: 'my-rg') do
   #...
 end
 ```
@@ -52,21 +52,29 @@ end
 | tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
 | types         | A list of the types of resources being interrogated.                                 | `type`          |
 | properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
+| skus          | A list of the SKUs of the resources being interrogated.                              | `sku`           |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
 
+
 ## Examples
 
-### Check Api Management Services are Present
-```ruby
-describe azure_api_managements do
-  it            { should exist }
-  its('names')  { should include 'my-apim' }
+### Check Load balancers are Present
+````ruby
+describe azure_load_balancers do
+    it            { should exist }
+    its('names')  { should include 'my-lb' }
 end
-```
+````
 ### Filter the Results to Include Only those with Names Match the Given String Value
 ```ruby
-describe azure_api_managements.where{ name.eql?('production-apim-01') } do
+describe azure_load_balancers.where{ name.eql?('production-lb') } do
+  it { should exist }
+end
+```
+### Filter the Results to Include Only those with Location Match the Given String Value
+```ruby
+describe azure_load_balancers.where{ location.eql?('eastus-2') } do
   it { should exist }
 end
 ```
@@ -78,17 +86,16 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have API Management Services
-describe azure_api_managements(resource_group: 'ExampleGroup') do
+# If we expect 'ExampleGroup' Resource Group to have Load Balancers
+describe azure_load_balancers(resource_group: 'ExampleGroup') do
   it { should exist }
 end
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have API Management Services
-describe azure_api_managements(resource_group: 'EmptyExampleGroup') do
+# If we expect 'EmptyExampleGroup' Resource Group to not have Load Balancers
+describe azure_load_balancers(resource_group: 'ExampleGroup') do
   it { should_not exist }
 end
 ```
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
-

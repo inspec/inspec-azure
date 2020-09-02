@@ -3,6 +3,8 @@ title: About the azurerm_storage_account_blob_containers Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_storage_account_blob_containers`](azure_storage_account_blob_containers.md) InSpec audit resource.
+
 # azurerm\_storage\_account\_blob\_containers
 
 Use the `azurerm_storage_account_blob_containers` InSpec audit resource to test properties and configuration of Blob Containers within an Azure Storage Account.

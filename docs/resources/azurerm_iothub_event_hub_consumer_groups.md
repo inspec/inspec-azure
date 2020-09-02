@@ -3,6 +3,8 @@ title: About the azurerm_iothub_event_hub_consumer_groups Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_iothub_event_hub_consumer_groups`](azure_iothub_event_hub_consumer_groups.md) InSpec audit resource.
+
 # azurerm\_iothub\_event\_hub\_consumer\_groups
 
 Use the `azurerm_iothub_event_hub_consumer_groups` InSpec audit resource to test properties and configuration of

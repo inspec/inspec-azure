@@ -79,6 +79,13 @@ class AzurermAdUsers < AzureGraphUsers
   EXAMPLE
 
   def initialize(opts = {})
+    if opts[:filter].is_a?(String)
+      # This is for backward compatibility.
+      # Same feature is supported via `filter_free_text` parameter with the new backend.
+      opts[:filter_free_text] = opts[:filter]
+      opts.delete(:filter)
+    end
+
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureGraphUsers.name)
     super
   end

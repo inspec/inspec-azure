@@ -1,11 +1,11 @@
 ---
-title: About the azure_api_managements Resource
+title: About the azure_iothub_event_hub_consumer_groups Resource
 platform: azure
 ---
 
-# azure_api_managements
+# azure_iothub_event_hub_consumer_groups
 
-Use the `azure_api_managements` InSpec audit resource to test properties and configuration of Azure API Management Services.
+Use the `azure_iothub_event_hub_consumer_groups` InSpec audit resource to test properties and configuration of an Azure IoT Hub Event Hub Consumer Groups within a Resource Group.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,21 +26,20 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_api_managements` resource block returns all Azure Api Management Services, either within a Resource Group (if provided), or within an entire Subscription.
+The `resource_group`, `resource_name` and `event_hub_endpoint` must be given as a parameter.
 ```ruby
-describe azure_api_managements do
-  #...
-end
-```
-or
-```ruby
-describe azure_api_managements(resource_group: 'my-rg') do
-  #...
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
+  its('names') { should include 'my-consumer-group'}
+  its('types') { should include 'Microsoft.Devices/IotHubs/EventHubEndpoints/ConsumerGroups' }
 end
 ```
 ## Parameters
 
-- `resource_group` (Optional)
+| Name                           | Description                                                                          |
+|--------------------------------|--------------------------------------------------------------------------------------|
+| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`        |
+| resource_name                  | The name of the IoT hub. `my-iot-hub`                                                |
+| event_hub_endpoint             | The name of the Event Hub-compatible endpoint in the IoT hub. `eventHubEndpointName` |
 
 ## Properties
 
@@ -52,43 +51,32 @@ end
 | tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
 | types         | A list of the types of resources being interrogated.                                 | `type`          |
 | properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
+| etags         | A list of etags defined on the resources.                                            | `etag`          |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
 
 ## Examples
 
-### Check Api Management Services are Present
+### Check If a Specific Consumer Group Exists
 ```ruby
-describe azure_api_managements do
-  it            { should exist }
-  its('names')  { should include 'my-apim' }
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
+  its('names') { should include('my_consumer_group') }
 end
 ```
-### Filter the Results to Include Only those with Names Match the Given String Value
-```ruby
-describe azure_api_managements.where{ name.eql?('production-apim-01') } do
-  it { should exist }
-end
-```
-## Matchers
-
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
-
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have API Management Services
-describe azure_api_managements(resource_group: 'ExampleGroup') do
+# If we expect at least one resource to exists on a specified endpoint
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
   it { should exist }
 end
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have API Management Services
-describe azure_api_managements(resource_group: 'EmptyExampleGroup') do
+# If we expect not to exist any consumer groups on a specified endpoint
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
   it { should_not exist }
 end
 ```
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
-

@@ -2,6 +2,7 @@
 title: About the azurerm_storage_account_blob_container Resource
 platform: azure
 ---
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_storage_account_blob_container`](azure_storage_account_blob_container.md) InSpec audit resource.
 
 # azurerm\_storage\_account\_blob\_container
 

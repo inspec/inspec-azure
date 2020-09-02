@@ -48,7 +48,7 @@ end
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
 | locations     | A list of locations for all the resources being interrogated.                        | `location`      |
-| names         | A list of all the resources being interrogated.                                      | `name`          |
+| names         | A list of names of all the resources being interrogated.                             | `name`          |
 | tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
 | properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 

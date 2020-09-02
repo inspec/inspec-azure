@@ -3,6 +3,8 @@ title: About the azurerm_postgresql_databases Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_postgresql_databases`](azure_postgresql_databases.md) InSpec audit resource.
+
 # azurerm\_postgresql\_databases
 
 Use the `azurerm_postgresql_databases` InSpec audit resource to test properties and configuration of Azure PostgreSQL Databases.

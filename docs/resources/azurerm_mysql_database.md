@@ -3,6 +3,8 @@ title: About the azurerm_mysql_database Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_mysql_database`](azure_mysql_database.md) InSpec audit resource.
+
 # azurerm\_mysql\_database
 
 Use the `azurerm_mysql_database` InSpec audit resource to test properties and configuration of

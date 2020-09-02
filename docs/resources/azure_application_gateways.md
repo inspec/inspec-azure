@@ -3,7 +3,6 @@ title: About the azure_application_gateways Resource
 platform: azure
 ---
 
-
 # azure_application_gateways
 
 Use the `azure_application_gateways` InSpec audit resource to test properties and configuration of Azure Application Gateways.
@@ -24,8 +23,6 @@ For more information, refer to the resource pack [README](../../README.md).
 
 This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
-
-## Syntax
 
 ## Syntax
 
@@ -51,7 +48,7 @@ end
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
 | locations     | A list of locations for all the resources being interrogated.                        | `location`      |
-| names         | A list of all the resources being interrogated.                                      | `name`          |
+| names         | A list of names of all the resources being interrogated.                             | `name`          |
 | tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
 | types         | A list of the types of resources being interrogated.                                 | `type`          |
 | properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
