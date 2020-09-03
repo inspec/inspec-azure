@@ -52,11 +52,9 @@ class AzureGraphUsers < AzureGraphGenericResources
   end
 
   def guest_accounts
-    begin
-      @guest_accounts ||= where(userType: 'Guest').mails
-    rescue NoMethodError
-      return []
-    end
+    @guest_accounts ||= where(userType: 'Guest').mails
+  rescue NoMethodError
+    []
   end
 
   # For backward compatibility.
