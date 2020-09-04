@@ -100,15 +100,26 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
 - [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
 - [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md)
+- [azure_iothub](docs/resources/azure_iothub.md)
+- [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md)
+- [azure_iothub_event_hub_consumer_groups](docs/resources/azure_iothub_event_hub_consumer_groups.md)
 - [azure_graph_user](docs/resources/azure_graph_user.md)
 - [azure_graph_users](docs/resources/azure_graph_users.md)
 - [azure_key_vault](docs/resources/azure_key_vault.md)
 - [azure_key_vaults](docs/resources/azure_key_vaults.md)
+- [azure_load_balancer](docs/resources/azure_load_balancer.md)
+- [azure_load_balancers](docs/resources/azure_load_balancers.md)
+- [azure_mysql_database](docs/resources/azure_mysql_database.md)
+- [azure_mysql_databases](docs/resources/azure_mysql_databases.md)
 - [azure_mysql_server](docs/resources/azure_mysql_server.md)
 - [azure_mysql_servers](docs/resources/azure_mysql_servers.md)
 - [azure_network_security_group](docs/resources/azure_network_security_group.md)
 - [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
+- [azure_postgresql_database](docs/resources/azure_postgresql_database.md)
+- [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md)
 - [azure_public_ip](docs/resources/azure_public_ip.md)
+- [azure_storage_account_blob_container](docs/resources/azure_storage_account_blob_container.md)
+- [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md)
 - [azure_subnet](docs/resources/azure_subnet.md)
 - [azure_subnets](docs/resources/azure_subnets.md)
 - [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
@@ -332,7 +343,7 @@ The common parameters are:
 See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
 - If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
 - If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
-- If it is necessary to make an additional API call within a static method, the `get_resource` should be used. See [azure_key_vaults](libraries/azure_key_vault.rb). 
+- If it is necessary to make an additional API call within a static method, the `get_resource` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
 
 ### Plural Resources
 

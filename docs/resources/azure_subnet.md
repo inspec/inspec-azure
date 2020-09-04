@@ -25,9 +25,16 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
+
+`resource_group`, `vnet` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
-  #...
+  it { should exist }
+end
+```
+```ruby
+describe azure_subnet(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/virtualNetworks/{vnName}/subnets/{subnetName}') do
+  it { should exist }
 end
 ```
 ## Parameters

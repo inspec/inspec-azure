@@ -17,6 +17,7 @@ class AzureApiManagement < AzureGenericResource
 
     opts[:resource_identifiers] = %i(api_management_name)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

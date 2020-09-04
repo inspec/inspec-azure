@@ -15,6 +15,7 @@ class AzureHdinsightCluster < AzureGenericResource
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.HDInsight/clusters', opts)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

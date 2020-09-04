@@ -26,9 +26,14 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_aks_cluster` resource block identifies an AKS Cluster by `name` and `resource_group`.
+An `azure_aks_cluster` resource block identifies an AKS Cluster by `name` and `resource_group` or the `resource_id`.
 ```ruby
 describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
+  it { should exist }
+end
+```
+```ruby
+describe azure_aks_cluster(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ContainerService/managedClusters/{ClusterName}') do
   it { should exist }
 end
 ```

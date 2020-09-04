@@ -3,6 +3,8 @@ title: About the azurerm_iothub Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_iothub`](azure_iothub.md) InSpec audit resource.
+
 # azurerm\_iothub
 
 Use the `azurerm_iothub` InSpec audit resource to test properties and configuration of

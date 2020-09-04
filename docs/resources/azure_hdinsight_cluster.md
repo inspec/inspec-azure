@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_hdinsight_cluster` resource block identifies a HDInsight Cluster by `name` and `resource_group`.
+An `azure_hdinsight_cluster` resource block identifies a HDInsight Cluster by `name` and `resource_group` or the `resource_id`.
 ```ruby
 describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName') do
   it { should exist }

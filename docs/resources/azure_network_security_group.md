@@ -26,20 +26,24 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_network_security_group` resource block identifies a Network Security Group by name and Resource Group
+An `azure_network_security_group` resource block identifies a Network Security Group by `name` and `resource_group` or the `resource_id`.
 ```ruby
 describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
-  #...
+  it { should exist }
 end
 ```
-
+```ruby
+describe azure_network_security_group(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/networkSecurityGroups/{nsgName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in.`MyResourceGroup`     |
 | name                           | Name of the Azure resource to test. `MyNSG`                                      |
-| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/networkSecurityGroups/{nsgName}`                                 |
+| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/networkSecurityGroups/{nsgName}` |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`

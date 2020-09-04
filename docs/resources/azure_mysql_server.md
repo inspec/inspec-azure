@@ -26,9 +26,14 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group` and `name` must be given as a parameter.
+`resource_group` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azurerm_mysql_server(resource_group: 'inspec-resource-group-9', name: 'example_server') do
+  it { should exist }
+end
+```
+```ruby
+describe azurerm_mysql_server(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.DBforMySQL/servers/{serverName}') do
   it { should exist }
 end
 ```

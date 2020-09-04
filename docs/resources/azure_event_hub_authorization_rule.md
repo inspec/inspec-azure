@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group`, `namespace_name`, `event_hub_endpoint` and `name` must be given as a parameter.
+`resource_group`, `namespace_name`, `event_hub_endpoint` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_event_hub_authorization_rule(resource_group: 'my-rg', namespace_name: 'my-event-hub-ns', event_hub_endpoint: 'myeventhub', name: 'my-auth-rule') do
   it { should exist }

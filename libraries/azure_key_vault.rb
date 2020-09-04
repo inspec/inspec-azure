@@ -47,7 +47,7 @@ class AzureKeyVault < AzureGenericResource
     # Key vault name can be accepted with a different keyword, `vault_name`. `name` is default accepted.
     opts[:resource_identifiers] = %i(vault_name)
 
-    # At this point there is enough data to construct the resource id.
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 
