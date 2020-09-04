@@ -32,6 +32,11 @@ describe azure_mysql_database(resource_group: 'inspec-rg', server_name: 'custome
   it { should exist }
 end
 ```
+```ruby
+describe azure_mysql_database(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforMySQL/servers/{serverName}/databases/{databaseName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |

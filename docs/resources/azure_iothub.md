@@ -32,6 +32,11 @@ describe azure_iothub(resource_group: 'my-rg', name: 'my-iot-hub') do
   it { should exist }
 end
 ```
+```ruby
+describe azure_iothub(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |

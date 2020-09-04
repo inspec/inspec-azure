@@ -32,6 +32,11 @@ describe azure_api_management(resource_group: 'inspec-resource-group-9', name: '
   it { should exist }
 end
 ```
+```ruby
+describe azure_api_management(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ApiManagement/service/{apim01}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |
