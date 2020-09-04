@@ -343,7 +343,7 @@ The common parameters are:
 See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
 - If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
 - If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
-- If it is necessary to make an additional API call within a static method, the `get_resource` should be used. See [azure_key_vaults](libraries/azure_key_vault.rb). 
+- If it is necessary to make an additional API call within a static method, the `get_resource` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
 
 ### Plural Resources
 
@@ -352,7 +352,7 @@ See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard s
 - If the properties of the resource are to be manipulated before populating the FilterTable, a `populate_table` method has to be defined. See [azure_virtual_machines](libraries/azure_virtual_machines.rb).
 - If the resources exist in another resource, such as subnets of a virtual network, a `resource_path` has to be created. 
 For that, the identifiers of the parent resource, `resource_group` and virtual network name `vnet`, must be required from the users. 
-See [azure_subnet](libraries/azure_subnets.rb).
+See [azure_subnets](libraries/azure_subnets.rb).
 
 The following instructions will help you get your development environment setup to run integration tests.
 
