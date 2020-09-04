@@ -33,6 +33,11 @@ describe azure_key_vault(resource_group: 'inspec-resource-group', name: 'vault-1
   its('name')   { should cmp 'vault-101' }    
 end
 ```
+```ruby
+describe azure_key_vault(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.KeyVault/vaults/{vaultName}') do
+  it            { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                      |

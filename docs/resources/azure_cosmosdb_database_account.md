@@ -32,6 +32,11 @@ describe azure_cosmosdb_database_account(resource_group: 'inspec-resource-group-
   it { should exist }
 end
 ```
+```ruby
+describe azure_cosmosdb_database_account(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |

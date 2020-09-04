@@ -32,6 +32,11 @@ describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName')
   it { should exist }
 end
 ```
+```ruby
+describe azure_hdinsight_cluster(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |
