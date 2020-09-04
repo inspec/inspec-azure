@@ -26,10 +26,15 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group` and virtual network `name` must be given as parameters.
+The `resource_group` and virtual network `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_virtual_network(resource_group: 'MyResourceGroup', name: 'MyVnetName') do
-  #...
+  it { should exist }
+end
+```
+```ruby
+describe azure_virtual_network(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/virtualNetworks/{vnName}') do
+  it { should exist }
 end
 ```
 ## Parameters

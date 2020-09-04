@@ -15,6 +15,7 @@ class AzurePublicIp < AzureGenericResource
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/publicIPAddresses', opts)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

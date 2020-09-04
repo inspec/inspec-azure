@@ -16,6 +16,7 @@ class AzureCosmosDbDatabaseAccount < AzureGenericResource
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DocumentDB/databaseAccounts', opts)
     opts[:resource_identifiers] = %i(cosmosdb_database_account)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

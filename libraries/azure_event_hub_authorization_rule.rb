@@ -18,6 +18,7 @@ class AzureEventHubAuthorizationRule < AzureGenericResource
     opts[:resource_provider] = specific_resource_constraint('Microsoft.EventHub/namespaces', opts)
     opts[:resource_identifiers] = %i(authorization_rule)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

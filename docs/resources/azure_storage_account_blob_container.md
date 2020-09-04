@@ -26,9 +26,14 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group`, `storage_account_name` and `name` must be given as a parameter.
+`resource_group`, `storage_account_name` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_storage_account_blob_container(resource_group: 'rg', storage_account_name: 'production', name: 'logs')  do
+  it { should exist }
+end
+```
+```ruby
+describe azure_storage_account_blob_container(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}')  do
   it { should exist }
 end
 ```

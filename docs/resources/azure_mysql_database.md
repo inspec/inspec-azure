@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group`, `server_name` and `name` must be given as a parameter.
+`resource_group`, `server_name` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_mysql_database(resource_group: 'inspec-rg', server_name: 'customer_server', name: 'order-db') do
   it { should exist }

@@ -21,6 +21,7 @@ class AzureStorageAccountBlobContainer < AzureGenericResource
     opts[:resource_path] = [opts[:storage_account_name], 'blobServices/default/containers'].join('/')
     opts[:resource_identifiers] = %i(blob_container_name)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

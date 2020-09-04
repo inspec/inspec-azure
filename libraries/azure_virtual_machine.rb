@@ -42,7 +42,7 @@ class AzureVirtualMachine < AzureGenericResource
     #
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Compute/virtualMachines', opts)
 
-    # static_resource parameter of the super method must be `true` for setting the scene in the backend.
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

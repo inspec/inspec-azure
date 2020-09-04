@@ -45,7 +45,7 @@ class AzureMysqlServer < AzureGenericResource
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DBforMySQL/servers', opts)
     opts[:resource_identifiers] = %i(server_name)
 
-    # At this point there is enough data to construct the resource id.
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

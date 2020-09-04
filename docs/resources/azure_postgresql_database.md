@@ -26,9 +26,14 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group`, `server_name` and `name` must be given as a parameter.
+The `resource_group`, `server_name` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_postgresql_database(resource_group: 'inspec-rg', server_name: 'customer_server', name: 'order-db') do
+  it { should exist }
+end
+```
+```ruby
+describe azure_postgresql_database(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/servers/{serverName}/databases/{databaseName}') do
   it { should exist }
 end
 ```

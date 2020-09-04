@@ -46,7 +46,8 @@ class AzureVirtualNetwork < AzureGenericResource
     # end
 
     opts[:resource_provider] = specific_resource_constraint(resource_provider, opts)
-    # At this point there is enough data to construct the resource id.
+
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

@@ -26,9 +26,14 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group` and `name` must be given as a parameter.
+`resource_group` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_load_balancer(resource_group: 'inspec-resource-group-9', name: 'example_lb') do
+  it { should exist }
+end
+```
+```ruby
+describe azure_load_balancer(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}') do
   it { should exist }
 end
 ```

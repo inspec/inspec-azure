@@ -51,7 +51,8 @@ class AzureSubnet < AzureGenericResource
     opts[:required_parameters] = %i(vnet)
     opts[:resource_path] = [opts[:vnet], 'subnets'].join('/')
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
-    # At this point there is enough data to construct the resource id.
+
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

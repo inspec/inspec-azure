@@ -17,7 +17,7 @@ class AzureApiManagements < AzureGenericResources
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.ApiManagement/service', opts)
 
-    # static_resource parameter must be true for setting the scene in the backend.
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
     # Check if the resource is failed.

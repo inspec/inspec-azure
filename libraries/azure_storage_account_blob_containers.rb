@@ -19,7 +19,7 @@ class AzureStorageAccountBlobContainers < AzureGenericResources
     opts[:required_parameters] = %i(resource_group storage_account_name)
     opts[:resource_path] = [opts[:storage_account_name], 'blobServices/default/containers'].join('/')
 
-    # static_resource parameter must be true for setting the scene in the backend.
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
     # Check if the resource is failed.

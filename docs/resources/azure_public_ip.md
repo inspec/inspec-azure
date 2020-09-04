@@ -26,9 +26,14 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_public_ip` resource block identifies a public IP address by `name` and `resource_group`.
+An `azure_public_ip` resource block identifies a public IP address by `name` and `resource_group` or the `resource_id`.
 ```ruby
 describe azure_public_ip(resource_group: 'example', name: 'addressName') do
+  it { should exist }
+end
+```
+```ruby
+describe azure_public_ip(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}') do
   it { should exist }
 end
 ```

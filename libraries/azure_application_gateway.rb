@@ -15,7 +15,8 @@ class AzureApplicationGateway < AzureGenericResource
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/applicationGateways', opts)
     opts[:resource_identifiers] = %i(application_gateway_name)
-
+    
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

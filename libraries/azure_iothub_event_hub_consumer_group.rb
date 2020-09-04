@@ -18,6 +18,7 @@ class AzureIotHubEventHubConsumerGroup < AzureGenericResource
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Devices/IotHubs', opts)
     opts[:resource_identifiers] = %i(consumer_group)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
 

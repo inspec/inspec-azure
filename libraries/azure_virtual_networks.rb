@@ -44,7 +44,7 @@ class AzureVirtualNetworks < AzureGenericResources
     #   - @table => It will be used for populating FilterTable in the `AzureGenericResources.populate_filter_table` class method.
     #   - @resources => It will be used for populating the @table in the `populate_table` instance method.
     #
-    # static_resource parameter must be true for setting the scene in the backend.
+    # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
     # Check if the resource is failed.

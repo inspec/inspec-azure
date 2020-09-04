@@ -16,6 +16,7 @@ class AzureLoadBalancer < AzureGenericResource
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/loadBalancers', opts)
     opts[:resource_identifiers] = %i(loadbalancer_name)
 
+    # static_resource parameter must be true for setting the resource_provider in the backend.\
     super(opts, true)
   end
 
