@@ -107,13 +107,7 @@ end
 ```ruby
 describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', resource_path: '{labName}/virtualmachines', resource_group: 'my_group', name: 'my_VM') do
   its('properties.userName') { should cmp 'admin' }
-end
-```
-```ruby
-azure_generic_resources(resource_provider: 'Microsoft.DevTestLab/labs', resource_path: '{labName}/virtualmachines', resource_group: 'my_group').ids.each do |id|
-  describe azure_generic_resource(resource_id: id) do
-    its('properties.allowClaim') { should cmp false }
-  end
+  its('properties.allowClaim') { should cmp false }
 end
 ```
 For more examples, please see the [integration tests](/test/integration/verify/controls/azure_generic_resource.rb).
