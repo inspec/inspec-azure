@@ -307,7 +307,6 @@ class AzureResourceBase < Inspec.resource(1)
 
     # If the resource manager api version is updated earlier, use that.
     api_version_mgm = @resource_manager_endpoint_api || @azure.resource_manager_endpoint_api_version
-    # url = "#{@azure.resource_manager_endpoint_url}subscriptions/#{@azure.credentials[:subscription_id]}/providers/#{provider}"
     url = Helpers.construct_url([
                                   @azure.resource_manager_endpoint_url,
                                   'subscriptions',
