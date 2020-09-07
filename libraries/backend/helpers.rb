@@ -333,6 +333,6 @@ module Helpers
 
   def self.construct_url(input_list)
     raise ArgumentError, "An array has to be provided. Found: #{input_list.class}." unless input_list.is_a?(Array)
-    input_list.each_with_object([]) { |input, list| list << input.delete_suffix('/').delete_prefix('/')}.join('/')
+    input_list.each_with_object([]) { |input, list| list << input.delete_suffix('/').delete_prefix('/') }.join('/')
   end
 end

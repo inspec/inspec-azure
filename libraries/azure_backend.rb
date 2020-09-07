@@ -117,10 +117,10 @@ class AzureResourceBase < Inspec.resource(1)
   def resource_short(opts)
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
     url = Helpers.construct_url([
-                                    @azure.resource_manager_endpoint_url,
-                                    'subscriptions',
-                                    @azure.credentials[:subscription_id],
-                                    'resources'])
+                                  @azure.resource_manager_endpoint_url,
+                                  'subscriptions',
+                                  @azure.credentials[:subscription_id], 'resources'
+                                ])
     api_version = @azure.resource_manager_endpoint_api_version
     params = {
       '$filter' => Helpers.odata_query(opts),
@@ -309,10 +309,11 @@ class AzureResourceBase < Inspec.resource(1)
     api_version_mgm = @resource_manager_endpoint_api || @azure.resource_manager_endpoint_api_version
     # url = "#{@azure.resource_manager_endpoint_url}subscriptions/#{@azure.credentials[:subscription_id]}/providers/#{provider}"
     url = Helpers.construct_url([
-                                    @azure.resource_manager_endpoint_url,
-                                    'subscriptions',
-                                    @azure.credentials[:subscription_id], 'providers',
-                                    provider])
+                                  @azure.resource_manager_endpoint_url,
+                                  'subscriptions',
+                                  @azure.credentials[:subscription_id], 'providers',
+                                  provider
+                                ])
     provider_details, suggested_api_version = rescue_wrong_api_call(url, { 'api-version' => api_version_mgm })
     # If suggested_api_version is not nil, then the resource manager api version should be updated.
     unless suggested_api_version.nil?
