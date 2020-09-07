@@ -96,6 +96,14 @@ class AzureGenericResources < AzureResourceBase
     end
   end
 
+  # Return the InSpec level resource failure.
+  # This is a diversion from singular resources
+  #   since an empty response from API should not be considered as failure.
+  # FilterTable will respond properly when it is an empty response.
+  def failed_resource?
+    resource_failed?
+  end
+
   def api_version_used_for_query
     @api_response[:api_version_used_for_query] if @api_response
   end
@@ -110,8 +118,6 @@ class AzureGenericResources < AzureResourceBase
   # @param table_scheme [Array] [{column: :blahs, field: :blah}, {..}]
   def self.populate_filter_table(raw_data, table_scheme)
     filter_table = FilterTable.create
-    # puts "Table scheme in pop fil met #{table_scheme}"
-    # puts "Raw data: #{raw_data}"
     table_scheme.each do |col_field|
       filter_table.register_column(col_field[:column], field: col_field[:field])
     end
