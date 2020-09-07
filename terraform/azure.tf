@@ -862,7 +862,7 @@ resource "azurerm_eventhub_authorization_rule" "auth_rule_inspectesteh" {
 }
 
 resource "azurerm_iothub" "iothub" {
-  name                = "inspectest-iothub"
+  name                = "inspectest-iothub-${random_string.event_hub.result}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku {

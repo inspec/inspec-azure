@@ -83,7 +83,7 @@ class AzureVirtualMachines < AzureGenericResources
   def populate_table
     # If @resources empty than @table should stay as an empty array as declared in superclass.
     # This will ensure constructing resource and passing `should_not exist` test.
-    return if @resources.empty?
+    return [] if @resources.empty?
     @resources.each do |resource|
       os_profile = resource[:properties][:osProfile]
       platform = \

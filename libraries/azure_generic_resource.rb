@@ -45,7 +45,13 @@ class AzureGenericResource < AzureResourceBase
       #
       # If there are static resource specific validations they can be passed here:
       #   required parameters via `opts[:required_parameters]`
-      validate_parameters(require_any_of: %i(resource_group name tag_name tag_value resource_id resource_provider))
+      validate_parameters(require_any_of: %i(resource_group
+                                             resource_path
+                                             name
+                                             tag_name
+                                             tag_value
+                                             resource_id
+                                             resource_provider))
     end
     @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id)
                          .values.join(' ')
