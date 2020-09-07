@@ -330,4 +330,9 @@ module Helpers
   "#{old_resource_name} will be deprecated soon and it is advised to switch to the fully backward compatible new resource. "\
   'Please see the documentation for the additional features available.'
   end
+
+  def self.construct_url(input_list)
+    raise ArgumentError, "An array has to be provided. Found: #{input_list.class}." unless input_list.is_a?(Array)
+    input_list.each_with_object([]) { |input, list| list << input.delete_suffix('/').delete_prefix('/')}.join('/')
+  end
 end
