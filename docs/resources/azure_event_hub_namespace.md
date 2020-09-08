@@ -32,6 +32,11 @@ describe azure_event_hub_namespace(resource_group: 'my-rg', name: 'my-event-hub-
   it { should exist }
 end
 ```
+```ruby
+describe azure_event_hub_namespace(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |

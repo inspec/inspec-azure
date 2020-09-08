@@ -26,9 +26,14 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group`, `resource_name`, `event_hub_endpoint` and `name` or the `resource_id` must be given as a parameter.
+`resource_group`, `resource_name`, `event_hub_endpoint` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
 describe azure_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub', name: 'my-consumer-group') do
+  it { should exist }
+end
+```
+```ruby
+describe azure_iothub_event_hub_consumer_group(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/eventHubEndpoints/{eventHubEndpointName}/ConsumerGroups/{name}') do
   it { should exist }
 end
 ```

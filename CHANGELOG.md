@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.22.1 -->
+<!-- latest_release 1.22.2 -->
+## [v1.22.2](https://github.com/inspec/inspec-azure/tree/v1.22.2) (2020-09-08)
+
+#### Merged Pull Requests
+- Add examples for resource_id usage [#288](https://github.com/inspec/inspec-azure/pull/288) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.22.1](https://github.com/inspec/inspec-azure/tree/v1.22.1) (2020-09-07)
 
 #### Merged Pull Requests
 - Fix environment parameters [#290](https://github.com/inspec/inspec-azure/pull/290) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.22.0](https://github.com/inspec/inspec-azure/tree/v1.22.0) (2020-09-04)
 

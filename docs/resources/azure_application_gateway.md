@@ -32,6 +32,11 @@ describe azure_application_gateway(resource_group: 'inspec-resource-group-9', na
   it { should exist }
 end
 ```
+```ruby
+describe azure_application_gateway(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/applicationGateways/{gatewayName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |

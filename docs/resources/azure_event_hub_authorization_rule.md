@@ -32,6 +32,11 @@ describe azure_event_hub_authorization_rule(resource_group: 'my-rg', namespace_n
   it { should exist }
 end
 ```
+```ruby
+describe azure_event_hub_authorization_rule(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/eventhubs/{eventHubName}/authorizationRules/{authorizationRuleName}') do
+  it { should exist }
+end
+```
 ## Parameters
 
 | Name                           | Description                                                                       |
