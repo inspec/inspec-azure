@@ -45,7 +45,13 @@ class AzureGenericResource < AzureResourceBase
       #
       # If there are static resource specific validations they can be passed here:
       #   required parameters via `opts[:required_parameters]`
-      validate_parameters(require_any_of: %i(resource_group name tag_name tag_value resource_id resource_provider))
+      validate_parameters(require_any_of: %i(resource_group
+                                             resource_path
+                                             name
+                                             tag_name
+                                             tag_value
+                                             resource_id
+                                             resource_provider))
     end
     @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id)
                          .values.join(' ')
@@ -130,5 +136,12 @@ class AzureGenericResource < AzureResourceBase
     return unless exists?
     res_group, _provider, _res_type = Helpers.res_group_provider_type_from_uri(id)
     res_group
+  end
+
+  # Track the status of the resource at InSpec Azure resource pack level.
+  #
+  # @return [TrueClass, FalseClass] Whether the resource is failed or not.
+  def failed_resource?
+    @failed_resource ||= false
   end
 end

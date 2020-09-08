@@ -36,6 +36,7 @@ The following parameters can be passed for targeting a specific Azure resource.
 | resource_group    | Azure resource group that the targeted resource has been created in. `MyResourceGroup`                   |
 | name              | Name of the Azure resource to test. `MyVM`                                                               |
 | resource_provider | Azure resource provider of the resource to be tested. `Microsoft.Compute/virtualMachines`                |
+| resource_path     | Relative path to the resource if it is defined on another resource. Resource path of a subnet in a virtual network would be: `{virtualNetworkName}/subnets`. |
 | resource_id       | Unique id of Azure resource to be tested. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}` |
 | tag_name<superscript>*</superscript> | Tag name defined on the Azure resource. `name`                                                           |
 | tag_value         | Tag value of the tag defined with the `tag_name`. `external_linux`                                       |
@@ -48,6 +49,7 @@ Either one of the parameter sets can be provided for a valid query:
 - `resource_group` and `name`
 - `name`
 - `resource_group`, `resource_provider` and `name`
+- `resource_group`, `resource_provider`, `resource_path` and `name`
 - `tag_name` and `tag_value`
 
 Different parameter combinations can be tried. If it is not supported either the InSpec resource or the Azure Rest API will raise an error.
@@ -99,6 +101,13 @@ describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') d
   # The tag key name can be tested in String or Symbol.
   its('tags') { should include(:name) }    # regardless of the value
   its('tags') { should include('name') }    # regardless of the value
+end
+```
+### Test Properties of a Virtual Machine Resides in an Azure Dev Test Lab 
+```ruby
+describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', resource_path: '{labName}/virtualmachines', resource_group: 'my_group', name: 'my_VM') do
+  its('properties.userName') { should cmp 'admin' }
+  its('properties.allowClaim') { should cmp false }
 end
 ```
 For more examples, please see the [integration tests](/test/integration/verify/controls/azure_generic_resource.rb).

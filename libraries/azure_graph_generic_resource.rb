@@ -76,4 +76,11 @@ class AzureGraphGenericResource < AzureResourceBase
       "#{class_name.name.split('_').map(&:capitalize).join(' ')} #{api_info}: #{@display_name}"
     end
   end
+
+  # Track the status of the resource at InSpec Azure resource pack level.
+  #
+  # @return [TrueClass, FalseClass] Whether the resource is failed or not.
+  def failed_resource?
+    @failed_resource ||= false
+  end
 end
