@@ -137,4 +137,11 @@ class AzureGenericResource < AzureResourceBase
     res_group, _provider, _res_type = Helpers.res_group_provider_type_from_uri(id)
     res_group
   end
+
+  # Track the status of the resource at InSpec Azure resource pack level.
+  #
+  # @return [TrueClass, FalseClass] Whether the resource is failed or not.
+  def failed_resource?
+    @failed_resource ||= false
+  end
 end
