@@ -433,13 +433,6 @@ class AzureResourceBase < Inspec.resource(1)
     resource_fail(message)
   end
 
-  # Track the status of the resource at InSpec Azure resource pack level.
-  #
-  # @return [TrueClass, FalseClass] Whether the resource is failed or not.
-  def failed_resource?
-    @failed_resource ||= false
-  end
-
   # Ensure required parameters have been set to perform backend operations.
   #
   # Some resources may require several parameters to be set, in which case use `required`.

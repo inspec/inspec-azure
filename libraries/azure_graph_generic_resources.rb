@@ -126,4 +126,12 @@ class AzureGraphGenericResources < AzureResourceBase
     end
     filter_table.install_filter_methods_on_resource(self, raw_data)
   end
+
+  # Return the InSpec level resource failure.
+  # This is a diversion from singular resources
+  #   since an empty response from API should not be considered as failure.
+  # FilterTable will respond properly when it is an empty response.
+  def failed_resource?
+    resource_failed?
+  end
 end
