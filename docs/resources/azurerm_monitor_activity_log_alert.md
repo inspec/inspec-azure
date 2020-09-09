@@ -3,6 +3,8 @@ title: About the azurerm_monitor_activity_log_alert Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_monitor_activity_log_alert`](azure_monitor_activity_log_alert.md) InSpec audit resource.
+
 # azurerm\_monitor\_activity\_log\_alert
 
 Use the `azurerm_monitor_activity_log_alert` InSpec audit resource to test properties

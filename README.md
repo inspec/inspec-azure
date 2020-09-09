@@ -109,6 +109,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_key_vaults](docs/resources/azure_key_vaults.md)
 - [azure_load_balancer](docs/resources/azure_load_balancer.md)
 - [azure_load_balancers](docs/resources/azure_load_balancers.md)
+- [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
+- [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
 - [azure_mysql_database](docs/resources/azure_mysql_database.md)
 - [azure_mysql_databases](docs/resources/azure_mysql_databases.md)
 - [azure_mysql_server](docs/resources/azure_mysql_server.md)
@@ -458,7 +460,7 @@ To run integration tests:
 ```
 rake test:integration
 ```
-To run all tests:
+To run lint and unit tests:
 ```
 rake
 ```
