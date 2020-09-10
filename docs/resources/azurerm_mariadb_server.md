@@ -3,6 +3,7 @@ title: About the azurerm_mariadb_server Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_mariadb_server`](azure_mariadb_server.md) InSpec audit resource.
 
 # azurerm\_mariadb\_server
 
