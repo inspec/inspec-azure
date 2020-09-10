@@ -115,6 +115,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_mysql_databases](docs/resources/azure_mysql_databases.md)
 - [azure_mysql_server](docs/resources/azure_mysql_server.md)
 - [azure_mysql_servers](docs/resources/azure_mysql_servers.md)
+- [azure_network_interface](docs/resources/azure_network_interface.md)
+- [azure_network_interfaces](docs/resources/azure_network_interfaces.md)
 - [azure_network_security_group](docs/resources/azure_network_security_group.md)
 - [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
 - [azure_postgresql_database](docs/resources/azure_postgresql_database.md)

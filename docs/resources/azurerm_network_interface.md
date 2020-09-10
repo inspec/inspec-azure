@@ -3,6 +3,8 @@ title: About the azurerm_network_interface Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_network_interface`](azure_network_interface.md) InSpec audit resource.
+
 # azurerm\_network\_interface
 
 Use the `azurerm_network_interface` InSpec audit resource to test properties and configuration of Azure Network Interface.
