@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.23.0 -->
+<!-- latest_release 1.24.0 -->
+## [v1.24.0](https://github.com/inspec/inspec-azure/tree/v1.24.0) (2020-09-10)
+
+#### Merged Pull Requests
+- Add azure_network_interface(s) resources [#294](https://github.com/inspec/inspec-azure/pull/294) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.23.0](https://github.com/inspec/inspec-azure/tree/v1.23.0) (2020-09-08)
 
 #### Merged Pull Requests
 - Improve resource not found [#291](https://github.com/inspec/inspec-azure/pull/291) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.22.2](https://github.com/inspec/inspec-azure/tree/v1.22.2) (2020-09-08)
 
