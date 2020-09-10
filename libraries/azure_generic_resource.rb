@@ -32,7 +32,7 @@ class AzureGenericResource < AzureResourceBase
     elsif static_resource && @opts.key?(:resource_id)
       # Ensure that the provided resource id is for the correct resource provider.
       raise ArgumentError, "Resource provider must be #{@opts[:resource_provider]}." \
-          unless @opts[:resource_id].include?(@opts[:resource_provider])
+          unless @opts[:resource_id].downcase.include?(@opts[:resource_provider].downcase)
       @opts.delete(:resource_provider)
       validate_parameters(required: %i(resource_id), allow: %i(resource_path resource_identifiers resource_provider))
     else

@@ -19,7 +19,7 @@ INTEGRATION_DIR = 'test/integration/verify'
 
 task default: :test
 desc 'Testing tasks'
-task test: %w{lint test:unit test:integration}
+task test: %w{lint test:unit}
 
 desc 'Linting tasks'
 task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
