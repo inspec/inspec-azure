@@ -21,22 +21,34 @@ class AzureNetworkInterface < AzureGenericResource
 
   def private_ip
     return unless exists?
-    properties&.ipConfigurations&.first&.properties&.privateIPAddress
+    ip_configurations&.select { |conf| conf.properties.primary == true }
+        &.first&.properties&.privateIPAddress
+  end
+
+  def private_ip_address_list
+    return unless exists?
+    ip_configurations&.collect { |conf| conf.properties.privateIPAddress }
+  end
+
+  def public_ip_id_list
+    return unless exists?
+    ip_configurations&.collect { |conf| conf.properties.publicIPAddress.id }
   end
 
   def public_ip
     return unless exists?
-    properties&.ipConfigurations&.first&.properties&.privateIPAddress
+    ip_configurations&.select { |conf| conf.properties.primary == true }
+        &.first&.properties&.publicIPAddress&.id
   end
 
   def has_private_address_ip?
     return unless exists?
-    !properties&.ipConfigurations&.first&.properties&.privateIPAddress&.to_s&.empty?
+    !private_ip_address_list.empty?
   end
 
   def has_public_address_ip?
     return unless exists?
-    !properties&.ipConfigurations&.first&.properties&.publicIPAddress&.to_s&.empty?
+    !public_ip_id_list.empty?
   end
 
   def ip_configurations
