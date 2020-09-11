@@ -13,4 +13,10 @@ control 'azurerm_postgresql_servers' do
     it            { should exist }
     its('names')  { should include postgresql_server_name }
   end
+
+  azure_postgresql_servers.ids.each do |id|
+    describe azure_postgresql_server(resource_id: id) do
+      it { should exist }
+    end
+  end
 end
