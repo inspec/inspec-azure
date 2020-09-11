@@ -2,7 +2,7 @@ resource_group = input('resource_group', value: nil)
 mariadb_server_name = input('mariadb_server_name', value: nil)
 
 control 'azurerm_mariadb_server' do
-  only_if { ENV['SQL'] }
+  only_if { !mariadb_server_name.nil? }
 
   describe azurerm_mariadb_server(resource_group: resource_group, server_name: mariadb_server_name) do
     it                { should exist }

@@ -2,7 +2,7 @@ resource_group = input('resource_group', value: nil)
 mysql_server_name = input('mysql_server_name', value: nil)
 
 control 'azurerm_mysql_server' do
-  only_if { ENV['SQL'] }
+  only_if { !mysql_server_name.nil? }
 
   describe azurerm_mysql_server(resource_group: resource_group, server_name: mysql_server_name) do
     it                { should exist }
