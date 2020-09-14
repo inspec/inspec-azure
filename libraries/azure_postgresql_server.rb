@@ -20,7 +20,7 @@ class AzurePostgreSQLServer < AzureGenericResource
     super(opts, true)
 
     # Convenient access e.g. configurations.{config_name}.properties.value.eql?("on")
-    create_configurations
+    collect_configurations
   end
 
   def to_s
@@ -34,13 +34,13 @@ class AzurePostgreSQLServer < AzureGenericResource
 
   private
 
-  def create_configurations
+  def collect_configurations
     return unless exists?
     resource_uri = id + '/configurations'
     query = {
       resource_uri: resource_uri,
     }
-    confs = get_resource(query)[:value].map { |c| [c[:name], c] }.to_h
+    confs = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
     create_resource_methods({ configurations: confs })
   end
 end
