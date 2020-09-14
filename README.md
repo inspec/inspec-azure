@@ -123,6 +123,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
 - [azure_postgresql_database](docs/resources/azure_postgresql_database.md)
 - [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md)
+- [azure_postgresql_server](docs/resources/azure_postgresql_server.md)
+- [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md)
 - [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_sql_server](docs/resources/azure_sql_server.md)
 - [azure_sql_servers](docs/resources/azure_sql_servers.md)

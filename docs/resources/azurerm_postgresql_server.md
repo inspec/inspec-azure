@@ -3,6 +3,8 @@ title: About the azurerm_postgresql_server Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_postgresql_server`](azure_postgresql_server.md) InSpec audit resource.
+
 # azurerm\_postgresql\_server
 
 Use the `azurerm_postgresql_server` InSpec audit resource to test properties and configuration of

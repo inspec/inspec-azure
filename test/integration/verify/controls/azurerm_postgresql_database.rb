@@ -3,7 +3,7 @@ postgresql_server_name = input('postgresql_server_name', value: nil)
 postgresql_database_name = input('postgresql_database_name', value: nil)
 
 control 'azurerm_postgresql_database' do
-  only_if { ENV['SQL'] }
+  only_if { !postgresql_database_name.nil? }
 
   describe azurerm_postgresql_database(resource_group: resource_group,
                                        server_name: postgresql_server_name,
