@@ -919,7 +919,7 @@ resource "azurerm_cosmosdb_account" "inspectest_cosmosdb" {
   }
 
   geo_location {
-    prefix            = "inspectest-geo-prefix"
+    prefix            = "inspectest-geo-prefix-${random_string.cosmo_db.result}"
     location          = azurerm_resource_group.rg.location
     failover_priority = 0
   }
