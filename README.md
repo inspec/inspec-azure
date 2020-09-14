@@ -124,6 +124,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_postgresql_database](docs/resources/azure_postgresql_database.md)
 - [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md)
 - [azure_public_ip](docs/resources/azure_public_ip.md)
+- [azure_sql_server](docs/resources/azure_sql_server.md)
+- [azure_sql_servers](docs/resources/azure_sql_servers.md)
 - [azure_storage_account_blob_container](docs/resources/azure_storage_account_blob_container.md)
 - [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md)
 - [azure_subnet](docs/resources/azure_subnet.md)
@@ -351,7 +353,7 @@ The common parameters are:
 See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
 - If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
 - If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
-- If it is necessary to make an additional API call within a static method, the `get_resource` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
+- If it is necessary to make an additional API call within a static method, the `create_additional_properties` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
 
 ### Plural Resources
 

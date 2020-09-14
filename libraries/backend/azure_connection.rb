@@ -161,10 +161,10 @@ class AzureConnection
       message += resp.body.to_s if code.nil?
     end
     resource_not_found_codes = %w{Request_ResourceNotFound ResourceGroupNotFound ResourceNotFound NotFound}
-    wrong_api_keyword = 'The supported api-versions are'
+    wrong_api_keyword = ['The supported api-versions are', 'The supported versions']
     invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType}
     if code
-      if invalid_api_codes.include?(code) && error_message&.include?(wrong_api_keyword)
+      if invalid_api_codes.include?(code) && wrong_api_keyword.any? { |kw| error_message&.include?(kw) }
         raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter, error_message
       elsif resource_not_found_codes.include?(code)
         raise UnsuccessfulAPIQuery::ResourceNotFound, error_message

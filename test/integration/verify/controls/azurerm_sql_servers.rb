@@ -5,7 +5,13 @@ control 'azurerm_sql_servers' do
   only_if { ENV['SQL'] }
 
   describe azurerm_sql_servers(resource_group: resource_group) do
-    it           { should exist }
+    it { should exist }
     its('names') { should include sql_server_name }
+  end
+
+  azure_sql_servers.ids.each do |id|
+    describe azure_sql_server(resource_id: id) do
+      it { should exist }
+    end
   end
 end
