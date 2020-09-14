@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.26.0 -->
+<!-- latest_release 1.26.1 -->
+## [v1.26.1](https://github.com/inspec/inspec-azure/tree/v1.26.1) (2020-09-14)
+
+#### Merged Pull Requests
+- Add azure_postgresql_server(s) resources [#295](https://github.com/inspec/inspec-azure/pull/295) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.26.0](https://github.com/inspec/inspec-azure/tree/v1.26.0) (2020-09-10)
 
 #### Merged Pull Requests
 - Add azure_monitor_activity_log_alert(s) resources [#293](https://github.com/inspec/inspec-azure/pull/293) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.25.0](https://github.com/inspec/inspec-azure/tree/v1.25.0) (2020-09-10)
 
