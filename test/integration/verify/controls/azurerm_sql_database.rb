@@ -3,7 +3,7 @@ sql_server_name = input('sql_server_name', value: nil)
 sql_db_name     = input('sql_database_name', value: nil)
 
 control 'azurerm_sql_database' do
-  only_if { ENV['SQL'] }
+  only_if { !sql_db_name.nil? }
 
   describe azurerm_sql_database(resource_group: resource_group,
                                 server_name: sql_server_name,

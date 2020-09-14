@@ -52,16 +52,18 @@ end
 namespace :syntax do
   desc 'InSpec syntax check'
   task :inspec do
+    puts '-> Checking The Environment Variables: Assigning placeholders if they are not defined.'
+    ENV['AZURE_SUBSCRIPTION_ID'] = 'placeHolder' unless ENV['AZURE_SUBSCRIPTION_ID']
+    ENV['AZURE_CLIENT_ID'] = 'placeHolder' unless ENV['AZURE_CLIENT_ID']
+    ENV['AZURE_TENANT_ID'] = 'placeHolder' unless ENV['AZURE_TENANT_ID']
+    ENV['AZURE_CLIENT_SECRET'] = 'placeHolder' unless ENV['AZURE_CLIENT_SECRET']
     puts '-> Checking InSpec Control Syntax'
-    stdout, status = Open3.capture2("bundle exec inspec vendor #{INTEGRATION_DIR} --overwrite --chef-license accept-silent &&
-                                     bundle exec inspec check #{INTEGRATION_DIR} &&
-                                     bundle exec inspec check . && rm -rf #{INTEGRATION_DIR}/vendor")
+    stdout, status = Open3.capture2("bundle exec inspec check #{INTEGRATION_DIR}")
     puts stdout
 
     %w{errors}.each do |type|
       abort("InSpec check failed with syntax #{type}!") if !!(/[1-9]\d* #{type}/ =~ stdout)
     end
-
     status.exitstatus
   end
 
@@ -112,15 +114,11 @@ end
 namespace :test do
 
   task :unit do
-    ENV['AZURE_SUBSCRIPTION_ID']='placeHolder' if !ENV['AZURE_SUBSCRIPTION_ID']
-    ENV['AZURE_CLIENT_ID']='placeHolder' if !ENV['AZURE_CLIENT_ID']
-    ENV['AZURE_TENANT_ID']='placeHolder' if !ENV['AZURE_TENANT_ID']
-    ENV['AZURE_CLIENT_SECRET']='placeHolder' if !ENV['AZURE_CLIENT_SECRET']
+    ENV['AZURE_SUBSCRIPTION_ID'] = 'placeHolder' unless ENV['AZURE_SUBSCRIPTION_ID']
+    ENV['AZURE_CLIENT_ID'] = 'placeHolder' unless ENV['AZURE_CLIENT_ID']
+    ENV['AZURE_TENANT_ID'] = 'placeHolder' unless ENV['AZURE_TENANT_ID']
+    ENV['AZURE_CLIENT_SECRET'] = 'placeHolder' unless ENV['AZURE_CLIENT_SECRET']
     Rake::Task['unit'].execute
-    ENV['AZURE_SUBSCRIPTION_ID']=nil if ENV['AZURE_SUBSCRIPTION_ID']=='placeHolder'
-    ENV['AZURE_CLIENT_ID']=nil if ENV['AZURE_CLIENT_ID']=='placeHolder'
-    ENV['AZURE_TENANT_ID']=nil if ENV['AZURE_TENANT_ID']=='placeHolder'
-    ENV['AZURE_CLIENT_SECRET']=nil if ENV['AZURE_CLIENT_SECRET']=='placeHolder'
   end
 
   task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
