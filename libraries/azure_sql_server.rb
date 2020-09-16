@@ -30,11 +30,11 @@ class AzureSqlServer < AzureGenericResource
   # Following methods are created to provide the same functionality with the current resource pack >>>>
   # @see https://github.com/inspec/inspec-azure
 
-  # @see AzureKeyVault#diagnostic_settings for how to use #create_additional_properties method.
+  # @see AzureKeyVault#diagnostic_settings for how to use #additional_resource_properties method.
   #
   def firewall_rules
     return unless exists?
-    create_additional_properties(
+    additional_resource_properties(
       {
         property_name: 'firewall_rules',
         property_endpoint: id + '/firewallRules',
@@ -44,7 +44,7 @@ class AzureSqlServer < AzureGenericResource
 
   def auditing_settings
     return unless exists?
-    create_additional_properties(
+    additional_resource_properties(
       {
         property_name: 'auditing_settings',
         property_endpoint: id + '/auditingSettings/default',
@@ -54,7 +54,7 @@ class AzureSqlServer < AzureGenericResource
 
   def threat_detection_settings
     return unless exists?
-    create_additional_properties(
+    additional_resource_properties(
       {
         property_name: 'threat_detection_settings',
         property_endpoint: id + '/securityAlertPolicies/Default',
@@ -64,7 +64,7 @@ class AzureSqlServer < AzureGenericResource
 
   def administrators
     return unless exists?
-    create_additional_properties(
+    additional_resource_properties(
       {
         property_name: 'administrators',
         property_endpoint: id + '/administrators',
@@ -74,7 +74,7 @@ class AzureSqlServer < AzureGenericResource
 
   def encryption_protector
     return unless exists?
-    create_additional_properties(
+    additional_resource_properties(
       {
         property_name: 'encryption_protector',
         property_endpoint: id + '/encryptionProtector',

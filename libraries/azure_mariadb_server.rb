@@ -30,11 +30,11 @@ class AzureMariaDBServer < AzureGenericResource
   # Following methods are created to provide the same functionality with the current resource pack >>>>
   # @see https://github.com/inspec/inspec-azure
 
-  # @see AzureKeyVault#diagnostic_settings for how to use #create_additional_properties method.
+  # @see AzureKeyVault#diagnostic_settings for how to use #additional_resource_properties method.
   #
   def firewall_rules
     return unless exists?
-    create_additional_properties(
+    additional_resource_properties(
       {
         property_name: 'firewall_rules',
         property_endpoint: id + '/firewallRules',

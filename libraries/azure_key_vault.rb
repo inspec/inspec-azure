@@ -66,7 +66,7 @@ class AzureKeyVault < AzureGenericResource
   # resource uri is the same as (resource) `id` of the key vault.
   #   @see: https://docs.microsoft.com/en-us/rest/api/monitor/diagnosticsettings/list
   #
-  # `#create_additional_properties` method will be used to get the diagnostic settings from the Rest API.
+  # `#additional_resource_properties` method will be used to get the diagnostic settings from the Rest API.
   #   property_name => The name of the properties, `diagnostic_settings`.
   #   property_endpoint => id + '/providers/microsoft.insights/diagnosticSettings'
   #   api_version => The api_version for the microsoft.insights/diagnosticSettings
@@ -75,7 +75,7 @@ class AzureKeyVault < AzureGenericResource
   def diagnostic_settings
     return unless exists?
     # `api_version` is fixed for backward compatibility.
-    create_additional_properties(
+    additional_resource_properties(
       {
         property_name: 'diagnostic_settings',
         property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',

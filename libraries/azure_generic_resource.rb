@@ -152,7 +152,7 @@ class AzureGenericResource < AzureResourceBase
   #     E.g., '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
   #     Microsoft.Sql/servers/{serverName}/firewallRules'.
   #   api_version [string] The api version of the endpoint (default - latest).
-  def create_additional_properties(opts = {})
+  def additional_resource_properties(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(property_name property_endpoint),
                                 allow: %i(api_version),
