@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.26.2 -->
+<!-- latest_release 1.26.3 -->
+## [v1.26.3](https://github.com/inspec/inspec-azure/tree/v1.26.3) (2020-09-16)
+
+#### Merged Pull Requests
+- Suppress inspec check failure by running inspec vendor [#298](https://github.com/inspec/inspec-azure/pull/298) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.26.2](https://github.com/inspec/inspec-azure/tree/v1.26.2) (2020-09-16)
 
 #### Merged Pull Requests
 - Add azure_sql_server(s) resources [#296](https://github.com/inspec/inspec-azure/pull/296) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.26.1](https://github.com/inspec/inspec-azure/tree/v1.26.1) (2020-09-14)
 
