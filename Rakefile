@@ -58,10 +58,12 @@ namespace :syntax do
     ENV['AZURE_TENANT_ID'] = 'placeHolder' unless ENV['AZURE_TENANT_ID']
     ENV['AZURE_CLIENT_SECRET'] = 'placeHolder' unless ENV['AZURE_CLIENT_SECRET']
     puts '-> Checking InSpec Control Syntax'
-    stdout, status = Open3.capture2("bundle exec inspec check #{INTEGRATION_DIR}")
+    stdout, status = Open3.capture2("bundle exec inspec vendor #{INTEGRATION_DIR} --overwrite --chef-license accept-silent &&
+                                     bundle exec inspec check #{INTEGRATION_DIR}")
     puts stdout
 
     %w{errors}.each do |type|
+      sh("rm -rf #{INTEGRATION_DIR}/vendor")
       abort("InSpec check failed with syntax #{type}!") if !!(/[1-9]\d* #{type}/ =~ stdout)
     end
     status.exitstatus
@@ -75,7 +77,6 @@ namespace :syntax do
     files.each do |file|
       sh('ruby', '-c', file) do |ok, res|
         next if ok
-
         puts 'Syntax check FAILED'
         exit res.exitstatus
       end
