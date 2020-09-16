@@ -144,4 +144,23 @@ class AzureGenericResource < AzureResourceBase
   def failed_resource?
     @failed_resource ||= false
   end
+
+  # Create properties on a resource acquired via additional API call in a static method.
+  # @param opts [Hash]
+  #   property_name [string] The name of the property.
+  #   property_endpoint [string] The URI of the properties.
+  #     E.g., '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
+  #     Microsoft.Sql/servers/{serverName}/firewallRules'.
+  #   api_version [string] The api version of the endpoint (default - latest).
+  def additional_resource_properties(opts = {})
+    Helpers.validate_parameters(resource_name: @__resource_name__,
+                                required: %i(property_name property_endpoint),
+                                allow: %i(api_version),
+                                opts: opts)
+    opts[:api_version] = 'latest' unless opts.key?(:api_version)
+    properties = get_resource({ resource_uri: opts[:property_endpoint], api_version: opts[:api_version] })
+    properties = properties[:value] if properties.key?(:value)
+    create_resource_methods({ opts[:property_name].to_sym => properties })
+    public_send(opts[:property_name].to_sym) if respond_to?(opts[:property_name])
+  end
 end
