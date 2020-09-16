@@ -62,15 +62,16 @@ class AzureMysqlServer < AzureGenericResource
   #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
   #   Microsoft.DBforMySQL/servers/{serverName}/firewallRules?api-version=2017-12-01
   #
-  # #getresource method
+  # @see AzureKeyVault#diagnostic_settings for how to use #additional_resource_properties method.
   #
   def firewall_rules
     return unless exists?
-    resource_uri = id + '/firewallRules'
-    api_query_for_firewall = {
-      resource_uri: resource_uri,
-    }
-    @firewall_rules ||= get_resource(api_query_for_firewall)[:value]
+    additional_resource_properties(
+      {
+        property_name: 'firewall_rules',
+        property_endpoint: id + '/firewallRules',
+      },
+    )
   end
 end
 

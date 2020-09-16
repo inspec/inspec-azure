@@ -3,6 +3,8 @@ title: About the azurerm_sql_server Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_sql_server`](azure_sql_server.md) InSpec audit resource.
+
 # azurerm\_sql\_server
 
 Use the `azurerm_sql_server` InSpec audit resource to test properties and configuration of
