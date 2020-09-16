@@ -77,7 +77,6 @@ namespace :syntax do
     files.each do |file|
       sh('ruby', '-c', file) do |ok, res|
         next if ok
-
         puts 'Syntax check FAILED'
         exit res.exitstatus
       end
