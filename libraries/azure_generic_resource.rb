@@ -11,30 +11,11 @@ class AzureGenericResource < AzureResourceBase
 
   def initialize(opts = {}, static_resource = false)
     super(opts)
-
-    if static_resource && !@opts.key?(:resource_id)
-      if @opts[:resource_identifiers]
-        raise ArgumentError, '`:resource_identifiers` have to be provided within a list.' \
-          unless @opts[:resource_identifiers].is_a?(Array)
-        # The `name` parameter should have been required in the static resource.
-        # Since it is a mandatory field, it is better to make sure that it is in the required list before validations.
-        @opts[:resource_identifiers] << :name unless @opts[:resource_identifiers].include?(:name)
-        provided = Helpers.validate_params_only_one_of(@__resource_name__, @opts[:resource_identifiers], @opts)
-        # Remove resource identifiers other than `:name`.
-        unless provided == :name
-          @opts[:name] = @opts[provided]
-          @opts.delete(provided)
-        end
-      end
-      required_params = %i(resource_group name)
-      required_params += @opts[:required_parameters] if @opts.key?(:required_parameters)
-      validate_parameters(required: required_params, allow: %i(resource_path resource_identifiers resource_provider))
-    elsif static_resource && @opts.key?(:resource_id)
-      # Ensure that the provided resource id is for the correct resource provider.
-      raise ArgumentError, "Resource provider must be #{@opts[:resource_provider]}." \
-          unless @opts[:resource_id].downcase.include?(@opts[:resource_provider].downcase)
-      @opts.delete(:resource_provider)
-      validate_parameters(required: %i(resource_id), allow: %i(resource_path resource_identifiers resource_provider))
+    if @opts.key?(:resource_provider)
+      validate_resource_provider
+    end
+    if static_resource
+      validate_static_resource
     else
       # Either one of the following sets can be provided for a valid short description query (to get the resource_id).
       # resource_group + name
@@ -43,34 +24,37 @@ class AzureGenericResource < AzureResourceBase
       # resource_group + resource_provider + name
       # resource_id: no other parameters (within above mentioned) should exist
       #
-      # If there are static resource specific validations they can be passed here:
-      #   required parameters via `opts[:required_parameters]`
       validate_parameters(require_any_of: %i(resource_group
                                              resource_path
                                              name
                                              tag_name
                                              tag_value
                                              resource_id
-                                             resource_provider))
+                                             resource_uri
+                                             resource_provider
+                                             add_subscription_id))
     end
-    @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id)
-                         .values.join(' ')
-
-    # Use the latest api_version unless provided.
-    api_version = @opts[:api_version] || 'latest'
+    @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
+                                :resource_uri).values.join(' ')
 
     # Get/create or acquire the resource_id.
     # The resource_id is a MUST to get the detailed resource information.
     #
     # Use the provided resource_id
-    if @opts[:resource_id]
+    if @opts.key?(:resource_uri)
+      if static_resource
+        validate_parameters(required: %i(resource_uri add_subscription_id name), allow: %i(resource_provider))
+      else
+        validate_parameters(required: %i(resource_uri add_subscription_id name))
+      end
+      validate_resource_uri
+      @resource_id = [@opts[:resource_uri], @opts[:name]].join('/').gsub('//', '/')
+    elsif @opts.key?(:resource_id)
       @resource_id = @opts[:resource_id]
-
-    # Construct the resource_id from parameters if they are sufficient
+      # Construct the resource_id from parameters if they are sufficient
     elsif %i(resource_group resource_provider name).all? { |param| @opts.keys.include?(param) }
       @resource_id = construct_resource_id
-
-    # Query the resource management endpoint to get the resource_id with the provided parameters.
+      # Query the resource management endpoint to get the resource_id with the provided parameters.
     else
       filter = @opts.slice(:resource_group, :name, :resource_provider, :tag_name, :tag_value, :location)
       catch_failed_resource_queries do
@@ -99,6 +83,8 @@ class AzureGenericResource < AzureResourceBase
 
     # This is the last check on resource_id before talking to resource manager endpoint to get the detailed information.
     Helpers.validate_resource_uri(@resource_id)
+    # Use the latest api_version unless provided.
+    api_version = @opts[:api_version] || 'latest'
     catch_failed_resource_queries do
       params = { resource_uri: @resource_id, api_version: api_version }
       @resource_long_desc = get_resource(params)
@@ -162,5 +148,30 @@ class AzureGenericResource < AzureResourceBase
     properties = properties[:value] if properties.key?(:value)
     create_resource_methods({ opts[:property_name].to_sym => properties })
     public_send(opts[:property_name].to_sym) if respond_to?(opts[:property_name])
+  end
+
+  private
+
+  def validate_static_resource
+    if @opts.key?(:resource_id) || @opts.key?(:resource_uri)
+      return
+    end
+    if @opts[:resource_identifiers]
+      raise ArgumentError, '`:resource_identifiers` should be a list.' unless @opts[:resource_identifiers].is_a?(Array)
+      # The `name` parameter should have been required in the static resource.
+      # Since it is a mandatory field, it is better to make sure that it is in the required list before validations.
+      @opts[:resource_identifiers] << :name unless @opts[:resource_identifiers].include?(:name)
+      provided = Helpers.validate_params_only_one_of(@__resource_name__, @opts[:resource_identifiers], @opts)
+      # Remove resource identifiers other than `:name`.
+      unless provided == :name
+        @opts[:name] = @opts[provided]
+        @opts.delete(provided)
+      end
+    end
+    required_parameters = %i(resource_group resource_provider name)
+    allowed_parameters = %i(resource_path resource_identifiers)
+    required_parameters += @opts[:required_parameters] if @opts.key?(:required_parameters)
+    allowed_parameters += @opts[:allowed_parameters] if @opts.key?(:allowed_parameters)
+    validate_parameters(required: required_parameters, allow: allowed_parameters)
   end
 end

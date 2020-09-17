@@ -38,6 +38,8 @@ All of them are optional.
 | resource_provider              | Azure resource provider of the resources to be tested.                                                                    | `Microsoft.Compute/virtualMachines` |
 | tag_name<superscript>*</superscript> | Tag name defined on the Azure resources.                                                                            | `name`                              |
 | tag_value                      | Tag value of the tag defined with the `tag_name`.                                                                         | `external_linux`                    |
+| resource_uri                   | Azure REST API URI of the resources to be tested. This parameter should be used when resources do not reside in resource groups. It requires `add_subscription_id` parameter to be provided together. `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/` |
+| add_subscription_id            | Indicates whether the `resource_uri` contains the subscription id. `true` or `false` |
 
 <superscript>*</superscript> When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
 
@@ -52,6 +54,7 @@ Either one of the parameter sets can be provided for a valid query:
 - `substring_of_resource_group` and `resource_provider`
 - `tag_name`
 - `tag_name` and `tag_value`
+- `add_subscription_id` and `resource_uri`
 
 Different parameter combinations can be tried. If it is not supported either the InSpec resource or the Azure Rest API will raise an error.
 
@@ -66,11 +69,13 @@ It is advised to use these parameter sets to narrow down the targeted resources 
 | tags      | A list of `tag:value` pairs defined on the resources. | `tags`| 
 | types     | A list of resource types. | `type`| 
 | locations | A list of locations where resources are created in. | `location`| 
-| created_times | A list of created times of the resources. | `created_time`| 
-| changed_times | A list of changed times of the resources. | `changed_time`|
-| provisioning_states | A list of provisioning states of the resources. | `provisioning_state`|
+| created_times<superscript>**</superscript> | A list of created times of the resources. | `created_time`| 
+| changed_times<superscript>**</superscript> | A list of changed times of the resources. | `changed_time`|
+| provisioning_states<superscript>**</superscript> | A list of provisioning states of the resources. | `provisioning_state`|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
+
+<superscript>**</superscript> These properties are not available when `resource_uri` is used.
 
 ## Examples
 
@@ -108,6 +113,12 @@ end
 ### Filters the Results to Only Include Those that Created within Last 24 Hours (Client Side Filtering)
 ```ruby
 describe azure_generic_resources.where{ created_time > Time.now - 86400 } do
+  it { should exist }
+end
+```
+### Test a Policy Definitions
+```ruby
+describe azure_generic_resources(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions') do
   it { should exist }
 end
 ```

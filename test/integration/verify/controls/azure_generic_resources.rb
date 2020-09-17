@@ -23,6 +23,11 @@ control 'azure_generic_resources' do
     its('provisioning_states') { should include('Succeeded') }
   end
 
+  describe azure_generic_resources(resource_uri: 'resourcegroups', add_subscription_id: true) do
+    it { should exist }
+    its('types.uniq') { should cmp ['Microsoft.Resources/resourceGroups'] }
+  end
+
   describe azure_generic_resources(resource_group: 'fake-group') do
     it { should_not exist }
   end

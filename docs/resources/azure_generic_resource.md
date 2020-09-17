@@ -31,16 +31,18 @@ where
 
 The following parameters can be passed for targeting a specific Azure resource.
 
-| Name              | Description                                                                                                                                    |
-|-------------------|----------------------------------------------------------------------------------------------------------|
-| resource_group    | Azure resource group that the targeted resource has been created in. `MyResourceGroup`                   |
-| name              | Name of the Azure resource to test. `MyVM`                                                               |
-| resource_provider | Azure resource provider of the resource to be tested. `Microsoft.Compute/virtualMachines`                |
-| resource_path     | Relative path to the resource if it is defined on another resource. Resource path of a subnet in a virtual network would be: `{virtualNetworkName}/subnets`. |
-| resource_id       | Unique id of Azure resource to be tested. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}` |
+| Name                   | Description                                                                                                                                    |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------|
+| resource_group                       | Azure resource group that the targeted resource has been created in. `MyResourceGroup`                   |
+| name                                 | Name of the Azure resource to test. `MyVM`                                                               |
+| resource_provider                    | Azure resource provider of the resource to be tested. `Microsoft.Compute/virtualMachines`                |
+| resource_path                        | Relative path to the resource if it is defined on another resource. Resource path of a subnet in a virtual network would be: `{virtualNetworkName}/subnets`. |
+| resource_id                          | Unique id of Azure resource to be tested. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}` |
+| resource_uri                         | Azure REST API URI of the resource to be tested. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` and `name` parameters to be provided together. `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/` |
+| add_subscription_id                  | Indicates whether the `resource_uri` contains the subscription id. `true` or `false` |
 | tag_name<superscript>*</superscript> | Tag name defined on the Azure resource. `name`                                                           |
-| tag_value         | Tag value of the tag defined with the `tag_name`. `external_linux`                                       |
-| api_version       | API version to use when interrogating the resource. If not set or the provided api version is not supported by the resource provider then the latest version for the resource provider will be used. `2017-10-9`, `latest`, `default`    |
+| tag_value                            | Tag value of the tag defined with the `tag_name`. `external_linux`                                       |
+| api_version                          | API version to use when interrogating the resource. If not set or the provided api version is not supported by the resource provider then the latest version for the resource provider will be used. `2017-10-9`, `latest`, `default`    |
 
 <superscript>*</superscript> When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
 
@@ -50,9 +52,10 @@ Either one of the parameter sets can be provided for a valid query:
 - `name`
 - `resource_group`, `resource_provider` and `name`
 - `resource_group`, `resource_provider`, `resource_path` and `name`
+- `add_subscription_id`, `resource_uri` and `name`
 - `tag_name` and `tag_value`
 
-Different parameter combinations can be tried. If it is not supported either the InSpec resource or the Azure Rest API will raise an error.
+Different parameter combinations can be tried. If it is not supported, either the InSpec resource or the Azure Rest API will raise an error.
 
 If the Azure Resource Manager endpoint returns multiple resources for a given query, this singular generic resource will fail. In that case, the [plural generic resource](azure_generic_resources.md) should be used. 
 
@@ -72,7 +75,7 @@ The following properties are applicable to almost all resources.
 | tags       | The tag `key:value pairs` if defined on the resource.    |
 | properties | The resource properties.                                 |
 
-For more properties, refer to [Azure documents](https://docs.microsoft.com/en-us/rest/api/resources/resources/list#genericresourceexpanded).
+For more properties, refer to specific Azure documents for the resource being tested.
 
 ## Examples
 
@@ -108,6 +111,22 @@ end
 describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', resource_path: '{labName}/virtualmachines', resource_group: 'my_group', name: 'my_VM') do
   its('properties.userName') { should cmp 'admin' }
   its('properties.allowClaim') { should cmp false }
+end
+```
+### Test a Resource Group 
+```ruby
+describe azure_generic_resource(add_subscription_id: true, resource_uri: '/resourcegroups/', name: 'my_group') do
+  it { should exist }
+  its('tags') { should include(:owner) }
+  its('tags') { should include(owner: 'John Doe') }
+end
+```
+### Test a Policy Definition
+```ruby
+describe azure_generic_resource(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions', name: 'my_policy') do
+  it { should exist }
+  its('properties.policyRule.then.effect') { should cmp 'deny' }
+  its('properties.policyType') { should cmp 'Custom' }
 end
 ```
 For more examples, please see the [integration tests](/test/integration/verify/controls/azure_generic_resource.rb).

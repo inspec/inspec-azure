@@ -15,6 +15,11 @@ control 'azure_generic_resource' do
     its('zones') { should be_nil }
   end
 
+  describe azure_generic_resource(resource_uri: "/resourceGroups/#{resource_group}/providers/Microsoft.Compute/virtualMachines", name: win_name, add_subscription_id: true) do
+    it { should exist }
+    its('name') { should eq win_name }
+  end
+
   # If api_version is not provided, latest version should be used.
   describe azure_generic_resource(resource_group: resource_group, name: win_name) do
     its('api_version_used_for_query_state') { should eq 'latest' }
