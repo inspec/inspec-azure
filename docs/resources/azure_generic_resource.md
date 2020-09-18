@@ -31,15 +31,15 @@ where
 
 The following parameters can be passed for targeting a specific Azure resource.
 
-| Name                   | Description                                                                                                                                    |
+| Name                                 | Description                                                                                              |
 |--------------------------------------|----------------------------------------------------------------------------------------------------------|
 | resource_group                       | Azure resource group that the targeted resource has been created in. `MyResourceGroup`                   |
-| name                                 | Name of the Azure resource to test. `MyVM`                                                               |
+| name                                 | Name of the Azure resource to test. `MyResourceName`                                                     |
 | resource_provider                    | Azure resource provider of the resource to be tested. `Microsoft.Compute/virtualMachines`                |
 | resource_path                        | Relative path to the resource if it is defined on another resource. Resource path of a subnet in a virtual network would be: `{virtualNetworkName}/subnets`. |
 | resource_id                          | Unique id of Azure resource to be tested. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}` |
 | resource_uri                         | Azure REST API URI of the resource to be tested. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` and `name` parameters to be provided together. `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/` |
-| add_subscription_id                  | Indicates whether the `resource_uri` contains the subscription id. `true` or `false` |
+| add_subscription_id                  | Indicates whether the `resource_uri` contains the subscription id. `true` or `false`                     |
 | tag_name<superscript>*</superscript> | Tag name defined on the Azure resource. `name`                                                           |
 | tag_value                            | Tag value of the tag defined with the `tag_name`. `external_linux`                                       |
 | api_version                          | API version to use when interrogating the resource. If not set or the provided api version is not supported by the resource provider then the latest version for the resource provider will be used. `2017-10-9`, `latest`, `default`    |

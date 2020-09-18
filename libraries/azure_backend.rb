@@ -253,7 +253,7 @@ class AzureResourceBase < Inspec.resource(1)
       # api_version is not a specific version yet: latest or default.
       api_version_info = get_api_version(provider, r_type, api_version) if provider
       # Something was wrong at get_api_version, and we will try to get a valid api_version via rescue_wrong_api_call
-      #   by providing an invalid api_version intentionally.
+      # by providing an invalid api_version intentionally.
       api_version_info[:api_version] = 'failed_attempt' if api_version_info[:api_version].nil?
     else
       api_version_info = { api_version: api_version, api_version_status: 'user_provided' }
@@ -307,7 +307,7 @@ class AzureResourceBase < Inspec.resource(1)
       # If suggested_api_version is not nil, then the resource manager api version should be updated.
       unless suggested_api_version.nil?
         @resource_manager_endpoint_api = suggested_api_version
-        Inspec::Log.warn "Resource manager endpoint api version should be updated with #{suggested_api_version} in `libraries/backend/helpers.rb`"
+        Inspec::Log.warn "Resource manager endpoint api version should be updated to #{suggested_api_version} in `libraries/backend/helpers.rb`"
       end
     else
       provider_details = @azure.provider_details[provider.to_sym]
@@ -667,7 +667,7 @@ class AzureResourceProbe
     end
     if opt.is_a?(Hash)
       raise ArgumentError, 'Only one item can be provided' if opt.keys.size > 1
-      return @item[opt.keys.first] == opt.values.first
+      return @item[opt.keys.first&.to_sym] == opt.values.first
     end
     @item.key?(opt.to_sym)
   end
