@@ -151,8 +151,10 @@ class AzureResourceBase < Inspec.resource(1)
       response = @azure.rest_get_call(url, params)
     rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
       api_version_suggested = e.suggested_api_version(params['api-version'])
-      Inspec::Log.warn "Incompatible api version: #{params['api-version']}\n"\
+      unless params['api-version'] == 'failed_attempt'
+        Inspec::Log.warn "Incompatible api version: #{params['api-version']}\n"\
         "Trying with the latest api version suggested by the Azure Rest API: #{api_version_suggested}."
+      end
       if api_version_suggested.nil?
         Inspec::Log.warn 'Failed to acquire suggested api version from the Azure Rest API.'
       else
@@ -234,33 +236,22 @@ class AzureResourceBase < Inspec.resource(1)
   #
   def get_resource(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
-                                require_any_of: %i(resource_uri resource_provider resource_path resource_group),
+                                required: %i(resource_uri),
                                 allow: %i(api_version),
                                 opts: opts)
     api_version = opts[:api_version] || 'latest'
-    argument_error_message = 'Parameters error. For singular resources `resource_uri`; '\
-      'for plural resources `resource_provider` and/or `resource_path` should be provided.'
-    if opts.key?(:resource_uri) && opts.keys.any? { |k| %i(resource_provider resource_path).include?(k) }
-      raise ArgumentError, argument_error_message
-    end
-    if opts.key?(:resource_uri)
-      uri_subdomain = opts[:resource_uri]
-    else
-      uri_subdomain = ["/subscriptions/#{@azure.credentials[:subscription_id]}/providers",
-                       opts[:resource_provider],
-                       opts[:resource_path]].compact.join('/').gsub('//', '/')
-    end
-    _resource_group, provider, r_type = Helpers.res_group_provider_type_from_uri(uri_subdomain)
-    # Add resource_group if provided.
-    unless opts[:resource_group].nil?
-      uri_subdomain = uri_subdomain.sub('/providers/', "/resourceGroups/#{opts[:resource_group]}/providers/")
+    if opts[:resource_uri].include?('providers')
+      # If the resource provider is unknown then this method can't find the api_version.
+      # The latest api_version will de acquired from the error message via #rescue_wrong_api_call method.
+      _resource_group, provider, r_type = Helpers.res_group_provider_type_from_uri(opts[:resource_uri])
     end
     # Some resource names can contain spaces. Decode them before parsing with URI.
-    url = URI.join(@azure.resource_manager_endpoint_url, uri_subdomain.gsub(' ', '%20'))
+    url = URI.join(@azure.resource_manager_endpoint_url, opts[:resource_uri].gsub(' ', '%20'))
     api_version = api_version.downcase
     if %w{latest default}.include?(api_version)
+      api_version_info = {}
       # api_version is not a specific version yet: latest or default.
-      api_version_info = get_api_version(provider, r_type, api_version)
+      api_version_info = get_api_version(provider, r_type, api_version) if provider
       # Something was wrong at get_api_version, and we will try to get a valid api_version via rescue_wrong_api_call
       # by providing an invalid api_version intentionally.
       api_version_info[:api_version] = 'failed_attempt' if api_version_info[:api_version].nil?
@@ -305,20 +296,23 @@ class AzureResourceBase < Inspec.resource(1)
     end
     return response unless response[:api_version].nil?
 
-    # If the resource manager api version is updated earlier, use that.
-    api_version_mgm = @resource_manager_endpoint_api || @azure.resource_manager_endpoint_api_version
-    url = Helpers.construct_url([
-                                  @azure.resource_manager_endpoint_url,
-                                  'subscriptions',
-                                  @azure.credentials[:subscription_id], 'providers',
-                                  provider
-                                ])
-    provider_details, suggested_api_version = rescue_wrong_api_call(url, { 'api-version' => api_version_mgm })
-    # If suggested_api_version is not nil, then the resource manager api version should be updated.
-    unless suggested_api_version.nil?
-      @resource_manager_endpoint_api = suggested_api_version
-      Inspec::Log.warn "Resource manager endpoint api version should be updated with #{suggested_api_version} in `libraries/backend/helpers.rb`"
+    # Use the cached provider details if exist.
+    if @azure.provider_details[provider.to_sym].nil?
+      # If the resource manager api version is updated earlier, use that.
+      api_version_mgm = @resource_manager_endpoint_api || @azure.resource_manager_endpoint_api_version
+      url = Helpers.construct_url([@azure.resource_manager_endpoint_url, 'subscriptions',
+                                   @azure.credentials[:subscription_id], 'providers',
+                                   provider])
+      provider_details, suggested_api_version = rescue_wrong_api_call(url, { 'api-version' => api_version_mgm })
+      # If suggested_api_version is not nil, then the resource manager api version should be updated.
+      unless suggested_api_version.nil?
+        @resource_manager_endpoint_api = suggested_api_version
+        Inspec::Log.warn "Resource manager endpoint api version should be updated to #{suggested_api_version} in `libraries/backend/helpers.rb`"
+      end
+    else
+      provider_details = @azure.provider_details[provider.to_sym]
     end
+
     resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType] == resource_type }&.first
     # For some resource types the api version might be available with their parent resource.
     if resource_type_details.nil? && resource_type.include?('/')
@@ -329,6 +323,8 @@ class AzureResourceBase < Inspec.resource(1)
       Inspec::Log.warn "Couldn't get the #{api_version_status} API version for `#{provider}/#{resource_type}`. " \
       'Please make sure that the provider/resourceType are in the correct format, e.g. `Microsoft.Compute/virtualMachines`.'
     else
+      # Caching provider details.
+      @azure.provider_details[provider.to_sym] = provider_details if @azure.provider_details[provider.to_sym].nil?
       api_versions = resource_type_details[:apiVersions]
       api_versions_stable = api_versions.reject { |a| a.include?('preview') }
       api_versions_preview = api_versions.select { |a| a.include?('preview') }
@@ -377,6 +373,25 @@ class AzureResourceBase < Inspec.resource(1)
     end
   end
 
+  def validate_resource_uri
+    Helpers.validate_params_required(%i(add_subscription_id), @opts)
+    if @opts[:add_subscription_id] == true
+      @opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{@opts[:resource_uri]}"
+                             .gsub('//', '/')
+    end
+  end
+
+  def validate_resource_provider
+    # Ensure that the provided resource id is for the correct resource provider.
+    if @opts.key?(:resource_id) && !@opts[:resource_id].downcase.include?(@opts[:resource_provider].downcase)
+      raise ArgumentError, "Resource provider must be #{@opts[:resource_provider]}."
+    end
+    if @opts.key?(:resource_uri) && !@opts[:resource_uri].downcase.include?(@opts[:resource_provider].downcase)
+      raise ArgumentError, "Resource provider must be #{@opts[:resource_provider]}."
+    end
+    true
+  end
+
   # Get the paginated result.
   # The next_link url won't be validated since it is provided by the Azure Rest API.
   # @see https://docs.microsoft.com/en-us/rest/api/azure/#async-operations-throttling-and-paging
@@ -416,7 +431,7 @@ class AzureResourceBase < Inspec.resource(1)
   # This should be used to ensure to fail the resources properly if they can not be created.
   def catch_failed_resource_queries
     yield
-  # Inform user if it is an API incompatibility issue and recommend how to solve it.
+    # Inform user if it is an API incompatibility issue and recommend how to solve it.
   rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
     api_version_suggested_list = e.suggested_api_version
     message = "Incompatible api version is provided.\n"\
@@ -652,7 +667,7 @@ class AzureResourceProbe
     end
     if opt.is_a?(Hash)
       raise ArgumentError, 'Only one item can be provided' if opt.keys.size > 1
-      return @item[opt.keys.first] == opt.values.first
+      return @item[opt.keys.first&.to_sym] == opt.values.first
     end
     @item.key?(opt.to_sym)
   end

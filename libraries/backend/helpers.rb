@@ -189,7 +189,7 @@ module Helpers
 
   # @return [String] Provided parameter within require only one of parameters.
   # @param require_only_one_of [Array]
-  def self.validate_params_only_one_of(resource_name, require_only_one_of, opts)
+  def self.validate_params_only_one_of(resource_name = nil, require_only_one_of, opts)
     # At least one of them has to exist.
     Helpers.validate_params_require_any_of(resource_name, require_only_one_of, opts)
     provided = require_only_one_of.select { |i| opts.key?(i) }
@@ -202,14 +202,14 @@ module Helpers
 
   # @return [Array] Required parameters
   # @param required [Array]
-  def self.validate_params_required(resource_name, required, opts)
+  def self.validate_params_required(resource_name = nil, required, opts)
     raise ArgumentError, "#{resource_name}: `#{required}` must be provided" unless opts.is_a?(Hash) && required.all? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
     required
   end
 
   # @return [Array] Require any of parameters
   # @param require_any_of [Array]
-  def self.validate_params_require_any_of(resource_name, require_any_of, opts)
+  def self.validate_params_require_any_of(resource_name = nil, require_any_of, opts)
     raise ArgumentError, "#{resource_name}: One of `#{require_any_of}` must be provided." unless opts.is_a?(Hash) && require_any_of.any? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
     require_any_of
   end
@@ -219,9 +219,10 @@ module Helpers
   def self.validate_params_allow(allow, opts)
     raise ArgumentError, 'Arguments or values can not be longer than 256 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 }
     raise ArgumentError, 'Scalar arguments not supported' unless defined?(opts.keys)
-    raise ArgumentError, 'Unexpected arguments found' unless opts.keys.all? { |a| allow.include?(a) }
+    raise ArgumentError, "Unexpected arguments found. Allowed: #{allow}, Found: #{opts}" unless opts.keys.all? { |a| allow.include?(a) }
     raise ArgumentError, 'Provided parameter should not be empty' unless opts.values.all? do |a|
       return true if a.class == Integer
+      return true if [TrueClass, FalseClass].include?(a.class)
       !a.empty?
     end
   end
@@ -270,7 +271,7 @@ module Helpers
     resource_uri_format = '/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/'\
       'Microsoft.Compute/virtualMachines/{resource_name}'
     raise ArgumentError, "Resource URI should be in the format of #{resource_uri_format}" \
-      unless resource_uri.start_with?('/subscriptions/') && resource_uri.include?('/providers/')
+      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('/providers/')
   end
 
   # Disassemble resource_id and extract the resource_group, provider and resource_provider.

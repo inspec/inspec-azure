@@ -63,16 +63,6 @@ class AzureVirtualNetworks < AzureGenericResources
       { column: :locations, field: :location },
     ]
 
-    # Before calling the `get_resources` method, a private `populate_table` method has to be defined for this static resource.
-    # Talk to Azure Rest API and gather resources data in @resources.
-    # Paginate if necessary.
-    # Use the `populate_table` method for filling the @table with the desired resource attributes according to the
-    #   table_schema layout.
-    get_resources
-
-    # Check if the resource is failed.
-    return if failed_resource?
-
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
   end

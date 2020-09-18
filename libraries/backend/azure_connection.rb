@@ -10,6 +10,8 @@ require 'backend/helpers'
 #   - make the access token available to use.
 class AzureConnection
   @@token_data = HashRecursive.recursive
+  @@provider_details = {}
+
   # This will be included in headers for statistical purposes.
   INSPEC_USER_AGENT = 'pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'
 
@@ -72,6 +74,10 @@ class AzureConnection
       conn.response :json, content_type: /\bjson$/, parser_options: { symbolize_names: true }
       conn.adapter Faraday.default_adapter
     end
+  end
+
+  def provider_details
+    @@provider_details
   end
 
   # Make a HTTP GET request to Azure Rest API.
@@ -152,21 +158,28 @@ class AzureConnection
     message += "HTTP #{resp.status}.\n"
     body = resp.body
     unless body.empty?
+      code = body[:code]
+      error_message = body[:message]
       error = body[:error]
       if error&.is_a?(Hash)
-        code = error[:code]
-        error_message = error[:message]
-        message += "#{code} #{error_message}"
+        code ||= error[:code]
+        error_message ||= error[:message]
       end
-      message += resp.body.to_s if code.nil?
+      message += code.nil? ? "#{code} #{error_message}" : resp.body.to_s
     end
     resource_not_found_codes = %w{Request_ResourceNotFound ResourceGroupNotFound ResourceNotFound NotFound}
-    wrong_api_keyword = ['The supported api-versions are', 'The supported versions']
-    invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType}
+    resource_not_found_keywords = ['could not be found']
+    wrong_api_keywords = ['The supported api-versions are', 'The supported versions are']
+    explicit_invalid_api_code = 'InvalidApiVersionParameter'
+    possible_invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType}
+    code = code.to_s
     if code
-      if invalid_api_codes.include?(code) && wrong_api_keyword.any? { |kw| error_message&.include?(kw) }
+      if code == explicit_invalid_api_code \
+        || possible_invalid_api_codes.include?(code) && wrong_api_keywords.any? { |word| error_message.include?(word) }
         raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter, error_message
-      elsif resource_not_found_codes.include?(code)
+      elsif resource_not_found_codes.include?(code) \
+        || resource_not_found_codes.any? { |not_found_code| code.include?(not_found_code) } \
+        && resource_not_found_keywords.any? { |word| error_message.include?(word) }
         raise UnsuccessfulAPIQuery::ResourceNotFound, error_message
       end
     end

@@ -18,4 +18,9 @@ class AzureGenericResourceConstructorTest < Minitest::Test
   def test_invalid_endpoint
     assert_raises(ArgumentError) { AzureGenericResource.new(endpoint: 'fake_endpoint') }
   end
+
+  def test_resource_uri
+    # add_subscription_id, name and resource_uri have to be provided together
+    assert_raises(ArgumentError) { AzureGenericResource.new(resource_uri: 'test') }
+  end
 end
