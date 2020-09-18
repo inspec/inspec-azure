@@ -116,7 +116,7 @@ describe azure_generic_resources.where{ created_time > Time.now - 86400 } do
   it { should exist }
 end
 ```
-### Test a Policy Definitions
+### Test Policy Definitions
 ```ruby
 describe azure_generic_resources(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions') do
   it { should exist }
