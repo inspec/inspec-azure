@@ -39,12 +39,17 @@ end
 ```
 ## Parameters
 
-| Name                           | Description                                                                       |
-|--------------------------------|-----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| name                           | Name of the SQL server to test. `MyServer`                                    |
-| server_name                    | Alias for the `name` parameter.                                                   |
-| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}` |
+| Name                                  | Description                                                                       |
+|---------------------------------------|-----------------------------------------------------------------------------------|
+| resource_group                        | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
+| name                                  | Name of the SQL server to test. `MyServer`                                        |
+| server_name                           | Alias for the `name` parameter.                                                   |
+| resource_id                           | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Sql/servers/{serverName}` |
+| firewall_rules_api_version            | The endpoint api version for the `firewall_rules` property. The latest version will be used unless provided. |
+| auditing_settings_api_version         | The endpoint api version for the `auditing_settings` property. The latest version will be used unless provided. |
+| threat_detection_settings_api_version | The endpoint api version for the `threat_detection_settings` property. The latest version will be used unless provided. |
+| administrators_api_version            | The endpoint api version for the `administrators` property. The latest version will be used unless provided. |
+| encryption_protector_api_version      | The endpoint api version for the `encryption_protector` property. The latest version will be used unless provided. |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`

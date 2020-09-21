@@ -42,11 +42,15 @@ class AzureMysqlServer < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
+    # `resource_provider` has to be defined first since it does the first validation on user-supplied input.
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DBforMySQL/servers', opts)
     opts[:resource_identifiers] = %i(server_name)
+    opts[:allowed_parameters] = %i(firewall_rules_api_version)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+
+    @opts[:firewall_rules_api_version] ||= 'latest'
   end
 
   def to_s
@@ -70,6 +74,7 @@ class AzureMysqlServer < AzureGenericResource
       {
         property_name: 'firewall_rules',
         property_endpoint: id + '/firewallRules',
+        api_version: @opts[:firewall_rules_api_version],
       },
     )
   end

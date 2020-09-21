@@ -40,12 +40,13 @@ end
 ```
 ## Parameters
 
-| Name                           | Description                                                                      |
-|--------------------------------|----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| name                           | Name of the Azure resource to test. `MyVault`                                    |
-| vault_name                     | Name of the Azure resource to test (for backward compatibility). `MyVault`       |
-| resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.KeyVault/vaults/{vaultName}` |
+| Name                            | Description                                                                      |
+|---------------------------------|----------------------------------------------------------------------------------|
+| resource_group                  | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
+| name                            | Name of the Azure resource to test. `MyVault`                                    |
+| vault_name                      | Name of the Azure resource to test (for backward compatibility). `MyVault`       |
+| resource_id                     | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.KeyVault/vaults/{vaultName}` |
+| diagnostic_settings_api_version | The endpoint api version for the `diagnostic_settings` property. `2017-05-01-preview` will be used for backward compatibility unless provided. |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`

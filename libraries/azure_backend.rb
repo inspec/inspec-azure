@@ -417,6 +417,9 @@ class AzureResourceBase < Inspec.resource(1)
       if opts.key?(:resource_provider)
         raise ArgumentError, "#{@__resource_name__}: The `resource_provider` parameter is not allowed."\
           " `#{resource_provider}` is predefined for this resource."
+      elsif opts.keys.any? { |key| %i(allowed_parameters required_parameters).include?(key) }
+        raise ArgumentError, "#{@__resource_name__}: The following parameters are not allowed: "\
+          '["allowed_parameters", "required_parameters"].'
       end
     else
       raise ArgumentError, "#{@__resource_name__}: Parameters must be provided in an Hash object."
@@ -462,11 +465,6 @@ class AzureResourceBase < Inspec.resource(1)
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 allow: allow, required: required,
                                 require_any_of: require_any_of, opts: opts)
-    if opts.key?(:resource_id) && \
-       opts.keys.any? { |key| %i(resource_group resource_provider name tag_name tag_value).include?(key) }
-      raise ArgumentError, 'If `resource_id` is provided, the following parameters should not be provided.'\
-        ' ["resource_group", "resource_provider", "name", "tag_name", "tag_value"]'
-    end
     true
   end
 
@@ -690,7 +688,7 @@ class AzureResourceProbe
   end
 
   def to_s
-    "Property is missing! The following properties are available: #{item.keys.map(&:to_s)}"
+    "#{type}/#{name} has following properties: #{item.keys.map(&:to_s)}."
   end
 end
 

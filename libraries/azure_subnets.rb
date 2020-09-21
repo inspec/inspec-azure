@@ -45,11 +45,10 @@ class AzureSubnets < AzureGenericResources
     #       not to accept a different `resource_provider`.
     #
 
+    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
     opts[:required_parameters] = %i(resource_group vnet)
     # Unless provided here, a generic display name will be created in the backend.
     opts[:display_name] = "Subnets for #{opts[:vnet]} Virtual Network"
-
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
     opts[:resource_path] = [opts[:vnet], 'subnets'].join('/')
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
