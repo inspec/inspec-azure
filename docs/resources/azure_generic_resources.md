@@ -38,7 +38,7 @@ All of them are optional.
 | resource_provider              | Azure resource provider of the resources to be tested.                                                                    | `Microsoft.Compute/virtualMachines` |
 | tag_name<superscript>*</superscript> | Tag name defined on the Azure resources.                                                                            | `name`                              |
 | tag_value                      | Tag value of the tag defined with the `tag_name`.                                                                         | `external_linux`                    |
-| resource_uri                   | Azure REST API URI of the resources to be tested. This parameter should be used when resources do not reside in resource groups. It requires `add_subscription_id` parameter to be provided together. `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/` |
+| resource_uri                   | Azure REST API URI of the resources to be tested. This parameter should be used when resources do not reside in resource groups. It requires `add_subscription_id` parameter to be provided together. `/providers/Microsoft.Authorization/policyDefinitions/` |
 | add_subscription_id            | Indicates whether the `resource_uri` contains the subscription id. `true` or `false` |
 
 <superscript>*</superscript> When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
