@@ -53,7 +53,7 @@ end
 | platforms     | A list of virtual machine operation system platforms. Supported values are `windows` and `linux`.| `platform`|
 | tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
   
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
   
 ## Examples
 

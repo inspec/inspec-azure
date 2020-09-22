@@ -107,7 +107,7 @@ azure_graph_generic_resources(resource: 'users', filter: { starts_with_given_nam
 end  
 ```
 
-Please see [here](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md) for more information on how to leverage FilterTable capabilities on plural resources. 
+For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Matchers
 

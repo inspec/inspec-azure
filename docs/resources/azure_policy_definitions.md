@@ -1,11 +1,11 @@
 ---
-title: About the azure_storage_account_blob_containers Resource
+title: About the azure_policy_definitions Resource
 platform: azure
 ---
 
-# azure_storage_account_blob_containers
+# azure_policy_definitions
 
-Use the `azure_storage_account_blob_containers` InSpec audit resource to test properties and configuration of Blob Containers within an Azure Storage Account.
+Use the `azure_policy_definitions` InSpec audit resource to test properties and configuration of multiple Azure policy definitions.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,51 +26,63 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group`, and `storage_account_name` must be given as a parameter.
+An `azure_policy_definitions` resource block returns all policy definitions, either built-in (if `built_in_only: true`), or within a subscription.
 ```ruby
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
-  its('names') { should include 'my-container'}
+describe azure_policy_definitions do
+  it { should exist }
+end
+```
+or
+```ruby
+describe azure_policy_definitions(built_in_only: true) do
+  it { should exist }
 end
 ```
 ## Parameters
 
-| Name                           | Description                                                                          |
-|--------------------------------|--------------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`        |
-| storage_account_name           | The name of the storage account within the specified resource group. `accountName`   |
+- `built_in_only`: Optional, default is `false`.
 
 ## Properties
 
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
-| locations     | A list of locations for all the resources being interrogated.                        | `location`      |
 | names         | A list of names of all the resources being interrogated.                             | `name`          |
-| tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
-| etags         | A list of etags defined on the resources.                                            | `etag`          |
+| properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Check If a Specific Container Exists
+### Check a Specific Policy Definition is Present
 ```ruby
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
-  its('names') { should include('my-container') }
+describe azure_policy_definitions do
+  its('names')  { should include 'my-policy' }
 end
 ```
+### Filters the Results to Include Only Those Policy Definitions which Include the Given Name
+```ruby
+describe azure_policy_definitions.where{ name.include?('my-policy') } do
+  it { should exist }
+end
+```
+## Filters the Results to Include Only The Custom Policy Definitions
+```ruby
+describe azure_policy_definitions.where{ properties.has_key?(:policyType) && properties[:policyType] == "Custom" } do
+  it { should exist }
+  its('count') { should be 15 }
+end
+```    
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-# If we expect at least one resource to exists on a specified account
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
+describe azure_policy_definitions do
   it { should exist }
-end
-
-# If we expect not to exist any containers on a specified account
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
-  it { should_not exist }
 end
 ```
 ## Azure Permissions
