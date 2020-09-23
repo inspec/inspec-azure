@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.26.3 -->
+<!-- latest_release 1.27.0 -->
+## [v1.27.0](https://github.com/inspec/inspec-azure/tree/v1.27.0) (2020-09-18)
+
+#### Merged Pull Requests
+- Refactor backend and generic resources to support wider range of resources [#299](https://github.com/inspec/inspec-azure/pull/299) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.26.3](https://github.com/inspec/inspec-azure/tree/v1.26.3) (2020-09-16)
 
 #### Merged Pull Requests
 - Suppress inspec check failure by running inspec vendor [#298](https://github.com/inspec/inspec-azure/pull/298) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.26.2](https://github.com/inspec/inspec-azure/tree/v1.26.2) (2020-09-16)
 
