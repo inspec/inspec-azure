@@ -688,7 +688,7 @@ class AzureResourceProbe
   end
 
   def to_s
-    "#{type}/#{name} has following properties: #{item.keys.map(&:to_s)}."
+    "#{type}/#{name} has the following properties: #{item.keys.map(&:to_s)}."
   end
 end
 

@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.27.0 -->
+<!-- latest_release 1.27.1 -->
+## [v1.27.1](https://github.com/inspec/inspec-azure/tree/v1.27.1) (2020-09-23)
+
+#### Merged Pull Requests
+- Enable users to define api versions for the additional property API calls [#300](https://github.com/inspec/inspec-azure/pull/300) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.27.0](https://github.com/inspec/inspec-azure/tree/v1.27.0) (2020-09-18)
 
 #### Merged Pull Requests
 - Refactor backend and generic resources to support wider range of resources [#299](https://github.com/inspec/inspec-azure/pull/299) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.26.3](https://github.com/inspec/inspec-azure/tree/v1.26.3) (2020-09-16)
 
