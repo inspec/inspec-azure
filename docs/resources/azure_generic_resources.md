@@ -73,7 +73,7 @@ It is advised to use these parameter sets to narrow down the targeted resources 
 | changed_times<superscript>**</superscript> | A list of changed times of the resources. | `changed_time`|
 | provisioning_states<superscript>**</superscript> | A list of provisioning states of the resources. | `provisioning_state`|
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 <superscript>**</superscript> These properties are not available when `resource_uri` is used.
 

@@ -14,7 +14,7 @@ The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used .
+Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
 For more information, refer to the resource pack [README](../../README.md). 
 
 ## Availability
@@ -110,7 +110,7 @@ end
 ```
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
+This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
 ```ruby

@@ -1,11 +1,11 @@
 ---
-title: About the azure_mariadb_servers Resource
+title: About the azure_policy_definitions Resource
 platform: azure
 ---
 
-# azure_mariadb_servers
+# azure_policy_definitions
 
-Use the `azure_mariadb_servers` InSpec audit resource to test properties and configuration of multiple Azure MariaDB Servers.
+Use the `azure_policy_definitions` InSpec audit resource to test properties and configuration of multiple Azure policy definitions.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,63 +26,53 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_mariadb_servers` resource block returns all Azure MariaDB Servers, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_policy_definitions` resource block returns all policy definitions, either built-in (if `built_in_only: true`), or within a subscription.
 ```ruby
-describe azure_mariadb_servers do
-  #...
+describe azure_policy_definitions do
+  it { should exist }
 end
 ```
 or
 ```ruby
-describe azure_mariadb_servers(resource_group: 'my-rg') do
-  #...
+describe azure_policy_definitions(built_in_only: true) do
+  it { should exist }
 end
 ```
 ## Parameters
 
-- `resource_group` (Optional)
+- `built_in_only`: Indicates whether the interrogated policy definitions are built-in only. Optional. Defaults to `false` if not supplied.
 
 ## Properties
 
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
-| locations     | A list of locations for all the resources being interrogated.                        | `location`      |
 | names         | A list of names of all the resources being interrogated.                             | `name`          |
-| tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
-| skus          | A list of the SKUs (pricing tiers) of the servers.                                   | `sku`           |
-| types         | A list of the types of resources being interrogated.                                 | `type`          |
 | properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Check MariaDB Servers are present
+### Check a Specific Policy Definition is Present
 ```ruby
-describe azure_mariadb_servers do
-  it            { should exist }
-  its('names')  { should include 'my-server-name' }
+describe azure_policy_definitions do
+  its('names')  { should include 'my-policy' }
 end
 ```
-### Filters the Results to Include Only Those Servers which Include the Given Name (Client Side Filtering)
+### Filters the Results to Include Only Those Policy Definitions which Include the Given Name
 ```ruby
-describe azure_mariadb_servers.where{ name.include?('production') } do
+describe azure_policy_definitions.where{ name.include?('my-policy') } do
   it { should exist }
 end
 ```
-## Filters the Results to Include Only Those Servers which Reside in a Given Location (Client Side Filtering)
+## Filters the Results to Include Only The Custom Policy Definitions
 ```ruby
-describe azure_mariadb_servers.where{ location.eql?('westeurope') } do
+describe azure_policy_definitions.where{ properties.has_key?(:policyType) && properties[:policyType] == "Custom" } do
   it { should exist }
+  its('count') { should be 15 }
 end
 ```    
-## Filters the Results to Include Only Those Servers which Reside in a Given Location and Include the Given Name (Server Side Filtering - Recommended)
-```ruby
-describe azure_generic_resources(resource_provider: 'Microsoft.DBforMariaDB/servers', substring_of_name: 'production', location: 'westeurope') do
-  it {should exist}  
-end
-```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
@@ -91,7 +81,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-describe azure_mariadb_servers do
+describe azure_policy_definitions do
   it { should exist }
 end
 ```

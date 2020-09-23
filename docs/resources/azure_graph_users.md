@@ -55,7 +55,7 @@ It is advised to use these parameters to narrow down the targeted resources at t
 | user_types            | The user types of users, e.g.; `Member`, `Guest`.  | `userType` |
 | user_principal_names  | The user principal names of users, e.g.; `jdoe@contoso.com`.  | `userPrincipalName` |
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 

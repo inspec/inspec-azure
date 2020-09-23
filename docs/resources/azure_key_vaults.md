@@ -14,7 +14,7 @@ The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used .
+Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
 For more information, refer to the resource pack [README](../../README.md). 
 
 ## Availability
@@ -53,7 +53,7 @@ end
 | locations     | A list of locations for all the key vaults.                                          | `location`      |
 | properties    | A list of properties for all the key vaults.                                         | `properties`    |
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md#a-where-method-you-can-call-with-hash-params-with-loose-matching).
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
   
 ## Examples
 
