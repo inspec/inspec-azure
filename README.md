@@ -352,7 +352,7 @@ The common parameters are:
 - `display_name`: A generic one will be created unless defined.
 - `required_parameters`: Define mandatory parameters. The `resource_group` and resource `name` in the singular resources are default mandatory in the base class.
 - `allowed_parameters`: Define optional parameters. The `resource_group` is default optional, but this can be made mandatory in the static resource. 
-- `resource_uri`: Azure REST API URI of a resource. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` is set to either `true` or `false`. See [azure_policy_definition](libraries/azure_policy_definition.rb) and [azure_policy_definitions](libraries/azure_policy_definitions.rb).
+- `resource_uri`: Azure REST API URI of a resource. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` to be set to either `true` or `false`. See [azure_policy_definition](libraries/azure_policy_definition.rb) and [azure_policy_definitions](libraries/azure_policy_definitions.rb).
 - `add_subscription_id`: It indicates whether the subscription ID should be included in the `resource_uri` or not.
 
 ### Singular Resources
