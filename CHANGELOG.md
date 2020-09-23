@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.27.1 -->
+<!-- latest_release 1.28.0 -->
+## [v1.28.0](https://github.com/inspec/inspec-azure/tree/v1.28.0) (2020-09-23)
+
+#### Merged Pull Requests
+- Add Policy Definition and Resource Group Resources [#301](https://github.com/inspec/inspec-azure/pull/301) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.27.1](https://github.com/inspec/inspec-azure/tree/v1.27.1) (2020-09-23)
 
 #### Merged Pull Requests
 - Enable users to define api versions for the additional property API calls [#300](https://github.com/inspec/inspec-azure/pull/300) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.27.0](https://github.com/inspec/inspec-azure/tree/v1.27.0) (2020-09-18)
 
