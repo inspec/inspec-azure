@@ -90,15 +90,15 @@ describe azure_graph_generic_resources(resource: 'users', filter_free_text: "sta
 end
 ```
 
-## Filter the Results to Only Include Those that Match the Given Country
+### Filter<superscript>*</superscript> the Results to Only Include Those that Match the Given Country (Client-Side Filtering - NOT Recommended)
 ```ruby
     describe azure_graph_generic_resources(resource: 'users', select: %w{ country }).where(country: 'United Kingdom') do
       it { should exist }
     end
 ```
-Please note that instead of client side filtering with `where`, it is much more efficient to use server side filtering at Azure Graph API with `filter` or `filter_free_text` at resource creation as described previously.
+<superscript>*</superscript>For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Please note that instead of client side filtering with `where`, it is much more efficient to use server side filtering at Azure Graph API with `filter` or `filter_free_text` at resource creation as described in previous examples.
 
-## Test `given_names` Parameter
+### Test `given_names` Parameter
 ```ruby
 azure_graph_generic_resources(resource: 'users', filter: { starts_with_given_name: 'J' }, select: %w{ givenName }).given_names.each do |name|
   describe name do
@@ -106,9 +106,6 @@ azure_graph_generic_resources(resource: 'users', filter: { starts_with_given_nam
   end  
 end  
 ```
-
-For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).

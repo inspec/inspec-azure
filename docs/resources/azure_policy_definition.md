@@ -14,7 +14,7 @@ The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used .
+Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
 For more information, refer to the resource pack [README](../../README.md). 
 
 ## Availability
@@ -42,7 +42,7 @@ end
 | Name                                  | Description |
 |---------------------------------------|-------------|
 | name                                  | Name of the policy definition. `policyDefinitionName` |
-| built_in                              | Indicates whether the policy definition is built-in. Optional, default is `false`. This should not be used when `resource_id` is provided. |
+| built_in                              | Indicates whether the policy definition is built-in. Optional. Defaults to `false` if not supplied. This should not be used when `resource_id` is provided. |
 | resource_id                           | The unique resource ID. `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}` |
 
 Either one of the parameter sets can be provided for a valid query:
@@ -57,7 +57,6 @@ Either one of the parameter sets can be provided for a valid query:
 | properties.description    | The policy definition description. |
 | properties.displayName    | The display name of the policy definition. |
 | properties.policyType     | The type of policy definition. Possible values are `NotSpecified`, `BuiltIn`, `Custom`, and `Static`. |
-| custom?                   | Indicates whether the policy definition type is `Custom` or not. |
 | properties.policyRule     | The policy rule. |
 
 

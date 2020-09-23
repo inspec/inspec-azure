@@ -14,7 +14,7 @@ The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used .
+Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
 For more information, refer to the resource pack [README](../../README.md). 
 
 ## Availability
@@ -40,7 +40,7 @@ end
 ```
 ## Parameters
 
-- `built_in_only`: Optional, default is `false`.
+- `built_in_only`: Indicates whether the interrogated policy definitions are built-in only. Optional. Defaults to `false` if not supplied.
 
 ## Properties
 
