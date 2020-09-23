@@ -90,7 +90,7 @@ describe azure_graph_generic_resources(resource: 'users', filter_free_text: "sta
 end
 ```
 
-### Filter<superscript>*</superscript> the Results to Only Include Those that Match the Given Country (Client-Side Filtering - NOT Recommended)
+### Filter<superscript>*</superscript> the Results to Only Include Those that Match the Given Country (Client-Side Filtering is NOT Recommended)
 ```ruby
     describe azure_graph_generic_resources(resource: 'users', select: %w{ country }).where(country: 'United Kingdom') do
       it { should exist }
