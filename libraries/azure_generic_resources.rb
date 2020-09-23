@@ -14,16 +14,11 @@ class AzureGenericResources < AzureResourceBase
   def initialize(opts = {}, static_resource = false)
     # A HTTP client will be created in the backend.
     super(opts)
-    # Ensure that the provided resource id is for the correct resource provider.
-    if @opts.key?(:resource_provider)
-      validate_resource_provider
-    end
     @display_name = @opts.slice(:resource_group, :resource_path, :name, :resource_provider,
                                 :tag_name,
                                 :tag_value,
                                 :resource_uri)
                          .values.join(' ')
-    # @table = fetch_data
     table_schema = [
       { column: :ids, field: :id },
       { column: :names, field: :name },
@@ -36,6 +31,8 @@ class AzureGenericResources < AzureResourceBase
     ]
     if static_resource
       validate_static_resource
+      # Ensure that the provided resource uri is for the correct resource provider.
+      validate_resource_provider
       return
     end
     if @opts.key?(:resource_uri)
@@ -140,7 +137,6 @@ class AzureGenericResources < AzureResourceBase
     # GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/virtualMachines?
     #       api-version=2019-12-01
     if @opts.key?(:resource_uri)
-      # query_params = { resource_uri: @opts[:resource_uri], api_version: @opts.dig(:api_version) }
       query_params = { resource_uri: @opts[:resource_uri] }
     else
       resource_uri = ["/subscriptions/#{@azure.credentials[:subscription_id]}/providers",
@@ -174,7 +170,7 @@ class AzureGenericResources < AzureResourceBase
       return if failed_resource?
       @resources = api_response[:value]
       # Add new items to the @table.
-      if method_defined?(:populate_table)
+      if respond_to?(:populate_table, true)
         populate_table
       else
         @table += @resources

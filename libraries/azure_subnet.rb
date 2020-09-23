@@ -48,9 +48,9 @@ class AzureSubnet < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
+    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
     opts[:required_parameters] = %i(vnet)
     opts[:resource_path] = [opts[:vnet], 'subnets'].join('/')
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

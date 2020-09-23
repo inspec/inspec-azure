@@ -46,6 +46,14 @@ control 'azure_generic_resource' do
     it { should_not exist }
   end
 
+  describe azure_generic_resource(resource_group: 'fake', name: win_name) do
+    it { should_not exist }
+  end
+
+  describe azure_generic_resource(resource_group: 'fake', name: 'fake') do
+    it { should_not exist }
+  end
+
   describe azure_generic_resource(resource_group: 'does-not-exist', name: win_name) do
     it { should_not exist }
   end

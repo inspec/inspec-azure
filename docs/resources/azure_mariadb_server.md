@@ -45,6 +45,7 @@ end
 | name                           | Name of the MariaDB server to test. `MyServer`                                    |
 | server_name                    | Alias for the `name` parameter.                                                   |
 | resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.DBforMariaDB/servers/{serverName}` |
+| firewall_rules_api_version     | The endpoint api version for the `firewall_rules` property. The latest version will be used unless provided. |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`

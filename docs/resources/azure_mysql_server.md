@@ -45,6 +45,7 @@ end
 | name                           | Name of the MySql server to test. `MyServer`                                      |
 | server_name                    | Name of the MySql server to test. `MyServer`. This is for backward compatibility, use `name` instead. |
 | resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.DBforMySQL/servers/{serverName}` |
+| firewall_rules_api_version     | The endpoint api version for the `firewall_rules` property. The latest version will be used unless provided. |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`

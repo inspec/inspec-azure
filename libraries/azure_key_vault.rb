@@ -46,9 +46,13 @@ class AzureKeyVault < AzureGenericResource
     opts[:resource_provider] = specific_resource_constraint('Microsoft.KeyVault/vaults', opts)
     # Key vault name can be accepted with a different keyword, `vault_name`. `name` is default accepted.
     opts[:resource_identifiers] = %i(vault_name)
+    opts[:allowed_parameters] = %i(diagnostic_settings_api_version)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+
+    # `api_version` is fixed for backward compatibility.
+    @opts[:diagnostic_settings_api_version] ||= '2017-05-01-preview'
   end
 
   def to_s
@@ -74,12 +78,11 @@ class AzureKeyVault < AzureGenericResource
   #
   def diagnostic_settings
     return unless exists?
-    # `api_version` is fixed for backward compatibility.
     additional_resource_properties(
       {
         property_name: 'diagnostic_settings',
         property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
-        api_version: '2017-05-01-preview',
+        api_version: @opts[:diagnostic_settings_api_version],
       },
     )
   end

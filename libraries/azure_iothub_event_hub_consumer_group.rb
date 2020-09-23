@@ -13,9 +13,9 @@ class AzureIotHubEventHubConsumerGroup < AzureGenericResource
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
+    opts[:resource_provider] = specific_resource_constraint('Microsoft.Devices/IotHubs', opts)
     opts[:required_parameters] = %i(resource_name event_hub_endpoint)
     opts[:resource_path] = [opts[:resource_name], 'eventHubEndpoints', opts[:event_hub_endpoint], 'ConsumerGroups'].join('/')
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Devices/IotHubs', opts)
     opts[:resource_identifiers] = %i(consumer_group)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.

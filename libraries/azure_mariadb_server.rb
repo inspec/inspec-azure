@@ -14,11 +14,13 @@ class AzureMariaDBServer < AzureGenericResource
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DBforMariaDB/servers', opts)
-
     opts[:resource_identifiers] = %i(server_name)
+    opts[:allowed_parameters] = %i(firewall_rules_api_version)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+
+    @opts[:firewall_rules_api_version] ||= 'latest'
   end
 
   def to_s
@@ -38,6 +40,7 @@ class AzureMariaDBServer < AzureGenericResource
       {
         property_name: 'firewall_rules',
         property_endpoint: id + '/firewallRules',
+        api_version: @opts[:firewall_rules_api_version],
       },
     )
   end

@@ -14,11 +14,16 @@ class AzureSqlServer < AzureGenericResource
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Sql/servers', opts)
-
     opts[:resource_identifiers] = %i(server_name)
-
+    opts[:allowed_parameters] = %i(firewall_rules_api_version auditing_settings_api_version
+                                   threat_detection_settings_api_version administrators_api_version
+                                   encryption_protector_api_version)
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+
+    @opts[:allowed_parameters].each do |param|
+      @opts[param] ||= 'latest'
+    end
   end
 
   def to_s
@@ -38,6 +43,7 @@ class AzureSqlServer < AzureGenericResource
       {
         property_name: 'firewall_rules',
         property_endpoint: id + '/firewallRules',
+        api_version: @opts[:firewall_rules_api_version],
       },
     )
   end
@@ -48,6 +54,7 @@ class AzureSqlServer < AzureGenericResource
       {
         property_name: 'auditing_settings',
         property_endpoint: id + '/auditingSettings/default',
+        api_version: @opts[:auditing_settings_api_version],
       },
     )
   end
@@ -58,6 +65,7 @@ class AzureSqlServer < AzureGenericResource
       {
         property_name: 'threat_detection_settings',
         property_endpoint: id + '/securityAlertPolicies/Default',
+        api_version: @opts[:threat_detection_settings_api_version],
       },
     )
   end
@@ -68,6 +76,7 @@ class AzureSqlServer < AzureGenericResource
       {
         property_name: 'administrators',
         property_endpoint: id + '/administrators',
+        api_version: @opts[:administrators_api_version],
       },
     )
   end
@@ -78,6 +87,7 @@ class AzureSqlServer < AzureGenericResource
       {
         property_name: 'encryption_protector',
         property_endpoint: id + '/encryptionProtector',
+        api_version: @opts[:encryption_protector_api_version],
       },
     )
   end
