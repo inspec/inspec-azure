@@ -21,12 +21,12 @@ class AzureGenericResource < AzureResourceBase
       validate_generic_resource
       return if failed_resource?
     end
-    if @opts[:display_name].nil?
-      @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
+    @display_name = if @opts[:display_name].nil?
+                      @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
                                   :resource_uri).values.join(' ')
-    else
-      @display_name = @opts[:display_name]
-    end
+                    else
+                      @opts[:display_name]
+                    end
 
     resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
 
