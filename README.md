@@ -113,6 +113,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
+- [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
+- [azure_monitor_log_profiles](docs/resources/azure_monitor_log_profiles.md)
 - [azure_mysql_database](docs/resources/azure_mysql_database.md)
 - [azure_mysql_databases](docs/resources/azure_mysql_databases.md)
 - [azure_mysql_server](docs/resources/azure_mysql_server.md)
