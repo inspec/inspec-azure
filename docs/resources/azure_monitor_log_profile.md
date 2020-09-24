@@ -80,7 +80,7 @@ end
 ### Test the Storage Account of a Log Profile
 ```ruby
 describe azure_monitor_log_profile(resource_id: '/subscriptions/{subscriptionId}/providers/microsoft.insights/logprofiles/{logProfileName}') do
-  its('storage_account') { should eql(resourse_group: 'InSpec_rg', name: 'my_storage_account') }
+  its('storage_account') { should eql(resource_group: 'InSpec_rg', name: 'my_storage_account') }
 end
 ```
 ## Matchers
