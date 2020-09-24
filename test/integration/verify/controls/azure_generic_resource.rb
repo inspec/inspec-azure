@@ -20,6 +20,10 @@ control 'azure_generic_resource' do
     its('name') { should eq win_name }
   end
 
+  describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', resource_group: resource_group, name: win_name) do
+    it { should exist }
+  end
+
   # If api_version is not provided, latest version should be used.
   describe azure_generic_resource(resource_group: resource_group, name: win_name) do
     its('api_version_used_for_query_state') { should eq 'latest' }
