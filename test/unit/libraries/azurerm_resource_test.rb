@@ -2,7 +2,7 @@ require 'inspec/resource'
 
 require_relative '../test_helper'
 require_relative '../../../libraries/azurerm_resource'
-require_relative '../../../libraries/azurerm_subscription'
+require_relative '../../../libraries/azure_subscription'
 
 class AzurermResourceTest < Minitest::Test
   def setup

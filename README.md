@@ -138,6 +138,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md)
 - [azure_subnet](docs/resources/azure_subnet.md)
 - [azure_subnets](docs/resources/azure_subnets.md)
+- [azure_subscription](docs/resources/azure_subscription.md)
+- [azure_subscriptions](docs/resources/azure_subscriptions.md)
 - [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
 - [azure_virtual_machines](docs/resources/azure_virtual_machines.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
