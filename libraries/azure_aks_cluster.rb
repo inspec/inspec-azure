@@ -22,6 +22,28 @@ class AzureAksCluster < AzureGenericResource
   def to_s
     super(AzureAksCluster)
   end
+
+  def enabled_logging_types
+    return unless exists?
+    additional_resource_properties(
+      {
+        property_name: 'diagnostic_settings',
+        property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
+        api_version: '2017-05-01-preview',
+      },
+    ).first.properties.logs.select(&:enabled).map{|type| type.category}
+  end
+
+  def disabled_logging_types
+    return unless exists?
+    additional_resource_properties(
+      {
+        property_name: 'diagnostic_settings',
+        property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
+        api_version: '2017-05-01-preview',
+      },
+    ).first.properties.logs.reject(&:enabled).map{|type| type.category}
+  end
 end
 
 # Provide the same functionality under the old resource name.
