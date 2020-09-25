@@ -31,7 +31,7 @@ class AzureAksCluster < AzureGenericResource
         property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
         api_version: '2017-05-01-preview',
       },
-    ).first.properties.logs.select(&:enabled).map{|type| type.category}
+    ).first.properties.logs.select(&:enabled).map { :category }
   end
 
   def disabled_logging_types
@@ -42,7 +42,7 @@ class AzureAksCluster < AzureGenericResource
         property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
         api_version: '2017-05-01-preview',
       },
-    ).first.properties.logs.reject(&:enabled).map{|type| type.category}
+    ).first.properties.logs.reject(&:enabled).map { :category }
   end
 end
 
