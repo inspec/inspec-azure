@@ -21,8 +21,12 @@ class AzureGenericResource < AzureResourceBase
       validate_generic_resource
       return if failed_resource?
     end
-    @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
-                                :resource_uri).values.join(' ') if @opts[:display_name].nil?
+    if @opts[:display_name].nil?
+      @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
+                                  :resource_uri).values.join(' ')
+    else
+      @display_name = @opts[:display_name]
+    end
 
     resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
 
@@ -165,23 +169,23 @@ class AzureGenericResource < AzureResourceBase
           filter[:resource_type] = filter[:resource_provider] unless filter[:resource_provider].nil?
           filter.delete(:resource_provider)
           @resources = resource_short(filter)
+          # If an exception is raised above then the resource is failed.
+          # This check should be done every time after using catch_failed_resource_queries
+          #
+          return if failed_resource?
+
+          # Validate short description whether:
+          # There is a resource description? (0: it should_not exist, nil: fail resource)
+          # There are multiple resource description? (fail resource for singular resource)
+          #
+          validated = validate_short_desc(@resources, filter, true)
+          # If resource description is not in expected format, resource will be failed here.
+          return unless validated
+
+          # For a singular resource there must be one and only resource description with a resource_id.
+          @resource_id = @resources.first[:id]
         end
       end
-      # If an exception is raised above then the resource is failed.
-      # This check should be done every time after using catch_failed_resource_queries
-      #
-      return if failed_resource?
-
-      # Validate short description whether:
-      # There is a resource description? (0: it should_not exist, nil: fail resource)
-      # There are multiple resource description? (fail resource for singular resource)
-      #
-      validated = validate_short_desc(@resources, filter, true)
-      # If resource description is not in expected format, resource will be failed here.
-      return unless validated
-
-      # For a singular resource there must be one and only resource description with a resource_id.
-      @resource_id = @resources.first[:id]
     end
   end
 end

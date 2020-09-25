@@ -3,6 +3,8 @@ title: About the azurerm_monitor_log_profile Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_monitor_log_profile`](azure_monitor_log_profile.md) InSpec audit resource.
+
 # azurerm\_monitor\_log\_profile
 
 Use the `azurerm_monitor_log_profile` InSpec audit resource to test properties

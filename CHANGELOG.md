@@ -1,10 +1,20 @@
 # Changelog
-<!-- latest_release 1.28.0 -->
+<!-- latest_release 1.28.2 -->
+## [v1.28.2](https://github.com/inspec/inspec-azure/tree/v1.28.2) (2020-09-24)
+
+#### Merged Pull Requests
+- Add azure_monitor_log_profile(s) resources [#304](https://github.com/inspec/inspec-azure/pull/304) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
+## [v1.28.1](https://github.com/inspec/inspec-azure/tree/v1.28.1) (2020-09-24)
+
+#### Merged Pull Requests
+- Fix resource_provider issue in generic_resource [#303](https://github.com/inspec/inspec-azure/pull/303) ([omerdemirok](https://github.com/omerdemirok))
+
 ## [v1.28.0](https://github.com/inspec/inspec-azure/tree/v1.28.0) (2020-09-23)
 
 #### Merged Pull Requests
 - Add Policy Definition and Resource Group Resources [#301](https://github.com/inspec/inspec-azure/pull/301) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.27.1](https://github.com/inspec/inspec-azure/tree/v1.27.1) (2020-09-23)
 
