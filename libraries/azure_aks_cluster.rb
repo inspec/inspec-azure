@@ -23,7 +23,7 @@ class AzureAksCluster < AzureGenericResource
     super(AzureAksCluster)
   end
 
-  def enabled_logging_types
+  def diagnostic_settings
     return unless exists?
     additional_resource_properties(
       {
@@ -31,18 +31,17 @@ class AzureAksCluster < AzureGenericResource
         property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
         api_version: '2017-05-01-preview',
       },
-    ).first.properties.logs.select(&:enabled).map { :category }
+    )  
+  end
+
+  def enabled_logging_types
+    return nil if diagnostic_settings.first.nil?
+    diagnostic_settings.first.properties.logs.select(&:enabled).map(&:category)
   end
 
   def disabled_logging_types
-    return unless exists?
-    additional_resource_properties(
-      {
-        property_name: 'diagnostic_settings',
-        property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
-        api_version: '2017-05-01-preview',
-      },
-    ).first.properties.logs.reject(&:enabled).map { :category }
+    return nil if diagnostic_settings.first.nil?
+    diagnostic_settings.first.properties.logs.reject(&:enabled).map(&:category)
   end
 end
 
