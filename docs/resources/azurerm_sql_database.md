@@ -3,6 +3,8 @@ title: About the azurerm_sql_database Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_sql_database`](azure_sql_database.md) InSpec audit resource.
+
 # azurerm\_sql\_database
 
 Use the `azurerm_sql_database` InSpec audit resource to test properties and configuration of
