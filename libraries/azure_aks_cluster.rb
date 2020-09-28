@@ -31,7 +31,7 @@ class AzureAksCluster < AzureGenericResource
         property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
         api_version: '2017-05-01-preview',
       },
-    )  
+    )
   end
 
   def enabled_logging_types
