@@ -21,12 +21,12 @@ class AzureGenericResource < AzureResourceBase
       validate_generic_resource
       return if failed_resource?
     end
-    if @opts[:display_name].nil?
-      @display_name = @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
+    @display_name = if @opts[:display_name].nil?
+                      @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
                                   :resource_uri).values.join(' ')
-    else
-      @display_name = @opts[:display_name]
-    end
+                    else
+                      @opts[:display_name]
+                    end
 
     resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
 
@@ -44,9 +44,8 @@ class AzureGenericResource < AzureResourceBase
 
     # resource_long_desc should be a Hash object
     # &
-    # All resources must have a name:
-    # https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging
-    unless @resource_long_desc.is_a?(Hash) && @resource_long_desc.key?(:name)
+    # All resources must have a id:
+    unless @resource_long_desc.is_a?(Hash) && @resource_long_desc.key?(:id)
       resource_fail("Unable to get the detailed information for the resource_id: #{@resource_id}")
     end
 
