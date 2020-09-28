@@ -105,6 +105,13 @@ class AzurermSqlServer < AzureSqlServer
   EXAMPLE
 
   def initialize(opts = {})
+    # Ensure backward compatibility unless these properties are provided by the users deliberately.
+    opts[:firewall_rules_api_version] ||= '2014-04-01'
+    opts[:auditing_settings_api_version] ||= '2017-03-01-preview'
+    opts[:threat_detection_settings_api_version] ||= '2017-03-01-preview'
+    opts[:administrators_api_version] ||= '2014-04-01'
+    opts[:encryption_protector_api_version] ||= '2015-05-01-preview'
+
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlServer.name)
     super
   end

@@ -407,19 +407,21 @@ class AzureResourceBase < Inspec.resource(1)
   #
   # @return [String] The resource type, 'Microsoft.Compute/virtualMachines'.
   # @param resource_provider [String] The resource type, 'Microsoft.Compute/virtualMachines'.
-  # @param opts [Hash] Parameters to check if the ':resource_provider' key exists.
-  # If the resource type exists in the opts, this will raise an ArgumentError.
-  # The resource_provider parameter should not be provided by the user in static resources.
-  # Otherwise, static resource would not behave as expected if a different resource type is provided.
+  # @param opts [Hash] Parameters to validate.
+  #
+  # The resource_provider parameter should be the first parameter defined in a static resource by using this method.
+  # This will ensure that the end user won't be able pass blacklisted parameters
+  # which would cause the static resource behave differently than intended.
+  #
+  # All parameters will be validated again before talking to the Azure API.
   #
   def specific_resource_constraint(resource_provider, opts)
     if opts.is_a?(Hash)
-      if opts.key?(:resource_provider)
-        raise ArgumentError, "#{@__resource_name__}: The `resource_provider` parameter is not allowed."\
-          " `#{resource_provider}` is predefined for this resource."
-      elsif opts.keys.any? { |key| %i(allowed_parameters required_parameters).include?(key) }
+      parameter_blacklist = %i(allowed_parameters required_parameters resource_uri resource_provider display_name
+                               tag_name tag_value add_subscription_id resource_type)
+      if opts.keys.any? { |key| parameter_blacklist.include?(key) }
         raise ArgumentError, "#{@__resource_name__}: The following parameters are not allowed: "\
-          '["allowed_parameters", "required_parameters"].'
+          "#{parameter_blacklist}"
       end
     else
       raise ArgumentError, "#{@__resource_name__}: Parameters must be provided in an Hash object."
