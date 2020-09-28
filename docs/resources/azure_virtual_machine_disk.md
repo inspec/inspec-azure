@@ -1,0 +1,117 @@
+---
+title: About the azure_virtual_machine_disk Resource
+platform: azure
+---
+
+# azure_virtual_machine_disk
+
+Use the `azure_virtual_machine_disk` InSpec audit resource to test properties and configuration of an Azure disk.
+
+## Azure REST API version, endpoint and http client parameters
+
+This resource interacts with api versions supported by the resource provider.
+The `api_version` can be defined as a resource parameter.
+If not provided, the latest version will be used.
+For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+
+Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+For more information, refer to the resource pack [README](../../README.md). 
+
+## Availability
+
+### Installation
+
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
+For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+
+## Syntax
+
+`resource_group` and `name` or the `resource_id` must be given as a parameter.
+```ruby
+describe azure_virtual_machine_disk(resource_group: 'inspec-resource-group-9', name: 'example_disk') do
+  it { should exist }
+end
+```
+```ruby
+describe azure_virtual_machine_disk(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}') do
+  it { should exist }
+end
+```
+## Parameters
+
+| Name                                  | Description                                                                       |
+|---------------------------------------|-----------------------------------------------------------------------------------|
+| resource_group                        | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
+| name                                  | Name of the disk to test. `MyDisk`                                                |
+
+Either one of the parameter sets can be provided for a valid query:
+- `resource_id`
+- `resource_group` and `name`
+
+## Properties
+
+| Property          | Description |
+|---------------------------|-------------|
+| encryption_enabled        | Indicates whether the encryption is enabled or not. Note that this will return `nil` unless the encryption status is defined on the resource explicitly. |
+| sku                       | The SKU (pricing tier) of the disk. |
+| managedBy                 | A relative URI containing the ID of the VM that has the disk attached. |
+| properties.diskSizeBytes  | The size of the disk in bytes.  |
+
+For properties applicable to all resources, such as `type`, `name`, `location`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
+
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/compute/disks/get#disk) for other properties available. 
+Any attribute in the response may be accessed with the key names separated by dots (`.`), eg. `properties.<attribute>`.
+
+## Examples
+
+### Test If a Disk is Referenced with a Valid Name
+```ruby
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
+  it { should exist }
+end
+```
+### Test If a Disk is Referenced with an Invalid Name
+```ruby
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'i-dont-exist') do
+  it { should_not exist }
+end
+```    
+### Test the VM that the Disk is Attached
+```ruby
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
+  its('managedBy') { should cmp '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}' }
+end
+```        
+### Test a Disk's Size in Bytes
+```ruby
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
+  its('properties.diskSizeBytes') { should cmp 136367308800 }
+end
+```
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
+### attached
+
+Test if a disk is attached to a virtual machine.
+```ruby
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
+  it { should be_attached }
+end
+```
+
+### exists
+```ruby
+# If we expect a resource to always exist
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
+  it { should exist }
+end
+# If we expect a resource to never exist
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
+  it { should_not exist }
+end
+```
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

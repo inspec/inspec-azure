@@ -19,7 +19,7 @@ control 'azurerm_virtual_machine_disk' do
   end
 
   describe azurerm_virtual_machine_disk(resource_group: resource_group, name: unencrypted_disk_name) do
-    its('encryption_enabled') { should be false }
+    it { should be_attached }
   end
 
   describe azurerm_virtual_machine_disk(resource_group: resource_group, name: unmanaged_disk_name) do

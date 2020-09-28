@@ -142,6 +142,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_subscriptions](docs/resources/azure_subscriptions.md)
 - [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
 - [azure_virtual_machines](docs/resources/azure_virtual_machines.md)
+- [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)
+- [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
 
