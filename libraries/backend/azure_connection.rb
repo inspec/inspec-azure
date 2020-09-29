@@ -98,7 +98,7 @@ class AzureConnection
     headers = {}
     headers['User-Agent'] = INSPEC_USER_AGENT
     headers['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
-    headers['Content-Type'] = 'application/json'
+    headers['Accept'] = 'application/json'
     # For graph api, api_version is embedded into the url
     resp = @connection.get(uri) do |req|
       req.params =  req.params.merge(params) unless params.empty?

@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.30.0 -->
+<!-- latest_release 1.31.0 -->
+## [v1.31.0](https://github.com/inspec/inspec-azure/tree/v1.31.0) (2020-09-29)
+
+#### Merged Pull Requests
+- Add sql_database(s) resources [#308](https://github.com/inspec/inspec-azure/pull/308) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.30.0](https://github.com/inspec/inspec-azure/tree/v1.30.0) (2020-09-29)
 
 #### Merged Pull Requests
 - Adding aks logging [#306](https://github.com/inspec/inspec-azure/pull/306) ([voojoe](https://github.com/voojoe))
-<!-- latest_release -->
 
 ## [v1.29.0](https://github.com/inspec/inspec-azure/tree/v1.29.0) (2020-09-28)
 
