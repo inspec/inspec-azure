@@ -36,12 +36,20 @@ class AzureAksCluster < AzureGenericResource
 
   def enabled_logging_types
     return nil if diagnostic_settings.first.nil?
-    diagnostic_settings.first.properties.logs.select(&:enabled).map(&:category)
+    result = []
+    diagnostic_settings.each do |setting|
+      result += setting.properties.logs.select(&:enabled).map(&:category)
+    end
+    result
   end
 
   def disabled_logging_types
     return nil if diagnostic_settings.first.nil?
-    diagnostic_settings.first.properties.logs.reject(&:enabled).map(&:category)
+    result = []
+    diagnostic_settings.each do |setting|
+      result += setting.properties.logs.reject(&:enabled).map(&:category)
+    end
+    result
   end
 end
 

@@ -84,7 +84,7 @@ end
 ### Test that a Specified AKS Cluster has the Correct Number of Nodes in Pool
 ```ruby
 describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
-  its('properties.agentPoolProfiles.first.count') { should include? 5 }
+  its('properties.agentPoolProfiles.first.count') { should cmp 5 }
 end
 ```
 ### Test that a Specified AKS Cluster has kube-audit logging enabled

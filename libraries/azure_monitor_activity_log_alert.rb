@@ -32,7 +32,7 @@ class AzureMonitorActivityLogAlert < AzureGenericResource
 
   def scopes
     return unless exists?
-    properties&.scopes
+    properties&.scopes&.map { |scope| scope.delete_suffix('/') }
   end
 
   def enabled?
