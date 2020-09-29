@@ -219,7 +219,7 @@ module Helpers
   def self.validate_params_allow(allow, opts)
     raise ArgumentError, 'Arguments or values can not be longer than 256 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 }
     raise ArgumentError, 'Scalar arguments not supported' unless defined?(opts.keys)
-    raise ArgumentError, "Unexpected arguments found. Allowed: #{allow}, Found: #{opts}" unless opts.keys.all? { |a| allow.include?(a) }
+    raise ArgumentError, "Unexpected arguments found: #{opts.keys.uniq - allow.uniq}" unless opts.keys.all? { |a| allow.include?(a) }
     raise ArgumentError, 'Provided parameter should not be empty' unless opts.values.all? do |a|
       return true if a.class == Integer
       return true if [TrueClass, FalseClass].include?(a.class)
