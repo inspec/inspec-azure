@@ -96,7 +96,7 @@ output "data_disks" {
   )
 }
 
-output "unencrypted_disk_name" {
+output "attached_disk_name" {
   value = var.windows_internal_os_disk
 }
 
