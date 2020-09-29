@@ -50,12 +50,15 @@ Either one of the parameter sets can be provided for a valid query:
 
 ## Properties
 
-| Property          | Description |
+| Property                  | Description |
 |---------------------------|-------------|
-| encryption_enabled        | Indicates whether the encryption is enabled or not. Note that this will return `nil` unless the encryption status is defined on the resource explicitly. |
+| encryption_enabled<superscript>*</superscript>        | Indicates whether the `properties.EncryptionSettingsCollection.enabled` is `true` or `false`. Note that this will return `nil` unless the encryption status is defined on the resource explicitly. |
+| rest_encryption_type      | The type of key used to encrypt the data of the disk. |
 | sku                       | The SKU (pricing tier) of the disk. |
 | managedBy                 | A relative URI containing the ID of the VM that has the disk attached. |
 | properties.diskSizeBytes  | The size of the disk in bytes.  |
+
+<superscript>*</superscript> The disk can still be encrypted at rest with a platform key, even though the `encryption_enabled` is `nil`. It is recommended to see [here](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/disk-encryption) for more details on disk encryption.
 
 For properties applicable to all resources, such as `type`, `name`, `location`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
@@ -80,6 +83,12 @@ end
 ```ruby
 describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
   its('managedBy') { should cmp '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}' }
+end
+```   
+### Test the Type of Key Used to Encrypt the Data at Rest
+```ruby
+describe azure_virtual_machine_disk(resource_group: 'my-rg', name: 'os_disk') do
+  its('rest_encryption_type') { should cmp 'EncryptionAtRestWithPlatformKey' }
 end
 ```        
 ### Test a Disk's Size in Bytes

@@ -21,7 +21,13 @@ class AzureVirtualMachineDisk < AzureGenericResource
 
   def encryption_enabled
     return unless exists?
-    properties&.encryptionSettingsCollection&.enabled
+    # In previous api versions `encryptionSettings` is used instead.
+    properties&.encryptionSettingsCollection&.enabled || properties&.encryptionSettings&.enabled
+  end
+
+  def rest_encryption_type
+    return unless exists?
+    properties&.encryption&.type
   end
 
   def attached?
