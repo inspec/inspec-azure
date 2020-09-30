@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.31.0 -->
+<!-- latest_release 1.32.0 -->
+## [v1.32.0](https://github.com/inspec/inspec-azure/tree/v1.32.0) (2020-09-29)
+
+#### Merged Pull Requests
+- Add virtual_disk(s) resources [#309](https://github.com/inspec/inspec-azure/pull/309) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.31.0](https://github.com/inspec/inspec-azure/tree/v1.31.0) (2020-09-29)
 
 #### Merged Pull Requests
 - Add sql_database(s) resources [#308](https://github.com/inspec/inspec-azure/pull/308) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.30.0](https://github.com/inspec/inspec-azure/tree/v1.30.0) (2020-09-29)
 
