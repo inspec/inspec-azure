@@ -18,6 +18,7 @@ class AzureMonitorActivityLogAlert < AzureGenericResource
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+    properties&.scopes&.map { |scope| scope.delete_suffix!('/') }
   end
 
   def conditions
