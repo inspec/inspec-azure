@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.32.0 -->
+<!-- latest_release 1.32.1 -->
+## [v1.32.1](https://github.com/inspec/inspec-azure/tree/v1.32.1) (2020-09-30)
+
+#### Merged Pull Requests
+- Remove trailing space from monitor_log scopes [#310](https://github.com/inspec/inspec-azure/pull/310) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.32.0](https://github.com/inspec/inspec-azure/tree/v1.32.0) (2020-09-29)
 
 #### Merged Pull Requests
 - Add virtual_disk(s) resources [#309](https://github.com/inspec/inspec-azure/pull/309) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.31.0](https://github.com/inspec/inspec-azure/tree/v1.31.0) (2020-09-29)
 
