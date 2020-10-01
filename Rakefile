@@ -52,11 +52,6 @@ end
 namespace :syntax do
   desc 'InSpec syntax check'
   task :inspec do
-    puts '-> Checking The Environment Variables: Assigning placeholders if they are not defined.'
-    ENV['AZURE_SUBSCRIPTION_ID'] = 'placeHolder' unless ENV['AZURE_SUBSCRIPTION_ID']
-    ENV['AZURE_CLIENT_ID'] = 'placeHolder' unless ENV['AZURE_CLIENT_ID']
-    ENV['AZURE_TENANT_ID'] = 'placeHolder' unless ENV['AZURE_TENANT_ID']
-    ENV['AZURE_CLIENT_SECRET'] = 'placeHolder' unless ENV['AZURE_CLIENT_SECRET']
     puts '-> Checking InSpec Control Syntax'
     stdout, status = Open3.capture2("bundle exec inspec vendor #{INTEGRATION_DIR} --overwrite --chef-license accept-silent &&
                                      bundle exec inspec check #{INTEGRATION_DIR}")
@@ -103,23 +98,15 @@ namespace :azure do
   end
 end
 
-# Minitest
-Rake::TestTask.new(:unit) do |t|
-  t.libs << 'test/unit'
-  t.libs << 'libraries'
-  t.verbose = true
-  t.warning = false
-  t.test_files = FileList['test/unit/**/*_test.rb']
-end
-
 namespace :test do
 
-  task :unit do
-    ENV['AZURE_SUBSCRIPTION_ID'] = 'placeHolder' unless ENV['AZURE_SUBSCRIPTION_ID']
-    ENV['AZURE_CLIENT_ID'] = 'placeHolder' unless ENV['AZURE_CLIENT_ID']
-    ENV['AZURE_TENANT_ID'] = 'placeHolder' unless ENV['AZURE_TENANT_ID']
-    ENV['AZURE_CLIENT_SECRET'] = 'placeHolder' unless ENV['AZURE_CLIENT_SECRET']
-    Rake::Task['unit'].execute
+  # Minitest
+  Rake::TestTask.new(:unit) do |t|
+    t.libs << 'test/unit'
+    t.libs << 'libraries'
+    t.verbose = true
+    t.warning = false
+    t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
   task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
