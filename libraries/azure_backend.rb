@@ -46,12 +46,8 @@ class AzureResourceBase < Inspec.resource(1)
     # Fail resource if the http client is not properly set up.
     begin
       @azure = AzureConnection.new(@client_args)
-    rescue HTTPClientError::MissingCredentials => e
-      message = "HTTP Client Error.\n#{e.message}"
-      resource_fail(message)
-      raise HTTPClientError, message
     rescue StandardError => e
-      message = "Resource is failed due to #{e}"
+      message = "HTTP client is failed due to #{e}"
       resource_fail(message)
       raise StandardError, message
     end
