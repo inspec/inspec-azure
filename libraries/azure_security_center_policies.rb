@@ -11,8 +11,7 @@ class AzureSecurityCenterPolicies < AzureGenericResources
 
   attr_reader :table
 
-  def initialize
-    opts = {}
+  def initialize(opts = {})
     opts[:resource_provider] = 'Microsoft.Security/policies'
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
@@ -50,7 +49,7 @@ class AzurermSecurityCenterPolicies < AzureSecurityCenterPolicies
     end
   EXAMPLE
 
-  def initialize
+  def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSecurityCenterPolicies.name)
     super
   end
