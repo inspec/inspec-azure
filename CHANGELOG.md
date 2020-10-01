@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.32.1 -->
+<!-- latest_release 1.32.2 -->
+## [v1.32.2](https://github.com/inspec/inspec-azure/tree/v1.32.2) (2020-10-01)
+
+#### Merged Pull Requests
+- Move credential checks into the AzureConnection#authenticate [#314](https://github.com/inspec/inspec-azure/pull/314) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.32.1](https://github.com/inspec/inspec-azure/tree/v1.32.1) (2020-09-30)
 
 #### Merged Pull Requests
 - Remove trailing space from monitor_log scopes [#310](https://github.com/inspec/inspec-azure/pull/310) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.32.0](https://github.com/inspec/inspec-azure/tree/v1.32.0) (2020-09-29)
 

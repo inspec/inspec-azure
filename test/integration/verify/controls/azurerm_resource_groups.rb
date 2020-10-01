@@ -1,9 +1,13 @@
 resource_group = input('resource_group', value: nil)
 
+# Added to test `inspec check` command
+resource_group_names = azure_resource_groups.names
+
 control 'azurerm_resource_groups' do
   describe azurerm_resource_groups do
-    it                 { should exist }
-    its('names')       { should include(resource_group) }
+    it { should exist }
+    its('names') { should include(resource_group) }
+    its('names.size') { should eq resource_group_names.size }
   end
 
   describe azurerm_resource_groups.where(name: resource_group) do
