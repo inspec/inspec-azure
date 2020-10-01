@@ -5,7 +5,7 @@ platform: azure
 
 # azure_security_center_policies
 
-Use the `azure_security_center_policies` InSpec audit resource to test properties and configuration of multiple Azure Policys.
+Use the `azure_security_center_policies` InSpec audit resource to test properties and configuration of multiple Azure Polices.
 
 ## Azure REST API version, endpoint and http client parameters
 

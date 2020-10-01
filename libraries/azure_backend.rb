@@ -309,11 +309,11 @@ class AzureResourceBase < Inspec.resource(1)
       provider_details = @azure.provider_details[provider.to_sym]
     end
 
-    resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].downcase == resource_type.downcase }&.first
+    resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].upcase == resource_type.upcase }&.first
     # For some resource types the api version might be available with their parent resource.
     if resource_type_details.nil? && resource_type.include?('/')
       parent_resource_type = resource_type.split('/').first
-      resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].downcase == parent_resource_type&.downcase }&.first
+      resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].upcase == parent_resource_type&.upcase }&.first
     end
     if resource_type_details.nil? || !resource_type_details.is_a?(Hash)
       Inspec::Log.warn "#{@__resource_name__}: Couldn't get the #{api_version_status} API version for `#{provider}/#{resource_type}`. " \

@@ -272,7 +272,7 @@ module Helpers
     resource_uri_format = '/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/'\
       'Microsoft.Compute/virtualMachines/{resource_name}'
     raise ArgumentError, "Resource URI should be in the format of #{resource_uri_format}. Found: #{resource_uri}" \
-      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('/providers/')
+      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('providers')
   end
 
   # Disassemble resource_id and extract the resource_group, provider and resource_provider.
