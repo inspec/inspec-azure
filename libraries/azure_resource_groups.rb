@@ -42,7 +42,7 @@ class AzureResourceGroups < AzureGenericResources
   end
 
   def to_s
-    super(AzurePolicyDefinitions)
+    super(AzureResourceGroups)
   end
 
   private
