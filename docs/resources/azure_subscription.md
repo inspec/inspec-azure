@@ -58,8 +58,15 @@ end
 |---------------------------|-------------|
 | name                      | The subscription display name. |
 | id                        | The subscription ID. `2e0b423p-aaaa-bbbb-1111-ee558463aabbd` |
-| locations                 | The list of all available geo-locations. |
+| locations                 | The list of all available geo-location names that have the `metadata.physicalLocation` is set. |
+| all_locations             | The list of all available geo-location names. This includes physical and logical locations. |
+| physical_locations<superscript>*</superscript>        | The list of all available geo-location names that have the `metadata.regionType` is set to `Physical`. |
+| logical_locations         | The list of all available geo-location names that have the `metadata.regionType` is set to `Logical`. |
+| locations_list            | The list of all available geo-location objects in [this](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/listlocations#location) format. |
 | managedByTenants          | An array containing the [tenants](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/get#managedbytenant) managing the subscription. |
+
+<superscript>*</superscript> `physical_locations` might be different than the `locations` property depending on the api version.
+This is because of the change in the Azure API terminology. It is advised to see the [official documentation](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/listlocations) for more info.
 
 For properties applicable to all resources, such as `type`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
