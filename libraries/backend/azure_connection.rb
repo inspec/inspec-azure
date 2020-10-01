@@ -57,12 +57,6 @@ class AzureConnection
       client_secret: ENV['AZURE_CLIENT_SECRET'],
       subscription_id: ENV['AZURE_SUBSCRIPTION_ID'],
     }
-    # Validate the presence of credentials.
-    unless @credentials.values.compact.delete_if(&:empty?).size == 4
-      raise HTTPClientError::MissingCredentials, 'The following must be set in the Environment:'\
-        " #{@credentials.keys}.\n"\
-        "Provided: #{@credentials}"
-    end
 
     @connection ||= Faraday.new do |conn|
       # Implement user provided HTTP client params for handling TimeOut exceptions.
@@ -123,6 +117,12 @@ class AzureConnection
   # https://docs.microsoft.com/en-us/rest/api/azure/
   #
   def authenticate(resource)
+    # Validate the presence of credentials.
+    unless @credentials.values.compact.delete_if(&:empty?).size == 4
+      raise HTTPClientError::MissingCredentials, 'The following must be set in the Environment:'\
+        " #{@credentials.keys}.\n"\
+        "Provided: #{@credentials}"
+    end
     # Build up the url that is required to authenticate with Azure REST API
     auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{@credentials[:tenant_id]}/oauth2/token"
     body = {
