@@ -11,8 +11,7 @@ class AzureSubscriptions < AzureGenericResources
 
   attr_reader :table
 
-  def initialize
-    opts = {}
+  def initialize(opts = {})
     opts[:resource_provider] = specific_resource_constraint('/subscriptions/', opts)
     # See azure_policy_definitions resource for how to use `resource_uri` and `add_subscription_id` parameters.
     opts[:resource_uri] = '/subscriptions/'

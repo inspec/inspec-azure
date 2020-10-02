@@ -136,7 +136,8 @@ class AzureEnvironments
 
     required_supplied_properties = required_properties & options.keys
 
-    if required_supplied_properties.nil? || required_supplied_properties.empty? || (required_supplied_properties & required_properties) != required_properties
+    if required_supplied_properties.nil? || required_supplied_properties.empty? \
+      || (required_supplied_properties & required_properties) != required_properties
       raise ArgumentError, "#{required_properties} are the required properties but provided properties are #{options}"
     end
 
@@ -203,7 +204,7 @@ module Helpers
   # @return [Array] Required parameters
   # @param required [Array]
   def self.validate_params_required(resource_name = nil, required, opts)
-    raise ArgumentError, "#{resource_name}: `#{required}` must be provided" unless opts.is_a?(Hash) && required.all? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
+    raise ArgumentError, "#{resource_name}: `#{required.uniq - opts.keys.uniq}` must be provided" unless opts.is_a?(Hash) && required.all? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
     required
   end
 
@@ -271,7 +272,7 @@ module Helpers
     resource_uri_format = '/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/'\
       'Microsoft.Compute/virtualMachines/{resource_name}'
     raise ArgumentError, "Resource URI should be in the format of #{resource_uri_format}. Found: #{resource_uri}" \
-      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('/providers/')
+      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('providers')
   end
 
   # Disassemble resource_id and extract the resource_group, provider and resource_provider.
@@ -301,7 +302,8 @@ module Helpers
     #   2- provider/parent_resource_type/parent_resource_name/resource_provider/resource_name
     # For the second case, the desired resource_provider is provide/parent_resource_type/resource_provider
     # E.g.
-    #   if resource_id: "/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.Compute/virtualMachines/{vm_name}/extensions/{extension_name}"
+    #   if resource_id: "/subscriptions/{subscription_id}/resourceGroups/{resource_group}/
+    #                   providers/Microsoft.Compute/virtualMachines/{vm_name}/extensions/{extension_name}"
     #   provider => "Microsoft.Compute"
     #   resource_provider => "virtualMachines/extensions"
     resource_type = [interim_array[1], interim_array[3]].compact.join('/')

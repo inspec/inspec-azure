@@ -309,14 +309,14 @@ class AzureResourceBase < Inspec.resource(1)
       provider_details = @azure.provider_details[provider.to_sym]
     end
 
-    resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType] == resource_type }&.first
+    resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].upcase == resource_type.upcase }&.first
     # For some resource types the api version might be available with their parent resource.
     if resource_type_details.nil? && resource_type.include?('/')
       parent_resource_type = resource_type.split('/').first
-      resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType] == parent_resource_type }&.first
+      resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].upcase == parent_resource_type&.upcase }&.first
     end
     if resource_type_details.nil? || !resource_type_details.is_a?(Hash)
-      Inspec::Log.warn "Couldn't get the #{api_version_status} API version for `#{provider}/#{resource_type}`. " \
+      Inspec::Log.warn "#{@__resource_name__}: Couldn't get the #{api_version_status} API version for `#{provider}/#{resource_type}`. " \
       'Please make sure that the provider/resourceType are in the correct format, e.g. `Microsoft.Compute/virtualMachines`.'
     else
       # Caching provider details.
@@ -352,9 +352,10 @@ class AzureResourceBase < Inspec.resource(1)
   #
   # @param resource_list [Array] The list of short descriptions of resources.
   # @param filter [Hash] The parameters used for the query.
-  # @param singular [TrueClass, FalseClass] Define whether or not the expected result is for a singular resource (default - true).
+  # @param singular [TrueClass, FalseClass] Define if the expected result is for a singular resource (default - true).
   def validate_short_desc(resource_list, filter, singular = true)
-    message = "#{@__resource_name__}: #{@display_name}. Unable to get the resource short description with the provided data: #{filter}"
+    message = "#{@__resource_name__}: #{@display_name}."\
+      " Unable to get the resource short description with the provided data: #{filter}"
     if resource_list.nil?
       resource_fail(message)
       false
@@ -369,12 +370,13 @@ class AzureResourceBase < Inspec.resource(1)
     end
   end
 
-  def validate_resource_uri
-    Helpers.validate_params_required(%i(add_subscription_id), @opts)
-    if @opts[:add_subscription_id] == true
-      @opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{@opts[:resource_uri]}"
-                             .gsub('//', '/')
+  def validate_resource_uri(opts = @opts)
+    Helpers.validate_params_required(%i(add_subscription_id), opts)
+    if opts[:add_subscription_id] == true
+      opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{opts[:resource_uri]}"
+                            .gsub('//', '/')
     end
+    opts[:resource_uri]
   end
 
   def validate_resource_provider
