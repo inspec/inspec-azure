@@ -1,5 +1,3 @@
-resource_group = input('resource_group', value: nil)
-
 control 'azurerm_security_center_policy' do
   desc <<-DESC
     This control is asserting state on global settings outside the control of
@@ -37,10 +35,5 @@ control 'azurerm_security_center_policy' do
     its('contact_emails')                  { should_not be_nil }
     its('contact_phone')                   { should_not be_nil }
     its('default_policy')                  { is_expected.to respond_to(:properties) }
-  end
-
-  # only supports looking up the security center policy named 'default'
-  describe azurerm_security_center_policy(name: resource_group) do
-    it { should_not exist }
   end
 end

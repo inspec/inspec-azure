@@ -3,6 +3,8 @@ title: About the azurerm_security_center_policy Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_security_center_policy`](azure_security_center_policy.md) InSpec audit resource.
+
 # azurerm\_security\_center\_policy
 
 Use the `azurerm_security_center_policy` InSpec audit resource to test properties

@@ -132,6 +132,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
+- [azure_security_center_policies](docs/resources/azure_security_center_policies.md)
+- [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
 - [azure_sql_database](docs/resources/azure_sql_database.md)
 - [azure_sql_databases](docs/resources/azure_sql_databases.md)
 - [azure_sql_server](docs/resources/azure_sql_server.md)
