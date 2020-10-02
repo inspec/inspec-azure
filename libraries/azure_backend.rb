@@ -236,7 +236,7 @@ class AzureResourceBase < Inspec.resource(1)
                                 allow: %i(api_version),
                                 opts: opts)
     api_version = opts[:api_version] || 'latest'
-    if opts[:resource_uri].include?('providers')
+    if opts[:resource_uri].scan('providers').size == 1
       # If the resource provider is unknown then this method can't find the api_version.
       # The latest api_version will de acquired from the error message via #rescue_wrong_api_call method.
       _resource_group, provider, r_type = Helpers.res_group_provider_type_from_uri(opts[:resource_uri])
