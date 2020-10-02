@@ -10,8 +10,6 @@ class AzureSubscription < AzureGenericResource
     end
   EXAMPLE
 
-  attr_reader :locations
-
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
@@ -25,12 +23,14 @@ class AzureSubscription < AzureGenericResource
     opts[:resource_uri] = '/subscriptions/'
     opts[:add_subscription_id] = false
     opts[:allowed_parameters] = %i(locations_api_version id)
+    opts[:locations_api_version] ||= 'latest'
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
     return if failed_resource?
-    @locations = collect_locations
+    # Fetch locations before updating the `id`
+    fetch_locations
     # This is for backward compatibility.
     define_singleton_method(:id) { subscriptionId }
   end
@@ -44,13 +44,49 @@ class AzureSubscription < AzureGenericResource
     displayName
   end
 
+  def locations
+    return unless exists?
+    return unless respond_to?(:locations_list)
+    # This is for backward compatibility
+    # Return locations where physicalLocation is defined
+    if locations_list.first.respond_to?(:metadata)
+      locations_list.reject { |location| location.metadata&.physicalLocation.nil? }.map(&:name)
+    else
+      locations_list.map(&:name)
+    end
+  end
+
+  def all_locations
+    return unless exists?
+    return unless respond_to?(:locations_list)
+    locations_list.map(&:name)
+  end
+
+  def physical_locations
+    return unless exists?
+    return unless respond_to?(:locations_list)
+    return unless locations_list.first.respond_to?(:metadata)
+    locations_list.select { |location| location.metadata&.regionType == 'Physical' }.map(&:name)
+  end
+
+  def logical_locations
+    return unless exists?
+    return unless respond_to?(:locations_list)
+    return unless locations_list.first.respond_to?(:metadata)
+    locations_list.select { |location| location.metadata&.regionType == 'Logical' }.map(&:name)
+  end
+
   private
 
-  def collect_locations
+  def fetch_locations
     return unless exists?
-    api_version = @opts[:locations_api_version] || 'latest'
-    api_response = get_resource({ resource_uri: id + '/locations', api_version: api_version })
-    api_response[:value].map { |location| location[:name] }
+    additional_resource_properties(
+      {
+        property_name: 'locations_list',
+        property_endpoint: id + '/locations',
+        api_version: @opts[:locations_api_version],
+      },
+    )
   end
 end
 
