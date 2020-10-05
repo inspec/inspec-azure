@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.33.0 -->
+<!-- latest_release 1.33.1 -->
+## [v1.33.1](https://github.com/inspec/inspec-azure/tree/v1.33.1) (2020-10-05)
+
+#### Merged Pull Requests
+- Add azure_lock(s) resources [#316](https://github.com/inspec/inspec-azure/pull/316) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.33.0](https://github.com/inspec/inspec-azure/tree/v1.33.0) (2020-10-02)
 
 #### Merged Pull Requests
 - Make AzureSubscription#locations fully backward compatible [#315](https://github.com/inspec/inspec-azure/pull/315) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.32.3](https://github.com/inspec/inspec-azure/tree/v1.32.3) (2020-10-02)
 
