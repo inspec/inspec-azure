@@ -8,3 +8,10 @@ control 'azurerm_locks' do
     it { should_not exist }
   end
 end
+
+control 'azure_locks' do
+  vm_id = azure_virtual_machine(resource_group: resource_group, name: resource_name).id
+  describe azure_locks(resource_id: vm_id) do
+    it { should_not exist }
+  end
+end
