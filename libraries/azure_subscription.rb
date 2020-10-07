@@ -94,7 +94,7 @@ class AzureSubscription < AzureGenericResource
       result.push setting.name
     end
     result
-  end 
+  end
 
   def diagnostic_settings_locations
     return nil if diagnostic_settings.first.nil?
@@ -112,7 +112,7 @@ class AzureSubscription < AzureGenericResource
       result.push setting.properties.eventHubName
     end
     result
-  end 
+  end
 
   def diagnostic_settings_enabled_logging_types
     return nil if diagnostic_settings.first.nil?
