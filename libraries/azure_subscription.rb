@@ -109,7 +109,7 @@ class AzureSubscription < AzureGenericResource
     return nil if diagnostic_settings.first.nil?
     result = []
     diagnostic_settings.each do |setting|
-      result.push setting.properties.eventHubName
+      result.push setting.properties&.eventHubName
     end
     result
   end
@@ -118,7 +118,7 @@ class AzureSubscription < AzureGenericResource
     return nil if diagnostic_settings.first.nil?
     result = []
     diagnostic_settings.each do |setting|
-      result += setting.properties.logs.select(&:enabled).map(&:category)
+      result += setting.properties&.logs&.select(&:enabled)&.map(&:category)
     end
     result
   end
@@ -127,7 +127,7 @@ class AzureSubscription < AzureGenericResource
     return nil if diagnostic_settings.first.nil?
     result = []
     diagnostic_settings.each do |setting|
-      result += setting.properties.logs.reject(&:enabled).map(&:category)
+      result += setting.properties&.logs&.reject(&:enabled)&.map(&:category)
     end
     result
   end
