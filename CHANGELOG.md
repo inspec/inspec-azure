@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.33.1 -->
+<!-- latest_release 1.33.2 -->
+## [v1.33.2](https://github.com/inspec/inspec-azure/tree/v1.33.2) (2020-10-08)
+
+#### Merged Pull Requests
+- Adding subscription level check for diagnostic settings [#322](https://github.com/inspec/inspec-azure/pull/322) ([voojoe](https://github.com/voojoe))
+<!-- latest_release -->
+
 ## [v1.33.1](https://github.com/inspec/inspec-azure/tree/v1.33.1) (2020-10-05)
 
 #### Merged Pull Requests
 - Add azure_lock(s) resources [#316](https://github.com/inspec/inspec-azure/pull/316) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.33.0](https://github.com/inspec/inspec-azure/tree/v1.33.0) (2020-10-02)
 

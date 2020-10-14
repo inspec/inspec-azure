@@ -64,6 +64,9 @@ end
 | logical_locations         | The list of all available geo-location names that have the `metadata.regionType` is set to `Logical`. |
 | locations_list            | The list of all available geo-location objects in [this](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/listlocations#location) format. |
 | managedByTenants          | An array containing the [tenants](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/get#managedbytenant) managing the subscription. |
+| diagnostic_settings                  | The diagnostic settings set at a subcription level. |
+| diagnostic_settings_enabled_logging  | The enabled logging types from diagnostic settings set at a subcription level.  |
+| diagnostic_settings_disabled_logging | The disabled logging types from diagnostic settings set at a subcription level. |
 
 <superscript>*</superscript> `physical_locations` might be different than the `locations` property depending on the api version.
 This is because of the change in the Azure API terminology. It is advised to see the [official documentation](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/listlocations) for more info.
@@ -93,6 +96,18 @@ describe azure_subscription do
   its('locations') { should include('eastus') }
 end
 ```    
+### Test Your Subscription`s enabled logging types (via diagnostic settings)
+```ruby
+describe azure_subscription do
+  its('diagnostic_settings_enabled_logging_types') { should include('ResourceHealth') }
+end
+```  
+### Test Your Subscription`s disabled logging types (via diagnostic settings)
+```ruby
+describe azure_subscription do
+  its('diagnostic_settings_disabled_logging_types') { should include('Recommendation') }
+end
+```  
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
