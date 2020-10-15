@@ -36,7 +36,7 @@ class AzureGenericResources < AzureResourceBase
       return
     end
     if @opts.key?(:resource_uri)
-      validate_parameters(required: %i(resource_uri add_subscription_id), allow: %i(api_version))
+      validate_parameters(required: %i(resource_uri add_subscription_id), allow: %i(api_version filter_free_text))
       validate_resource_uri
       collect_resources
       AzureGenericResources.populate_filter_table(:table, table_schema)
@@ -147,7 +147,11 @@ class AzureGenericResources < AzureResourceBase
       end
       query_params = { resource_uri: resource_uri }
     end
-    query_params[:api_version] = @opts[:api_version] if @opts.key?(:api_version)
+    query_params[:query_parameters] = {}
+    unless @opts[:filter_free_text].nil?
+      query_params[:query_parameters]['$filter'] = @opts[:filter_free_text]
+    end
+    query_params[:query_parameters]['api-version'] = @opts[:api_version] || 'latest'
     catch_failed_resource_queries do
       @api_response = get_resource(query_params)
     end
