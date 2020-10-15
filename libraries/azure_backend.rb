@@ -454,7 +454,7 @@ class AzureResourceBase < Inspec.resource(1)
     message = "Unable to get information from the REST API for #{@__resource_name__}: #{@display_name}.\n#{e.message}"
     resource_fail(message)
   rescue StandardError => e
-    message = "Resource is failed due to #{e.backtrace.join(' ')}"
+    message = "Resource is failed due to #{e}. Error backtrace:#{e.backtrace.join(' ')}"
     resource_fail(message)
   end
 
