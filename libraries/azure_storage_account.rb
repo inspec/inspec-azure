@@ -50,10 +50,6 @@ class AzureStorageAccount < AzureGenericResource
     @queue_properties ||= queue(name).queue_properties
   end
 
-  def to_s
-    "#{name} Storage Account"
-  end
-
   private
 
   def to_utc(datetime)
