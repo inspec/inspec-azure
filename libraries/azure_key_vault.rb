@@ -78,6 +78,8 @@ class AzureKeyVault < AzureGenericResource
   #
   def diagnostic_settings
     return unless exists?
+    # `additional_resource_properties` method will create a singleton method with the `property_name`
+    # and make api response available through this property.
     additional_resource_properties(
       {
         property_name: 'diagnostic_settings',

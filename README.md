@@ -357,7 +357,7 @@ See [Connectors](docs/reference/connectors.md) for more information on the diffe
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-### Developing a Static Resources
+### Developing a Static Resource
 
 The easiest way to start is checking the existing static resources. They have detailed information on how to leverage the backend class within their comments.
 
@@ -365,13 +365,15 @@ The common parameters are:
 - `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author via the `specific_resource_constraint` method, and it should be the first parameter defined in the resource. This method includes user-supplied input validation.  
 - `display_name`: A generic one will be created unless defined.
 - `required_parameters`: Define mandatory parameters. The `resource_group` and resource `name` in the singular resources are default mandatory in the base class.
-- `allowed_parameters`: Define optional parameters. The `resource_group` is default optional, but this can be made mandatory in the static resource. 
+- `allowed_parameters`: Define optional parameters. The `resource_group` is default optional in plural resources, but this can be made mandatory in the static resource. 
 - `resource_uri`: Azure REST API URI of a resource. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` to be set to either `true` or `false`. See [azure_policy_definition](libraries/azure_policy_definition.rb) and [azure_policy_definitions](libraries/azure_policy_definitions.rb).
 - `add_subscription_id`: It indicates whether the subscription ID should be included in the `resource_uri` or not.
 
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+
 ### Singular Resources
 
-- In most cases `resource_group` and resource `name` should be required from the users and a single API call would be enough for creating methods on the  resource. See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
+- In most cases `resource_group` and resource `name` should be required from the users and a single API call would be enough for creating methods on the resource. See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
 - If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
 - If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
 - If it is necessary to make an additional API call within a static method, the `create_additional_properties` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
