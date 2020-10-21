@@ -3,6 +3,8 @@ title: About the azurerm_role_definitions Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_role_definitions`](azure_role_definitions.md) InSpec audit resource.
+
 # azurerm\_role\_definitions
 
 Use the `azurerm_role_definitions` InSpec audit resource to test properties of
