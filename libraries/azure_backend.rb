@@ -51,6 +51,13 @@ class AzureResourceBase < Inspec.resource(1)
       resource_fail(message)
       raise StandardError, message
     end
+
+    # We can't raise an error due to `InSpec check` builds up a dummy backend and any error at this stage fails it.
+    unless @azure.credentials.values.compact.delete_if(&:empty?).size == 4
+      Inspec::Log.error 'The following must be set in the Environment:'\
+        " #{@azure.credentials.keys}.\n"\
+        "Missing: #{@azure.credentials.keys.select { |key| @azure.credentials[key].nil? }}"
+    end
   end
 
   private
@@ -447,7 +454,7 @@ class AzureResourceBase < Inspec.resource(1)
     message = "Unable to get information from the REST API for #{@__resource_name__}: #{@display_name}.\n#{e.message}"
     resource_fail(message)
   rescue StandardError => e
-    message = "Resource is failed due to #{e}"
+    message = "Resource is failed due to #{e}. Error backtrace:#{e.backtrace.join(' ')}"
     resource_fail(message)
   end
 
