@@ -34,8 +34,9 @@ class AzureGenericResource < AzureResourceBase
     Helpers.validate_resource_uri(@resource_id)
     # Use the latest api_version unless provided.
     api_version = @opts[:api_version] || 'latest'
+    query_parameters = { 'api-version' => api_version }
     catch_failed_resource_queries do
-      params = { resource_uri: @resource_id, api_version: api_version }
+      params = { resource_uri: @resource_id, query_parameters: query_parameters }
       @resource_long_desc = get_resource(params)
     end
     # If an exception is raised above then the resource is failed.
@@ -89,10 +90,15 @@ class AzureGenericResource < AzureResourceBase
   def additional_resource_properties(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(property_name property_endpoint),
-                                allow: %i(api_version),
+                                allow: %i(api_version filter_free_text),
                                 opts: opts)
-    opts[:api_version] = 'latest' if opts[:api_version].nil?
-    properties = get_resource({ resource_uri: opts[:property_endpoint], api_version: opts[:api_version] })
+    params = { resource_uri: opts[:property_endpoint] }
+    params[:query_parameters] = {}
+    params[:query_parameters]['api-version'] = opts[:api_version] || 'latest'
+    unless opts[:filter_free_text].nil?
+      params[:query_parameters]['$filter'] = opts[:filter_free_text]
+    end
+    properties = get_resource(params)
     properties = properties[:value] if properties.key?(:value)
     create_resource_methods({ opts[:property_name].to_sym => properties })
     public_send(opts[:property_name].to_sym) if respond_to?(opts[:property_name])

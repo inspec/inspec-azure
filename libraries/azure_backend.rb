@@ -240,9 +240,10 @@ class AzureResourceBase < Inspec.resource(1)
   def get_resource(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(resource_uri),
-                                allow: %i(api_version),
+                                allow: %i(query_parameters),
                                 opts: opts)
-    api_version = opts[:api_version] || 'latest'
+    params = opts[:query_parameters] || {}
+    api_version = params['api-version'] || 'latest'
     if opts[:resource_uri].scan('providers').size == 1
       # If the resource provider is unknown then this method can't find the api_version.
       # The latest api_version will de acquired from the error message via #rescue_wrong_api_call method.
@@ -261,7 +262,7 @@ class AzureResourceBase < Inspec.resource(1)
     else
       api_version_info = { api_version: api_version, api_version_status: 'user_provided' }
     end
-    long_description, suggested_api_version = rescue_wrong_api_call(url, { 'api-version' => api_version_info[:api_version] })
+    long_description, suggested_api_version = rescue_wrong_api_call(url, params.merge!({ 'api-version' => api_version_info[:api_version] }))
     if long_description.is_a?(Hash)
       long_description[:api_version_used_for_query] = suggested_api_version || api_version_info[:api_version]
       long_description[:api_version_used_for_query_state] = suggested_api_version.nil? ? api_version_info[:api_version_status] : 'latest'

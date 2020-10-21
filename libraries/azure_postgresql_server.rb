@@ -15,9 +15,13 @@ class AzurePostgreSQLServer < AzureGenericResource
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DBforPostgreSQL/servers', opts)
     opts[:resource_identifiers] = %i(server_name)
+    opts[:allowed_parameters] = %i(configurations_api_version)
+    opts[:configurations_api_version] ||= 'latest'
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+
+    return if failed_resource?
 
     # Convenient access e.g. configurations.{config_name}.properties.value.eql?("on")
     collect_configurations
@@ -39,6 +43,7 @@ class AzurePostgreSQLServer < AzureGenericResource
     resource_uri = id + '/configurations'
     query = {
       resource_uri: resource_uri,
+      query_parameters: { api_version: @opts[:configurations_api_version] },
     }
     confs = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
     create_resource_methods({ configurations: confs })
@@ -57,6 +62,11 @@ class AzurermPostgreSQLServer < AzurePostgreSQLServer
   EXAMPLE
 
   def initialize(opts = {})
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    # This is for backward compatibility
+    opts[:configurations_api_version] ||= '2017-12-01'
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzurePostgreSQLServer.name)
     super
   end

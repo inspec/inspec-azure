@@ -38,8 +38,9 @@ All of them are optional.
 | resource_provider              | Azure resource provider of the resources to be tested.                                                                    | `Microsoft.Compute/virtualMachines` |
 | tag_name<superscript>*</superscript> | Tag name defined on the Azure resources.                                                                            | `name`                              |
 | tag_value                      | Tag value of the tag defined with the `tag_name`.                                                                         | `external_linux`                    |
-| resource_uri                   | Azure REST API URI of the resources to be tested. This parameter should be used when resources do not reside in resource groups. It requires `add_subscription_id` parameter to be provided together. `/providers/Microsoft.Authorization/policyDefinitions/` |
-| add_subscription_id            | Indicates whether the `resource_uri` contains the subscription id. `true` or `false` |
+| resource_uri                   | Azure REST API URI of the resources to be tested. This parameter should be used when resources do not reside in resource groups. It requires `add_subscription_id` parameter to be provided together. | `/providers/Microsoft.Authorization/policyDefinitions/` |
+| add_subscription_id            | Indicates whether the `resource_uri` contains the subscription id. | `true` or `false` |
+| filter_free_text               | Filter expression for the endpoints supporting `$filter` parameter, eg. [Azure role assignments](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-list-rest). This can only be used with the `resource_uri` parameter. | `"atScope()"` | 
 
 <superscript>*</superscript> When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
 
@@ -55,6 +56,7 @@ Either one of the parameter sets can be provided for a valid query:
 - `tag_name`
 - `tag_name` and `tag_value`
 - `add_subscription_id` and `resource_uri`
+- `add_subscription_id`, `resource_uri` and `filter_free_text`
 
 Different parameter combinations can be tried. If it is not supported either the InSpec resource or the Azure Rest API will raise an error.
 
@@ -119,6 +121,12 @@ end
 ### Test Policy Definitions
 ```ruby
 describe azure_generic_resources(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions') do
+  it { should exist }
+end
+```
+### Filter Role Assignments via `filter_free_text`
+```ruby
+describe azure_generic_resources(add_subscription_id: true, resource_uri: "providers/Microsoft.Authorization/roleAssignments", filter_free_text: "atScope()+and+assignedTo('{abcd1234-abcd-1234}')") do
   it { should exist }
 end
 ```
