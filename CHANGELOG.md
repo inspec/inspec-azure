@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.33.3 -->
+<!-- latest_release 1.34.0 -->
+## [v1.34.0](https://github.com/inspec/inspec-azure/tree/v1.34.0) (2020-10-21)
+
+#### Merged Pull Requests
+- Add azure_role_definition(s) resources [#319](https://github.com/inspec/inspec-azure/pull/319) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.33.3](https://github.com/inspec/inspec-azure/tree/v1.33.3) (2020-10-21)
 
 #### Merged Pull Requests
 - Output error backtrace [#318](https://github.com/inspec/inspec-azure/pull/318) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.33.2](https://github.com/inspec/inspec-azure/tree/v1.33.2) (2020-10-08)
 
