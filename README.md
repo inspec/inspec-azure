@@ -8,6 +8,38 @@ For more information on project states and SLAs, see [this documentation](https:
 
 This InSpec resource pack uses the Azure REST API and provides the required resources to write tests for resources in Azure.
 
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+  - [Service Principal](#service-principal)
+  - [Use the Resources](#use-the-resources)
+    - [Create a new profile](#create-a-new-profile)
+- [Resource Documentation](#resource-documentation)
+- [Examples](#examples)
+  - [Filter Resources by Their Names](#interrogate-all-resources-that-have-project_a-in-their-names-within-your-subscription-regardless-of-their-type-and-resource-group)
+  - [Filter Resources by Their Tags](#interrogate-all-resources-that-have-a-tag-defined-with-the-name-project_a-regardless-of-its-value)
+  - [Verify Properties of an Azure Virtual Machine](#verify-properties-of-an-azure-virtual-machine)
+  - [Verify Properties of a Network Security Group](#verify-properties-of-a-network-security-group)
+- [Parameters Applicable To All Resources](#parameters-applicable-to-all-resources)
+  - [`api_version`](#api_version)
+  - [`endpoint`](#endpoint)
+  - [http_client parameters](#http_client-parameters)
+- [Connectors](#connectors)
+- [Development](#development)
+  - [Developing a Static Resource](#developing-a-static-resource)
+    - [Singular Resources](#singular-resources)
+    - [Plural Resources](#plural-resources)
+  - [Setting the Environment Variables](#setting-the-environment-variables)
+  - [Starting an Environment](#starting-an-environment)
+  - [Direnv](#direnv)
+  - [Remote State](#remote-state)
+  - [Rake Commands](#rake-commands)
+  - [Optional Components](#optional-components)
+    - [Network Watcher](#network-watcher)
+    - [Graph API](#graph-api)
+    - [Managed Service Identity](#managed-service-identity)
+    - [Using Optional Components](#using-optional-components)
+
 ## Prerequisites
 
 * Ruby
@@ -156,7 +188,6 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
 
 
-    
 For more details and different use cases, please refer to the specific resource pages.
 
 ## Examples
@@ -357,7 +388,12 @@ See [Connectors](docs/reference/connectors.md) for more information on the diffe
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+
 ### Developing a Static Resource
+
+The static resource is an InSpec Azure resource that is used to interrogate a specific Azure resource, such as, `azure_virtual_machine`, `azure_key_vaults`.
+As opposed to the generic resources, they might have some static properties created by processing the dynamic properties of a resource, such as, `azure_virtual_machine.admin_username`.
 
 The easiest way to start is checking the existing static resources. They have detailed information on how to leverage the backend class within their comments.
 
@@ -365,29 +401,31 @@ The common parameters are:
 - `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author via the `specific_resource_constraint` method, and it should be the first parameter defined in the resource. This method includes user-supplied input validation.  
 - `display_name`: A generic one will be created unless defined.
 - `required_parameters`: Define mandatory parameters. The `resource_group` and resource `name` in the singular resources are default mandatory in the base class.
-- `allowed_parameters`: Define optional parameters. The `resource_group` is default optional in plural resources, but this can be made mandatory in the static resource. 
+- `allowed_parameters`: Define optional parameters. The `resource_group` is optional in plural resources, but this can be made mandatory in the static resource. 
 - `resource_uri`: Azure REST API URI of a resource. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` to be set to either `true` or `false`. See [azure_policy_definition](libraries/azure_policy_definition.rb) and [azure_policy_definitions](libraries/azure_policy_definitions.rb).
 - `add_subscription_id`: It indicates whether the subscription ID should be included in the `resource_uri` or not.
 
-For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+#### Singular Resources
 
-### Singular Resources
+The singular resource is used to test a specific resource of a specific type and should include all of the properties available, such as, `azure_virtual_machine`.
 
 - In most cases `resource_group` and resource `name` should be required from the users and a single API call would be enough for creating methods on the resource. See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
 - If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
 - If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
 - If it is necessary to make an additional API call within a static method, the `create_additional_properties` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
 
-### Plural Resources
+#### Plural Resources
+
+A plural resource is used to test the collection of resources of a specific type, such as, `azure_virtual_machines`. This allows for tests to be written based on the group of resources.
 
 - A standard plural resource does not require a parameter, except optional `resource_group`. See [azure_mysql_servers](libraries/azure_mysql_servers.rb).
 - All plural resources use [FilterTable](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md) to be able to provide filtering within returned resources. The filter criteria must be defined `table_schema` Hash variable.
 - If the properties of the resource are to be manipulated before populating the FilterTable, a `populate_table` method has to be defined. See [azure_virtual_machines](libraries/azure_virtual_machines.rb).
 - If the resources exist in another resource, such as subnets of a virtual network, a `resource_path` has to be created. For that, the identifiers of the parent resource, `resource_group` and virtual network name `vnet`, must be required from the users. See [azure_subnets](libraries/azure_subnets.rb).
 
-The following instructions will help you get your development environment setup to run integration tests.
-
 ### Setting the Environment Variables
+
+The following instructions will help you get your development environment setup to run integration tests.
 
 Copy `.envrc-example` to `.envrc` and fill in the fields with the values from your account.
 
@@ -449,7 +487,7 @@ Do you want to migrate all workspaces to "local"?
 
 Enter yes or press enter.
 
-### Rake commands
+### Rake Commands
 
 Creating a new environment:
 ```
@@ -504,13 +542,11 @@ By default, rake tasks will only use core components. Optional components have a
 #### Network Watcher
 
 Network Watcher may be enabled to run integration tests related to the Network Watcher. We recommend leaving this disabled unless you are specifically working on related resources. You may only have one Network Watcher enabled per an Azure subscription at a time. To enable Network Watcher:
-
 ```
 rake options[network_watcher]
 direnv allow # or source .envrc
 rake tf:apply
 ```
-
 #### Graph API
 
 Graph API support may be enabled to test with `azure_graph` related resources.
@@ -519,25 +555,23 @@ Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/a
 If your account does not have access, leave this disabled.
 
 Note: An Azure Administrator must grant your application these permissions.
-
 ```
 rake options[graph]
 direnv allow # or source .envrc
 rake tf:apply
 ```
-
 #### Managed Service Identity
+
+> <b>WARNING</b> This is not supported by the resources starting with `azure_`.
 
 Managed Service Identity (MSI) is another way to connect to the Azure APIs.
 This option starts an additional virtual machine with MSI enabled and a public ip address. You will need to put a hole in your firewall to connect to the virtual machine. You will also need to grant the `contributor` role to this identity for your subscription.
-
 ```
 rake options[msi]
 direnv allow # or source .envrc
 rake tf:apply
 ```
-
-#### Using optional components
+#### Using Optional Components
 
 Optional Components may be combined when running tasks:
 
@@ -546,9 +580,7 @@ rake options[option_1,option_2,option3]
 direnv allow # or source .envrc
 rake tf:apply
 ```
-
 To disable optional components run `rake options[]` including only the optional components you wish to enable. Any omitted component will be disabled.
-
 ```
 rake options[] # disable all optional components
 rake options[option_1] # enables option_1 disabling all other optional components
