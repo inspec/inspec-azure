@@ -16,9 +16,35 @@ For the Azure Key Vault resource, the inheritance order is:
 - `AzureResourceBase`: Initiate an HTTP client, provide tools for validation and decision making. 
 - `Inspec.resource(1)`: InSpec base class for resources.
 
+## Table of Contents
+
+- [Singular Resource](#singular-resource)
+  - [Singular Resource Initiation Logic](#singular-resource-initiation-logic)
+  - [Singular Resource Creation](#singular-resource-creation)
+  - [Resource Identifier](#resource-identifier)
+  - [Additional Resource Properties](#additional-resource-properties)
+    - [Processing Additional Resource Properties](#processing-additional-resource-properties)
+  - [Allowed Parameters](#allowed-parameters)
+- [Plural Resource](#plural-resource)
+  - [Plural Resource Initiation Logic](#plural-resource-initiation-logic)
+  - [Plural Resource Creation](#plural-resource-creation)
+  - [Manipulating Data in FilterTable](#manipulating-data-in-filtertable)
+- [Resources Living in/on Another Resources](#resources-living-inon-another-resources)
+  - [Required Parameters](#required-parameters)
+  - [Resource Path](#resource-path)
+- [Resources without a Resource Group](#resources-without-a-resource-group)
+  - [Resource URI](#resource-uri)
+- [Common Parameters](#common-parameters)
+  - [Display Name](#display-name)
+- [Update Terraform Outputs](#update-terraform-outputs)
+  - [Apply the Terraform Plan](#apply-the-terraform-plan)
+- [Create Controls](#create-controls)
+- [Create Documentation](#create-documentation)
+- [Create a Pull Request](#create-a-pull-request)
+
 ## Singular Resource
 
-### Resource Initiation Logic:
+### Singular Resource Initiation Logic
 
 Find the Azure REST API documentation for the resource being developed, [Azure key vault](https://docs.microsoft.com/en-us/rest/api/keyvault/vaults/get), and follow the instructions here.
 
@@ -39,7 +65,7 @@ Find the Azure REST API documentation for the resource being developed, [Azure k
 - `resource_provider` has to be defined/created with the help of the `specific_resource_constraint` method for input validation.
 - For parameters applicable to all resources, see the project's [README](../README.md).
 
-### Resource Creation
+### Singular Resource Creation
 
 - Create the library file: All of the InSpec resource extensions are located in the `libraries` directory. Copy a similar resource as a starting point. 
 - Change the name to match the resource you are creating.
@@ -101,7 +127,6 @@ class AzureKeyVault < AzureGenericResource
   end
 end
 ```
-
 ### Resource Identifier
 Even though using the `name` keyword as a resource identifier is advised, a more specific keyword can be defined with the `resource_identifiers` parameter.
 ```ruby
@@ -271,7 +296,7 @@ end
 
 ## Plural Resource
 
-### Resource Initiation Logic:
+### Plural Resource Initiation Logic
 
 Find the Azure REST API documentation for the resource being developed, [Azure key vaults](https://docs.microsoft.com/en-us/rest/api/keyvault/vaults/list), and follow the instructions here.
 
@@ -288,7 +313,7 @@ Find the Azure REST API documentation for the resource being developed, [Azure k
 - `resource_provider` has to be defined/created with the help of `specific_resource_constraint` method for input validation.
 - For parameters applicable to all resources, see project's [README](../README.md).
 
-### Resource Creation
+### Plural Resource Creation
 
 - Create the library file: All of the InSpec resource extensions are located in the `libraries` directory. Copy a similar resource as a starting point. 
 - Change the name to match the resource you are creating.
@@ -601,7 +626,7 @@ opts[:display_name] = "Databases on #{opts[:server_name]} SQL Server"
 ```
 The display name will be: `Azure Sql Databases - api_version: 2020-08-01-preview latest Databases on {serverName} SQL Server`
 
-## Update Terraform outputs
+## Update Terraform Outputs
 
 - Background:
   - The `rake tf:apply` command creates Azure infrastructure based on `terraform/azure.tf`. It then takes the Terraform outputs and creates `.$(whoami)-attributes.yml` with them.
@@ -610,12 +635,13 @@ The display name will be: `Azure Sql Databases - api_version: 2020-08-01-preview
 - Resources may need to be built by adding them to `azure.tf` and/or outputs may need to be added to `outputs.tf`.
 - Ensure Rake command `tf:apply` is run after updating `outputs.tf` so that it updates the attributes file.
 
-### Run `rake tf:apply`
+### Apply the Terraform Plan
 
+- Run `rake tf:apply`
 - Make sure Terraform runs successfully and creates all of the infrastructures.
 - Verify that `/terraform/.$(whoami)-attributes.yml` contains output with property values for the resource being developed.
 
-## Create controls
+## Create Controls
 
 Azure controls are located in `test/integration/verify/controls/`. Copy two of the files (singular and plural) for a similar resource as a starting point. This is where InSpec tests are defined to ensure the resources that are being developed are working correctly.
 Consider the following:
@@ -657,7 +683,7 @@ control 'azure_key_vault' do
 
 end
 ```
-## Create Documentation in `docs/resources`
+## Create Documentation
 
 Once everything is working, documentation must be added for the resources that have been added. Copy similar resource documents in `docs/resources/` and edit them as appropriate. Include enough examples to give a good idea of how the resource works. Make sure to include any special case examples that might exist.
 After writing the documentation:

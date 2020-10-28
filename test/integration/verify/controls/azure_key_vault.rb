@@ -1,7 +1,7 @@
 resource_group = input('resource_group', value: nil)
 vault_name     = input('key_vault_name', value: nil)
 
-control 'azurerm_key_vault' do
+control 'azure_key_vault' do
 
   describe azure_key_vault(resource_group: resource_group, vault_name: vault_name) do
     it          { should exist }
