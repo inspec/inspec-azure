@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.34.1 -->
+<!-- latest_release 1.34.2 -->
+## [v1.34.2](https://github.com/inspec/inspec-azure/tree/v1.34.2) (2020-10-29)
+
+#### Merged Pull Requests
+- Update contribution guide with the usage of new backend [#325](https://github.com/inspec/inspec-azure/pull/325) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.34.1](https://github.com/inspec/inspec-azure/tree/v1.34.1) (2020-10-21)
 
 #### Merged Pull Requests
 - Support &quot;$filter&quot; parameter in plural generic resources [#323](https://github.com/inspec/inspec-azure/pull/323) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.34.0](https://github.com/inspec/inspec-azure/tree/v1.34.0) (2020-10-21)
 
