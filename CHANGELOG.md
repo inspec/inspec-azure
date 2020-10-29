@@ -1,10 +1,25 @@
 # Changelog
-<!-- latest_release 1.33.2 -->
+<!-- latest_release 1.34.1 -->
+## [v1.34.1](https://github.com/inspec/inspec-azure/tree/v1.34.1) (2020-10-21)
+
+#### Merged Pull Requests
+- Support &quot;$filter&quot; parameter in plural generic resources [#323](https://github.com/inspec/inspec-azure/pull/323) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
+## [v1.34.0](https://github.com/inspec/inspec-azure/tree/v1.34.0) (2020-10-21)
+
+#### Merged Pull Requests
+- Add azure_role_definition(s) resources [#319](https://github.com/inspec/inspec-azure/pull/319) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.33.3](https://github.com/inspec/inspec-azure/tree/v1.33.3) (2020-10-21)
+
+#### Merged Pull Requests
+- Output error backtrace [#318](https://github.com/inspec/inspec-azure/pull/318) ([omerdemirok](https://github.com/omerdemirok))
+
 ## [v1.33.2](https://github.com/inspec/inspec-azure/tree/v1.33.2) (2020-10-08)
 
 #### Merged Pull Requests
 - Adding subscription level check for diagnostic settings [#322](https://github.com/inspec/inspec-azure/pull/322) ([voojoe](https://github.com/voojoe))
-<!-- latest_release -->
 
 ## [v1.33.1](https://github.com/inspec/inspec-azure/tree/v1.33.1) (2020-10-05)
 
