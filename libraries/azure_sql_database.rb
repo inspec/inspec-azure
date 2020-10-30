@@ -4,7 +4,7 @@ class AzureSqlDatabase < AzureGenericResource
   name 'azure_sql_database'
   desc 'Verifies settings for an Azure SQL Database'
   example <<-EXAMPLE
-    describe azure_sql_database(resource_group: 'rg-1', server_name: 'sql-server-1' name: 'customer-db') do
+    describe azure_sql_database(resource_group: 'rg-1', server_name: 'sql-server-1', name: 'customer-db') do
       it { should exist }
     end
   EXAMPLE

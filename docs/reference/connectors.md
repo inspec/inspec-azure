@@ -3,8 +3,8 @@
 This resource pack supports the following connection configurations:
 
 * Environment Variables
-* Credentials File
-* Managed Service Identity (MSI) Connector
+* Credentials File (Not supported by the resources starting with `azure_`)
+* Managed Service Identity (MSI) Connector (Not supported by the resources starting with `azure_`)
 
 For any of these connection strategies you'll need a Subscription ID and Tenant
 ID. These values may be found in the Azure Portal. This guide assumes you are
@@ -58,7 +58,9 @@ $env:AZURE_CLIENT_SECRET="<Tenant ID>"
 $env:AZURE_TENANT_ID="<Client Secret>"
 ```
 
-## Credentials File
+## Credentials File 
+
+> <b>WARNING</b> This is not supported by the resources starting with `azure_`.
 
 A credentials file may also be used. The default location is
 `~/.azure/credentials`. You may override the default location by setting the
@@ -107,6 +109,8 @@ $ bundle exec insepc exec . -t azure://
 ```
 
 ## Managed Service Identity Connector
+
+> <b>WARNING</b> This is not supported by the resources starting with `azure_`.
 
 A Managed Service Identity (MSI) connector may be used as well. For more
 information about MSI see
