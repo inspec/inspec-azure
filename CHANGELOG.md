@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.34.2 -->
+<!-- latest_release 1.35.0 -->
+## [v1.35.0](https://github.com/inspec/inspec-azure/tree/v1.35.0) (2020-11-03)
+
+#### Merged Pull Requests
+- Update backend to support accepting headers at resource level [#327](https://github.com/inspec/inspec-azure/pull/327) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.34.2](https://github.com/inspec/inspec-azure/tree/v1.34.2) (2020-10-29)
 
 #### Merged Pull Requests
 - Update contribution guide with the usage of new backend [#325](https://github.com/inspec/inspec-azure/pull/325) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.34.1](https://github.com/inspec/inspec-azure/tree/v1.34.1) (2020-10-21)
 
