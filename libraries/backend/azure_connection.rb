@@ -24,6 +24,9 @@ class AzureConnection
   # @return [String] the graph api endpoint url
   attr_reader :graph_api_endpoint_url
 
+  # @return [String] the endpoint suffix for storage accounts
+  attr_reader :storage_endpoint_suffix
+
   # @return [String] the graph api endpoint api version, e.g. v1.0
   attr_reader :graph_api_endpoint_api_version
 
@@ -49,6 +52,7 @@ class AzureConnection
     @resource_manager_endpoint_url = @client_args[:endpoint].resource_manager_endpoint_url
     @resource_manager_endpoint_api_version = @client_args[:endpoint].resource_manager_endpoint_api_version
     @graph_api_endpoint_url = @client_args[:endpoint].graph_api_endpoint_url
+    @storage_endpoint_suffix = @client_args[:endpoint].storage_endpoint_suffix
     @graph_api_endpoint_api_version = @client_args[:endpoint].graph_api_endpoint_api_version
 
     @credentials = {
@@ -82,18 +86,19 @@ class AzureConnection
   # @return [Hash] The HTTP response body as a JSON object. Properties can be accessed via symbol key names.
   # @param url [String] The url without any parameters or headers.
   # @param params [Hash] The query parameters without the api version.
-  def rest_get_call(url, params = {})
+  def rest_get_call(url, params = {}, headers = {})
     # Update access token if expired.
     uri = URI(url)
     resource = "#{uri.scheme}://#{uri.host}"
+
+    # Authenticate if necessary.
     authenticate(resource) if @@token_data[resource.to_sym].empty?
     authenticate(resource) if Time.now > @@token_data[resource.to_sym][:token_expires_on]
+
     # Create the necessary headers.
-    headers = {}
     headers['User-Agent'] = INSPEC_USER_AGENT
     headers['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
     headers['Accept'] = 'application/json'
-    # For graph api, api_version is embedded into the url
     resp = @connection.get(uri) do |req|
       req.params =  req.params.merge(params) unless params.empty?
       req.headers = headers
@@ -157,7 +162,10 @@ class AzureConnection
     message ||= "Unsuccessful HTTP request to Azure REST API.\n"
     message += "HTTP #{resp.status}.\n"
     body = resp.body
-    unless body.empty?
+    if body.empty?
+      raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, message
+    end
+    if body.class == Hash
       code = body[:code]
       error_message = body[:message]
       error = body[:error]
@@ -166,26 +174,27 @@ class AzureConnection
         error_message ||= error[:message]
       end
       message += code.nil? ? "#{code} #{error_message}" : resp.body.to_s
-    end
-    resource_not_found_codes = %w{Request_ResourceNotFound ResourceGroupNotFound ResourceNotFound NotFound}
-    resource_not_found_keywords = ['could not be found']
-    wrong_api_keywords = ['The supported api-versions are', 'The supported versions are']
-    explicit_invalid_api_code = 'InvalidApiVersionParameter'
-    possible_invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType}
-    code = code.to_s
-    if code
-      if code == explicit_invalid_api_code \
-        || possible_invalid_api_codes.include?(code) && wrong_api_keywords.any? { |word| error_message.include?(word) }
-        raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter, error_message
-      elsif resource_not_found_codes.include?(code) \
-        || resource_not_found_codes.any? { |not_found_code| code.include?(not_found_code) } \
-        && resource_not_found_keywords.any? { |word| error_message.include?(word) }
-        raise UnsuccessfulAPIQuery::ResourceNotFound, error_message
+      resource_not_found_codes = %w{Request_ResourceNotFound ResourceGroupNotFound ResourceNotFound NotFound}
+      resource_not_found_keywords = ['could not be found']
+      wrong_api_keywords = ['The supported api-versions are', 'The supported versions are']
+      explicit_invalid_api_code = 'InvalidApiVersionParameter'
+      possible_invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType}
+      code = code.to_s
+      if code
+        if code == explicit_invalid_api_code \
+      || possible_invalid_api_codes.include?(code) && wrong_api_keywords.any? { |word| error_message.include?(word) }
+          raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter, error_message
+        elsif resource_not_found_codes.include?(code) \
+      || resource_not_found_codes.any? { |not_found_code| code.include?(not_found_code) } \
+      && resource_not_found_keywords.any? { |word| error_message.include?(word) }
+          raise UnsuccessfulAPIQuery::ResourceNotFound, error_message
+        end
       end
+      if resource_not_found_codes.include?(body[:httpStatusCode])
+        raise UnsuccessfulAPIQuery::ResourceNotFound, message
+      end
+    else
+      raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, "#{message} #{body}"
     end
-    if resource_not_found_codes.include?(body[:httpStatusCode])
-      raise UnsuccessfulAPIQuery::ResourceNotFound, message
-    end
-    raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, message
   end
 end
