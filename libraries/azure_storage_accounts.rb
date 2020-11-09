@@ -29,6 +29,7 @@ class AzureStorageAccounts < AzureGenericResources
     # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
     table_schema = [
       { column: :names, field: :name },
+      { column: :ids, field: :id },
       { column: :type, field: :type },
       { column: :location, field: :location },
       { column: :tags, field: :tags },
