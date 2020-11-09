@@ -79,6 +79,7 @@ class AzureEnvironments
     'azure_cloud' => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.active_directory_endpoint_url,
+      storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.storage_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.com',
       graph_api_endpoint_api_version: 'v1.0',
@@ -87,6 +88,7 @@ class AzureEnvironments
     'azure_china_cloud' => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.active_directory_endpoint_url,
+      storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.storage_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://microsoftgraph.chinacloudapi.cn',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -94,6 +96,7 @@ class AzureEnvironments
     'azure_us_government_L4' => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
+      storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.us',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -101,6 +104,7 @@ class AzureEnvironments
     'azure_us_government_L5' => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
+      storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://dod-graph.microsoft.us',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -108,6 +112,7 @@ class AzureEnvironments
     'azure_german_cloud' => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.active_directory_endpoint_url,
+      storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.storage_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.de',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -130,6 +135,9 @@ class AzureEnvironments
 
   # @return [String] the graph api endpoint api version, e.g. v1.0
   attr_reader :graph_api_endpoint_api_version
+
+  # @return [String] the endpoint suffix for storage accounts
+  attr_reader :storage_endpoint_suffix
 
   def initialize(options)
     required_properties = %i(resource_manager_endpoint_url resource_manager_endpoint_api_version)
@@ -337,5 +345,30 @@ module Helpers
   def self.construct_url(input_list)
     raise ArgumentError, "An array has to be provided. Found: #{input_list.class}." unless input_list.is_a?(Array)
     input_list.each_with_object([]) { |input, list| list << input.delete_suffix('/').delete_prefix('/') }.join('/')
+  end
+end
+
+# Inspired from: https://gist.github.com/EdvardM/9639051
+#
+# Applies a given Ruby method on a given Hash keys recursively.
+# E.g.: Convert all keys to snakecase
+#   RecursiveMethodHelper.method_recursive(hash, :snakecase)
+#
+# @param hash [Hash] The hash that the Ruby method will be run on its keys.
+# @param method [Symbol] The Ruby method that will be called on the keys of the given Hash.
+# @return [Hash] The original hash with updates keys recursively with the given Ruby method.
+module RecursiveMethodHelper
+  def self.method_recursive(hash, method)
+    {}.tap do |h|
+      hash.each { |key, value| h[key.public_send(method.to_sym)] = RecursiveMethodHelper.transform(value, method) }
+    end
+  end
+
+  def self.transform(thing, method)
+    case thing
+    when Hash then method_recursive(thing, method)
+    when Array then thing.map { |v| transform(v, method) }
+    else; thing
+    end
   end
 end
