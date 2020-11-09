@@ -5,7 +5,7 @@ platform: azure
 
 # azure_storage_accounts
 
-Use the `azure_storage_accounts` InSpec audit resource to test properties and configuration of Azure Storage Accounts.
+Use the `azure_storage_accounts` InSpec audit resource to test properties and configuration of multiple Azure Storage Accounts.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,23 +26,31 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group` must be given as a parameter.
+An `azure_storage_accounts` resource block returns all Azure storape accounts, either within a Resource Group (if provided), or within an entire Subscription.
 ```ruby
-describe azurerm_storage_accounts(resource_group: 'rg') do
-  its('names') { should include 'mysa'}
+describe azure_storage_accounts do
+  #...
+end
+```
+or
+```ruby
+describe azure_storage_accounts(resource_group: 'my-rg') do
+  #...
 end
 ```
 ## Parameters
 
-| Name                           | Description                                                                          |
-|--------------------------------|--------------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`        |
+- `resource_group` (Optional)
 
 ## Properties
 
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
 |---------------|--------------------------------------------------------------------------------------|-----------------|
+| ids           | A list of the unique resource ids.                                                   | `id`            |
+| locations     | A list of locations for all the resources being interrogated.                        | `location`      |
 | names         | A list of names of all the resources being interrogated.                             | `name`          |
+| type          | A list of types of all the resources being interrogated.                             | `type`          |
+| tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
@@ -54,17 +62,21 @@ describe azurerm_storage_accounts(resource_group: 'rg') do
   its('names') { should include('mysa') }
 end
 ```
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-# If we expect at least one account to exisit in a resource group
-describe azurerm_storage_accounts(resource_group: 'rg') do
+# If we expect at least one account to exist in a resource group
+describe azure_storage_accounts(resource_group: 'rg') do
   it { should exist }
 end
 
 # If we expect no storage accounts to exist in a resource group
-describe azurerm_storage_accounts(resource_group: 'rg') do
+describe azure_storage_accounts(resource_group: 'rg') do
   it { should_not exist }
 end
 
