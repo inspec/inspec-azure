@@ -174,6 +174,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_sql_databases](docs/resources/azure_sql_databases.md)
 - [azure_sql_server](docs/resources/azure_sql_server.md)
 - [azure_sql_servers](docs/resources/azure_sql_servers.md)
+- [azure_storage_account](docs/resources/azure_storage_account.md)
+- [azure_storage_accounts](docs/resources/azure_storage_accounts.md)
 - [azure_storage_account_blob_container](docs/resources/azure_storage_account_blob_container.md)
 - [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md)
 - [azure_subnet](docs/resources/azure_subnet.md)
