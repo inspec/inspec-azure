@@ -33,7 +33,7 @@ describe azure_storage_account(resource_group: 'rg', name: 'sa')  do
 end
 ```
 ```ruby
-describe azure_aks_cluster(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ContainerService/managedClusters/{ClusterName}') do
+describe azure_storage_account(resource_id: '/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}') do
   it { should exist }
 end
 ```
