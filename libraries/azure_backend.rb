@@ -678,6 +678,25 @@ class AzureResourceProbe
     @item.key?(opt.to_sym)
   end
 
+  # Resource prob holds the data in the @item attribute.
+  # Compare the other item with it.
+  def eql?(other)
+    literal = other == @item
+    return literal if literal
+    # If the other item is a Hash and its keys are in String format, convert them to symbol and then compare.
+    if other.class == Hash and @item.class == Hash
+      if other.keys.first.class == String
+        hash_with_sym_keys = RecursiveMethodHelper.method_recursive(other, :to_sym)
+        return hash_with_sym_keys == @item
+      else
+        super
+      end
+    else
+      super
+    end
+    super
+  end
+
   # Prevent undefined method error by returning nil.
   # This will prevent breaking a test when queried a non-existing method.
   # @return [NilClass]
