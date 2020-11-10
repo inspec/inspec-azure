@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.35.0 -->
+<!-- latest_release 1.36.0 -->
+## [v1.36.0](https://github.com/inspec/inspec-azure/tree/v1.36.0) (2020-11-10)
+
+#### Merged Pull Requests
+- rewrite storage account to new generic resource way (WIP) [#324](https://github.com/inspec/inspec-azure/pull/324) ([srb3](https://github.com/srb3))
+<!-- latest_release -->
+
 ## [v1.35.0](https://github.com/inspec/inspec-azure/tree/v1.35.0) (2020-11-03)
 
 #### Merged Pull Requests
 - Update backend to support accepting headers at resource level [#327](https://github.com/inspec/inspec-azure/pull/327) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.34.2](https://github.com/inspec/inspec-azure/tree/v1.34.2) (2020-10-29)
 
