@@ -55,9 +55,9 @@ Either one of the parameter sets can be provided for a valid query:
 |-----------------------|-------------|
 | identity              | The identity of the managed cluster, if configured. It is a [managed cluster identity object](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedclusteridentity). |
 | sku                   | The SKU (pricing tier) of the resource. |
-| diagnostic_settings   | The diagnostic settings for the resource group that the AKS cluster is within |
-| enabled_logging_types | The logging types that are enabled for the AKS cluster |
-| disabled_logging_types| The logging types that are disabled for the AKS cluster |
+| diagnostic_settings   | The diagnostic settings for the resource group that the AKS cluster is within. |
+| enabled_logging_types | The logging types that are enabled for the AKS cluster. |
+| disabled_logging_types| The logging types that are disabled for the AKS cluster. |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 

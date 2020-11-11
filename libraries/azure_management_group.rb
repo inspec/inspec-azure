@@ -18,8 +18,9 @@ class AzureManagementGroup < AzureGenericResource
     opts[:add_subscription_id] = false
     opts[:resource_identifiers] = %i(group_id)
     opts[:allowed_parameters] = %i(expand recurse filter)
+    # For backward compatibility.
     opts[:query_parameters] = {
-      '$recurse' => opts[:recurse] || 'false',
+      '$recurse' => opts[:recurse] || false,
     }
     opts[:query_parameters].merge!('$expand' => opts[:expand]) unless opts[:expand].nil?
     # Note that $expand=children must be passed up if $recurse is set to true.
@@ -60,6 +61,46 @@ class AzureManagementGroup < AzureGenericResource
   def parent
     return unless exists?
     properties&.details&.parent
+  end
+
+  def parent_name
+    return unless exists?
+    properties&.details&.parent&.name
+  end
+
+  def parent_id
+    return unless exists?
+    properties&.details&.parent&.id
+  end
+
+  def parent_display_name
+    return unless exists?
+    properties&.details&.parent&.displayName
+  end
+
+  def children_display_names
+    return unless exists?
+    Array(children).map(&:displayName)
+  end
+
+  def children_ids
+    return unless exists?
+    Array(children).map(&:id)
+  end
+
+  def children_names
+    return unless exists?
+    Array(children).map(&:name)
+  end
+
+  def children_roles
+    return unless exists?
+    Array(children).map(&:roles)
+  end
+
+  def children_types
+    return unless exists?
+    Array(children).map(&:type)
   end
 end
 

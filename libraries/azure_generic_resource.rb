@@ -35,8 +35,8 @@ class AzureGenericResource < AzureResourceBase
     # Use the latest api_version unless provided.
     api_version = @opts[:api_version] || 'latest'
     query_parameters = { 'api-version' => api_version }
-    @opts[:query_parameters]&.each do |k, v|
-      query_parameters.merge!(k, v)
+    @opts[:query_parameters].each do |k, v|
+      query_parameters.merge!({ k => v })
     end
     catch_failed_resource_queries do
       params = { resource_uri: @resource_id, query_parameters: query_parameters }

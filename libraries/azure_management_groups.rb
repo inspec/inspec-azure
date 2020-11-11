@@ -32,7 +32,6 @@ class AzureManagementGroups < AzureGenericResources
     table_schema = [
       { column: :names, field: :name },
       { column: :ids, field: :id },
-      { column: :tags, field: :tags },
       { column: :types, field: :type },
       { column: :properties, field: :properties },
     ]
