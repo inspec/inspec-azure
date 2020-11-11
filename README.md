@@ -152,6 +152,7 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
+- [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
 
 
     

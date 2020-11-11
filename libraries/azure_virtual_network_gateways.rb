@@ -1,10 +1,10 @@
 require 'azure_generic_resources'
 
-class AzureVPNGateways < AzureGenericResources
-  name 'azure_vpn_gateways'
-  desc 'Verifies settings for AKS VPN Gateways'
+class AzureVirtualNetworkGateways < AzureGenericResources
+  name 'azure_virtual_network_gateways'
+  desc 'Verifies settings for Azure Virtual Network Gateways'
   example <<-EXAMPLE
-    azure_vpn_gateways(resource_group: 'example') do
+    azure_virtual_network_gateways(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE
@@ -32,7 +32,7 @@ class AzureVPNGateways < AzureGenericResources
       { column: :ids, field: :id },
       { column: :types, field: :type },
       { column: :locations, field: :location },
-      { column: :tags, field: :tag },
+      { column: :tags, field: :tags },
       { column: :properties, field: :properties },
     ]
 
@@ -41,6 +41,6 @@ class AzureVPNGateways < AzureGenericResources
   end
 
   def to_s
-    super(AzureVPNGateways)
+    super(AzureVirtualNetworkGateways)
   end
 end

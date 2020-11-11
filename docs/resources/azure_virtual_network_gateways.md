@@ -1,11 +1,11 @@
 ---
-title: About the azure_vpn_gateways Resource
+title: About the azure_virtual_network_gateways Resource
 platform: azure
 ---
 
-# azure_vpn_gateways
+# azure_virtual_network_gateways
 
-Use the `azure_vpn_gateways` InSpec audit resource to test properties and configuration of multiple Azure VPN gateways.
+Use the `azure_virtual_network_gateways` InSpec audit resource to test properties and configuration of multiple Azure Virtual Network Gateways.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,15 +26,15 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_vpn_gateways` resource block returns all VPN gateways, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_virtual_network_gateways` resource block returns all VPN gateways, either within a Resource Group (if provided), or within an entire Subscription.
 ```ruby
-describe azure_vpn_gateways do
+describe azure_virtual_network_gateways do
   #...
 end
 ```
 or
 ```ruby
-describe azure_vpn_gateways(resource_group: 'my-rg') do
+describe azure_virtual_network_gateways(resource_group: 'my-rg') do
   #...
 end
 ```
@@ -58,7 +58,7 @@ end
 
 ### Test that an Example Resource Group has the Named VPN gateway
 ```ruby
-describe azure_vpn_gateways(resource_group: 'ExampleGroup') do
+describe azure_virtual_network_gateways(resource_group: 'ExampleGroup') do
   its('names') { should include('ExampleName') }
 end
 ```
@@ -71,12 +71,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
 # If we expect 'ExampleGroup' Resource Group to have VPN Gateways
-describe azure_vpn_gateways(resource_group: 'ExampleGroup') do
+describe azure_virtual_network_gateways(resource_group: 'ExampleGroup') do
   it { should exist }
 end
 
 # If we expect 'EmptyExampleGroup' Resource Group to not have VPN Gateways
-describe azure_vpn_gateways(resource_group: 'EmptyExampleGroup') do
+describe azure_virtual_network_gateways(resource_group: 'EmptyExampleGroup') do
   it { should_not exist }
 end
 ```
