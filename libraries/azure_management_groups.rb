@@ -16,6 +16,8 @@ class AzureManagementGroups < AzureGenericResources
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Management/managementGroups', opts)
+    opts[:resource_uri] = "providers/#{opts[:resource_provider]}"
+    opts[:add_subscription_id] = false
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
