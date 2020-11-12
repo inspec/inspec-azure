@@ -1,10 +1,20 @@
 # Changelog
-<!-- latest_release 1.36.0 -->
+<!-- latest_release 1.37.0 -->
+## [v1.37.0](https://github.com/inspec/inspec-azure/tree/v1.37.0) (2020-11-12)
+
+#### Merged Pull Requests
+- Adding resource and docs for VPN gateways [#331](https://github.com/inspec/inspec-azure/pull/331) ([voojoe](https://github.com/voojoe))
+<!-- latest_release -->
+
+## [v1.36.1](https://github.com/inspec/inspec-azure/tree/v1.36.1) (2020-11-11)
+
+#### Merged Pull Requests
+- Compare the contents of AzureResourceProbe objects with eql? method [#329](https://github.com/inspec/inspec-azure/pull/329) ([omerdemirok](https://github.com/omerdemirok))
+
 ## [v1.36.0](https://github.com/inspec/inspec-azure/tree/v1.36.0) (2020-11-10)
 
 #### Merged Pull Requests
 - rewrite storage account to new generic resource way (WIP) [#324](https://github.com/inspec/inspec-azure/pull/324) ([srb3](https://github.com/srb3))
-<!-- latest_release -->
 
 ## [v1.35.0](https://github.com/inspec/inspec-azure/tree/v1.35.0) (2020-11-03)
 
