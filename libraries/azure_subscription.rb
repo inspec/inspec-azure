@@ -76,6 +76,62 @@ class AzureSubscription < AzureGenericResource
     locations_list.select { |location| location.metadata&.regionType == 'Logical' }.map(&:name)
   end
 
+  def diagnostic_settings
+    return unless exists?
+    additional_resource_properties(
+      {
+        property_name: 'default',
+        property_endpoint: 'subscriptions/' + id + '/providers/microsoft.insights/diagnosticSettings',
+        api_version: '2017-05-01-preview',
+      },
+    )
+  end
+
+  def diagnostic_settings_names
+    return nil if diagnostic_settings.first.nil?
+    result = []
+    diagnostic_settings.each do |setting|
+      result.push setting.name
+    end
+    result
+  end
+
+  def diagnostic_settings_locations
+    return nil if diagnostic_settings.first.nil?
+    result = []
+    diagnostic_settings.each do |setting|
+      result.push setting.location
+    end
+    result
+  end
+
+  def diagnostic_settings_event_hubs
+    return nil if diagnostic_settings.first.nil?
+    result = []
+    diagnostic_settings.each do |setting|
+      result.push setting.properties&.eventHubName
+    end
+    result
+  end
+
+  def diagnostic_settings_enabled_logging_types
+    return nil if diagnostic_settings.first.nil?
+    result = []
+    diagnostic_settings.each do |setting|
+      result += setting.properties&.logs&.select(&:enabled)&.map(&:category)
+    end
+    result
+  end
+
+  def diagnostic_settings_disabled_logging_types
+    return nil if diagnostic_settings.first.nil?
+    result = []
+    diagnostic_settings.each do |setting|
+      result += setting.properties&.logs&.reject(&:enabled)&.map(&:category)
+    end
+    result
+  end
+
   private
 
   def fetch_locations

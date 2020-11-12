@@ -1,10 +1,50 @@
 # Changelog
-<!-- latest_release 1.33.1 -->
+<!-- latest_release 1.36.1 -->
+## [v1.36.1](https://github.com/inspec/inspec-azure/tree/v1.36.1) (2020-11-11)
+
+#### Merged Pull Requests
+- Compare the contents of AzureResourceProbe objects with eql? method [#329](https://github.com/inspec/inspec-azure/pull/329) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
+## [v1.36.0](https://github.com/inspec/inspec-azure/tree/v1.36.0) (2020-11-10)
+
+#### Merged Pull Requests
+- rewrite storage account to new generic resource way (WIP) [#324](https://github.com/inspec/inspec-azure/pull/324) ([srb3](https://github.com/srb3))
+
+## [v1.35.0](https://github.com/inspec/inspec-azure/tree/v1.35.0) (2020-11-03)
+
+#### Merged Pull Requests
+- Update backend to support accepting headers at resource level [#327](https://github.com/inspec/inspec-azure/pull/327) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.34.2](https://github.com/inspec/inspec-azure/tree/v1.34.2) (2020-10-29)
+
+#### Merged Pull Requests
+- Update contribution guide with the usage of new backend [#325](https://github.com/inspec/inspec-azure/pull/325) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.34.1](https://github.com/inspec/inspec-azure/tree/v1.34.1) (2020-10-21)
+
+#### Merged Pull Requests
+- Support &quot;$filter&quot; parameter in plural generic resources [#323](https://github.com/inspec/inspec-azure/pull/323) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.34.0](https://github.com/inspec/inspec-azure/tree/v1.34.0) (2020-10-21)
+
+#### Merged Pull Requests
+- Add azure_role_definition(s) resources [#319](https://github.com/inspec/inspec-azure/pull/319) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.33.3](https://github.com/inspec/inspec-azure/tree/v1.33.3) (2020-10-21)
+
+#### Merged Pull Requests
+- Output error backtrace [#318](https://github.com/inspec/inspec-azure/pull/318) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.33.2](https://github.com/inspec/inspec-azure/tree/v1.33.2) (2020-10-08)
+
+#### Merged Pull Requests
+- Adding subscription level check for diagnostic settings [#322](https://github.com/inspec/inspec-azure/pull/322) ([voojoe](https://github.com/voojoe))
+
 ## [v1.33.1](https://github.com/inspec/inspec-azure/tree/v1.33.1) (2020-10-05)
 
 #### Merged Pull Requests
 - Add azure_lock(s) resources [#316](https://github.com/inspec/inspec-azure/pull/316) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.33.0](https://github.com/inspec/inspec-azure/tree/v1.33.0) (2020-10-02)
 
