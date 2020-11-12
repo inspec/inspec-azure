@@ -43,6 +43,24 @@ class AzureManagementGroups < AzureGenericResources
   def to_s
     super(AzureManagementGroups)
   end
+
+  private
+
+  # This is for backward compatibility.
+  def populate_table
+    return [] if @resources.empty?
+    @resources.each do |resource|
+      resource_instance = AzureResourceProbe.new(resource)
+      dm = AzureResourceDynamicMethods.new
+      dm.create_methods(resource_instance, resource[:properties])
+      @table << {
+        id: resource_instance&.id,
+          name: resource_instance&.name,
+          properties: resource_instance&.properties,
+          type: resource_instance&.type,
+      }
+    end
+  end
 end
 
 # Provide the same functionality under the old resource name.

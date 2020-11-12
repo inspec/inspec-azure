@@ -379,6 +379,7 @@ class AzureResourceBase < Inspec.resource(1)
   end
 
   def validate_resource_uri(opts = @opts)
+    opts[:resource_uri].prepend('/') unless opts[:resource_uri].start_with?('/')
     Helpers.validate_params_required(%i(add_subscription_id), opts)
     if opts[:add_subscription_id] == true
       opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{opts[:resource_uri]}"

@@ -80,26 +80,31 @@ class AzureManagementGroup < AzureGenericResource
 
   def children_display_names
     return unless exists?
+    return [] if children.nil?
     Array(children).map(&:displayName)
   end
 
   def children_ids
     return unless exists?
+    return [] if children.nil?
     Array(children).map(&:id)
   end
 
   def children_names
     return unless exists?
+    return [] if children.nil?
     Array(children).map(&:name)
   end
 
   def children_roles
     return unless exists?
+    return [] if children.nil?
     Array(children).map(&:roles)
   end
 
   def children_types
     return unless exists?
+    return [] if children.nil?
     Array(children).map(&:type)
   end
 end
