@@ -90,7 +90,7 @@ class AzureGenericResource < AzureResourceBase
   def additional_resource_properties(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(property_name property_endpoint),
-                                allow: %i(api_version filter_free_text add_subscription_id),
+                                allow: %i(api_version filter_free_text add_subscription_id http_method req_body),
                                 opts: opts)
     unless opts[:add_subscription_id].nil?
       opts[:property_endpoint] = validate_resource_uri(
@@ -101,6 +101,8 @@ class AzureGenericResource < AzureResourceBase
       )
     end
     params = { resource_uri: opts[:property_endpoint] }
+    params[:http_method] = opts[:http_method] unless opts[:http_method].nil?
+    params[:req_body] = opts[:req_body] unless opts[:req_body].nil?
     params[:query_parameters] = {}
     params[:query_parameters]['api-version'] = opts[:api_version] || 'latest'
     unless opts[:filter_free_text].nil?

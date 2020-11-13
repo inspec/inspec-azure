@@ -92,7 +92,7 @@ class AzureResourceBase < Inspec.resource(1)
     endpoint_url = @azure.graph_api_endpoint_url
     url = [endpoint_url, api_version, resource_trimmed].join('/')
     query_parameters = opts[:query_parameters].nil? ? {} : opts[:query_parameters]
-    @azure.rest_get_call(url, query_parameters)
+    @azure.rest_api_call(url, query_parameters)
   end
 
   # Talk to resource manager endpoint to get the short description of a resource.
@@ -149,9 +149,10 @@ class AzureResourceBase < Inspec.resource(1)
   #
   # @example Result
   #   [{:value => 'blah'}, '2020-01-01']
-  def rescue_wrong_api_call(url, params = {})
+  def rescue_wrong_api_call(url, params = {}, headers = {}, http_method = nil, req_body = nil)
+    http_method ||= 'get'
     begin
-      response = @azure.rest_get_call(url, params)
+      response = @azure.rest_api_call(url, params, headers, http_method, req_body)
     rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
       api_version_suggested = e.suggested_api_version(params['api-version'])
       unless params['api-version'] == 'failed_attempt'
@@ -161,7 +162,7 @@ class AzureResourceBase < Inspec.resource(1)
       if api_version_suggested.nil?
         Inspec::Log.warn 'Failed to acquire suggested api version from the Azure Rest API.'
       else
-        response = @azure.rest_get_call(url, params.merge!({ 'api-version' => api_version_suggested }))
+        response = @azure.rest_api_call(url, params.merge!({ 'api-version' => api_version_suggested }), headers, http_method, req_body)
       end
     end
     [response, api_version_suggested]
@@ -240,9 +241,10 @@ class AzureResourceBase < Inspec.resource(1)
   def get_resource(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(resource_uri),
-                                allow: %i(query_parameters),
+                                allow: %i(query_parameters headers http_method req_body),
                                 opts: opts)
     params = opts[:query_parameters] || {}
+    headers = opts[:headers] || {}
     api_version = params['api-version'] || 'latest'
     if opts[:resource_uri].scan('providers').size == 1
       # If the resource provider is unknown then this method can't find the api_version.
@@ -262,7 +264,7 @@ class AzureResourceBase < Inspec.resource(1)
     else
       api_version_info = { api_version: api_version, api_version_status: 'user_provided' }
     end
-    long_description, suggested_api_version = rescue_wrong_api_call(url, params.merge!({ 'api-version' => api_version_info[:api_version] }))
+    long_description, suggested_api_version = rescue_wrong_api_call(url, params.merge!({ 'api-version' => api_version_info[:api_version] }), headers, opts[:http_method], opts[:req_body])
     if long_description.is_a?(Hash)
       long_description[:api_version_used_for_query] = suggested_api_version || api_version_info[:api_version]
       long_description[:api_version_used_for_query_state] = suggested_api_version.nil? ? api_version_info[:api_version_status] : 'latest'
@@ -307,7 +309,7 @@ class AzureResourceBase < Inspec.resource(1)
       url = Helpers.construct_url([@azure.resource_manager_endpoint_url, 'subscriptions',
                                    @azure.credentials[:subscription_id], 'providers',
                                    provider])
-      provider_details, suggested_api_version = rescue_wrong_api_call(url, { 'api-version' => api_version_mgm })
+      provider_details, suggested_api_version = rescue_wrong_api_call(url, { 'api-version' => api_version_mgm }, {}, 'get')
       # If suggested_api_version is not nil, then the resource manager api version should be updated.
       unless suggested_api_version.nil?
         @resource_manager_endpoint_api = suggested_api_version
@@ -406,7 +408,7 @@ class AzureResourceBase < Inspec.resource(1)
   # @return [Hash] The HTTP response body in JSON/Hash format with symbolized keys.
   #
   def get_next_link(next_link)
-    @azure.rest_get_call(next_link)
+    @azure.rest_api_call(next_link)
   end
 
   # Enforce specific resource type constraint in static resources, e.g: 'azure_virtual_machine'.

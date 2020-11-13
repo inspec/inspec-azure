@@ -82,7 +82,7 @@ class AzureGraphGenericResources < AzureResourceBase
     next_link = @resource[:"@odata.nextLink"]
     unless next_link.nil?
       loop do
-        api_response = @azure.rest_get_call(next_link)
+        api_response = @azure.rest_api_call(next_link)
         @resources += api_response[:value]
         return if failed_resource?
         next_link = api_response[:"@odata.nextLink"]
