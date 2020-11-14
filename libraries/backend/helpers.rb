@@ -339,7 +339,7 @@ module Helpers
   def self.resource_deprecation_message(old_resource_name, new_resource_class)
     "DEPRECATION: `#{old_resource_name}` uses the new resource `#{new_resource_class}` under the hood. "\
   "#{old_resource_name} will be deprecated soon and it is advised to switch to the fully backward compatible new resource. "\
-  'Please see the documentation for the additional features available.'
+  'Please see the documentation for the additional features available.'.dup
   end
 
   def self.construct_url(input_list)
