@@ -60,6 +60,18 @@ class AzureWebapp < AzureGenericResource
     identity.count > 1
   end
 
+  def supported_stacks
+    return unless exists?
+    additional_resource_properties(
+      {
+        property_name: 'supported_stacks',
+        property_endpoint: 'providers/Microsoft.Web/availableStacks',
+        add_subscription_id: true,
+        api_version: @opts[:supported_stacks_api_version],
+      },
+    )
+  end
+
   # Determines if the Webapp is using the given stack, and if the version
   # of that stack is the latest runtime supported by Azure.
   def using_latest?(stack)
@@ -69,6 +81,8 @@ class AzureWebapp < AzureGenericResource
     using[0] = '' if using[0].casecmp?('v')
     using.to_i >= latest.to_i
   end
+
+  private
 
   # Returns the version of the given stack being used by the Webapp.
   # nil if stack not used. raises if stack invalid.
@@ -90,20 +104,6 @@ class AzureWebapp < AzureGenericResource
     latest_supported[0] = '' if latest_supported[0].casecmp?('v')
     latest_supported
   end
-
-  private
-
-  def supported_stacks
-    return unless exists?
-    additional_resource_properties(
-      {
-        property_name: 'supported_stacks',
-          property_endpoint: 'providers/Microsoft.Web/availableStacks',
-          add_subscription_id: true,
-          api_version: @opts[:supported_stacks_api_version],
-      },
-    )
-  end
 end
 
 # Provide the same functionality under the old resource name.
@@ -119,6 +119,11 @@ class AzurermWebapp < AzureWebapp
 
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureWebapp.name)
+    # For backward compatibility.
+    opts[:api_version] ||= '2016-08-01'
+    opts[:auth_settings_api_version] ||= '2016-08-01'
+    opts[:configuration_api_version] ||= '2016-08-01'
+    opts[:supported_stacks_api_version] ||= '2018-02-01'
     super
   end
 end
