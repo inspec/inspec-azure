@@ -12,7 +12,7 @@ control 'azurerm_management_groups' do
     its('names')         { should include parent_mg }
     its('names')         { should include child1_mg }
     its('names')         { should include child2_mg }
-    its('types')         { should include '/providers/Microsoft.Management/managementGroups' }
+    its('types')         { should include 'Microsoft.Management/managementGroups' }
   end
 
   describe azurerm_management_groups.where(name: 'mg_parent').entries.first do

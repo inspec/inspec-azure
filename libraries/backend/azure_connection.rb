@@ -193,8 +193,9 @@ class AzureConnection
       if resource_not_found_codes.include?(body[:httpStatusCode])
         raise UnsuccessfulAPIQuery::ResourceNotFound, message
       end
-    else
       raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, "#{message} #{body}"
+    else
+      raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, message
     end
   end
 end
