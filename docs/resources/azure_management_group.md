@@ -45,7 +45,7 @@ end
 | group_id     | Alias for the `name` parameter. |
 | resource_id  | The unique resource ID. `/providers/Microsoft.Management/managementGroups/{groupId}` |
 | expand       | Optional. The `expand: 'children'` includes children in the response. `expand: 'path'` includes the path from the root group to the current group. |
-| recurse      | Optional. The `recurse: true` includes the entire hierarchy in the response. Note that `expand: 'children'` must be passed up if `recurse` is set to `true`. |
+| recurse      | Optional. The `recurse: true` includes the entire hierarchy in the response. Note that `expand: 'children'` will be set if `recurse` is set to `true`. |
 | filter       | Optional. A filter which allows the exclusion of subscriptions from results (i.e. `filter: 'children.childType ne Subscription'`) |
 
 Either one of the parameter sets can be provided for a valid query along with the optional parameters:
