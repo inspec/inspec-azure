@@ -381,6 +381,7 @@ class AzureResourceBase < Inspec.resource(1)
   end
 
   def validate_resource_uri(opts = @opts)
+    opts[:resource_uri].prepend('/') unless opts[:resource_uri].start_with?('/')
     Helpers.validate_params_required(%i(add_subscription_id), opts)
     if opts[:add_subscription_id] == true
       opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{opts[:resource_uri]}"
@@ -426,7 +427,7 @@ class AzureResourceBase < Inspec.resource(1)
   def specific_resource_constraint(resource_provider, opts)
     if opts.is_a?(Hash)
       parameter_blacklist = %i(allowed_parameters required_parameters resource_uri resource_provider display_name
-                               tag_name tag_value add_subscription_id resource_type)
+                               tag_name tag_value add_subscription_id resource_type query_parameters)
       if opts.keys.any? { |key| parameter_blacklist.include?(key) }
         raise ArgumentError, "#{@__resource_name__}: The following parameters are not allowed: "\
           "#{parameter_blacklist}"

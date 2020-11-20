@@ -143,6 +143,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_load_balancers](docs/resources/azure_load_balancers.md)
 - [azure_lock](docs/resources/azure_lock.md)
 - [azure_locks](docs/resources/azure_locks.md)
+- [azure_management_group](docs/resources/azure_management_group.md)
+- [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)

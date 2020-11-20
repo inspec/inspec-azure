@@ -3,6 +3,8 @@ title: About the azurerm_management_group Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_management_group`](azure_management_group.md) InSpec audit resource.
+
 # azurerm\_management\_group
 
 Use the `azurerm_management_group` InSpec audit resource to test properties related to a

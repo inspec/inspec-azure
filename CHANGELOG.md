@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.37.0 -->
+<!-- latest_release 1.38.0 -->
+## [v1.38.0](https://github.com/inspec/inspec-azure/tree/v1.38.0) (2020-11-17)
+
+#### Merged Pull Requests
+- Add management_group resources [#332](https://github.com/inspec/inspec-azure/pull/332) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.37.0](https://github.com/inspec/inspec-azure/tree/v1.37.0) (2020-11-12)
 
 #### Merged Pull Requests
 - Adding resource and docs for VPN gateways [#331](https://github.com/inspec/inspec-azure/pull/331) ([voojoe](https://github.com/voojoe))
-<!-- latest_release -->
 
 ## [v1.36.1](https://github.com/inspec/inspec-azure/tree/v1.36.1) (2020-11-11)
 
