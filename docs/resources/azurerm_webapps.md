@@ -3,6 +3,8 @@ title: About the azurerm_webapps Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_webapps`](azure_webapps.md) InSpec audit resource.
+
 # azurerm\_webapps
 
 Use the `azurerm_webapps` InSpec audit resource to enumerate Webapps.

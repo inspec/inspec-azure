@@ -191,6 +191,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
+- [azure_webapp](docs/resources/azure_webapp.md)
+- [azure_webapps](docs/resources/azure_webapps.md)
 
 
 For more details and different use cases, please refer to the specific resource pages.

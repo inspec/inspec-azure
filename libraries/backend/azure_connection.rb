@@ -78,6 +78,16 @@ class AzureConnection
     @@provider_details
   end
 
+  def prepare_connection(method, uri)
+    if method == 'get'
+      @connection.get(uri)
+    elsif method == 'post'
+      @connection.post(uri)
+    else
+      raise StandardError, "This method is not supported: #{method}"
+    end
+  end
+
   # Make a HTTP GET request to Azure Rest API.
   #
   # Azure Rest API requires access token for every query.
@@ -86,7 +96,7 @@ class AzureConnection
   # @return [Hash] The HTTP response body as a JSON object. Properties can be accessed via symbol key names.
   # @param url [String] The url without any parameters or headers.
   # @param params [Hash] The query parameters without the api version.
-  def rest_get_call(url, params = {}, headers = {})
+  def rest_api_call(url, params = {}, headers = {}, method = 'get', req_body = nil)
     # Update access token if expired.
     uri = URI(url)
     resource = "#{uri.scheme}://#{uri.host}"
@@ -99,10 +109,21 @@ class AzureConnection
     headers['User-Agent'] = INSPEC_USER_AGENT
     headers['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
     headers['Accept'] = 'application/json'
-    resp = @connection.get(uri) do |req|
-      req.params =  req.params.merge(params) unless params.empty?
-      req.headers = headers
+    if method == 'get'
+      resp = @connection.get(uri) do |req|
+        req.params =  req.params.merge(params) unless params.empty?
+        req.headers = headers
+      end
+    elsif method == 'post'
+      resp = @connection.post(uri) do |req|
+        req.params =  req.params.merge(params) unless params.empty?
+        req.headers = headers
+        req.body = req_body unless req_body.nil?
+      end
+    else
+      raise StandardError, "This method is not supported: #{method}"
     end
+
     if resp.status == 200
       resp.body
     else
