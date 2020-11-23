@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.38.0 -->
+<!-- latest_release 1.39.0 -->
+## [v1.39.0](https://github.com/inspec/inspec-azure/tree/v1.39.0) (2020-11-23)
+
+#### Merged Pull Requests
+- Add azure_webapp(s) resources [#335](https://github.com/inspec/inspec-azure/pull/335) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.38.0](https://github.com/inspec/inspec-azure/tree/v1.38.0) (2020-11-17)
 
 #### Merged Pull Requests
 - Add management_group resources [#332](https://github.com/inspec/inspec-azure/pull/332) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.37.0](https://github.com/inspec/inspec-azure/tree/v1.37.0) (2020-11-12)
 
