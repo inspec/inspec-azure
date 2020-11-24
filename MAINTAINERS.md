@@ -15,13 +15,12 @@ project lead.
 
   Handles the [InSpec Azure Resource Pack](https://github.com/inspec/inspec-azure) toolset.
 
-To mention the team, use @chef/dca-team
-
-### Lieutenant
-
- * [Stuart Paterson](https://github.com/skpaterson)
-
 ### Maintainers
+
+ * [Omer Demirock](https://github.com/omerdemirok)
+ * [Stephen Brown](https://github.com/srb3)
+
+### Project Alumni
 
  * [Ruairi Fennell](https://github.com/r-fennell)
  * [Davy MacAleer](https://github.com/davymcaleer)
