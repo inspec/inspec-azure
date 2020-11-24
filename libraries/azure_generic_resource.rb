@@ -35,6 +35,9 @@ class AzureGenericResource < AzureResourceBase
     # Use the latest api_version unless provided.
     api_version = @opts[:api_version] || 'latest'
     query_parameters = { 'api-version' => api_version }
+    @opts[:query_parameters]&.each do |k, v|
+      query_parameters.merge!({ k => v })
+    end
     catch_failed_resource_queries do
       params = { resource_uri: @resource_id, query_parameters: query_parameters }
       @resource_long_desc = get_resource(params)
@@ -90,7 +93,7 @@ class AzureGenericResource < AzureResourceBase
   def additional_resource_properties(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(property_name property_endpoint),
-                                allow: %i(api_version filter_free_text add_subscription_id),
+                                allow: %i(api_version filter_free_text add_subscription_id http_method req_body),
                                 opts: opts)
     unless opts[:add_subscription_id].nil?
       opts[:property_endpoint] = validate_resource_uri(
@@ -101,6 +104,8 @@ class AzureGenericResource < AzureResourceBase
       )
     end
     params = { resource_uri: opts[:property_endpoint] }
+    params[:http_method] = opts[:http_method] unless opts[:http_method].nil?
+    params[:req_body] = opts[:req_body] unless opts[:req_body].nil?
     params[:query_parameters] = {}
     params[:query_parameters]['api-version'] = opts[:api_version] || 'latest'
     unless opts[:filter_free_text].nil?
@@ -117,7 +122,8 @@ class AzureGenericResource < AzureResourceBase
   def validate_static_resource
     required_parameters = %i(resource_group resource_provider name)
     required_parameters += @opts[:required_parameters] if @opts.key?(:required_parameters)
-    allowed_parameters = %i(resource_path resource_identifiers resource_id resource_uri add_subscription_id)
+    allowed_parameters = %i(resource_path resource_identifiers resource_id resource_uri add_subscription_id
+                            query_parameters)
     allowed_parameters += @opts[:allowed_parameters] if @opts.key?(:allowed_parameters)
 
     if @opts.key?(:resource_id)
