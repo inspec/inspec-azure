@@ -39,7 +39,7 @@ class AzureWebapp < AzureGenericResource
         property_name: 'auth_settings',
         property_endpoint: id + '/config/authsettings/list',
         api_version: @opts[:auth_settings_api_version],
-        http_method: 'post',
+        method: 'post',
       },
     )
   end

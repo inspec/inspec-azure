@@ -176,7 +176,7 @@ end
   - The `{resourceUri}` is the `id` property of the Azure key vault resource. So, the `property_endpoint` can be defined as `id + '/providers/microsoft.insights/diagnosticSettings'`
 - `api_version`: This is optional. If not provided, the latest version will be used.
   - It can be left to the user preference via `@opts[:diagnostic_settings_api_version]`. To be able to do that `diagnostic_settings_api_version` has to be identified as an allowed parameter in the `initialize` method, and it must have a default value. See [here](#allowed-parameters).
-- `http_method`: This is optional. If not provided, HTTP GET method will be used by the http client. The supported methods are `get` and `post`.
+- `method`: This is optional. If not provided, HTTP GET method will be used by the http client. The supported methods are `get` and `post`.
 - `req_body`: The request body for the HTTP POST requests.
 
 #### Processing Additional Resource Properties

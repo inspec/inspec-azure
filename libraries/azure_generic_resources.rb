@@ -1,5 +1,9 @@
 require 'azure_backend'
 
+# The backend class for the plural static resources.
+#
+# @author omerdemirok
+#
 class AzureGenericResources < AzureResourceBase
   name 'azure_generic_resources'
   desc 'Inspec Resource to interrogate any resource type in bulk available through Azure resource manager.'
@@ -30,9 +34,10 @@ class AzureGenericResources < AzureResourceBase
       { column: :provisioning_states, field: :provisioningState },
     ]
     if static_resource
-      validate_static_resource
       # Ensure that the provided resource uri is for the correct resource provider.
       validate_resource_provider
+      validate_static_resource
+      collect_resources
       return
     end
     if @opts.key?(:resource_uri)
@@ -151,7 +156,11 @@ class AzureGenericResources < AzureResourceBase
     unless @opts[:filter_free_text].nil?
       query_params[:query_parameters]['$filter'] = @opts[:filter_free_text]
     end
+    # Use the latest api_version unless provided.
     query_params[:query_parameters]['api-version'] = @opts[:api_version] || 'latest'
+    %i(is_uri_a_url headers method req_body audience).each do |param|
+      query_params[param] = @opts[param] unless @opts[param].nil?
+    end
     catch_failed_resource_queries do
       @api_response = get_resource(query_params)
     end
@@ -207,6 +216,5 @@ class AzureGenericResources < AzureResourceBase
     if @opts.key?(:resource_uri)
       validate_resource_uri
     end
-    collect_resources
   end
 end

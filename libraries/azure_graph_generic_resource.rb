@@ -1,5 +1,9 @@
 require 'azure_backend'
 
+# The backend class for the singular static resources from the GRAPH API.
+#
+# @author omerdemirok
+#
 class AzureGraphGenericResource < AzureResourceBase
   name 'azure_graph_generic_resource'
   desc 'Inspec Resource to interrogate any resource type available through Azure Graph API'

@@ -57,11 +57,11 @@ class AzureStorageAccount < AzureGenericResource
   def queues
     return unless exists?
     url = "https://#{name}.queue#{@azure.storage_endpoint_suffix}"
-    param = { comp: 'list' }
+    params = { comp: 'list' }
     # Calls to Azure Storage resources requires a special header `x-ms-version`
     # https://docs.microsoft.com/en-us/rest/api/storageservices/versioning-for-the-azure-storage-services
     headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
-    body = @azure.rest_api_call(url, param, headers)
+    body = @azure.rest_api_call(url: url, params: params, headers: headers)
     return unless body
     body_hash = Hash.from_xml(body)
     hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)
@@ -74,10 +74,10 @@ class AzureStorageAccount < AzureGenericResource
   def queue_properties
     return unless exists?
     url = "https://#{name}.queue#{@azure.storage_endpoint_suffix}"
-    param = { restype: 'service', comp: 'properties' }
+    params = { restype: 'service', comp: 'properties' }
     # @see #queues for the header `x-ms-version`
     headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
-    body = @azure.rest_api_call(url, param, headers)
+    body = @azure.rest_api_call(url: url, params: params, headers: headers)
     return unless body
     body_hash = Hash.from_xml(body)
     hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)

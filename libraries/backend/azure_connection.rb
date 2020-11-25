@@ -8,6 +8,9 @@ require 'backend/helpers'
 #   - read environment variables and gather necessary information for authentication.
 #   - authenticate with Azure Rest API and gets an access token.
 #   - make the access token available to use.
+#
+# @author omerdemirok
+#
 class AzureConnection
   @@token_data = HashRecursive.recursive
   @@provider_details = {}
@@ -26,6 +29,9 @@ class AzureConnection
 
   # @return [String] the endpoint suffix for storage accounts
   attr_reader :storage_endpoint_suffix
+
+  # @return [String] the endpoint dns suffix for key vaults
+  attr_reader :key_vault_dns_suffix
 
   # @return [String] the graph api endpoint api version, e.g. v1.0
   attr_reader :graph_api_endpoint_api_version
@@ -53,6 +59,7 @@ class AzureConnection
     @resource_manager_endpoint_api_version = @client_args[:endpoint].resource_manager_endpoint_api_version
     @graph_api_endpoint_url = @client_args[:endpoint].graph_api_endpoint_url
     @storage_endpoint_suffix = @client_args[:endpoint].storage_endpoint_suffix
+    @key_vault_dns_suffix = @client_args[:endpoint].key_vault_dns_suffix
     @graph_api_endpoint_api_version = @client_args[:endpoint].graph_api_endpoint_api_version
 
     @credentials = {
@@ -78,50 +85,58 @@ class AzureConnection
     @@provider_details
   end
 
-  def prepare_connection(method, uri)
-    if method == 'get'
-      @connection.get(uri)
-    elsif method == 'post'
-      @connection.post(uri)
-    else
-      raise StandardError, "This method is not supported: #{method}"
-    end
-  end
-
   # Make a HTTP GET request to Azure Rest API.
   #
   # Azure Rest API requires access token for every query.
   # If a token data exist for a resource it will be used, if not, new one will be created by #authenticate.
   #
-  # @return [Hash] The HTTP response body as a JSON object. Properties can be accessed via symbol key names.
-  # @param url [String] The url without any parameters or headers.
-  # @param params [Hash] The query parameters without the api version.
-  def rest_api_call(url, params = {}, headers = {}, method = 'get', req_body = nil)
-    # Update access token if expired.
-    uri = URI(url)
-    resource = "#{uri.scheme}://#{uri.host}"
+  # @return [Hash] The HTTP response body as a JSON/XML object.
+  # Properties can be accessed via symbol key names if it is JSON.
+  # @param opts [Hash] Some required and optional arguments for an HTTP request.
+  #   url: The URL. Required.
+  #   params: The HTTP request parameters. Optional.
+  #   headers: The HTTP headers. Optional.
+  #   method: The HTTP method. Optional, default is GET.
+  #   req_body: Optional. The request body if it is a POST request.
+  #   audience: The audience for the authentication. Optional, it will be extracted frm the URL unless provided.
+  #
+  def rest_api_call(opts)
+    Helpers.validate_parameters(resource_name: @__resource_name__,
+                                required: %i(url),
+                                allow: %i(params headers method req_body audience),
+                                opts: opts, skip_length: true)
+    uri = URI(opts[:url])
+    # If the authentication audience is provided, use it.
+    if opts[:audience]
+      resource = opts[:audience]
+    else
+      resource = "#{uri.scheme}://#{uri.host}"
+    end
 
     # Authenticate if necessary.
     authenticate(resource) if @@token_data[resource.to_sym].empty?
+    # Update access token if expired.
     authenticate(resource) if Time.now > @@token_data[resource.to_sym][:token_expires_on]
 
     # Create the necessary headers.
-    headers['User-Agent'] = INSPEC_USER_AGENT
-    headers['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
-    headers['Accept'] = 'application/json'
-    if method == 'get'
+    opts[:headers] ||= {}
+    opts[:headers]['User-Agent'] = INSPEC_USER_AGENT
+    opts[:headers]['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
+    opts[:headers]['Accept'] = 'application/json'
+    opts[:method] ||= 'get'
+    if opts[:method] == 'get'
       resp = @connection.get(uri) do |req|
-        req.params =  req.params.merge(params) unless params.empty?
-        req.headers = headers
+        req.params =  req.params.merge(opts[:params]) unless opts[:params].empty?
+        req.headers = opts[:headers]
       end
-    elsif method == 'post'
+    elsif opts[:method] == 'post'
       resp = @connection.post(uri) do |req|
-        req.params =  req.params.merge(params) unless params.empty?
-        req.headers = headers
-        req.body = req_body unless req_body.nil?
+        req.params =  req.params.merge(opts[:params]) unless opts[:params].empty?
+        req.headers = opts[:headers]
+        req.body = opts[:req_body] unless opts[:req_body].nil?
       end
     else
-      raise StandardError, "This method is not supported: #{method}"
+      raise StandardError, "This method is not supported: #{opts[:method]}"
     end
 
     if resp.status == 200
