@@ -136,7 +136,7 @@ class AzureGenericResource < AzureResourceBase
     required_parameters = %i(resource_group resource_provider name)
     required_parameters += @opts[:required_parameters] if @opts.key?(:required_parameters)
     allowed_parameters = %i(resource_path resource_identifiers resource_id resource_uri add_subscription_id
-                            query_parameters)
+                            query_parameters is_uri_a_url audience)
     allowed_parameters += @opts[:allowed_parameters] if @opts.key?(:allowed_parameters)
 
     if @opts.key?(:resource_id)

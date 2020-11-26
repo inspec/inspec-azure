@@ -24,6 +24,16 @@ class UnsuccessfulAPIQuery < StandardError
         # Capture all the api versions within the error message.
         # This will include the wrong one used in HTTP request.
         # It has to be removed.
+        #
+        # Example for key in a key vault: https://docs.microsoft.com/en-us/rest/api/keyvault/getkey/getkey
+        #
+        # "The specified version (7.4) is not recognized. Consider using the latest supported version (7.1)."
+        semver_like_versions = message.scan(/[0-9]\.[0-9]/)
+        unless semver_like_versions.empty?
+          # The last one will be the supported version.
+          return semver_like_versions.last
+        end
+        #
         # Example for specific resource type api (for detailed description)
         # "No registered resource provider found for location 'westeurope' and API version '2022-01-01' for type
         #   'virtualMachines'. The supported api-versions are '2015-05-01-preview, 2015-06-15, 2016-03-30,
@@ -190,10 +200,8 @@ module Helpers
   # @param allow [Array] The list of optional parameters.
   # @param required [Array] The list of required parameters.
   # @param require_any_of [Array] The list of parameters that at least one of them are required.
-  def self.validate_parameters(resource_name: nil, allow: [], required: nil, require_any_of: nil, opts: {}, skip_length: false)
-    unless opts.is_a?(Hash)
-      raise ArgumentError, "Parameters must be provided with as a Hash object. Provided #{opts.class}"
-    end
+  def self.validate_parameters(resource_name: nil, allow: [], required: nil, require_any_of: nil, opts: {}, skip_length: false) # rubocop:disable Metrics/ParameterLists
+    raise ArgumentError, "Parameters must be provided with as a Hash object. Provided #{opts.class}" unless opts.is_a?(Hash)
     if required
       allow += Helpers.validate_params_required(resource_name, required, opts)
     end
@@ -233,7 +241,7 @@ module Helpers
 
   # @return [Array] Allowed parameters
   # @param allow [Array]
-  def self.validate_params_allow(allow, opts, skip_length = false )
+  def self.validate_params_allow(allow, opts, skip_length = false)
     unless skip_length
       raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 }
     end

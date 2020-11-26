@@ -10,27 +10,11 @@ class AzureKeyVaultKey < AzureGenericResource
     end
   EXAMPLE
 
-  def initialize(*args)
-    opts = {}
-    # For backward compatibility.
-    if args.size.between?(2, 3)
-      opts[:vault_name] = args[0]
-      opts[:key_name] = args[1]
-      opts[:key_version] = args[2] unless args.size == 3
-    elsif args.size == 1
-      # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-      raise ArgumentError, 'Parameters must be provided in an Hash object.' unless args[0].is_a?(Hash)
-      opts = args[0]
-    end
-    if opts[:key_version]
-      unless valid_version?(opts[:key_version])
-        raise ArgumentError, "Invalid version '#{opts[:key_version]}' for key '#{opts[:key_version]}'"
-      end
-    end
-    opts[:allowed_parameters] = %i(is_uri_a_url vault_name audience key_name)
-    opts[:resource_identifiers] = %i(key_name)
+  def initialize(opts = {})
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
-    # This part normally is done in the backend, however, we need to get the `key_vault_dns_suffix` at the initiation.
+    # This part is normally done in the backend; however, we need to get the `key_vault_dns_suffix` at the initiation.
     opts[:endpoint] ||= ENV_HASH['endpoint'] || 'azure_cloud'
     unless AzureEnvironments::ENDPOINTS.key?(opts[:endpoint])
       raise ArgumentError, "Invalid endpoint: `#{opts[:endpoint]}`."\
@@ -38,11 +22,24 @@ class AzureKeyVaultKey < AzureGenericResource
     end
     endpoint = AzureEnvironments.get_endpoint(opts[:endpoint])
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
-    opts[:resource_provider] = key_vault_dns_suffix
-    opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys/#{opts[:key_name]}"
+    opts[:resource_provider] = specific_resource_constraint(key_vault_dns_suffix, opts)
+
+    if opts[:key_id]
+      opts[:resource_uri] = opts[:key_id]
+    else
+      opts[:allowed_parameters] = %i(vault_name key_version)
+      opts[:resource_identifiers] = %i(key_name)
+      if opts[:key_version]
+        unless valid_version?(opts[:key_version])
+          raise ArgumentError, "Invalid version '#{opts[:key_version]}' for key '#{opts[:key_name]}'"
+        end
+        opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys/#{opts[:key_name]}/#{opts[:key_version]}"
+      else
+        opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys/#{opts[:key_name]}"
+      end
+    end
     opts[:is_uri_a_url] = true
     opts[:audience] = 'https://vault.azure.net'
-    opts[:api_version] ||= '7.1'
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
@@ -72,8 +69,15 @@ class AzurermKeyVaultKey < AzureKeyVaultKey
     end
   EXAMPLE
 
-  def initialize(*args)
+  def initialize(vault_name, key_name, key_version = nil)
+    # This is for backward compatibility.
+    opts = {
+      vault_name: vault_name,
+        key_name: key_name,
+        api_version: '2016-10-01',
+    }
+    opts[:key_version] = key_version unless key_version.nil?
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKey.name)
-    super
+    super(opts)
   end
 end

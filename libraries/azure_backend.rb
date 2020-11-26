@@ -270,8 +270,8 @@ class AzureResourceBase < Inspec.resource(1)
     else
       url = Helpers.construct_url([@azure.resource_manager_endpoint_url, opts[:resource_uri].gsub(' ', '%20')])
     end
-    opts_call = {url: url, params: params.merge!({ 'api-version' => api_version_info[:api_version] })}
-    %i(headers method req_body audience).each { |param| opts_call[param] = opts[param] unless opts[param].nil?}
+    opts_call = { url: url, params: params.merge!({ 'api-version' => api_version_info[:api_version] }) }
+    %i(headers method req_body audience).each { |param| opts_call[param] = opts[param] unless opts[param].nil? }
     long_description, suggested_api_version = rescue_wrong_api_call(opts_call)
     if long_description.is_a?(Hash)
       long_description[:api_version_used_for_query] = suggested_api_version || api_version_info[:api_version]
@@ -436,7 +436,8 @@ class AzureResourceBase < Inspec.resource(1)
   def specific_resource_constraint(resource_provider, opts)
     if opts.is_a?(Hash)
       parameter_blacklist = %i(allowed_parameters required_parameters resource_uri resource_provider display_name
-                               tag_name tag_value add_subscription_id resource_type query_parameters is_uri_a_url)
+                               tag_name tag_value add_subscription_id resource_type query_parameters is_uri_a_url
+                               audience)
       if opts.keys.any? { |key| parameter_blacklist.include?(key) }
         raise ArgumentError, "#{@__resource_name__}: The following parameters are not allowed: "\
           "#{parameter_blacklist}"

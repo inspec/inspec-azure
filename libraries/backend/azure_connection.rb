@@ -194,6 +194,7 @@ class AzureConnection
   #
   # @raise [UnsuccessfulAPIQuery]
   #
+  # TODO: Improve decision making. It relies on the content of the Azure error messages which might be changed over time.
   def fail_api_query(resp, message = nil)
     message ||= "Unsuccessful HTTP request to Azure REST API.\n"
     message += "HTTP #{resp.status}.\n"
@@ -212,9 +213,9 @@ class AzureConnection
       message += code.nil? ? "#{code} #{error_message}" : resp.body.to_s
       resource_not_found_codes = %w{Request_ResourceNotFound ResourceGroupNotFound ResourceNotFound NotFound}
       resource_not_found_keywords = ['could not be found']
-      wrong_api_keywords = ['The supported api-versions are', 'The supported versions are']
+      wrong_api_keywords = ['The supported api-versions are', 'The supported versions are', 'Consider using the latest supported version']
       explicit_invalid_api_code = 'InvalidApiVersionParameter'
-      possible_invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType}
+      possible_invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType BadParameter}
       code = code.to_s
       if code
         if code == explicit_invalid_api_code \

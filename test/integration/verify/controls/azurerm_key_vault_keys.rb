@@ -9,3 +9,11 @@ control 'azurerm_key_vault_keys' do
     end
   end
 end
+
+control 'azure_key_vault_keys' do
+  azure_key_vault_keys(vault_name).kids.each do |kid|
+    describe azure_key_vault_key(key_id: kid) do
+      it { should exist }
+    end
+  end
+end

@@ -1,6 +1,5 @@
 require 'azure_generic_resource'
 
-
 class AzureKeyVaultKeys < AzureGenericResources
   name 'azure_key_vault_keys'
   desc 'Verifies settings for a collection of Azure Keys belonging to a Vault'
@@ -29,21 +28,21 @@ class AzureKeyVaultKeys < AzureGenericResources
     opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys/#{opts[:key_name]}"
     opts[:is_uri_a_url] = true
     opts[:audience] = 'https://vault.azure.net'
-    opts[:api_version] ||= '7.1'
     super(opts, true)
     return if failed_resource?
 
     # Define the column and field names for FilterTable.
     # In most cases, the `column` should be the pluralized form of the `field`.
-    # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
+    # @see https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md
     table_schema = [
-        { column: :kids, field: :kid },
-        { column: :attributes, field: :attributes },
+      { column: :kids, field: :kid },
+      { column: :attributes, field: :attributes },
+      { column: :tags, field: :tags },
+      { column: :managed, field: :managed },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
-
   end
 
   def to_s
@@ -60,8 +59,10 @@ class AzureKeyVaultKeys < AzureGenericResources
       # dm = AzureResourceDynamicMethods.new
       # dm.create_methods(resource_instance, resource[:attributes])
       @table << {
-          kid: resource_instance&.kid,
+        kid: resource_instance&.kid,
           attributes: resource_instance&.attributes,
+          tags: resource_instance&.tags&.empty? ? nil : resource_instance&.tags,
+          managed: resource_instance&.managed.nil? ? false : resource_instance.managed,
       }
     end
   end
