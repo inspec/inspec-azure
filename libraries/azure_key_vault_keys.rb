@@ -25,7 +25,7 @@ class AzureKeyVaultKeys < AzureGenericResources
     endpoint = AzureEnvironments.get_endpoint(opts[:endpoint])
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
     opts[:resource_provider] = key_vault_dns_suffix
-    opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys/#{opts[:key_name]}"
+    opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys"
     opts[:is_uri_a_url] = true
     opts[:audience] = 'https://vault.azure.net'
     super(opts, true)
@@ -61,8 +61,8 @@ class AzureKeyVaultKeys < AzureGenericResources
       @table << {
         kid: resource_instance&.kid,
           attributes: resource_instance&.attributes,
-          tags: resource_instance&.tags&.empty? ? nil : resource_instance&.tags,
-          managed: resource_instance&.managed.nil? ? false : resource_instance.managed,
+          tags: resource_instance&.tags,
+          managed: resource_instance.managed,
       }
     end
   end
