@@ -1,5 +1,9 @@
 require 'azure_backend'
 
+# The backend class for the plural static resources from the GRAPH API.
+#
+# @author omerdemirok
+#
 class AzureGraphGenericResources < AzureResourceBase
   name 'azure_graph_generic_resources'
   desc 'Inspec plural resource to interrogate any resource type available through Azure Graph API'
@@ -82,7 +86,7 @@ class AzureGraphGenericResources < AzureResourceBase
     next_link = @resource[:"@odata.nextLink"]
     unless next_link.nil?
       loop do
-        api_response = @azure.rest_api_call(next_link)
+        api_response = @azure.rest_api_call(url: next_link)
         @resources += api_response[:value]
         return if failed_resource?
         next_link = api_response[:"@odata.nextLink"]

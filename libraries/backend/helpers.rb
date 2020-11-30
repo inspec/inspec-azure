@@ -24,6 +24,16 @@ class UnsuccessfulAPIQuery < StandardError
         # Capture all the api versions within the error message.
         # This will include the wrong one used in HTTP request.
         # It has to be removed.
+        #
+        # Example for key in a key vault: https://docs.microsoft.com/en-us/rest/api/keyvault/getkey/getkey
+        #
+        # "The specified version (7.4) is not recognized. Consider using the latest supported version (7.1)."
+        semver_like_versions = message.scan(/[0-9]\.[0-9]/)
+        unless semver_like_versions.empty?
+          # The last one will be the supported version.
+          return semver_like_versions.last
+        end
+        #
         # Example for specific resource type api (for detailed description)
         # "No registered resource provider found for location 'westeurope' and API version '2022-01-01' for type
         #   'virtualMachines'. The supported api-versions are '2015-05-01-preview, 2015-06-15, 2016-03-30,
@@ -80,6 +90,7 @@ class AzureEnvironments
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.storage_endpoint_suffix,
+      key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.key_vault_dns_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.com',
       graph_api_endpoint_api_version: 'v1.0',
@@ -89,6 +100,7 @@ class AzureEnvironments
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.storage_endpoint_suffix,
+      key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.key_vault_dns_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://microsoftgraph.chinacloudapi.cn',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -97,6 +109,7 @@ class AzureEnvironments
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
+      key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.key_vault_dns_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.us',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -105,6 +118,7 @@ class AzureEnvironments
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
+      key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.key_vault_dns_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://dod-graph.microsoft.us',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -113,6 +127,7 @@ class AzureEnvironments
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.storage_endpoint_suffix,
+      key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.key_vault_dns_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.de',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -138,6 +153,9 @@ class AzureEnvironments
 
   # @return [String] the endpoint suffix for storage accounts
   attr_reader :storage_endpoint_suffix
+
+  # @return [String] the endpoint dns suffix for key vaults
+  attr_reader :key_vault_dns_suffix
 
   def initialize(options)
     required_properties = %i(resource_manager_endpoint_url resource_manager_endpoint_api_version)
@@ -182,17 +200,15 @@ module Helpers
   # @param allow [Array] The list of optional parameters.
   # @param required [Array] The list of required parameters.
   # @param require_any_of [Array] The list of parameters that at least one of them are required.
-  def self.validate_parameters(resource_name: nil, allow: [], required: nil, require_any_of: nil, opts: {})
-    unless opts.is_a?(Hash)
-      raise ArgumentError, "Parameters must be provided with as a Hash object. Provided #{opts.class}"
-    end
+  def self.validate_parameters(resource_name: nil, allow: [], required: nil, require_any_of: nil, opts: {}, skip_length: false) # rubocop:disable Metrics/ParameterLists
+    raise ArgumentError, "Parameters must be provided with as a Hash object. Provided #{opts.class}" unless opts.is_a?(Hash)
     if required
       allow += Helpers.validate_params_required(resource_name, required, opts)
     end
     if require_any_of
       allow += Helpers.validate_params_require_any_of(resource_name, require_any_of, opts)
     end
-    Helpers.validate_params_allow(allow, opts)
+    Helpers.validate_params_allow(allow, opts, skip_length)
     true
   end
 
@@ -225,11 +241,13 @@ module Helpers
 
   # @return [Array] Allowed parameters
   # @param allow [Array]
-  def self.validate_params_allow(allow, opts)
-    raise ArgumentError, 'Arguments or values can not be longer than 256 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 }
-    raise ArgumentError, 'Scalar arguments not supported' unless defined?(opts.keys)
+  def self.validate_params_allow(allow, opts, skip_length = false)
+    unless skip_length
+      raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 }
+    end
+    raise ArgumentError, 'Scalar arguments not supported.' unless defined?(opts.keys)
     raise ArgumentError, "Unexpected arguments found: #{opts.keys.uniq - allow.uniq}" unless opts.keys.all? { |a| allow.include?(a) }
-    raise ArgumentError, 'Provided parameter should not be empty' unless opts.values.all? do |a|
+    raise ArgumentError, 'Provided parameter should not be empty.' unless opts.values.all? do |a|
       return true if a.class == Integer
       return true if [TrueClass, FalseClass].include?(a.class)
       !a.empty?

@@ -1,5 +1,9 @@
 require 'azure_backend'
 
+# The backend class for the singular static resources.
+#
+# @author omerdemirok
+#
 class AzureGenericResource < AzureResourceBase
   name 'azure_generic_resource'
   desc 'Inspec Resource to interrogate any resource type available through Azure Resource Manager'
@@ -27,20 +31,25 @@ class AzureGenericResource < AzureResourceBase
                     else
                       @opts[:display_name]
                     end
-
-    resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
-
-    # This is the last check on resource_id before talking to resource manager endpoint to get the detailed information.
-    Helpers.validate_resource_uri(@resource_id)
+    if @opts[:is_uri_a_url]
+      query_params = { resource_uri: @opts[:resource_uri] }
+    else
+      resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
+      # This is the last check on resource_id before talking to resource manager endpoint to get the detailed information.
+      Helpers.validate_resource_uri(@resource_id)
+      query_params = { resource_uri: @resource_id }
+    end
+    query_params[:query_parameters] = {}
     # Use the latest api_version unless provided.
-    api_version = @opts[:api_version] || 'latest'
-    query_parameters = { 'api-version' => api_version }
+    query_params[:query_parameters]['api-version'] = @opts[:api_version] || 'latest'
+    %i(is_uri_a_url headers method req_body audience).each do |param|
+      query_params[param] = @opts[param] unless @opts[param].nil?
+    end
     @opts[:query_parameters]&.each do |k, v|
-      query_parameters.merge!({ k => v })
+      query_params[:query_parameters].merge!({ k => v })
     end
     catch_failed_resource_queries do
-      params = { resource_uri: @resource_id, query_parameters: query_parameters }
-      @resource_long_desc = get_resource(params)
+      @resource_long_desc = get_resource(query_params)
     end
     # If an exception is raised above then the resource is failed.
     # This check should be done every time after using catch_failed_resource_queries
@@ -48,9 +57,11 @@ class AzureGenericResource < AzureResourceBase
 
     # resource_long_desc should be a Hash object
     # &
-    # All resources must have a id:
+    # All resources must have a id unless the full URL is provided.
     unless @resource_long_desc.is_a?(Hash) && @resource_long_desc.key?(:id)
-      resource_fail("Unable to get the detailed information for the resource_id: #{@resource_id}")
+      unless @opts[:is_uri_a_url]
+        resource_fail("Unable to get the detailed information for the resource_id: #{@resource_id}")
+      end
     end
 
     # Create resource methods with the properties of the resource.
@@ -93,7 +104,7 @@ class AzureGenericResource < AzureResourceBase
   def additional_resource_properties(opts = {})
     Helpers.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(property_name property_endpoint),
-                                allow: %i(api_version filter_free_text add_subscription_id http_method req_body),
+                                allow: %i(api_version filter_free_text add_subscription_id method req_body),
                                 opts: opts)
     unless opts[:add_subscription_id].nil?
       opts[:property_endpoint] = validate_resource_uri(
@@ -103,15 +114,17 @@ class AzureGenericResource < AzureResourceBase
         },
       )
     end
-    params = { resource_uri: opts[:property_endpoint] }
-    params[:http_method] = opts[:http_method] unless opts[:http_method].nil?
-    params[:req_body] = opts[:req_body] unless opts[:req_body].nil?
-    params[:query_parameters] = {}
-    params[:query_parameters]['api-version'] = opts[:api_version] || 'latest'
+    query_params = { resource_uri: opts[:property_endpoint] }
+    query_params[:query_parameters] = {}
     unless opts[:filter_free_text].nil?
-      params[:query_parameters]['$filter'] = opts[:filter_free_text]
+      query_params[:query_parameters]['$filter'] = opts[:filter_free_text]
     end
-    properties = get_resource(params)
+    query_params[:query_parameters]['api-version'] = opts[:api_version] || 'latest'
+
+    %i(is_uri_a_url headers method req_body audience).each do |param|
+      query_params[param] = opts[param] unless opts[param].nil?
+    end
+    properties = get_resource(query_params)
     properties = properties[:value] if properties.key?(:value)
     create_resource_methods({ opts[:property_name].to_sym => properties })
     public_send(opts[:property_name].to_sym) if respond_to?(opts[:property_name])
@@ -123,7 +136,7 @@ class AzureGenericResource < AzureResourceBase
     required_parameters = %i(resource_group resource_provider name)
     required_parameters += @opts[:required_parameters] if @opts.key?(:required_parameters)
     allowed_parameters = %i(resource_path resource_identifiers resource_id resource_uri add_subscription_id
-                            query_parameters)
+                            query_parameters is_uri_a_url audience)
     allowed_parameters += @opts[:allowed_parameters] if @opts.key?(:allowed_parameters)
 
     if @opts.key?(:resource_id)
@@ -146,6 +159,7 @@ class AzureGenericResource < AzureResourceBase
     end
 
     if @opts.key?(:resource_uri)
+      return if @opts[:is_uri_a_url]
       validate_resource_uri
       validate_parameters(required: %i(resource_uri name add_subscription_id),
                           allow: allowed_parameters + required_parameters)
