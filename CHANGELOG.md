@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.40.0 -->
+<!-- latest_release 1.41.0 -->
+## [v1.41.0](https://github.com/inspec/inspec-azure/tree/v1.41.0) (2020-11-30)
+
+#### Merged Pull Requests
+- Add azure_key_vault_key(s) resources [#340](https://github.com/inspec/inspec-azure/pull/340) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.40.0](https://github.com/inspec/inspec-azure/tree/v1.40.0) (2020-11-30)
 
 #### Merged Pull Requests
 - Remove 2.5 from pipeline verification [#341](https://github.com/inspec/inspec-azure/pull/341) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.39.1](https://github.com/inspec/inspec-azure/tree/v1.39.1) (2020-11-24)
 
