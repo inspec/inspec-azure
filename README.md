@@ -141,6 +141,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_key_vaults](docs/resources/azure_key_vaults.md)
 - [azure_key_vault_key](docs/resources/azure_key_vault_key.md)
 - [azure_key_vault_keys](docs/resources/azure_key_vault_keys.md)
+- [azure_key_vault_secret](docs/resources/azure_key_vault_secret.md)
+- [azure_key_vault_secrets](docs/resources/azure_key_vault_secrets.md)
 - [azure_load_balancer](docs/resources/azure_load_balancer.md)
 - [azure_load_balancers](docs/resources/azure_load_balancers.md)
 - [azure_lock](docs/resources/azure_lock.md)

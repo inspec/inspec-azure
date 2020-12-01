@@ -440,7 +440,7 @@ class AzureResourceBase < Inspec.resource(1)
                                audience)
       if opts.keys.any? { |key| parameter_blacklist.include?(key) }
         raise ArgumentError, "#{@__resource_name__}: The following parameters are not allowed: "\
-          "#{parameter_blacklist}"
+          "#{opts.keys & parameter_blacklist}"
       end
     else
       raise ArgumentError, "#{@__resource_name__}: Parameters must be provided in an Hash object."

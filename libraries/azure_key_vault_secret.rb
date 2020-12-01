@@ -1,10 +1,10 @@
 require 'azure_generic_resource'
 
-class AzureKeyVaultKey < AzureGenericResource
-  name 'azure_key_vault_key'
-  desc 'Verifies configuration for an Azure Key within a Vault'
+class AzureKeyVaultSecret < AzureGenericResource
+  name 'azure_key_vault_secret'
+  desc 'Verifies configuration for a Secret within a Vault'
   example <<-EXAMPLE
-    describe azure_key_vault_key(vault_name: 'vault-101', key_name: 'key') do
+    describe azure_key_vault_secret(vault_name: 'vault-name', secret_name: 'secret-name') do
       it { should exist }
       its('attributes.enabled') { should eq true }
     end
@@ -24,19 +24,19 @@ class AzureKeyVaultKey < AzureGenericResource
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
     opts[:resource_provider] = specific_resource_constraint(key_vault_dns_suffix, opts)
 
-    if opts[:key_id]
-      opts[:resource_uri] = opts[:key_id]
+    if opts[:secret_id]
+      opts[:resource_uri] = opts[:secret_id]
     else
-      opts[:allowed_parameters] = %i(key_version)
+      opts[:allowed_parameters] = %i(secret_version)
       opts[:required_parameters] = %i(vault_name)
-      opts[:resource_identifiers] = %i(key_name)
-      if opts[:key_version]
-        unless valid_version?(opts[:key_version])
-          raise ArgumentError, "Invalid version '#{opts[:key_version]}' for key '#{opts[:key_name]}'"
+      opts[:resource_identifiers] = %i(secret_name)
+      if opts[:secret_version]
+        unless valid_version?(opts[:secret_version])
+          raise ArgumentError, "Invalid version '#{opts[:secret_version]}' for secret '#{opts[:secret_name]}'"
         end
-        opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys/#{opts[:key_name]}/#{opts[:key_version]}"
+        opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/secrets/#{opts[:secret_name]}/#{opts[:secret_version]}"
       else
-        opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys/#{opts[:key_name]}"
+        opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/secrets/#{opts[:secret_name]}"
       end
     end
     opts[:is_uri_a_url] = true
@@ -46,7 +46,12 @@ class AzureKeyVaultKey < AzureGenericResource
   end
 
   def to_s
-    super(AzureKeyVaultKey)
+    super(AzureKeyVaultSecret)
+  end
+
+  def content_type
+    return unless exists?
+    contentType
   end
 
   private
@@ -60,25 +65,25 @@ end
 
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
-class AzurermKeyVaultKey < AzureKeyVaultKey
-  name 'azurerm_key_vault_key'
-  desc 'Verifies configuration for an Azure Key within a Vault'
+class AzurermKeyVaultSecret < AzureKeyVaultSecret
+  name 'azurerm_key_vault_secret'
+  desc 'Verifies configuration for a Secret within a Vault'
   example <<-EXAMPLE
-    describe azurerm_key_vault_key('vault-101', 'key') do
+    describe azurerm_key_vault_secret('vault-name', 'secret-name') do
       it { should exist }
       its('attributes.enabled') { should eq true }
     end
   EXAMPLE
 
-  def initialize(vault_name, key_name, key_version = nil)
+  def initialize(vault_name, secret_name, secret_version = nil)
     # This is for backward compatibility.
     opts = {
       vault_name: vault_name,
-        key_name: key_name,
-        api_version: '2016-10-01',
+      secret_name: secret_name,
+      api_version: '2016-10-01',
     }
-    opts[:key_version] = key_version unless key_version.nil?
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKey.name)
+    opts[:secret_version] = secret_version unless secret_version.nil?
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultSecret.name)
     super(opts)
   end
 end
