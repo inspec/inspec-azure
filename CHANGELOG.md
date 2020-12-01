@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.41.0 -->
+<!-- latest_release 1.42.0 -->
+## [v1.42.0](https://github.com/inspec/inspec-azure/tree/v1.42.0) (2020-12-01)
+
+#### Merged Pull Requests
+- Add azure_key_vault_sercet(s) resources [#342](https://github.com/inspec/inspec-azure/pull/342) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.41.0](https://github.com/inspec/inspec-azure/tree/v1.41.0) (2020-11-30)
 
 #### Merged Pull Requests
 - Add azure_key_vault_key(s) resources [#340](https://github.com/inspec/inspec-azure/pull/340) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.40.0](https://github.com/inspec/inspec-azure/tree/v1.40.0) (2020-11-30)
 
