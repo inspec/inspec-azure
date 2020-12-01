@@ -1,10 +1,10 @@
 require 'azure_generic_resource'
 
-class AzureKeyVaultKeys < AzureGenericResources
-  name 'azure_key_vault_keys'
-  desc 'Verifies settings for a collection of Azure Keys belonging to a Vault'
+class AzureKeyVaultSecrets < AzureGenericResources
+  name 'azure_key_vault_secrets'
+  desc 'Verifies settings for a collection of Azure Secrets within to a Vault'
   example <<-EXAMPLE
-    describe azure_key_vault_keys(vault_name: 'vault-101') do
+    describe azure_key_vault_secrets(vault_name: 'vault-101') do
         it { should exist }
     end
   EXAMPLE
@@ -25,7 +25,7 @@ class AzureKeyVaultKeys < AzureGenericResources
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
     opts[:resource_provider] = specific_resource_constraint(key_vault_dns_suffix, opts)
     opts[:required_parameters] = %i(vault_name)
-    opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys"
+    opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/secrets"
     opts[:is_uri_a_url] = true
     opts[:audience] = 'https://vault.azure.net'
     super(opts, true)
@@ -35,8 +35,9 @@ class AzureKeyVaultKeys < AzureGenericResources
     # In most cases, the `column` should be the pluralized form of the `field`.
     # @see https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md
     table_schema = [
-      { column: :kids, field: :kid },
+      { column: :ids, field: :id },
       { column: :attributes, field: :attributes },
+      { column: :contentTypes, field: :contentType },
       { column: :tags, field: :tags },
       { column: :managed, field: :managed },
     ]
@@ -59,9 +60,10 @@ class AzureKeyVaultKeys < AzureGenericResources
       # dm = AzureResourceDynamicMethods.new
       # dm.create_methods(resource_instance, resource[:attributes])
       @table << {
-        kid: resource_instance&.kid,
+        id: resource_instance&.id,
           attributes: resource_instance&.attributes,
           tags: resource_instance&.tags,
+          contentType: resource_instance&.contentType,
           managed: resource_instance.managed,
       }
     end
@@ -70,17 +72,17 @@ end
 
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
-class AzurermKeyVaultKeys < AzureKeyVaultKeys
-  name 'azurerm_key_vault_keys'
-  desc 'Verifies settings for a collection of Azure Keys belonging to a Vault'
+class AzurermKeyVaultSecrets < AzureKeyVaultSecrets
+  name 'azurerm_key_vault_secrets'
+  desc 'Verifies settings for a collection of Azure Secrets within to a Vault'
   example <<-EXAMPLE
-    describe azurerm_key_vault_keys('vault-101') do
+    describe azurerm_key_vault_secrets('vault-101') do
         it { should exist }
     end
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKeys.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultSecrets.name)
     super
   end
 end

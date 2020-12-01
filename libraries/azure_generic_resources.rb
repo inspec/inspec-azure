@@ -201,7 +201,8 @@ class AzureGenericResources < AzureResourceBase
     @resources = {}
     @opts[:api_version] = 'latest' unless @opts.key?(:api_version)
     # These are the parameters created in the static resource code, NOT provided by the user.
-    allowed_params = %i(resource_path resource_group resource_provider add_subscription_id resource_uri)
+    allowed_params = %i(resource_path resource_group resource_provider add_subscription_id resource_uri is_uri_a_url
+                        audience)
     # User provided parameters will be passed here for validation with:
     #   opts[:required_parameters]
     #   opts[:allowed_parameters]
