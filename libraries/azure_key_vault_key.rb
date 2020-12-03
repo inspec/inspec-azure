@@ -40,7 +40,7 @@ class AzureKeyVaultKey < AzureGenericResource
       end
     end
     opts[:is_uri_a_url] = true
-    opts[:audience] = 'https://vault.azure.net'
+    opts[:audience] = 'https://' + key_vault_dns_suffix.delete_prefix('.')
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end

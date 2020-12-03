@@ -60,7 +60,7 @@ variable "unmanaged_data_disk_name" {
 }
 
 variable "network_watcher" {
-  default = false
+  default = 0
 }
 
 variable "public_key" {

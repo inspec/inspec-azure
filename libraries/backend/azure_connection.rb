@@ -113,11 +113,13 @@ class AzureConnection
       resource = "#{uri.scheme}://#{uri.host}"
     end
 
-    # Authenticate if necessary.
-    authenticate(resource) if @@token_data[resource.to_sym].empty?
-    # Update access token if expired.
-    authenticate(resource) if Time.now > @@token_data[resource.to_sym][:token_expires_on]
-
+    # If it is a paged response than the provided nextLink will contain `skiptoken` in parameters.
+    unless opts[:url].include?('skiptoken')
+      # Authenticate if necessary.
+      authenticate(resource) if @@token_data[resource.to_sym].nil? || @@token_data[resource.to_sym].empty?
+      # Update access token if expired.
+      authenticate(resource) if Time.now > @@token_data[resource.to_sym][:token_expires_on]
+    end
     # Create the necessary headers.
     opts[:headers] ||= {}
     opts[:headers]['User-Agent'] = INSPEC_USER_AGENT
@@ -125,14 +127,14 @@ class AzureConnection
     opts[:headers]['Accept'] = 'application/json'
     opts[:method] ||= 'get'
     if opts[:method] == 'get'
-      resp = @connection.get(uri) do |req|
-        req.params =  req.params.merge(opts[:params]) unless opts[:params].empty?
-        req.headers = opts[:headers]
+      resp = @connection.get(opts[:url]) do |req|
+        req.params =  opts[:params] unless opts[:params].nil?
+        req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
       end
     elsif opts[:method] == 'post'
-      resp = @connection.post(uri) do |req|
-        req.params =  req.params.merge(opts[:params]) unless opts[:params].empty?
-        req.headers = opts[:headers]
+      resp = @connection.post(opts[:url]) do |req|
+        req.params = opts[:params] unless opts[:params].nil?
+        req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
         req.body = opts[:req_body] unless opts[:req_body].nil?
       end
     else
