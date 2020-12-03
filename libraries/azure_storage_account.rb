@@ -26,7 +26,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def to_s
-    super(AzureKeyVault)
+    super(AzureStorageAccount)
   end
 
   # Resource specific methods can be created.

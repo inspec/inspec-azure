@@ -58,7 +58,7 @@ resource "random_string" "password" {
 
 resource "azurerm_network_watcher" "rg" {
   name                = "${azurerm_resource_group.rg.name}-netwatcher"
-  count               = var.network_watcher ? 1 : 0
+  count               = var.network_watcher
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   tags = {
