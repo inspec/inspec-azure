@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.42.1 -->
+<!-- latest_release 1.42.2 -->
+## [v1.42.2](https://github.com/inspec/inspec-azure/tree/v1.42.2) (2020-12-03)
+
+#### Merged Pull Requests
+- Use environment variables at auth audience creation [#347](https://github.com/inspec/inspec-azure/pull/347) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.42.1](https://github.com/inspec/inspec-azure/tree/v1.42.1) (2020-12-03)
 
 #### Merged Pull Requests
 - Update minitest requirement from ~&gt; 5.11.0 to ~&gt; 5.14.2 [#345](https://github.com/inspec/inspec-azure/pull/345) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
-<!-- latest_release -->
 
 ## [v1.42.0](https://github.com/inspec/inspec-azure/tree/v1.42.0) (2020-12-01)
 
