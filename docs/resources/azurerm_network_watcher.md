@@ -3,6 +3,8 @@ title: About the azurerm_network_watcher Resource
 platform: azure
 ---
 
+> <b>WARNING</b>  This resource will be deprecated in InSpec Azure Resource Pack version **2**. Please start using fully backward compatible [`azure_network_watcher`](azure_network_watcher.md) InSpec audit resource.
+
 # azurerm\_network\_watcher
 
 Use the `azurerm_network_watcher` InSpec audit resource to test properties of an Azure

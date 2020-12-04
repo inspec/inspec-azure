@@ -3,7 +3,7 @@ nw             = input('network_watcher_name', value: []).first
 nw_id          = input('network_watcher_id',   value: []).first
 
 control 'azurerm_network_watcher' do
-  only_if { ENV['NETWORK_WATCHER'] }
+  only_if { !nw.nil? }
 
   describe azurerm_network_watcher(resource_group: resource_group, name: nw) do
     it                        { should exist }
