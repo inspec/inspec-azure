@@ -163,6 +163,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_network_interfaces](docs/resources/azure_network_interfaces.md)
 - [azure_network_security_group](docs/resources/azure_network_security_group.md)
 - [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
+- [azure_network_watcher](docs/resources/azure_network_watcher.md)
+- [azure_network_watchers](docs/resources/azure_network_watchers.md)
 - [azure_policy_definition](docs/resources/azure_policy_definition.md)
 - [azure_policy_definitions](docs/resources/azure_policy_definitions.md)
 - [azure_postgresql_database](docs/resources/azure_postgresql_database.md)
