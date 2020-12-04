@@ -57,6 +57,8 @@ class AzurermNetworkWatchers < AzureNetworkWatchers
 
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkWatchers.name)
+    # For backward compatibility.
+    opts[:api_version] ||= '2018-02-01'
     super
   end
 end
