@@ -27,7 +27,7 @@ class AzureKeyVaultSecrets < AzureGenericResources
     opts[:required_parameters] = %i(vault_name)
     opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/secrets"
     opts[:is_uri_a_url] = true
-    opts[:audience] = 'https://vault.azure.net'
+    opts[:audience] = 'https://' + key_vault_dns_suffix.delete_prefix('.')
     super(opts, true)
     return if failed_resource?
 
