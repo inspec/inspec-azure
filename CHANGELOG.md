@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.42.3 -->
+<!-- latest_release 1.43.0 -->
+## [v1.43.0](https://github.com/inspec/inspec-azure/tree/v1.43.0) (2020-12-04)
+
+#### Merged Pull Requests
+- Add azure_network_watcher(s) resources [#349](https://github.com/inspec/inspec-azure/pull/349) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.42.3](https://github.com/inspec/inspec-azure/tree/v1.42.3) (2020-12-04)
 
 #### Merged Pull Requests
 - simple fix for adding multi region support to the azure_key_vault_sec… [#348](https://github.com/inspec/inspec-azure/pull/348) ([srb3](https://github.com/srb3))
-<!-- latest_release -->
 
 ## [v1.42.2](https://github.com/inspec/inspec-azure/tree/v1.42.2) (2020-12-03)
 
