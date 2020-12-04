@@ -8,7 +8,7 @@ control 'azurerm_network_watchers' do
     it           { should exist }
     its('names') { should be_an(Array) }
   end
-  end
+end
 
 control 'azure_network_watchers' do
   only_if { !nw.nil? }
