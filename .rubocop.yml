@@ -4,6 +4,7 @@ AllCops:
   - bin/**/*
   - vendor/**/*
   - dev/**/*
+  SuggestExtensions: false
 Layout/LineLength:
   Enabled: false
 Layout/HashAlignment:
@@ -78,6 +79,10 @@ Style/Not:
 Style/NumericLiteralPrefix:
   Enabled: false
 Style/NumericPredicate:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/SlicingWithRange:
   Enabled: false
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:

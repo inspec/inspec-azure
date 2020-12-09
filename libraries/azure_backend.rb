@@ -1,6 +1,6 @@
 require 'backend/azure_require'
 
-ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h  # rubocop:disable Style/HashTransformKeys
+ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h
 
 # Base class for Azure resources.
 #

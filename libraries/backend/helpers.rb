@@ -280,9 +280,9 @@ module Helpers
       query = data.each_with_object([]) do |(k, v), acc|
         v = v.delete_suffix('/').delete_prefix('/')
         if k.to_s.start_with?('substring_of_')
-          acc << "substringof('#{v}',#{k.to_s[13..].camelcase(:lower)})"
+          acc << "substringof('#{v}',#{k.to_s[13..-1].camelcase(:lower)})"
         elsif k.to_s.start_with?('starts_with_')
-          acc << "startswith(#{k.to_s[12..].camelcase(:lower)},'#{v}')"
+          acc << "startswith(#{k.to_s[12..-1].camelcase(:lower)},'#{v}')"
         else
           acc << "#{k.to_s.camelcase(:lower)} eq '#{v}'"
         end
