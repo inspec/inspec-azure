@@ -14,7 +14,7 @@ class AzureSecurityCenterPolicy < AzureGenericResource
               :just_in_time_network_access, :app_whitelisting, :sql_auditing, :sql_transparent_data_encryption, :patch,
               :contact_emails, :contact_phone, :notifications_enabled, :send_security_email_to_admin
 
-  def initialize(opts = { name: 'default' })
+  def initialize(opts = { name: 'default' }) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity TODO: Fix these issues.
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
@@ -86,7 +86,7 @@ class AzureSecurityCenterPolicy < AzureGenericResource
     # This property is relevant to default security policy only.
     return unless @opts[:name] == 'default'
     auto_provisioning_settings unless respond_to?(:auto_provisioning_settings)
-    auto_provisioning_settings&.select { |setting| setting.name == 'default' } &.first&.properties&.autoProvision == 'On'
+    auto_provisioning_settings&.select { |setting| setting.name == 'default' }&.first&.properties&.autoProvision == 'On'
   end
 
   def auto_provisioning_settings
@@ -122,9 +122,14 @@ class AzurermSecurityCenterPolicy < AzureSecurityCenterPolicy
   EXAMPLE
 
   def initialize(opts = { name: 'default' })
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSecurityCenterPolicy.name)
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    # For backward compatibility.
+    opts[:api_version] ||= '2015-06-01-Preview'
     opts[:default_policy_api_version] ||= '2018-05-01'
     opts[:auto_provisioning_settings_api_version] ||= '2017-08-01-preview'
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSecurityCenterPolicy.name)
     super
   end
 end

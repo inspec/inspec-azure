@@ -17,6 +17,7 @@ require 'backend/azure_environment'
 #
 class UnsuccessfulAPIQuery < StandardError
   class ResourceNotFound < StandardError; end
+
   class UnexpectedHTTPResponse < StandardError
     class InvalidApiVersionParameter < StandardError
       # Return a list if the wrong api is not provided.
@@ -241,14 +242,14 @@ module Helpers
 
   # @return [Array] Allowed parameters
   # @param allow [Array]
-  def self.validate_params_allow(allow, opts, skip_length = false)
+  def self.validate_params_allow(allow, opts, skip_length = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix this.
     unless skip_length
-      raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 }
+      raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 } # rubocop:disable Style/SoleNestedConditional TODO: Fix this.
     end
     raise ArgumentError, 'Scalar arguments not supported.' unless defined?(opts.keys)
     raise ArgumentError, "Unexpected arguments found: #{opts.keys.uniq - allow.uniq}" unless opts.keys.all? { |a| allow.include?(a) }
     raise ArgumentError, 'Provided parameter should not be empty.' unless opts.values.all? do |a|
-      return true if a.class == Integer
+      return true if a.instance_of?(Integer)
       return true if [TrueClass, FalseClass].include?(a.class)
       !a.empty?
     end
@@ -279,9 +280,9 @@ module Helpers
       query = data.each_with_object([]) do |(k, v), acc|
         v = v.delete_suffix('/').delete_prefix('/')
         if k.to_s.start_with?('substring_of_')
-          acc << "substringof('#{v}',#{k.to_s[13..-1].camelcase(:lower)})"
+          acc << "substringof('#{v}',#{k.to_s[13..].camelcase(:lower)})"
         elsif k.to_s.start_with?('starts_with_')
-          acc << "startswith(#{k.to_s[12..-1].camelcase(:lower)},'#{v}')"
+          acc << "startswith(#{k.to_s[12..].camelcase(:lower)},'#{v}')"
         else
           acc << "#{k.to_s.camelcase(:lower)} eq '#{v}'"
         end

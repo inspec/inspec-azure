@@ -42,7 +42,7 @@ class AzureSqlServer < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'firewall_rules',
-        property_endpoint: id + '/firewallRules',
+        property_endpoint: "#{id}/firewallRules",
         api_version: @opts[:firewall_rules_api_version],
       },
     )
@@ -53,7 +53,7 @@ class AzureSqlServer < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'auditing_settings',
-        property_endpoint: id + '/auditingSettings/default',
+        property_endpoint: "#{id}/auditingSettings/default",
         api_version: @opts[:auditing_settings_api_version],
       },
     )
@@ -64,7 +64,7 @@ class AzureSqlServer < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'threat_detection_settings',
-        property_endpoint: id + '/securityAlertPolicies/Default',
+        property_endpoint: "#{id}/securityAlertPolicies/Default",
         api_version: @opts[:threat_detection_settings_api_version],
       },
     )
@@ -75,7 +75,7 @@ class AzureSqlServer < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'administrators',
-        property_endpoint: id + '/administrators',
+        property_endpoint: "#{id}/administrators",
         api_version: @opts[:administrators_api_version],
       },
     )
@@ -86,7 +86,7 @@ class AzureSqlServer < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'encryption_protector',
-        property_endpoint: id + '/encryptionProtector',
+        property_endpoint: "#{id}/encryptionProtector",
         api_version: @opts[:encryption_protector_api_version],
       },
     )
@@ -105,14 +105,17 @@ class AzurermSqlServer < AzureSqlServer
   EXAMPLE
 
   def initialize(opts = {})
-    # Ensure backward compatibility unless these properties are provided by the users deliberately.
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlServer.name)
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    # For backward compatibility.
+    opts[:api_version] ||= '2018-06-01-preview'
     opts[:firewall_rules_api_version] ||= '2014-04-01'
     opts[:auditing_settings_api_version] ||= '2017-03-01-preview'
     opts[:threat_detection_settings_api_version] ||= '2017-03-01-preview'
     opts[:administrators_api_version] ||= '2014-04-01'
     opts[:encryption_protector_api_version] ||= '2015-05-01-preview'
-
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlServer.name)
     super
   end
 end

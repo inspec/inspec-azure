@@ -73,7 +73,7 @@ class AzureNetworkWatcher < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'flow_logs',
-        property_endpoint: id + '/queryFlowLogStatus',
+        property_endpoint: "#{id}/queryFlowLogStatus",
         api_version: @opts[:flow_logs_api_version],
         method: 'post',
         req_body: JSON.generate(req_body_hash),
@@ -96,6 +96,9 @@ class AzurermNetworkWatcher < AzureNetworkWatcher
 
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkWatcher.name)
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
     # For backward compatibility.
     opts[:api_version] ||= '2018-02-01'
     opts[:flow_logs_api_version] ||= '2019-04-01'

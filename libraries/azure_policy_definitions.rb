@@ -51,7 +51,7 @@ class AzurePolicyDefinitions < AzureGenericResources
     # That's why it should be put in allowed_parameters to be able to pass the parameter validation in the backend.
     opts[:allowed_parameters] = %i(built_in_only)
     opts[:resource_uri] = '/providers/Microsoft.Authorization/policyDefinitions'
-    opts[:add_subscription_id] = opts.dig(:built_in_only) != true
+    opts[:add_subscription_id] = opts[:built_in_only] != true
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

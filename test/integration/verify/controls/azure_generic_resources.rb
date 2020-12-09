@@ -37,7 +37,7 @@ control 'azure_generic_resources' do
     it { should exist }
   end
 
-  azure_generic_resources(substring_of_name: vm_names[-10..-1]).names.each do |name|
+  azure_generic_resources(substring_of_name: vm_names[-10..]).names.each do |name|
     describe azure_generic_resource(resource_group: resource_group, name: name)
     it { should exist }
     its('name') { should cmp name }
