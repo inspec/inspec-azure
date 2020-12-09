@@ -4,7 +4,6 @@ AllCops:
   - bin/**/*
   - vendor/**/*
   - dev/**/*
-  NewCops: enable
 Layout/LineLength:
   Enabled: false
 Layout/HashAlignment:
