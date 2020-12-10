@@ -24,7 +24,6 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
   - [`api_version`](#api_version)
   - [`endpoint`](#endpoint)
   - [http_client parameters](#http_client-parameters)
-- [Connectors](#connectors)
 - [Development](#development)
   - [Developing a Static Resource](#developing-a-static-resource)
     - [Singular Resources](#singular-resources)
@@ -32,24 +31,20 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
   - [Setting the Environment Variables](#setting-the-environment-variables)
   - [Starting an Environment](#starting-an-environment)
   - [Direnv](#direnv)
-  - [Remote State](#remote-state)
   - [Rake Commands](#rake-commands)
   - [Optional Components](#optional-components)
-    - [Network Watcher](#network-watcher)
     - [Graph API](#graph-api)
-    - [Managed Service Identity](#managed-service-identity)
-    - [Using Optional Components](#using-optional-components)
+  - [Network Watcher](#network-watcher)
 
 ## Prerequisites
 
 * Ruby
 * Bundler installed
 * Azure Service Principal Account
-* Azure Service Principal may read the Azure Active Directory
 
 ### Service Principal
 
-Your Azure Service Principal Account must have `contributor` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
+Your Azure Service Principal Account must have `contributor` or `owner` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
 
 * TENANT_ID
 * CLIENT_ID
@@ -87,13 +82,13 @@ Since this is an InSpec resource pack, it only defines InSpec resources. To use 
 $ inspec init profile --platform azure my-profile
 ```
 
-Example inspec.yml:
+Example `inspec.yml`:
 
 ```yaml
 name: my-profile
 title: My own Azure profile
 version: 0.1.0
-inspec_version: '>= 4.6.9'
+inspec_version: '>= 4.23.15'
 depends:
   - name: inspec-azure
     url: https://github.com/inspec/inspec-azure/archive/x.tar.gz
@@ -119,7 +114,6 @@ With the generic resources:
 - Server side filtering can be used for more efficient tests.
  
 The following is a list of static resources. 
-The static resources derived from the generic resources prepended with `azure_` are fully backward compatible with their `azurerm_` counterparts. 
 
 - [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
 - [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
@@ -176,8 +170,8 @@ The static resources derived from the generic resources prepended with `azure_` 
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
 - [azure_role_definitions](docs/resources/azure_role_definitions.md)
-- [azure_security_center_policies](docs/resources/azure_security_center_policies.md)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
+- [azure_security_center_policies](docs/resources/azure_security_center_policies.md)
 - [azure_sql_database](docs/resources/azure_sql_database.md)
 - [azure_sql_databases](docs/resources/azure_sql_databases.md)
 - [azure_sql_server](docs/resources/azure_sql_server.md)
@@ -205,8 +199,7 @@ For more details and different use cases, please refer to the specific resource 
 
 ## Examples
 
-### Interrogate All Resources that Have `project_A` in Their Names within Your Subscription Regardless of Their Type and Resource Group  
-  
+### Interrogate All Resources that Have `project_A` in Their Names within Your Subscription Regardless of Their Type and Resource Group
 ```ruby
 azure_generic_resources(substring_of_name: 'project_A').ids.each do |id|
   describe azure_generic_resource(resource_id: id) do
@@ -216,7 +209,6 @@ end
 ``` 
 
 ### Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value
-    
 ```ruby
 azure_generic_resources(tag_name: 'project_A').ids.each do |id|
   describe azure_generic_resource(resource_id: id) do
@@ -226,7 +218,6 @@ end
 ``` 
 
 ### Verify Properties of an Azure Virtual Machine
-
 ```ruby
 describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'prod-web-01') do
   it { should exist }
@@ -240,7 +231,6 @@ end
 ```
 
 ### Verify Properties of a Network Security Group
-
 ```ruby
 describe azure_network_security_group(resource_group: 'ProductionResourceGroup', name: 'ProdServers') do
   it { should exist }
@@ -264,23 +254,40 @@ As an Azure resource provider enables new features, it releases a new version of
 InSpec Azure resources can be forced to use a specific version of the API to eliminate the behavioural changes between the tests using different API versions.
 The latest version will be used unless a specific version is provided.
 
+### User Provided Api Version
 ```ruby
 describe azure_virtual_machine(resource_group: 'my_group', name: 'my_VM', api_version: '2020-01-01') do
   its('api_version_used_for_query_state') { should eq 'user_provided' }
   its('api_version_used_for_query') { should eq '2020-01-01' }
 end
+```
 
-# `default` api version can be used if it is supported by the resource provider.
+### Pre-defined Default Api Version
+
+`default` api version can be used if it is supported by the resource provider.
+```ruby
 describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', name: 'my_VM', api_version: 'default') do
   its('api_version_used_for_query_state') { should eq 'default' }
 end
+```
 
-# `latest` version will be used if it is not provided
-describe azure_virtual_networks do
+### Latest Api Version
+`latest` version will be determined by this resource pack within the supported api versions.
+If the latest version is a `preview` than an older but a stable version might be used. 
+Explicitly forcing to use the `latest` version.
+```ruby
+describe azure_virtual_networks(api_version: 'latest') do
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
-
-# `latest` version will be used if the provided is invalid
+```
+`latest` version will be used unless provided (Implicit).
+```ruby
+describe azure_network_security_groups(resource_group: 'my_group') do
+  its('api_version_used_for_query_state') { should eq 'latest' }
+end
+```
+`latest` version will be used if the provided is invalid.
+```ruby
 describe azure_network_security_groups(resource_group: 'my_group', api_version: 'invalid_api_version') do
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
@@ -306,7 +313,7 @@ end
 
 It can be defined as an environment variable or a resource parameter (has priority).
 
-The predefined environment variables for each cloud deployments can be found [here](libraries/backend/helpers.rb#L64).
+The predefined environment variables for each cloud deployments can be found [here](libraries/backend/helpers.rb).
 
 ### http_client parameters
 
@@ -314,88 +321,59 @@ The behavior of the http client can be defined with the following parameters:
 
 - `azure_retry_limit`: Maximum number of retries (default - `2`, Integer).
 - `azure_retry_backoff`: Pause in seconds between retries (default - `0`, Integer).
-- `azure_retry_backoff_factor`: The amount to multiply each successive retry's interval amount by (default - `1`, Integer).
+- `azure_retry_backoff_factor`: The amount to multiply each successive retries interval amount by (default - `1`, Integer).
 
 They can be defined as environment variables or resource parameters (has priority).
 
 <hr>
 
-> <b>WARNING</b> The following resources do not support **api_version**, **endpoint** and **http_client** parameters and they will be deprecated in the InSpec Azure version **2**. 
+> <b>WARNING</b> The following resources are using their `azure_` counterparts under the hood and they will be deprecated in the InSpec Azure version **2**.
+> Their api versions are fixed (see below) for full backward compatibility.
+> It is strongly advised to start using the resources with `azure_` prefix for an up-to-date testing experience.
 
-- [azurerm_ad_user](docs/resources/azurerm_ad_user.md)
-- [azurerm_ad_users](docs/resources/azurerm_ad_users.md)
-- [azurerm_aks_cluster](docs/resources/azurerm_aks_cluster.md)
-- [azurerm_aks_clusters](docs/resources/azurerm_aks_clusters.md)
-- [azurerm_api_management](docs/resources/azurerm_api_management.md)
-- [azurerm_api_managements](docs/resources/azurerm_api_managements.md)
-- [azurerm_application_gateway](docs/resources/azurerm_application_gateway.md)
-- [azurerm_application_gateways](docs/resources/azurerm_application_gateways.md)
-- [azurerm_cosmosdb_database_account](docs/resources/azurerm_cosmosdb_database_account.md)
-- [azurerm_event_hub_authorization_rule](docs/resources/azurerm_event_hub_authorization_rule.md)
-- [azurerm_event_hub_event_hub](docs/resources/azurerm_event_hub_event_hub.md)
-- [azurerm_event_hub_namespace](docs/resources/azurerm_event_hub_namespace.md)
-- [azurerm_hdinsight_cluster](docs/resources/azurerm_hdinsight_cluster.md)
-- [azurerm_iothub](docs/resources/azurerm_iothub.md)
-- [azurerm_iothub_event_hub_consumer_group](docs/resources/azurerm_iothub_event_hub_consumer_group.md)
-- [azurerm_iothub_event_hub_consumer_groups](docs/resources/azurerm_iothub_event_hub_consumer_groups.md)
-- [azurerm_key_vault](docs/resources/azurerm_key_vault.md)
-- [azurerm_key_vault_key](docs/resources/azurerm_key_vault_key.md)
-- [azurerm_key_vault_keys](docs/resources/azurerm_key_vault_keys.md)
-- [azurerm_key_vault_secret](docs/resources/azurerm_key_vault_secret.md)
-- [azurerm_key_vault_secrets](docs/resources/azurerm_key_vault_secrets.md)
-- [azurerm_key_vaults](docs/resources/azurerm_key_vaults.md)
-- [azurerm_load_balancer](docs/resources/azurerm_load_balancer.md)
-- [azurerm_load_balancers](docs/resources/azurerm_load_balancers.md)
-- [azurerm_locks](docs/resources/azurerm_locks.md)
-- [azurerm_management_group](docs/resources/azurerm_management_group.md)
-- [azurerm_management_groups](docs/resources/azurerm_management_groups.md)
-- [azurerm_mariadb_server](docs/resources/azurerm_mariadb_server.md)
-- [azurerm_mariadb_servers](docs/resources/azurerm_mariadb_servers.md)
-- [azurerm_monitor_activity_log_alert](docs/resources/azurerm_monitor_activity_log_alert.md)
-- [azurerm_monitor_activity_log_alerts](docs/resources/azurerm_monitor_activity_log_alerts.md)
-- [azurerm_monitor_log_profile](docs/resources/azurerm_monitor_log_profile.md)
-- [azurerm_monitor_log_profiles](docs/resources/azurerm_monitor_log_profiles.md)
-- [azurerm_mysql_database](docs/resources/azurerm_mysql_database.md)
-- [azurerm_mysql_databases](docs/resources/azurerm_mysql_databases.md)
-- [azurerm_mysql_server](docs/resources/azurerm_mysql_server.md)
-- [azurerm_mysql_servers](docs/resources/azurerm_mysql_servers.md)
-- [azurerm_network_interface](docs/resources/azurerm_network_interface.md)
-- [azurerm_network_interfaces](docs/resources/azurerm_network_interfaces.md)
-- [azurerm_network_security_group](docs/resources/azurerm_network_security_group.md)
-- [azurerm_network_security_groups](docs/resources/azurerm_network_security_groups.md)
-- [azurerm_network_watcher](docs/resources/azurerm_network_watcher.md)
-- [azurerm_network_watchers](docs/resources/azurerm_network_watchers.md)
-- [azurerm_postgresql_database](docs/resources/azurerm_postgresql_database.md)
-- [azurerm_postgresql_databases](docs/resources/azurerm_postgresql_databases.md)
-- [azurerm_postgresql_server](docs/resources/azurerm_postgresql_server.md)
-- [azurerm_postgresql_servers](docs/resources/azurerm_postgresql_servers.md)
-- [azurerm_public_ip](docs/resources/azurerm_public_ip.md)
-- [azurerm_resource_groups](docs/resources/azurerm_resource_groups.md)
-- [azurerm_role_definition](docs/resources/azurerm_role_definition.md)
-- [azurerm_role_definitions](docs/resources/azurerm_role_definitions.md)
-- [azurerm_security_center_policies](docs/resources/azurerm_security_center_policies.md)
-- [azurerm_security_center_policy](docs/resources/azurerm_security_center_policy.md)
-- [azurerm_sql_database](docs/resources/azurerm_sql_database.md)
-- [azurerm_sql_databases](docs/resources/azurerm_sql_databases.md)
-- [azurerm_sql_server](docs/resources/azurerm_sql_server.md)
-- [azurerm_sql_servers](docs/resources/azurerm_sql_servers.md)
-- [azurerm_storage_account_blob_container](docs/resources/azurerm_storage_account_blob_container.md)
-- [azurerm_storage_account_blob_containers](docs/resources/azurerm_storage_account_blob_containers.md)
-- [azurerm_subnet](docs/resources/azurerm_subnet.md)
-- [azurerm_subnets](docs/resources/azurerm_subnets.md)
-- [azurerm_subscription](docs/resources/azurerm_subscription.md)
-- [azurerm_virtual_machine](docs/resources/azurerm_virtual_machine.md)
-- [azurerm_virtual_machine_disk](docs/resources/azurerm_virtual_machine_disk.md)
-- [azurerm_virtual_machine_disks](docs/resources/azurerm_virtual_machine_disks.md)
-- [azurerm_virtual_machines](docs/resources/azurerm_virtual_machines.md)
-- [azurerm_virtual_network](docs/resources/azurerm_virtual_network.md)
-- [azurerm_virtual_networks](docs/resources/azurerm_virtual_networks.md)
-- [azurerm_webapp](docs/resources/azurerm_webapp.md)
-- [azurerm_webapps](docs/resources/azurerm_webapps.md)
-
-## Connectors
-
-See [Connectors](docs/reference/connectors.md) for more information on the different connection strategies we support.
+| Legacy Resource Name              | Fixed [api version](#api_version) | Replaced by                   |
+|------------------------------------------|----------------------------|-------------------------------|
+| azurerm_ad_user, azurerm_ad_users | `v1.0` | [azure_graph_user](docs/resources/azure_graph_user.md), [azure_graph_users](docs/resources/azure_graph_users.md) |
+| azurerm_aks_cluster, azurerm_aks_clusters | `2018-03-31` | [azure_aks_cluster](docs/resources/azure_aks_cluster.md), [azure_aks_cluster](docs/resources/azure_aks_cluster.md) |
+| azurerm_api_management, azurerm_api_managements | `2019-12-01` | [azure_api_management](docs/resources/azure_api_management.md), [azure_api_managements](docs/resources/azure_api_managements.md) |
+| azurerm_application_gateway, azurerm_application_gateways | `2019-12-01` | [azure_application_gateway](docs/resources/azure_application_gateway.md), [azure_application_gateways](docs/resources/azure_application_gateways.md) |
+| azurerm_cosmosdb_database_account | `2015-04-08` | [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md) |
+| azurerm_event_hub_authorization_rule | `2017-04-01` | [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md) |
+| azurerm_event_hub_event_hub | `2017-04-01` | [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md) |
+| azurerm_event_hub_namespace | `2017-04-01` | [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md) |
+| azurerm_hdinsight_cluster | `2015-03-01-preview` | [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md) |
+| azurerm_iothub | `2018-04-01` | [azure_iothub](docs/resources/azure_iothub.md) |
+| azurerm_iothub_event_hub_consumer_group, azurerm_iothub_event_hub_consumer_groups |`2018-04-01` | [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md), [azure_iothub_event_hub_consumer_groups](docs/resources/azure_iothub_event_hub_consumer_groups.md) |
+| azurerm_key_vault, azurerm_key_vaults | `2016-10-01` | [azure_key_vault](docs/resources/azure_key_vault.md), [azure_key_vaults](docs/resources/azure_key_vaults.md) |
+| azurerm_key_vault_key, azurerm_key_vault_keys | `2016-10-01` | [azure_key_vault_key](docs/resources/azure_key_vault_key.md), [azure_key_vault_keys](docs/resources/azure_key_vault_keys.md) |
+| azurerm_key_vault_secret, azurerm_key_vault_secrets | `2016-10-01` | [azure_key_vault_secret](docs/resources/azure_key_vault_secret.md), [azure_key_vault_secrets](docs/resources/azure_key_vault_secrets.md) |
+| azurerm_load_balancer, azurerm_load_balancers | `2018-11-01` | [azure_load_balancer](docs/resources/azure_load_balancer.md), [azure_load_balancers](docs/resources/azure_load_balancers.md) |
+| azurerm_locks | `2016-09-01` | [azure_locks](docs/resources/azure_locks.md) |
+| azurerm_management_group, azurerm_management_groups | `2018-03-01-preview` | [azure_management_group](docs/resources/azure_management_group.md), [azure_management_groups](docs/resources/azure_management_groups.md) |
+| azurerm_mariadb_server, azurerm_mariadb_servers | `2018-06-01-preview` | [azure_mariadb_server](docs/resources/azure_mariadb_server.md), [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md) |
+| azurerm_monitor_activity_log_alert, azurerm_monitor_activity_log_alerts | `2017-04-01` | [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md), [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md) |
+| azurerm_monitor_log_profile, azurerm_monitor_log_profiles | `2016-03-01` | [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md), [azure_monitor_log_profiles](docs/resources/azure_monitor_log_profiles.md) |
+| azurerm_mysql_database, azurerm_mysql_databases | `2017-12-01` | [azure_mysql_database](docs/resources/azure_mysql_database.md), [azure_mysql_databases](docs/resources/azure_mysql_databases.md) |
+| azurerm_mysql_server, azurerm_mysql_servers | `2017-12-01` | [azure_mysql_server](docs/resources/azure_mysql_server.md), [azure_mysql_servers](docs/resources/azure_mysql_servers.md) |
+| azurerm_network_interface, azurerm_network_interfaces | `2018-11-01` | [azure_network_interface](docs/resources/azure_network_interface.md), [azure_network_interfaces](docs/resources/azure_network_interfaces.md) |
+| azurerm_network_security_group, azurerm_network_security_groups | `2018-02-01` | [azure_network_security_group](docs/resources/azure_network_security_group.md), [azure_network_security_groups](docs/resources/azure_network_security_groups.md) |
+| azurerm_network_watcher, azurerm_network_watchers | `2018-02-01` | [azure_network_watcher](docs/resources/azure_network_watcher.md), [azure_network_watchers](docs/resources/azure_network_watchers.md) |
+| azurerm_postgresql_database, azurerm_postgresql_databases | `2017-12-01` | [azure_postgresql_database](docs/resources/azure_postgresql_database.md), [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md) |
+| azurerm_postgresql_server, azurerm_postgresql_servers | `2017-12-01` | [azure_postgresql_server](docs/resources/azure_postgresql_server.md), [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md) |
+| azurerm_public_ip | `2020-05-01` | [azure_public_ip](docs/resources/azure_public_ip.md) |
+| azurerm_resource_groups | `2018-02-01` | [azure_resource_groups](docs/resources/azure_resource_groups.md) |
+| azurerm_role_definition, azurerm_role_definitions | `2015-07-01` | [azure_role_definition](docs/resources/azure_role_definition.md), [azure_role_definitions](docs/resources/azure_role_definitions.md) |
+| azurerm_security_center_policy, azurerm_security_center_policies | `2015-06-01-Preview` | [azure_security_center_policy](docs/resources/azure_security_center_policy.md), [azure_security_center_policies](docs/resources/azure_security_center_policies.md) |
+| azurerm_sql_database, azurerm_sql_databases | `2017-10-01-preview` | [azure_sql_database](docs/resources/azure_sql_database.md), [azure_sql_databases](docs/resources/azure_sql_databases.md) |
+| azurerm_sql_server, azurerm_sql_servers | `2018-06-01-preview` | [azure_sql_server](docs/resources/azure_sql_server.md), [azure_sql_servers](docs/resources/azure_sql_servers.md) |
+| azurerm_storage_account, azurerm_storage_accounts  | `2017-06-01` | [azure_storage_account](docs/resources/azure_storage_account.md), [azure_storage_accounts](docs/resources/azure_storage_accounts.md) | 
+| azurerm_storage_account_blob_container, azurerm_storage_account_blob_containers  | `2018-07-01` | [azure_storage_account_blob_container](docs/resources/azure_storage_account_blob_container.md), [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md) | 
+| azurerm_subnet, azurerm_subnets | `2018-02-01` | [azure_subnet](docs/resources/azure_subnet.md), [azure_subnets](docs/resources/azure_subnets.md) |
+| azurerm_subscription | `2019-10-01` | [azure_subscription](docs/resources/azure_subscription.md) |
+| azurerm_virtual_machine, azurerm_virtual_machines | `2017-12-01` | [azure_virtual_machine](docs/resources/azure_virtual_machine.md), [azure_virtual_machines](docs/resources/azure_virtual_machines.md) |
+| azurerm_virtual_machine_disk, azurerm_virtual_machine_disks | `2017-03-30` | [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md), [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md) |
+| azurerm_virtual_network, azurerm_virtual_networks | `2018-02-01` | [azure_virtual_network](docs/resources/azure_virtual_network.md), [azure_virtual_networks](docs/resources/azure_virtual_networks.md) |
+| azurerm_webapp, azurerm_webapps | `2016-08-01` | [azure_webapp](docs/resources/azure_webapp.md), [azure_webapps](docs/resources/azure_webapps.md) |
 
 ## Development
 
@@ -469,7 +447,7 @@ $env:AZURE_TENANT_ID="<tenant id>"
 
 ### Starting an Environment
 
-First ensure your system has [Terraform](https://www.terraform.io/intro/getting-started/install.html) (Version 0.12.0) installed.
+First ensure your system has [Terraform](https://www.terraform.io/intro/getting-started/install.html) installed.
 
 This environment may be used to run your profile against or to run integration tests on it. We are using [Terraform workspaces](https://www.terraform.io/docs/state/workspaces.html) to allow for teams to have completely unique environments without affecting each other.
 
@@ -477,89 +455,45 @@ This environment may be used to run your profile against or to run integration t
 
 [Direnv](https://direnv.net/) is used to initialize an environment variable `WORKSPACE` to your username. We recommend using `direnv` and allowing it to run in your environment. However, if you prefer to not use `direnv` you may also `source .envrc`.
 
-### Remote State
-
-Remote state has been removed. The first time you run Terraform after having remote state removed you will be presented with a message like:
-
-```
-Do you want to migrate all workspaces to "local"?
-  Both the existing "azurerm" backend and the newly configured "local" backend support
-  workspaces. When migrating between backends, Terraform will copy all
-  workspaces (with the same names). THIS WILL OVERWRITE any conflicting
-  states in the destination.
-
-  Terraform initialization doesn't currently migrate only select workspaces.
-  If you want to migrate a select number of workspaces, you must manually
-  pull and push those states.
-
-  If you answer "yes", Terraform will migrate all states. If you answer
-  "no", Terraform will abort.
-
-  Enter a value: yes
-```
-
-Enter yes or press enter.
-
 ### Rake Commands
 
 Creating a new environment:
-```
+```shell
 rake azure:login
 rake tf:apply
 ```
-Creating a new environment with a Network Watcher:
-```
-rake azure:login
-rake network_watcher tf:apply
-```
-You may only have a single Network Watcher per a subscription. Use this carefully if you are working with other team members.
 Updating a running environment (e.g. when you change the .tf file):
-```
-rake azure:login
+```shell
 rake tf:apply
 ```
 Checking if your state has diverged from your plan:
-```
-rake azure:login
+```shell
 rake tf:plan
 ```
 Destroying your environment:
-```
-rake azure:login
+```shell
 rake tf:destroy
 ```
 To run Rubocop and Syntax check for Ruby and InSpec:
-```
+```shell
 rake test:lint
 ```
 To run unit tests:
-```
+```shell
 rake test:unit
 ```
 To run integration tests:
-```
+```shell
 rake test:integration
 ```
 To run lint and unit tests:
-```
+```shell
 rake
-```
-To run integration tests including a Network Watcher:
-```
-rake network_watcher test:integration
 ```
 ### Optional Components
 
 By default, rake tasks will only use core components. Optional components have associated integrations that will be skipped unless you enable these. We have the following optional pieces that may be managed with Terraform.
 
-#### Network Watcher
-
-Network Watcher may be enabled to run integration tests related to the Network Watcher. We recommend leaving this disabled unless you are specifically working on related resources. You may only have one Network Watcher enabled per an Azure subscription at a time. To enable Network Watcher:
-```
-rake options[network_watcher]
-direnv allow # or source .envrc
-rake tf:apply
-```
 #### Graph API
 
 Graph API support may be enabled to test with `azure_graph` related resources.
@@ -573,28 +507,9 @@ rake options[graph]
 direnv allow # or source .envrc
 rake tf:apply
 ```
-#### Managed Service Identity
+### Network Watcher
 
-> <b>WARNING</b> This is not supported by the resources starting with `azure_`.
-
-Managed Service Identity (MSI) is another way to connect to the Azure APIs.
-This option starts an additional virtual machine with MSI enabled and a public ip address. You will need to put a hole in your firewall to connect to the virtual machine. You will also need to grant the `contributor` role to this identity for your subscription.
-```
-rake options[msi]
-direnv allow # or source .envrc
-rake tf:apply
-```
-#### Using Optional Components
-
-Optional Components may be combined when running tasks:
-
-```
-rake options[option_1,option_2,option3]
-direnv allow # or source .envrc
-rake tf:apply
-```
-To disable optional components run `rake options[]` including only the optional components you wish to enable. Any omitted component will be disabled.
-```
-rake options[] # disable all optional components
-rake options[option_1] # enables option_1 disabling all other optional components
-```
+Network Watcher may be enabled to run integration tests related to the Network Watcher. 
+We recommend leaving this disabled unless you are specifically working on related resources. 
+You may only have one Network Watcher enabled per an Azure subscription at a time. 
+To enable Network Watcher, update the `default` value of `network_watcher` variable to `1` in the [`terraform/variables.tf`](terraform/variables.tf) file.

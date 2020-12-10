@@ -28,7 +28,7 @@ class AzureAksCluster < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'diagnostic_settings',
-        property_endpoint: id + '/providers/microsoft.insights/diagnosticSettings',
+        property_endpoint: "#{id}/providers/microsoft.insights/diagnosticSettings",
         api_version: '2017-05-01-preview',
       },
     )
@@ -65,7 +65,12 @@ class AzurermAksCluster < AzureAksCluster
   EXAMPLE
 
   def initialize(opts = {})
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureAksCluster.name)
+    # For backward compatibility.
+    opts[:api_version] ||= '2018-03-31'
     super
   end
 end

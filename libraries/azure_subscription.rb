@@ -81,7 +81,7 @@ class AzureSubscription < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'default',
-        property_endpoint: 'subscriptions/' + id + '/providers/microsoft.insights/diagnosticSettings',
+        property_endpoint: "subscriptions/#{id}/providers/microsoft.insights/diagnosticSettings",
         api_version: '2017-05-01-preview',
       },
     )
@@ -139,7 +139,7 @@ class AzureSubscription < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'locations_list',
-        property_endpoint: id + '/locations',
+        property_endpoint: "#{id}/locations",
         api_version: @opts[:locations_api_version],
       },
     )
@@ -159,8 +159,13 @@ class AzurermSubscription < AzureSubscription
   EXAMPLE
 
   def initialize(opts = {})
-    opts[:locations_api_version] ||= '2019-10-01'
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSubscription.name)
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    # For backward compatibility.
+    opts[:api_version] ||= '2019-10-01'
+    opts[:locations_api_version] ||= '2019-10-01'
     super
   end
 end

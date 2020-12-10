@@ -126,12 +126,13 @@ class AzureConnection
     opts[:headers]['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
     opts[:headers]['Accept'] = 'application/json'
     opts[:method] ||= 'get'
-    if opts[:method] == 'get'
+    case opts[:method]
+    when 'get'
       resp = @connection.get(opts[:url]) do |req|
         req.params =  opts[:params] unless opts[:params].nil?
         req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
       end
-    elsif opts[:method] == 'post'
+    when 'post'
       resp = @connection.post(opts[:url]) do |req|
         req.params = opts[:params] unless opts[:params].nil?
         req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
@@ -204,11 +205,11 @@ class AzureConnection
     if body.empty?
       raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, message
     end
-    if body.class == Hash
+    if body.instance_of?(Hash)
       code = body[:code]
       error_message = body[:message]
       error = body[:error]
-      if error&.is_a?(Hash)
+      if error.is_a?(Hash)
         code ||= error[:code]
         error_message ||= error[:message]
       end

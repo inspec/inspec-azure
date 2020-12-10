@@ -15,7 +15,7 @@ class AzureGenericResources < AzureResourceBase
 
   attr_reader :table
 
-  def initialize(opts = {}, static_resource = false)
+  def initialize(opts = {}, static_resource = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix disabled rubocop issue.
     # A HTTP client will be created in the backend.
     super(opts)
     @display_name = @opts.slice(:resource_group, :resource_path, :name, :resource_provider,
@@ -80,8 +80,8 @@ class AzureGenericResources < AzureResourceBase
   end
 
   def to_s(class_name = nil)
-    if defined?(api_version_used_for_query)
-      api_info = "- api_version: #{api_version_used_for_query} #{api_version_used_for_query_state}" unless api_version_used_for_query.nil?
+    if defined?(api_version_used_for_query) && !api_version_used_for_query.nil?
+      api_info = "- api_version: #{api_version_used_for_query} #{api_version_used_for_query_state}"
     end
     if class_name.nil?
       "#{AzureGenericResources.name.split('_').map(&:capitalize).join(' ')} #{@display_name}"

@@ -43,7 +43,7 @@ class AzureSqlDatabase < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'auditing_settings',
-        property_endpoint: id + '/auditingSettings/default',
+        property_endpoint: "#{id}/auditingSettings/default",
         api_version: @opts[:auditing_settings_api_version],
       },
     )
@@ -54,7 +54,7 @@ class AzureSqlDatabase < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'threat_detection_settings',
-        property_endpoint: id + '/securityAlertPolicies/default',
+        property_endpoint: "#{id}/securityAlertPolicies/default",
         api_version: @opts[:threat_detection_settings_api_version],
       },
     )
@@ -65,7 +65,7 @@ class AzureSqlDatabase < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'encryption_settings',
-        property_endpoint: id + '/transparentDataEncryption/current',
+        property_endpoint: "#{id}/transparentDataEncryption/current",
         api_version: @opts[:encryption_settings_api_version],
       },
     )
@@ -84,15 +84,15 @@ class AzurermSqlDatabase < AzureSqlDatabase
   EXAMPLE
 
   def initialize(opts = {})
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlDatabase.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
-    # Ensure backward compatibility unless these properties are provided by the users deliberately.
+    # For backward compatibility.
+    opts[:api_version] ||= '2017-10-01-preview'
     opts[:auditing_settings_api_version] ||= '2017-03-01-preview'
     opts[:threat_detection_settings_api_version] ||= '2014-04-01'
     opts[:encryption_settings_api_version] ||= '2014-04-01'
-
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlDatabase.name)
     super
   end
 end

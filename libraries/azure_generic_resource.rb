@@ -13,7 +13,7 @@ class AzureGenericResource < AzureResourceBase
     end
   EXAMPLE
 
-  def initialize(opts = {}, static_resource = false)
+  def initialize(opts = {}, static_resource = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix disabled rubocop issue.
     super(opts)
     @resource_id = ''
     if @opts.key?(:resource_provider)
@@ -59,7 +59,7 @@ class AzureGenericResource < AzureResourceBase
     # &
     # All resources must have a id unless the full URL is provided.
     unless @resource_long_desc.is_a?(Hash) && @resource_long_desc.key?(:id)
-      unless @opts[:is_uri_a_url]
+      unless @opts[:is_uri_a_url] # rubocop:disable Style/SoleNestedConditional TODO: Fix this.
         resource_fail("Unable to get the detailed information for the resource_id: #{@resource_id}")
       end
     end

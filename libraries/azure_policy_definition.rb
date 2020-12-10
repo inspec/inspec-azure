@@ -55,7 +55,7 @@ class AzurePolicyDefinition < AzureGenericResource
     opts[:allowed_parameters] = %i(built_in)
 
     opts[:resource_uri] = '/providers/Microsoft.Authorization/policyDefinitions'
-    opts[:add_subscription_id] = opts.dig(:built_in) != true
+    opts[:add_subscription_id] = opts[:built_in] != true
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

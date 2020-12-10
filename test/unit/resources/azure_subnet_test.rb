@@ -12,11 +12,11 @@ class AzureSubnetConstructorTest < Minitest::Test
   end
 
   # resource_group, vnet and name should be provided together
-  def test_missing_required_params_1
+  def test_missing_required_params_one
     assert_raises(ArgumentError) { AzureSubnet.new(resource_group: 'some_r_g') }
   end
 
-  def test_missing_required_params_2
+  def test_missing_required_params_two
     assert_raises(ArgumentError) { AzureSubnet.new(resource_group: 'some_r_g', vnet: 'virtual_net_name') }
   end
 end
