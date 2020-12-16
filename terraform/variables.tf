@@ -59,8 +59,9 @@ variable "unmanaged_data_disk_name" {
   default = "linux-internal-datadisk-1"
 }
 
-variable "network_watcher" {
-  default = 0
+variable "network_watcher_count" {
+  # You may only have one Network Watcher enabled per an Azure subscription at a time.
+  default = 1
 }
 
 variable "public_key" {
@@ -95,17 +96,18 @@ variable "lb_port" {
   }
 }
 
-variable "hd_insight_count" {
-  # This is added due to resource constraints.
-  default = 0
+variable "hd_insight_cluster_count" {
+  default = 1
 }
 
-variable "public_ip_address_count" {
-  # This is added due to resource constraints.
+variable "public_ip_count" {
   default = 1
 }
 
 variable "api_management_count" {
-  # This is added due to resource constraints.
-  default = 0
+  default = 1
+}
+
+variable "management_group_count" {
+  default = 1
 }

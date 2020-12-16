@@ -122,7 +122,7 @@ class NormalizeSecurityRule
     allowed = %i(source_port destination_port protocol)
     required = %i(access direction)
     require_any = %i(destination_ip_range source_ip_range destination_service_tag source_service_tag)
-    Helpers.validate_parameters(allow: allowed, required: required, require_any_of: require_any, opts: criteria)
+    Validators.validate_parameters(allow: allowed, required: required, require_any_of: require_any, opts: criteria)
 
     # This will be updated by the relevant checks.
     compliant = false

@@ -16,6 +16,9 @@ FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures"
 TERRAFORM_DIR = 'terraform'
 REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUBSCRIPTION_ID}.freeze
 INTEGRATION_DIR = 'test/integration/verify'
+TF_PLAN_FILE_NAME = 'inspec-azure.plan'
+TF_PLAN_FILE = File.join(TERRAFORM_DIR, TF_PLAN_FILE_NAME)
+ATTRIBUTES_FILE_NAME = ''
 
 task default: :test
 desc 'Testing tasks'
@@ -30,7 +33,6 @@ task :setup_env do
   ENV['TF_VAR_tenant_id']       = ENV['AZURE_TENANT_ID']
   ENV['TF_VAR_client_id']       = ENV['AZURE_CLIENT_ID']
   ENV['TF_VAR_client_secret']   = ENV['AZURE_CLIENT_SECRET']
-  ENV['TF_VAR_public_vm_count'] = '1' if ENV.key?('MSI')
 
   puts '-> Ensuring required Environment Variables are set'
   missing = REQUIRED_ENVS.reject { |var| ENV.key?(var) }
@@ -109,7 +111,7 @@ namespace :test do
     t.test_files = FileList['test/unit/**/*_test.rb']
   end
 
-  task :integration, [:controls] => ['attributes:write', :setup_env] do |_t, args|
+  task :integration, [:controls] => ['tf:write_tf_output_to_file', :setup_env] do |_t, args|
     cmd = %W( bundle exec inspec exec #{INTEGRATION_DIR}
               --input-file terraform/#{ENV['ATTRIBUTES_FILE']}
               --reporter cli
@@ -125,7 +127,7 @@ namespace :test do
   end
 end
 
-namespace :tf do
+namespace :tf do    # rubocop:disable Metrics/BlockLength
   workspace = ENV['WORKSPACE']
 
   task init: [:'azure:login'] do
@@ -146,28 +148,34 @@ namespace :tf do
   end
 
   desc 'Creates a Terraform execution plan from the plan file'
-  task plan: [:workspace] do
+  task :plan, [:optionals] => [:workspace] do |_t, args|
+    if args[:optionals]
+      ignore_list = Array(args[:optionals]) + args.extras
+      ignore_list.each do |component|
+        ENV["TF_VAR_#{component}_count"] = '0'
+      end
+    end
     Dir.chdir(TERRAFORM_DIR) do
       sh('terraform', 'get')
       sh('terraform', 'plan', '-out', 'inspec-azure.plan')
     end
+
+    Rake::Task['tf:write_tf_output_to_file'].invoke
   end
 
   desc 'Executes the Terraform plan'
-  task apply: [:plan] do
+  task :apply, [:optionals] do |_t, args|
+    if File.exist?(TF_PLAN_FILE)
+      puts "-> Applying an existing terraform plan: #{TF_PLAN_FILE}"
+      unless args[:optionals].nil?
+        puts "These arguments are ignored: #{Array(args[:optionals]) + args.extras}."
+      end
+    else
+      Rake::Task['tf:plan'].invoke(args[:optionals])
+    end
     Dir.chdir(TERRAFORM_DIR) do
       sh('terraform', 'apply', 'inspec-azure.plan')
     end
-
-    Rake::Task['attributes:write'].invoke
-  end
-
-  task :apply_only do
-    Dir.chdir(TERRAFORM_DIR) do
-      sh('terraform', 'apply', 'inspec-azure.plan')
-    end
-
-    Rake::Task['attributes:write'].invoke
   end
 
   desc 'Destroys the Terraform environment'
@@ -182,6 +190,9 @@ namespace :tf do
       stdout, stderr, status = Open3.capture3('terraform output -json')
 
       abort(stderr) unless status.success?
+
+      abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
+      abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
 
       AttributeFileWriter.write_yaml(ENV['ATTRIBUTES_FILE'], stdout)
     end
@@ -206,32 +217,5 @@ namespace :attributes do
     abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
     abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
     Rake::Task['tf:write_tf_output_to_file'].invoke
-    Rake::Task['attributes:write_guest_presence_to_file'].invoke
-  end
-
-  task :write_guest_presence_to_file do
-    if ENV.key?('GRAPH')
-      Dir.chdir(TERRAFORM_DIR) do
-        stdout, stderr, status = Open3.capture3("az ad user list --query=\"length([?userType == 'Guest'])\"")
-
-        abort(stderr) unless status.success?
-
-        AttributeFileWriter.append(ENV['ATTRIBUTES_FILE'], "guest_accounts: #{stdout.to_i}")
-      end
-    end
-  end
-end
-
-desc 'Enables given optional components. See README for details.'
-task :options, :component do |_t_, args|
-  components = []
-  components << args[:component] if args[:component]
-  components += args.extras unless args.extras.nil?
-
-  begin
-    env_file = EnvironmentFile.new('.envrc')
-    env_file.synchronize(components)
-  rescue RuntimeError => e
-    puts e.message
   end
 end

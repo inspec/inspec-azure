@@ -80,7 +80,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   #   it { should allow(destination_service_tag: 'VirtualNetwork', direction: 'outbound', protocol: 'TCP') }
   #   it { should allow(source_ip_range: '0:0:0:0:0:ffff:a05:0', direction: 'inbound') }
   def allow?(criteria = {})
-    Helpers.validate_params_required(@__resource_name__, %i(direction), criteria)
+    Validators.validate_params_required(@__resource_name__, %i(direction), criteria)
     criteria[:access] = 'allow'
     rules = criteria[:direction] == 'inbound' ? inbound_rules : outbound_rules
     normalized_security_rules.go_compare(rules, criteria)
