@@ -190,7 +190,6 @@ namespace :tf do    # rubocop:disable Metrics/BlockLength
       stdout, stderr, status = Open3.capture3('terraform output -json')
 
       abort(stderr) unless status.success?
-
       abort('$ATTRIBUTES_FILE not set. Please source .envrc.') if ENV['ATTRIBUTES_FILE'].nil?
       abort('$ATTRIBUTES_FILE has no content. Check .envrc.') if ENV['ATTRIBUTES_FILE'].empty?
 
