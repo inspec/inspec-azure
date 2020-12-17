@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.43.0 -->
+<!-- latest_release 1.43.1 -->
+## [v1.43.1](https://github.com/inspec/inspec-azure/tree/v1.43.1) (2020-12-17)
+
+#### Merged Pull Requests
+- Refactor Helper Module [#354](https://github.com/inspec/inspec-azure/pull/354) ([omerdemirok](https://github.com/omerdemirok))
+<!-- latest_release -->
+
 ## [v1.43.0](https://github.com/inspec/inspec-azure/tree/v1.43.0) (2020-12-04)
 
 #### Merged Pull Requests
 - Add azure_network_watcher(s) resources [#349](https://github.com/inspec/inspec-azure/pull/349) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.42.3](https://github.com/inspec/inspec-azure/tree/v1.42.3) (2020-12-04)
 
