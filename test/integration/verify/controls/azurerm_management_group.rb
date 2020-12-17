@@ -6,6 +6,7 @@ parent_dn = input('parent_dn', value: nil)
 mg_type   = 'Microsoft.Management/managementGroups'
 
 control 'azurerm_management_group' do
+  only_if { !parent_mg.nil? }
   describe azurerm_management_group(group_id: parent_mg, expand: 'children', recurse: true) do
     it                            { should exist }
     its('id')                     { should eq "/providers/#{mg_type}/#{parent_mg}" }

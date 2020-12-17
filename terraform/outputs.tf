@@ -229,19 +229,19 @@ output "tenant_id" {
 }
 
 output "parent_mg" {
-  value = azurerm_management_group.mg_parent.group_id
+  value = azurerm_management_group.mg_parent.0.group_id
 }
 
 output "child1_mg" {
-  value = azurerm_management_group.mg_child_one.group_id
+  value = azurerm_management_group.mg_child_one.0.group_id
 }
 
 output "child2_mg" {
-  value = azurerm_management_group.mg_child_two.group_id
+  value = azurerm_management_group.mg_child_two.0.group_id
 }
 
 output "parent_dn" {
-  value = azurerm_management_group.mg_parent.display_name
+  value = azurerm_management_group.mg_parent.0.display_name
 }
 
 output "webapp_name" {
@@ -313,12 +313,12 @@ output "application_gateway_name" {
 
 output "hdinsight_cluster_name" {
   description = "HDINSIGHT cluster name."
-  value       = var.hd_insight_count > 0 ? azurerm_hdinsight_interactive_query_cluster.hdinsight_cluster.0.name : ""
+  value       = var.hd_insight_cluster_count > 0 ? azurerm_hdinsight_interactive_query_cluster.hdinsight_cluster.0.name : ""
 }
 
 output "ip_address_name" {
   description = "tha name of the azurerm_public_ip"
-  value       = var.public_ip_address_count > 0 ? azurerm_public_ip.public_ip_address[0].name : ""
+  value       = var.public_ip_count > 0 ? azurerm_public_ip.public_ip_address[0].name : ""
 }
 
 output "api_management_name" {

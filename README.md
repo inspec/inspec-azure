@@ -33,8 +33,6 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
   - [Direnv](#direnv)
   - [Rake Commands](#rake-commands)
   - [Optional Components](#optional-components)
-    - [Graph API](#graph-api)
-  - [Network Watcher](#network-watcher)
 
 ## Prerequisites
 
@@ -486,30 +484,51 @@ To run integration tests:
 ```shell
 rake test:integration
 ```
+Please note that Graph API resource requires specific privileges granted to your service principal.
+Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
+
+To run a control called `azure_virtual_machine` only:
+```shell
+rake test:integration[azurerm_virtual_machine]
+```
+Note that in zsh you need to escape the `[`, `]` characters.
+
+You may run selected multiple controls only:
+```shell
+rake test:integration[azure_aks_cluster,azure_virtual_machine]
+```
 To run lint and unit tests:
 ```shell
 rake
 ```
+
 ### Optional Components
 
-By default, rake tasks will only use core components. Optional components have associated integrations that will be skipped unless you enable these. We have the following optional pieces that may be managed with Terraform.
+The creation of the following resources can be skipped if there is any resource constraints.
 
-#### Graph API
+- Network Watcher
 
-Graph API support may be enabled to test with `azure_graph` related resources.
-Each resource requires specific privileges granted to your service principal.
-Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
-If your account does not have access, leave this disabled.
-
-Note: An Azure Administrator must grant your application these permissions.
+```shell
+rake tf:apply[network_watcher]
 ```
-rake options[graph]
-direnv allow # or source .envrc
-rake tf:apply
+- HDinsight Interactive Query Cluster
+```shell
+rake tf:apply[hdinsight_cluster]
 ```
-### Network Watcher
+- Public IP
+```shell
+rake tf:apply[public_ip]
+```
+- API Management
+```shell
+rake tf:apply[api_management]
+```
+- Management Group
+```shell
+rake tf:apply[management_group]
+```
 
-Network Watcher may be enabled to run integration tests related to the Network Watcher. 
-We recommend leaving this disabled unless you are specifically working on related resources. 
-You may only have one Network Watcher enabled per an Azure subscription at a time. 
-To enable Network Watcher, update the `default` value of `network_watcher` variable to `1` in the [`terraform/variables.tf`](terraform/variables.tf) file.
+A combination of the above can be provided.
+```shell
+rake tf:apply[management_group,public_ip,network_watcher]
+```

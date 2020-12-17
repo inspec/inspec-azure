@@ -54,7 +54,7 @@ class UnsuccessfulAPIQuery < StandardError
         #
         # There are cases where the stable api_versions are too old and don't return JSON response.
         # If the latest stable is too old (based on the age_criteria), then return the preview versions as well.
-        # This is a quick fix until TODO finding a more stable solution.
+        # This is a quick fix until TODO: finding a more stable solution.
         stable_api_versions = message.scan(/\d{4}-\d{2}-\d{2}[,']/).map(&:chop).sort.reverse
         preview_api_versions = message.scan(/\d{4}-\d{2}-\d{2}-preview/).sort.reverse
         if wrong_api_version
@@ -193,7 +193,7 @@ class HashRecursive < Hash
   end
 end
 
-module Helpers
+module Validators
   # @see https://github.com/inspec/inspec-aws/blob/master/libraries/aws_backend.rb#L209
   #
   # @param opts [Hash] The parameters to be validated.
@@ -204,12 +204,12 @@ module Helpers
   def self.validate_parameters(resource_name: nil, allow: [], required: nil, require_any_of: nil, opts: {}, skip_length: false) # rubocop:disable Metrics/ParameterLists
     raise ArgumentError, "Parameters must be provided with as a Hash object. Provided #{opts.class}" unless opts.is_a?(Hash)
     if required
-      allow += Helpers.validate_params_required(resource_name, required, opts)
+      allow += Validators.validate_params_required(resource_name, required, opts)
     end
     if require_any_of
-      allow += Helpers.validate_params_require_any_of(resource_name, require_any_of, opts)
+      allow += Validators.validate_params_require_any_of(resource_name, require_any_of, opts)
     end
-    Helpers.validate_params_allow(allow, opts, skip_length)
+    Validators.validate_params_allow(allow, opts, skip_length)
     true
   end
 
@@ -217,7 +217,7 @@ module Helpers
   # @param require_only_one_of [Array]
   def self.validate_params_only_one_of(resource_name = nil, require_only_one_of, opts)
     # At least one of them has to exist.
-    Helpers.validate_params_require_any_of(resource_name, require_only_one_of, opts)
+    Validators.validate_params_require_any_of(resource_name, require_only_one_of, opts)
     provided = require_only_one_of.select { |i| opts.key?(i) }
     if provided.size > 1
       raise ArgumentError, "Either one of #{require_only_one_of} is required. Provided: #{provided}."
@@ -255,6 +255,15 @@ module Helpers
     end
   end
 
+  def self.validate_resource_uri(resource_uri)
+    resource_uri_format = '/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/'\
+      'Microsoft.Compute/virtualMachines/{resource_name}'
+    raise ArgumentError, "Resource URI should be in the format of #{resource_uri_format}. Found: #{resource_uri}" \
+      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('providers')
+  end
+end
+
+module Helpers
   # Convert provided data into Odata query format.
   # @see
   #   https://www.odata.org/getting-started/basic-tutorial/
@@ -295,13 +304,6 @@ module Helpers
     query
   end
 
-  def self.validate_resource_uri(resource_uri)
-    resource_uri_format = '/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/'\
-      'Microsoft.Compute/virtualMachines/{resource_name}'
-    raise ArgumentError, "Resource URI should be in the format of #{resource_uri_format}. Found: #{resource_uri}" \
-      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('providers')
-  end
-
   # Disassemble resource_id and extract the resource_group, provider and resource_provider.
   #
   # This is the one and only method where the `resource_provider` is defined differently from the rest.
@@ -319,7 +321,7 @@ module Helpers
   #   /subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/
   #   Microsoft.Compute/virtualMachines/{resource_name}
   def self.res_group_provider_type_from_uri(resource_uri)
-    Helpers.validate_resource_uri(resource_uri)
+    Validators.validate_resource_uri(resource_uri)
     subscription_resource_group, provider_resource_type = resource_uri.split('/providers/')
     resource_group = subscription_resource_group.split('/').last
     interim_array = provider_resource_type.split('/')

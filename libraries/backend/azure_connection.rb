@@ -101,7 +101,7 @@ class AzureConnection
   #   audience: The audience for the authentication. Optional, it will be extracted frm the URL unless provided.
   #
   def rest_api_call(opts)
-    Helpers.validate_parameters(resource_name: @__resource_name__,
+    Validators.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(url),
                                 allow: %i(params headers method req_body audience),
                                 opts: opts, skip_length: true)

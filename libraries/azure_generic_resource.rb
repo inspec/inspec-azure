@@ -36,7 +36,7 @@ class AzureGenericResource < AzureResourceBase
     else
       resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
       # This is the last check on resource_id before talking to resource manager endpoint to get the detailed information.
-      Helpers.validate_resource_uri(@resource_id)
+      Validators.validate_resource_uri(@resource_id)
       query_params = { resource_uri: @resource_id }
     end
     query_params[:query_parameters] = {}
@@ -102,7 +102,7 @@ class AzureGenericResource < AzureResourceBase
   #     Microsoft.Sql/servers/{serverName}/firewallRules'.
   #   api_version [string] The api version of the endpoint (default - latest).
   def additional_resource_properties(opts = {})
-    Helpers.validate_parameters(resource_name: @__resource_name__,
+    Validators.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(property_name property_endpoint),
                                 allow: %i(api_version filter_free_text add_subscription_id method req_body headers),
                                 opts: opts)
@@ -150,7 +150,7 @@ class AzureGenericResource < AzureResourceBase
       # The `name` parameter should have been required in the static resource.
       # Since it is a mandatory field, it is better to make sure that it is in the required list before validations.
       @opts[:resource_identifiers] << :name unless @opts[:resource_identifiers].include?(:name)
-      provided = Helpers.validate_params_only_one_of(@__resource_name__, @opts[:resource_identifiers], @opts)
+      provided = Validators.validate_params_only_one_of(@__resource_name__, @opts[:resource_identifiers], @opts)
       # Remove resource identifiers other than `:name`.
       unless provided == :name
         @opts[:name] = @opts[provided]

@@ -84,7 +84,7 @@ class AzureResourceBase < Inspec.resource(1)
   #     result can be tailored by passing parameters as `?$select=objectId,displayName,givenName`
   #
   def resource_from_graph_api(opts)
-    Helpers.validate_parameters(resource_name: @__resource_name__, allow: %i(api_version query_parameters),
+    Validators.validate_parameters(resource_name: @__resource_name__, allow: %i(api_version query_parameters),
                                 required: %i(resource), opts: opts)
     api_version = opts[:api_version] || @azure.graph_api_endpoint_api_version
     if api_version.size > 10 || api_version.include?('/')
@@ -242,7 +242,7 @@ class AzureResourceBase < Inspec.resource(1)
   #       `user_provided`, `latest`, `default`.
   #
   def get_resource(opts = {})
-    Helpers.validate_parameters(resource_name: @__resource_name__,
+    Validators.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(resource_uri),
                                 allow: %i(query_parameters headers method req_body is_uri_a_url audience),
                                 opts: opts)
@@ -394,7 +394,7 @@ class AzureResourceBase < Inspec.resource(1)
   def validate_resource_uri(opts = @opts)
     return true if opts[:is_uri_a_url]
     opts[:resource_uri].prepend('/') unless opts[:resource_uri].start_with?('/')
-    Helpers.validate_params_required(%i(add_subscription_id), opts)
+    Validators.validate_params_required(%i(add_subscription_id), opts)
     if opts[:add_subscription_id] == true
       opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{opts[:resource_uri]}"
                             .gsub('//', '/')
@@ -486,7 +486,7 @@ class AzureResourceBase < Inspec.resource(1)
     opts = @opts
     allow += %i(azure_retry_limit azure_retry_backoff azure_retry_backoff_factor
                 endpoint api_version required_parameters allowed_parameters display_name)
-    Helpers.validate_parameters(resource_name: @__resource_name__,
+    Validators.validate_parameters(resource_name: @__resource_name__,
                                 allow: allow, required: required,
                                 require_any_of: require_any_of, opts: opts)
     true

@@ -32,7 +32,7 @@ class AzureGraphGenericResource < AzureResourceBase
     #
     if static_resource
       raise ArgumentError, '`:resource_identifiers` have to be provided within a list' unless @opts[:resource_identifiers]
-      provided = Helpers.validate_params_only_one_of(@__resource_name__, @opts[:resource_identifiers], @opts)
+      provided = Validators.validate_params_only_one_of(@__resource_name__, @opts[:resource_identifiers], @opts)
       # We should remove resource identifiers other than `:id`.
       unless provided == :id
         @opts[:id] = @opts[provided]
