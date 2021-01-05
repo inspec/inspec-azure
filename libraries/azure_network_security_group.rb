@@ -147,7 +147,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   end
   RSpec::Matchers.alias_matcher :allow_rdp_from_internet, :be_allow_rdp_from_internet
 
-  SPECIFIC_CRITERIA = %i(specific_port access_allow direction_inbound source_open).freeze
+  SPECIFIC_CRITERIA = %i(specific_port access_allow direction_inbound source_open not_icmp).freeze
   def allow_port_from_internet?(specific_port)
     return unless exists?
     @specific_port = specific_port
@@ -207,6 +207,11 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   def direction_inbound?(properties)
     properties.direction == 'Inbound'
   end
+
+  def not_icmp?(properties)
+    !properties.protocol.match?(/ICMP/)
+  end
+
   # Code for backward compatibility ends here <<<<<<<<
 end
 
