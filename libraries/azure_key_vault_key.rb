@@ -40,7 +40,7 @@ class AzureKeyVaultKey < AzureGenericResource
       end
     end
     opts[:is_uri_a_url] = true
-    opts[:audience] = 'https://' + key_vault_dns_suffix.delete_prefix('.')
+    opts[:audience] = "https://#{key_vault_dns_suffix.delete_prefix('.')}"
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
@@ -71,6 +71,7 @@ class AzurermKeyVaultKey < AzureKeyVaultKey
   EXAMPLE
 
   def initialize(vault_name, key_name, key_version = nil)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKey.name)
     # This is for backward compatibility.
     opts = {
       vault_name: vault_name,
@@ -78,7 +79,6 @@ class AzurermKeyVaultKey < AzureKeyVaultKey
         api_version: '2016-10-01',
     }
     opts[:key_version] = key_version unless key_version.nil?
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKey.name)
     super(opts)
   end
 end

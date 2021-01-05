@@ -84,7 +84,7 @@ class AzureResourceBase < Inspec.resource(1)
   #     result can be tailored by passing parameters as `?$select=objectId,displayName,givenName`
   #
   def resource_from_graph_api(opts)
-    Helpers.validate_parameters(resource_name: @__resource_name__, allow: %i(api_version query_parameters),
+    Validators.validate_parameters(resource_name: @__resource_name__, allow: %i(api_version query_parameters),
                                 required: %i(resource), opts: opts)
     api_version = opts[:api_version] || @azure.graph_api_endpoint_api_version
     if api_version.size > 10 || api_version.include?('/')
@@ -155,9 +155,10 @@ class AzureResourceBase < Inspec.resource(1)
     begin
       response = @azure.rest_api_call(opts)
     rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
-      api_version_suggested = e.suggested_api_version(params['api-version'])
+      api_version_suggested = e.suggested_api_version(opts[:params]['api-version'])
       unless opts[:params]['api-version'] == 'failed_attempt'
-        Inspec::Log.warn "Incompatible api version: #{opts[:params]['api-version']}\n"\
+        Inspec::Log.warn "Incompatible api version provided for the `#{@__resource_name__}` resource:"\
+        " #{opts[:params]['api-version']}\n"\
         "Trying with the latest api version suggested by the Azure Rest API: #{api_version_suggested}."
       end
       if api_version_suggested.nil?
@@ -241,7 +242,7 @@ class AzureResourceBase < Inspec.resource(1)
   #       `user_provided`, `latest`, `default`.
   #
   def get_resource(opts = {})
-    Helpers.validate_parameters(resource_name: @__resource_name__,
+    Validators.validate_parameters(resource_name: @__resource_name__,
                                 required: %i(resource_uri),
                                 allow: %i(query_parameters headers method req_body is_uri_a_url audience),
                                 opts: opts)
@@ -293,7 +294,8 @@ class AzureResourceBase < Inspec.resource(1)
   #
   # @see https://docs.microsoft.com/en-us/rest/api/resources/providers/get
   #
-  def get_api_version(provider, resource_type, api_version_status = 'latest')
+  # TODO: Fix the disabled rubocop issues.
+  def get_api_version(provider, resource_type, api_version_status = 'latest') # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
     unless %w{latest default}.include?(api_version_status)
       raise ArgumentError, "The api version status should be either `latest` or `default`, given: #{api_version_status}."
     end
@@ -371,7 +373,8 @@ class AzureResourceBase < Inspec.resource(1)
   # @param resource_list [Array] The list of short descriptions of resources.
   # @param filter [Hash] The parameters used for the query.
   # @param singular [TrueClass, FalseClass] Define if the expected result is for a singular resource (default - true).
-  def validate_short_desc(resource_list, filter, singular = true)
+  # TODO: Fix disabled rubocop issue.
+  def validate_short_desc(resource_list, filter, singular = true) # rubocop:disable Style/OptionalBooleanParameter
     message = "#{@__resource_name__}: #{@display_name}."\
       " Unable to get the resource short description with the provided data: #{filter}"
     if resource_list.nil?
@@ -391,7 +394,7 @@ class AzureResourceBase < Inspec.resource(1)
   def validate_resource_uri(opts = @opts)
     return true if opts[:is_uri_a_url]
     opts[:resource_uri].prepend('/') unless opts[:resource_uri].start_with?('/')
-    Helpers.validate_params_required(%i(add_subscription_id), opts)
+    Validators.validate_params_required(%i(add_subscription_id), opts)
     if opts[:add_subscription_id] == true
       opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{opts[:resource_uri]}"
                             .gsub('//', '/')
@@ -457,10 +460,10 @@ class AzureResourceBase < Inspec.resource(1)
     yield
     # Inform user if it is an API incompatibility issue and recommend how to solve it.
   rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
-    api_version_suggested_list = e.suggested_api_version
-    message = "Incompatible api version is provided.\n"\
-    "The list of api versions suggested by the Azure REST API is #{api_version_suggested_list}.\n #{e.message}"\
-    'Note that if this list includes the invalid api version and it should be removed before using the list.'
+    api_version_suggested = e.suggested_api_version
+    message = "Incompatible api version provided for the `#{@__resource_name__}` resource.\n"\
+    "The latest api version suggested by the Azure REST API is #{api_version_suggested}.\n"\
+    "Error message from the Azure REST API:\n#{e.message}"
     resource_fail(message)
   rescue UnsuccessfulAPIQuery::ResourceNotFound => e
     empty_response_warn(e.message)
@@ -483,7 +486,7 @@ class AzureResourceBase < Inspec.resource(1)
     opts = @opts
     allow += %i(azure_retry_limit azure_retry_backoff azure_retry_backoff_factor
                 endpoint api_version required_parameters allowed_parameters display_name)
-    Helpers.validate_parameters(resource_name: @__resource_name__,
+    Validators.validate_parameters(resource_name: @__resource_name__,
                                 allow: allow, required: required,
                                 require_any_of: require_any_of, opts: opts)
     true
@@ -531,11 +534,6 @@ class AzureResourceBase < Inspec.resource(1)
     else
       NullResponse.new
     end
-  end
-
-  # This is a RuboCop requirement.
-  def respond_to_missing?(*several_variants)
-    super
   end
 
   # Create the methods for the resource object from the detailed information.
@@ -722,11 +720,6 @@ class AzureResourceProbe
     end
   end
 
-  # This is a RuboCop requirement.
-  def respond_to_missing?(*several_variants)
-    super
-  end
-
   def to_s
     "#{type}/#{name} has the following properties: #{item.keys.map(&:to_s)}."
   end
@@ -757,10 +750,5 @@ class NullResponse
     else
       NullResponse.new
     end
-  end
-
-  # This is a RuboCop requirement.
-  def respond_to_missing?(*several_variants)
-    super
   end
 end

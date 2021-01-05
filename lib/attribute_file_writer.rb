@@ -19,7 +19,7 @@ class AttributeFileWriter
   def convert_to_yaml(content)
     json = JSON.parse(content)
     yaml = {}
-    json.keys.each do |key|
+    json.each_key do |key|
       yaml[key] = json[key]['value']
     end
     File.open(@file, 'w') { |file| file.puts(yaml.to_yaml) }

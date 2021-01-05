@@ -39,7 +39,7 @@ class AzureMariaDBServer < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'firewall_rules',
-        property_endpoint: id + '/firewallRules',
+        property_endpoint: "#{id}/firewallRules",
         api_version: @opts[:firewall_rules_api_version],
       },
     )
@@ -59,6 +59,11 @@ class AzurermMariaDBServer < AzureMariaDBServer
 
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMariaDBServer.name)
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    # For backward compatibility.
+    opts[:api_version] ||= '2018-06-01-preview'
     super
   end
 end

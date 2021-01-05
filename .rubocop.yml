@@ -4,21 +4,10 @@ AllCops:
   - bin/**/*
   - vendor/**/*
   - dev/**/*
-AlignParameters:
-  Enabled: true
-BlockDelimiters:
+  SuggestExtensions: false
+Layout/LineLength:
   Enabled: false
-Documentation:
-  Enabled: false
-EmptyLinesAroundBlockBody:
-  Enabled: false
-FrozenStringLiteralComment:
-  Enabled: false
-HashSyntax:
-  Enabled: true
-LineLength:
-  Enabled: false
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: false
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
@@ -33,7 +22,13 @@ Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Layout/SpaceAroundOperators:
   Enabled: false
-MethodLength:
+Layout/ParameterAlignment:
+  Enabled: true
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+Lint/MissingSuper:
+  Enabled: false
+Metrics/MethodLength:
   Max: 60
 Metrics/AbcSize:
   Max: 75
@@ -49,13 +44,15 @@ Naming/FileName:
   Enabled: false
 Naming/PredicateName:
   Enabled: false
-NumericLiterals:
-  MinDigits: 10
 Security/YAMLLoad:
   Enabled: false
-Style/AndOr:
+Style/NumericLiterals:
+  MinDigits: 10
+Style/BlockDelimiters:
   Enabled: false
-Style/BracesAroundHashParameters:
+Style/Documentation:
+  Enabled: false
+Style/AndOr:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -71,8 +68,6 @@ Style/GuardClause:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
-Style/MethodMissingSuper:
-  Enabled: false
 Style/MissingRespondToMissing:
   Enabled: false
 Style/MultilineIfModifier:
@@ -84,6 +79,10 @@ Style/Not:
 Style/NumericLiteralPrefix:
   Enabled: false
 Style/NumericPredicate:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/SlicingWithRange:
   Enabled: false
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
@@ -108,3 +107,7 @@ Style/UnlessElse:
   Enabled: false
 Style/ClassVars:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/HashSyntax:
+  Enabled: true

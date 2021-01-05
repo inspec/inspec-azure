@@ -1,10 +1,30 @@
 # Changelog
-<!-- latest_release 1.42.2 -->
+<!-- latest_release 1.43.2 -->
+## [v1.43.2](https://github.com/inspec/inspec-azure/tree/v1.43.2) (2021-01-05)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.6.0 to ~&gt; 1.7.0 [#356](https://github.com/inspec/inspec-azure/pull/356) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+<!-- latest_release -->
+
+## [v1.43.1](https://github.com/inspec/inspec-azure/tree/v1.43.1) (2020-12-17)
+
+#### Merged Pull Requests
+- Refactor Helper Module [#354](https://github.com/inspec/inspec-azure/pull/354) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.43.0](https://github.com/inspec/inspec-azure/tree/v1.43.0) (2020-12-04)
+
+#### Merged Pull Requests
+- Add azure_network_watcher(s) resources [#349](https://github.com/inspec/inspec-azure/pull/349) ([omerdemirok](https://github.com/omerdemirok))
+
+## [v1.42.3](https://github.com/inspec/inspec-azure/tree/v1.42.3) (2020-12-04)
+
+#### Merged Pull Requests
+- simple fix for adding multi region support to the azure_key_vault_sec… [#348](https://github.com/inspec/inspec-azure/pull/348) ([srb3](https://github.com/srb3))
+
 ## [v1.42.2](https://github.com/inspec/inspec-azure/tree/v1.42.2) (2020-12-03)
 
 #### Merged Pull Requests
 - Use environment variables at auth audience creation [#347](https://github.com/inspec/inspec-azure/pull/347) ([omerdemirok](https://github.com/omerdemirok))
-<!-- latest_release -->
 
 ## [v1.42.1](https://github.com/inspec/inspec-azure/tree/v1.42.1) (2020-12-03)
 

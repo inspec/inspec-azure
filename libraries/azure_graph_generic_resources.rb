@@ -15,7 +15,7 @@ class AzureGraphGenericResources < AzureResourceBase
 
   attr_reader :table
 
-  def initialize(opts = {}, static_resource = false)
+  def initialize(opts = {}, static_resource = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix disabled rubocop issue.
     super(opts)
 
     # A Graph API HTTP request is in the form of:

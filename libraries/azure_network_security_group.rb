@@ -80,7 +80,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   #   it { should allow(destination_service_tag: 'VirtualNetwork', direction: 'outbound', protocol: 'TCP') }
   #   it { should allow(source_ip_range: '0:0:0:0:0:ffff:a05:0', direction: 'inbound') }
   def allow?(criteria = {})
-    Helpers.validate_params_required(@__resource_name__, %i(direction), criteria)
+    Validators.validate_params_required(@__resource_name__, %i(direction), criteria)
     criteria[:access] = 'allow'
     rules = criteria[:direction] == 'inbound' ? inbound_rules : outbound_rules
     normalized_security_rules.go_compare(rules, criteria)
@@ -197,10 +197,10 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   def source_open?(properties)
     properties_hash = properties.to_h
     if properties_hash.include?(:sourceAddressPrefix)
-      return properties.sourceAddressPrefix =~ %r{\*|0\.0\.0\.0|<nw>\/0|\/0|Internet|any}
+      return properties.sourceAddressPrefix =~ %r{\*|0\.0\.0\.0|<nw>/0|/0|Internet|any}
     end
     if properties_hash.include?(:sourceAddressPrefixes)
-      return properties.sourceAddressPrefixes.include?('0.0.0.0')
+      properties.sourceAddressPrefixes.include?('0.0.0.0')
     end
   end
 
@@ -228,6 +228,11 @@ class AzurermNetworkSecurityGroup < AzureNetworkSecurityGroup
 
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkSecurityGroup.name)
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    # For backward compatibility.
+    opts[:api_version] ||= '2018-02-01'
     super
   end
 end

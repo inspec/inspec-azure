@@ -30,20 +30,23 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_management_group" "mg_parent" {
-  group_id     = "mg_parent"
+  count = var.management_group_count
+  group_id = "mg_parent"
   display_name = "Management Group Parent"
 }
 
 resource "azurerm_management_group" "mg_child_one" {
-  group_id                   = "mg_child_one"
-  display_name               = "Management Group Child 1"
-  parent_management_group_id = azurerm_management_group.mg_parent.id
+  count = var.management_group_count
+  group_id = "mg_child_one"
+  display_name = "Management Group Child 1"
+  parent_management_group_id = azurerm_management_group.mg_parent.0.id
 }
 
 resource "azurerm_management_group" "mg_child_two" {
-  group_id                   = "mg_child_two"
-  display_name               = "Management Group Child 2"
-  parent_management_group_id = azurerm_management_group.mg_parent.id
+  count = var.management_group_count
+  group_id = "mg_child_two"
+  display_name = "Management Group Child 2"
+  parent_management_group_id = azurerm_management_group.mg_parent.0.id
 }
 
 resource "random_string" "password" {
@@ -58,7 +61,7 @@ resource "random_string" "password" {
 
 resource "azurerm_network_watcher" "rg" {
   name                = "${azurerm_resource_group.rg.name}-netwatcher"
-  count               = var.network_watcher
+  count               = var.network_watcher_count
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   tags = {
@@ -711,7 +714,6 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 
 
 resource "azurerm_storage_account" "hdinsight_storage_account" {
-  count                    = var.hd_insight_count
   name                     = "hdinsight${random_string.storage_account.result}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
@@ -720,14 +722,13 @@ resource "azurerm_storage_account" "hdinsight_storage_account" {
 }
 
 resource "azurerm_storage_container" "hdinsight_storage_container" {
-  count                 = var.hd_insight_count
   name                  = "hdinsight${random_string.storage_account.result}"
-  storage_account_name  = azurerm_storage_account.hdinsight_storage_account[0].name
+  storage_account_name  = azurerm_storage_account.hdinsight_storage_account.name
   container_access_type = "private"
 }
 
 resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
-  count               = var.hd_insight_count
+  count               = var.hd_insight_cluster_count
   name                = "hdinsight6fbw66f8ch"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -745,8 +746,8 @@ resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
   }
 
   storage_account {
-    storage_container_id = azurerm_storage_container.hdinsight_storage_container[0].id
-    storage_account_key  = azurerm_storage_account.hdinsight_storage_account[0].primary_access_key
+    storage_container_id = azurerm_storage_container.hdinsight_storage_container.id
+    storage_account_key  = azurerm_storage_account.hdinsight_storage_account.primary_access_key
     is_default           = true
   }
 
@@ -947,10 +948,10 @@ resource "azurerm_subnet" "backend" {
 }
 
 resource "azurerm_public_ip" "test" {
-  name                = "example-pip"
+  name  = "example-pip"
   resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  allocation_method   = "Dynamic"
+  location = azurerm_resource_group.rg.location
+  allocation_method = "Dynamic"
 }
 
 # since these variables are re-used - a locals block makes this more maintainable
@@ -1052,7 +1053,7 @@ resource "random_string" "ip-address-random" {
 }
 
 resource "azurerm_public_ip" "public_ip_address" {
-  count               = var.public_ip_address_count
+  count               = var.public_ip_count
   name                = random_string.ip-address-random.result
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -1067,7 +1068,7 @@ resource "random_string" "apim-random" {
 
 resource "azurerm_api_management" "apim01" {
   count               = var.api_management_count
-  name                = "${random_string.apim-random.result}-apim"
+  name                = "apim-${random_string.apim-random.result}"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   publisher_name      = "My Inspec"

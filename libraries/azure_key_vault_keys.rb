@@ -27,7 +27,7 @@ class AzureKeyVaultKeys < AzureGenericResources
     opts[:required_parameters] = %i(vault_name)
     opts[:resource_uri] = "https://#{opts[:vault_name]}#{key_vault_dns_suffix}/keys"
     opts[:is_uri_a_url] = true
-    opts[:audience] = 'https://' + key_vault_dns_suffix.delete_prefix('.')
+    opts[:audience] = "https://#{key_vault_dns_suffix.delete_prefix('.')}"
     super(opts, true)
     return if failed_resource?
 
@@ -79,8 +79,13 @@ class AzurermKeyVaultKeys < AzureKeyVaultKeys
     end
   EXAMPLE
 
-  def initialize(opts = {})
+  def initialize(vault_name)
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKeys.name)
-    super
+    # This is for backward compatibility.
+    opts = {
+      vault_name: vault_name,
+      api_version: '2016-10-01',
+    }
+    super(opts)
   end
 end

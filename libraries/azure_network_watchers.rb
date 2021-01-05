@@ -1,11 +1,11 @@
 require 'azure_generic_resources'
 
-class AzureMonitorLogProfiles < AzureGenericResources
-  name 'azure_monitor_log_profiles'
-  desc 'Fetches all Azure Monitor Log Profiles'
+class AzureNetworkWatchers < AzureGenericResources
+  name 'azure_network_watchers'
+  desc 'Verifies settings for Network Watchers'
   example <<-EXAMPLE
-    describe azure_monitor_log_profiles do
-      its('names') { should include('default') }
+    azure_network_watchers(resource_group: 'example') do
+      it{ should exist }
     end
   EXAMPLE
 
@@ -15,10 +15,8 @@ class AzureMonitorLogProfiles < AzureGenericResources
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Insights/logProfiles', opts)
-    # See azure_policy_definition for more info on the usage of `resource_uri` parameter.
-    opts[:resource_uri] = '/providers/Microsoft.Insights/logProfiles'
-    opts[:add_subscription_id] = true
+    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/networkWatchers', opts)
+    opts[:allowed_parameters] = %i(resource_group)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -29,10 +27,12 @@ class AzureMonitorLogProfiles < AzureGenericResources
 
     # Define the column and field names for FilterTable.
     # In most cases, the `column` should be the pluralized form of the `field`.
+    # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
     table_schema = [
       { column: :names, field: :name },
       { column: :ids, field: :id },
-      { column: :properties, field: :properties },
+      { column: :tags, field: :tags },
+      { column: :locations, field: :location },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
@@ -40,28 +40,28 @@ class AzureMonitorLogProfiles < AzureGenericResources
   end
 
   def to_s
-    super(AzureMonitorLogProfiles)
+    super(AzureNetworkWatchers)
   end
 end
 
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
-class AzurermMonitorLogProfiles < AzureMonitorLogProfiles
-  name 'azurerm_monitor_log_profiles'
-  desc 'Fetches all Azure Monitor Log Profiles'
+class AzurermNetworkWatchers < AzureNetworkWatchers
+  name 'azurerm_network_watchers'
+  desc 'Verifies settings for Network Watchers'
   example <<-EXAMPLE
-    describe azurerm_monitor_log_profiles do
-      its('names') { should include('default') }
+    azurerm_network_watchers(resource_group: 'example') do
+      it{ should exist }
     end
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMonitorLogProfiles.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkWatchers.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2016-03-01'
+    opts[:api_version] ||= '2018-02-01'
     super
   end
 end

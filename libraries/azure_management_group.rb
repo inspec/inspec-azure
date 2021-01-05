@@ -125,6 +125,8 @@ class AzurermManagementGroup < AzureManagementGroup
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureManagementGroup.name)
+    # For backward compatibility.
+    opts[:api_version] ||= '2018-03-01-preview'
     super
   end
 end
