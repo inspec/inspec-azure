@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.43.2 -->
+<!-- latest_release 1.43.3 -->
+## [v1.43.3](https://github.com/inspec/inspec-azure/tree/v1.43.3) (2021-01-06)
+
+#### Merged Pull Requests
+- Fix allow port from internet [#358](https://github.com/inspec/inspec-azure/pull/358) ([srb3](https://github.com/srb3))
+<!-- latest_release -->
+
 ## [v1.43.2](https://github.com/inspec/inspec-azure/tree/v1.43.2) (2021-01-05)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.6.0 to ~&gt; 1.7.0 [#356](https://github.com/inspec/inspec-azure/pull/356) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
-<!-- latest_release -->
 
 ## [v1.43.1](https://github.com/inspec/inspec-azure/tree/v1.43.1) (2020-12-17)
 
