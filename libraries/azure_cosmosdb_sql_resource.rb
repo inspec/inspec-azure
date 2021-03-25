@@ -14,7 +14,7 @@ class AzureCosmosDbSQLResource < AzureGenericResource
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DocumentDB/databaseAccounts', opts)
-    opts[:resource_identifiers] = %i(cosmosdb_database_account)
+    opts[:resource_identifiers] = %i(cosmosdb_database_account cosmosdb_sql_databasename cosmosdb_containername)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
