@@ -1,9 +1,9 @@
 ---
-title: About the azure_cosmosdb_database_account Resource
+title: About the azure_cosmosdb_cassandra_resource Resource
 platform: azure
 ---
 
-# azure_cosmosdb_database_account
+# azure_cosmosdb_cassandra_resource
 
 Use the `azure_cosmosdb_database_account` InSpec audit resource to test properties and configuration of an Azure CosmosDb Database Account within a Resource Group.
 
@@ -28,12 +28,12 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 `resource_group` and `name` or the `resource_id` must be given as a parameter.
 ```ruby
-describe azure_cosmosdb_database_account(resource_group: 'inspec-resource-group-9', name: 'my-cosmos-db') do
+describe azure_cosmosdb_cassandra_resource(resource_group: 'inspec-resource-group-9', name: 'my-cosmos-db') do
   it { should exist }
 end
 ```
 ```ruby
-describe azure_cosmosdb_database_account(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}') do
+describe azure_cosmosdb_cassandra_resource(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}') do
   it { should exist }
 end
 ```
