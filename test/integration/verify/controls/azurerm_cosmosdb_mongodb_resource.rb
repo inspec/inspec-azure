@@ -1,16 +1,12 @@
-resource_group = attribute('resource_group', default: nil)
-cosmosdb_database_account = attribute('cosmosdb_database_account', default: nil)
-cosmosdb_mongodb_resource = attribute('azurerm_cosmosdb_mongodb_resource', default: nil)
+resource_group = attribute('resource_group', default: "nirbhay-cosmos")
+cosmosdb_database_account = attribute('cosmosdb_database_account', default: "nirbhay1997cosmos1")
+cosmosdb_mongodb_databases_name = attribute('cosmosdb_mongodb_databases_name', default: "testmongo")
 
-control 'azurerm_cosmosdb_mongodb_resource' do
-  only_if { !cosmosdb_database_account.nil? }
+control 'azure_cosmosdb_mongodb_resource' do
+  #only_if { !cosmosdb_database_account.nil? }
 
-  describe azurerm_cosmosdb_mongodb_resource(resource_group: resource_group, cosmosdb_database_account: cosmosdb_database_account, cosmosdb_mongodb_resource: azurerm_cosmosdb_mongodb_resource) do
-    its('name') { should eq cosmosdb_database_account }
-    its('type') { should eq 'Microsoft.DocumentDB/databaseAccounts' }
-  end
-
-  describe azurerm_cosmosdb_mongodb_resource(resource_group: resource_group, cosmosdb_database_account: cosmosdb_database_account, cosmosdb_mongodb_resource: azurerm_cosmosdb_mongodb_resource) do
-    it { should_not exist }
+  describe azure_cosmosdb_mongodb_resource(resource_group: resource_group, cosmosdb_database_account: cosmosdb_database_account, cosmosdb_mongodb_resource: cosmosdb_mongodb_databases_name) do
+    its('name') { should eq cosmosdb_mongodb_databases_name }
+    its('type') { should eq 'Microsoft.DocumentDB/databaseAccounts/mongodbDatabases' }
   end
 end
