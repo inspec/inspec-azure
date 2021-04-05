@@ -1095,3 +1095,37 @@ XML
 
   }
 }
+
+resource "azurerm_storage_account" "web_app_function" {
+  name                     = "functions_app${random_string.storage_account.result}"
+  location                 = var.location
+  resource_group_name      = azurerm_resource_group.rg.name
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  depends_on               = [azurerm_resource_group.rg]
+  tags = {
+    user = terraform.workspace
+  }
+}
+
+resource "azurerm_app_service_plan" "web_app_function" {
+  name                = "functions_app_service${random_pet.workspace.id}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  tags = {
+    user = terraform.workspace
+  }
+
+  sku {
+    tier = "Free"
+    size = "F1"
+  }
+}
+
+resource "azurerm_function_app" "web_app_function" {
+  name                       = "functions_function_app${random_pet.workspace.id}"
+  location                   = azurerm_resource_group.rg.location
+  resource_group_name        = azurerm_resource_group.rg.name
+  app_service_plan_id        = azurerm_app_service_plan.web_app_function.id
+  storage_connection_string  = azurerm_storage_account.web_app_function.primary_connection_string
+}
