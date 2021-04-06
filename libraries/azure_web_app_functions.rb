@@ -2,7 +2,7 @@ class AzureWebAppFunctions < AzureGenericResources
   name 'azure_web_app_functions'
   desc 'Verifies settings for a collection of Azure PostgreSQL Databases on a PostgreSQL Server'
   example <<-EXAMPLE
-    describe azure_web_app_functions(resource_group: 'my-rg', name: '') do
+    describe azure_web_app_functions(resource_group: 'my-rg', site_name: "my-site") do
         it            { should exist }
         its('names')  { should_not be_empty }
     end
@@ -15,8 +15,8 @@ class AzureWebAppFunctions < AzureGenericResources
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Web/sites', opts)
-    opts[:required_parameters] = %i(resource_group name)
-    opts[:resource_path] = [opts[:name], 'functions'].join('/')
+    opts[:required_parameters] = %i(site_name)
+    opts[:resource_path] = [opts[:site_name], 'functions'].join('/')
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -33,7 +33,6 @@ class AzureWebAppFunctions < AzureGenericResources
       { column: :ids, field: :id },
       { column: :properties, field: :properties },
       { column: :types, field: :type },
-      { column: :kinds, field: :kind },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
