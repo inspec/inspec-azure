@@ -517,7 +517,7 @@ variable "functionapp" {
 }
 
 data "azurerm_storage_account_sas" "sas" {
-  connection_string = "${azurerm_storage_account.web_app_function_db.primary_connection_string}"
+  connection_string = azurerm_storage_account.web_app_function_db.primary_connection_string
   https_only = true
   start = "2021-01-01"
   expiry = "2022-12-31"
@@ -567,7 +567,7 @@ resource "azurerm_storage_blob" "functioncode" {
   storage_account_name = "${azurerm_storage_account.web_app_function_db.name}"
   storage_container_name = "${azurerm_storage_container.sc_deployments.name}"
   type = "block"
-  source = "${var.functionapp}"
+  source = var.functionapp
 }
 
 resource "azurerm_app_service_plan" "web_app_function_app_service" {
@@ -585,11 +585,21 @@ resource "azurerm_app_service_plan" "web_app_function_app_service" {
 }
 
 resource "azurerm_function_app" "web_app_function" {
-  name                       = "functions_function_app${random_pet.workspace.id}"
+  name                       = "functions-function-app${random_pet.workspace.id}"
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name
   app_service_plan_id        = azurerm_app_service_plan.web_app_function_app_service.id
   storage_connection_string  = azurerm_storage_account.web_app_function_db.primary_connection_string
+
+  app_settings = {
+    https_only = true
+    FUNCTIONS_WORKER_RUNTIME = "node"
+    WEBSITE_NODE_DEFAULT_VERSION = "~14"
+    FUNCTION_APP_EDIT_MODE = "readonly"
+    HASH = base64encode(filesha256(var.functionapp))
+    WEBSITE_RUN_FROM_PACKAGE = "https://${azurerm_storage_account.web_app_function_db.name}.blob.core.windows.net/${azurerm_storage_container.sc_deployments.name}/${azurerm_storage_blob.functioncode.name}${data.azurerm_storage_account_sas.sas.sas}"
+  }
+
   tags = {
     user = terraform.workspace
   }
