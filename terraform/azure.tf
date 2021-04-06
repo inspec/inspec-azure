@@ -516,157 +516,42 @@ variable "functionapp" {
   default = "../test/fixtures/functionapp.zip"
 }
 
-resource "azurerm_subnet" "backend" {
-  name                 = "backend"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.app-gw.name
-  address_prefix       = "10.254.2.0/24"
-}
-
-resource "azurerm_public_ip" "test" {
-  name  = "example-pip"
-  resource_group_name = azurerm_resource_group.rg.name
-  location = azurerm_resource_group.rg.location
-  allocation_method = "Dynamic"
-}
-
-# since these variables are re-used - a locals block makes this more maintainable
-locals {
-  backend_address_pool_name      = "${azurerm_virtual_network.app-gw.name}-beap"
-  frontend_port_name             = "${azurerm_virtual_network.app-gw.name}-feport"
-  frontend_ip_configuration_name = "${azurerm_virtual_network.app-gw.name}-feip"
-  http_setting_name              = "${azurerm_virtual_network.app-gw.name}-be-htst"
-  listener_name                  = "${azurerm_virtual_network.app-gw.name}-httplstn"
-  request_routing_rule_name      = "${azurerm_virtual_network.app-gw.name}-rqrt"
-  redirect_configuration_name    = "${azurerm_virtual_network.app-gw.name}-rdrcfg"
-}
-
-resource "random_string" "appgw-random" {
-  length  = 10
-  special = false
-  upper   = false
-}
-
-resource "azurerm_application_gateway" "network" {
-  name                = "${random_string.appgw-random.result}-appgw"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-
-  sku {
-    name     = "Standard_Small"
-    tier     = "Standard"
-    capacity = 2
+data "azurerm_storage_account_sas" "sas" {
+  connection_string = "${azurerm_storage_account.web_app_function_db.primary_connection_string}"
+  https_only = true
+  start = "2021-01-01"
+  expiry = "2022-12-31"
+  resource_types {
+    object = true
+    container = false
+    service = false
   }
-
-  gateway_ip_configuration {
-    name      = "my-gateway-ip-configuration"
-    subnet_id = azurerm_subnet.frontend.id
+  services {
+    blob = true
+    queue = false
+    table = false
+    file = false
   }
-
-  frontend_port {
-    name = local.frontend_port_name
-    port = 443
-  }
-
-  frontend_ip_configuration {
-    name                 = local.frontend_ip_configuration_name
-    public_ip_address_id = azurerm_public_ip.test.id
-  }
-
-  backend_address_pool {
-    name = local.backend_address_pool_name
-  }
-
-  backend_http_settings {
-    name                  = local.http_setting_name
-    cookie_based_affinity = "Disabled"
-    path                  = "/path1/"
-    port                  = 80
-    protocol              = "Http"
-    request_timeout       = 1
-  }
-
-  ssl_certificate {
-    name     = "inspec.example.com"
-    data     = filebase64("app-gw/inspec.example.com.pfx")
-    password = "InSpec1234"
-  }
-
-  http_listener {
-    name                           = local.listener_name
-    frontend_ip_configuration_name = local.frontend_ip_configuration_name
-    frontend_port_name             = local.frontend_port_name
-    protocol                       = "Https"
-    ssl_certificate_name           = "inspec.example.com"
-  }
-
-  request_routing_rule {
-    name                        = local.request_routing_rule_name
-    rule_type                   = "Basic"
-    http_listener_name          = local.listener_name
-    redirect_configuration_name = local.redirect_configuration_name
-  }
-
-  redirect_configuration {
-    name          = local.redirect_configuration_name
-    target_url    = "http://example.com"
-    redirect_type = "Permanent"
-  }
-
-  ssl_policy {
-    # https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-policy-overview
-    # disabled_protocols   = ["TLSv1_0", "TLSv1_1"]
-    # min_protocol_version = "TLSv1_2"
-    policy_name = "AppGwSslPolicy20170401S"
-    policy_type = "Predefined"
+  permissions {
+    read = true
+    write = false
+    delete = false
+    list = false
+    add = false
+    create = false
+    update = false
+    process = false
   }
 }
 
-resource "random_string" "ip-address-random" {
-  length  = 10
-  special = false
-  upper   = false
-}
-
-resource "azurerm_public_ip" "public_ip_address" {
-  count               = var.public_ip_count
-  name                = random_string.ip-address-random.result
-  location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
-}
-
-resource "random_string" "apim-random" {
-  length  = 10
-  special = false
-  upper   = false
-}
-
-resource "azurerm_api_management" "apim01" {
-  count               = var.api_management_count
-  name                = "apim-${random_string.apim-random.result}"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
-  publisher_name      = "My Inspec"
-  publisher_email     = "company@inspec.io"
-
-  sku_name = "Developer_1"
-
-  policy {
-    xml_content = <<XML
-    <policies>
-      <inbound />
-      <backend />
-      <outbound />
-      <on-error />
-    </policies>
-XML
-
-  }
+resource "azurerm_storage_container" "sc_deployments" {
+  name = "function-releases"
+  storage_account_name = azurerm_storage_account.web_app_function_db.name
+  container_access_type = "private"
 }
 
 resource "azurerm_storage_account" "web_app_function_db" {
-  name                     = "functions_app${random_string.storage_account.result}"
+  name                     = "functionsapp${random_string.storage_account.result}"
   location                 = var.location
   resource_group_name      = azurerm_resource_group.rg.name
   account_tier             = "Standard"
@@ -677,8 +562,16 @@ resource "azurerm_storage_account" "web_app_function_db" {
   }
 }
 
+resource "azurerm_storage_blob" "functioncode" {
+  name = "functionapp.zip"
+  storage_account_name = "${azurerm_storage_account.web_app_function_db.name}"
+  storage_container_name = "${azurerm_storage_container.sc_deployments.name}"
+  type = "block"
+  source = "${var.functionapp}"
+}
+
 resource "azurerm_app_service_plan" "web_app_function_app_service" {
-  name                = "functions_app_service${random_pet.workspace.id}"
+  name                = "functionsapp_service${random_pet.workspace.id}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   tags = {
