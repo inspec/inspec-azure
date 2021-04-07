@@ -2,7 +2,6 @@ require_relative 'helper'
 require 'azure_web_app_function'
 
 class AzureWebAppFunctionConstructorTest < Minitest::Test
-
   def test_empty_param_not_ok
     assert_raises(ArgumentError) { AzureWebAppFunction.new }
   end
@@ -13,6 +12,6 @@ class AzureWebAppFunctionConstructorTest < Minitest::Test
   end
 
   def test_resource_group
-    assert_raises(ArgumentError) { AzureWebAppFunction.new(name: 'my-name') }
+    assert_raises(ArgumentError) { AzureWebAppFunction.new(resource_group: 'my-rg', name: 'my-name') }
   end
 end

@@ -1,7 +1,6 @@
 require_relative 'helper'
 require 'azure_web_app_functions'
 class AzureWebAppFunctionsTest < Minitest::Test
-
   # resource_type should not be allowed.
   def test_resource_type_not_ok
     assert_raises(ArgumentError) { AzureWebAppFunctions.new(resource_provider: 'some_type') }
