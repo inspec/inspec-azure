@@ -1,6 +1,6 @@
 resource_group = input('resource_group', value: nil)
-site_name = input('site_name', value: nil)
-function_name   = input('function_name',   value: nil)
+site_name      = input('web_app_function_app_name', value: nil)
+function_name  = input('web_app_function_name', value: nil)
 
 control 'azure_web_app_function' do
   describe azure_web_app_function(resource_group: resource_group, site_name: site_name, function_name: function_name) do

@@ -43,3 +43,25 @@ class AzureWebAppFunctions < AzureGenericResources
     super(AzureWebAppFunctions)
   end
 end
+
+# Provide the same functionality under the old resource name.
+# This is for backward compatibility.
+class AzurermWebAppFunctions < AzureWebAppFunctions
+  name 'azurerm_web_app_functions'
+  desc 'Verifies settings for Azure Web App Functions'
+  example <<-EXAMPLE
+    describe azure_web_app_functions(resource_group: 'my-rg', site_name: "my-site") do
+      it{ should exist }
+    end
+  EXAMPLE
+
+  def initialize(opts = {})
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureWebAppFunctions.name)
+    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    # For backward compatibility.
+    opts[:api_version] ||= '2018-02-01'
+    super
+  end
+end
