@@ -564,8 +564,8 @@ resource "azurerm_storage_account" "web_app_function_db" {
 
 resource "azurerm_storage_blob" "functioncode" {
   name = "functionapp.zip"
-  storage_account_name = "${azurerm_storage_account.web_app_function_db.name}"
-  storage_container_name = "${azurerm_storage_container.sc_deployments.name}"
+  storage_account_name = azurerm_storage_account.web_app_function_db.name
+  storage_container_name = azurerm_storage_container.sc_deployments.name
   type = "block"
   source = var.functionapp
 }
