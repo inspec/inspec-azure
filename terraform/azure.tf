@@ -511,6 +511,591 @@ resource "azurerm_virtual_machine" "vm_linux_external" {
     Description = "Externally facing Linux machine with SSH access"
   }
 
+  identity {
+    type = "SystemAssigned"
+  }
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04.0-LTS"
+    version   = "latest"
+  }
+
+  storage_os_disk {
+    name              = var.linux_external_os_disk
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+  storage_data_disk {
+    name              = var.linux_external_data_disk
+    create_option     = "Empty"
+    managed_disk_type = "Standard_LRS"
+    lun               = 0
+    disk_size_gb      = 15
+  }
+
+  os_profile {
+    computer_name  = "linux-external-1"
+    admin_username = "azure"
+    admin_password = random_string.password.result
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = true
+
+    ssh_keys {
+      path     = "/home/azure/.ssh/authorized_keys"
+      key_data = var.public_key
+    }
+  }
+}
+
+resource "azurerm_virtual_machine_extension" "virtual_machine_extension" {
+  name                 = "MSIExtension"
+  count                = var.public_vm_count
+  location             = var.location
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_machine_name = azurerm_virtual_machine.vm_linux_external[0].name
+  publisher            = "Microsoft.ManagedIdentity"
+  type                 = "ManagedIdentityExtensionForLinux"
+  type_handler_version = "1.0"
+
+  settings = <<SETTINGS
+    {
+        "port": 50342
+    }
+SETTINGS
+}
+
+resource "random_string" "sql" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_sql_server" "sql_server" {
+  name                         = "sql-srv-${random_string.sql.result}"
+  resource_group_name          = azurerm_resource_group.rg.name
+  location                     = var.location
+  version                      = var.sql-server-version
+  administrator_login          = "inspec-azure"
+  administrator_login_password = "P4assw0rd!"
+}
+
+resource "azurerm_sql_database" "sql_database" {
+  name                = "sqldb${random_string.sql.result}"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  server_name         = azurerm_sql_server.sql_server.name
+  depends_on          = [azurerm_sql_server.sql_server]
+}
+
+
+resource "random_string" "mysql_server" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_mysql_server" "mysql_server" {
+  name                = "mysql-svr-${random_string.sql.result}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = "2"
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = "5120"
+    backup_retention_days = "7"
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "iazAdmin"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "5.7"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_mysql_database" "mysql_database" {
+  name                = "mysqldb${random_string.sql.result}"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mysql_server.mysql_server.name
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
+}
+
+resource "azurerm_mysql_firewall_rule" "mysql_firewall_rule" {
+  name                = "mysql-srv-firewall"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mysql_server.mysql_server.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
+}
+
+resource "azurerm_mariadb_server" "mariadb_server" {
+  name                = "maridb-svr-${random_string.sql.result}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = "2"
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = "5120"
+    backup_retention_days = "7"
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "iazAdmin"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "10.2"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_mariadb_firewall_rule" "mariadb_firewall_rule" {
+  name                = "mariadb-srv-firewall"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.mariadb_server.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
+}
+
+resource "random_string" "lb-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+module "azurerm_lb" {
+  source              = "./modules/load_balancer"
+  use_loadbalancer    = "true"
+  resource_group_name = azurerm_resource_group.rg.name
+  lb_name             = "${random_string.lb-random.result}-lb"
+  location            = var.location
+  remote_port         = var.remote_port
+  lb_port             = var.lb_port
+}
+
+resource "tls_private_key" "key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "azurerm_kubernetes_cluster" "cluster" {
+  name                = "inspecakstest"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  dns_prefix          = "inspecaksagent1"
+  depends_on          = [azurerm_resource_group.rg]
+
+  agent_pool_profile {
+    name            = "inspecaks"
+    count           = 2
+    vm_size         = "Standard_DS1_v2"
+    os_type         = "Linux"
+    os_disk_size_gb = 30
+  }
+  linux_profile {
+    admin_username = "inspecuser1"
+
+    ssh_key {
+      key_data = tls_private_key.key.public_key_openssh
+    }
+  }
+  service_principal {
+    client_id     = var.client_id
+    client_secret = var.client_secret
+  }
+}
+
+
+resource "azurerm_storage_account" "hdinsight_storage_account" {
+  name                     = "hdinsight${random_string.storage_account.result}"
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_container" "hdinsight_storage_container" {
+  name                  = "hdinsight${random_string.storage_account.result}"
+  storage_account_name  = azurerm_storage_account.hdinsight_storage_account.name
+  container_access_type = "private"
+}
+
+resource "azurerm_hdinsight_interactive_query_cluster" "hdinsight_cluster" {
+  count               = var.hd_insight_cluster_count
+  name                = "hdinsight6fbw66f8ch"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  cluster_version     = "4.0"
+  tier                = "Standard"
+
+  component_version {
+    interactive_hive = "3.1"
+  }
+
+  gateway {
+    enabled  = true
+    username = "inspec_test_user"
+    password = "F8Sr'{DN"
+  }
+
+  storage_account {
+    storage_container_id = azurerm_storage_container.hdinsight_storage_container.id
+    storage_account_key  = azurerm_storage_account.hdinsight_storage_account.primary_access_key
+    is_default           = true
+  }
+
+  roles {
+    head_node {
+      vm_size  = "STANDARD_D13_V2"
+      username = "inspec_test_user_head"
+      password = "r<u@8Kj#"
+    }
+
+    worker_node {
+      vm_size               = "Standard_D14_V2"
+      username              = "inspec_test_user_worker"
+      password              = "ny'$YW5y"
+      target_instance_count = 1
+    }
+
+    zookeeper_node {
+      vm_size  = "Standard_A4_V2"
+      username = "inspec_test_user_zookeeper"
+      password = "Nv$h9g<d"
+    }
+  }
+}
+
+resource "azurerm_app_service_plan" "app_service_plan" {
+  name                = "app-serv-plan-${random_pet.workspace.id}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  kind                = "Windows"
+
+  sku {
+    tier = "Free"
+    size = "F1"
+  }
+}
+
+resource "azurerm_app_service" "app_service" {
+  name                = "app-serv-${random_pet.workspace.id}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  app_service_plan_id = azurerm_app_service_plan.app_service_plan.id
+  https_only          = "true"
+
+  identity {
+    type = "SystemAssigned"
+  }
+}
+
+resource "azurerm_postgresql_server" "postgresql" {
+  name                = "postgresql-srv-${random_string.sql.result}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  sku {
+    name     = "B_Gen5_2"
+    capacity = 2
+    tier     = "Basic"
+    family   = "Gen5"
+  }
+
+  storage_profile {
+    storage_mb            = 5120
+    backup_retention_days = 7
+    geo_redundant_backup  = "Disabled"
+  }
+
+  administrator_login          = "iazAdmin"
+  administrator_login_password = "P4assw0rd!"
+  version                      = "9.5"
+  ssl_enforcement              = "Enabled"
+}
+
+resource "azurerm_postgresql_database" "postgresql" {
+  name                = "postgresqldb${random_string.sql.result}"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_postgresql_server.postgresql.name
+  charset             = "UTF8"
+  collation           = "English_United States.1252"
+}
+
+resource "random_string" "event_hub" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_eventhub_namespace" "event_hub_namespace" {
+  name                = "inspec${random_string.event_hub.result}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+  capacity            = 1
+  kafka_enabled       = true
+}
+
+resource "azurerm_eventhub" "event_hub" {
+  name                = "inspectesteh"
+  namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
+  resource_group_name = azurerm_resource_group.rg.name
+  partition_count     = 2
+  message_retention   = 1
+}
+
+resource "azurerm_eventhub_authorization_rule" "auth_rule_inspectesteh" {
+  name                = "inspectesteh_endpoint"
+  namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
+  eventhub_name       = azurerm_eventhub.event_hub.name
+  resource_group_name = azurerm_resource_group.rg.name
+  listen              = false
+  send                = true
+  manage              = false
+}
+
+resource "azurerm_iothub" "iothub" {
+  name                = "inspectest-iothub-${random_string.event_hub.result}"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku {
+    name     = "S1"
+    tier     = "Standard"
+    capacity = 1
+  }
+
+
+  endpoint {
+    type                       = "AzureIotHub.EventHub"
+    connection_string          = azurerm_eventhub_authorization_rule.auth_rule_inspectesteh.primary_connection_string
+    name                       = "inspectesteh"
+    batch_frequency_in_seconds = 300
+    max_chunk_size_in_bytes    = 314572800
+  }
+
+
+  route {
+    name      = "ExampleRoute"
+    source    = "DeviceLifecycleEvents"
+    condition = "true"
+    endpoint_names = [
+      "inspectesteh",
+    ]
+    enabled = true
+  }
+}
+
+resource "azurerm_iothub_consumer_group" "inspecehtest_consumergroup" {
+  name                   = "inspectest_consumer_group"
+  iothub_name            = azurerm_iothub.iothub.name
+  eventhub_endpoint_name = "events"
+  resource_group_name    = azurerm_resource_group.rg.name
+}
+
+resource "random_string" "cosmo_db" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_cosmosdb_account" "inspectest_cosmosdb" {
+  name                = "inspec${random_string.cosmo_db.result}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  offer_type          = "Standard"
+  kind                = "GlobalDocumentDB"
+
+  consistency_policy {
+    consistency_level       = "BoundedStaleness"
+    max_interval_in_seconds = 10
+    max_staleness_prefix    = 200
+  }
+
+  geo_location {
+    prefix            = "inspectest-geo-prefix-${random_string.cosmo_db.result}"
+    location          = azurerm_resource_group.rg.location
+    failover_priority = 0
+  }
+}
+
+resource "azurerm_virtual_network" "app-gw" {
+  name                = "app-gw-network"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  address_space       = ["10.254.0.0/16"]
+}
+
+resource "azurerm_subnet" "frontend" {
+  name                 = "frontend"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.app-gw.name
+  address_prefix       = "10.254.0.0/24"
+}
+
+resource "azurerm_subnet" "backend" {
+  name                 = "backend"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.app-gw.name
+  address_prefix       = "10.254.2.0/24"
+}
+
+resource "azurerm_public_ip" "test" {
+  name  = "example-pip"
+  resource_group_name = azurerm_resource_group.rg.name
+  location = azurerm_resource_group.rg.location
+  allocation_method = "Dynamic"
+}
+
+# since these variables are re-used - a locals block makes this more maintainable
+locals {
+  backend_address_pool_name      = "${azurerm_virtual_network.app-gw.name}-beap"
+  frontend_port_name             = "${azurerm_virtual_network.app-gw.name}-feport"
+  frontend_ip_configuration_name = "${azurerm_virtual_network.app-gw.name}-feip"
+  http_setting_name              = "${azurerm_virtual_network.app-gw.name}-be-htst"
+  listener_name                  = "${azurerm_virtual_network.app-gw.name}-httplstn"
+  request_routing_rule_name      = "${azurerm_virtual_network.app-gw.name}-rqrt"
+  redirect_configuration_name    = "${azurerm_virtual_network.app-gw.name}-rdrcfg"
+}
+
+resource "random_string" "appgw-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_application_gateway" "network" {
+  name                = "${random_string.appgw-random.result}-appgw"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+
+  sku {
+    name     = "Standard_Small"
+    tier     = "Standard"
+    capacity = 2
+  }
+
+  gateway_ip_configuration {
+    name      = "my-gateway-ip-configuration"
+    subnet_id = azurerm_subnet.frontend.id
+  }
+
+  frontend_port {
+    name = local.frontend_port_name
+    port = 443
+  }
+
+  frontend_ip_configuration {
+    name                 = local.frontend_ip_configuration_name
+    public_ip_address_id = azurerm_public_ip.test.id
+  }
+
+  backend_address_pool {
+    name = local.backend_address_pool_name
+  }
+
+  backend_http_settings {
+    name                  = local.http_setting_name
+    cookie_based_affinity = "Disabled"
+    path                  = "/path1/"
+    port                  = 80
+    protocol              = "Http"
+    request_timeout       = 1
+  }
+
+  ssl_certificate {
+    name     = "inspec.example.com"
+    data     = filebase64("app-gw/inspec.example.com.pfx")
+    password = "InSpec1234"
+  }
+
+  http_listener {
+    name                           = local.listener_name
+    frontend_ip_configuration_name = local.frontend_ip_configuration_name
+    frontend_port_name             = local.frontend_port_name
+    protocol                       = "Https"
+    ssl_certificate_name           = "inspec.example.com"
+  }
+
+  request_routing_rule {
+    name                        = local.request_routing_rule_name
+    rule_type                   = "Basic"
+    http_listener_name          = local.listener_name
+    redirect_configuration_name = local.redirect_configuration_name
+  }
+
+  redirect_configuration {
+    name          = local.redirect_configuration_name
+    target_url    = "http://example.com"
+    redirect_type = "Permanent"
+  }
+
+  ssl_policy {
+    # https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-policy-overview
+    # disabled_protocols   = ["TLSv1_0", "TLSv1_1"]
+    # min_protocol_version = "TLSv1_2"
+    policy_name = "AppGwSslPolicy20170401S"
+    policy_type = "Predefined"
+  }
+}
+
+resource "random_string" "ip-address-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_public_ip" "public_ip_address" {
+  count               = var.public_ip_count
+  name                = random_string.ip-address-random.result
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
+}
+
+resource "random_string" "apim-random" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "azurerm_api_management" "apim01" {
+  count               = var.api_management_count
+  name                = "apim-${random_string.apim-random.result}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  publisher_name      = "My Inspec"
+  publisher_email     = "company@inspec.io"
+
+  sku_name = "Developer_1"
+
+  policy {
+    xml_content = <<XML
+    <policies>
+      <inbound />
+      <backend />
+      <outbound />
+      <on-error />
+    </policies>
+XML
+
+  }
+}
+
 variable "functionapp" {
   type = "string"
   default = "../test/fixtures/functionapp.zip"
