@@ -28,19 +28,20 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 An `azure_web_app_functions` resource block returns all Azure functions, either within a Resource Group (if provided), or within an entire Subscription.
 ```ruby
-describe azure_web_app_functions do
+describe azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http') do
   #...
 end
 ```
 or
 ```ruby
-describe azure_web_app_functions(resource_group: 'my-rg') do
+describe azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http') do
   #...
 end
 ```
 ## Parameters
 
-- `resource_group` (Optional)
+- `resource_group` 
+- `site_name`: Name of the function App 
 
 ## Properties
 
@@ -48,10 +49,9 @@ end
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
 | names         | A list of all the key vault names.                                                   | `name`          |
-| tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
-| types         | A list of types of all the functions.                                               | `type`          |
-| locations     | A list of locations for all the functions.                                          | `location`      |
-| properties    | A list of properties for all the functions.                                         | `properties`    |
+| types         | A list of types of all the functions.                                                | `type`           |
+| locations     | A list of locations for all the functions.                                           | `location`       |
+| properties    | A list of properties for all the functions.                                          | `properties`     |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
@@ -59,7 +59,7 @@ end
 
 ### Loop through functions by Their Ids
 ```ruby
-azure_web_app_functions.ids.each do |id|
+azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http').ids.each do |id|
   describe azure_web_app_function(resource_id: id) do
     it { should exist }
   end
@@ -67,16 +67,11 @@ end
 ```     
 ### Test that There are functions that Includes a Certain String in their Names (Client Side Filtering)
 ```ruby
-describe azure_web_app_functions.where { name.include?('deployment') } do
+describe azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http').where { name.include?('queue') } do
   it { should exist }
 end
 ```    
-### Test that There are functions that Includes a Certain String in their Names (Server Side Filtering via Generic Resource - Recommended)
-```ruby
-describe azure_generic_resources(resource_provider: 'Microsoft.Web/sites', substring_of_name: 'site_name') do
-  it { should exist }
-end
-```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
@@ -84,12 +79,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 ```ruby
 # Should not exist if no functions are in the resource group
-describe azure_web_app_functions(resource_group: 'MyResourceGroup') do
+describe azure_web_app_functions(resource_group: 'MyResourceGroup', site_name: 'function-app-http') do
   it { should_not exist }
 end
 
 # Should exist if the filter returns at least one key vault
-describe azure_web_app_functions(resource_group: 'MyResourceGroup') do
+describe azure_web_app_functions(resource_group: 'MyResourceGroup', site_name: 'function-app-http') do
   it { should exist }
 end
 ```
