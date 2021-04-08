@@ -15,4 +15,3 @@ class AzureStreamingFunctionConstructorTest < Minitest::Test
     assert_raises(ArgumentError) { AzureStreamingAnalyticsFunctions.new(name: 'my-name') }
   end
 end
-

@@ -1090,7 +1090,6 @@ XML
 }
 resource "azurer_stream_analytics_job" "streaming_job" {
   name                                     = "example-job"
-  //resource_group_name       = "nirbhay-cosmos"
   resource_group_name                      = azurerm_resource_group.rg.name
   location                                 = var.location
   compatibility_level                      = "1.1"
