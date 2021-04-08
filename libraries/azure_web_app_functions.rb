@@ -1,6 +1,6 @@
 class AzureWebAppFunctions < AzureGenericResources
   name 'azure_web_app_functions'
-  desc 'Verifies settings for a collection of Azure PostgreSQL Databases on a PostgreSQL Server'
+  desc 'Verifies settings for a collection of Azure Web App Functions'
   example <<-EXAMPLE
     describe azure_web_app_functions(resource_group: 'my-rg', site_name: "my-site") do
         it            { should exist }
@@ -48,7 +48,7 @@ end
 # This is for backward compatibility.
 class AzurermWebAppFunctions < AzureWebAppFunctions
   name 'azurerm_web_app_functions'
-  desc 'Verifies settings for Azure Web App Functions'
+  desc 'Verifies settings for collection of Azure Web App Functions'
   example <<-EXAMPLE
     describe azure_web_app_functions(resource_group: 'my-rg', site_name: "my-site") do
       it{ should exist }

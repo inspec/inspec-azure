@@ -30,7 +30,7 @@ end
 # This is for backward compatibility.
 class AzurermWebAppFunction < AzureWebAppFunction
   name 'azurerm_web_app_function'
-  desc 'Verifies settings for an Azure Virtual Network'
+  desc 'Verifies settings for an Azure Function'
   example <<-EXAMPLE
     describe azurerm_web_app_function(resource_group: 'rg-nm1', site_name: "my-site", function_name: 'HttpTriggerJS1') do
       it            { should exist }
