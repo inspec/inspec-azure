@@ -1101,7 +1101,7 @@ resource "azurer_stream_analytics_job" "streaming_job" {
   streaming_units                          = 3
 
   tags = {
-    environment = "Example"
+    user = terraform.workspace
   }
 
   transformation_query = <<QUERY
