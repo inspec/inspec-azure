@@ -7,7 +7,7 @@ control 'azure_streaming_analytics_function' do
     it { should exist } # The test itself.
     its('name')                             { should cmp function_name }
     its('type')                             { should cmp 'Microsoft.StreamAnalytics/streamingjobs/functions' }
-    its('properties.type')                  { should cmp "Scalar" }
+    its('properties.type')                  { should cmp 'Scalar' }
     its('properties.output.dataType')       { should cmp 'bigint' }
   end
 end

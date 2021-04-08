@@ -7,6 +7,3 @@ control 'azure_streaming_analytics_functions' do
     its('names') { should be_an(Array) }
   end
 end
-
-
-
