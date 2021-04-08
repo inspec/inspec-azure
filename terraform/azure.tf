@@ -1088,3 +1088,48 @@ XML
 
   }
 }
+resource "azurer_stream_analytics_job" "streaming_job" {
+  name                                     = "example-job"
+  //resource_group_name       = "nirbhay-cosmos"
+  resource_group_name                      = azurerm_resource_group.rg.name
+  location                                 = var.location
+  compatibility_level                      = "1.1"
+  data_locale                              = "en-GB"
+  events_late_arrival_max_delay_in_seconds = 60
+  events_out_of_order_max_delay_in_seconds = 50
+  events_out_of_order_policy               = "Adjust"
+  output_error_policy                      = "Drop"
+  streaming_units                          = 3
+
+  tags = {
+    environment = "Example"
+  }
+
+  transformation_query = <<QUERY
+    SELECT *
+    INTO [YourOutputAlias]
+    FROM [YourInputAlias]
+QUERY
+
+}
+
+resource "azurer_stream_analytics_function_javascript_udf" "streaming_job_function" {
+  name                      = "example-javascript-function"
+  stream_analytics_job_name = azurerm_stream_analytics_job.streaming_job.name
+  resource_group_name       = azurerm_stream_analytics_job.streaming_job.resource_group_name
+
+  script = <<SCRIPT
+function getRandomNumber(in) {
+  return in;
+}
+SCRIPT
+
+
+  input {
+    type = "bigint"
+  }
+
+  output {
+    type = "bigint"
+  }
+}
