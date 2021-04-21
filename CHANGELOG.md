@@ -1,10 +1,20 @@
 # Changelog
-<!-- latest_release 1.43.3 -->
+<!-- latest_release 1.43.5 -->
+## [v1.43.5](https://github.com/inspec/inspec-azure/tree/v1.43.5) (2021-04-16)
+
+#### Merged Pull Requests
+- Add docs team to codeowners [#376](https://github.com/inspec/inspec-azure/pull/376) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
+## [v1.43.4](https://github.com/inspec/inspec-azure/tree/v1.43.4) (2021-04-14)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.7.0 to ~&gt; 1.12.1 [#368](https://github.com/inspec/inspec-azure/pull/368) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 ## [v1.43.3](https://github.com/inspec/inspec-azure/tree/v1.43.3) (2021-01-06)
 
 #### Merged Pull Requests
 - Fix allow port from internet [#358](https://github.com/inspec/inspec-azure/pull/358) ([srb3](https://github.com/srb3))
-<!-- latest_release -->
 
 ## [v1.43.2](https://github.com/inspec/inspec-azure/tree/v1.43.2) (2021-01-05)
 
