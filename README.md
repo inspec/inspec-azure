@@ -157,6 +157,7 @@ The following is a list of static resources.
 - [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
 - [azure_network_watcher](docs/resources/azure_network_watcher.md)
 - [azure_network_watchers](docs/resources/azure_network_watchers.md)
+- [azure_policy_assignments](docs/resources/azure_policy_assignments.md)
 - [azure_policy_definition](docs/resources/azure_policy_definition.md)
 - [azure_policy_definitions](docs/resources/azure_policy_definitions.md)
 - [azure_postgresql_database](docs/resources/azure_postgresql_database.md)
