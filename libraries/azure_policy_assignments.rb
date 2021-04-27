@@ -1,14 +1,14 @@
 require 'azure_generic_resources'
-
+require 'time'
 class AzurePolicyAssignments < AzureGenericResources
   name 'azure_policy_assignments'
   desc 'Verifies settings for a collection of policy assignments'
   example <<-EXAMPLE
     # For property names see https://docs.microsoft.com/en-us/rest/api/policy/policyassignments/list#policyassignment
 
-    describe azure_policy_assignments.where{ enforcement_mode != 'Default' } do
+    describe azure_policy_assignments.where{ enforcementMode != 'Default' } do
         it {should_not exist}
-        its('display_names') {should eq []}
+        its('displayNames') {should eq []}
     end
   EXAMPLE
 
@@ -30,40 +30,59 @@ class AzurePolicyAssignments < AzureGenericResources
     # It is recommended to check that after every usage of inherited methods or making API calls.
     return if failed_resource?
 
-    AzurePolicyAssignments.populate_filter_table(:table)
+    table_schema = [
+      { column: :ids, field: :id },
+      { column: :types, field: :type },
+      { column: :names, field: :name },
+      { column: :locations, field: :location },
+      { column: :tags, field: :tags },
+      { column: :displayNames, field: :displayName },
+      { column: :policyDefinitionIds, field: :policyDefinitionId },
+      { column: :scopes, field: :scope },
+      { column: :notScopes, field: :notScopes },
+      { column: :parameters, field: :parameters },
+      { column: :enforcementMode, field: :enforcementModes },
+      { column: :assignedBys, field: :assignedBy },
+      { column: :parameterScopes, field: :parameterScopes },
+      { column: :created_bys, field: :created_by },
+      { column: :createdOns, field: :createdOn },
+      { column: :updatedBys, field: :updatedBy },
+      { column: :updatedOns, field: :updatedOn },
+      { column: :identityPrincipalIds, field: :identityPrincipalId },
+      { column: :identityTenantIds, field: :identityTenantId },
+      { column: :identityTypes, field: :identityType },
+    ]
+    # Process the raw data to provide easy access to subkeys (dates in particular)
+    table.map! { |r| enrich_row(r) }
+    # FilterTable is populated at the very end due to being an expensive operation.
+    AzureGenericResources.populate_filter_table(:table, table_schema)
   end
 
-  # Define the column and field names for FilterTable.
-  # In most cases, the `column` should be the pluralized form of the `field`.
-  # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
-  def self.populate_filter_table(raw_data)
-    # Top level fields
-    filter_table = FilterTable.create
-    filter_table.register_column(:ids,          field: :id)
-    filter_table.register_column(:identities,   field: :identity)
-    filter_table.register_column(:locations,    field: :location)
-    filter_table.register_column(:names,        field: :name)
-    filter_table.register_column(:types,        field: :type)
-    filter_table.register_column(:properties,   field: :properties)
+  def enrich_row(row)
+    # Hoist the [properties] key to the top
+    [:displayName, :policyDefinitionId, :scope, :notScopes, :parameters, :enforcementMode].each do |field|
+      row[field] = row.dig(:properties, field)
+    end
 
-    # Sub fields are registered with blocks instead of top level field names
-    filter_table.register_column(:descriptions)       { |p| p.entries.map { |e| e.dig(:properties, :description) } }
-    filter_table.register_column(:display_names)      { |p| p.entries.map { |e| e.dig(:properties, :displayName) } }
-    filter_table.register_column(:enforcement_modes)  { |p| p.entries.map { |e| e.dig(:properties, :enforcementMode) } }
-    filter_table.register_column(:meta_datas)         { |p| p.entries.map { |e| e.dig(:properties, :metadata) } }
-    filter_table.register_column(:non_compliance_messages) { |p| p.entries.map { |e| e.dig(:properties, :nonComplianceMessages) } }
-    filter_table.register_column(:excluded_scopes)    { |p| p.entries.map { |e| e.dig(:properties, :notScopes) } }
-    filter_table.register_column(:parameters)         { |p| p.entries.map { |e| e.dig(:properties, :parameters) } }
-    filter_table.register_column(:definition_ids)     { |p| p.entries.map { |e| e.dig(:properties, :policyDefinitionId) } }
-    filter_table.register_column(:scopes)             { |p| p.entries.map { |e| e.dig(:properties, :scope) } }
-    filter_table.register_column(:assigned_by)        { |p| p.entries.map { |e| e.dig(:properties, :metadata, :assignedBy) } }
-    filter_table.register_column(:created_by)         { |p| p.entries.map { |e| e.dig(:properties, :metadata, :createdBy) } }
-    filter_table.register_column(:created_on)         { |p| p.entries.map { |e| e.dig(:properties, :metadata, :createdOn) } }
-    filter_table.register_column(:updated_by)         { |p| p.entries.map { |e| e.dig(:properties, :metadata, :updatedBy) } }
-    filter_table.register_column(:updated_on)         { |p| p.entries.map { |e| e.dig(:properties, :metadata, :updatedOn) } }
+    # Hoist the [properties][metadata] key to the top (except for Time fields)
+    [:assignedBy, :parameterScopes, :created_by, :updatedBy].each do |field|
+      row[field] = row.dig(:properties, :metadata, field)
+    end
 
-    # Connect the filter table to the data
-    filter_table.install_filter_methods_on_resource(self, raw_data)
+    # Hoist the Time fields to the top
+    [:createdOn, :updatedOn].each do |field|
+      row[field] = Time.parse(row.dig(:properties, :metadata, field) || Time.new(0).to_s)
+    end
+
+    # Hoist the identity fields to the top and rename them to avoid clashes
+    row[:identityPrincipalId] = row.dig(:identity, :principalId)
+    row[:identityTenantId] = row.dig(:identity, :tenantId)
+    row[:identityType] = row.dig(:identity, :type)
+
+    # Clean up the row
+    row.delete(:identity)
+    row.delete(:properties)
+    row
   end
 
   def to_s
