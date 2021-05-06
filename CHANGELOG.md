@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.43.6 -->
+<!-- latest_release 1.43.7 -->
+## [v1.43.7](https://github.com/inspec/inspec-azure/tree/v1.43.7) (2021-05-06)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.12.1 to ~&gt; 1.14.0 [#381](https://github.com/inspec/inspec-azure/pull/381) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
 ## [v1.43.6](https://github.com/inspec/inspec-azure/tree/v1.43.6) (2021-05-06)
 
 #### Merged Pull Requests
 - Allow dependabot to check ruby gems [#355](https://github.com/inspec/inspec-azure/pull/355) ([jlosito](https://github.com/jlosito))
-<!-- latest_release -->
 
 ## [v1.43.5](https://github.com/inspec/inspec-azure/tree/v1.43.5) (2021-04-16)
 
