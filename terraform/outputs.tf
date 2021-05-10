@@ -55,6 +55,10 @@ output "subnet_nsg" {
   value = azurerm_network_security_group.nsg.name
 }
 
+output "container_registry_name" {
+    value = azurerm_container_registry.acr.name
+}
+
 output "resource_group" {
   value = azurerm_resource_group.rg.name
 }

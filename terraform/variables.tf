@@ -23,6 +23,10 @@ variable "activity_log_alert" {
   }
 }
 
+variable "container_registry_name" {
+  default = "containerRegistry"
+}
+
 variable "linux_external_os_disk" {
   default = "linux-external-osdisk"
 }
