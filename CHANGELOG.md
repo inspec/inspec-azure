@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.43.7 -->
+<!-- latest_release 1.44.0 -->
+## [v1.44.0](https://github.com/inspec/inspec-azure/tree/v1.44.0) (2021-05-19)
+
+#### Merged Pull Requests
+- Adding Azure Container Registry Resource [#382](https://github.com/inspec/inspec-azure/pull/382) ([Rohit1509](https://github.com/Rohit1509))
+<!-- latest_release -->
+
 ## [v1.43.7](https://github.com/inspec/inspec-azure/tree/v1.43.7) (2021-05-06)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.12.1 to ~&gt; 1.14.0 [#381](https://github.com/inspec/inspec-azure/pull/381) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.43.6](https://github.com/inspec/inspec-azure/tree/v1.43.6) (2021-05-06)
 
