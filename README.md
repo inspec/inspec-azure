@@ -119,6 +119,8 @@ The following is a list of static resources.
 - [azure_api_managements](docs/resources/azure_api_managements.md)
 - [azure_application_gateway](docs/resources/azure_application_gateway.md)
 - [azure_application_gateways](docs/resources/azure_application_gateways.md)
+- [azure_container_registries](docs/resources/azure_container_registries.md)
+- [azure_container_registry](docs/resources/azure_container_registry.md)
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
 - [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md)
 - [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
