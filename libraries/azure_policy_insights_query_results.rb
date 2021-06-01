@@ -53,25 +53,3 @@ class AzurePolicyInsightsQueryResults < AzureGenericResources
     super(AzurePolicyInsightsQueryResults)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermPolicyInsightsQueryResults < AzurePolicyInsightsQueryResults
-  name 'azurerm_policy_insights_query_results'
-  desc 'Verifies settings for an Azure Container Registry'
-  example <<-EXAMPLE
-    describe azurerm_policy_insights_query_results(policy_definition: '') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzurePolicyInsightsQueryResults.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2019-05-01'
-    super
-  end
-end
