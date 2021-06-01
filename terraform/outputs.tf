@@ -358,3 +358,11 @@ output "web_app_function_name" {
   value = "HttpTrigger1"
 }
 
+output "policy_definition_id" {
+  description = "The ID of the policy Definition"
+  value = azurerm_policy_definition.inspec_policy_definition.id
+}
+output "policy_definition_associated_cosmodb_id" {
+  description = "The Resource ID for which a policy definition is run against"
+  value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
+}

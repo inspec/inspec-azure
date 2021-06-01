@@ -115,3 +115,23 @@ variable "api_management_count" {
 variable "management_group_count" {
   default = 1
 }
+
+variable "policy_definition_name" {
+  default = "inspec_compliance_audit"
+}
+
+variable "policy_definition_display_name" {
+  default = "inspec_compliance_audit"
+}
+
+variable "policy_assignment_name" {
+  default = "inspec_policy_assignment_name"
+}
+
+variable "policy_assignment_description" {
+  default = "Policy Assignment created for inspec Cloud resource packs testing"
+}
+
+variable "policy_assignment_display_name" {
+  default = "inspec_policy_assignment_name"
+}
