@@ -7,7 +7,7 @@ control 'azurerm_iothub_event_hub_consumer_groups' do
 
   azurerm_iothub_event_hub_consumer_groups(resource_group: resource_group,
                                            resource_name: iothub_resource_name,
-    event_hub_endpoint: iothub_event_hub_endpoint).entries.each do |consumer_group|
+                                           event_hub_endpoint: iothub_event_hub_endpoint).entries.each do |consumer_group|
     describe consumer_group do
       its('name') { should be_in consumer_groups }
       its('type') { should include 'Microsoft.Devices/IotHubs/EventHubEndpoints/ConsumerGroups' }
@@ -15,8 +15,8 @@ control 'azurerm_iothub_event_hub_consumer_groups' do
   end
 
   azurerm_iothub_event_hub_consumer_groups(resource_group: resource_group,
-    resource_name: iothub_resource_name,
-    event_hub_endpoint: iothub_event_hub_endpoint) do
+                                           resource_name: iothub_resource_name,
+                                           event_hub_endpoint: iothub_event_hub_endpoint) do
     its          { should exist }
     its('names') { should include consumer_groups.first }
     its('type')  { should include 'Microsoft.Devices/IotHubs/EventHubEndpoints/ConsumerGroups' }

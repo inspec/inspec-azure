@@ -46,7 +46,7 @@ class AzureNetworkWatcher < AzureGenericResource
         {
           resource_uri:
               "/resourceGroups/#{@opts[:resource_group]}/providers/Microsoft.Network/networkSecurityGroups/#{nsg}",
-            add_subscription_id: true,
+          add_subscription_id: true,
         },
       )
     elsif @opts[:nsg_resource_group] && @opts[:nsg_name]
@@ -56,7 +56,7 @@ class AzureNetworkWatcher < AzureGenericResource
           resource_uri:
               "/resourceGroups/#{@opts[:nsg_resource_group]}/providers/Microsoft.Network/networkSecurityGroups/"\
               "#{@opts[:nsg_name]}",
-            add_subscription_id: true,
+          add_subscription_id: true,
         },
       )
     elsif @opts[:nsg_resource_id]
