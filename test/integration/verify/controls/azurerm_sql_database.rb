@@ -21,8 +21,8 @@ control 'azure_sql_database' do
   only_if { !sql_db_name.nil? }
 
   sql_db_id = azure_sql_database(resource_group: resource_group,
-                                server_name: sql_server_name,
-                                name: sql_db_name).id
+                                 server_name: sql_server_name,
+                                 name: sql_db_name).id
   describe azure_sql_database(resource_id: sql_db_id) do
     it { should exist }
     its('name') { should eq sql_db_name }

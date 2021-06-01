@@ -99,10 +99,10 @@ class AzureStorageAccount < AzureGenericResource
     additional_resource_properties(
       {
         property_name: 'activity_log_alert_filtered',
-          property_endpoint: '/providers/microsoft.insights/eventtypes/management/values',
-          add_subscription_id: true,
-          api_version: @opts[:activity_log_alert_api_version],
-          filter_free_text: filter,
+        property_endpoint: '/providers/microsoft.insights/eventtypes/management/values',
+        add_subscription_id: true,
+        api_version: @opts[:activity_log_alert_api_version],
+        filter_free_text: filter,
       },
     )
   end
