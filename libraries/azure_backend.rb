@@ -485,7 +485,7 @@ class AzureResourceBase < Inspec.resource(1)
   def validate_parameters(allow: [], required: nil, require_any_of: nil)
     opts = @opts
     allow += %i(azure_retry_limit azure_retry_backoff azure_retry_backoff_factor
-                endpoint api_version required_parameters allowed_parameters display_name)
+                endpoint api_version required_parameters allowed_parameters display_name method)
     Validators.validate_parameters(resource_name: @__resource_name__,
                                    allow: allow, required: required,
                                    require_any_of: require_any_of, opts: opts)
