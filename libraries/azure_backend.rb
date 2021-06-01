@@ -85,7 +85,7 @@ class AzureResourceBase < Inspec.resource(1)
   #
   def resource_from_graph_api(opts)
     Validators.validate_parameters(resource_name: @__resource_name__, allow: %i(api_version query_parameters),
-                                required: %i(resource), opts: opts)
+                                   required: %i(resource), opts: opts)
     api_version = opts[:api_version] || @azure.graph_api_endpoint_api_version
     if api_version.size > 10 || api_version.include?('/')
       raise ArgumentError, 'api version can not be longer than 10 characters and contain `/`.'
@@ -243,9 +243,9 @@ class AzureResourceBase < Inspec.resource(1)
   #
   def get_resource(opts = {})
     Validators.validate_parameters(resource_name: @__resource_name__,
-                                required: %i(resource_uri),
-                                allow: %i(query_parameters headers method req_body is_uri_a_url audience),
-                                opts: opts)
+                                   required: %i(resource_uri),
+                                   allow: %i(query_parameters headers method req_body is_uri_a_url audience),
+                                   opts: opts)
     params = opts[:query_parameters] || {}
     api_version = params['api-version'] || 'latest'
     if opts[:resource_uri].scan('providers').size == 1
@@ -487,8 +487,8 @@ class AzureResourceBase < Inspec.resource(1)
     allow += %i(azure_retry_limit azure_retry_backoff azure_retry_backoff_factor
                 endpoint api_version required_parameters allowed_parameters display_name)
     Validators.validate_parameters(resource_name: @__resource_name__,
-                                allow: allow, required: required,
-                                require_any_of: require_any_of, opts: opts)
+                                   allow: allow, required: required,
+                                   require_any_of: require_any_of, opts: opts)
     true
   end
 

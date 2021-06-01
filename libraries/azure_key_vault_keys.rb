@@ -60,9 +60,9 @@ class AzureKeyVaultKeys < AzureGenericResources
       # dm.create_methods(resource_instance, resource[:attributes])
       @table << {
         kid: resource_instance&.kid,
-          attributes: resource_instance&.attributes,
-          tags: resource_instance&.tags,
-          managed: resource_instance.managed,
+        attributes: resource_instance&.attributes,
+        tags: resource_instance&.tags,
+        managed: resource_instance.managed,
       }
     end
   end
