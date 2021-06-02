@@ -62,7 +62,7 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
   end
 
   def build_resource_methods
-    if !@api_response.is_a?(Hash) || !@api_response[:value]
+    if !@api_response.is_a?(Hash) || !@api_response[:value]&.first || @api_response[:value].first.empty?
       resource_fail("Unable to get the detailed information for the resource_id: #{@resource_id}")
     end
     response = @api_response[:value].first
