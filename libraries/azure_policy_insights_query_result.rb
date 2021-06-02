@@ -35,8 +35,9 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
     !failed_resource?
   end
 
+  #  Azure `isCompliant` is deprecated!
   def compliant?
-    isCompliant
+    compliance_state == 'Compliant'
   end
 
   private
