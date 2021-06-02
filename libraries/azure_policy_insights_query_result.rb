@@ -4,7 +4,7 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
   name 'azure_policy_insights_query_result'
   desc 'Lists a collection of Azure Policy Insights Query Results'
   example <<-EXAMPLE
-    describe azure_policy_insights_query_result(policy_definition: '', resource_id: '') do
+    describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
       it { should exist }
     end
   EXAMPLE
@@ -67,6 +67,8 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
     response = @api_response[:value].first
     response.delete(:"@odata.id")
     response.delete(:"@odata.context")
+    response.transform_keys! { |key| key.to_s.snakecase.to_sym }
+    response[:timestamp] = Time.parse(response[:timestamp])
     create_resource_methods(response)
   end
 
