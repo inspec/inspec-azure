@@ -38,12 +38,12 @@ end
 | Name                                  | Description                                                                       |
 |---------------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                        | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| name                                  | Name of the webapp to test. `my_function`                                    |
+| job_name                              | Name of the job. `my_job`                                    |
 | function-name                         | Name of the function made in the job mentioned. `my-function` |
 
 All three of the parameter are needed for a valid query along with the optional ones:
 
-- `resource_group` and `name` and `function-name`
+- `resource_group` and `job_name` and `function-name`
 
 ## Properties
 

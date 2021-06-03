@@ -186,7 +186,7 @@ The following is a list of static resources.
 - [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md)
 - [azure_storage_accounts](docs/resources/azure_storage_accounts.md)
 - [azure_streaming_analytics_functions](docs/resources/azure_streaming_analytics_functions.md)
-- [azure_streaming_function](docs/resources/azure_streaming_function.md)
+- [azure_streaming_analytics_function](docs/resources/azure_streaming_analytics_function.md)
 - [azure_subnet](docs/resources/azure_subnet.md)
 - [azure_subnets](docs/resources/azure_subnets.md)
 - [azure_subscription](docs/resources/azure_subscription.md)
