@@ -55,9 +55,9 @@ class AzureManagementGroups < AzureGenericResources
       dm.create_methods(resource_instance, resource[:properties])
       @table << {
         id: resource_instance&.id,
-          name: resource_instance&.name,
-          properties: resource_instance&.properties,
-          type: resource_instance&.type,
+        name: resource_instance&.name,
+        properties: resource_instance&.properties,
+        type: resource_instance&.type,
       }
     end
   end

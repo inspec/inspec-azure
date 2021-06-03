@@ -102,9 +102,9 @@ class AzureConnection
   #
   def rest_api_call(opts)
     Validators.validate_parameters(resource_name: @__resource_name__,
-                                required: %i(url),
-                                allow: %i(params headers method req_body audience),
-                                opts: opts, skip_length: true)
+                                   required: %i(url),
+                                   allow: %i(params headers method req_body audience),
+                                   opts: opts, skip_length: true)
     uri = URI(opts[:url])
     # If the authentication audience is provided, use it.
     if opts[:audience]
