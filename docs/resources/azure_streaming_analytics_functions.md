@@ -39,21 +39,16 @@ or
 ## Parameters
 
 - `resource_group` (Required)
-- `job_name` (Required)
+- `Job_name` (Required)
 
 ## Properties
 
-|Property       | Description                                                                         |            
-|---------------|-------------------------------------------------------------------------------------- |             
-| properties.binding        | The physical binding of the function. For example, in the Azure Machine Learning web service’s case, this describes the endpoint. |                                                
-| properties.inputs         | A list of inputs describing the parameters of the function.  |                           
-| properties.binding        | The output of the function. |                                                            
-| etag                      | The current entity tag for the function. | 
-
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/streamanalytics/) for other properties available.
-Any attribute in the response may be accessed with the key names separated by dots (`.`), eg. `properties.<attribute>`.
-
-For properties applicable to all resources, such as `type`, `name`, `id`, or `properties`, refer to the [`azure_generic_resource`](azure_generic_resource.md#properties) documentation.
+|Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
+|---------------|--------------------------------------------------------------------------------------|-----------------|
+| ids           | A list of the unique resource ids.                                                   | `id`            |
+| names         | A list of names of all the resources being interrogated.                             | `name`          |
+| tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
+| properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 

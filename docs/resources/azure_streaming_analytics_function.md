@@ -47,12 +47,13 @@ All three of the parameter are needed for a valid query along with the optional 
 
 ## Properties
 
-| Property          | Description |
-|-------------------|-------------|
-| id                | unique id of the function  '/subscriptions/56b5e0a9-b645-407d-99b0-c64f86013e3d/resourceGroups/sjrg/providers/Microsoft.StreamAnalytics/streamingjobs/sjName/functions/function8197'|
-| name              | Name of the function. |
-| type              | Resource type.  `Microsoft.StreamAnalytics/streamingjobs/functions` |
-| properties        |The properties that are associated with a function. |
+|Property       | Description                                                                           |            
+|---------------|-------------------------------------------------------------------------------------- |             
+| properties.binding        | The physical binding of the function. For example, in the Azure Machine Learning web service’s case, this describes the endpoint. |                                                
+| properties.inputs         | A list of inputs describing the parameters of the function.               |                           
+| properties.binding        | The output of the function.                                               |                                                            
+| etag                      | The current entity tag for the function.                                  | 
+
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
