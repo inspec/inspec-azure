@@ -103,14 +103,14 @@ class AzureGenericResource < AzureResourceBase
   #   api_version [string] The api version of the endpoint (default - latest).
   def additional_resource_properties(opts = {})
     Validators.validate_parameters(resource_name: @__resource_name__,
-                                required: %i(property_name property_endpoint),
-                                allow: %i(api_version filter_free_text add_subscription_id method req_body headers),
-                                opts: opts)
+                                   required: %i(property_name property_endpoint),
+                                   allow: %i(api_version filter_free_text add_subscription_id method req_body headers),
+                                   opts: opts)
     unless opts[:add_subscription_id].nil?
       opts[:property_endpoint] = validate_resource_uri(
         {
           resource_uri: opts[:property_endpoint],
-            add_subscription_id: opts[:add_subscription_id],
+          add_subscription_id: opts[:add_subscription_id],
         },
       )
     end
