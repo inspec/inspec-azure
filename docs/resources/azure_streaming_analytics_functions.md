@@ -50,6 +50,9 @@ or
 | tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
 | properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/streamanalytics/) for other properties available.
+Any attribute in the response may be accessed with the key names separated by dots (`.`), eg. `properties.<attribute>`.
+
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
