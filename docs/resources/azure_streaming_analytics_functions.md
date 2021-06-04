@@ -38,7 +38,8 @@ or
 
 ## Parameters
 
-- `resource_group` (Optional)
+- `resource_group` (Required)
+- `job_name` (Required)
 
 ## Properties
 
