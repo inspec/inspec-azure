@@ -7,14 +7,14 @@ platform: azure
 
 Use the `azure_streaming_analytics_function` InSpec audit resource to test properties and configuration of an Azure streaming analytics function.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API version, endpoint and HTTP client parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
-For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+For more information, refer to the [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, the `azure_cloud` global endpoint and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
@@ -26,9 +26,10 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`resource_group`,`job-name/name` and `function-name`  must be given as a parameter.
+`resource_group`,`job_name/name` and `function_name`  are required parameters.
+
 ```ruby
-describe azure_streaming_analytics_function(resource_group: 'inspec-rg', job-name: 'my_app', function-name: 'my-function') do
+describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
   it { should exist }
 end
 ```
@@ -37,22 +38,20 @@ end
 
 | Name                                  | Description                                                                       |
 |---------------------------------------|-----------------------------------------------------------------------------------|
-| resource_group                        | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| job_name                              | Name of the job. `my_job`                                    |
-| function-name                         | Name of the function made in the job mentioned. `my-function` |
+| resource_group                        | Azure resource group that the targeted resource resides in.                       |
+| job_name                              | Name of the job.                                                                  |
+| function_name                         | Name of the function made in the job mentioned.                                   |
 
-All three of the parameter are needed for a valid query along with the optional ones:
-
-- `resource_group` and `job_name` and `function-name`
+All three parameters are required for a valid query.
 
 ## Properties
 
-|Property       | Description                                                                           |            
-|---------------|-------------------------------------------------------------------------------------- |             
-| properties.binding        | The physical binding of the function. For example, in the Azure Machine Learning web service’s case, this describes the endpoint. |                                                
-| properties.inputs         | A list of inputs describing the parameters of the function.               |                           
-| properties.binding        | The output of the function.                                               |                                                            
-| etag                      | The current entity tag for the function.                                  | 
+|Property       | Description                                                                           |
+|---------------|-------------------------------------------------------------------------------------- |
+| properties.binding        | The physical binding of the function. For example, in the Azure Machine Learning web service’s case, this describes the endpoint. |
+| properties.inputs         | A list of inputs describing the parameters of the function.               |
+| properties.binding        | The output of the function.                                               |
+| etag                      | The current entity tag for the function.                                  |
 
 
 
@@ -63,9 +62,9 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test that a Resource Group has the Specified type 
+### Test that a Resource Group has the Specified type
 ```ruby
-describe azure_streaming_analytics_function(resource_group: 'inspec-rg', job-name: 'my_app', function-name: 'my-function') do
+describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
   it { should exist }
   its('type')                                         { should cmp 'Microsoft.StreamAnalytics/streamingjobs/functions' }
   its('properties.type')                              { should cmp 'Scalar' }
@@ -76,21 +75,28 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
-### Test Streaming function to Ensure it's Using Javascript UDF
+### Test Streaming function to ensure it's using Javascript UDF
+
 ```ruby
-describe azure_streaming_analytics_function(resource_group: 'inspec-rg', job-name: 'my_app', function-name: 'my-function') do
-its('properties.binding.type')                              { should cmp 'Microsoft.StreamAnalytics/JavascriptUdf' }
+describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
+  its('properties.binding.type')                              { should cmp 'Microsoft.StreamAnalytics/JavascriptUdf' }
 end
-```    
+```
 
 ### exists
+
+If we expect a resource to always exist:
+
 ```ruby
-# If we expect a resource to always exist
-describe azure_streaming_analytics_function(resource_group: 'inspec-rg', job-name: 'my_app', function-name: 'my-function') do
+describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
   it { should exist }
 end
-# If we expect a resource to never exist
-describe azure_streaming_analytics_function(resource_group: 'inspec-rg', job-name: 'my_app', function-name: 'my-function') do
+```
+
+If we expect a resource to never exist:
+
+```ruby
+describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
   it { should_not exist }
 end
 ```

@@ -5,7 +5,7 @@ platform: azure
 
 # azure_streaming_analytics_functions
 
-Use the `azure_streaming_analytics_functions` InSpec audit resource to test properties and configuration of multiple Azure streaming analytics fuctions.
+Use the `azure_streaming_analytics_functions` InSpec audit resource to test properties and configuration of multiple Azure streaming analytics functions.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -27,20 +27,22 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 ## Syntax
 
 An `azure_streaming_analytics_functions` resource block returns all functions  under a job.
-```ruby
 
-describe azure_streaming_analytics_functions(resource_group: "EmptyExampleGroup", job_name: "azure_streaming_job_name") do
+```ruby
+describe azure_streaming_analytics_functions(resource_group: "RESOURCE_GROUP", job_name: "AZURE_STREAMING_JOB_NAME") do
   #...
 end
-
 ```
-or
 
 ## Parameters
 
-- `resource_group` (Required)
-- `Job_name` (Required)
+`resource_group` _(required)_
 
+Azure resource group that the targeted resource resides in.
+
+`job_name` _(required)_
+
+Name of the job.
 ## Properties
 
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
@@ -57,9 +59,10 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test that an the names should be an array
+### Test that the names should be an array
+
 ```ruby
-describe azure_streaming_analytics_functions(resource_group: "EmptyExampleGroup", job_name: "azure_streaming_job_name") do
+describe azure_streaming_analytics_functions(resource_group: "RESOURCE_GROUP", job_name: "AZURE_STREAMING_JOB_NAME") do
   its('names') { should be_an(Array) }
 end
 
@@ -70,16 +73,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control will pass if the filter returns at least one result.
 ```ruby
-# If we expect 'EmptyExampleGroup' having 'azure_streaming_job_name' job should have functions in it.
-describe azure_streaming_analytics_functions(resource_group: "EmptyExampleGroup", job_name: "azure_streaming_job_name") do
-  it { should exist } # The test itself.
+describe azure_streaming_analytics_functions(resource_group: "RESOURCE_GROUP", job_name: "AZURE_STREAMING_JOB_NAME") do
+  it { should exist }
 end
+```
 
+Use `should_not` if you expect zero matches.
 
-# If we expect 'EmptyExampleGroup' having 'azure_streaming_job_name' job should not have any functions in it
-describe azure_streaming_analytics_functions(resource_group: "EmptyExampleGroup", job_name: "azure_streaming_job_name") do
+```ruby
+describe azure_streaming_analytics_functions(resource_group: "RESOURCE_GROUP", job_name: "AZURE_STREAMING_JOB_NAME") do
   it { should_not exist }
 end
 ```
