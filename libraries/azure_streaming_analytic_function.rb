@@ -27,24 +27,3 @@ class AzureStreamingAnalyticsFunction < AzureGenericResource
   end
 end
 
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermStreamingAnalyticsFunction < AzureStreamingAnalyticsFunction
-  name 'azurerm_streaming_analytics_function'
-  desc 'Verifies settings for an Azure Function Streaming Analytics resource'
-  example <<-EXAMPLE
-    describe azurerm_streaming_analytics_function(resource_group: 'rg-1', function_name: "test", job_name: "test-job") do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureStreamingAnalyticsFunction.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2017-12-01'
-    super
-  end
-end
