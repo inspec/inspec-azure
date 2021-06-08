@@ -132,8 +132,6 @@ The following is a list of static resources.
 - [azure_generic_resources](docs/resources/azure_generic_resources.md)
 - [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
 - [azure_graph_generic_resources](docs/resources/azure_graph_generic_resources.md)
-- [azure_graph_user](docs/resources/azure_graph_user.md)
-- [azure_graph_users](docs/resources/azure_graph_users.md)
 - [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md)
 - [azure_iothub](docs/resources/azure_iothub.md)
 - [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md)
