@@ -1188,3 +1188,11 @@ resource "azurerm_function_app" "web_app_function" {
     user = terraform.workspace
   }
 }
+
+resource "azurerm_database_migration_service" "inspec-compliance-migration-dev" {
+  location = azurerm_resource_group.rg.location
+  name = var.inspec_db_migration_service.name
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name = var.inspec_db_migration_service.sku_name
+  subnet_id = azurerm_subnet.subnet.id
+}
