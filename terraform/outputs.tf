@@ -350,3 +350,10 @@ output "web_app_function_name" {
   value = "HttpTrigger1"
 }
 
+output "inspec_db_migration_service_name" {
+  value = var.inspec_db_migration_service.name
+}
+
+output "inspec_db_migration_service_sku_name" {
+  value = var.inspec_db_migration_service.sku_name
+}
