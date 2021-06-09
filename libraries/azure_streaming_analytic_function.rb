@@ -26,4 +26,3 @@ class AzureStreamingAnalyticsFunction < AzureGenericResource
     super(AzureStreamingAnalyticsFunction)
   end
 end
-
