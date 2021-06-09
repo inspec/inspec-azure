@@ -115,3 +115,10 @@ variable "api_management_count" {
 variable "management_group_count" {
   default = 1
 }
+
+variable "inspec_db_migration_service" {
+  default = {
+    name = "inspec-compliance-migration-dev"
+    sku_name = "Standard_1vCores"
+  }
+}
