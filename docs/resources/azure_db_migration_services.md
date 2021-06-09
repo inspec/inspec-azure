@@ -86,12 +86,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 ```ruby
 # Should not exist if no functions are in the resource group
-describe azure_db_migration_services(resource_group: 'MyResourceGroup') do
+describe azure_db_migration_services(resource_group: 'my-rg') do
   it { should_not exist }
 end
 
 # Should exist if the filter returns at least one key vault
-describe azure_db_migration_services(resource_group: 'MyResourceGroup') do
+describe azure_db_migration_services(resource_group: 'my-rg') do
   it { should exist }
 end
 ```

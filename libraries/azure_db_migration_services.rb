@@ -4,7 +4,7 @@ class AzureDBMigrationServices < AzureGenericResources
   name 'azure_db_migration_services'
   desc 'Verifies settings for a list of DB migration service resources in a resource group'
   example <<-EXAMPLE
-    describe azure_db_migration_services do
+    describe azure_db_migration_services(resource_group: 'rg-1') do
       it { should exist }
     end
   EXAMPLE

@@ -28,7 +28,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 `resource_group` and `service_name` must be given as a parameter.
 ```ruby
-describe azure_db_migration_service(resource_group: 'inspec-group', service_name: 'inspec-cloud-pack-test') do
+describe azure_db_migration_service(resource_group: 'MyResourceGroup', service_name: 'dbbackup_to_uat_migration_servicet') do
   it                                      { should exist }
   its('name')                             { should cmp 'inspec-cloud-pack-test' }
   its('type')                             { should cmp 'Microsoft.DataMigration/services' }
@@ -38,7 +38,7 @@ describe azure_db_migration_service(resource_group: 'inspec-group', service_name
 end
 ```
 ```ruby
-describe azure_db_migration_service(resource_group: 'inspec-group', service_name: 'inspec-cloud-pack-test') do
+describe azure_db_migration_service(resource_group: 'MyResourceGroup', service_name: 'dbbackup_to_uat_migration_service') do
   it            { should exist }
 end
 ```
