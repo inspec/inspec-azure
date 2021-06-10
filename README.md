@@ -113,7 +113,6 @@ With the generic resources:
  
 The following is a list of static resources. 
 
-
 - [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
 - [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
 - [azure_api_management](docs/resources/azure_api_management.md)
@@ -128,10 +127,6 @@ The following is a list of static resources.
 - [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
 - [azure_graph_user](docs/resources/azure_graph_user.md)
 - [azure_graph_users](docs/resources/azure_graph_users.md)
-- [azure_generic_resource](docs/resources/azure_generic_resource.md)
-- [azure_generic_resources](docs/resources/azure_generic_resources.md)
-- [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
-- [azure_graph_generic_resources](docs/resources/azure_graph_generic_resources.md)
 - [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md)
 - [azure_iothub](docs/resources/azure_iothub.md)
 - [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md)
