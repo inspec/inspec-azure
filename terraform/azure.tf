@@ -1095,8 +1095,8 @@ XML
 
   }
 }
-resource "azurer_stream_analytics_job" "streaming_job" {
-  name                                     = "example-job"
+resource "azurerm_stream_analytics_job" "streaming_job" {
+  name                                     = "job-for-streaming-function"
   resource_group_name                      = azurerm_resource_group.rg.name
   location                                 = var.location
   compatibility_level                      = "1.1"
@@ -1120,7 +1120,7 @@ QUERY
 }
 
 resource "azurer_stream_analytics_function_javascript_udf" "streaming_job_function" {
-  name                      = "example-javascript-function"
+  name                      = "javascript-script-for-streaming-function"
   stream_analytics_job_name = azurerm_stream_analytics_job.streaming_job.name
   resource_group_name       = azurerm_stream_analytics_job.streaming_job.resource_group_name
 
@@ -1134,7 +1134,6 @@ SCRIPT
   input {
     type = "bigint"
   }
-
   output {
     type = "bigint"
   }
