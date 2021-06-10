@@ -4,7 +4,7 @@ class AzureStreamingAnalyticsFunctions< AzureGenericResources
   name 'azure_streaming_analytics_functions'
   desc 'Verifies settings for an Azure Function Streaming Analytics resource'
   example <<-EXAMPLE
-    describe azure_streaming_analytics_functions(resource_group: 'rg-1', name: "test-job") do
+    describe azure_streaming_analytics_functions(resource_group: 'rg-1', job_name: "test-job") do
       it { should exist }
     end
   EXAMPLE
