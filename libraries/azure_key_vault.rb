@@ -88,6 +88,15 @@ class AzureKeyVault < AzureGenericResource
       },
     )
   end
+
+  def diagnostic_settings_logs
+    return nil if diagnostic_settings.first.nil?
+    result = []
+    diagnostic_settings.each do |setting|
+      result += setting.properties&.logs&.select(&:category)&.map(&:enabled)
+    end
+    result
+  end
 end
 
 # Provide the same functionality under the old resource name.
