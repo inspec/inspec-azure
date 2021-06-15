@@ -329,6 +329,14 @@ output "api_management_name" {
   description = "the name for the azurerm_api_management resource"
   value       = var.api_management_count > 0 ? azurerm_api_management.apim01[0].name : ""
 }
+output "azure_streaming_job_function_name" {
+  description = "the name for the azure_streaming_service_job"
+  value       = azurer_stream_analytics_function_javascript_udf.streaming_job_function.name
+}
+output "azure_streaming_job_name" {
+  description = "the name for the azure_streaming_service_resource_job_function"
+  value       = azurer_stream_analytics_job.streaming_job.name
+}
 
 output "azurerm_app_service_plan_name" {
   description = "The name for azurerm_app_service_plan resource for functions"
