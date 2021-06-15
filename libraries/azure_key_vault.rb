@@ -90,7 +90,7 @@ class AzureKeyVault < AzureGenericResource
   end
 
   def diagnostic_settings_logs
-    return nil if diagnostic_settings.first.nil?
+    return nil if diagnostic_settings.nil? || diagnostic_settings.empty?
     result = []
     diagnostic_settings.each do |setting|
       result += setting.properties&.logs&.select(&:category)&.map(&:enabled)
