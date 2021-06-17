@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.45.2 -->
+<!-- latest_release 1.45.3 -->
+## [v1.45.3](https://github.com/inspec/inspec-azure/tree/v1.45.3) (2021-06-17)
+
+#### Merged Pull Requests
+- added missing resources [#396](https://github.com/inspec/inspec-azure/pull/396) ([Nirbhay1997](https://github.com/Nirbhay1997))
+<!-- latest_release -->
+
 ## [v1.45.2](https://github.com/inspec/inspec-azure/tree/v1.45.2) (2021-06-10)
 
 #### Merged Pull Requests
 - Added Support for  Azure Streaming Jobs  function [#375](https://github.com/inspec/inspec-azure/pull/375) ([Nirbhay1997](https://github.com/Nirbhay1997))
-<!-- latest_release -->
 
 ## [v1.45.1](https://github.com/inspec/inspec-azure/tree/v1.45.1) (2021-06-10)
 
