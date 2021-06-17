@@ -93,7 +93,9 @@ class AzureKeyVault < AzureGenericResource
     return nil if diagnostic_settings.nil? || diagnostic_settings.empty?
     result = []
     diagnostic_settings.each do |setting|
-      result += setting.properties&.logs&.select(&:category)&.map(&:enabled)
+      logs = setting.properties&.logs
+      next unless logs
+      result +=  logs.reduce([]){|arr, log| arr.push(log.enabled) if log.category; arr}
     end
     result
   end
