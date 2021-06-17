@@ -95,7 +95,7 @@ class AzureKeyVault < AzureGenericResource
     diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
       next unless logs
-      result +=  logs.reduce([]){|arr, log| arr.push(log.enabled) if log.category; arr}
+      result += logs.map { |log| log.enabled if log.category }.compact
     end
     result
   end
