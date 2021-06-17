@@ -13,13 +13,9 @@ class AzurePolicyInsightsQueryResults < AzureGenericResources
   def initialize(opts = {})
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
-    # this is set so that we can run validations
-    # new @opts will be set inside parent classes
-    @opts = opts
-    validate_parameters(required: %i(policy_definition), allow: %i(filter_free_text))
-    resource_provider = specific_resource_constraint('Microsoft.Authorization/policyDefinitions', opts)
-    opts[:resource_uri] = ['providers',  resource_provider, opts.delete(:policy_definition),
-                           'providers/Microsoft.PolicyInsights/policyStates/latest/queryResults'].join('/')
+    Validators.validate_parameters(resource_name: @__resource_name__, allow: %i(filter_free_text), opts: opts)
+    resource_provider = specific_resource_constraint('Microsoft.PolicyInsights/policyStates/latest/queryResults', opts)
+    opts[:resource_uri] = ['providers', resource_provider].join('/')
     opts[:add_subscription_id] = true
     opts[:method] = 'post'
 
