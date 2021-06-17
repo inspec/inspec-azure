@@ -28,13 +28,13 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 An `azure_policy_insights_query_results` resource block returns all policy insights query results, either compliant, or not within a subscription.
 ```ruby
-describe azure_policy_insights_query_results(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54') do
+describe azure_policy_insights_query_results do
   it { should exist }
 end
 ```
 or
 ```ruby
-describe azure_policy_insights_query_results(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54') do
+describe azure_policy_insights_query_results do
   it { should exist }
 end
 ```
@@ -71,19 +71,19 @@ end
 
 ### Check if a Specific Resource Type is present
 ```ruby
-describe azure_policy_insights_query_results(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54') do
+describe azure_policy_insights_query_results do
   its('resource_types')  { should include 'Microsoft.VirtualMachineImages/imageTemplates' }
 end
 ```
 ### Filters the Results to Include Only Those policy insights query results which Include the Given resource_location
 ```ruby
-describe azure_policy_insights_query_results(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54').where(resource_location: 'westus2') do
+describe azure_policy_insights_query_results.where(resource_location: 'westus2') do
   it { should exist }
 end
 ```
 ## Filters the Results to Include Only The Compliant policy insights query results
 ```ruby
-describe azure_policy_insights_query_results(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54').where(is_compliant: true) do
+describe azure_policy_insights_query_results.where(is_compliant: true) do
   it { should exist }
   its('count') { should be 120  }
 end
@@ -96,7 +96,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
-describe azure_policy_insights_query_results(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54') do
+describe azure_policy_insights_query_results do
   it { should exist }
 end
 ```

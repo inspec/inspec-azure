@@ -4,7 +4,7 @@ class AzurePolicyInsightsQueryResults < AzureGenericResources
   name 'azure_policy_insights_query_results'
   desc 'Lists a collection of Azure Policy Insights Query Results'
   example <<-EXAMPLE
-    describe azure_policy_insights_query_results(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54') do
+    describe azure_policy_insights_query_results do
       it { should exist }
     end
   EXAMPLE
