@@ -115,3 +115,7 @@ variable "api_management_count" {
 variable "management_group_count" {
   default = 1
 }
+
+variable "inspec_compliance_redis_cache_name" {
+  default = "inspec-compliance-redis-cache"
+}

@@ -358,3 +358,7 @@ output "web_app_function_name" {
   value = "HttpTrigger1"
 }
 
+output "inspec_redis_cache_name" {
+  description = "The name of the redis cache created for cloud packs"
+  value = azurerm_redis_cache.inspec_compliance_redis_cache.name
+}
