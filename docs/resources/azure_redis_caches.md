@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_redis_caches` resource block returns all Azure functions, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_redis_caches` resource block returns all Azure Redis Caches within a Resource Group.
 ```ruby
 describe azure_redis_caches(resource_group: 'my-rg') do
   #...
@@ -103,12 +103,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-# Should not exist if no functions are in the resource group
+# Should not exist if no redis caches are in the resource group
 describe azure_redis_caches(resource_group: 'my-rg') do
   it { should_not exist }
 end
 
-# Should exist if the filter returns at least one key vault
+# Should exist if the filter returns at least one redis cache
 describe azure_redis_caches(resource_group: 'my-rg') do
   it { should exist }
 end

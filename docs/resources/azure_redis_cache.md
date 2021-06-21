@@ -93,18 +93,19 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-# If a key vault is found it will exist
+# If a redis cache is found it will exist
 describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
   it { should exist }
 end
 
-# Key vaults that aren't found will not exist
+# Redis Caches that aren't found will not exist
 describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
   it { should_not exist }
 end
 ```
 
 ### be_enabled_non_ssl_port
+# Redis Cache that supports non SSL ports
 ```ruby
     describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
       it { should be_enabled_non_ssl_port }
