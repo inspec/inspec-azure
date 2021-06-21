@@ -40,8 +40,6 @@ end
 ```
 ## Parameters
 
-- `policy_definition`: Name of the policy definition. `policyDefinitionName`
-
 ## Properties
 
 |Property       | Description                                                                               | Filter Criteria<superscript>*</superscript> |
