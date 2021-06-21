@@ -3,11 +3,12 @@ terraform {
 }
 
 provider "azurerm" {
-  version         = "~> 1.36.0"
+  version         = "~> 2.1.0"
   subscription_id = var.subscription_id
   client_id       = var.client_id
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
+  features {}
 }
 
 provider "random" {
@@ -297,8 +298,6 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefix       = "10.1.1.0/24"
-  # "Soft" deprecated, required until v2 of azurerm provider:
-  network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
@@ -1231,4 +1230,12 @@ resource "azurerm_function_app" "web_app_function" {
   tags = {
     user = terraform.workspace
   }
+}
+
+resource "azurerm_database_migration_service" "inspec-compliance-migration-dev" {
+  location = azurerm_resource_group.rg.location
+  name = var.inspec_db_migration_service.name
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name = var.inspec_db_migration_service.sku_name
+  subnet_id = azurerm_subnet.subnet.id
 }
