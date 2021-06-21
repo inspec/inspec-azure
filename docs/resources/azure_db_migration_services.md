@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_db_migration_services` resource block returns all Azure functions, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_db_migration_services` resource block returns all Azure DB Migration Services within a Resource Group.
 ```ruby
 describe azure_db_migration_services(resource_group: 'my-rg') do
   #...
@@ -85,12 +85,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-# Should not exist if no functions are in the resource group
+# Should not exist if no db migration service are in the resource group
 describe azure_db_migration_services(resource_group: 'my-rg') do
   it { should_not exist }
 end
 
-# Should exist if the filter returns at least one key vault
+# Should exist if the filter returns at least one db migration service
 describe azure_db_migration_services(resource_group: 'my-rg') do
   it { should exist }
 end

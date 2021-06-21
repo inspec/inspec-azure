@@ -95,12 +95,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-# If a key vault is found it will exist
+# If a azure_db_migration_service is found it will exist
 describe azure_db_migration_service(resource_group: 'MyResourceGroup', service_name: 'dbbackup_to_uat_migration_service') do
   it { should exist }
 end
 
-# Key vaults that aren't found will not exist
+# azure_db_migration_services that aren't found will not exist
 describe azure_db_migration_service(resource_group: 'MyResourceGroup', service_name: 'dbbackup_to_uat_migration_service') do
   it { should_not exist }
 end
