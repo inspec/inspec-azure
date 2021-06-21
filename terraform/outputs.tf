@@ -358,3 +358,7 @@ output "web_app_function_name" {
   value = "HttpTrigger1"
 }
 
+//output "policy_exemption_name" {
+//  description = "the name of the policy exemption"
+//  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
+//}
