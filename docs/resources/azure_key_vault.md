@@ -58,6 +58,7 @@ Either one of the parameter sets can be provided for a valid query:
 | Property                              | Description |
 |---------------------------------------|-------------|
 | diagnostic_settings                   | The active diagnostic settings list for the key vault. |
+| diagnostic_settings_logs              | The logs enabled status of every category for the key vault. |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
@@ -76,6 +77,12 @@ end
 ```ruby
 describe azure_key_vault(resource_group: 'MyResourceGroup', name: 'MyVaultName') do
   its('properties.enabledForDiskEncryption') { should be_true }
+end
+```
+### Test If Azure Key Vault audit logging is enabled
+```ruby
+describe azure_key_vault(resource_group: 'MyResourceGroup', name: 'MyVaultName') do
+  its('diagnostic_settings_logs') { should include(true) }
 end
 ```
 ## Matchers
