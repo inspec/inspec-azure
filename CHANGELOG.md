@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.45.4 -->
+<!-- latest_release 1.46.0 -->
+## [v1.46.0](https://github.com/inspec/inspec-azure/tree/v1.46.0) (2021-06-22)
+
+#### Merged Pull Requests
+- adding azure key vault extension [#395](https://github.com/inspec/inspec-azure/pull/395) ([Rohit1509](https://github.com/Rohit1509))
+<!-- latest_release -->
+
 ## [v1.45.4](https://github.com/inspec/inspec-azure/tree/v1.45.4) (2021-06-22)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.16.0 to ~&gt; 1.17.0 [#400](https://github.com/inspec/inspec-azure/pull/400) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.45.3](https://github.com/inspec/inspec-azure/tree/v1.45.3) (2021-06-17)
 
