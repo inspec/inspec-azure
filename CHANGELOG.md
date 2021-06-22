@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.45.3 -->
+<!-- latest_release 1.45.4 -->
+## [v1.45.4](https://github.com/inspec/inspec-azure/tree/v1.45.4) (2021-06-22)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.16.0 to ~&gt; 1.17.0 [#400](https://github.com/inspec/inspec-azure/pull/400) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
 ## [v1.45.3](https://github.com/inspec/inspec-azure/tree/v1.45.3) (2021-06-17)
 
 #### Merged Pull Requests
 - added missing resources [#396](https://github.com/inspec/inspec-azure/pull/396) ([Nirbhay1997](https://github.com/Nirbhay1997))
-<!-- latest_release -->
 
 ## [v1.45.2](https://github.com/inspec/inspec-azure/tree/v1.45.2) (2021-06-10)
 
