@@ -5,7 +5,7 @@ platform: azure
 
 # azure_policy_insights_query_result
 
-Use the `azure_policy_insights_query_result` InSpec audit resource to test properties and configuration of an Azure Policy Insights Query Result.
+Use the `azure_policy_insights_query_result` InSpec audit resource to test properties and configuration of an Azure Policy Insights query result.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -27,16 +27,19 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 ## Syntax
 
 `policy_definition` and the `resource_id` must be given as a parameter.
+
 ```ruby
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
   it { should exist }
 end
 ```
+
 ```ruby
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
   it { should exist }
 end
 ```
+
 ## Parameters
 
 | Name                                  | Description |
@@ -44,7 +47,7 @@ end
 | policy_definition                     | Name of the policy definition. `policyDefinitionName` |
 | resource_id                           | The unique resource ID. `/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderId}` |
 
-Both the parameter sets should be provided for a valid query:
+Submit both parameters for a valid query:
 - `resource_id`
 - `policy_definition`
 
@@ -57,7 +60,7 @@ Both the parameter sets should be provided for a valid query:
 | policy_definition_id        | Policy definition ID. |
 | policy_assignment_name      | Policy assignment name. |
 | policy_definition_name      | Policy definition name. |
-| policy_definition_action    | Policy definition action, i.e. effect. | 
+| policy_definition_action    | Policy definition action, i.e. effect. |
 | compliance_state            | Compliance state of the resource. |
 | effective_parameters        | Effective parameters for the policy assignment. |
 | is_compliant                | Flag which states whether the resource is compliant against the policy assignment it was evaluated against. This property is deprecated; please use ComplianceState instead. |
@@ -78,30 +81,36 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test a Policy Definition resourceType
+### Test a Policy definition resource type
+
 ```ruby
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54',  resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
   its('resourceType') { should eq 'Microsoft.VirtualMachineImages/imageTemplates' }
 end
 ```
-### Test a Policy Definition policyAssignmentScope
+### Test a Policy definition policy assignment scope
+
 ```ruby
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
   its('policyAssignmentScope') { should cmp '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd' }
 end
-```    
+```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### compliant
+
 Test if a policy definition type is `Compliant` or not.
+
 ```ruby
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
   it { should be_compliant }
 end
 ```
+
 ### exists
+
 ```ruby
 # If we expect a resource to always exist
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
@@ -112,6 +121,7 @@ describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c
   it { should_not exist }
 end
 ```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

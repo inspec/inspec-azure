@@ -5,7 +5,7 @@ platform: azure
 
 # azure_policy_insights_query_results
 
-Use the `azure_policy_insights_query_results` InSpec audit resource to test properties and configuration of multiple Azure policy insights query results.
+Use the `azure_policy_insights_query_results` InSpec audit resource to test properties and configuration of multiple Azure Policy Insights query results.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -27,24 +27,28 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 ## Syntax
 
 An `azure_policy_insights_query_results` resource block returns all policy insights query results, either compliant, or not within a subscription.
+
 ```ruby
 describe azure_policy_insights_query_results do
   it { should exist }
 end
 ```
+
 or
+
 ```ruby
 describe azure_policy_insights_query_results do
   it { should exist }
 end
 ```
+
 ## Parameters
 
 ## Properties
 
 |Property       | Description                                                                               | Filter Criteria<superscript>*</superscript> |
 |---------------|-------------------------------------------------------------------------------------------|-----------------|
-| resource_ids               | A list of the unique resource ids.                                            | `resource_id`        |
+| resource_ids               | A list of the unique resource IDs.                                            | `resource_id`        |
 | policy_assignment_ids       | A list of all Policy assignment IDs.                                         | `policyAssignment_id`|
 | policy_definition_ids       | A list of all Policy definition IDs.                                         | `policyDefinition_id`|
 | is_compliant               | A list of boolean flags which states whether the resource is compliant or not.| `is_compliant`       |
@@ -67,25 +71,28 @@ end
 
 ## Examples
 
-### Check if a Specific Resource Type is present
+### Check if a specific resource type is present
+
 ```ruby
 describe azure_policy_insights_query_results do
   its('resource_types')  { should include 'Microsoft.VirtualMachineImages/imageTemplates' }
 end
 ```
-### Filters the Results to Include Only Those policy insights query results which Include the Given resource_location
+### Filters the results to include only those Policy Insights query results which include the given resource location
+
 ```ruby
-describe azure_policy_insights_query_results.where(resource_location: 'westus2') do
+describe azure_policy_insights_query_results.where(resource_location: 'RESOURCE_LOCATION') do
   it { should exist }
 end
 ```
-## Filters the Results to Include Only The Compliant policy insights query results
+## Filters the results to include only the compliant Policy Insights query results
+
 ```ruby
 describe azure_policy_insights_query_results.where(is_compliant: true) do
   it { should exist }
   its('count') { should be 120  }
 end
-```    
+```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
@@ -93,6 +100,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 describe azure_policy_insights_query_results do
   it { should exist }
