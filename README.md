@@ -166,6 +166,8 @@ The following is a list of static resources.
 - [azure_policy_assignments](docs/resources/azure_policy_assignments.md)
 - [azure_policy_definition](docs/resources/azure_policy_definition.md)
 - [azure_policy_definitions](docs/resources/azure_policy_definitions.md)
+- [azure_policy_exemption](docs/resources/azure_policy_exemption.md)
+- [azure_policy_exemptions](docs/resources/azure_policy_exemptions.md)
 - [azure_postgresql_database](docs/resources/azure_postgresql_database.md)
 - [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md)
 - [azure_postgresql_server](docs/resources/azure_postgresql_server.md)
