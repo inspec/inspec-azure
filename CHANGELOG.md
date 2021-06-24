@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.46.0 -->
+<!-- latest_release 1.46.1 -->
+## [v1.46.1](https://github.com/inspec/inspec-azure/tree/v1.46.1) (2021-06-24)
+
+#### Merged Pull Requests
+- Add support for testing Azure Policy Assignments [#379](https://github.com/inspec/inspec-azure/pull/379) ([trickyearlobe](https://github.com/trickyearlobe))
+<!-- latest_release -->
+
 ## [v1.46.0](https://github.com/inspec/inspec-azure/tree/v1.46.0) (2021-06-22)
 
 #### Merged Pull Requests
 - adding azure key vault extension [#395](https://github.com/inspec/inspec-azure/pull/395) ([Rohit1509](https://github.com/Rohit1509))
-<!-- latest_release -->
 
 ## [v1.45.4](https://github.com/inspec/inspec-azure/tree/v1.45.4) (2021-06-22)
 
