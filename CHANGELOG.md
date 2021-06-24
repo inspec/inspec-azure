@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.48.0 -->
+<!-- latest_release 1.49.0 -->
+## [v1.49.0](https://github.com/inspec/inspec-azure/tree/v1.49.0) (2021-06-24)
+
+#### Merged Pull Requests
+- Support policy insights query result(s) [#385](https://github.com/inspec/inspec-azure/pull/385) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.48.0](https://github.com/inspec/inspec-azure/tree/v1.48.0) (2021-06-24)
 
 #### Merged Pull Requests
 - Support policy exemptions [#399](https://github.com/inspec/inspec-azure/pull/399) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.47.0](https://github.com/inspec/inspec-azure/tree/v1.47.0) (2021-06-24)
 
