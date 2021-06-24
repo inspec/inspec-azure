@@ -1282,3 +1282,18 @@ resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
     }
   PARAMETERS
 }
+
+// the resource itself is not yet available in tf because of this open issue
+// https://github.com/terraform-providers/terraform-provider-azurerm/issues/9197
+//resource "azurerm_policy_exemption" "inspec_compliance_policy_exemption" {
+//  name                 = "AllowOutliers"
+//  scope                = azurerm_resource_group.rg.id
+//  exemption_category   = "Waiver"
+//  display_name         = "Exempt Allowed locations"
+//  description          = "Exempt resource group to run only inside the classified locations"
+//  expires_on           = "2050-01-01T00:00:00"
+//  policy_assignment_id = azurerm_policy_assignment.inspec_compliance_policy_assignment.id
+//  policy_definition_reference_ids = [
+//    "Limit_Skus"
+//  ]
+//}

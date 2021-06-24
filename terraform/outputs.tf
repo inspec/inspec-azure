@@ -366,3 +366,8 @@ output "policy_definition_associated_cosmodb_id" {
   description = "The Resource ID for which a policy definition is run against"
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
+
+//output "policy_exemption_name" {
+//  description = "the name of the policy exemption"
+//  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
+//}
