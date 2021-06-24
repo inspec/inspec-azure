@@ -4,11 +4,11 @@ class AzurePolicyExemption < AzureGenericResource
   name 'azure_policy_exemption'
   desc 'Retrieves and verifies policy exemption.'
   example <<-EXAMPLE
-    describe azure_policy_exemption(exemption_name: 'DemoExpensiveVM') do
+    describe azure_policy_exemption(name: 'DemoExpensiveVM') do
       it { should exist }
     end
 
-    describe azure_policy_exemption(resource_group: 'large_vms', exemption_name: 'DemoExpensiveVM') do
+    describe azure_policy_exemption(resource_group: 'large_vms', name: 'DemoExpensiveVM') do
       it { should exist }
     end
   EXAMPLE
@@ -17,7 +17,6 @@ class AzurePolicyExemption < AzureGenericResource
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Authorization/policyExemptions', opts)
-    opts[:resource_identifiers] = %i(name)
     opts[:resource_uri] = ['providers', opts[:resource_provider]].join('/') unless opts[:resource_group]
     opts[:add_subscription_id] = true
     super(opts, true)
