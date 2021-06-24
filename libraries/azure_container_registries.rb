@@ -1,11 +1,11 @@
 require 'azure_generic_resources'
 
-class AzureManagementGroups < AzureGenericResources
-  name 'azure_management_groups'
-  desc 'Verifies settings for an Azure Management Groups'
+class AzureContainerRegistries < AzureGenericResources
+  name 'azure_container_registries'
+  desc 'Verifies settings for a collection of Azure Container Registries'
   example <<-EXAMPLE
-    describe azure_management_groups do
-      its('names') { should include 'example-group' }
+    describe azure_container_registries do
+        it  { should exist }
     end
   EXAMPLE
 
@@ -15,9 +15,7 @@ class AzureManagementGroups < AzureGenericResources
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Management/managementGroups', opts)
-    opts[:resource_uri] = "providers/#{opts[:resource_provider]}"
-    opts[:add_subscription_id] = false
+    opts[:resource_provider] = specific_resource_constraint('Microsoft.ContainerRegistry/registries', opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -32,7 +30,9 @@ class AzureManagementGroups < AzureGenericResources
     table_schema = [
       { column: :names, field: :name },
       { column: :ids, field: :id },
+      { column: :tags, field: :tags },
       { column: :types, field: :type },
+      { column: :locations, field: :location },
       { column: :properties, field: :properties },
     ]
 
@@ -41,46 +41,28 @@ class AzureManagementGroups < AzureGenericResources
   end
 
   def to_s
-    super(AzureManagementGroups)
-  end
-
-  private
-
-  # This is for backward compatibility.
-  def populate_table
-    return [] if @resources.empty?
-    @resources.each do |resource|
-      resource_instance = AzureResourceProbe.new(resource)
-      dm = AzureResourceDynamicMethods.new
-      dm.create_methods(resource_instance, resource[:properties])
-      @table << {
-        id: resource_instance&.id,
-        name: resource_instance&.name,
-        properties: resource_instance&.properties,
-        type: resource_instance&.type,
-      }
-    end
+    super(AzureContainerRegistries)
   end
 end
 
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
-class AzurermManagementGroups < AzureManagementGroups
-  name 'azurerm_management_groups'
-  desc 'Verifies settings for an Azure Management Groups'
+class AzurermContainerRegistries < AzureContainerRegistries
+  name 'azurerm_container_registries'
+  desc 'Verifies settings for a collection of Azure Container Registries'
   example <<-EXAMPLE
-    describe azurerm_management_groups do
-      its('names') { should include 'example-group' }
+    describe azurerm_container_registries do
+        it  { should exist }
     end
   EXAMPLE
 
   def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureManagementGroups.name)
+    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureContainerRegistries.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-03-01-preview'
+    opts[:api_version] ||= '2019-05-01'
     super
   end
 end

@@ -20,7 +20,7 @@ output "vnet_address_space" {
 
 output "vnet_subnets" {
   value = [
-  azurerm_subnet.subnet.name]
+    azurerm_subnet.subnet.name]
 }
 
 output "vnet_dns_servers" {
@@ -55,6 +55,10 @@ output "subnet_nsg" {
   value = azurerm_network_security_group.nsg.name
 }
 
+output "container_registry_name" {
+    value = azurerm_container_registry.acr.name
+}
+
 output "resource_group" {
   value = azurerm_resource_group.rg.name
 }
@@ -78,7 +82,7 @@ output "location" {
 output "os_disks" {
   description = "Virtual Machine OS disk names that were created."
   value = compact(list(var.linux_internal_os_disk,
-    var.windows_internal_os_disk,
+  var.windows_internal_os_disk,
   var.public_vm_count == 1 ? var.linux_external_os_disk : ""))
 }
 
@@ -91,8 +95,8 @@ output "managed_data_disks" {
 output "data_disks" {
   description = "Virtual Machine data disk names that were created."
   value = list(
-    azurerm_virtual_machine.vm_linux_internal.storage_data_disk[0].name,
-    azurerm_virtual_machine.vm_windows_internal.storage_data_disk[0].name
+  azurerm_virtual_machine.vm_linux_internal.storage_data_disk[0].name,
+  azurerm_virtual_machine.vm_windows_internal.storage_data_disk[0].name
   )
 }
 
@@ -119,7 +123,7 @@ output "unamaged_disk_name" {
 output "vm_names" {
   description = "Virtual Machine names that were created."
   value = concat(azurerm_virtual_machine.vm_windows_internal.*.name,
-    azurerm_virtual_machine.vm_linux_internal.*.name,
+  azurerm_virtual_machine.vm_linux_internal.*.name,
   azurerm_virtual_machine.vm_linux_external.*.name)
 }
 
@@ -145,7 +149,7 @@ output "windows_vm_os_disk" {
 
 output "windows_vm_data_disks" {
   value = [
-  var.windows_internal_data_disk]
+    var.windows_internal_data_disk]
 }
 
 output "windows_vm_nic_name" {
@@ -324,5 +328,33 @@ output "ip_address_name" {
 output "api_management_name" {
   description = "the name for the azurerm_api_management resource"
   value       = var.api_management_count > 0 ? azurerm_api_management.apim01[0].name : ""
+}
+output "azure_streaming_job_function_name" {
+  description = "the name for the azure_streaming_service_job"
+  value       = azurer_stream_analytics_function_javascript_udf.streaming_job_function.name
+}
+output "azure_streaming_job_name" {
+  description = "the name for the azure_streaming_service_resource_job_function"
+  value       = azurer_stream_analytics_job.streaming_job.name
+}
+
+output "azurerm_app_service_plan_name" {
+  description = "The name for azurerm_app_service_plan resource for functions"
+  value = azurerm_app_service_plan.web_app_function_app_service.name
+}
+
+output "web_app_function_db_name" {
+  description = "the name for the azurerm_storage_account resource for functions"
+  value       = azurerm_storage_account.web_app_function_db.name
+}
+
+output "web_app_function_app_name" {
+  description = "the name for the web app function"
+  value = azurerm_function_app.web_app_function.name
+}
+
+output "web_app_function_name" {
+  description = "the name for the web app function"
+  value = "HttpTrigger1"
 }
 

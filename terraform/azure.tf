@@ -29,6 +29,13 @@ resource "azurerm_resource_group" "rg" {
   }
 }
 
+resource "azurerm_container_registry" "acr" {
+  name                     = var.container_registry_name
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  sku                      = "Basic"
+}
+
 resource "azurerm_management_group" "mg_parent" {
   count = var.management_group_count
   group_id = "mg_parent"
@@ -1086,5 +1093,142 @@ resource "azurerm_api_management" "apim01" {
     </policies>
 XML
 
+  }
+}
+resource "azurerm_stream_analytics_job" "streaming_job" {
+  name                                     = "job-for-streaming-function"
+  resource_group_name                      = azurerm_resource_group.rg.name
+  location                                 = var.location
+  compatibility_level                      = "1.1"
+  data_locale                              = "en-GB"
+  events_late_arrival_max_delay_in_seconds = 60
+  events_out_of_order_max_delay_in_seconds = 50
+  events_out_of_order_policy               = "Adjust"
+  output_error_policy                      = "Drop"
+  streaming_units                          = 3
+
+  tags = {
+    user = terraform.workspace
+  }
+
+  transformation_query = <<QUERY
+    SELECT *
+    INTO [YourOutputAlias]
+    FROM [YourInputAlias]
+QUERY
+
+}
+
+resource "azurer_stream_analytics_function_javascript_udf" "streaming_job_function" {
+  name                      = "javascript-script-for-streaming-function"
+  stream_analytics_job_name = azurerm_stream_analytics_job.streaming_job.name
+  resource_group_name       = azurerm_stream_analytics_job.streaming_job.resource_group_name
+
+  script = <<SCRIPT
+function getRandomNumber(in) {
+  return in;
+}
+SCRIPT
+
+
+  input {
+    type = "bigint"
+  }
+  output {
+    type = "bigint"
+  }
+}
+
+variable "functionapp" {
+  type = "string"
+  default = "../test/fixtures/functionapp.zip"
+}
+
+data "azurerm_storage_account_sas" "sas" {
+  connection_string = azurerm_storage_account.web_app_function_db.primary_connection_string
+  https_only = true
+  start = "2021-01-01"
+  expiry = "2022-12-31"
+  resource_types {
+    object = true
+    container = false
+    service = false
+  }
+  services {
+    blob = true
+    queue = false
+    table = false
+    file = false
+  }
+  permissions {
+    read = true
+    write = false
+    delete = false
+    list = false
+    add = false
+    create = false
+    update = false
+    process = false
+  }
+}
+
+resource "azurerm_storage_container" "sc_deployments" {
+  name = "function-releases"
+  storage_account_name = azurerm_storage_account.web_app_function_db.name
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_account" "web_app_function_db" {
+  name                     = "functionsapp${random_string.storage_account.result}"
+  location                 = var.location
+  resource_group_name      = azurerm_resource_group.rg.name
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  depends_on               = [azurerm_resource_group.rg]
+  tags = {
+    user = terraform.workspace
+  }
+}
+
+resource "azurerm_storage_blob" "functioncode" {
+  name = "functionapp.zip"
+  storage_account_name = azurerm_storage_account.web_app_function_db.name
+  storage_container_name = azurerm_storage_container.sc_deployments.name
+  type = "block"
+  source = var.functionapp
+}
+
+resource "azurerm_app_service_plan" "web_app_function_app_service" {
+  name                = "functionsapp_service${random_pet.workspace.id}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  tags = {
+    user = terraform.workspace
+  }
+
+  sku {
+    tier = "Free"
+    size = "F1"
+  }
+}
+
+resource "azurerm_function_app" "web_app_function" {
+  name                       = "functions-function-app${random_pet.workspace.id}"
+  location                   = azurerm_resource_group.rg.location
+  resource_group_name        = azurerm_resource_group.rg.name
+  app_service_plan_id        = azurerm_app_service_plan.web_app_function_app_service.id
+  storage_connection_string  = azurerm_storage_account.web_app_function_db.primary_connection_string
+
+  app_settings = {
+    https_only = true
+    FUNCTIONS_WORKER_RUNTIME = "node"
+    WEBSITE_NODE_DEFAULT_VERSION = "~14"
+    FUNCTION_APP_EDIT_MODE = "readonly"
+    HASH = base64encode(filesha256(var.functionapp))
+    WEBSITE_RUN_FROM_PACKAGE = "https://${azurerm_storage_account.web_app_function_db.name}.blob.core.windows.net/${azurerm_storage_container.sc_deployments.name}/${azurerm_storage_blob.functioncode.name}${data.azurerm_storage_account_sas.sas.sas}"
+  }
+
+  tags = {
+    user = terraform.workspace
   }
 }

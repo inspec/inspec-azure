@@ -18,7 +18,7 @@ class AzureGraphGenericResourceConstructorTest < Minitest::Test
   def test_resource_identifier_is_a_list
     assert_raises(ArgumentError) do
       AzureGraphGenericResource.new(resource: 'users', id: 'some_id',
-                                                                   resource_identifier: 'rubbish')
+                                    resource_identifier: 'rubbish')
     end
   end
 end

@@ -1,10 +1,65 @@
 # Changelog
-<!-- latest_release 1.43.5 -->
+<!-- latest_release 1.46.0 -->
+## [v1.46.0](https://github.com/inspec/inspec-azure/tree/v1.46.0) (2021-06-22)
+
+#### Merged Pull Requests
+- adding azure key vault extension [#395](https://github.com/inspec/inspec-azure/pull/395) ([Rohit1509](https://github.com/Rohit1509))
+<!-- latest_release -->
+
+## [v1.45.4](https://github.com/inspec/inspec-azure/tree/v1.45.4) (2021-06-22)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.16.0 to ~&gt; 1.17.0 [#400](https://github.com/inspec/inspec-azure/pull/400) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.45.3](https://github.com/inspec/inspec-azure/tree/v1.45.3) (2021-06-17)
+
+#### Merged Pull Requests
+- added missing resources [#396](https://github.com/inspec/inspec-azure/pull/396) ([Nirbhay1997](https://github.com/Nirbhay1997))
+
+## [v1.45.2](https://github.com/inspec/inspec-azure/tree/v1.45.2) (2021-06-10)
+
+#### Merged Pull Requests
+- Added Support for  Azure Streaming Jobs  function [#375](https://github.com/inspec/inspec-azure/pull/375) ([Nirbhay1997](https://github.com/Nirbhay1997))
+
+## [v1.45.1](https://github.com/inspec/inspec-azure/tree/v1.45.1) (2021-06-10)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.15.0 to ~&gt; 1.16.0 [#392](https://github.com/inspec/inspec-azure/pull/392) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.45.0](https://github.com/inspec/inspec-azure/tree/v1.45.0) (2021-06-07)
+
+#### Merged Pull Requests
+- Support azure functions resource [#370](https://github.com/inspec/inspec-azure/pull/370) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.44.2](https://github.com/inspec/inspec-azure/tree/v1.44.2) (2021-06-01)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.14.0 to ~&gt; 1.15.0 [#383](https://github.com/inspec/inspec-azure/pull/383) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.44.1](https://github.com/inspec/inspec-azure/tree/v1.44.1) (2021-06-01)
+
+#### Merged Pull Requests
+- fix style and alignment issues [#384](https://github.com/inspec/inspec-azure/pull/384) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.44.0](https://github.com/inspec/inspec-azure/tree/v1.44.0) (2021-05-19)
+
+#### Merged Pull Requests
+- Adding Azure Container Registry Resource [#382](https://github.com/inspec/inspec-azure/pull/382) ([Rohit1509](https://github.com/Rohit1509))
+
+## [v1.43.7](https://github.com/inspec/inspec-azure/tree/v1.43.7) (2021-05-06)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.12.1 to ~&gt; 1.14.0 [#381](https://github.com/inspec/inspec-azure/pull/381) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.43.6](https://github.com/inspec/inspec-azure/tree/v1.43.6) (2021-05-06)
+
+#### Merged Pull Requests
+- Allow dependabot to check ruby gems [#355](https://github.com/inspec/inspec-azure/pull/355) ([jlosito](https://github.com/jlosito))
+
 ## [v1.43.5](https://github.com/inspec/inspec-azure/tree/v1.43.5) (2021-04-16)
 
 #### Merged Pull Requests
 - Add docs team to codeowners [#376](https://github.com/inspec/inspec-azure/pull/376) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.43.4](https://github.com/inspec/inspec-azure/tree/v1.43.4) (2021-04-14)
 
