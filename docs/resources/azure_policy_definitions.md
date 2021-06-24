@@ -48,6 +48,12 @@ end
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | ids           | A list of the unique resource ids.                                                   | `id`            |
 | names         | A list of names of all the resources being interrogated.                             | `name`          |
+| policy_types  | A list of policy types of all the resources.                                         | `policy_type`   |
+| modes         | A list of modes of all the resources.                                                | `mode`          |
+| metadata_versions|  A list of metadata versions of the resources.                                    | `metadata_version` |
+| metadata_categories| A list of metadata categories of the resources.                                 | `metadata_category` |
+| parameters    | A list of parameters of the resources.                                               | `parameters`    |
+| policy_rules  | A list of policy rules of the resources.                                             | `policy_rule`   |
 | properties    | A list of properties for all the resources being interrogated.                       | `properties`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
@@ -68,7 +74,7 @@ end
 ```
 ## Filters the Results to Include Only The Custom Policy Definitions
 ```ruby
-describe azure_policy_definitions.where{ properties.has_key?(:policyType) && properties[:policyType] == "Custom" } do
+describe azure_policy_definitions.where(policy_type: "Custom") do
   it { should exist }
   its('count') { should be 15 }
 end
