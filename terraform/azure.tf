@@ -1232,6 +1232,56 @@ resource "azurerm_function_app" "web_app_function" {
     user = terraform.workspace
   }
 }
+resource "azurerm_policy_definition" "inspec_policy_definition" {
+  name = var.policy_definition_name
+  policy_type = "Custom"
+  mode = "All"
+  display_name = var.policy_definition_display_name
+
+  policy_rule = <<POLICY_RULE
+    {
+    "if": {
+      "not": {
+        "field": "location",
+        "in": "[parameters('allowedLocations')]"
+      }
+    },
+    "then": {
+      "effect": "audit"
+      }
+    }
+  POLICY_RULE
+
+  parameters = <<PARAMETERS
+    {
+    "allowedLocations": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of allowed locations for resources.",
+        "displayName": "Allowed locations",
+        "strongType": "location"
+      }
+    }
+  }
+  PARAMETERS
+
+}
+
+resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
+  name = var.policy_assignment_name
+  scope = azurerm_resource_group.rg.id
+  policy_definition_id = azurerm_policy_definition.inspec_policy_definition.id
+  description = var.policy_assignment_description
+  display_name = var.policy_assignment_display_name
+
+  parameters = <<PARAMETERS
+    {
+      "allowedLocations": {
+        "value": [ "East US" ]
+      }
+    }
+  PARAMETERS
+}
 
 // the resource itself is not yet available in tf because of this open issue
 // https://github.com/terraform-providers/terraform-provider-azurerm/issues/9197
