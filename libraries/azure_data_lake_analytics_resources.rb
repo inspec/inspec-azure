@@ -70,6 +70,7 @@ class AzureDataLakeAnalyticsResources < AzureGenericResources
   def to_s
     super(AzureDataLakeAnalyticsResources)
   end
+
   private
 
   # Populate the @table with the resource attributes.

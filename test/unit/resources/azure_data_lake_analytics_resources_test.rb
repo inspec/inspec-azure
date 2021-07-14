@@ -1,5 +1,5 @@
 require_relative 'helper'
-require 'azure_virtual_machines'
+require 'azure_data_lake_analytics_resources'
 
 class AzureDataLakeAnalyticsResourcesConstructorTest < Minitest::Test
   # resource_type should not be allowed.

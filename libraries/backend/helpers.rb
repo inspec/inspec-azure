@@ -92,7 +92,6 @@ class AzureEnvironments
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.key_vault_dns_suffix,
-      datalake_store_filesystem_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.datalake_store_filesystem_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.com',
       graph_api_endpoint_api_version: 'v1.0',
@@ -103,7 +102,6 @@ class AzureEnvironments
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.key_vault_dns_suffix,
-      datalake_store_filesystem_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.datalake_store_filesystem_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://microsoftgraph.chinacloudapi.cn',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -113,7 +111,6 @@ class AzureEnvironments
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.key_vault_dns_suffix,
-      datalake_store_filesystem_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.datalake_store_filesystem_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.us',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -123,7 +120,6 @@ class AzureEnvironments
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.key_vault_dns_suffix,
-      datalake_store_filesystem_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.datalake_store_filesystem_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://dod-graph.microsoft.us',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -133,7 +129,6 @@ class AzureEnvironments
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.key_vault_dns_suffix,
-      datalake_store_filesystem_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.datalake_store_filesystem_endpoint_suffix,
       resource_manager_endpoint_api_version: '2020-01-01',
       graph_api_endpoint_url: 'https://graph.microsoft.de',
       graph_api_endpoint_url_api_version: 'v1.0',
@@ -162,9 +157,6 @@ class AzureEnvironments
 
   # @return [String] the endpoint dns suffix for key vaults
   attr_reader :key_vault_dns_suffix
-
-  # @return [String] the endpoint dns suffix for data lake storage gen1
-  attr_reader :datalake_store_filesystem_endpoint_suffix
 
   def initialize(options)
     required_properties = %i(resource_manager_endpoint_url resource_manager_endpoint_api_version)
