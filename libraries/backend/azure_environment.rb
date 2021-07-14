@@ -98,8 +98,8 @@ module MicrosoftRestAzure
                                                            active_directory_graph_api_version: '2013-04-05',
                                                            storage_endpoint_suffix: '.core.windows.net',
                                                            key_vault_dns_suffix: '.vault.azure.net',
-                                                           datalake_store_filesystem_endpoint_suffix: 'azuredatalakestore.net',
-                                                           datalake_analytics_catalog_and_job_endpoint_suffix: 'azuredatalakeanalytics.net',
+                                                           datalake_store_filesystem_endpoint_suffix: '.azuredatalakestore.net',
+                                                           datalake_analytics_catalog_and_job_endpoint_suffix: '.azuredatalakeanalytics.net',
                                                          })
     AzureChinaCloud = AzureEnvironments::AzureEnvironment.new({
                                                                 name: 'AzureChinaCloud',
