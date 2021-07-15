@@ -367,6 +367,14 @@ output "policy_definition_associated_cosmodb_id" {
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
 
+output "dns_zones" {
+  value = azurerm_dns_zone.example-public.name
+}
+
+output "dns_location" {
+  value = "global"
+}
+
 //output "policy_exemption_name" {
 //  description = "the name of the policy exemption"
 //  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
