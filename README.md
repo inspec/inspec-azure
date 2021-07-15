@@ -206,7 +206,8 @@ The following is a list of static resources.
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
 - [azure_webapps](docs/resources/azure_webapps.md)
-
+- [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md)
+- [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md)
 
 For more details and different use cases, please refer to the specific resource pages.
 
@@ -387,7 +388,7 @@ They can be defined as environment variables or resource parameters (has priorit
 | azurerm_virtual_machine_disk, azurerm_virtual_machine_disks | `2017-03-30` | [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md), [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md) |
 | azurerm_virtual_network, azurerm_virtual_networks | `2018-02-01` | [azure_virtual_network](docs/resources/azure_virtual_network.md), [azure_virtual_networks](docs/resources/azure_virtual_networks.md) |
 | azurerm_webapp, azurerm_webapps | `2016-08-01` | [azure_webapp](docs/resources/azure_webapp.md), [azure_webapps](docs/resources/azure_webapps.md) |
-
+| azure_bastion_hosts_resource, azure_bastion_hosts_resources | `2021-07-15` | [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md), [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md) |
 ## Development
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 

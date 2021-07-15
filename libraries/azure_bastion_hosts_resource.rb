@@ -2,7 +2,7 @@ require 'azure_generic_resource'
 
 class AzureBastionHostsResource < AzureGenericResource
   name 'azure_bastion_hosts_resource'
-  desc 'Azure Bastion to connect to a virtual machine'
+  desc 'Azure Bastion to connect to a data lake hosts'
   example <<-EXAMPLE
     describe azure_bastion_hosts_resource(resource_group: 'example', bastionHostName: 'vm-name') do
       it { should have_monitoring_agent_installed }
@@ -25,7 +25,7 @@ class AzureBastionHostsResource < AzureGenericResource
     #
     # User supplied parameters:
     #   - resource_group => Required parameter unless `resource_id` is provided. {resourceGroupName}
-    #   - name => Required parameter unless `resource_id` is provided. Virtual machine name. {bastionHostName}
+    #   - name => Required parameter unless `resource_id` is provided. data lake hosts name. {bastionHostName}
     #   - resource_id => Optional parameter. If exists, `resource_group` and `name` must not be provided.
     #     In the following format:
     #       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
