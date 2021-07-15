@@ -5,7 +5,7 @@ class AzureBastionHostsResource < AzureGenericResource
   desc 'Azure Bastion to connect to a data lake hosts'
   example <<-EXAMPLE
     describe azure_bastion_hosts_resource(resource_group: 'example', bastionHostName: 'vm-name') do
-      it { should have_monitoring_agent_installed }
+      it { should exist }
     end
   EXAMPLE
 
