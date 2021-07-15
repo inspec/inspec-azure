@@ -367,6 +367,14 @@ output "policy_definition_associated_cosmodb_id" {
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
 
+output "ddos_protection_plan_name" {
+  value = azurerm_network_ddos_protection_plan.andpp.name
+}
+
+output "ddos_protection_plan_location" {
+  value = azurerm_network_ddos_protection_plan.andpp.location
+}
+
 //output "policy_exemption_name" {
 //  description = "the name of the policy exemption"
 //  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name

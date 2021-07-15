@@ -1283,6 +1283,13 @@ resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
   PARAMETERS
 }
 
+resource "azurerm_network_ddos_protection_plan" "andpp" {
+  name                = "example-protection-plan"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+
 // the resource itself is not yet available in tf because of this open issue
 // https://github.com/terraform-providers/terraform-provider-azurerm/issues/9197
 //resource "azurerm_policy_exemption" "inspec_compliance_policy_exemption" {
