@@ -177,6 +177,8 @@ The following is a list of static resources.
 - [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
+- [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)
+- [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
 - [azure_role_definitions](docs/resources/azure_role_definitions.md)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
