@@ -371,3 +371,8 @@ output "policy_definition_associated_cosmodb_id" {
 //  description = "the name of the policy exemption"
 //  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
 //}
+
+output "sample_directory_object" {
+  description = "the name of the directory object"
+  value = var.sample_directory_object
+}

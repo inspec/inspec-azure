@@ -135,3 +135,7 @@ variable "policy_assignment_description" {
 variable "policy_assignment_display_name" {
   default = "inspec_policy_assignment_name"
 }
+
+variable "sample_directory_object" {
+  default = "adc07321-ef2b-44d5-a210-559aa5f10f2d"
+}
