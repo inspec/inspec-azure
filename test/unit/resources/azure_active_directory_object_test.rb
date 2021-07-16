@@ -1,4 +1,3 @@
-
 require_relative 'helper'
 require 'azure_active_directory_object'
 
@@ -19,7 +18,7 @@ class AzureActiveDirectoryObjectConstructorTest < Minitest::Test
   def test_resource_identifier_is_a_list
     assert_raises(ArgumentError) do
       AzureActiveDirectoryObject.new(resource: 'directoryObjects', id: 'some_id',
-                                            resource_identifier: 'random')
+                                     resource_identifier: 'random')
     end
   end
 end
