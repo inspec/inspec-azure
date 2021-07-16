@@ -4,7 +4,7 @@ class AzureActiveDirectoryObject < AzureGraphGenericResource
   name 'azure_active_directory_object'
   desc 'Verifies settings for an Azure Active Directory Object'
   example <<-EXAMPLE
-    describe azure_active_directory_object(id: 'M365x214355.onmicrosoft.com') do
+    describe azure_active_directory_object(id: '0bf29229-50d7-433c-b08e-2a5d8b293cb5') do
       it { should exist }
     end
   EXAMPLE
