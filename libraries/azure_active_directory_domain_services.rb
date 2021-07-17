@@ -15,6 +15,6 @@ class AzureActiveDirectoryDomainServices < AzureGraphGenericResources
     opts[:resource] = 'domains'
     super(opts, true)
 
-    AzureGraphUsers.populate_filter_table(:table, @table_schema)
+    self.class.populate_filter_table(:table, @table_schema)
   end
 end
