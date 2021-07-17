@@ -2,10 +2,6 @@ require_relative 'helper'
 require 'azure_active_directory_domain_services'
 
 class AzureActiveDirectoryDomainServicesConstructorTest < Minitest::Test
-  # Generic resource requires `resource` parameter at least.
-  def test_empty_params_not_ok
-    assert_raises(ArgumentError) { AzureActiveDirectoryDomainServices.new }
-  end
 
   def test_not_allowed_parameter
     assert_raises(ArgumentError) { AzureActiveDirectoryDomainServices.new(resource: 'domains', fake: 'rubbish') }
