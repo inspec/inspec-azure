@@ -44,20 +44,20 @@ It is advised to use these parameters to narrow down the targeted resources at t
 
 ## Properties
 
-| Property              | Description | Filter Criteria<superscript>*</superscript>  |
-|-----------------------|-------------|-----------------|
-| ids                   | The fully qualified name of the domain. Key, immutable, not nullable, unique. | `id` |
-| authentication_types            | Indicates the configured authentication type for the domain.  | `id` |
-| availability_status         | This property is always null except when the verify action is used. When the verify action is used, a domain entity is returned in the response.  | `displayName` |
-| is_admin_managed           | The given names of domains.  | `givenName` |
-| is_default            | The job titles of domains.  | `jobTitle` |
-| is_initial                 | The email addresses of domains.  | `mail` |
-| is_root            | The domain types of domains, e.g.; `Member`, `Guest`.  | `domainType` |
-| is_verified  | The domain principal names of domains, e.g.; `jdoe@contoso.com`.  | `domainPrincipalName` |
-| passwordNotificationWindowInDays | 
-| passwordValidityPeriodInDays |
-| supportedServices |
-| state   |
+| Property              | Description                                           | Filter Criteria<superscript>*</superscript>  |
+|-----------------------|-------------------------------------------------------|----------------------------------------------|
+| ids                   | A list of fully qualified name of the domain.         | `id`                                         |
+| authentication_types  | A list of the configured authentication types for the domain.| `authentication_type`                 |
+| availability_statuses | A list of domain entities when verify action is set.  | `availability_status`                        |
+| is_admin_managed      | A list of admin managed configuration.                | `is_admin_managed`                           |
+| is_default            | A list of flags to indicate if it is default domains. | `is_default`                                 |
+| is_initial            | A list of flags to indicate if initial domains created by Microsoft Online Services.| `is_initial`   |
+| is_root               | A list of flags to indicate if verified root domain.  | `is_root`                                    |
+| is_verified           | A list of flags to indicate if the domain has completed domain ownership verification.| `is_verified`|
+| passwordNotificationWindowInDays | A list of password notification window days.| `passwordNotificationWindowInDays`          |
+| passwordValidityPeriodInDays | A list of password validity period in days.    |  `passwordValidityPeriodInDays`              |
+| supportedServices     | A list of capabilities assigned to the domain.        |  `supportedServices`                         |
+| state                 | A list of asynchronous operations scheduled.          |  `state`                                     |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 

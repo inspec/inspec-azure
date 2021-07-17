@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 ```ruby
-describe azure_active_directory_domain_service(id: 'contoso.com') do
+describe azure_active_directory_domain_service(id: 'ipswitch.com') do
   it { should exist }
 end
 ```
@@ -36,36 +36,36 @@ Either one of the following parameters is mandatory.
 
 | Name               | Description | Example |
 |--------------------|-------------|---------|
-| id                  | Domain ID | `abcd-1234-efabc-5678` | 
+| id                  | Domain ID | `ipswitch.com` | 
 
 ## Properties
 
-| Property                      | Description |
-|-------------------------------|-------------|
-| id                            | The user's globally unique ID. |
-| authenticationType               | Whether the account is enabled. |
-| availabilityStatus                          | The user's city. |
-| isAdminManaged                       | The user's country. |
-| isDefault                    | The user's department. |
-| isInitial                  | The display name of the user. |
-| isRoot    | The user's facsimile (fax) number. |
-| isVerified                    | The given name for the user. |
-| passwordNotificationWindowInDays                     | The user's job title. |      
-| passwordValidityPeriodInDays                          | The primary email address of the user. |
-| supportedServices                 | The mail alias for the user. |
-| state                        | The user's mobile (cell) phone number. |
+| Property                      | Description                                                                   |
+|-------------------------------|-------------------------------------------------------------------------------|
+| id                            | The fully qualified name of the domain. Key, immutable, not nullable, unique. |
+| authenticationType            | Indicates the configured authentication type for the domain.The value is either Managed or Federated. |
+| availabilityStatus            | This property is always null except when the verify action is used.           |
+| isAdminManaged                | The value of the property is false if the DNS record management of the domain has been delegated to Microsoft 365. |
+| isDefault                     | true if this is the default domain that is used for user creation. There is only one default domain per company. Not nullable |
+| isInitial                     | true if this is the initial domain created by Microsoft Online Services (companyname.onmicrosoft.com). There is only one initial domain per company. |
+| isRoot                        | true if the domain is a verified root domain. Otherwise, false if the domain is a subdomain or unverified. |
+| isVerified                    | true if the domain has completed domain ownership verification.               |
+| passwordNotificationWindowInDays| Specifies the number of days before a user receives notification that their password will expire. If the property is not set, a default value of 14 days will be used. |      
+| passwordValidityPeriodInDays  | Specifies the length of time that a password is valid before it must be changed. If the property is not set, a default value of 90 days will be used. |
+| supportedServices             | The capabilities assigned to the domain.                                      |
+| state                         | Status of asynchronous operations scheduled for the domain.                   |
 
 ## Examples
 
 ### Test If an Active Directory Domain is Referenced with a Valid ID
 ```ruby
-describe azure_active_directory_domain_service(id: 'someValidId')
+describe azure_active_directory_domain_service(id: 'ipswitch.com') do
   it { should exist }
 end
 ```
 ### Test If an Active Directory Domain is Referenced with an Invalid ID
 ```ruby
-describe azure_active_directory_domain_service(id: 'someInvalidId')
+describe azure_active_directory_domain_service(id: 'ipswitch-1.com') do
   it { should_not exist }
 end
 ```
@@ -75,7 +75,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 ```ruby
-describe azure_active_directory_domain_service(id: 'domain_id') do
+describe azure_active_directory_domain_service(id: 'M365x214355.onmicrosoft.com') do
   it { should exist }
 end
 ```
