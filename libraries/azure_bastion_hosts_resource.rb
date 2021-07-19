@@ -4,7 +4,7 @@ class AzureBastionHostsResource < AzureGenericResource
   name 'azure_bastion_hosts_resource'
   desc 'Azure Bastion to connect to a data lake hosts'
   example <<-EXAMPLE
-    describe azure_bastion_hosts_resource(resource_group: 'example', bastionHostName: 'vm-name') do
+    describe azure_bastion_hosts_resource(resource_group: 'example', bastionHostName: 'host-name') do
       it { should exist }
     end
   EXAMPLE
@@ -12,7 +12,6 @@ class AzureBastionHostsResource < AzureGenericResource
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/
     # providers/Microsoft.Network/bastionHosts/{bastionHostName}?api-version=2020-11-01
