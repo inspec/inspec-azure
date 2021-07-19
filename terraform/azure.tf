@@ -1263,7 +1263,9 @@ resource "azurerm_container_group" "inspec_container_trial" {
   tags = {
     environment = "inspec_trial"
   }
-}resource "azurerm_policy_definition" "inspec_policy_definition" {
+}
+
+resource "azurerm_policy_definition" "inspec_policy_definition" {
   name = var.policy_definition_name
   policy_type = "Custom"
   mode = "All"
