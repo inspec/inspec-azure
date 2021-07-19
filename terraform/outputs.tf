@@ -369,7 +369,12 @@ output "policy_definition_associated_cosmodb_id" {
 
 output "bastionHostName" {
   description = "Name of the bastion Host"
-  value = azurerm_bastion_host.bh
+  value = azurerm_bastion_host.abh.name
+}
+
+output "bastionHostLocation" {
+  description = "Location of the bastion Hosts"
+  value = azurerm_bastion_host.abh.location
 }
 
 //output "policy_exemption_name" {

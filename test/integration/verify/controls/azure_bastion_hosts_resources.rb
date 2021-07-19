@@ -1,6 +1,6 @@
 resource_group = input('resource_group', value: nil)
 bastion_host_name = input('bastionHostName', value: nil)
-df_location = input('df_location', value: nil)
+df_location = input('bastionHostLocation', value: nil)
 
 control 'azure_bastion_hosts_resources' do
   describe azure_bastion_hosts_resources(resource_group: resource_group) do

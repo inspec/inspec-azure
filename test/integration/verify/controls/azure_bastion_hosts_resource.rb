@@ -1,9 +1,8 @@
 resource_group = input('resource_group', value: nil)
 bastion_host_name = input('bastionHostName', value: nil)
-df_location = input('df_location', value: nil)
+df_location = input('bastionHostLocation', value: nil)
 
 control 'azure_bastion_hosts_resource' do
-
   describe azure_bastion_hosts_resource(resource_group: resource_group, name: bastion_host_name) do
     it { should exist }
     its('name') { should eq bastion_host_name }
