@@ -43,6 +43,8 @@ end
 |--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | name                           | Name of the Azure resource to test. `MyDf`                                       |
+| type                           | Type of Data Factory                                                             |
+| provisioning_state             | State of Data Factory creation                                                   |
 
 Both the parameter sets needs be provided for a valid query:
 - `resource_group` and `name`

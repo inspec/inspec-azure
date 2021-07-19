@@ -44,8 +44,10 @@ end
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | name           | A list of the unique resource ids.                                                   | `name`            |
-| ids            | A list of data factory names .                                | `ids`       |
-| tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
+| ids            | A list of data factory names .                                | `id`       |
+| tags          | A list of `tag:value` pairs defined on the resources.                                | `tag`          |
+| provisioning_state             | State of Data Factories creation                               |        `provisioning_state`         |
+| types             |   Types of all the data factories | `type` |
   
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
   
