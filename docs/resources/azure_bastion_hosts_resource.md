@@ -37,10 +37,11 @@ end
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| name                           | Name of the Azure resource to test. `MyVM`                                       |
+| name                           | Name of the Azure resource to test. `MyBastionHostName`                          |
+| type                           | type of BastionHostName                                                          |
+| provisioning_state             | State of BastionHostName creation                                                |
 
 Either one of the parameter sets can be provided for a valid query:
-- `resource_id`
 - `resource_group` and `name`
 
 
@@ -50,16 +51,23 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Ensure that the bastion hosts resource has the Expected Data Disks
+### Ensure that the bastion hosts resource has is from same type
 ```ruby
 describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup', name: 'bastion_name') do
-  
+  its('type') { should eq 'Microsoft.Network/bastionHosts' }
 end
 ```
-### Ensure that the bastion hosts resource has the Expected Monitoring Agent Installed
+### Ensure that the bastion hosts resource is in successful state
 ```ruby
 describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup', name: 'bastion_name') do
-  
+  its('provisioning_state') { should include('Succeeded') }
+end
+```
+
+### Ensure that the bastion hosts resource is from same location
+```ruby
+describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup', name: 'bastion_name') do
+  its('location') { should include df_location }
 end
 ```
 ## Matchers
@@ -69,7 +77,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 ```ruby
 # If a bastion hosts resource is found it will exist
-describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup', name: 'MyVmName') do
+describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup', name: 'MyBastionHostName') do
   it { should exist }
 end
 

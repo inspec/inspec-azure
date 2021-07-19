@@ -29,21 +29,34 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/v
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 ## Syntax
 
-An `azure_bastion_hosts_resource` resource block returns all Azure bastion hots, either within a Resource Group (if provided), or within an entire Subscription.
-```ruby
-describe azure_bastion_hosts_resource do
-  #...
-end
-```
-or
+An `azure_bastion_hosts_resource` resource block returns all Azure bastion hots, either within a Resource Group (if provided)
 ```ruby
 describe azure_bastion_hosts_resource(resource_group: 'my-rg') do
-  #...
+  
 end
 ```
 
 ## Examples
 
+### Ensure that the bastion hosts resource has is from same type
+```ruby
+describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup', name: 'bastion_name') do
+  its('type') { should eq 'Microsoft.Network/bastionHosts' }
+end
+```
+### Ensure that the bastion hosts resource is in successful state
+```ruby
+describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup') do
+  its('provisioning_states') { should include('Succeeded') }
+end
+```
+
+### Ensure that the bastion hosts resource is from same location
+```ruby
+describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup') do
+  its('location') { should include df_location }
+end
+```
 ### Test If Any bastion hots Exist in the Resource Group
 ```ruby
 describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup') do
