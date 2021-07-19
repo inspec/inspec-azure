@@ -1204,6 +1204,7 @@ resource "azurerm_redis_cache" "inspec_compliance_redis_cache" {
     maxfragmentationmemory_reserved = "50"
   }
 }
+
 resource "azurerm_storage_blob" "functioncode" {
   name = "functionapp.zip"
   storage_account_name = azurerm_storage_account.web_app_function_db.name
