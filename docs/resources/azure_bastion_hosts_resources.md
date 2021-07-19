@@ -36,6 +36,19 @@ describe azure_bastion_hosts_resource(resource_group: 'my-rg') do
 end
 ```
 
+## Properties
+
+|Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
+|---------------|--------------------------------------------------------------------------------------|-----------------|
+| name           | A list of the unique resource names.                                                | `name`            |
+| ids            | A list of bastion hosts ids .                                                       | `id`              |
+| tags           | A list of `tag:value` pairs defined on the resources.                               | `tag`             |
+| provisioning_state             | State of BastionHosts creation                                      | `provisioning_state`         |
+| types             |   Types of all the bastion hosts | `type` |
+  
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
+  
+  
 ## Examples
 
 ### Ensure that the bastion hosts resource has is from same type
