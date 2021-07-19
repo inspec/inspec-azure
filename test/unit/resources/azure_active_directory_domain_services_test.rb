@@ -2,7 +2,6 @@ require_relative 'helper'
 require 'azure_active_directory_domain_services'
 
 class AzureActiveDirectoryDomainServicesConstructorTest < Minitest::Test
-
   def test_not_allowed_parameter
     assert_raises(ArgumentError) { AzureActiveDirectoryDomainServices.new(resource: 'domains', fake: 'rubbish') }
   end
