@@ -202,6 +202,8 @@ The following is a list of static resources.
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
+- [azure_virtual_wan](docs/resources/azure_virtual_wan.md)
+- [azure_virtual_wans](docs/resources/azure_virtual_wans.md)
 - [azure_web_app_function](docs/resources/azure_web_app_function.md)
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
