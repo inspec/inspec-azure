@@ -64,7 +64,6 @@ Either one of the parameter sets can be provided for a valid query:
 <superscript>*</superscript>: Note that the Azure endpoints return data in XML format; however, they will be converted to Azure Resource Probe to make the properties accessible via dot notation.
 The property names will be in snake case, `propety_name`. Therefore, `<EnumerationResults ServiceEndpoint="https://myaccount.queue.core.windows.net/">` can be tested via `its('enumeration_results.service_endpoint)`.
 
-<superscript>*</superscript>: Note that the Azure endpoints return data in XML format; however, they will be converted to Azure Resource Probe to make the properties accessible via dot notation.
 The property names will be in snake case, `propety_name`. Therefore, `<EnumerationResults ServiceEndpoint="https://myaccount.blob.core.windows.net/">` can be tested via `its('enumeration_results.service_endpoint)`.
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
