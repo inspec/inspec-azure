@@ -1297,3 +1297,9 @@ resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
 //    "Limit_Skus"
 //  ]
 //}
+
+resource "azurerm_virtual_wan" "inspec-nw-wan" {
+  location = var.location
+  name = var.inspec_wan_name
+  resource_group_name = azurerm_resource_group.rg.name
+}

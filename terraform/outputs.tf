@@ -371,3 +371,8 @@ output "policy_definition_associated_cosmodb_id" {
 //  description = "the name of the policy exemption"
 //  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
 //}
+
+output "inspec_virtual_wan" {
+  description = "The resource name of the inspec virtual WAN"
+  value = azurerm_virtual_wan.inspec-nw-wan.name
+}

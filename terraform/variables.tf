@@ -135,3 +135,7 @@ variable "policy_assignment_description" {
 variable "policy_assignment_display_name" {
   default = "inspec_policy_assignment_name"
 }
+
+variable "inspec_wan_name" {
+  default = "inspec-nw-wan"
+}
