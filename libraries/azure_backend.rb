@@ -485,7 +485,7 @@ class AzureResourceBase < Inspec.resource(1)
   def validate_parameters(allow: [], required: nil, require_any_of: nil)
     opts = @opts
     allow += %i(azure_retry_limit azure_retry_backoff azure_retry_backoff_factor
-                endpoint api_version required_parameters allowed_parameters display_name)
+                endpoint api_version required_parameters allowed_parameters display_name method)
     Validators.validate_parameters(resource_name: @__resource_name__,
                                    allow: allow, required: required,
                                    require_any_of: require_any_of, opts: opts)
@@ -601,7 +601,7 @@ class AzureResourceDynamicMethods
     # Create the necessary method based on the var that has been passed
     # Test the value for its type so that the method can be setup correctly
     case value.class.to_s
-    when 'String', 'Integer', 'TrueClass', 'FalseClass', 'Fixnum'
+    when 'String', 'Integer', 'TrueClass', 'FalseClass', 'Fixnum', 'Time'
       object.define_singleton_method name do
         value
       end

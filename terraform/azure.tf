@@ -298,6 +298,8 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefix       = "10.1.1.0/24"
+  # "Soft" deprecated, required until v2 of azurerm provider:
+  network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
@@ -1231,6 +1233,71 @@ resource "azurerm_function_app" "web_app_function" {
     user = terraform.workspace
   }
 }
+resource "azurerm_policy_definition" "inspec_policy_definition" {
+  name = var.policy_definition_name
+  policy_type = "Custom"
+  mode = "All"
+  display_name = var.policy_definition_display_name
+
+  policy_rule = <<POLICY_RULE
+    {
+    "if": {
+      "not": {
+        "field": "location",
+        "in": "[parameters('allowedLocations')]"
+      }
+    },
+    "then": {
+      "effect": "audit"
+      }
+    }
+  POLICY_RULE
+
+  parameters = <<PARAMETERS
+    {
+    "allowedLocations": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of allowed locations for resources.",
+        "displayName": "Allowed locations",
+        "strongType": "location"
+      }
+    }
+  }
+  PARAMETERS
+
+}
+
+resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
+  name = var.policy_assignment_name
+  scope = azurerm_resource_group.rg.id
+  policy_definition_id = azurerm_policy_definition.inspec_policy_definition.id
+  description = var.policy_assignment_description
+  display_name = var.policy_assignment_display_name
+
+  parameters = <<PARAMETERS
+    {
+      "allowedLocations": {
+        "value": [ "East US" ]
+      }
+    }
+  PARAMETERS
+}
+
+// the resource itself is not yet available in tf because of this open issue
+// https://github.com/terraform-providers/terraform-provider-azurerm/issues/9197
+//resource "azurerm_policy_exemption" "inspec_compliance_policy_exemption" {
+//  name                 = "AllowOutliers"
+//  scope                = azurerm_resource_group.rg.id
+//  exemption_category   = "Waiver"
+//  display_name         = "Exempt Allowed locations"
+//  description          = "Exempt resource group to run only inside the classified locations"
+//  expires_on           = "2050-01-01T00:00:00"
+//  policy_assignment_id = azurerm_policy_assignment.inspec_compliance_policy_assignment.id
+//  policy_definition_reference_ids = [
+//    "Limit_Skus"
+//  ]
+//}
 
 resource "azurerm_database_migration_service" "inspec-compliance-migration-dev" {
   location = azurerm_resource_group.rg.location

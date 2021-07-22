@@ -1,10 +1,55 @@
 # Changelog
-<!-- latest_release 1.45.2 -->
+<!-- latest_release 1.50.0 -->
+## [v1.50.0](https://github.com/inspec/inspec-azure/tree/v1.50.0) (2021-07-22)
+
+#### Merged Pull Requests
+- adding storage account blob and table services [#408](https://github.com/inspec/inspec-azure/pull/408) ([Rohit1509](https://github.com/Rohit1509))
+<!-- latest_release -->
+
+## [v1.49.1](https://github.com/inspec/inspec-azure/tree/v1.49.1) (2021-07-06)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.17.0 to ~&gt; 1.18.2 [#405](https://github.com/inspec/inspec-azure/pull/405) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.49.0](https://github.com/inspec/inspec-azure/tree/v1.49.0) (2021-06-24)
+
+#### Merged Pull Requests
+- Support policy insights query result(s) [#385](https://github.com/inspec/inspec-azure/pull/385) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.48.0](https://github.com/inspec/inspec-azure/tree/v1.48.0) (2021-06-24)
+
+#### Merged Pull Requests
+- Support policy exemptions [#399](https://github.com/inspec/inspec-azure/pull/399) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.47.0](https://github.com/inspec/inspec-azure/tree/v1.47.0) (2021-06-24)
+
+#### Merged Pull Requests
+- Extend policy definitions [#397](https://github.com/inspec/inspec-azure/pull/397) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.46.1](https://github.com/inspec/inspec-azure/tree/v1.46.1) (2021-06-24)
+
+#### Merged Pull Requests
+- Add support for testing Azure Policy Assignments [#379](https://github.com/inspec/inspec-azure/pull/379) ([trickyearlobe](https://github.com/trickyearlobe))
+
+## [v1.46.0](https://github.com/inspec/inspec-azure/tree/v1.46.0) (2021-06-22)
+
+#### Merged Pull Requests
+- adding azure key vault extension [#395](https://github.com/inspec/inspec-azure/pull/395) ([Rohit1509](https://github.com/Rohit1509))
+
+## [v1.45.4](https://github.com/inspec/inspec-azure/tree/v1.45.4) (2021-06-22)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.16.0 to ~&gt; 1.17.0 [#400](https://github.com/inspec/inspec-azure/pull/400) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.45.3](https://github.com/inspec/inspec-azure/tree/v1.45.3) (2021-06-17)
+
+#### Merged Pull Requests
+- added missing resources [#396](https://github.com/inspec/inspec-azure/pull/396) ([Nirbhay1997](https://github.com/Nirbhay1997))
+
 ## [v1.45.2](https://github.com/inspec/inspec-azure/tree/v1.45.2) (2021-06-10)
 
 #### Merged Pull Requests
 - Added Support for  Azure Streaming Jobs  function [#375](https://github.com/inspec/inspec-azure/pull/375) ([Nirbhay1997](https://github.com/Nirbhay1997))
-<!-- latest_release -->
 
 ## [v1.45.1](https://github.com/inspec/inspec-azure/tree/v1.45.1) (2021-06-10)
 

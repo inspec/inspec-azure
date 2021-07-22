@@ -113,7 +113,9 @@ class AzureGenericResources < AzureResourceBase
   def self.populate_filter_table(raw_data, table_scheme)
     filter_table = FilterTable.create
     table_scheme.each do |col_field|
-      filter_table.register_column(col_field[:column], field: col_field[:field])
+      opts = { field: col_field[:field] }
+      opts[:style] = col_field[:style] if col_field[:style]
+      filter_table.register_column(col_field[:column], opts)
     end
     filter_table.install_filter_methods_on_resource(self, raw_data)
   end
