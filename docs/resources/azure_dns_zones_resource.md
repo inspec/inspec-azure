@@ -40,6 +40,9 @@ refer to resource pack [README](../../README.md#Service-Principal).
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | name                           | Name of the Azure resource to test. `Mydns_zones`                          |
 | type                           | type of dns_zones                                                          |
+|max_number_of_recordsets | The maximum number of record sets that can be created in this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|
+|number_of_record_sets| The current number of record sets in this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|
+|name_servers|The name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|
 Either one of the parameter sets can be provided for a valid query:
 - `resource_group` and `name`
 

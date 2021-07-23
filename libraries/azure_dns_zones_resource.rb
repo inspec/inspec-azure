@@ -50,4 +50,16 @@ class AzureDNSZonesResource < AzureGenericResource
   def to_s
     super(AzureDNSZonesResource)
   end
+
+  def max_number_of_recordsets
+    properties.maxNumberOfRecordSets if exists?
+  end
+
+  def number_of_record_sets
+    properties.numberOfRecordSets if exists?
+  end
+
+  def name_servers
+    properties.nameServers if exists?
+  end
 end

@@ -57,6 +57,10 @@ class AzureDNSZonesResources < AzureGenericResources
       { column: :types, field: :type },
       { column: :ids, field: :id },
       { column: :locations, field: :location },
+      { column: :tags, field: :tags },
+      { column: :max_number_of_recordsets, field: :max_number_of_recordsets },
+      { column: :number_of_record_sets, field: :number_of_record_sets },
+      { column: :name_servers, field: :name_servers },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
@@ -66,4 +70,30 @@ class AzureDNSZonesResources < AzureGenericResources
   def to_s
     super(AzureDNSZonesResources)
   end
+
+  private
+
+   # Populate the @table with the resource attributes.
+   # @table has been declared in the super class as an empty array.
+   # Each item in the @table
+   #   - should be a Hash object
+   #   - should have the exact key names defined in the @table_schema as `field`.
+   def populate_table
+     # If @resources empty than @table should stay as an empty array as declared in superclass.
+     # This will ensure constructing resource and passing `should_not exist` test.
+     return [] if @resources.empty?
+
+     @resources.each do |resource|
+       @table << {
+         id: resource[:id],
+         name: resource[:name],
+         location: resource[:location],
+         type: resource[:type],
+         tags: resource[:tags],
+         max_number_of_recordsets: resource[:properties][:maxNumberOfRecordSets],
+         number_of_record_sets: resource[:properties][:numberOfRecordSets],
+         name_servers: resource[:properties][:nameServers],
+       }
+     end
+   end
 end
