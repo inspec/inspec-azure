@@ -16,7 +16,7 @@ For more information, refer to [`azure_generic_resource`](azure_generic_resource
 
 Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
 For more information, refer to the resource pack [README](../../README.md).
-For api related info : [`Azure Data Factories Docs`](https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-rest-api#create-a-data-factory).
+For api related info : [`Azure Data Factories Docs`](https://docs.microsoft.com/en-us/rest/api/datafactory/factories/get).
 
 
 ## Availability
