@@ -5,7 +5,7 @@ platform: azure
 
 # azure_container_groups
 
-Use the `azure_container_groups` InSpec audit resource to test properties related to all Azure Container Groups for the subscription.
+Use the `azure_container_groups` InSpec audit resource to test properties related to all Azure container groups within a subscription.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,7 +26,8 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_container_groups` resource block returns all Azure Container Groups within a Subscription.
+An `azure_container_groups` resource block returns all Azure container groups within a subscription.
+
 ```ruby
 describe azure_container_groups do
   #...
@@ -35,17 +36,19 @@ end
 
 ## Parameters
 
+This resource does not have any required parameters.
+
 ## Properties
 
 |Property            | Description                                                                      | Filter Criteria<superscript>*</superscript> |
 |--------------------|----------------------------------------------------------------------------------|------------------|
-| ids                | A list of the unique resource ids.                                               | `id`             |
-| names              | A list of names for all the Resources.                                           | `name`           |
+| ids                | A list of the unique resource IDs.                                               | `id`             |
+| names              | A list of names for all the resources.                                           | `name`           |
 | types              | A list of types for all the resources.                                           | `type`           |
 | locations          | A list of the resource location for all the resources.                           | `location`       |
 | tags               | A list of tags for all the resources.                                            | `tags`           |
 | properties         | A list of Properties all the resources.                                          | `properties`     |
-| containers         | A list of containers within the container group.                                 | `containers`     | 
+| containers         | A list of containers within the container group.                                 | `containers`     |
 | init_containers    | A list of init containers for a container group.                                 | `init_containers`|
 | image_registry_credentials| A list of image registry credentials by which the container group is created from.| `image_registry_credentials` |
 | ip_address         | A list of IP address type of the container group.                                | `ip_address`     |
@@ -59,26 +62,29 @@ end
 
 ## Examples
 
-### Loop through Container Groups by Their Names
+### Loop through container groups by their names.
+
 ```ruby
 azure_container_groups.names.each do |name|
-  describe azure_container_group(resource_group: 'MyResourceGroup', name: name) do
+  describe azure_container_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_GROUP_NAME') do
     it { should exist }
   end
-end  
-```     
-### Test that There are Container Groups with valid name
+end
+```
+### Test that there are container groups with valid name.
+
 ```ruby
-describe azure_container_groups.where(name: 'app-service') do
+describe azure_container_groups.where(name: 'CONTAINER_GROUP_NAME') do
   it { should exist }
 end
-```    
+```
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
+
 ```ruby
 # Should not exist if no container groups are present in the subscription
 describe azure_container_groups do

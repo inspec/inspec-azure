@@ -5,7 +5,7 @@ platform: azure
 
 # azure_container_group
 
-Use the `azure_container_group` InSpec audit resource to test properties related to a Azure Container Group.
+Use the `azure_container_group` InSpec audit resource to test properties related to an Azure container group.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,17 +26,19 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name` must be given as a parameter and `resource_group` could be provided as an optional parameter
+`name` is a required parameter and `resource_group` could be provided as an optional parameter.
+
 ```ruby
-describe azure_container_group(resource_group: 'MyResourceGroup', name: 'app-service') do
+describe azure_container_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_GROUP_NAME') do
   it                                      { should exist }
   its('name')                             { should cmp 'demo1' }
   its('type')                             { should cmp 'Microsoft.ContainerInstance/containerGroups' }
   its('location')                         { should cmp 'WestUs'}
 end
 ```
+
 ```ruby
-describe azure_container_group(resource_group: 'MyResourceGroup', name: 'app-service') do
+describe azure_container_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_GROUP_NAME') do
   it  { should exist }
 end
 ```
@@ -44,19 +46,19 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Container Group to test.                                      |
+| name           | Name of the Azure container group to test.                                      |
 | resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`|
 
 The parameter set should be provided for a valid query:
-- `resource_group` and `name` 
+- `resource_group` and `name`
 
 ## Properties
 
 | Property                      | Description                                                      |
 |-------------------------------|------------------------------------------------------------------|
-| id                            | Resource ID.                                                     |
-| name                          | Container Group Name.                                            |
-| type                          | Resource type.                                                   |
+| id                            | The resource ID.                                                     |
+| name                          | The container group name.                                            |
+| type                          | The resource type.                                                   |
 | location                      | The resource location.                                           |
 | properties                    | The properties of the resource.                                  |
 
@@ -68,9 +70,10 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test <>
+### Test that the container group has a public IP address.
+
 ```ruby
-describe azure_container_group(resource_group: 'MyResourceGroup', name: 'app-service') do
+describe azure_container_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_GROUP_NAME') do
   its('properties.ipAddress.type') { should eq 'Public'}
 end
 ```
@@ -80,14 +83,15 @@ end
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
+
 ```ruby
 # If a container group is found it will exist
-describe azure_container_group(resource_group: 'MyResourceGroup', name: 'app-service') do
+describe azure_container_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_GROUP_NAME') do
   it { should exist }
 end
 
 # container groups that aren't found will not exist
-describe azure_container_group(resource_group: 'MyResourceGroup', name: 'app-service') do
+describe azure_container_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_GROUP_NAME') do
   it { should_not exist }
 end
 ```
