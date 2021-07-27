@@ -1,0 +1,74 @@
+
+---
+title: About the azure_df_dataset Resource
+platform: azure
+---
+
+# azure_df_dataset
+
+Use the `azure_df_dataset` InSpec audit resource to test properties related to data factories for a resource group or the entire subscription.
+
+## Azure REST API version, endpoint and http client parameters
+
+This resource interacts with api versions supported by the resource provider.
+The `api_version` can be defined as a resource parameter.
+If not provided, the latest version will be used.
+For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+
+Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+For more information, refer to the resource pack [README](../../README.md).
+For api related info : [`Azure Data Factories Docs`](https://docs.microsoft.com/en-us/rest/api/datafactory/factories/list).
+## Availability
+
+### Installation
+
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
+For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+
+## Syntax
+
+An `azure_df_dataset` resource block returns all Azure data factories, either within a Resource Group (if provided), or within an entire Subscription.
+  ```ruby
+describe azure_df_dataset do
+  #...
+end
+```
+or
+```ruby
+describe azure_df_dataset(resource_group: 'my-rg') do
+  #...
+end
+```
+
+## Properties
+
+|Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
+|---------------|--------------------------------------------------------------------------------------|-----------------|
+| names          | A list of the unique resource names.                                                   | `name`            |
+| ids            | A list of data factory ids .                                | `id`       |
+| tags          | A list of `tag:value` pairs defined on the resources.                                | `tag`          |
+| provisioning_states             | State of Data Factories creation                               |        `provisioning_state`         |
+| types             |   Types of all the data factories | `type` |
+
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
+
+## Examples
+
+### Test If Any Data Factories Exist in the Resource Group
+```ruby
+describe azure_df_dataset(resource_group: 'MyResourceGroup') do
+  it { should exist }
+  its('names') { should include "factory_name" }
+end
+```
+### exists
+```ruby
+# Should not exist if no Data Factory are in the resource group
+describe azure_df_dataset(resource_group: 'MyResourceGroup') do
+  it { should_not exist }
+end
+
+```
+## Azure Permissions
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
