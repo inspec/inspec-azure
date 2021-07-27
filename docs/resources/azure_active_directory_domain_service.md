@@ -5,7 +5,7 @@ platform: azure
 
 # azure_active_directory_domain_service
 
-Use the `azure_active_directory_domain_service` InSpec audit resource to test properties of an Azure Active Directory Service within a Tenant.
+Use the `azure_active_directory_domain_service` InSpec audit resource to test properties of an Azure Active Directory service within a tenant.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -25,8 +25,9 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
+
 ```ruby
-describe azure_active_directory_domain_service(id: 'ipswitch.com') do
+describe azure_active_directory_domain_service(id: 'example.com') do
   it { should exist }
 end
 ```
@@ -36,21 +37,21 @@ Either one of the following parameters is mandatory.
 
 | Name               | Description | Example |
 |--------------------|-------------|---------|
-| id                  | Domain ID | `ipswitch.com` | 
+| id                 | Domain ID   | `example.com` |
 
 ## Properties
 
 | Property                      | Description                                                                   |
 |-------------------------------|-------------------------------------------------------------------------------|
 | id                            | The fully qualified name of the domain. Key, immutable, not nullable, unique. |
-| authenticationType            | Indicates the configured authentication type for the domain.The value is either Managed or Federated. |
-| availabilityStatus            | This property is always null except when the verify action is used.           |
-| isAdminManaged                | The value of the property is false if the DNS record management of the domain has been delegated to Microsoft 365. |
-| isDefault                     | true if this is the default domain that is used for user creation. There is only one default domain per company. Not nullable |
-| isInitial                     | true if this is the initial domain created by Microsoft Online Services (companyname.onmicrosoft.com). There is only one initial domain per company. |
-| isRoot                        | true if the domain is a verified root domain. Otherwise, false if the domain is a subdomain or unverified. |
-| isVerified                    | true if the domain has completed domain ownership verification.               |
-| passwordNotificationWindowInDays| Specifies the number of days before a user receives notification that their password will expire. If the property is not set, a default value of 14 days will be used. |      
+| authenticationType            | Indicates the configured authentication type for the domain.The value is either `Managed` or `Federated`. |
+| availabilityStatus            | This property is always `null` except when the verify action is used.           |
+| isAdminManaged                | The value of the property is `false` if the DNS record management of the domain has been delegated to Microsoft 365. |
+| isDefault                     | `true` if this is the default domain that is used for user creation. There is only one default domain per company. Not nullable |
+| isInitial                     | `true` if this is the initial domain created by Microsoft Online Services (companyname.onmicrosoft.com). There is only one initial domain per company. |
+| isRoot                        | `true` if the domain is a verified root domain. Otherwise, `false` if the domain is a subdomain or unverified. |
+| isVerified                    | `true` if the domain has completed domain ownership verification.               |
+| passwordNotificationWindowInDays| Specifies the number of days before a user receives notification that their password will expire. If the property is not set, a default value of 14 days will be used. |
 | passwordValidityPeriodInDays  | Specifies the length of time that a password is valid before it must be changed. If the property is not set, a default value of 90 days will be used. |
 | supportedServices             | The capabilities assigned to the domain.                                      |
 | state                         | Status of asynchronous operations scheduled for the domain.                   |
@@ -58,24 +59,29 @@ Either one of the following parameters is mandatory.
 ## Examples
 
 ### Test If an Active Directory Domain is Referenced with a Valid ID
+
 ```ruby
-describe azure_active_directory_domain_service(id: 'ipswitch.com') do
+describe azure_active_directory_domain_service(id: 'example.com') do
   it { should exist }
 end
 ```
+
 ### Test If an Active Directory Domain is Referenced with an Invalid ID
+
 ```ruby
-describe azure_active_directory_domain_service(id: 'ipswitch-1.com') do
+describe azure_active_directory_domain_service(id: 'example.com') do
   it { should_not exist }
 end
 ```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
+
 ```ruby
-describe azure_active_directory_domain_service(id: 'M365x214355.onmicrosoft.com') do
+describe azure_active_directory_domain_service(id: 'example.onmicrosoft.com') do
   it { should exist }
 end
 ```
