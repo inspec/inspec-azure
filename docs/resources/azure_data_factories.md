@@ -48,6 +48,13 @@ end
 | tags          | A list of `tag:value` pairs defined on the resources.                                | `tag`          |
 | provisioning_states             | State of Data Factories creation                               |        `provisioning_state`         |
 | types             |   Types of all the data factories | `type` |
+| repo_configuration_types|             Git repo information of the factory. | `repo type`|
+| repo_configuration_project_names|             Git repo information of the factory. | `project_name`|
+| repo_configuration_account_names|             Account name. | `account_name` |
+| repo_configuration_repository_names|             Git repo information of the factory. | `repository_name` |
+| repo_configuration_collaboration_branches|             Git repo Collaboration branch. | `collaboration_branch` |
+| repo_configuration_root_folders|             Git repo Root folder.| `root_folder` |
+| repo_configuration_tenant_ids | The client tenant id of the identity.| `tenant_id` |
   
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
   
@@ -60,13 +67,21 @@ describe azure_data_factories(resource_group: 'MyResourceGroup') do
   its('names') { should include "factory_name" }
 end
 ```
-### exists
+### exists and filters
 ```ruby
 # Should not exist if no Data Factory are in the resource group
 describe azure_data_factories(resource_group: 'MyResourceGroup') do
   it { should_not exist }
 end
 
+describe azure_data_factories(resource_group: 'MyResourceGroup') do
+  its('repo_configuration_type') { should include configuration_type }
+  its('repo_configuration_project_name') { should include project_name }
+  its('repo_configuration_account_name') { should include account_name }
+  its('repo_configuration_repository_name') { should include repository_name }
+  its('repo_configuration_collaboration_branch') { should include collaboration_branch }
+  its('repo_configuration_root_folder') { should include root_folder }
+end
 ```
 ## Azure Permissions
 

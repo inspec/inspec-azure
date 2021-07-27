@@ -45,7 +45,13 @@ end
 | name                           | Name of the Azure resource to test. `MyDf`                                       |
 | type                           | Type of Data Factory                                                             |
 | provisioning_state             | State of Data Factory creation                                                   |
-
+| repo_configuration_type|             Git repo information of the factory. |
+| repo_configuration_project_name|             Git repo information of the factory. |
+| repo_configuration_account_name|             Account name. |
+| repo_configuration_repository_name|             Git repo information of the factory. |
+| repo_configuration_collaboration_branch|             Git repo Collaboration branch. |
+| repo_configuration_root_folder|             Git repo Root folder.|
+| repo_configuration_tenant_id | The client tenant id of the identity.|
 Both the parameter sets needs be provided for a valid query:
 - `resource_group` and `name`
 
@@ -58,10 +64,21 @@ Both the parameter sets needs be provided for a valid query:
 # If a Data Factory is found it will exist
 describe azure_data_factory(resource_group: resource_group, name: 'ShouldExist') do
   it { should exist }
+  
 end
 
 describe azure_data_factory(resource_group: resource_group, name: 'DoesNotExist') do
   it { should_not exist }
+end
+
+describe azure_data_factory(resource_group: resource_group, name: 'df_name') do
+  its('repo_configuration_type') { should include repo_configuration_type }
+  its('repo_configuration_project_name') { should include repo_configuration_project_name }
+  its('repo_configuration_account_name') { should include repo_configuration_account_name }
+  its('repo_configuration_repository_name') { should include repo_configuration_repository_name }
+  its('repo_configuration_collaboration_branch') { should include repo_configuration_collaboration_branch }
+  its('repo_configuration_root_folder') { should include repo_configuration_root_folder }
+  its('repo_configuration_tenant_id') { should include repo_configuration_tenant_id }
 end
 ```
 

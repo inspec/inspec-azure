@@ -17,7 +17,7 @@ class AzureDataFactory < AzureGenericResource
     # providers/Microsoft.DataFactory/factories/${factoryName}?api-version=${apiVersion}
     #
     # The dynamic part that has to be created in this resource:
-    #   Microsoft.Compute/virtualMachines/{vmName}?api-version=2019-12-01
+    #   Microsoft.DataFactory/factories/${factoryName}?api-version=${apiVersion}
     #
     # Parameters acquired from environment variables:
     #   - {subscriptionId} => Required parameter. It will be acquired by the backend from environment variables.
@@ -52,4 +52,37 @@ class AzureDataFactory < AzureGenericResource
   def provisioning_state
     properties.provisioningState if exists?
   end
+
+  def repo_configuration_type
+    properties.repoConfiguration.type if exists?
+  end
+
+  def repo_configuration_project_name
+    properties.repoConfiguration.projectName if exists?
+  end
+
+  def repo_configuration_account_name
+    properties.repoConfiguration.accountName if exists?
+  end
+
+  def repo_configuration_repository_name
+    properties.repoConfiguration.repositoryName if exists?
+  end
+
+  def repo_configuration_collaboration_branch
+    properties.repoConfiguration.collaborationBranch if exists?
+  end
+
+  def repo_configuration_root_folder
+    properties.repoConfiguration.rootFolder if exists?
+  end
+
+  def repo_configuration_last_commit_id
+    properties.repoConfiguration.lastCommitId if exists?
+  end
+
+  def repo_configuration_tenant_id
+    properties.repoConfiguration.tenantId if exists?
+  end
+
 end
