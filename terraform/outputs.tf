@@ -379,3 +379,7 @@ output "inspec_db_migration_service_name" {
 output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
+
+output "express_route_name" {
+  value = var.express_route_name
+}
