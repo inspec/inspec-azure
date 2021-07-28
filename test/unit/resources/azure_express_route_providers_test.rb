@@ -22,4 +22,3 @@ class AzureExpressRouteServiceProvidersConstructorTest < Minitest::Test
     assert_raises(ArgumentError) { AzureVirtualMachines.new(name: 'some_name') }
   end
 end
-
