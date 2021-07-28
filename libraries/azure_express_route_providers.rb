@@ -65,7 +65,6 @@ class AzureExpressRouteServiceProviders < AzureGenericResources
       { column: :peering_locations_list, field: :peeringLocations },
       { column: :bandwidths_offered_list, field: :bandwidthsOffered },
     ]
-
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
   end
