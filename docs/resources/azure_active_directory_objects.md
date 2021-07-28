@@ -35,15 +35,16 @@ end
 
 ## Properties
 
-|Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
-|---------------|--------------------------------------------------------------------------------------|-----------------|
-| values        | A list of the unique directory object ids.                                           | `id`            |
+|Property       | Description                                              | Filter Criteria<superscript>*</superscript> |
+|---------------|----------------------------------------------------------|-----------------|
+| values        | A list of the unique directory object values.            | `value`         |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Iterate and test visibility for AD objects
+### Iterate over and test the visibility of Active Directory objects
+
 ```ruby
   azure_active_directory_objects.values.each do |value|
     describe azure_active_directory_object(id: value)  do
@@ -60,6 +61,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 # If we expect current service principle to have AD objects
 describe azure_active_directory_objects do
