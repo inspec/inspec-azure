@@ -136,6 +136,10 @@ variable "policy_assignment_display_name" {
   default = "inspec_policy_assignment_name"
 }
 
+variable "express_route_name" {
+  default = "AARNet"
+}
+
 variable "inspec_db_migration_service" {
   default = {
     name = "inspec-compliance-migration-dev"
