@@ -10,6 +10,7 @@ class AzureExpressRouteServiceProviders < AzureGenericResources
   EXAMPLE
 
   attr_reader :table
+  
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
