@@ -84,5 +84,4 @@ class AzureDataFactory < AzureGenericResource
   def repo_configuration_tenant_id
     properties.repoConfiguration.tenantId if exists?
   end
-
 end
