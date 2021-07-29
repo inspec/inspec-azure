@@ -135,3 +135,10 @@ variable "policy_assignment_description" {
 variable "policy_assignment_display_name" {
   default = "inspec_policy_assignment_name"
 }
+
+variable "inspec_db_migration_service" {
+  default = {
+    name = "inspec-compliance-migration-dev"
+    sku_name = "Standard_1vCores"
+  }
+}
