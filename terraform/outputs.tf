@@ -380,6 +380,13 @@ output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
 
+
 output "express_route_name" {
   value = var.express_route_name
 }
+
+output "inspec_container_group_name" {
+  description = "the name of the container group"
+  value = azurerm_container_group.inspec_container_trial.name
+}
+
