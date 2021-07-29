@@ -46,20 +46,20 @@ It is advised to use these parameters to narrow down the targeted resources at t
 
 ## Properties
 
-| Property              | Description                                           | Filter Criteria<superscript>*</superscript>  |
-|-----------------------|-------------------------------------------------------|----------------------------------------------|
-| ids                   | A list of fully qualified names of the domain.         | `id`                                         |
-| authentication_types  | A list of the configured authentication types for the domain.| `authentication_type`                 |
-| availability_statuses | A list of domain entities when verify action is set.  | `availability_status`                        |
-| is_admin_managed      | A list of admin managed configuration.                | `is_admin_managed`                           |
-| is_default            | A list of flags to indicate if they are default domains. | `is_default`                                 |
-| is_initial            | A list of flags to indicate if they are initial domains created by Microsoft Online Services.| `is_initial`   |
-| is_root               | A list of flags to indicate if they are verified root domains.  | `is_root`                                    |
-| is_verified           | A list of flags to indicate if the domains have completed domain ownership verification.| `is_verified`|
-| passwordNotificationWindowInDays | A list of password notification window days.| `passwordNotificationWindowInDays`          |
-| passwordValidityPeriodInDays | A list of password validity periods in days.    |  `passwordValidityPeriodInDays`              |
-| supportedServices     | A list of capabilities assigned to the domain.        |  `supportedServices`                         |
-| state                 | A list of asynchronous operations scheduled.          |  `state`                                     |
+| Property              | Description                                                      | Filter Criteria<superscript>*</superscript> |
+|-----------------------|------------------------------------------------------------------|---------------------------------------------|
+| ids                   | A list of fully qualified names of the domain.                   | `id`                                        |
+| authentication_types  | A list of the configured authentication types for the domain.    | `authenticationType`                        |
+| availability_statuses | A list of domain entities when verify action is set.             | `availabilityStatus`                        |
+| is_admin_manageds     | A list of admin managed configuration.                          | `isAdminManaged`                            |
+| is_defaults           | A list of flags to indicate if they are default domains.        | `isDefault`                                 |
+| is_initials           | A list of flags to indicate if they are initial domains created by Microsoft Online Services.| `isInitial`    |
+| is_roots              | A list of flags to indicate if they are verified root domains.  | `isRoot`                                    |
+| is_verifieds          | A list of flags to indicate if the domains have completed domain ownership verification.| `isVerified`        |
+| password_notification_window_in_days | A list of password notification window days.      | `passwordNotificationWindowInDays`          |
+| password_validity_period_in_days | A list of password validity periods in days.          | `passwordValidityPeriodInDays`              |
+| supported_services    | A list of capabilities assigned to the domain.                  | `supportedServices`                         |
+| states                | A list of asynchronous operations scheduled.                    | `state`                                     |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
