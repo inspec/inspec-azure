@@ -5,16 +5,16 @@ platform: azure
 
 # azure_data_factory
 
-Use the `azure_data_factory` InSpec audit resource to test properties related to a data factory.
+Use the `azure_data_factory` InSpec audit resource to test properties of an Azure data factory.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 This resource interacts with api versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 For api related info : [`Azure Data Factories Docs`](https://docs.microsoft.com/en-us/rest/api/datafactory/factories/get).
 
@@ -23,12 +23,13 @@ For api related info : [`Azure Data Factories Docs`](https://docs.microsoft.com/
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
 
-`resource_group` and Data Factory `name` must be given as a parameter.
+`resource_group` and Data Factory `name` must be given as parameters.
+
 ```ruby
 describe azure_data_factory(resource_group: resource_group, name: factory_name) do
   it { should exist }
@@ -39,46 +40,58 @@ end
 
 ## Parameters
 
+| Name                           | Description                                                                       |
+|--------------------------------|-----------------------------------------------------------------------------------|
+| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
+| name                           | The factory name.                                                                 |
+
+Both the parameter sets needs be provided for a valid query:
+- `resource_group` and `name`
+## Properties
+
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | name                           | Name of the Azure resource to test. `MyDf`                                       |
-| type                           | Type of Data Factory                                                             |
-| provisioning_state             | State of Data Factory creation                                                   |
-| repo_configuration_type|             Git repo information of the factory. |
-| repo_configuration_project_name|             Git repo information of the factory. |
-| repo_configuration_account_name|             Account name. |
-| repo_configuration_repository_name|             Git repo information of the factory. |
-| repo_configuration_collaboration_branch|             Git repo Collaboration branch. |
-| repo_configuration_root_folder|             Git repo Root folder.|
-| repo_configuration_tenant_id | The client tenant id of the identity.|
-Both the parameter sets needs be provided for a valid query:
-- `resource_group` and `name`
-
-
+| type                           | The resource type.                                                             |
+| provisioning_state             | The Data Factory provisioning state.                                                   |
+| repo_configuration_type        | The Git or VSTS repository configuration type. |
+| repo_configuration_project_name| The VSTS repository project name. |
+| repo_configuration_account_name | The Git or VSTS repository account name. |
+| repo_configuration_repository_name | The Git or VSTS repository name. |
+| repo_configuration_collaboration_branch | The Git or VSTS repository collaboration branch. |
+| repo_configuration_root_folder | The Git or VSTS repository root folder.|
+| repo_configuration_tenant_id | The VSTS tenant ID.|
 
 ## Examples
 
-### exists
-```ruby
-# If a Data Factory is found it will exist
-describe azure_data_factory(resource_group: resource_group, name: 'ShouldExist') do
-  it { should exist }
-  
-end
+### Test that a Data Factory exists
 
-describe azure_data_factory(resource_group: resource_group, name: 'DoesNotExist') do
+```ruby
+describe azure_data_factory(resource_group: resource_group, name: 'DATA_FACTORY_NAME') do
+  it { should exist }
+end
+```
+
+### Test that a Data Factory does not exist
+
+```ruby
+describe azure_data_factory(resource_group: resource_group, name: 'DATA_FACTORY_NAME') do
   it { should_not exist }
 end
+```
 
+### Test properties of a Data Factory
+
+```ruby
 describe azure_data_factory(resource_group: resource_group, name: 'df_name') do
-  its('repo_configuration_type') { should include repo_configuration_type }
-  its('repo_configuration_project_name') { should include repo_configuration_project_name }
-  its('repo_configuration_account_name') { should include repo_configuration_account_name }
-  its('repo_configuration_repository_name') { should include repo_configuration_repository_name }
-  its('repo_configuration_collaboration_branch') { should include repo_configuration_collaboration_branch }
-  its('repo_configuration_root_folder') { should include repo_configuration_root_folder }
-  its('repo_configuration_tenant_id') { should include repo_configuration_tenant_id }
+  its('repo_configuration_type') { should include REPO_CONFIGURATION_TYPE }
+  its('repo_configuration_project_name') { should include REPO_CONFIGURATION_PROJECT_NAME }
+  its('repo_configuration_account_name') { should include REPO_CONFIGURATION_ACCOUNT_NAME }
+  its('repo_configuration_repository_name') { should include REPO_CONFIGURATION_REPOSITORY_NAME }
+  its('repo_configuration_collaboration_branch') { should include REPO_CONFIGURATION_COLLABORATION_BRANCH }
+  its('repo_configuration_root_folder') { should include REPO_CONFIGURATION_ROOT_FOLDER }
+  its('repo_configuration_tenant_id') { should include REPO_CONFIGURATION_TENANT_ID }
 end
 ```
 
