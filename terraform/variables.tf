@@ -142,3 +142,7 @@ variable "inspec_db_migration_service" {
     sku_name = "Standard_1vCores"
   }
 }
+
+variable "inspec_container_group_name" {
+  default = "inspec_container_trial"
+}
