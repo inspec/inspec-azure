@@ -1306,3 +1306,21 @@ resource "azurerm_database_migration_service" "inspec-compliance-migration-dev" 
   sku_name = var.inspec_db_migration_service.sku_name
   subnet_id = azurerm_subnet.subnet.id
 }
+
+resource "azurerm_express_route_circuit" "express_route" {
+  name                  = "expressRoute1"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  service_provider_name = "Equinix"
+  peering_location      = "Silicon Valley"
+  bandwidth_in_mbps     = 50
+
+  sku {
+    tier   = "Standard"
+    family = "MeteredData"
+  }
+
+  tags = {
+    environment = "Production"
+  }
+}

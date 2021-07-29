@@ -142,3 +142,18 @@ variable "inspec_db_migration_service" {
     sku_name = "Standard_1vCores"
   }
 }
+variable "express_route_circuit_sku_name" {
+  default = "Standard_MeteredData"
+}
+
+variable "circuit_provisioning_state" {
+  default = "Enabled"
+}
+
+variable "allow_classic_operations" {
+  default = false
+}
+
+variable "service_provider_provisioning_state" {
+  default = "NotProvisioned"
+}
