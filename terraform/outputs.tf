@@ -372,6 +372,14 @@ output "policy_definition_associated_cosmodb_id" {
 //  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
 //}
 
+output "inspec_db_migration_service_name" {
+  value = var.inspec_db_migration_service.name
+}
+
+output "inspec_db_migration_service_sku_name" {
+  value = var.inspec_db_migration_service.sku_name
+}
+
 output "sample_directory_object" {
   description = "the name of the directory object"
   value = var.sample_directory_object
