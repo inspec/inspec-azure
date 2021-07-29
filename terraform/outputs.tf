@@ -379,3 +379,10 @@ output "df_name" {
 output "df_location" {
   value = azurerm_data_factory.adf.location
 }
+output "inspec_db_migration_service_name" {
+  value = var.inspec_db_migration_service.name
+}
+
+output "inspec_db_migration_service_sku_name" {
+  value = var.inspec_db_migration_service.sku_name
+}
