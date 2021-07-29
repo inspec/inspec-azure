@@ -13,6 +13,7 @@ class AzureActiveDirectoryDomainServices < AzureGraphGenericResources
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource] = 'domains'
+    opts[:select] = %w[id authenticationType availabilityStatus isAdminManaged isDefault isInitial isRoot isVerified supportedServices passwordNotificationWindowInDays passwordValidityPeriodInDays state]
     super(opts, true)
 
     self.class.populate_filter_table(:table, @table_schema)
