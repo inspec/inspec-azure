@@ -101,7 +101,7 @@ The control will pass if the filter returns at least one result. Use `should_not
 
 ```ruby
 describe azure_active_directory_domain_services do
-  it { should exist }
+  it { should_not exist }
 end
 ```
 
