@@ -379,3 +379,47 @@ output "inspec_db_migration_service_name" {
 output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
+output "circuitName" {
+  value = azurerm_express_route_circuit.express_route.name
+}
+
+output "circuitLocation" {
+  value = azurerm_express_route_circuit.express_route.location
+}
+
+output "peeringLocation" {
+  value = azurerm_express_route_circuit.express_route.peering_location
+}
+
+output "serviceProviderName" {
+  value = azurerm_express_route_circuit.express_route.service_provider_name
+}
+
+output "bandwidthInMbps" {
+  value = azurerm_express_route_circuit.express_route.bandwidth_in_mbps
+}
+
+output "sku_name" {
+  value = var.express_route_circuit_sku_name
+}
+
+output "sku_family" {
+  value = azurerm_express_route_circuit.express_route.sku[0].family
+}
+
+output "sku_tier" {
+  value = azurerm_express_route_circuit.express_route.sku[0].tier
+}
+
+output "circuitProvisioningState" {
+  value = var.circuit_provisioning_state
+}
+
+
+output "allowClassicOperations" {
+  value = var.allow_classic_operations
+}
+
+output "serviceProviderProvisioningState" {
+  value = var.service_provider_provisioning_state
+}
