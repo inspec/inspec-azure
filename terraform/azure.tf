@@ -1233,6 +1233,39 @@ resource "azurerm_function_app" "web_app_function" {
     user = terraform.workspace
   }
 }
+
+resource "azurerm_container_group" "inspec_container_trial" {
+  name                = var.inspec_container_group_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_address_type     = "public"
+  dns_name_label      = "inspec-container-trial-aci-label"
+  os_type             = "Linux"
+
+  container {
+    name   = "hello-world-inspec"
+    image  = "mcr.microsoft.com/azuredocs/aci-helloworld:latest"
+    cpu    = "0.5"
+    memory = "0.5"
+
+    ports {
+      port     = 443
+      protocol = "TCP"
+    }
+  }
+
+  container {
+    name   = "setup-hw-tutorials"
+    image  = "mcr.microsoft.com/azuredocs/aci-tutorial-sidecar"
+    cpu    = "0.5"
+    memory = "0.5"
+  }
+
+  tags = {
+    environment = "inspec_trial"
+  }
+}
+
 resource "azurerm_policy_definition" "inspec_policy_definition" {
   name = var.policy_definition_name
   policy_type = "Custom"

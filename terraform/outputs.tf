@@ -379,6 +379,7 @@ output "inspec_db_migration_service_name" {
 output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
+
 output "circuitName" {
   value = azurerm_express_route_circuit.express_route.name
 }
@@ -422,4 +423,9 @@ output "allowClassicOperations" {
 
 output "serviceProviderProvisioningState" {
   value = var.service_provider_provisioning_state
+}
+
+output "inspec_container_group_name" {
+  description = "the name of the container group"
+  value = azurerm_container_group.inspec_container_trial.name
 }
