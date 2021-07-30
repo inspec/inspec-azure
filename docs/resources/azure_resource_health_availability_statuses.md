@@ -49,20 +49,23 @@ end
 
 ## Examples
 
-### Loop through availability statuses by Their IDs
+### Loop through availability statuses by resource ID
+
 ```ruby
 azure_resource_health_availability_statuses.ids.each do |id|
   describe azure_resource_health_availability_status(resource_id: id) do
     it { should exist }
   end
-end  
-```     
-### Test that There are availability statuses that are of Available availabilityState
+end
+```
+
+### Test that there are availability statuses that have an `Available` availability state
+
 ```ruby
 describe azure_resource_health_availability_statuses.where{ properties.select{|prop| prop.availabilityState == 'Available' } } do
   it { should exist }
 end
-```    
+```
 
 ## Matchers
 

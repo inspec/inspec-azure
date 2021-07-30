@@ -5,16 +5,16 @@ platform: azure
 
 # azure_resource_health_availability_status
 
-Use the `azure_resource_health_availability_status` InSpec audit resource to test properties related to a Azure Resource Health Availability Status.
+Use the `azure_resource_health_availability_status` InSpec audit resource to test properties related to a Azure Resource Health availability status.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 This resource interacts with api versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
@@ -26,9 +26,10 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`resource_group`, `resource_type` and `name` must be given as a parameter.
+`resource_group`, `resource_type` and `name` are required parameters.
+
 ```ruby
-describe azure_resource_health_availability_status(resource_group: 'MyResourceGroup', resource_type: 'microsoft.storage/storageaccounts', name: 'devstorage') do
+describe azure_resource_health_availability_status(resource_group: 'AZURE_RESOURCE_GROUP', resource_type: 'AZURE_RESOURCE_TYPE', name: 'RESOURCE_NAME') do
   it                                      { should exist }
   its('name')                             { should cmp 'current' }
   its('type')                             { should cmp 'Microsoft.ResourceHealth/AvailabilityStatuses' }
@@ -43,7 +44,7 @@ end
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
 | name           | Name of the Azure resource to test.                                              |
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
+| resource_group | Azure resource group that the targeted resource resides in.                      |
 | resource_type  | Azure resource type of the targeted resource.                                    |
 
 The parameter set should be provided for a valid query:
@@ -55,7 +56,7 @@ The parameter set should be provided for a valid query:
 |-------------------------------|------------------------------------------------------------------|
 | id                            | Azure Resource Manager Identity for the availabilityStatuses resource. |
 | name                          | current.                                                         |
-| type                          | Microsoft.ResourceHealth/AvailabilityStatuses.                   |
+| type                          | `Microsoft.ResourceHealth/AvailabilityStatuses`.                   |
 | location                      | Azure Resource Manager geo location of the resource.             |
 | properties                    | Properties of availability state.                                |
 
@@ -66,15 +67,17 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test <>
+### Test availability status of a resource.
+
 ```ruby
-describe azure_resource_health_availability_status(resource_group: 'MyResourceGroup', resource_type: 'microsoft.storage/storageaccounts', name: 'devstorage') do
+describe azure_resource_health_availability_status(resource_group: 'AZURE_RESOURCE_GROUP', resource_type: 'AZURE_RESOURCE_TYPE', name: 'RESOURCE_NAME') do
   its('properties.availabilityState') { should eq 'Available' }
 end
 ```
-### Test <>
+### Test the chronicity type of a resource.
+
 ```ruby
-describe azure_resource_health_availability_status(resource_group: 'MyResourceGroup', resource_type: 'microsoft.storage/storageaccounts', name: 'devstorage') do
+describe azure_resource_health_availability_status(resource_group: 'AZURE_RESOURCE_GROUP', resource_type: 'AZURE_RESOURCE_TYPE', name: 'RESOURCE_NAME') do
   its('properties.reasonChronicity') { should include 'Persistent' }
 end
 ```
@@ -85,7 +88,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 ```ruby
 # If a resource status is found it will exist
-describe azure_resource_health_availability_status(resource_group: 'MyResourceGroup', resource_type: 'microsoft.storage/storageaccounts', name: 'devstorage') do
+describe azure_resource_health_availability_status(resource_group: 'AZURE_RESOURCE_GROUP', resource_type: 'AZURE_RESOURCE_TYPE', name: 'RESOURCE_NAME') do
   it { should exist }
 end
 ```
