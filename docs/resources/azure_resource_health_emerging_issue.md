@@ -7,14 +7,14 @@ platform: azure
 
 Use the `azure_resource_health_emerging_issue` InSpec audit resource to test properties related to a Azure Resource Health Emerging issue.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 This resource interacts with api versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
@@ -26,15 +26,17 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name` must be given as a parameter.
+`name` is a required parameter.
+
 ```ruby
-describe azure_resource_health_emerging_issue(name: 'default') do
+describe azure_resource_health_emerging_issue(name: 'EMERGING_ISSUE_NAME') do
   it                                      { should exist }
   its('properties.statusActiveEvents') { should be_empty }
 end
 ```
+
 ```ruby
-describe azure_resource_health_emerging_issue(name: 'default') do
+describe azure_resource_health_emerging_issue(name: 'EMERGING_ISSUE_NAME') do
   it  { should exist }
 end
 ```
@@ -42,7 +44,7 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Resource Health Emerging Issue to test.                        |
+| name           | Name of the Azure Resource Health emerging issue to test.                        |
 
 
 ## Properties
@@ -64,7 +66,8 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test <>
+### Test that there are emerging issues with an active event type
+
 ```ruby
 describe azure_resource_health_emerging_issue(name: 'default') do
   its('properties.statusActiveEvents') { should_not be_empty }
@@ -76,6 +79,7 @@ end
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
 
 ### exists
+
 ```ruby
 # If a emerging issue is found, it will exist
 describe azure_resource_health_emerging_issue(name: 'default') do
