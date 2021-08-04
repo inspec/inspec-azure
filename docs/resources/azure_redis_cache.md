@@ -3,7 +3,7 @@ title: About the azure_redis_cache Resource
 platform: azure
 ---
 
-# azure_redis_cache
+## azure_redis_cache
 
 Use the `azure_redis_cache` InSpec audit resource to test the properties related to an Azure Redis cache.
 
@@ -48,6 +48,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 | name                            | Name of the Azure Redis cache to test.                                           |
 
 The parameter set should be provided for a valid query:
+
 - `resource_group` and `name`
 
 ## Properties
@@ -118,7 +119,7 @@ Ensure that the Redis Cache supports non-SSL ports.
 ```ruby
     describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
       it { should be_enabled_non_ssl_port }
-    end 
+    end
 ```
 
 ## Azure Permissions

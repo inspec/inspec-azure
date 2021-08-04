@@ -3,7 +3,7 @@ title: About the azure_redis_caches Resource
 platform: azure
 ---
 
-# azure_redis_caches
+## azure_redis_caches
 
 Use the `azure_redis_caches` InSpec audit resource to test properties related to Azure Redis cache for a resource group or the entire subscription.
 
@@ -30,6 +30,7 @@ An `azure_redis_caches` resource block returns all Azure Redis caches within a R
 ```
 
 or
+
 ```ruby
     describe azure_redis_caches(resource_group: 'my-rg') do
       #...
@@ -39,6 +40,7 @@ or
 ## Parameters
 
 The parameter should be provided for a valid query
+
 - `resource_group`
 
 | Name                            | Description                                                                      |
@@ -47,7 +49,7 @@ The parameter should be provided for a valid query
 
 ## Properties
 
-|Property            | Description                                        | Filter Criteria<superscript>*</superscript> |
+| Property            | Description                                        | Filter Criteria<superscript>*</superscript> |
 |--------------------|----------------------------------------------------|-----------------|
 | ids                | A list of the unique resource ids.                 | `id`            |
 | names              | A list of name for all the Resource names.         | `name`          |
@@ -57,7 +59,7 @@ The parameter should be provided for a valid query
 | tags               | A list of resource tags.                           | `tags`          |
 | sku_names          | A list of SKU names.                               | `sku_name`      |
 | sku_capacities     | A list of SKU capacities.                          | `sku_capacitie` |
-| sku_families       | A list of SKU families.                            | `sku_family`    | 
+| sku_families       | A list of SKU families.                            | `sku_family`    |
 | instances_ssl_ports| A list of redis instance SSL Ports.                | `instances_ssl_ports` |
 | is_master_instance | A list of redis instance is_master flag.           | `is_master_instance` |
 | is_primary_instance| A list of redis instance is_primary flag.          | `is_primary_instance` |
@@ -70,9 +72,9 @@ The parameter should be provided for a valid query
 | enable_non_ssl_port | A list of enabled non_ssl_port flag from the properties. | `enable_non_ssl_port` |
 | public_network_access | A list of public network access from the properties. | `public_network_access` |
 | access_keys        | A list of access keys from the properties.         | `access_keys`   |
-| host_names         | A list of hostnames from the properties.           | `host_names`    | 
+| host_names         | A list of hostnames from the properties.           | `host_names`    |
 | ports              | A list of ports from the properties.               | `ports`         |
-| ssl_ports          | A list of ssl ports from the properties.           | `ssl_ports`     |     
+| ssl_ports          | A list of ssl ports from the properties.           | `ssl_ports`     |
 | linked_servers     | A list of linked_servers from the properties.      | `linked_servers`|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
@@ -86,7 +88,7 @@ azure_redis_caches(resource_group: 'MY-RG').names.each do |name|
   describe azure_redis_cache(name: name) do
     it { should exist }
   end
-end  
+end
 ```
 
 ### Test: Redis caches that includes a certain string in their names (Client Side Filtering)
