@@ -105,7 +105,9 @@ end
 ```
 
 ### be_enabled_non_ssl_port
-# Redis Cache that supports non SSL ports
+
+Ensure that the Redis Cache supports non-SSL ports.
+
 ```ruby
     describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
       it { should be_enabled_non_ssl_port }
