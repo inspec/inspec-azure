@@ -28,7 +28,6 @@ class AzureStorageAccount < AzureGenericResource
   def to_s
     super(AzureStorageAccount)
   end
-    
 
   # Resource specific methods can be created.
   # `return unless exists?` is necessary to prevent any unforeseen Ruby error.
@@ -45,7 +44,7 @@ class AzureStorageAccount < AzureGenericResource
     if properties.creationTime > lower_bound
       return true
     end
-    
+
     filter = "resourceId eq '#{id}' and "\
              "eventTimestamp ge '#{lower_bound}' and "\
              "eventTimestamp le '#{upper_bound}' and "\
