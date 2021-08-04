@@ -89,7 +89,7 @@ class AzureBastionHostsResource < AzureGenericResource
     end
     result
   end
-  
+
   def ip_configurations_type
     return nil if properties.ipConfigurations.first.nil?
     result = []
