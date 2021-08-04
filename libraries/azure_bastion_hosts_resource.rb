@@ -58,4 +58,80 @@ class AzureBastionHostsResource < AzureGenericResource
   def provisioning_state
     properties.provisioningState if exists?
   end
+
+  def dns_name
+    properties.dnsName if exists?
+  end
+
+  def ip_configurations_name
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.name
+    end
+    result
+  end
+
+  def ip_configurations_id
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.id
+    end
+    result
+  end
+
+  def ip_configurations_etag
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.etag
+    end
+    result
+  end
+  
+  def ip_configurations_type
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.type
+    end
+    result
+  end
+
+  def ip_configurations_provisioning_state
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.properties.provisioningState
+    end
+    result
+  end
+
+  def ip_configurations_private_ip_allocation_method
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.properties.privateIPAllocationMethod
+    end
+    result
+  end
+
+  def ip_configurations_subnet_id
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.properties.subnet.id
+    end
+    result
+  end
+
+  def ip_configurations_public_ip_address
+    return nil if properties.ipConfigurations.first.nil?
+    result = []
+    properties.ipConfigurations.each do |config|
+      result += config.properties.publicIPAddress.id
+    end
+    result
+  end
 end

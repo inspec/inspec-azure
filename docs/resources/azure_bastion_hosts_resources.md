@@ -45,6 +45,7 @@ end
 | tags           | A list of `tag:value` pairs defined on the resources.                               | `tag`             |
 | provisioning_state             | State of BastionHosts creation                                      | `provisioning_state`         |
 | types             |   Types of all the bastion hosts | `type` |
+| properties             |   Types of all the bastion hosts | `property` |
   
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
   

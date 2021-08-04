@@ -60,6 +60,7 @@ class AzureBastionHostsResources < AzureGenericResources
       { column: :tags, field: :tags },
       { column: :provisioning_states, field: :provisioningState },
       { column: :locations, field: :location },
+      { column: :properties, field: :properties },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
@@ -90,6 +91,7 @@ class AzureBastionHostsResources < AzureGenericResources
         tags: resource[:tags],
         provisioningState: resource[:properties][:provisioningState],
         location: resource[:location],
+        properties: resource[:properties],
       }
     end
   end
