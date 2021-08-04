@@ -49,11 +49,11 @@ end
 | service_provider_properties_bandwidth_in_mbps            | A list of The bandwidth in Mbps of the circuit being created on the Service Provider.                                                        | `id`              |
 | service_provider_properties_peering_locations           | A list of The name of the peering location and not the Azure resource location. Changing this forces a new resource to be created.                               | `tag`             |
 | service_provider_properties_names             |   The name of the ExpressRoute Service Provider. Changing this forces a new resource to be created.   | `type` |
-| service_keys            | State of express circuitHostName creation                                                              | `id`              |
+| service_keys            | State of express circuitHostName creation                                                              | `service_key`              |
 | stags           | The identifier of the circuit traffic. Outer tag for QinQ encapsulation.                         `Number` | `stag`             |
 | global_reach_enabled             | A list of The ExpressRoute circuit allowGlobalReachEnable   `boolean`                                   `boolean`| `global_reach_enabled`         |
 | allow_global_reach             |   A list of The ExpressRoute circuit Flag denoting global reach status. `boolean`| `allow_global_reach` |
-| gateway_manager_etags           | A list of The GatewayManager Etag.                                              | `tags`            |
+| gateway_manager_etags           | A list of The GatewayManager Etag.                                              | `etag`            |
 | allow_classic_operations            | A list of Allow classic operations. `boolean`                                                     | `allow_classic_operation`            |
 | circuit_provisioning_states           | A list of State of express circuitHostName creation              `Enabled` or `Disabled`                |     `circuit_provisioning_state`         |
 | sku_names             | A List of Name sku block for the ExpressRoute circuit as documented below.                                      | `sku_name`         |
