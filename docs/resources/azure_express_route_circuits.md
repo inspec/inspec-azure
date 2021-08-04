@@ -40,7 +40,7 @@ end
 
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
 |---------------|--------------------------------------------------------------------------------------|-----------------|
-| name           | A list of name  the resource group in which to create the ExpressRoute circuit. Changing this forces a new resource to be created. `MyResourceGroup`                                                 | `name`            |
+| names          | A list of name  the resource group in which to create the ExpressRoute circuit. Changing this forces a new resource to be created. `MyResourceGroup`                                                 | `name`            |
 | ids            | A list of id the ExpressRoute circuit. Changing this forces a new resource to be created. `Myexpress circuitHostName                                                       | `id`              |
 | tags           | A list of `tag:value` pairs defined on the resources.                               | `tag`             |
 | provisioning_states             | State of express_route_circuits creation                                      | `provisioning_state`         |
