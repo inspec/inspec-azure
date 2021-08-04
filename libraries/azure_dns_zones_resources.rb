@@ -78,11 +78,11 @@ class AzureDNSZonesResources < AzureGenericResources
   # Each item in the @table
   #   - should be a Hash object
   #   - should have the exact key names defined in the @table_schema as `field`.
-    def populate_table 
-      # If @resources empty than @table should stay as an empty array as declared in superclass.
-      # This will ensure constructing resource and passing `should_not exist` test.
-      return [] if @resources.empty?
-      @resources.each do |resource|
+  def populate_table
+    # If @resources empty than @table should stay as an empty array as declared in superclass.
+    # This will ensure constructing resource and passing `should_not exist` test.
+    return [] if @resources.empty?
+    @resources.each do |resource|
       @table << {
         id: resource[:id],
         name: resource[:name],
