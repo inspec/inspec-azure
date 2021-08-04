@@ -146,3 +146,7 @@ variable "inspec_db_migration_service" {
 variable "inspec_container_group_name" {
   default = "inspec_container_trial"
 }
+
+variable "inspec_migrate_project_name" {
+  default = "inspec-migrate-integ117eproject"
+}

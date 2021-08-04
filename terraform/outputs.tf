@@ -384,3 +384,8 @@ output "inspec_container_group_name" {
   description = "the name of the container group"
   value = azurerm_container_group.inspec_container_trial.name
 }
+
+output "inspec_migrate_project_name" {
+  description = "The name of the Azure Migrate Project that was setup manually since there is no tf resource"
+  value = var.inspec_migrate_project_name
+}
