@@ -372,6 +372,13 @@ output "policy_definition_associated_cosmodb_id" {
 //  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
 //}
 
+output "df_name" {
+  value = azurerm_data_factory.adf.name
+}
+
+output "df_location" {
+  value = azurerm_data_factory.adf.location
+}
 output "inspec_db_migration_service_name" {
   value = var.inspec_db_migration_service.name
 }
@@ -379,7 +386,6 @@ output "inspec_db_migration_service_name" {
 output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
-
 
 output "express_route_name" {
   value = var.express_route_name
