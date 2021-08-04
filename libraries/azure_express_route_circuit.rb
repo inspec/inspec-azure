@@ -2,7 +2,7 @@ require 'azure_generic_resource'
 
 class AzureExpressRouteCircuit < AzureGenericResource
   name 'azure_express_route_circuit'
-  desc 'Verifies settings for an Azure ExpressRouteCircuit'
+  desc 'ExpressRoute circuit connect your on-premises infrastructure to Microsoft through a connectivity provider'
   example <<-EXAMPLE
     describe azure_express_route_circuit(resource_group: 'example', name: 'circuitName') do
       it { should exist }
