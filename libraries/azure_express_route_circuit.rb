@@ -1,10 +1,10 @@
 require 'azure_generic_resource'
 
-class AzureExpressRouteCircuitsResource < AzureGenericResource
-  name 'azure_express_route_circuits_resource'
+class AzureExpressRouteCircuit < AzureGenericResource
+  name 'azure_express_route_circuit'
   desc 'Verifies settings for an Azure ExpressRouteCircuit'
   example <<-EXAMPLE
-    describe azure_express_route_circuits_resource(resource_group: 'example', name: 'circuitName') do
+    describe azure_express_route_circuit(resource_group: 'example', name: 'circuitName') do
       it { should exist }
     end
   EXAMPLE
@@ -47,7 +47,7 @@ class AzureExpressRouteCircuitsResource < AzureGenericResource
   end
 
   def to_s
-    super(AzureExpressRouteCircuitsResource)
+    super(AzureExpressRouteCircuit)
   end
 
   def provisioning_state

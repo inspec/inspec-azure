@@ -16,8 +16,8 @@ sku_name = input('sku_name', value: nil)
 sku_tier = input('sku_tier', value: nil)
 sku_family = input('sku_family', value: nil)
 
-control 'azure_express_route_circuits_resource' do
-  describe azure_express_route_circuits_resource(resource_group: resource_group, circuit_name: circuit_name) do
+control 'azure_express_route_circuit' do
+  describe azure_express_route_circuit(resource_group: resource_group, circuit_name: circuit_name) do
     it { should exist }
     its('name') { should eq circuit_name }
     its('type') { should eq 'Microsoft.Network/expressRouteCircuits' }
@@ -37,11 +37,11 @@ control 'azure_express_route_circuits_resource' do
     its('sku_family') { should include sku_family }
   end
 
-  describe azure_express_route_circuits_resource(resource_group: resource_group, circuit_name: 'fake') do
+  describe azure_express_route_circuit(resource_group: resource_group, circuit_name: 'fake') do
     it { should_not exist }
   end
 
-  describe azure_express_route_circuits_resource(resource_group: 'fake', circuit_name: circuit_name) do
+  describe azure_express_route_circuit(resource_group: 'fake', circuit_name: circuit_name) do
     it { should_not exist }
   end
 end

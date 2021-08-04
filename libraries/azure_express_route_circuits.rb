@@ -1,10 +1,10 @@
 require 'azure_generic_resources'
 
-class AzureExpressRouteCircuitsResources < AzureGenericResources
-  name 'azure_express_route_circuits_resources'
-  desc 'Verifies settings for Azure Virtual Machines'
+class AzureExpressRouteCircuits < AzureGenericResources
+  name 'azure_express_route_circuits'
+  desc 'Verifies settings for Azure Express Route Circuits'
   example <<-EXAMPLE
-    azure_express_route_circuits_resource(resource_group: 'example') do
+    azure_express_route_circuits_(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE
@@ -69,7 +69,6 @@ class AzureExpressRouteCircuitsResources < AzureGenericResources
       { column: :stags, field: :stag },
       { column: :global_reach_enabled, field: :global_reach_enabled },
       { column: :allow_global_reach, field: :allow_global_reach },
-      { column: :service_provider_provisioning_states, field: :service_provider_provisioning_state },
       { column: :service_keys, field: :serviceKey },
       { column: :gateway_manager_etags, field: :gateway_manager_etag },
       { column: :allow_classic_operations, field: :allow_classic_operations },
@@ -80,7 +79,7 @@ class AzureExpressRouteCircuitsResources < AzureGenericResources
   end
 
   def to_s
-    super(AzureExpressRouteCircuitsResources)
+    super(AzureExpressRouteCircuits)
   end
 
   private
@@ -110,7 +109,6 @@ class AzureExpressRouteCircuitsResources < AzureGenericResources
         allow_classic_operations: resource[:properties][:allowClassicOperations],
         gateway_manager_etag: resource[:properties][:gatewayManagerEtag],
         serviceKey: resource[:properties][:serviceKey],
-        service_provider_provisioning_state: resource[:properties][:serviceProviderProvisioningState],
         allow_global_reach: resource[:properties][:allowGlobalReach],
         global_reach_enabled: resource[:properties][:globalReachEnabled],
         stag: resource[:properties][:stag],

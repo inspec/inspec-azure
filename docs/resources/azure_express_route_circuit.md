@@ -1,11 +1,11 @@
 ---
-title: About the azure_express_route_circuits_resource Resource
+title: About the azure_express_route_circuit Resource
 platform: azure
 ---
 
-# azure_express_route_circuits_resource
+# azure_express_route_circuit
 
-Use the `azure_express_route_circuits_resource` InSpec audit resource to test properties related to a express circuit resource.
+Use the `azure_express_route_circuit` InSpec audit resource to test properties related to a express circuit resource.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -28,7 +28,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 `resource_group` and express circuit resource `name` or the `resource_id` must be given as a parameter.
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
   it { should exist }
 end
 ```
@@ -67,20 +67,20 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ### Ensure that the express circuit resource has is from same type
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
   its('type') { should eq 'Microsoft.Network/express circui' }
 end
 ```
 ### Ensure that the express circuit resource is in successful state
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
   its('provisioning_state') { should include('Succeeded') }
 end
 ```
 
 ### Ensure that the express circuit resource is from same location
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup', name: 'circuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'circuit_name') do
   its('location') { should include df_location }
 end
 ```
@@ -91,7 +91,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 ```ruby
 # If a express circuit resource is found it will exist
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup', name: 'mycircuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'mycircuit_name') do
   it { should exist }
   its('name') { should eq circuitName }
   its('type') { should eq 'Microsoft.Network/expressRouteCircuits' }
@@ -114,7 +114,7 @@ describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup'
 end
 
 # express circuit resources that aren't found will not exist
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup', name: 'DoesNotExist') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'DoesNotExist') do
   it { should_not exist }
 end
 ```

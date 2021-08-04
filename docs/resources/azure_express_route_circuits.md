@@ -1,11 +1,11 @@
 ---
-title: About the azure_express_route_circuits_resource Resource
+title: About the azure_express_route_circuits Resource
 platform: azure
 ---
 
-# azure_express_route_circuits_resource
+# azure_express_route_circuits
 
-Use the `azure_express_route_circuits_resource` InSpec audit resource to test properties related to express_route_circuits for a resource group or the entire subscription.
+Use the `azure_express_route_circuits` InSpec audit resource to test properties related to express_route_circuits for a resource group or the entire subscription.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -29,9 +29,9 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/e
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 ## Syntax
 
-An `azure_express_route_circuits_resource` resource block returns all Azure express route circuits, either within a Resource Group (if provided)
+An `azure_express_route_circuits` resource block returns all Azure express route circuits, either within a Resource Group (if provided)
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'my-rg') do
+describe azure_express_route_circuits(resource_group: 'my-rg') do
   
 end
 ```
@@ -49,7 +49,6 @@ end
 | service_provider_properties_bandwidth_in_mbps            | A list of The bandwidth in Mbps of the circuit being created on the Service Provider.                                                        | `id`              |
 | service_provider_properties_peering_locations           | A list of The name of the peering location and not the Azure resource location. Changing this forces a new resource to be created.                               | `tag`             |
 | service_provider_properties_names             |   The name of the ExpressRoute Service Provider. Changing this forces a new resource to be created.   | `type` |
-| service_provider_provisioning_states           | The ExpressRoute circuit provisioning state from your chosen service provider. Possible values are "NotProvisioned", "Provisioning", "Provisioned", and "Deprovisioning".                                               | `name`            |
 | service_keys            | State of express circuitHostName creation                                                              | `id`              |
 | stags           | The identifier of the circuit traffic. Outer tag for QinQ encapsulation.                         `Number` | `stag`             |
 | global_reach_enabled             | A list of The ExpressRoute circuit allowGlobalReachEnable   `boolean`                                   `boolean`| `global_reach_enabled`         |
@@ -67,26 +66,26 @@ end
 
 ### Ensure that the express_route_circuits resource has is from same type
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup', name: 'bastion_name') do
+describe azure_express_route_circuits(resource_group: 'MyResourceGroup', name: 'bastion_name') do
   its('type') { should eq 'Microsoft.Network/express_route_circuits' }
 end
 ```
 ### Ensure that the express_route_circuits resource is in successful state
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup') do
+describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   its('provisioning_states') { should include('Succeeded') }
 end
 ```
 
 ### Ensure that the express_route_circuits resource is from same location
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup') do
+describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   its('location') { should include df_location }
 end
 ```
 ### Test If Any express_route_circuits Exist in the Resource Group
 ```ruby
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup') do
+describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   it { should exist }
 end
 
@@ -100,7 +99,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 ```ruby
 # Should not exist if no express_route_circuits are in the resource group
-describe azure_express_route_circuits_resource(resource_group: 'MyResourceGroup') do
+describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   its('names') { should include circuitName }
   its('locations') { should include location }
   its('types') { should include 'Microsoft.Network/expressRouteCircuits' }
