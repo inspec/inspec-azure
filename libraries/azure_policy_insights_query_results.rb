@@ -24,7 +24,7 @@ class AzurePolicyInsightsQueryResults < AzureGenericResources
     return if failed_resource?
 
     @table.map! do |row|
-      row.transform_keys! { |col| col.to_s.snakecase.to_sym }
+      row.transform_keys! { |col| col.to_s.to_sym }
       row[:timestamp] = Time.parse(row[:timestamp])
       row
     end
