@@ -601,7 +601,7 @@ class AzureResourceDynamicMethods
     # Create the necessary method based on the var that has been passed
     # Test the value for its type so that the method can be setup correctly
     case value.class.to_s
-    when 'String', 'Integer', 'TrueClass', 'FalseClass', 'Fixnum', 'Time'
+    when 'String', 'Integer', 'TrueClass', 'FalseClass', 'Fixnum', 'Time', 'Bignum', 'Float'
       object.define_singleton_method name do
         value
       end
