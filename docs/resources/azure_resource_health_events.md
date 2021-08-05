@@ -78,6 +78,14 @@ describe azure_resource_health_events.where{ properties.select{|prop| prop.event
 end
 ```
 
+### Test that there are health events for a particular resource 
+
+```ruby
+describe azure_resource_health_events(resource_group: 'rhctestenv', resource_type: 'Microsoft.Compute/virtualMachines', resource_id: 'rhctestenvV1PI') do
+  it { should exist }
+end
+```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
