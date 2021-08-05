@@ -18,31 +18,7 @@ class AzureDdosProtectionResources < AzureGenericResources
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/
     # Microsoft.Network/ddosProtectionPlans?api-version=2020-11-01
-    #
-    # or in a resource group only
-    #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
-    #   Microsoft.Network/ddosProtectionPlans?api-version=2020-11-01
-    #
-    # The dynamic part that has to be created for this resource:
-    #   Microsoft.Network/ddosProtectionPlans?api-version=2020-11-01
-    #
-    # Parameters acquired from environment variables:
-    #   - {subscriptionId} => Required parameter. It will be acquired by the backend from environment variables.
-    #
-    # For parameters applicable to all resources, see project's README.
-    #
-    # User supplied parameters:
-    #   - resource_group => Optional parameter.
-    #   - api_version => Optional parameter. The latest version will be used unless provided.
-    #
-    #   **`resource_group`  will be used in the backend appropriately.
-    #     We don't have to do anything here.
-    #
-    # Following resource parameters have to be defined/created here.
-    #   resource_provider => Microsoft.Network/ddosProtectionPlans
-    #     The `specific_resource_constraint` method will validate the user input
-    #       not to accept a different `resource_provider`.
-    #
+
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/ddosProtectionPlans', opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
@@ -51,11 +27,6 @@ class AzureDdosProtectionResources < AzureGenericResources
     # Check if the resource is failed.
     # It is recommended to check that after every usage of superclass methods or API calls.
     return if failed_resource?
-
-    # Define the column and field names for FilterTable.
-    #   - column: It is defined as an instance method, callable on the resource, and present `field` values in a list.
-    #   - field: It has to be identical with the `key` names in @table items that will be presented in the FilterTable.
-    # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
     table_schema = [
       { column: :names, field: :name },
       { column: :types, field: :type },
