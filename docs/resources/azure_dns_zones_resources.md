@@ -36,6 +36,8 @@ An `azure_dns_zones_resources` resource block returns all Azure bastion hots, ei
   end
   ```
 
+
+
 ## Properties
 
 |Property       | Description                                                                          | Filter Criteria<superscript>*</superscript> |
@@ -44,6 +46,10 @@ An `azure_dns_zones_resources` resource block returns all Azure bastion hots, ei
 | ids            | A list of dns_zones ids .                                                       | `id`              |
 | tags           | A list of `tag:value` pairs defined on the resources.                               | `tags`             |
 | types             |   Types of all the dns_zones | `type` |
+| properties                     | properties of Azure resource group            |`properties`                         |
+| max_number_of_recordsets|The maximum number of records per record set that can be created in this DNS zone. This is a read-only property and any attempt to set this value will be ignored.| max_number_of_recordsets|
+| number_of_record_sets|The current number of record sets in this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|`number_of_record_sets`|
+| name_servers |The name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|name_servers|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 

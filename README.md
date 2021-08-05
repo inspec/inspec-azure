@@ -210,6 +210,8 @@ The following is a list of static resources.
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
 - [azure_webapps](docs/resources/azure_webapps.md)
+- [azure_dns_zones_resource](docs/resources/azure_dns_zones_resource.md)
+- [azure_dns_zones_resources](docs/resources/azure_dns_zones_resources.md)
 
 
 For more details and different use cases, please refer to the specific resource pages.
