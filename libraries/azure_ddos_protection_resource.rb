@@ -2,10 +2,10 @@ require 'azure_generic_resource'
 
 class AzureDdosProtectionResource < AzureGenericResource
   name 'azure_ddos_protection_resource'
-  desc 'Verifies settings for an Azure Virtual Machine'
+  desc 'Verifies settings for Azure DDoS Protection Standard '
   example <<-EXAMPLE
     describe azure_ddos_protection_resource(resource_group: 'example', name: 'vm-name') do
-      it { should have_monitoring_agent_installed }
+      it { should exits }
     end
   EXAMPLE
 

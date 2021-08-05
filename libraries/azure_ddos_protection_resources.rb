@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureDdosProtectionResources < AzureGenericResources
   name 'azure_ddos_protection_resources'
-  desc 'Verifies settings for Azure Virtual Machines'
+  desc 'Verifies settings for Azure DDoS Protection Standard '
   example <<-EXAMPLE
     azure_ddos_protection_resources(resource_group: 'example') do
-      it{ should exist }
+      it{ should exists }
     end
   EXAMPLE
 
