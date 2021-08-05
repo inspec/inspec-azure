@@ -4,7 +4,7 @@ class AzureDNSZonesResources < AzureGenericResources
   name 'azure_dns_zones_resources'
   desc 'Verifies settings for Azure DNS ZONES'
   example <<-EXAMPLE
-    azure_dns_zones_resources  do
+    describe azure_dns_zones_resources  do
       it{ should exist }
     end
   EXAMPLE

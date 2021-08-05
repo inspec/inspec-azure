@@ -25,7 +25,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/ddos-protection-plans/list) for  properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/dns/zones/get) for  properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 ## Syntax
 
@@ -42,7 +42,7 @@ An `azure_dns_zones_resources` resource block returns all Azure bastion hots, ei
   |---------------|--------------------------------------------------------------------------------------|-----------------|
 | name           | A list of the unique resource names.                                                | `name`            |
 | ids            | A list of dns_zones ids .                                                       | `id`              |
-| tags           | A list of `tag:value` pairs defined on the resources.                               | `tag`             |
+| tags           | A list of `tag:value` pairs defined on the resources.                               | `tags`             |
 | types             |   Types of all the dns_zones | `type` |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).

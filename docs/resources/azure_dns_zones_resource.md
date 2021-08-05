@@ -33,7 +33,16 @@ refer to resource pack [README](../../README.md#Service-Principal).
     it { should exist }
   end
   ```
+
 ## Parameters
+
+| Name                           | Description                                                                      |
+|--------------------------------|----------------------------------------------------------------------------------|
+| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
+| name                           | Name of the Dns zones to test. `dns_name`                                 |
+
+
+## Properties
 
 | Name                           | Description                                                                      |
   |--------------------------------|----------------------------------------------------------------------------------|
