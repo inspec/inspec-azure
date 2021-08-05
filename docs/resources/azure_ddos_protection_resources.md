@@ -42,9 +42,11 @@ An `azure_ddos_protection_resources` resource block returns all Azure bastion ho
  |---------------|--------------------------------------------------------------------------------------|-----------------|
 | name           | A list of the unique resource names.                                                | `name`            |
 | ids            | A list of ddos_protection_plan ids .                                                       | `id`              |
-| tags           | A list of `tag:value` pairs defined on the resources.                               | `tag`             |
-| provisioning_state             | State of ddos_protection creation                                      | `provisioning_state`         |
+| virtual_networks           | The list of virtual networks associated with the DDoS protection plan resource. This list is read-only.| `virtual_network`             |
+| provisioning_states             | State of ddos_protection creation                                      | `provisioning_state`         |
 | types             |   Types of all the ddos_protection_plan | `type` |
+|resource_guids|The resource GUID property of the DDoS protection plan resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.|`resource_guid`|
+
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
