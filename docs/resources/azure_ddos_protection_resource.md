@@ -33,14 +33,27 @@ refer to resource pack [README](../../README.md#Service-Principal).
    it { should exist }
  end
  ```
-## Parameters
+
+ ## Parameters
 
 | Name                           | Description                                                                      |
- |--------------------------------|----------------------------------------------------------------------------------|
+|--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| name                           | Name of the Azure resource to test. `Myddos_protection_plan`                          |
-| type                           | type of ddos_protection_plan                                                          |
-| provisioning_state             | State of ddos_protection_plan creation                                                |
+| name                           | Name of the Azure DdosProtectionPlan resource to test. `MyVM`                                       |
+
+
+Both of the parameter sets shoould be provided for a valid query:
+- `resource_group` and `name`
+
+## Properties
+
+| Name                           | Description                                                                      |
+|--------------------------------|----------------------------------------------------------------------------------|
+| name                           | Name of the Azure DdosProtectionPlan resource to test. `Myddos_protection_plan`                     |
+| type                           | type of ddos_protection_plan                                                     |
+| provisioning_state             | State of ddos_protection_plan creation                                           |
+| virtual_networks               | The list of virtual networks associated with the DDoS protection plan resource. This list is read-only.|
+| resource_guid                  |The resource GUID property of the DDoS protection plan resource. It uniquely identifies the resource, even if the user changes its name or migrate the resource across subscriptions or resource groups.|
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_group` and `name`
