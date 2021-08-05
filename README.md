@@ -113,6 +113,8 @@ With the generic resources:
  
 The following is a list of static resources. 
 
+- [azure_active_directory_domain_service](docs/resources/azure_active_directory_domain_service.md)
+- [azure_active_directory_domain_services](docs/resources/azure_active_directory_domain_services.md)
 - [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
 - [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
 - [azure_api_management](docs/resources/azure_api_management.md)
