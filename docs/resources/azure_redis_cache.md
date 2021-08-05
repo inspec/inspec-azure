@@ -3,15 +3,15 @@ title: About the azure_redis_cache Resource
 platform: azure
 ---
 
-## azure_redis_cache
+# azure_redis_cache
 
 Use the `azure_redis_cache` InSpec audit resource to test the properties related to an Azure Redis cache.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter. If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. You can define the `api_version` as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used. For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
@@ -24,9 +24,9 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `resource_group` and `name` are required parameters.
 
 ```ruby
-    describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
+    describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
       it                                      { should exist }
-      its('name')                             { should cmp 'inspec-compliance-redis-cache' }
+      its('name')                             { should cmp 'REDIS_CACHE_NAME' }
       its('type')                             { should cmp 'Microsoft.Cache/Redis' }
       its('sku.name')                         { should cmp 'Standard' }
       its('sku.family')                       { should cmp 'C' }
@@ -35,7 +35,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 ```
 
 ```ruby
-    describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
+    describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
       it  { should exist }
   end
 ```
@@ -74,7 +74,7 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test: Redis instance's provisioning status equals 'Succeeded'
+### Test that the Redis instance's provisioning status equals 'Succeeded'
 
 ```ruby
     describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
@@ -82,9 +82,9 @@ Any attribute in the response may be accessed with the key names separated by do
     end
 ```
 
-### Test: Redis instance Skuname equals 'Standard_1vCores'
+### Test that the Redis instance Skuname equals 'Standard_1vCores'
 
-**Skuname** is the type of Redis cache to deploy. Valid values are `Basic`, `Standard`, `Premium`.
+**Skuname** is the Redis cache to deploy. Valid values are `Basic`, `Standard`, `Premium`.
 
 ```ruby
     describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
@@ -100,24 +100,22 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a redis cache is found it will exist
-    describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
+    describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
       it { should exist }
     end
 
 # Redis Caches that aren't found will not exist
-    describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
+    describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
       it { should_not exist }
     end
 ```
 
 ### be_enabled_non_ssl_port
 
-#### Redis Cache that supports non SSL ports
-
 Ensure that the Redis Cache supports non-SSL ports.
 
 ```ruby
-    describe azure_redis_cache(resource_group: 'MyResourceGroup', name: 'inspec-compliance-redis-cache') do
+    describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
       it { should be_enabled_non_ssl_port }
     end
 ```
