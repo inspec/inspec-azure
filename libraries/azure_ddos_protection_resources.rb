@@ -30,9 +30,10 @@ class AzureDdosProtectionResources < AzureGenericResources
       { column: :names, field: :name },
       { column: :types, field: :type },
       { column: :ids, field: :id },
-      { column: :tags, field: :tags },
       { column: :provisioning_states, field: :provisioningState },
       { column: :locations, field: :location },
+      { column: :resource_guids, field: :resource_guid },
+      { column: :virtual_networks, field: :virtual_networks },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
@@ -45,14 +46,7 @@ class AzureDdosProtectionResources < AzureGenericResources
 
   private
 
-  # Populate the @table with the resource attributes.
-  # @table has been declared in the super class as an empty array.
-  # Each item in the @table
-  #   - should be a Hash object
-  #   - should have the exact key names defined in the @table_schema as `field`.
   def populate_table
-    # If @resources empty than @table should stay as an empty array as declared in superclass.
-    # This will ensure constructing resource and passing `should_not exist` test.
     return [] if @resources.empty?
 
     @resources.each do |resource|
@@ -60,9 +54,10 @@ class AzureDdosProtectionResources < AzureGenericResources
         id: resource[:id],
         name: resource[:name],
         type: resource[:type],
-        tags: resource[:tags],
         provisioningState: resource[:properties][:provisioningState],
         location: resource[:location],
+        resource_guid: resource[:properties][:resourceGuid],
+        virtual_networks: resource[:properties][:virtualNetworks],
       }
     end
   end
