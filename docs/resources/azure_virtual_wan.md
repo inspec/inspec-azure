@@ -9,9 +9,9 @@ Use the `azure_virtual_wan` InSpec audit resource to test properties related to 
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter. If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. You can define the `api_version` as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used. For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
@@ -24,14 +24,14 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `name` is a required parameter.
 
 ```ruby
-    describe azure_virtual_wan(resource_group: 'my-resource-group', name: 'default-wan') do
+    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
      it { should exist }
      its('properties.provisioningState') { should eq 'Succeeded' }
     end
 ```
 
 ```ruby
-    describe azure_virtual_wan(resource_group: 'my-resource-group', name: 'default-wan') do
+    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
      it  { should exist }
     end
 ```
@@ -52,11 +52,11 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 | type                          | Resource type.                                                    |
 | etag                          | A unique read-only string that changes whenever the resource is updated. |
 | location                      | Resource location.                                                |
-| properties.provisioningState  | The provisioning state of the virtual WAN resource.               |
-| properties.disableVpnEncryption| Vpn encryption to be disabled or not.                            |
+| properties.provisioningState  | The provisioning state of the Virtual WAN resource.               |
+| properties.disableVpnEncryption| VPN encryption to be disabled or not.                            |
 | properties.allowBranchToBranchTraffic   | True if branch to branch traffic is allowed.            |
 | properties.office365LocalBreakoutCategory| The office local breakout category.                    |
-| properties.type               |  The type of the VirtualWAN.                                      |
+| properties.type               | The type of the Virtual WAN.                                      |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
@@ -65,7 +65,7 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test: VirtualWAN's Resource Group Encryption not equals 'be_falsey'
+### Test that the Virtual WAN's Resource Group Encryption not equals 'be_falsey'
 
 ```ruby
     describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
@@ -80,12 +80,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If a virtual WAN is found, it will exist
-    describe azure_virtual_wan(resource_group: 'my-resource-group', name: 'default-wan') do
+# If a Virtual WAN is found, it will exist
+    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
      it { should exist }
     end
-# If no virtual WANs are found, it will not exist
-    describe azure_virtual_wan(resource_group: 'my-resource-group', name: 'default-wan') do
+# If no Virtual WAN's are found, it will not exist
+    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
      it { should_not exist }
     end
 ```

@@ -9,8 +9,8 @@ Use the `azure_virtual_wans` InSpec audit resource to test properties related to
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. You can define the `api_version` as a resource parameter.
+If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
 Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used. For more information, refer to the resource pack [README](../../README.md).
 
@@ -47,7 +47,7 @@ end
 
 ## Examples
 
-### Test: Virtual WANs of Standard Type
+### Test that the Virtual WANs is of Standard Type
 ```ruby
     describe azure_virtual_wans.where{ properties.select{|prop| prop.type == 'Standard' } } do
      it { should exist }
