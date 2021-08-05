@@ -5,7 +5,7 @@ class AzureDdosProtectionResource < AzureGenericResource
   desc 'Verifies settings for Azure DDoS Protection Standard '
   example <<-EXAMPLE
     describe azure_ddos_protection_resource(resource_group: 'example', name: 'vm-name') do
-      it { should exits }
+      it { should exit }
     end
   EXAMPLE
 
