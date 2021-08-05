@@ -183,6 +183,8 @@ The following is a list of static resources.
 - [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
+- [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)
+- [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
 - [azure_resource_health_emerging_issue](docs/resources/azure_resource_health_emerging_issue.md)
 - [azure_resource_health_emerging_issues](docs/resources/azure_resource_health_emerging_issues.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
