@@ -42,17 +42,16 @@ end
 |---------------|--------------------------------------------------------------------------------------|-----------------|
 | names          | A list of name  the resource group in which to create the ExpressRoute circuit. Changing this forces a new resource to be created. `MyResourceGroup`                                                 | `name`            |
 | ids            | A list of id the ExpressRoute circuit. Changing this forces a new resource to be created. `Myexpress circuitHostName                                                       | `id`              |
-| tags           | A list of `tag:value` pairs defined on the resources.                               | `tag`             |
+| tags           | A list of `tag:value` pairs defined on the resources.                               | `tags`             |
 | provisioning_states             | State of express_route_circuits creation                                      | `provisioning_state`         |
 | types             |   Types of all the express_route_circuits | `type` |
 | locations           | Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.                                                 | `location`            |
-| service_provider_properties_bandwidth_in_mbps            | A list of The bandwidth in Mbps of the circuit being created on the Service Provider.                                                        | `id`              |
-| service_provider_properties_peering_locations           | A list of The name of the peering location and not the Azure resource location. Changing this forces a new resource to be created.                               | `tag`             |
-| service_provider_properties_names             |   The name of the ExpressRoute Service Provider. Changing this forces a new resource to be created.   | `type` |
+| service_provider_bandwidth_in_mbps            | A list of The bandwidth in Mbps of the circuit being created on the Service Provider.                                                        | `id`              |
+| service_provider_peering_location           | A list of The name of the peering location and not the Azure resource location. Changing this forces a new resource to be created.                               | `tag`             |
+| service_provider_name             |   The name of the ExpressRoute Service Provider. Changing this forces a new resource to be created.   | `type` |
 | service_keys            | State of express circuitHostName creation                                                              | `service_key`              |
 | stags           | The identifier of the circuit traffic. Outer tag for QinQ encapsulation.                         `Number` | `stag`             |
 | global_reach_enabled             | A list of The ExpressRoute circuit allowGlobalReachEnable   `boolean`                                   `boolean`| `global_reach_enabled`         |
-| allow_global_reach             |   A list of The ExpressRoute circuit Flag denoting global reach status. `boolean`| `allow_global_reach` |
 | gateway_manager_etags           | A list of The GatewayManager Etag.                                              | `etag`            |
 | allow_classic_operations            | A list of Allow classic operations. `boolean`                                                     | `allow_classic_operation`            |
 | circuit_provisioning_states           | A list of State of express circuitHostName creation              `Enabled` or `Disabled`                |     `circuit_provisioning_state`         |

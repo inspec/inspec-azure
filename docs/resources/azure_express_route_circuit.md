@@ -36,6 +36,16 @@ end
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
+| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
+| circuit_name                           | Name of the circuit test. `circuit_name`                                 |
+
+Both of the parameter sets should be provided for a valid query:
+- `resource_group` and `name`
+
+## Properties
+
+| Name                           | Description                                                                      |
+|--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | The name of the resource group in which to create the ExpressRoute circuit. Changing this forces a new resource to be created. `MyResourceGroup`    |
 | name                           | The name of the ExpressRoute circuit. Changing this forces a new resource to be created. `Myexpress circuitHostName`                          |
 | type                           | type of express ExpressRoute circuit                                                          |

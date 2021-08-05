@@ -4,7 +4,7 @@ class AzureExpressRouteCircuits < AzureGenericResources
   name 'azure_express_route_circuits'
   desc 'ExpressRoute circuits connect your on-premises infrastructure to Microsoft through a connectivity provider'
   example <<-EXAMPLE
-    azure_express_route_circuits(resource_group: 'example') do
+    describe azure_express_route_circuits(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE
@@ -54,25 +54,24 @@ class AzureExpressRouteCircuits < AzureGenericResources
     #   - field: It has to be identical with the `key` names in @table items that will be presented in the FilterTable.
     # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
     table_schema = [
+      { column: :ids, field: :id },
       { column: :names, field: :name },
       { column: :locations, field: :location },
       { column: :types, field: :type },
-      { column: :ids, field: :id },
       { column: :tags, field: :tags },
       { column: :provisioning_states, field: :provisioning_state },
       { column: :sku_names, field: :sku_name },
       { column: :sku_tiers, field: :sku_tier },
       { column: :sku_families, field: :sku_family },
-      { column: :service_provider_properties_peering_locations, field: :service_provider_properties_peering_location },
-      { column: :service_provider_properties_bandwidth_in_mbps, field: :service_provider_properties_bandwidth_in_mbps },
-      { column: :service_provider_properties_names, field: :service_provider_properties_name },
-      { column: :stags, field: :stag },
-      { column: :global_reach_enabled, field: :global_reach_enabled },
-      { column: :allow_global_reach, field: :allow_global_reach },
-      { column: :service_keys, field: :serviceKey },
-      { column: :gateway_manager_etags, field: :gateway_manager_etag },
-      { column: :allow_classic_operations, field: :allow_classic_operations },
       { column: :circuit_provisioning_states, field: :circuit_provisioning_state },
+      { column: :allow_classic_operations, field: :allow_classic_operations },
+      { column: :gateway_manager_etags, field: :gateway_manager_etag },
+      { column: :service_keys, field: :serviceKey },
+      { column: :global_reach_enabled, field: :global_reach_enabled },
+      { column: :stags, field: :stag },
+      { column: :service_provider_names, field: :service_provider_name },
+      { column: :service_provider_peering_locations, field: :service_provider_peering_location },
+      { column: :service_provider_bandwidth_in_mbps, field: :service_provider_bandwidth_in_mbps },
     ]
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
@@ -109,12 +108,11 @@ class AzureExpressRouteCircuits < AzureGenericResources
         allow_classic_operations: resource[:properties][:allowClassicOperations],
         gateway_manager_etag: resource[:properties][:gatewayManagerEtag],
         serviceKey: resource[:properties][:serviceKey],
-        allow_global_reach: resource[:properties][:allowGlobalReach],
         global_reach_enabled: resource[:properties][:globalReachEnabled],
         stag: resource[:properties][:stag],
-        service_provider_properties_name: resource[:properties][:serviceProviderProperties][:serviceProviderName],
-        service_provider_properties_peering_location: resource[:properties][:serviceProviderProperties][:peeringLocation],
-        service_provider_properties_bandwidth_in_mbps: resource[:properties][:serviceProviderProperties][:bandwidthInMbps],
+        service_provider_name: resource[:properties][:serviceProviderProperties][:serviceProviderName],
+        service_provider_peering_location: resource[:properties][:serviceProviderProperties][:peeringLocation],
+        service_provider_bandwidth_in_mbps: resource[:properties][:serviceProviderProperties][:bandwidthInMbps],
       }
     end
   end
