@@ -36,14 +36,22 @@ end
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
+| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
+| bastionHostName                           | Name of the virtual network to test. `MyVNetwork`                                 |
+
+Both of the parameter sets should be provided for a valid query:
+- `resource_group` and `bastionHostName`
+
+
+## Properties
+
+| Name                           | Description                                                                      |
+|--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | name                           | Name of the Azure resource to test. `MyBastionHostName`                          |
+| tags                           | A list of `tag:value` pairs defined on the resources.                            |
 | type                           | type of BastionHostName                                                          |
 | provisioning_state             | State of BastionHostName creation                                                |
-
-Either one of the parameter sets can be provided for a valid query:
-- `resource_group` and `name`
-
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/bastion-hosts/get) for other properties available. 
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
