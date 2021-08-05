@@ -113,6 +113,8 @@ With the generic resources:
  
 The following is a list of static resources. 
 
+- [azure_active_directory_domain_service](docs/resources/azure_active_directory_domain_service.md)
+- [azure_active_directory_domain_services](docs/resources/azure_active_directory_domain_services.md)
 - [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
 - [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
 - [azure_api_management](docs/resources/azure_api_management.md)
@@ -181,6 +183,10 @@ The following is a list of static resources.
 - [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
+- [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)
+- [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
+- [azure_resource_health_emerging_issue](docs/resources/azure_resource_health_emerging_issue.md)
+- [azure_resource_health_emerging_issues](docs/resources/azure_resource_health_emerging_issues.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
 - [azure_role_definitions](docs/resources/azure_role_definitions.md)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
@@ -393,7 +399,7 @@ They can be defined as environment variables or resource parameters (has priorit
 | azurerm_virtual_machine_disk, azurerm_virtual_machine_disks | `2017-03-30` | [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md), [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md) |
 | azurerm_virtual_network, azurerm_virtual_networks | `2018-02-01` | [azure_virtual_network](docs/resources/azure_virtual_network.md), [azure_virtual_networks](docs/resources/azure_virtual_networks.md) |
 | azurerm_webapp, azurerm_webapps | `2016-08-01` | [azure_webapp](docs/resources/azure_webapp.md), [azure_webapps](docs/resources/azure_webapps.md) |
-
+| azurerm_data_factory, azurerm_data_factories | `2021-06-06` | [azure_data_factory](docs/resources/azure_data_factory.md), [azure_data_factories](docs/resources/azure_data_factories.md) |
 ## Development
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
