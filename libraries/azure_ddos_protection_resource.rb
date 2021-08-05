@@ -60,10 +60,10 @@ class AzureDdosProtectionResource < AzureGenericResource
   end
 
   def virtual_networks
-    properties.provisioningState.virtualNetworks if exists?
+    properties.virtualNetworks if exists?
   end
 
   def resource_guid
-    properties.provisioningState.resourceGuid if exists?
+    properties.resourceGuid if exists?
   end
 end
