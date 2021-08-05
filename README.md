@@ -113,15 +113,21 @@ With the generic resources:
  
 The following is a list of static resources. 
 
+- [azure_active_directory_domain_service](docs/resources/azure_active_directory_domain_service.md)
+- [azure_active_directory_domain_services](docs/resources/azure_active_directory_domain_services.md)
 - [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
 - [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
 - [azure_api_management](docs/resources/azure_api_management.md)
 - [azure_api_managements](docs/resources/azure_api_managements.md)
 - [azure_application_gateway](docs/resources/azure_application_gateway.md)
 - [azure_application_gateways](docs/resources/azure_application_gateways.md)
+- [azure_container_group](docs/resources/azure_container_group.md)
+- [azure_container_groups](docs/resources/azure_container_groups.md)
 - [azure_container_registries](docs/resources/azure_container_registries.md)
 - [azure_container_registry](docs/resources/azure_container_registry.md)
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
+- [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
+- [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
 - [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md)
 - [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
 - [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
@@ -388,7 +394,7 @@ They can be defined as environment variables or resource parameters (has priorit
 | azurerm_virtual_machine_disk, azurerm_virtual_machine_disks | `2017-03-30` | [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md), [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md) |
 | azurerm_virtual_network, azurerm_virtual_networks | `2018-02-01` | [azure_virtual_network](docs/resources/azure_virtual_network.md), [azure_virtual_networks](docs/resources/azure_virtual_networks.md) |
 | azurerm_webapp, azurerm_webapps | `2016-08-01` | [azure_webapp](docs/resources/azure_webapp.md), [azure_webapps](docs/resources/azure_webapps.md) |
-
+| azurerm_data_factory, azurerm_data_factories | `2021-06-06` | [azure_data_factory](docs/resources/azure_data_factory.md), [azure_data_factories](docs/resources/azure_data_factories.md) |
 ## Development
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 

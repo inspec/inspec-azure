@@ -1,10 +1,30 @@
 # Changelog
-<!-- latest_release 1.49.1 -->
+<!-- latest_release 1.53.0 -->
+## [v1.53.0](https://github.com/inspec/inspec-azure/tree/v1.53.0) (2021-08-05)
+
+#### Merged Pull Requests
+- Support ad domain services [#404](https://github.com/inspec/inspec-azure/pull/404) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.52.0](https://github.com/inspec/inspec-azure/tree/v1.52.0) (2021-07-29)
+
+#### Merged Pull Requests
+- Support container groups [#402](https://github.com/inspec/inspec-azure/pull/402) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.51.0](https://github.com/inspec/inspec-azure/tree/v1.51.0) (2021-07-23)
+
+#### Merged Pull Requests
+- Support db migration service [#393](https://github.com/inspec/inspec-azure/pull/393) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.50.0](https://github.com/inspec/inspec-azure/tree/v1.50.0) (2021-07-22)
+
+#### Merged Pull Requests
+- adding storage account blob and table services [#408](https://github.com/inspec/inspec-azure/pull/408) ([Rohit1509](https://github.com/Rohit1509))
+
 ## [v1.49.1](https://github.com/inspec/inspec-azure/tree/v1.49.1) (2021-07-06)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.17.0 to ~&gt; 1.18.2 [#405](https://github.com/inspec/inspec-azure/pull/405) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.49.0](https://github.com/inspec/inspec-azure/tree/v1.49.0) (2021-06-24)
 
