@@ -143,6 +143,10 @@ variable "inspec_db_migration_service" {
   }
 }
 
+variable "inspec_container_group_name" {
+  default = "inspec_container_trial"
+}
+
 variable "sample_directory_object" {
   default = "adc07321-ef2b-44d5-a210-559aa5f10f2d"
 }

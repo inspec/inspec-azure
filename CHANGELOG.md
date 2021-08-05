@@ -1,10 +1,20 @@
 # Changelog
-<!-- latest_release 1.51.0 -->
+<!-- latest_release 1.53.0 -->
+## [v1.53.0](https://github.com/inspec/inspec-azure/tree/v1.53.0) (2021-08-05)
+
+#### Merged Pull Requests
+- Support ad domain services [#404](https://github.com/inspec/inspec-azure/pull/404) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.52.0](https://github.com/inspec/inspec-azure/tree/v1.52.0) (2021-07-29)
+
+#### Merged Pull Requests
+- Support container groups [#402](https://github.com/inspec/inspec-azure/pull/402) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.51.0](https://github.com/inspec/inspec-azure/tree/v1.51.0) (2021-07-23)
 
 #### Merged Pull Requests
 - Support db migration service [#393](https://github.com/inspec/inspec-azure/pull/393) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.50.0](https://github.com/inspec/inspec-azure/tree/v1.50.0) (2021-07-22)
 
