@@ -46,13 +46,13 @@ end
 | provisioning_states             | State of express_route_circuits creation                                      | `provisioning_state`         |
 | types             |   Types of all the express_route_circuits | `type` |
 | locations           | Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.                                                 | `location`            |
-| service_provider_bandwidth_in_mbps            | A list of The bandwidth in Mbps of the circuit being created on the Service Provider.                                                        | `id`              |
-| service_provider_peering_location           | A list of The name of the peering location and not the Azure resource location. Changing this forces a new resource to be created.                               | `tag`             |
-| service_provider_name             |   The name of the ExpressRoute Service Provider. Changing this forces a new resource to be created.   | `type` |
+| service_provider_bandwidth_in_mbps            | A list of The bandwidth in Mbps of the circuit being created on the Service Provider.                                                        | `service_provider_bandwidth_in_mbps`              |
+| service_provider_peering_locations           | A list of The name of the peering location and not the Azure resource location. Changing this forces a new resource to be created.                               | `service_provider_peering_location`             |
+| service_provider_names             |   The name of the ExpressRoute Service Provider. Changing this forces a new resource to be created.   | `service_provider_name` |
 | service_keys            | State of express circuitHostName creation                                                              | `service_key`              |
 | stags           | The identifier of the circuit traffic. Outer tag for QinQ encapsulation.                         `Number` | `stag`             |
 | global_reach_enabled             | A list of The ExpressRoute circuit allowGlobalReachEnable   `boolean`                                   `boolean`| `global_reach_enabled`         |
-| gateway_manager_etags           | A list of The GatewayManager Etag.                                              | `etag`            |
+| gateway_manager_etags           | A list of The GatewayManager Etag.                                              | `gateway_manager_etag`            |
 | allow_classic_operations            | A list of Allow classic operations. `boolean`                                                     | `allow_classic_operation`            |
 | circuit_provisioning_states           | A list of State of express circuitHostName creation              `Enabled` or `Disabled`                |     `circuit_provisioning_state`         |
 | sku_names             | A List of Name sku block for the ExpressRoute circuit as documented below.                                      | `sku_name`         |
@@ -94,10 +94,7 @@ end
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
-
-### exists
 ```ruby
-# Should not exist if no express_route_circuits are in the resource group
 describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   its('names') { should include circuitName }
   its('locations') { should include location }
@@ -117,6 +114,15 @@ describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   its('sku_names') { should include sku_name }
   its('sku_tiers') { should include sku_tier }
   its('sku_families') { should include sku_family }
+end
+```
+
+
+### exists
+```ruby
+# Should not exist if no express_route_circuits are in the resource group
+describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
+  it { should exist }
 end
 ```
 ## Azure Permissions

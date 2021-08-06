@@ -78,7 +78,7 @@ Any attribute in the response may be accessed with the key names separated by do
 ### Ensure that the express circuit resource has is from same type
 ```ruby
 describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
-  its('type') { should eq 'Microsoft.Network/express circui' }
+  its('type') { should eq 'Microsoft.Network/expressRouteCircuits' }
 end
 ```
 ### Ensure that the express circuit resource is in successful state
@@ -97,16 +97,9 @@ end
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
-
-### exists
 ```ruby
-# If a express circuit resource is found it will exist
 describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'mycircuit_name') do
   it { should exist }
-  its('name') { should eq circuitName }
-  its('type') { should eq 'Microsoft.Network/expressRouteCircuits' }
-  its('provisioning_state') { should include('Succeeded') }
-  its('location') { should include location }
   its('service_provider_properties_bandwidth_in_mbps') { should eq bandwidthInMbps }
   its('service_provider_properties_peering_location') { should include peeringLocation }
   its('service_provider_properties_name') { should include serviceProviderName }
@@ -121,6 +114,14 @@ describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'm
   its('sku_name') { should include sku_name }
   its('sku_tier') { should include sku_tier }
   its('sku_family') { should include sku_family }
+end
+```
+
+### exists
+```ruby
+# If a express circuit resource is found it will exist
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'mycircuit_name') do
+  it { should exist }
 end
 
 # express circuit resources that aren't found will not exist
