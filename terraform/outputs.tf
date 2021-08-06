@@ -367,12 +367,23 @@ output "policy_definition_associated_cosmodb_id" {
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
 
+
 output "ddos_protection_plan_name" {
   value = azurerm_network_ddos_protection_plan.andpp.name
 }
 
 output "ddos_protection_plan_location" {
   value = azurerm_network_ddos_protection_plan.andpp.location
+}
+
+output "bastionHostName" {
+  description = "Name of the bastion Host"
+  value = azurerm_bastion_host.abh.name
+}
+
+output "bastionHostLocation" {
+  description = "Location of the bastion Hosts"
+  value = azurerm_bastion_host.abh.location
 }
 
 //output "policy_exemption_name" {
@@ -394,8 +405,13 @@ output "inspec_db_migration_service_name" {
 output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
-  
+
 output "inspec_container_group_name" {
   description = "the name of the container group"
   value = azurerm_container_group.inspec_container_trial.name
+}
+
+output "sample_directory_object" {
+  description = "the name of the directory object"
+  value = var.sample_directory_object
 }
