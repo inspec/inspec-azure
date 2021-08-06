@@ -37,7 +37,7 @@ end
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| bastionHostName                           | Name of the virtual network to test. `MyVNetwork`                                 |
+| name                           | Name of the virtual network to test. `MyVNetwork`                                 |
 
 Both of the parameter sets should be provided for a valid query:
 - `resource_group` and `bastionHostName`
