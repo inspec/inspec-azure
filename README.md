@@ -113,6 +113,8 @@ With the generic resources:
  
 The following is a list of static resources. 
 
+- [azure_active_directory_domain_service](docs/resources/azure_active_directory_domain_service.md)
+- [azure_active_directory_domain_services](docs/resources/azure_active_directory_domain_services.md)
 - [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
 - [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
 - [azure_api_management](docs/resources/azure_api_management.md)
@@ -181,6 +183,10 @@ The following is a list of static resources.
 - [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
+- [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)
+- [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
+- [azure_resource_health_emerging_issue](docs/resources/azure_resource_health_emerging_issue.md)
+- [azure_resource_health_emerging_issues](docs/resources/azure_resource_health_emerging_issues.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
 - [azure_role_definitions](docs/resources/azure_role_definitions.md)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md)

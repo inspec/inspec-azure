@@ -41,6 +41,10 @@ class AzureStorageAccount < AzureGenericResource
     upper_bound = to_utc(now)
     lower_bound = to_utc(now - ninety_days_ago)
 
+    if properties.creationTime > lower_bound
+      return true
+    end
+
     filter = "resourceId eq '#{id}' and "\
              "eventTimestamp ge '#{lower_bound}' and "\
              "eventTimestamp le '#{upper_bound}' and "\
