@@ -47,7 +47,6 @@ Both of the parameter sets should be provided for a valid query:
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | name                           | Name of the Azure resource to test. `MyBastionHostName`                          |
 | tags                           | A list of `tag:value` pairs defined on the resources.                            |
 | type                           | type of BastionHostName                                                          |
