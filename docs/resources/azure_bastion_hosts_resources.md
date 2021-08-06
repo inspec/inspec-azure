@@ -43,7 +43,7 @@ end
 | name           | A list of the unique resource names.                                                | `name`            |
 | ids            | A list of bastion hosts ids .                                                       | `id`              |
 | tags           | A list of `tag:value` pairs defined on the resources.                               | `tags`             |
-| provisioning_state             | State of BastionHosts creation                                      | `provisioning_state`         |
+| provisioning_states             | State of BastionHosts creation                                      | `provisioningState`         |
 | types             |   Types of all the bastion hosts | `type` |
 | properties             |   Types of all the bastion hosts | `properties` |
   

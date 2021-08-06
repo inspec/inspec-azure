@@ -40,7 +40,7 @@ end
 | name                           | Name of the virtual network to test. `MyVNetwork`                                 |
 
 Both of the parameter sets should be provided for a valid query:
-- `resource_group` and `bastionHostName`
+- `resource_group` and `name`
 
 
 ## Properties
