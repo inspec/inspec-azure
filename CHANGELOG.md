@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.55.0 -->
+<!-- latest_release 1.56.0 -->
+## [v1.56.0](https://github.com/inspec/inspec-azure/tree/v1.56.0) (2021-08-06)
+
+#### Merged Pull Requests
+- Support ad directory objects [#406](https://github.com/inspec/inspec-azure/pull/406) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.55.0](https://github.com/inspec/inspec-azure/tree/v1.55.0) (2021-08-05)
 
 #### Merged Pull Requests
 - Support resource health availability statuses [#411](https://github.com/inspec/inspec-azure/pull/411) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.54.0](https://github.com/inspec/inspec-azure/tree/v1.54.0) (2021-08-05)
 
