@@ -386,8 +386,13 @@ output "inspec_db_migration_service_name" {
 output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
-  
+
 output "inspec_container_group_name" {
   description = "the name of the container group"
   value = azurerm_container_group.inspec_container_trial.name
+}
+
+output "sample_directory_object" {
+  description = "the name of the directory object"
+  value = var.sample_directory_object
 }
