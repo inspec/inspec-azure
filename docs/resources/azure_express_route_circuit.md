@@ -77,20 +77,20 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ### Ensure that the express circuit resource has is from same type
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'express circuit_name') do
   its('type') { should eq 'Microsoft.Network/expressRouteCircuits' }
 end
 ```
 ### Ensure that the express circuit resource is in successful state
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'express circuit_name') do
   its('provisioning_state') { should include('Succeeded') }
 end
 ```
 
 ### Ensure that the express circuit resource is from same location
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'circuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'circuit_name') do
   its('location') { should include df_location }
 end
 ```
@@ -98,7 +98,7 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'mycircuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'mycircuit_name') do
   it { should exist }
   its('service_provider_properties_bandwidth_in_mbps') { should eq bandwidthInMbps }
   its('service_provider_properties_peering_location') { should include peeringLocation }
@@ -120,12 +120,12 @@ end
 ### exists
 ```ruby
 # If a express circuit resource is found it will exist
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'mycircuit_name') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'mycircuit_name') do
   it { should exist }
 end
 
 # express circuit resources that aren't found will not exist
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'DoesNotExist') do
+describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'DoesNotExist') do
   it { should_not exist }
 end
 ```
