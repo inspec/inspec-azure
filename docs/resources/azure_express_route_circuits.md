@@ -63,12 +63,6 @@ end
 
 ## Examples
 
-### Ensure that the express_route_circuits resource has is from same type
-```ruby
-describe azure_express_route_circuits(resource_group: 'MyResourceGroup', name: 'bastion_name') do
-  its('type') { should eq 'Microsoft.Network/express_route_circuits' }
-end
-```
 ### Ensure that the express_route_circuits resource is in successful state
 ```ruby
 describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
@@ -81,14 +75,6 @@ end
 describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   its('location') { should include df_location }
 end
-```
-### Test If Any express_route_circuits Exist in the Resource Group
-```ruby
-describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
-  it { should exist }
-end
-
-
 ```
 
 ## Matchers
@@ -120,9 +106,13 @@ end
 
 ### exists
 ```ruby
-# Should not exist if no express_route_circuits are in the resource group
+# Should  exist if express_route_circuits are in the resource group
 describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
   it { should exist }
+end
+# Should not exist if no express_route_circuits are in the resource group
+describe azure_express_route_circuits(resource_group: 'MyResourceGroup') do
+  it { should_not exist }
 end
 ```
 ## Azure Permissions
