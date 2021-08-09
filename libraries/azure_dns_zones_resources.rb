@@ -61,6 +61,7 @@ class AzureDNSZonesResources < AzureGenericResources
       { column: :max_number_of_recordsets, field: :max_number_of_recordsets },
       { column: :number_of_record_sets, field: :number_of_record_sets },
       { column: :name_servers, field: :name_servers },
+      { column: :properties, field: :properties },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
@@ -92,6 +93,7 @@ class AzureDNSZonesResources < AzureGenericResources
         max_number_of_recordsets: resource[:properties][:maxNumberOfRecordSets],
         number_of_record_sets: resource[:properties][:numberOfRecordSets],
         name_servers: resource[:properties][:nameServers],
+        properties: resource[:properties],
       }
     end
   end
