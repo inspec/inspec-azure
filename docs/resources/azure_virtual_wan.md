@@ -24,16 +24,16 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `name` is a required parameter.
 
 ```ruby
-    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
-     it { should exist }
-     its('properties.provisioningState') { should eq 'Succeeded' }
-    end
+describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
+  it { should exist }
+  its('properties.provisioningState') { should eq 'Succeeded' }
+end
 ```
 
 ```ruby
-    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
-     it  { should exist }
-    end
+describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
+  it  { should exist }
+end
 ```
 
 ## Parameters
@@ -68,9 +68,9 @@ Any attribute in the response may be accessed with the key names separated by do
 ### Test that the Virtual WAN's Resource Group Encryption not equals 'be_falsey'
 
 ```ruby
-    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
-      its('properties.disableVpnEncryption') { should_not be_falsey }
-    end
+describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
+  its('properties.disableVpnEncryption') { should_not be_falsey }
+end
 ```
 
 ## Matchers
@@ -81,13 +81,14 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Virtual WAN is found, it will exist
-    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
-     it { should exist }
-    end
+describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
+  it { should exist }
+end
+
 # If no Virtual WAN's are found, it will not exist
-    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
-     it { should_not exist }
-    end
+describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
+  it { should_not exist }
+end
 ```
 
 ## Azure Permissions

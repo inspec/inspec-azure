@@ -30,8 +30,6 @@ describe azure_virtual_wans do
 end
 ```
 
-## Parameters
-
 ## Properties
 
 |Property            | Description                                        | Filter Criteria<superscript>*</superscript> |
@@ -48,10 +46,11 @@ end
 ## Examples
 
 ### Test that the Virtual WANs is of Standard Type
+
 ```ruby
-    describe azure_virtual_wans.where{ properties.select{|prop| prop.type == 'Standard' } } do
-     it { should exist }
-    end
+describe azure_virtual_wans.where{ properties.select{|prop| prop.type == 'Standard' } } do
+  it { should exist }
+end
 ```
 
 ## Matchers
@@ -62,14 +61,14 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # Should not exist if no virtual WANs are present
-    describe azure_virtual_wans do
-      it { should_not exist }
-    end
+describe azure_virtual_wans do
+  it { should_not exist }
+end
 
 # Should exist if the filter returns at least one virtual WAN
-    describe azure_virtual_wans do
-      it { should exist }
-    end
+describe azure_virtual_wans do
+  it { should exist }
+end
 ```
 
 ## Azure Permissions
