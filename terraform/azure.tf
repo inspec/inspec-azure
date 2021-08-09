@@ -1316,6 +1316,15 @@ resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
     }
   PARAMETERS
 }
+resource "azurerm_bastion_host" "abh" {
+  name                = "test_bastion"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_configuration {
+    name                 = "configuration"
+    subnet_id            = azurerm_subnet.subnet.id
+    public_ip_address_id = azurerm_public_ip.public_ip_address.id
+  }
 
 resource "azurerm_data_factory" "adf" {
   name                = "adf-eaxmple"
