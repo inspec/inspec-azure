@@ -58,7 +58,7 @@ The parameter should be provided for a valid query
 | properties         | A list of properties all the resources.            | `properties`    |
 | tags               | A list of resource tags.                           | `tags`          |
 | sku_names          | A list of SKU names.                               | `sku_name`      |
-| sku_capacities     | A list of SKU capacities.                          | `sku_capacitie` |
+| sku_capacities     | A list of SKU capacity.                            | `sku_capacitie` |
 | sku_families       | A list of SKU families.                            | `sku_family`    |
 | instances_ssl_ports| A list of Redis instance SSL Ports.                | `instances_ssl_ports` |
 | is_master_instance | A list of Redis instance is_master flag.           | `is_master_instance` |
@@ -81,12 +81,12 @@ The parameter should be provided for a valid query
 
 ## Examples
 
-### Loop Through Redis Caches by Their Names
+### Loop through Redis Caches by their names
 
 ```ruby
 azure_redis_caches(resource_group: 'RESOURCE_GROUP').names.each do |name|
-describe azure_redis_cache(name: name) do
-  it { should exist }
+  describe azure_redis_cache(name: name) do
+    it { should exist }
   end
 end
 ```
