@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.57.0 -->
+<!-- latest_release 1.58.0 -->
+## [v1.58.0](https://github.com/inspec/inspec-azure/tree/v1.58.0) (2021-08-06)
+
+#### Merged Pull Requests
+- F/bastion hosts [#414](https://github.com/inspec/inspec-azure/pull/414) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.57.0](https://github.com/inspec/inspec-azure/tree/v1.57.0) (2021-08-06)
 
 #### Merged Pull Requests
 - Account Storage Resource Fix [#423](https://github.com/inspec/inspec-azure/pull/423) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.56.0](https://github.com/inspec/inspec-azure/tree/v1.56.0) (2021-08-06)
 
