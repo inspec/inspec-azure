@@ -88,7 +88,7 @@ end
 
 ```ruby
 describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
-  its('properties.sku.name') { should 'Standard' }
+  its('properties.sku.name') { should eq 'Standard' }
 end
 ```
 
