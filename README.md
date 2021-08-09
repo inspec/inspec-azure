@@ -216,6 +216,8 @@ The following is a list of static resources.
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
 - [azure_webapps](docs/resources/azure_webapps.md)
+- [azure_express_route_circuit](docs/resources/azure_express_route_circuit.md)
+- [azure_express_route_circuits](docs/resources/azure_express_route_circuits.md)
 
 
 For more details and different use cases, please refer to the specific resource pages.
