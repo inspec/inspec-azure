@@ -4,7 +4,7 @@ class AzureExpressRouteCircuitConnectionsResource < AzureGenericResource
   name 'azure_express_route_circuit_connections_resource'
   desc 'ExpressRoute circuit connect your on-premises infrastructure to Microsoft through a connectivity provider'
   example <<-EXAMPLE
-    describe azure_express_route_circuit_connections_resource(resource_group: 'example', circuitName: 'circuitName') do
+    describe azure_express_route_circuit_connections_resource(resource_group: 'example', circuit_name: 'cn', peering_name: 'pn', connection_name: 'cn') do
       it { should exist }
     end
   EXAMPLE
@@ -59,8 +59,8 @@ class AzureExpressRouteCircuitConnectionsResource < AzureGenericResource
     properties.provisioningState if exists?
   end
 
-  def circuit_provisioning_state
-    properties.provisioningState if exists?
+  def circuit_connection_status
+    properties.circuitConnectionStatus if exists?
   end
 
   def ipv6_circuit_connection_config_status

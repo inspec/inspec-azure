@@ -1,10 +1,10 @@
 require 'azure_generic_resources'
 
-class AzureExpressRouteCircuits < AzureGenericResources
-  name 'azure_express_route_circuits'
+class AzureExpressRouteCircuitConnectionsResources < AzureGenericResources
+  name 'azure_express_route_circuit_connections_resources'
   desc 'ExpressRoute circuits connect your on-premises infrastructure to Microsoft through a connectivity provider'
   example <<-EXAMPLE
-    describe azure_express_route_circuits(resource_group: 'example') do
+    describe azure_express_route_circuit_connections_resources(resource_group: 'rg', circuit_name: 'cn', peering_name: 'pn') do
       it{ should exist }
     end
   EXAMPLE
@@ -16,12 +16,12 @@ class AzureExpressRouteCircuits < AzureGenericResources
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
-    #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/
-    # Microsoft.Network/expressRouteCircuits?api-version=2020-11-01
+    #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/
+    #  providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/connections?api-version=2021-02-01
     #
     #
     # The dynamic part that has to be created for this resource:
-    #   Microsoft.Network/expressRouteCircuits?api-version=2019-12-01
+    #   Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/connections?api-version=2021-02-01
     #
     # Parameters acquired from environment variables:
     #   - {subscriptionId} => Required parameter. It will be acquired by the backend from environment variables.
@@ -41,6 +41,8 @@ class AzureExpressRouteCircuits < AzureGenericResources
     #       not to accept a different `resource_provider`.
     #
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/expressRouteCircuits', opts)
+    opts[:required_parameters] = %i(circuit_name peering_name)
+    opts[:resource_path] = [opts[:circuit_name], 'peerings', opts[:peering_name], 'connections'].join('/')
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -60,25 +62,16 @@ class AzureExpressRouteCircuits < AzureGenericResources
       { column: :types, field: :type },
       { column: :tags, field: :tags },
       { column: :provisioning_states, field: :provisioning_state },
-      { column: :sku_names, field: :sku_name },
-      { column: :sku_tiers, field: :sku_tier },
-      { column: :sku_families, field: :sku_family },
-      { column: :circuit_provisioning_states, field: :circuit_provisioning_state },
-      { column: :allow_classic_operations, field: :allow_classic_operations },
-      { column: :gateway_manager_etags, field: :gateway_manager_etag },
-      { column: :service_keys, field: :serviceKey },
-      { column: :global_reach_enabled, field: :global_reach_enabled },
-      { column: :stags, field: :stag },
-      { column: :service_provider_names, field: :service_provider_name },
-      { column: :service_provider_peering_locations, field: :service_provider_peering_location },
-      { column: :service_provider_bandwidth_in_mbps, field: :service_provider_bandwidth_in_mbps },
+      { column: :circuit_connection_status, field: :circuit_connection_status },
+      { column: :ipv6_circuit_connection_config_status, field: :ipv6_circuit_connection_config_status },
+      { column: :properties, field: :properties },
     ]
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
   end
 
   def to_s
-    super(AzureExpressRouteCircuits)
+    super(AzureExpressRouteCircuitConnectionsResources)
   end
 
   private
@@ -101,18 +94,9 @@ class AzureExpressRouteCircuits < AzureGenericResources
         type: resource[:type],
         tags: resource[:tags],
         provisioning_state: resource[:properties][:provisioningState],
-        sku_name: resource[:sku][:name],
-        sku_tier: resource[:sku][:tier],
-        sku_family: resource[:sku][:family],
-        circuit_provisioning_state: resource[:properties][:circuitProvisioningState],
-        allow_classic_operations: resource[:properties][:allowClassicOperations],
-        gateway_manager_etag: resource[:properties][:gatewayManagerEtag],
-        serviceKey: resource[:properties][:serviceKey],
-        global_reach_enabled: resource[:properties][:globalReachEnabled],
-        stag: resource[:properties][:stag],
-        service_provider_name: resource[:properties][:serviceProviderProperties][:serviceProviderName],
-        service_provider_peering_location: resource[:properties][:serviceProviderProperties][:peeringLocation],
-        service_provider_bandwidth_in_mbps: resource[:properties][:serviceProviderProperties][:bandwidthInMbps],
+        circuit_connection_status: resource[:properties][:circuitConnectionStatus],
+        ipv6_circuit_connection_config_status: resource[:properties][:ipv6CircuitConnectionConfig][:circuitConnectionStatus],
+        properties: resource[:properties],
       }
     end
   end
