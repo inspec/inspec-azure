@@ -218,6 +218,8 @@ The following is a list of static resources.
 - [azure_webapps](docs/resources/azure_webapps.md)
 - [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md)
 - [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md)
+- [azure_express_route_circuit_connections_resource](docs/resources/azure_express_route_circuit_connections_resource.md)
+- [azure_express_route_circuit_connections_resources](docs/resources/azure_express_route_circuit_connections_resources.md)
 
 For more details and different use cases, please refer to the specific resource pages.
 
