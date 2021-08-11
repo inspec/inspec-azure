@@ -65,7 +65,7 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test that the Virtual WAN's Resource Group Encryption not equals 'be_falsey'
+### Test that a Virtual WAN's encryption is not disabled.
 
 ```ruby
 describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
