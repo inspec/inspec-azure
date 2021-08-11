@@ -45,7 +45,7 @@ end
 
 ## Examples
 
-### Test that the Virtual WANs is of Standard Type
+### Test that the Virtual WAN type is `Standard`
 
 ```ruby
 describe azure_virtual_wans.where{ properties.select{|prop| prop.type == 'Standard' } } do
