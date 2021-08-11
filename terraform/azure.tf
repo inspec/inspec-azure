@@ -1332,6 +1332,13 @@ resource "azurerm_data_factory" "adf" {
   resource_group_name = azurerm_resource_group.rg.name
 }
 
+resource "azurerm_data_factory_linked_service_mysql" "dflsmsql" {
+  name                = "dflsm-sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  connection_string   = "Server=test;Port=3306;Database=test;User=test;SSLMode=1;UseSystemTrustStore=0;Password=test"
+}
+
 // the resource itself is not yet available in tf because of this open issue
 // https://github.com/terraform-providers/terraform-provider-azurerm/issues/9197
 //resource "azurerm_policy_exemption" "inspec_compliance_policy_exemption" {

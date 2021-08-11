@@ -406,3 +406,6 @@ output "sample_directory_object" {
   description = "the name of the directory object"
   value = var.sample_directory_object
 }
+output "linked_service_name" {
+  value = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+}
