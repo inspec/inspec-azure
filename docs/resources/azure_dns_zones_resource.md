@@ -46,13 +46,14 @@ refer to resource pack [README](../../README.md#Service-Principal).
 
 | Name                           | Description                                                                      |
   |--------------------------------|----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
+|                  |     |
 | name                           | Name of the Azure resource to test. `Mydns_zones`                          |
 | type                           | type of dns_zones                                                          |
 |max_number_of_recordsets | The maximum number of record sets that can be created in this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|
 |number_of_record_sets| The current number of record sets in this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|
 |name_servers|The name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored.|
 | properties | properties of Azure resource group | `properties`|
+| location | Resource location.|
 
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/dns/zones/get)
@@ -68,17 +69,11 @@ Any attribute in the response may be accessed with the key names separated by do
     its('type') { should eq 'Microsoft.Network/dnszones' }
   end
   ```
-### Ensure that the dns_zones resource is in successful state
-  ```ruby
-  describe azure_dns_zones_resource(resource_group: 'MyResourceGroup', name: 'dns_zones') do
-    its('provisioning_state') { should include('Succeeded') }
-  end
-  ```
 
 ### Ensure that the dns_zones resource is from same location
   ```ruby
   describe azure_dns_zones_resource(resource_group: 'MyResourceGroup', name: 'dns_zones') do
-    its('location') { should include df_location }
+    its('location') { should include 'global' }
   end
   ```
 ## Matchers

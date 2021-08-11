@@ -5,7 +5,7 @@ platform: azure
 
 # azure_dns_zones_resources
 
-Use the `azure_dns_zones_resources` InSpec audit resource to test properties related to bastion hots for a resource group or the entire subscription.
+Use the `azure_dns_zones_resources` InSpec audit resource to test properties related to azure dns zones for a resource group or the entire subscription.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -29,9 +29,8 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/d
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 ## Syntax
 
-An `azure_dns_zones_resources` resource block returns all Azure bastion hots, either within a Resource Group (if provided)
   ```ruby
-  describe azure_dns_zones_resources(resource_group: 'my-rg') do
+  describe azure_dns_zones_resources do
     
   end
   ```
@@ -75,7 +74,7 @@ An `azure_dns_zones_resources` resource block returns all Azure bastion hots, ei
     its('location') { should include df_location }
   end
   ```
-### Test If Any bastion hots Exist in the Resource Group
+### Test If Any azure dns zones Exist in the Resource Group
   ```ruby
   describe azure_dns_zones_resources do
     it { should exist }
@@ -88,7 +87,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
   ```ruby
-  # Should not exist if no bastion hots are in the resource group
+  # Should not exist if no azure dns zones are in the resource group
   describe azure_dns_zones_resources do
     it { should_not exist }
   end

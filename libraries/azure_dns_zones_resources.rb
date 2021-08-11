@@ -12,33 +12,8 @@ class AzureDNSZonesResources < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    # require "byebug"
-    # byebug
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # Azure REST API endpoint URL format listing the all resources for a given subscription:
-    #   GET https://management.azure.com/subscriptions/{subscriptionId}/
-    # providers/Microsoft.Network/dnszones?api-version=2018-05-01
-    #
-    # or in a resource group only
-    #   GET https://management.azure.com/subscriptions/{subscriptionId}/
-    #     # providers/Microsoft.Network/dnszones?api-version=2018-05-01
-    #
-    # The dynamic part that has to be created for this resource:
-    #   Microsoft.Network/dnszones?api-version=2019-12-01
-    #
-    # Parameters acquired from environment variables:
-    #   - {subscriptionId} => Required parameter. It will be acquired by the backend from environment variables.
-    #
-    # For parameters applicable to all resources, see project's README.
-    #
-    # User supplied parameters:
-    #   - resource_group => Optional parameter.
-    #   - api_version => Optional parameter. The latest version will be used unless provided.
-    #
-    # Following resource parameters have to be defined/created here.
-    #   resource_provider => Microsoft.Network/dnszones
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/dnszones', opts)
     # static_resource parameter must be true for setting the resource_provider in the backend.
