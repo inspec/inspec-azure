@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.58.0 -->
+<!-- latest_release 1.58.1 -->
+## [v1.58.1](https://github.com/inspec/inspec-azure/tree/v1.58.1) (2021-08-11)
+
+#### Merged Pull Requests
+- Add .DS_Store to gitignore [#428](https://github.com/inspec/inspec-azure/pull/428) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.58.0](https://github.com/inspec/inspec-azure/tree/v1.58.0) (2021-08-06)
 
 #### Merged Pull Requests
 - F/bastion hosts [#414](https://github.com/inspec/inspec-azure/pull/414) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.57.0](https://github.com/inspec/inspec-azure/tree/v1.57.0) (2021-08-06)
 
