@@ -121,6 +121,8 @@ The following is a list of static resources.
 - [azure_api_managements](docs/resources/azure_api_managements.md)
 - [azure_application_gateway](docs/resources/azure_application_gateway.md)
 - [azure_application_gateways](docs/resources/azure_application_gateways.md)
+- [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md)
+- [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md)
 - [azure_container_group](docs/resources/azure_container_group.md)
 - [azure_container_groups](docs/resources/azure_container_groups.md)
 - [azure_container_registries](docs/resources/azure_container_registries.md)
@@ -219,8 +221,6 @@ The following is a list of static resources.
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
 - [azure_webapps](docs/resources/azure_webapps.md)
-- [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md)
-- [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md)
 
 For more details and different use cases, please refer to the specific resource pages.
 
