@@ -5,7 +5,7 @@ platform: azure
 
 # azure_dns_zones_resources
 
-Use the `azure_dns_zones_resources` InSpec audit resource to test properties related to azure dns zones for a resource group or the entire subscription.
+Use the `azure_dns_zones_resources` InSpec audit resource to test properties related to all Azure DNS zones for a resource group or an entire subscription.
 
 ## Azure REST API version, endpoint, and HTTP client parameters
 
@@ -45,18 +45,17 @@ This resource does not accept any parameters.
 ## Properties
 
 |Property       | Description                                                                         | Filter Criteria<superscript>*</superscript> |
-|---------------|-------------------------------------------------------------------------------------|------------------|
+|---------------|-------------------------------------------------------------------------------------|-------------------|
 | name          | A list of the unique resource names.                                                | `name`            |
-| ids           | A list of dns_zones ids .                                                           | `id`              |
+| ids           | A list of DNS zone IDs.                                                             | `id`              |
 | tags          | A list of `tag:value` pairs defined on the resources.                               | `tags`            |
-| types         | The types of all the dns_zones.                                                     | `type`            |
-| properties    | properties of Azure resource group                                                  | `properties`      |
-| max_number_of_recordsets   | The maximum number of records per record set that can be created in this DNS zone. | `max_number_of_recordsets` |
-| number_of_record_sets| The current number of record sets in this DNS zone.                          | `number_of_record_sets` |
-| name_servers | The name servers for this DNS zone.                                                  | `name_servers` |
+| types         | A list of the types of all DNS zones.                                               | `type`            |
+| properties    | A list of the properties of the Azure DNS zone resources.                           | `properties`      |
+| max_number_of_recordsets | A list of the maximum number of records per record set that can be created in the DNS zones. | `max_number_of_recordsets` |
+| number_of_record_sets | A list of the current number of record sets in the DNS zones.               | `number_of_record_sets` |
+| name_servers  | A list of the name servers for the DNS zones.                                       | `name_servers`    |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-
 
 ## Examples
 

@@ -60,8 +60,8 @@ end
 | max_number_of_recordsets       | The maximum number of record sets that can be created in this DNS zone.          |
 | number_of_record_sets          | The current number of record sets in this DNS zone.                              |
 | name_servers                   | The name servers for this DNS zone.                                              |
-| properties                     | The properties of Azure DNS zones resource.                                      |
-| location                       | The DNS zones resource location.                                                 |
+| properties                     | The properties of the Azure DNS zone resource.                                   |
+| location                       | The DNS zone resource location.                                                  |
 
 
 Also, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/dns/zones/get)
