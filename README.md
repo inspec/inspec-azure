@@ -181,6 +181,8 @@ The following is a list of static resources.
 - [azure_postgresql_server](docs/resources/azure_postgresql_server.md)
 - [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md)
 - [azure_public_ip](docs/resources/azure_public_ip.md)
+- [azure_redis_cache](docs/resources/azure_redis_cache.md)
+- [azure_redis_caches](docs/resources/azure_redis_caches.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
 - [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)

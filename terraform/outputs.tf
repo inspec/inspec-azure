@@ -406,3 +406,8 @@ output "sample_directory_object" {
   description = "the name of the directory object"
   value = var.sample_directory_object
 }
+
+output "inspec_redis_cache_name" {
+  description = "The name of the redis cache created for cloud packs"
+  value = azurerm_redis_cache.inspec_compliance_redis_cache.name
+}
