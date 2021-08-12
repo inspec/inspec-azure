@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.58.1 -->
+<!-- latest_release 1.59.0 -->
+## [v1.59.0](https://github.com/inspec/inspec-azure/tree/v1.59.0) (2021-08-12)
+
+#### Merged Pull Requests
+- Support azure redis cache [#394](https://github.com/inspec/inspec-azure/pull/394) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.58.1](https://github.com/inspec/inspec-azure/tree/v1.58.1) (2021-08-11)
 
 #### Merged Pull Requests
 - Add .DS_Store to gitignore [#428](https://github.com/inspec/inspec-azure/pull/428) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.58.0](https://github.com/inspec/inspec-azure/tree/v1.58.0) (2021-08-06)
 
