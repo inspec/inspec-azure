@@ -116,6 +116,41 @@ variable "management_group_count" {
   default = 1
 }
 
+variable "policy_definition_name" {
+  default = "inspec_compliance_audit"
+}
+
+variable "policy_definition_display_name" {
+  default = "inspec_compliance_audit"
+}
+
+variable "policy_assignment_name" {
+  default = "inspec_policy_assignment_name"
+}
+
+variable "policy_assignment_description" {
+  default = "Policy Assignment created for inspec Cloud resource packs testing"
+}
+
+variable "policy_assignment_display_name" {
+  default = "inspec_policy_assignment_name"
+}
+
+variable "inspec_db_migration_service" {
+  default = {
+    name = "inspec-compliance-migration-dev"
+    sku_name = "Standard_1vCores"
+  }
+}
+
+variable "inspec_container_group_name" {
+  default = "inspec_container_trial"
+}
+
+variable "sample_directory_object" {
+  default = "adc07321-ef2b-44d5-a210-559aa5f10f2d"
+}
+
 variable "inspec_compliance_redis_cache_name" {
   default = "inspec-compliance-redis-cache"
 }

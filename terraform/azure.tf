@@ -3,11 +3,12 @@ terraform {
 }
 
 provider "azurerm" {
-  version         = "~> 1.36.0"
+  version         = "~> 2.1.0"
   subscription_id = var.subscription_id
   client_id       = var.client_id
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
+  features {}
 }
 
 provider "random" {
@@ -1246,4 +1247,125 @@ resource "azurerm_function_app" "web_app_function" {
   tags = {
     user = terraform.workspace
   }
+}
+
+resource "azurerm_container_group" "inspec_container_trial" {
+  name                = var.inspec_container_group_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_address_type     = "public"
+  dns_name_label      = "inspec-container-trial-aci-label"
+  os_type             = "Linux"
+
+  container {
+    name   = "hello-world-inspec"
+    image  = "mcr.microsoft.com/azuredocs/aci-helloworld:latest"
+    cpu    = "0.5"
+    memory = "0.5"
+
+    ports {
+      port     = 443
+      protocol = "TCP"
+    }
+  }
+
+  container {
+    name   = "setup-hw-tutorials"
+    image  = "mcr.microsoft.com/azuredocs/aci-tutorial-sidecar"
+    cpu    = "0.5"
+    memory = "0.5"
+  }
+
+  tags = {
+    environment = "inspec_trial"
+  }
+}
+
+resource "azurerm_policy_definition" "inspec_policy_definition" {
+  name = var.policy_definition_name
+  policy_type = "Custom"
+  mode = "All"
+  display_name = var.policy_definition_display_name
+
+  policy_rule = <<POLICY_RULE
+    {
+    "if": {
+      "not": {
+        "field": "location",
+        "in": "[parameters('allowedLocations')]"
+      }
+    },
+    "then": {
+      "effect": "audit"
+      }
+    }
+  POLICY_RULE
+
+  parameters = <<PARAMETERS
+    {
+    "allowedLocations": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of allowed locations for resources.",
+        "displayName": "Allowed locations",
+        "strongType": "location"
+      }
+    }
+  }
+  PARAMETERS
+
+}
+
+resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
+  name = var.policy_assignment_name
+  scope = azurerm_resource_group.rg.id
+  policy_definition_id = azurerm_policy_definition.inspec_policy_definition.id
+  description = var.policy_assignment_description
+  display_name = var.policy_assignment_display_name
+
+  parameters = <<PARAMETERS
+    {
+      "allowedLocations": {
+        "value": [ "East US" ]
+      }
+    }
+  PARAMETERS
+}
+resource "azurerm_bastion_host" "abh" {
+  name                = "test_bastion"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_configuration {
+    name                 = "configuration"
+    subnet_id            = azurerm_subnet.subnet.id
+    public_ip_address_id = azurerm_public_ip.public_ip_address.id
+  }
+
+resource "azurerm_data_factory" "adf" {
+  name                = "adf-eaxmple"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+// the resource itself is not yet available in tf because of this open issue
+// https://github.com/terraform-providers/terraform-provider-azurerm/issues/9197
+//resource "azurerm_policy_exemption" "inspec_compliance_policy_exemption" {
+//  name                 = "AllowOutliers"
+//  scope                = azurerm_resource_group.rg.id
+//  exemption_category   = "Waiver"
+//  display_name         = "Exempt Allowed locations"
+//  description          = "Exempt resource group to run only inside the classified locations"
+//  expires_on           = "2050-01-01T00:00:00"
+//  policy_assignment_id = azurerm_policy_assignment.inspec_compliance_policy_assignment.id
+//  policy_definition_reference_ids = [
+//    "Limit_Skus"
+//  ]
+//}
+
+resource "azurerm_database_migration_service" "inspec-compliance-migration-dev" {
+  location = azurerm_resource_group.rg.location
+  name = var.inspec_db_migration_service.name
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name = var.inspec_db_migration_service.sku_name
+  subnet_id = azurerm_subnet.subnet.id
 }

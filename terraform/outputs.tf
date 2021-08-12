@@ -358,6 +358,55 @@ output "web_app_function_name" {
   value = "HttpTrigger1"
 }
 
+output "policy_definition_id" {
+  description = "The ID of the policy Definition"
+  value = azurerm_policy_definition.inspec_policy_definition.id
+}
+output "policy_definition_associated_cosmodb_id" {
+  description = "The Resource ID for which a policy definition is run against"
+  value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
+}
+
+output "bastionHostName" {
+  description = "Name of the bastion Host"
+  value = azurerm_bastion_host.abh.name
+}
+
+output "bastionHostLocation" {
+  description = "Location of the bastion Hosts"
+  value = azurerm_bastion_host.abh.location
+}
+
+//output "policy_exemption_name" {
+//  description = "the name of the policy exemption"
+//  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
+//}
+
+output "df_name" {
+  value = azurerm_data_factory.adf.name
+}
+
+output "df_location" {
+  value = azurerm_data_factory.adf.location
+}
+output "inspec_db_migration_service_name" {
+  value = var.inspec_db_migration_service.name
+}
+
+output "inspec_db_migration_service_sku_name" {
+  value = var.inspec_db_migration_service.sku_name
+}
+
+output "inspec_container_group_name" {
+  description = "the name of the container group"
+  value = azurerm_container_group.inspec_container_trial.name
+}
+
+output "sample_directory_object" {
+  description = "the name of the directory object"
+  value = var.sample_directory_object
+}
+
 output "inspec_redis_cache_name" {
   description = "The name of the redis cache created for cloud packs"
   value = azurerm_redis_cache.inspec_compliance_redis_cache.name

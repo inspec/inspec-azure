@@ -4,7 +4,7 @@ class AzurePolicyDefinitions < AzureGenericResources
   name 'azure_policy_definitions'
   desc 'Verifies settings for multiple policy definitions'
   example <<-EXAMPLE
-    azure_policy_definitions(built_in: true) do
+    azure_policy_definitions(built_in_only: true) do
       it{ should exist }
     end
   EXAMPLE
@@ -63,9 +63,25 @@ class AzurePolicyDefinitions < AzureGenericResources
     # Define the column and field names for FilterTable.
     # In most cases, the `column` should be the pluralized form of the `field`.
     # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
+    @table.map do |row|
+      props = row[:properties]
+      row[:policy_type] = props[:policyType]
+      row[:mode] = props[:mode]
+      row[:metadata_version] = props.dig(:metadata, :version)
+      row[:metadata_category] = props.dig(:metadata, :category)
+      row[:parameters] = props[:parameters]
+      row[:policy_rule] = props.dig(:metadata, :policyRule)
+    end
+
     table_schema = [
       { column: :names, field: :name },
       { column: :ids, field: :id },
+      { column: :policy_types, field: :policy_type },
+      { column: :modes, field: :mode },
+      { column: :metadata_versions, field: :metadata_version },
+      { column: :metadata_categories, field: :metadata_category },
+      { column: :parameters, field: :parameters },
+      { column: :policy_rules, field: :policy_rule },
       { column: :properties, field: :properties },
     ]
 
