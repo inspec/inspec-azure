@@ -182,8 +182,14 @@ The following is a list of static resources.
 - [azure_postgresql_server](docs/resources/azure_postgresql_server.md)
 - [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md)
 - [azure_public_ip](docs/resources/azure_public_ip.md)
+- [azure_redis_cache](docs/resources/azure_redis_cache.md)
+- [azure_redis_caches](docs/resources/azure_redis_caches.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
+- [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)
+- [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
+- [azure_resource_health_emerging_issue](docs/resources/azure_resource_health_emerging_issue.md)
+- [azure_resource_health_emerging_issues](docs/resources/azure_resource_health_emerging_issues.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
 - [azure_role_definitions](docs/resources/azure_role_definitions.md)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
@@ -213,7 +219,8 @@ The following is a list of static resources.
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
 - [azure_webapps](docs/resources/azure_webapps.md)
-
+- [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md)
+- [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md)
 
 For more details and different use cases, please refer to the specific resource pages.
 
