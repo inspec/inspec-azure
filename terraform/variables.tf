@@ -150,3 +150,7 @@ variable "inspec_container_group_name" {
 variable "sample_directory_object" {
   default = "adc07321-ef2b-44d5-a210-559aa5f10f2d"
 }
+
+variable "inspec_compliance_redis_cache_name" {
+  default = "inspec-compliance-redis-cache"
+}

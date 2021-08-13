@@ -375,6 +375,16 @@ output "dns_location" {
   value = "global"
 }
 
+output "bastionHostName" {
+  description = "Name of the bastion Host"
+  value = azurerm_bastion_host.abh.name
+}
+
+output "bastionHostLocation" {
+  description = "Location of the bastion Hosts"
+  value = azurerm_bastion_host.abh.location
+}
+
 //output "policy_exemption_name" {
 //  description = "the name of the policy exemption"
 //  value = azurerm_policy_exemption.inspec_compliance_policy_exemption.name
@@ -403,4 +413,9 @@ output "inspec_container_group_name" {
 output "sample_directory_object" {
   description = "the name of the directory object"
   value = var.sample_directory_object
+}
+
+output "inspec_redis_cache_name" {
+  description = "The name of the redis cache created for cloud packs"
+  value = azurerm_redis_cache.inspec_compliance_redis_cache.name
 }
