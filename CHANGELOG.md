@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.60.0 -->
+<!-- latest_release 1.61.0 -->
+## [v1.61.0](https://github.com/inspec/inspec-azure/tree/v1.61.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/express route [#419](https://github.com/inspec/inspec-azure/pull/419) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.60.0](https://github.com/inspec/inspec-azure/tree/v1.60.0) (2021-08-13)
 
 #### Merged Pull Requests
 - F/azure dns [#416](https://github.com/inspec/inspec-azure/pull/416) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.59.0](https://github.com/inspec/inspec-azure/tree/v1.59.0) (2021-08-12)
 
