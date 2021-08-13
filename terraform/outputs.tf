@@ -367,6 +367,14 @@ output "policy_definition_associated_cosmodb_id" {
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
 
+output "dns_zones" {
+  value = azurerm_dns_zone.example-public.name
+}
+
+output "dns_location" {
+  value = "global"
+}
+
 output "bastionHostName" {
   description = "Name of the bastion Host"
   value = azurerm_bastion_host.abh.name

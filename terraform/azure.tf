@@ -1341,6 +1341,16 @@ resource "azurerm_bastion_host" "abh" {
     public_ip_address_id = azurerm_public_ip.public_ip_address.id
   }
 
+resource "azurerm_dns_zone" "example-public" {
+  name                = "mydomain_example.com"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_private_dns_zone" "example-private" {
+  name                = "mydomain_example.com"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+  
 resource "azurerm_data_factory" "adf" {
   name                = "adf-eaxmple"
   location            = azurerm_resource_group.rg.location

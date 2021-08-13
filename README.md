@@ -130,6 +130,8 @@ The following is a list of static resources.
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
 - [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
+- [azure_dns_zones_resource](docs/resources/azure_dns_zones_resource.md)
+- [azure_dns_zones_resources](docs/resources/azure_dns_zones_resources.md)
 - [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md)
 - [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
 - [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
