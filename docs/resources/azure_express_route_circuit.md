@@ -5,16 +5,16 @@ platform: azure
 
 # azure_express_route_circuit
 
-Use the `azure_express_route_circuit` InSpec audit resource to test properties related to a express circuit resource.
+Use the `azure_express_route_circuit` InSpec audit resource to test properties of an Azure ExpressRoute circuit resource.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
@@ -26,98 +26,88 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`resource_group` and express circuit resource `name` or the `resource_id` must be given as a parameter.
+This resource requires the `resource_group` and ExpressRoute circuit `circuit_name` parameters, or the `resource_id` parameter for a valid query.
+
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', name: 'express circuit_name') do
+describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_name: 'EXPRESS_CIRCUIT_NAME') do
   it { should exist }
 end
 ```
+
+or
+
+```ruby
+describe azure_express_route_circuit(resource_id: 'RESOURCE_ID') do
+  it { should exist }
+end
+```
+
 ## Parameters
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| circuit_name                           | Name of the circuit test. `circuit_name`                                 |
+| resource_group                 | The Azure resource group that the targeted resource resides in.                  |
+| circuit_name                   | The name of the ExpressRoute circuit.                                            |
+| resource_id                    | The resource ID of the ExpressRoute circuit.                                     |
 
-Both of the parameter sets should be provided for a valid query:
-- `resource_group` and `name`
+Provide the `resource_group` and `name` parameters, or the `resource_id` for a valid query.
 
 ## Properties
 
-| Name                           | Description                                                                      |
-|--------------------------------|----------------------------------------------------------------------------------|
-| resource_group                 | The name of the resource group in which to create the ExpressRoute circuit. Changing this forces a new resource to be created. `MyResourceGroup`    |
-| name                           | The name of the ExpressRoute circuit. Changing this forces a new resource to be created. `Myexpress circuitHostName`                          |
-| type                           | type of express ExpressRoute circuit                                                          |
-| provisioning_state             | State of express ExpressRoute circuit creation                                                |
-| location             | Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.                                              |
-| service_provider_properties_bandwidth_in_mbps             | The bandwidth in Mbps of the circuit being created on the Service Provider.                                                |
-| service_provider_properties_peering_location             | The name of the peering location and not the Azure resource location. Changing this forces a new resource to be created.                                              |
-| service_provider_properties_name             | The name of the ExpressRoute Service Provider. Changing this forces a new resource to be created.                                                |
-| service_provider_provisioning_state             | The ExpressRoute circuit provisioning state from your chosen service provider. Possible values are "NotProvisioned", "Provisioning", "Provisioned", and "Deprovisioning".                                                |
-| service_key             | State of express circuitHostName creation                                                |
-| stag             | The identifier of the circuit traffic. Outer tag for QinQ encapsulation.                                              |
-| global_reach_enabled             | ExpressRoute circuit allowGlobalReachEnable   `boolean`                                          |
-| allow_global_reach             | ExpressRoute circuit Flag denoting global reach status. `boolean`                                          |
-| gateway_manager_etag             | The GatewayManager Etag.                                                |
-| allow_classic_operations             | Allow classic operations. `boolean`                                                |
-| circuit_provisioning_state             | State of express circuitHostName creation                                                |
-| sku_name             | Name sku block for the ExpressRoute circuit as documented below.                                               |
-| sku_tier             | The service tier. Possible values are Basic, Local, Standard or Premium.                                               |
-| sku_family             | The billing mode for bandwidth. Possible values are MeteredData or UnlimitedData.                                             |
-Both of the parameter sets should be provided for a valid query:
-- `resource_group` and `circuit_name`
-
+| Name                           | Description                                                                        |
+|--------------------------------|------------------------------------------------------------------------------------|
+| resource_group                 | The name of the resource group that the ExpressRoute circuit resource resides in.  |
+| name                           | The name of the ExpressRoute circuit.                                              |
+| type                           | The ExpressRoute circuit type.                                                     |
+| provisioning_state             | The provisioning state of ExpressRoute circuit resource.                           |
+| location                       | The location of the ExpressRoute circuit resource.                                 |
+| service_provider_properties_bandwidth_in_mbps  | The bandwidth in Mbps of the circuit when the circuit is provisioned on an ExpressRoutePort resource. |
+| service_provider_properties_peering_location   | The ExpressRoute circuit resource service provider peering location. |
+| service_provider_properties_name               | The name of the ExpressRoute circuit service provider name.        |
+| service_provider_provisioning_state            | The service provider provisioning state of the ExpressRoute circuit resource. Possible values are, `NotProvisioned`, `Provisioning`, `Provisioned`, and `Deprovisioning`. |
+| service_key                    | The ServiceKey.                                                                    |
+| stag                           | The identifier of the circuit traffic. Outer tag for QinQ encapsulation.           |
+| global_reach_enabled           | Flag denoting global reach status.  `boolean`                                      |
+| allow_global_reach             | Flag to enable Global Reach on the ExpressRoute circuit. `boolean`                 |
+| gateway_manager_etag           | The GatewayManager Etag.                                                           |
+| allow_classic_operations       | Whether "Allow Classic Operations" is set to `true` or `false`.                    |
+| circuit_provisioning_state     | The CircuitProvisioningState state of the resource.                                |
+| sku_name                       | The name of the SKU.                                                               |
+| sku_tier                       | The tier of the SKU. Possible values are `Basic`, `Local`, `Standard`, or `Premium`. |
+| sku_family                     | The family of the SKU. Possible values are: `UnlimitedData` and `MeteredData`.     |
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/expressroute/express-route-circuits/get) for other properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
-
 ## Examples
 
-### Ensure that the express circuit resource has is from same type
+### Test the an ExpressRoute circuit resource has the correct type
+
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'express circuit_name') do
+describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_name: 'EXPRESS_CIRCUIT_NAME') do
   its('type') { should eq 'Microsoft.Network/expressRouteCircuits' }
 end
 ```
-### Ensure that the express circuit resource is in successful state
+### Test the an ExpressRoute circuit resource is in successful state
+
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'express circuit_name') do
-  its('provisioning_state') { should include('Succeeded') }
+describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_name: 'EXPRESS_CIRCUIT_NAME') do
+  its('provisioning_state') { should eq 'Succeeded' }
 end
 ```
 
-### Ensure that the express circuit resource is from same location
+### Test the location of an ExpressRoute circuit resource
+
 ```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'circuit_name') do
-  its('location') { should include df_location }
+describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_name: 'EXPRESS_CIRCUIT_NAME') do
+  its('location') { should eq 'RESOURCE_LOCATION' }
 end
 ```
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
-```ruby
-describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'mycircuit_name') do
-  it { should exist }
-  its('service_provider_properties_bandwidth_in_mbps') { should eq bandwidthInMbps }
-  its('service_provider_properties_peering_location') { should include peeringLocation }
-  its('service_provider_properties_name') { should include serviceProviderName }
-  its('service_provider_provisioning_state') { should include serviceProviderProvisioningState }
-  its('service_key') { should include serviceKey }
-  its('stag') { should eq stag }
-  its('global_reach_enabled') { should eq globalReachEnabled }
-  its('allow_global_reach') { should eq allowGlobalReach }
-  its('gateway_manager_etag') { should include gatewayManagerEtag }
-  its('allow_classic_operations') { should eq allowClassicOperations }
-  its('circuit_provisioning_state') { should include circuitProvisioningState }
-  its('sku_name') { should include sku_name }
-  its('sku_tier') { should include sku_tier }
-  its('sku_family') { should include sku_family }
-end
-```
-
 ### exists
+
 ```ruby
 # If a express circuit resource is found it will exist
 describe azure_express_route_circuit(resource_group: 'MyResourceGroup', circuit_name: 'mycircuit_name') do
