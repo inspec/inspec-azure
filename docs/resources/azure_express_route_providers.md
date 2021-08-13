@@ -86,8 +86,6 @@ describe azure_express_route_providers(resource_group: 'MyResourceGroup') do
   its('peering_locations_list') { should include(["Melbourne", "Sydney"]) }
   its('bandwidths_offered_list') { should include('bandwidths_offered') }
 end
-
-
 ```
 ## Azure Permissions
 
