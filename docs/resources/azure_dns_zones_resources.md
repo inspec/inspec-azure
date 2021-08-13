@@ -25,7 +25,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/dns/zones/get) for  properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/dns/zones/list) for  properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Syntax
