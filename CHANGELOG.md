@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.59.0 -->
+<!-- latest_release 1.60.0 -->
+## [v1.60.0](https://github.com/inspec/inspec-azure/tree/v1.60.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/azure dns [#416](https://github.com/inspec/inspec-azure/pull/416) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.59.0](https://github.com/inspec/inspec-azure/tree/v1.59.0) (2021-08-12)
 
 #### Merged Pull Requests
 - Support azure redis cache [#394](https://github.com/inspec/inspec-azure/pull/394) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.58.1](https://github.com/inspec/inspec-azure/tree/v1.58.1) (2021-08-11)
 
