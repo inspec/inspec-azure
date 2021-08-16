@@ -1,5 +1,5 @@
 require_relative 'helper'
-require 'azure_data_factories'
+require 'azure_data_factory_gateways'
 
 class AzureDataFactoriesConstructorTest < Minitest::Test
   # resource_type should not be allowed.
