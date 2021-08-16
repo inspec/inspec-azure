@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-The `resource_group` and `vnet` must be given as a parameter.
+`resource_group` and `vnet` are required parameters.
 ```ruby
 describe azure_virtual_network_peerings(resource_group: 'MyResourceGroup', vnet: 'virtual-network-name') do
   #...

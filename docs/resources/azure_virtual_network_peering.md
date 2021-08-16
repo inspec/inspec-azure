@@ -5,7 +5,7 @@ platform: azure
 
 # azure_virtual_network_peering
 
-Use the `azure_virtual_network_peering` InSpec audit resource to test properties related to a peering for a given virtual network.
+Use the `azure_virtual_network_peering` InSpec audit resource to test properties related to a peering for a virtual network.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`resource_group`, `vnet` and `name` or the `resource_id` must be given as a parameter.
+This resource requires either the `resource_id` parameter or the `resource_group`, `vnet` and `name` parameters.
 ```ruby
 describe azure_virtual_network_peering(resource_group: 'MyResourceGroup',vnet: 'virtual-network-name' name: 'virtual-network-peering-name') do
   it { should exist }
@@ -50,7 +50,7 @@ Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
 - `resource_group`, `vnet` and `name`
 
-## Parameters
+## Properties
 
 | Property | Description |
 |----------|-------------|
