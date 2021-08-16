@@ -367,6 +367,14 @@ output "policy_definition_associated_cosmodb_id" {
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
 
+output "dns_zones" {
+  value = azurerm_dns_zone.example-public.name
+}
+
+output "dns_location" {
+  value = "global"
+}
+
 output "bastionHostName" {
   description = "Name of the bastion Host"
   value = azurerm_bastion_host.abh.name
@@ -397,6 +405,10 @@ output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
 
+output "express_route_name" {
+  value = var.express_route_name
+}
+
 output "inspec_container_group_name" {
   description = "the name of the container group"
   value = azurerm_container_group.inspec_container_trial.name
@@ -405,4 +417,9 @@ output "inspec_container_group_name" {
 output "sample_directory_object" {
   description = "the name of the directory object"
   value = var.sample_directory_object
+}
+
+output "inspec_redis_cache_name" {
+  description = "The name of the redis cache created for cloud packs"
+  value = azurerm_redis_cache.inspec_compliance_redis_cache.name
 }
