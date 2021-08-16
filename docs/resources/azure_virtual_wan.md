@@ -21,7 +21,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`name` is a required parameter.
+`name` and `resource_group` are required parameters.
 
 ```ruby
 describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
