@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.61.0 -->
+<!-- latest_release 1.61.1 -->
+## [v1.61.1](https://github.com/inspec/inspec-azure/tree/v1.61.1) (2021-08-16)
+
+#### Merged Pull Requests
+- Fix parameters in the azure_dns_zones_resource.md [#431](https://github.com/inspec/inspec-azure/pull/431) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.61.0](https://github.com/inspec/inspec-azure/tree/v1.61.0) (2021-08-13)
 
 #### Merged Pull Requests
 - F/express route [#419](https://github.com/inspec/inspec-azure/pull/419) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.60.0](https://github.com/inspec/inspec-azure/tree/v1.60.0) (2021-08-13)
 
