@@ -49,7 +49,10 @@ end
 |--------------------------------|----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in.                      |
 | name                           | Name of the DNS zone to test.                                                    |
-Both resource_group and name is mandatory parameters.
+| resource_id                    | The resource ID of the DNS zone to test.                                         |
+
+The `resource_group` and `name`, or the `resource_id` are required parameters.
+
 ## Properties
 
 | Name                           | Description                                                                      |
