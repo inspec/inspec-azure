@@ -941,6 +941,13 @@ resource "azurerm_virtual_network" "app-gw" {
   address_space       = ["10.254.0.0/16"]
 }
 
+resource "azurerm_virtual_network_peering" "network_peering" {
+  name                      = "virtual-network-peering-test"
+  resource_group_name       = azurerm_resource_group.rg.name
+  virtual_network_name      = azurerm_virtual_network.vnet.name
+  remote_virtual_network_id = azurerm_virtual_network.app-gw.id
+}
+
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
