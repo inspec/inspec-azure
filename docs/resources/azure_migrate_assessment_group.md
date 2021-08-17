@@ -26,13 +26,13 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name` is a required parameter and `resource_group` could be provided as an optional parameter.
+`name`, `project_name` and `resource_group` are required parameters.
 
 ```ruby
 describe azure_migrate_assessment_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_group') do
   it                                      { should exist }
-  its('name')                             { should cmp 'zoneA_machines_migrate_assessment' }
-  its('type')                             { should cmp 'Microsoft.Migrate/assessmentprojects/groups/assessments' }
+  its('name')                             { should eq 'zoneA_machines_group' }
+  its('type')                             { should cmp 'Microsoft.Migrate/assessmentProjects/groups' }
 end
 ```
 
@@ -48,34 +48,37 @@ end
 | name           | Name of the Azure Migrate Assessment Group to test.                                   |
 | resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | project_name   | Azure Migrate Assessment Project.                                                |
-| name           | Unique name of the group within a project.                                   |
 
 The parameter set should be provided for a valid query:
 - `resource_group` and `project_name` and `name`
 
 ## Properties
 
-| Property                      | Description                                                      |
-|-------------------------------|------------------------------------------------------------------|
-| id                            | Path reference to the assessment.                                |
-| name                          | Unique name of an assessment.                                    |
+| Property                      | Description                                                       |
+|-------------------------------|-------------------------------------------------------------------|
+| id                            | Path reference to the group.                                      |
+| name                          | Name of the group.                                                |
 | type                          | Type of the object. `Microsoft.Migrate/assessmentProjects/groups` |
-| eTag                          | For optimistic concurrency control.                              |
-| properties                    | Properties of the assessment.                                    |
+| eTag                          | For optimistic concurrency control.                               |
+| properties                    | Properties of the group.                                          |
+| properties.areAssessmentsRunning | If the assessments are in running state.                       |
+| properties.assessments        | List of References to Assessments created on this group.          |
+| properties.machineCount       | Number of machines part of this group.                            |
+
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/get) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/groups/get) for other properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-### Test that the Migrate Assessment Group has a minimum scalingFactor.
+### Test that the Migrate Assessment Group has at-least 5 machines.
 
 ```ruby
 describe azure_migrate_assessment_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_group') do
-  its('properties.scalingFactor') { should eq 1.0 }
+  its('properties.machineCount') { should be >= 5 }
 end
 ```
 
@@ -90,7 +93,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 describe azure_migrate_assessment_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_group') do
   it { should exist }
 end
-# if Migrate Assessment Group are not found it will not exist
+# if Migrate Assessment Group is not found it will not exist
 describe azure_migrate_assessment_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_group') do
   it { should_not exist }
 end

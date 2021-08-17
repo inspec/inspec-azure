@@ -13,7 +13,7 @@ class AzureMigrateAssessmentGroup < AzureGenericResource
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Migrate/assessmentProjects', opts)
-    opts[:required_parameters] = %i(project_name group_name name)
+    opts[:required_parameters] = %i(project_name name)
     opts[:resource_path] = [opts[:project_name], 'groups'].join('/')
     super(opts, true)
   end

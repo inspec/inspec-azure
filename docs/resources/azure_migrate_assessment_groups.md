@@ -46,31 +46,39 @@ The parameter set should be provided for a valid query:
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
-|--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | Path reference to the assessments.                                     | `id`             |
-| names                          | Unique names for all assessments.                                      | `name`           |
-| types                          | Type of the objects.                                                   | `type`           |
-| eTags                          | A list of eTags for all the assessments.                               | `eTag`           |
-| properties                     | A list of Properties for all the assessments.                          | `properties`     |
+|--------------------------------|------------------------------------------------------------------------|--------------------|
+| ids                            | Path reference to all the groups.                                      | `id`               |
+| names                          | Unique names for all groups.                                           | `name`             |
+| types                          | Type of the objects.                                                   | `type`             |
+| eTags                          | A list of eTags for all the groups.                                    | `eTag`             |
+| properties                     | A list of Properties for all the groups.                               | `properties`       |
+| areAssessmentsRunnings         | A list of boolean describing the assessment run state                  | `areAssessmentsRunning` |
+| assessments                    | List of References to Assessments created on this group.               | `assessments`      |
+| createdTimestamps              | List of creation times of the groups.                                  | `createdTimestamp` |
+| groupStatuses                  | List of creation status of the groups.                                 | `groupStatus`      |
+| groupTypes                     | List of group types.                                                   | `groupType`        |
+| machineCounts                  | List of machine counts.                                                | `machineCount`     |
+| updatedTimestamps              | List of updated timestamps of the groups.                              | `updatedTimestamp` |
 
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/groups/list-by-project) for the complete list of properties available.
 
 ## Examples
 
-### Loop through Migrate Assessments by their names.
+### Loop through Migrate Assessment Groups by their names.
 
 ```ruby
 azure_migrate_assessment_groups(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').names.each do |name|
-  describe azure_migrate_assessment_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_group') do
+  describe azure_migrate_assessment_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: name) do
     it { should exist }
   end
 end
 ```
-### Test that there are Migrate Assessments with local redundancy.
+### Test that there are Migrate Assessment Groups for which the assessments are running 
 
 ```ruby
-describe azure_migrate_assessment_groups(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').where(azureStorageRedundancy: 'LocallyRedundant') do
+describe azure_migrate_assessment_groups(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').where(areAssessmentsRunning: true) do
   it { should exist }
 end
 ```
