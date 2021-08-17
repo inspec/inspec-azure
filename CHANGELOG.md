@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.61.2 -->
+<!-- latest_release 1.62.0 -->
+## [v1.62.0](https://github.com/inspec/inspec-azure/tree/v1.62.0) (2021-08-17)
+
+#### Merged Pull Requests
+- adding &#39;virtual network peering&#39; resource [#421](https://github.com/inspec/inspec-azure/pull/421) ([Rohit1509](https://github.com/Rohit1509))
+<!-- latest_release -->
+
 ## [v1.61.2](https://github.com/inspec/inspec-azure/tree/v1.61.2) (2021-08-17)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.18.2 to ~&gt; 1.19.0 [#436](https://github.com/inspec/inspec-azure/pull/436) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.61.1](https://github.com/inspec/inspec-azure/tree/v1.61.1) (2021-08-16)
 
