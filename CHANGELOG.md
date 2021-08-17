@@ -1,10 +1,55 @@
 # Changelog
-<!-- latest_release 1.55.0 -->
+<!-- latest_release 1.61.2 -->
+## [v1.61.2](https://github.com/inspec/inspec-azure/tree/v1.61.2) (2021-08-17)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.18.2 to ~&gt; 1.19.0 [#436](https://github.com/inspec/inspec-azure/pull/436) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
+## [v1.61.1](https://github.com/inspec/inspec-azure/tree/v1.61.1) (2021-08-16)
+
+#### Merged Pull Requests
+- Fix parameters in the azure_dns_zones_resource.md [#431](https://github.com/inspec/inspec-azure/pull/431) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.61.0](https://github.com/inspec/inspec-azure/tree/v1.61.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/express route [#419](https://github.com/inspec/inspec-azure/pull/419) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.60.0](https://github.com/inspec/inspec-azure/tree/v1.60.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/azure dns [#416](https://github.com/inspec/inspec-azure/pull/416) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.59.0](https://github.com/inspec/inspec-azure/tree/v1.59.0) (2021-08-12)
+
+#### Merged Pull Requests
+- Support azure redis cache [#394](https://github.com/inspec/inspec-azure/pull/394) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.58.1](https://github.com/inspec/inspec-azure/tree/v1.58.1) (2021-08-11)
+
+#### Merged Pull Requests
+- Add .DS_Store to gitignore [#428](https://github.com/inspec/inspec-azure/pull/428) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.58.0](https://github.com/inspec/inspec-azure/tree/v1.58.0) (2021-08-06)
+
+#### Merged Pull Requests
+- F/bastion hosts [#414](https://github.com/inspec/inspec-azure/pull/414) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.57.0](https://github.com/inspec/inspec-azure/tree/v1.57.0) (2021-08-06)
+
+#### Merged Pull Requests
+- Account Storage Resource Fix [#423](https://github.com/inspec/inspec-azure/pull/423) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.56.0](https://github.com/inspec/inspec-azure/tree/v1.56.0) (2021-08-06)
+
+#### Merged Pull Requests
+- Support ad directory objects [#406](https://github.com/inspec/inspec-azure/pull/406) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.55.0](https://github.com/inspec/inspec-azure/tree/v1.55.0) (2021-08-05)
 
 #### Merged Pull Requests
 - Support resource health availability statuses [#411](https://github.com/inspec/inspec-azure/pull/411) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.54.0](https://github.com/inspec/inspec-azure/tree/v1.54.0) (2021-08-05)
 
