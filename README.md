@@ -218,6 +218,8 @@ The following is a list of static resources.
 - [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
+- [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
+- [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
 - [azure_web_app_function](docs/resources/azure_web_app_function.md)
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
