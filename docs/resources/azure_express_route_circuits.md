@@ -36,15 +36,6 @@ describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
-
-or
-
-```ruby
-describe azure_express_route_circuits do
-  #...
-end
-```
-
 ## Parameters
 
 |Property        | Description                                                                          |
