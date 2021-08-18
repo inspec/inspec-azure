@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.62.0 -->
+<!-- latest_release 1.63.0 -->
+## [v1.63.0](https://github.com/inspec/inspec-azure/tree/v1.63.0) (2021-08-18)
+
+#### Merged Pull Requests
+- allow helper method for dynamic population of filter table from response [#438](https://github.com/inspec/inspec-azure/pull/438) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.62.0](https://github.com/inspec/inspec-azure/tree/v1.62.0) (2021-08-17)
 
 #### Merged Pull Requests
 - adding &#39;virtual network peering&#39; resource [#421](https://github.com/inspec/inspec-azure/pull/421) ([Rohit1509](https://github.com/Rohit1509))
-<!-- latest_release -->
 
 ## [v1.61.2](https://github.com/inspec/inspec-azure/tree/v1.61.2) (2021-08-17)
 
