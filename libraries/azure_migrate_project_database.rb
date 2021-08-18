@@ -17,7 +17,7 @@ class AzureMigrateProjectDatabase < AzureGenericResource
     opts[:resource_path] = [opts[:project_name], 'groups'].join('/')
     super(opts, true)
     assessment_data_hash = properties.assessmentData.each_with_object(Hash.new { |h, k| h[k] = [] }) do |assessment_data, hash|
-      assessment_data.each_pair { |key, value| hash[key] << value }
+      assessment_data.each_pair { |key, value| hash[key.to_s.pluralize.to_sym] << value }
     end
     create_resource_methods(assessment_data_hash)
   end
