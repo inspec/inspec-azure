@@ -49,7 +49,6 @@ end
 | resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | project_name   | Azure Migrate Assessment Project.                                                |
 | group_name     | Unique name of a group within a project.                                         |
-| name           | Unique name of an assessment within a project.                                   |
 
 The parameter set should be provided for a valid query:
 - `resource_group` and `project_name` and `group_name` and `name`
@@ -71,7 +70,7 @@ The parameter set should be provided for a valid query:
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/get) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/machines/get) for other properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
