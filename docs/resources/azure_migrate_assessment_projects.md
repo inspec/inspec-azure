@@ -52,8 +52,8 @@ end
 | customerStorageAccountArmIds   | The ARM ids of the storage account used for interactions when public access is disabled.| `customerStorageAccountArmId` |
 | customerWorkspaceIds           | The ARM ids of service map workspace created by customer.              | `customerWorkspaceId` |
 | customerWorkspaceLocations     | Locations of service map workspace created by customer.                | `customerWorkspaceLocation`|
-| lastAssessmentTimestamps       | Storage Redundancy types offered by Azure.                             | `lastAssessmentTimestamp` |
-| numberOfAssessments            | Times when last assessment was created.                                | `numberOfAssessments`|
+| lastAssessmentTimestamps       | Times when last assessment was created.                                | `lastAssessmentTimestamp` |
+| numberOfAssessments            | Number of assessments created in the project.                          | `numberOfAssessments`|
 | numberOfGroups                 | Number of groups created in all the projects.                          | `numberOfGroups`  |
 | numberOfMachines               | Number of machines in all the projects.                                | `numberOfMachines`|
 | privateEndpointConnections     | The list of private endpoint connections to the projects.              | `privateEndpointConnections` |
