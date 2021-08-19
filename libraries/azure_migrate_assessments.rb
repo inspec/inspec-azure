@@ -21,6 +21,10 @@ class AzureMigrateAssessments < AzureGenericResources
     AzureGenericResources.populate_filter_table(:table, table_schema)
   end
 
+  def to_s
+    super(AzureMigrateAssessments)
+  end
+
   private
 
   def populate_table

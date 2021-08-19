@@ -17,4 +17,8 @@ class AzureMigrateAssessment < AzureGenericResource
     opts[:resource_path] = [opts[:project_name], 'groups', opts[:group_name], 'assessments'].join('/')
     super(opts, true)
   end
+
+  def to_s
+    super(AzureMigrateAssessment)
+  end
 end
