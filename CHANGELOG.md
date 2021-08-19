@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.63.0 -->
+<!-- latest_release 1.63.1 -->
+## [v1.63.1](https://github.com/inspec/inspec-azure/tree/v1.63.1) (2021-08-19)
+
+#### Merged Pull Requests
+- fixed issue azure_resource_group&#39;s resource_id expected format is inc… [#433](https://github.com/inspec/inspec-azure/pull/433) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.63.0](https://github.com/inspec/inspec-azure/tree/v1.63.0) (2021-08-18)
 
 #### Merged Pull Requests
 - allow helper method for dynamic population of filter table from response [#438](https://github.com/inspec/inspec-azure/pull/438) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.62.0](https://github.com/inspec/inspec-azure/tree/v1.62.0) (2021-08-17)
 
