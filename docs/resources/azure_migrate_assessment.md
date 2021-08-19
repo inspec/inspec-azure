@@ -45,11 +45,10 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Migrate Assessments to test.                                   |
+| name           | Name of the Azure Migrate Assessment to test.                                   |
 | resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
 | project_name   | Azure Migrate Assessment Project.                                                |
 | group_name     | Unique name of a group within a project.                                         |
-| name           | Unique name of an assessment within a project.                                   |
 
 The parameter set should be provided for a valid query:
 - `resource_group` and `project_name` and `group_name` and `name`
