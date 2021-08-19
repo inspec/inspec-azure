@@ -31,7 +31,7 @@ class AzureMigrateProjectDatabaseInstances < AzureGenericResources
     @resources.each do |resource|
       resource = resource.merge(resource[:properties])
       discovery_data_hash = resource[:discoveryData].each_with_object(Hash.new { |h, k| h[k] = [] }) do |discovery_data, hash|
-        discovery_data.each_pair { |key, value| hash[key] << value }
+        discovery_data.each_pair { |key, value| hash[key.to_s.pluralize.to_sym] << value }
       end
       @table << resource.merge(discovery_data_hash)
     end
