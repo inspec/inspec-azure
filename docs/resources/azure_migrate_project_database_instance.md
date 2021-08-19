@@ -55,20 +55,25 @@ The parameter set should be provided for a valid query:
 
 ## Properties
 
-| Property                      | Description                                                      |
-|-------------------------------|------------------------------------------------------------------|
-| id                            | Path reference to the Migrate Project Database Instance.                  |
-| name                          | Unique name of an Migrate Project Database Instance.                      |
-| type                          | Type of the object. `Microsoft.Migrate/MigrateProjects/Databases`|
-| properties                    | Properties of the assessment.                                    |
-| properties.assessmentData     | Assessment details of the database published by various sources. |
-| assessmentIds                 | The database assessment scope/Ids.                               |
-| migrationBlockersCounts       | The number of blocking changes found.                            |
-| breakingChangesCounts         | The number of breaking changes found.                            |
-| assessmentTargetTypes         | The assessed target database types.                              |
-| solutionNames                 | The names of the solutions that sent the data.                   |
-| instanceIds                   | The database servers' instance Ids.                              |
-| databaseNames                 | The name of the databases.                                       |
+| Property                 | Description                                                      |
+|--------------------------|------------------------------------------------------------------|
+| id                       | Path reference to the Migrate Project Database Instance.         |
+| name                     | Unique name of an Migrate Project Database Instance.             |
+| type                     | Type of the object. `Microsoft.Migrate/MigrateProjects/Databases`|
+| properties               | The properties of the machine.                                    |
+| properties.discoveryData | The assessment details of the database instance published by various sources. |
+| properties.summary       | The database instances summary per solution.                     |
+| enqueueTimes             | The times the message were enqueued.                               |
+| extendedInfos            | The extended properties of the database server.                  |
+| hostNames                | The host names of the database servers.                          |
+| instanceIds              | The database instance Ids.                                       |
+| instanceNames            | The database instance names.                                     |
+| instanceTypes            | The database instance types.                                     |
+| instanceVersions         | The database instance versions.                                  |
+| ipAddresses              | The IP addresses of the database server. IP addresses could be IP V4 or IP V6.|
+| lastUpdatedTimes         | The time of the last modification of the database instance details.|
+| portNumbers              | The port numbers of the database server.                         |
+| solutionNames            | The names of the solution that sent the data.                    |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
@@ -79,11 +84,11 @@ is pluralized and listed as collection.
 
 ## Examples
 
-### Test that the Migrate Project Database Instance has a SQL assessmentTargetType.
+### Test that the Migrate Project Database Instance has a SQL instanceType.
 
 ```ruby
 describe azure_migrate_project_database_instance(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
-  its('assessmentTargetTypes') { should include 'SQL' }
+  its('instanceTypes') { should include 'SQL' }
 end
 ```
 

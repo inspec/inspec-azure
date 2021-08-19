@@ -47,25 +47,23 @@ The parameter set should be provided for a valid query:
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | Path reference to the Project Database Instances.                               | `id`             |
-| names                          | Unique names for all Project Database Instances.                                | `name`           |
+| ids                            | Path reference to the Project Database Instances.                      | `id`             |
+| names                          | Unique names for all Project Database Instances.                       | `name`           |
 | types                          | Type of the objects.                                                   | `type`           |
-| properties                     | A list of Properties for all the Project Database Instances.                    | `properties`     |
-| assessmentDatas                | The assessment details of the database published by various sources.   | `assessmentData` |
-| assessmentIds                  | The database assessment scopes/Ids.                                    | `assessmentId`   |
-| assessmentTargetTypes          | The assessed target database types.                                    | `assessmentTargetType` |
-| breakingChangesCounts          | The number of breaking changes found.                                  | `breakingChangesCount` |
-| compatibilityLevels            | The compatibility levels of the database.                              | `compatibilityLevel`   |
-| databaseNames                  | The database names.                                                    | `databaseName`   |
-| databaseSizeInMBs              | The sizes of the databases.                                            | `databaseSizeInMB`|
-| enqueueTimes                   | The list of times the message was enqueued.                            | `enqueueTime`    |
-| extendedInfos                  | The extended properties of all the database.                           | `extendedInfo`   |
-| instanceIds                    | The database server instance Ids.                                      | `instanceId`     |
-| isReadyForMigrations           | The values indicating whether the database is ready for migration.     | `isReadyForMigration` |
-| lastAssessedTimes              | The time when the databases were last assessed.                        | `lastAssessedTime`|
-| lastUpdatedTimes               | The time of the last modifications of the database details.            | `lastUpdatedTime`|
-| migrationBlockersCounts        | The number of blocking changes found.                                  | `migrationBlockersCount` |
-| solutionNames                  | The names of the solution that sent the data.                          | `solutionName`   |
+| properties                     | A list of Properties for all the Project Database Instances.           | `properties`     |
+| discoveryDatas                 | The assessment details of the database published by various sources.   | `assessmentData` |
+| summaries                      | The database instances summaries per solution.                         | `summary`        |
+| lastUpdatedTimes               | The time of the last modification of the database instance details.    | `lastUpdatedTime`|
+| enqueueTimes                   | The times the message were enqueued.                                   | `enqueueTimes`   |   
+| extendedInfos                  | The extended properties of the database servers.                       | `extendedInfos`  |
+| hostNames                      | The host names of the database servers.                                | `hostNames`      |
+| instanceIds                    | The database instance Ids.                                             | `instanceIds`    |
+| instanceNames                  | The database instance names.                                           | `instanceNames`  |
+| instanceTypes                  | The database instance types.                                           | `instanceTypes`  |
+| instanceVersions               | The database instance versions.                                        | `instanceVersions`|
+| ipAddresses                    | The IP addresses of the database server. IP addresses could be IP V4 or IP V6.| `ipAddresses` |
+| portNumbers                    | The port numbers of the database server.                               | `portNumbers`    |
+| solutionNames                  | The names of the solution that sent the data.                          | `solutionNames`  |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
@@ -75,15 +73,15 @@ The parameter set should be provided for a valid query:
 
 ```ruby
 azure_migrate_project_database_instancess(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project').names.each do |name|
-  describe azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project', name: name) do
+  describe azure_migrate_project_database_instance(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project', name: name) do
     it { should exist }
   end
 end
 ```
-### Test that there are Migrate Project Database Instances that are ready for migration.
+### Test that there are Migrate Project Database Instances that are of SQL Instance types.
 
 ```ruby
-describe azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project').where{ isReadyForMigration.include?(true) } do
+describe azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project').where{ instanceTypes.include?('SQL') } do
   it { should exist }
 end
 ```
