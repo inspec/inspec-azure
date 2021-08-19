@@ -17,8 +17,7 @@ class AzureMigrateAssessmentMachines < AzureGenericResources
     super(opts, true)
     return if failed_resource?
 
-    table_schema = @table.first.keys.map { |key| { column: key.to_s.pluralize.to_sym, field: key, style: :simple } }
-    AzureGenericResources.populate_filter_table(:table, table_schema)
+    populate_filter_table_from_response
   end
 
   def to_s

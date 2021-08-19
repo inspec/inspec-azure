@@ -19,6 +19,6 @@ class AzureMigrateAssessmentMachine < AzureGenericResource
   end
 
   def to_s
-    super(AzureMigrateAssessmentMachines)
+    super(AzureMigrateAssessmentMachine)
   end
 end
