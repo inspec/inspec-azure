@@ -160,6 +160,8 @@ The following is a list of static resources.
 - [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
+- [azure_migrate_project_database_instance](docs/resources/azure_migrate_project_database_instance.md)
+- [azure_migrate_project_database_instances](docs/resources/azure_migrate_project_database_instances.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
 - [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
