@@ -15,4 +15,8 @@ class AzureMigrateAssessmentProject < AzureGenericResource
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Migrate/assessmentProjects', opts)
     super(opts, true)
   end
+
+  def to_s
+    super(AzureMigrateAssessmentProject)
+  end
 end
