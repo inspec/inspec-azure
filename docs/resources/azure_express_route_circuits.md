@@ -29,7 +29,7 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Syntax
 
-An `azure_express_route_circuits` resource block returns all Azure ExpressRoute circuits, either within a resource group or a subscription.
+An `azure_express_route_circuits` resource block returns all Azure ExpressRoute circuits within a resource group .
 
 ```ruby
 describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
