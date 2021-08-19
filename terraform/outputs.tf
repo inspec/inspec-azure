@@ -31,6 +31,14 @@ output "vnet_peerings" {
   value = data.azurerm_virtual_network.vnet.vnet_peerings
 }
 
+output "virtual_network_peering_name" {
+  value = azurerm_virtual_network_peering.network_peering.name
+}
+
+output "virtual_network_peering_id" {
+  value = azurerm_virtual_network_peering.network_peering.id
+}
+
 output "subnet_name" {
   value = azurerm_subnet.subnet.name
 }
