@@ -15,3 +15,4 @@ vendor
 dev/
 .ruby-version
 .rakeTasks
+.DS_Store
