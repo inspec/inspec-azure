@@ -405,6 +405,11 @@ output "df_name" {
 output "df_location" {
   value = azurerm_data_factory.adf.location
 }
+
+output "df_pipeline_name" {
+  value = azurerm_data_factory_pipeline.df_pipeline.name
+}
+
 output "inspec_db_migration_service_name" {
   value = var.inspec_db_migration_service.name
 }
