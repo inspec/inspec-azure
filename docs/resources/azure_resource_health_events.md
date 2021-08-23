@@ -34,8 +34,10 @@ describe azure_resource_health_events do
 end
 ```
 
+or
+
 ```ruby
-describe azure_resource_health_events(resource_group: 'rhctestenv', resource_type: 'Microsoft.Compute/virtualMachines', resource_id: 'rhctestenvV1PI') do
+describe azure_resource_health_events(resource_group: 'RESOURCE_GROUP', resource_type: 'RESOURCE_TYPE', resource_id: 'RESOURCE_ID') do
   #...
 end
 ```
@@ -60,7 +62,7 @@ If one or more parameters are missing then all events in a subscription will be 
 |--------------------|----------------------------------------------------|-----------------|
 | ids                | A list of the unique resource IDs.                 | `id`            |
 | names              | A list of names for all the resources.             | `name`          |
-| types              | A list of types for all the resources.             | `type`          |
+| types              | A list of resource types for all the resources.    | `type`          |
 | properties         | A list of properties for all the resources.        | `properties`    |
 
 
@@ -70,7 +72,7 @@ See the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/resource
 
 ## Examples
 
-### Test that there are health events that have a service issue
+### Test that there are health events that have a service issue.
 
 ```ruby
 describe azure_resource_health_events.where{ properties.select{|prop| prop.eventType == 'ServiceIssue' } } do
@@ -78,10 +80,10 @@ describe azure_resource_health_events.where{ properties.select{|prop| prop.event
 end
 ```
 
-### Test that there are health events for a particular resource 
+### Test that there are health events for a particular resource.
 
 ```ruby
-describe azure_resource_health_events(resource_group: 'rhctestenv', resource_type: 'Microsoft.Compute/virtualMachines', resource_id: 'rhctestenvV1PI') do
+describe azure_resource_health_events(resource_group: 'RESOURCE_GROUP', resource_type: 'RESOURCE_TYPE', resource_id: 'RESOURCE_ID') do
   it { should exist }
 end
 ```
