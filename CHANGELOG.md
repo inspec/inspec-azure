@@ -1,10 +1,50 @@
 # Changelog
-<!-- latest_release 1.58.1 -->
+<!-- latest_release 1.63.1 -->
+## [v1.63.1](https://github.com/inspec/inspec-azure/tree/v1.63.1) (2021-08-19)
+
+#### Merged Pull Requests
+- fixed issue azure_resource_group&#39;s resource_id expected format is inc… [#433](https://github.com/inspec/inspec-azure/pull/433) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
+## [v1.63.0](https://github.com/inspec/inspec-azure/tree/v1.63.0) (2021-08-18)
+
+#### Merged Pull Requests
+- allow helper method for dynamic population of filter table from response [#438](https://github.com/inspec/inspec-azure/pull/438) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.62.0](https://github.com/inspec/inspec-azure/tree/v1.62.0) (2021-08-17)
+
+#### Merged Pull Requests
+- adding &#39;virtual network peering&#39; resource [#421](https://github.com/inspec/inspec-azure/pull/421) ([Rohit1509](https://github.com/Rohit1509))
+
+## [v1.61.2](https://github.com/inspec/inspec-azure/tree/v1.61.2) (2021-08-17)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.18.2 to ~&gt; 1.19.0 [#436](https://github.com/inspec/inspec-azure/pull/436) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.61.1](https://github.com/inspec/inspec-azure/tree/v1.61.1) (2021-08-16)
+
+#### Merged Pull Requests
+- Fix parameters in the azure_dns_zones_resource.md [#431](https://github.com/inspec/inspec-azure/pull/431) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.61.0](https://github.com/inspec/inspec-azure/tree/v1.61.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/express route [#419](https://github.com/inspec/inspec-azure/pull/419) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.60.0](https://github.com/inspec/inspec-azure/tree/v1.60.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/azure dns [#416](https://github.com/inspec/inspec-azure/pull/416) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.59.0](https://github.com/inspec/inspec-azure/tree/v1.59.0) (2021-08-12)
+
+#### Merged Pull Requests
+- Support azure redis cache [#394](https://github.com/inspec/inspec-azure/pull/394) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.58.1](https://github.com/inspec/inspec-azure/tree/v1.58.1) (2021-08-11)
 
 #### Merged Pull Requests
 - Add .DS_Store to gitignore [#428](https://github.com/inspec/inspec-azure/pull/428) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.58.0](https://github.com/inspec/inspec-azure/tree/v1.58.0) (2021-08-06)
 
