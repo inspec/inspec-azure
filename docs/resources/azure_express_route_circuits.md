@@ -5,7 +5,7 @@ platform: azure
 
 # azure_express_route_circuits
 
-Use the `azure_express_route_circuits` InSpec audit resource to test properties of Azure ExpressRoute circuits for a resource group or the entire subscription.
+Use the `azure_express_route_circuits` InSpec audit resource to test properties of Azure ExpressRoute circuits for a resource group.
 
 ## Azure Rest API Version, Endpoint, And HTTP Client Parameters
 
@@ -29,7 +29,7 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Syntax
 
-An `azure_express_route_circuits` resource block returns all Azure ExpressRoute circuits within a resource group .
+An `azure_express_route_circuits` resource block returns all Azure ExpressRoute circuits within a resource group.
 
 ```ruby
 describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
