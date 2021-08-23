@@ -941,6 +941,13 @@ resource "azurerm_virtual_network" "app-gw" {
   address_space       = ["10.254.0.0/16"]
 }
 
+resource "azurerm_virtual_network_peering" "network_peering" {
+  name                      = "virtual-network-peering-test"
+  resource_group_name       = azurerm_resource_group.rg.name
+  virtual_network_name      = azurerm_virtual_network.vnet.name
+  remote_virtual_network_id = azurerm_virtual_network.app-gw.id
+}
+
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -1191,6 +1198,21 @@ resource "azurerm_storage_account" "web_app_function_db" {
   }
 }
 
+resource "azurerm_redis_cache" "inspec_compliance_redis_cache" {
+  name                = var.inspec_compliance_redis_cache_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  capacity            = 2
+  family              = "C"
+  sku_name            = "Standard"
+  enable_non_ssl_port = false
+  minimum_tls_version = "1.2"
+
+  redis_configuration {
+    maxfragmentationmemory_reserved = "50"
+  }
+}
+
 resource "azurerm_storage_blob" "functioncode" {
   name = "functionapp.zip"
   storage_account_name = azurerm_storage_account.web_app_function_db.name
@@ -1326,6 +1348,16 @@ resource "azurerm_bastion_host" "abh" {
     public_ip_address_id = azurerm_public_ip.public_ip_address.id
   }
 
+resource "azurerm_dns_zone" "example-public" {
+  name                = "mydomain_example.com"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_private_dns_zone" "example-private" {
+  name                = "mydomain_example.com"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+  
 resource "azurerm_data_factory" "adf" {
   name                = "adf-eaxmple"
   location            = azurerm_resource_group.rg.location
