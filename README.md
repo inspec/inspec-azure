@@ -136,6 +136,8 @@ The following is a list of static resources.
 - [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
 - [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
 - [azure_express_route_providers](docs/resources/azure_express_route_providers.md)
+- [azure_express_route_circuit](docs/resources/azure_express_route_circuit.md)
+- [azure_express_route_circuits](docs/resources/azure_express_route_circuits.md)
 - [azure_generic_resource](docs/resources/azure_generic_resource.md)
 - [azure_generic_resources](docs/resources/azure_generic_resources.md)
 - [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
