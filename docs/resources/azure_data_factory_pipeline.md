@@ -42,7 +42,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
  |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
 | factory_name                           | Name for the data factory that you want to create your pipeline in..                                                                 |
-| pipeline_name | The pipeline Name. |
+| pipeline_name                 | The pipeline Name. |
 
 All the parameter sets needs be provided for a valid query:
 - `resource_group` , `factory_name` and `pipeline_name`
@@ -51,8 +51,8 @@ All the parameter sets needs be provided for a valid query:
 | Name                           | Description                                                                      |
  |--------------------------------|----------------------------------------------------------------------------------|
 | name                           | Name of the Azure resource to test. `MyDf`                                       |
-| id             | The pipeline type.                                                 |
-| properties        | The Properties of the Resource.                                | 
+| id                             | The pipeline type.                                                 |
+| properties                     | The Properties of the Resource.                                | 
 
 ## Examples
 
@@ -75,9 +75,8 @@ All the parameter sets needs be provided for a valid query:
 ### Test properties of a pipeline
 
  ```ruby
- describe azure_data_factory_pipeline(resource_group: resource_group, name: 'df_name') do
+ describe azure_data_factory_pipeline(resource_group: resource_group, factory_name: factory_name, pipeline_name: 'pipeline_name1') do
    its('name') { should eq 'pipeline_name1' }
-   
  end
  ```
 
