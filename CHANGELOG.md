@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.63.1 -->
+<!-- latest_release 1.64.0 -->
+## [v1.64.0](https://github.com/inspec/inspec-azure/tree/v1.64.0) (2021-08-24)
+
+#### Merged Pull Requests
+- F/express circuit route [#420](https://github.com/inspec/inspec-azure/pull/420) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.63.1](https://github.com/inspec/inspec-azure/tree/v1.63.1) (2021-08-19)
 
 #### Merged Pull Requests
 - fixed issue azure_resource_group&#39;s resource_id expected format is inc… [#433](https://github.com/inspec/inspec-azure/pull/433) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.63.0](https://github.com/inspec/inspec-azure/tree/v1.63.0) (2021-08-18)
 
