@@ -31,6 +31,14 @@ output "vnet_peerings" {
   value = data.azurerm_virtual_network.vnet.vnet_peerings
 }
 
+output "virtual_network_peering_name" {
+  value = azurerm_virtual_network_peering.network_peering.name
+}
+
+output "virtual_network_peering_id" {
+  value = azurerm_virtual_network_peering.network_peering.id
+}
+
 output "subnet_name" {
   value = azurerm_subnet.subnet.name
 }
@@ -367,13 +375,21 @@ output "policy_definition_associated_cosmodb_id" {
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
 
-
 output "ddos_protection_plan_name" {
   value = azurerm_network_ddos_protection_plan.andpp.name
 }
 
 output "ddos_protection_plan_location" {
   value = azurerm_network_ddos_protection_plan.andpp.location
+
+}
+  
+output "dns_zones" {
+  value = azurerm_dns_zone.example-public.name
+}
+
+output "dns_location" {
+  value = "global"
 }
 
 output "bastionHostName" {
@@ -406,6 +422,54 @@ output "inspec_db_migration_service_sku_name" {
   value = var.inspec_db_migration_service.sku_name
 }
 
+output "circuitName" {
+  value = azurerm_express_route_circuit.express_route.name
+}
+
+output "circuitLocation" {
+  value = azurerm_express_route_circuit.express_route.location
+}
+
+output "peeringLocation" {
+  value = azurerm_express_route_circuit.express_route.peering_location
+}
+
+output "serviceProviderName" {
+  value = azurerm_express_route_circuit.express_route.service_provider_name
+}
+
+output "bandwidthInMbps" {
+  value = azurerm_express_route_circuit.express_route.bandwidth_in_mbps
+}
+
+output "sku_name" {
+  value = var.express_route_circuit_sku_name
+}
+
+output "sku_family" {
+  value = azurerm_express_route_circuit.express_route.sku[0].family
+}
+
+output "sku_tier" {
+  value = azurerm_express_route_circuit.express_route.sku[0].tier
+}
+
+output "circuitProvisioningState" {
+  value = var.circuit_provisioning_state
+}
+
+output "allowClassicOperations" {
+  value = var.allow_classic_operations
+}
+
+output "serviceProviderProvisioningState" {
+  value = var.service_provider_provisioning_state
+}
+
+output "express_route_name" {
+  value = var.express_route_name
+}
+
 output "inspec_container_group_name" {
   description = "the name of the container group"
   value = azurerm_container_group.inspec_container_trial.name
@@ -414,4 +478,9 @@ output "inspec_container_group_name" {
 output "sample_directory_object" {
   description = "the name of the directory object"
   value = var.sample_directory_object
+}
+
+output "inspec_redis_cache_name" {
+  description = "The name of the redis cache created for cloud packs"
+  value = azurerm_redis_cache.inspec_compliance_redis_cache.name
 }
