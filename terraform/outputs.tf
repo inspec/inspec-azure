@@ -375,6 +375,15 @@ output "policy_definition_associated_cosmodb_id" {
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
 }
 
+output "ddos_protection_plan_name" {
+  value = azurerm_network_ddos_protection_plan.andpp.name
+}
+
+output "ddos_protection_plan_location" {
+  value = azurerm_network_ddos_protection_plan.andpp.location
+
+}
+  
 output "dns_zones" {
   value = azurerm_dns_zone.example-public.name
 }
