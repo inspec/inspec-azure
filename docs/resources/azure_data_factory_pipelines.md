@@ -48,8 +48,8 @@ An `azure_data_factory_pipelines` resource block returns all Azure pipeline, eit
 | Property        | Description                                            | Filter Criteria<superscript>*</superscript> |
  |-----------------|---------------------------------------------------------|-----------------|
 | names           | A list of the unique resource names.                    | `name`          |
-| ids             | A list of pipeline IDs .                                 | `id`            |
-| properties            | A list of properties for the resource             | `properties`          |
+| ids             | A list of pipeline IDs .                                | `id`            |
+| properties      | A list of properties for the resource                   | `properties`          |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
