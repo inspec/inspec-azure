@@ -198,6 +198,7 @@ The following is a list of static resources.
 - [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
 - [azure_resource_health_emerging_issue](docs/resources/azure_resource_health_emerging_issue.md)
 - [azure_resource_health_emerging_issues](docs/resources/azure_resource_health_emerging_issues.md)
+- [azure_resource_health_events](docs/resources/azure_resource_health_events.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
 - [azure_role_definitions](docs/resources/azure_role_definitions.md)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
