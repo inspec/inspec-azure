@@ -136,6 +136,10 @@ variable "policy_assignment_display_name" {
   default = "inspec_policy_assignment_name"
 }
 
+variable "express_route_name" {
+  default = "AARNet"
+}
+
 variable "inspec_db_migration_service" {
   default = {
     name = "inspec-compliance-migration-dev"
@@ -143,6 +147,30 @@ variable "inspec_db_migration_service" {
   }
 }
 
+variable "express_route_circuit_sku_name" {
+  default = "Standard_MeteredData"
+}
+
+variable "circuit_provisioning_state" {
+  default = "Enabled"
+}
+
+variable "allow_classic_operations" {
+  default = false
+}
+
+variable "service_provider_provisioning_state" {
+  default = "NotProvisioned"
+}
+
 variable "inspec_container_group_name" {
   default = "inspec_container_trial"
+}
+
+variable "sample_directory_object" {
+  default = "adc07321-ef2b-44d5-a210-559aa5f10f2d"
+}
+
+variable "inspec_compliance_redis_cache_name" {
+  default = "inspec-compliance-redis-cache"
 }
