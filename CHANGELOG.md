@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.65.0 -->
+<!-- latest_release 1.66.0 -->
+## [v1.66.0](https://github.com/inspec/inspec-azure/tree/v1.66.0) (2021-08-27)
+
+#### Merged Pull Requests
+- Support resource health events [#412](https://github.com/inspec/inspec-azure/pull/412) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.65.0](https://github.com/inspec/inspec-azure/tree/v1.65.0) (2021-08-24)
 
 #### Merged Pull Requests
 - F/ddos protection [#415](https://github.com/inspec/inspec-azure/pull/415) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.64.0](https://github.com/inspec/inspec-azure/tree/v1.64.0) (2021-08-24)
 
