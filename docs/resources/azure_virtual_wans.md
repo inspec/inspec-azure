@@ -5,12 +5,11 @@ platform: azure
 
 # azure_virtual_wans
 
-Use the `azure_virtual_wans` InSpec audit resource to test properties related to all Azure Virtual WANs in a subscription.
+Use the `azure_virtual_wans` InSpec audit resource to test the properties related to all Azure Virtual WANs in a subscription.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider. You can define the `api_version` as a resource parameter.
-If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. You can define the `api_version` as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
 Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used. For more information, refer to the resource pack [README](../../README.md).
 

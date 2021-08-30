@@ -5,7 +5,7 @@ platform: azure
 
 ## azure_virtual_wan
 
-Use the `azure_virtual_wan` InSpec audit resource to test properties related to a Azure Virtual WAN in a given resource group.
+Use the `azure_virtual_wan` InSpec audit resource to test the properties related to a Azure Virtual WAN in a given resource group.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -60,8 +60,7 @@ end
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualwan/virtual-wans/get) for other properties available.
-Any attribute in the response may be accessed with the key names separated by dots (`.`).
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualwan/virtual-wans/get) for other properties available. Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
@@ -93,4 +92,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription you wish to test
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription you wish to test.
