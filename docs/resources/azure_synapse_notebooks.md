@@ -5,16 +5,16 @@ platform: azure
 
 # azure_synapse_notebooks
 
-Use the `azure_synapse_notebooks` InSpec audit resource to test properties related to all Azure Synapse Notebooks in a Synapse Analytics Workspace.
+Use the `azure_synapse_notebooks` InSpec audit resource to test properties related to all Azure Synapse notebooks in a Synapse Analytics workspace.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
@@ -26,17 +26,17 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_synapse_notebooks` resource block returns all Azure Synapse Notebooks within a Synapse workspace.
+An `azure_synapse_notebooks` resource block returns all Azure Synapse notebooks within a Synapse workspace.
+
 ```ruby
-describe azure_synapse_notebooks(endpoint: 'https://analytics.dev.azuresynapse.net') do
+describe azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT') do
   #...
 end
 ```
 
 ## Parameters
 
-The parameter should be provided for valid query
-- `endpoint`
+This resource requires the `endpoint` parameter for valid query.
 
 | Name                            | Description                                                                      |
 |---------------------------------|----------------------------------------------------------------------------------|
@@ -46,10 +46,10 @@ The parameter should be provided for valid query
 
 |Property            | Description                                        | Filter Criteria<superscript>*</superscript> |
 |--------------------|----------------------------------------------------|-----------------|
-| ids                | A list of the unique Fully qualified resource Ids. | `id`            |
-| names              | A list of name for all the Synapse Notebooks.      | `name`          |
+| ids                | A list of the unique Fully qualified resource IDs. | `id`            |
+| names              | A list of name for all the Synapse notebooks.      | `name`          |
 | types              | A list of types for all the resources.             | `type`          |
-| properties         | A list of Properties all the Notebooks.            | `properties`    |
+| properties         | A list of Properties all the notebooks.            | `properties`    |
 | etags              | A list of resource Etags.                          | `tags`          |
 
 
@@ -57,34 +57,42 @@ The parameter should be provided for valid query
 
 ## Examples
 
-### Loop through Synapse Notebooks by Their Names
+### Loop through Synapse Notebooks by their names.
+
 ```ruby
-azure_synapse_notebooks(endpoint: 'https://analytics.dev.azuresynapse.net').names.each do |name|
-  describe azure_synapse_notebook(endpoint: 'https://analytics.dev.azuresynapse.net', name: name) do
+azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT').names.each do |name|
+  describe azure_synapse_notebook(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT', name: name) do
     it { should exist }
   end
-end  
-```     
+end
+```
 
-### Test that There are Synapse Notebookss that includes a certain string in their names (Client Side Filtering)
+### Test that there are Synapse Notebooks that include a certain string in their names (Client Side Filtering)
+
 ```ruby
-describe azure_synapse_notebooks(endpoint: 'https://analytics.dev.azuresynapse.net').where { name.include?('analytics-trends') } do
+describe azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT').where { name.include?('analytics-trends') } do
   it { should exist }
 end
-```    
+```
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
+
+Should not exist if there aren't any Synapse notebooks in the resource group.
+
 ```ruby
-# Should not exist if no Synapse Notebooks are in the resource group
-describe azure_synapse_notebooks(endpoint: 'https://analytics.dev.azuresynapse.net') do
+describe azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Synapse Notebooks
-describe azure_synapse_notebooks(endpoint: 'https://analytics.dev.azuresynapse.net') do
+```
+
+Should exist if the filter returns at least one Synapse notebook.
+
+```ruby
+describe azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT') do
   it { should exist }
 end
 ```
