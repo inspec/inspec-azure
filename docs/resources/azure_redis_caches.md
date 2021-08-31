@@ -57,25 +57,25 @@ The parameter should be provided for a valid query
 | locations          | A list of locations for all the resources.         | `location`      |
 | properties         | A list of properties all the resources.            | `properties`    |
 | tags               | A list of resource tags.                           | `tags`          |
-| sku_names          | A list of SKU names.                               | `sku_name`      |
-| sku_capacities     | A list of SKU capacity.                            | `sku_capacitie` |
-| sku_families       | A list of SKU families.                            | `sku_family`    |
+| sku_names          | A list of the types of Redis caches to deploy.     | `sku_name`      |
+| sku_capacities     | A list of the sizes of the Redis caches to deploy. | `sku_capacity` |
+| sku_families       | A list of the SKU families to use.                 | `sku_family`    |
 | instances_ssl_ports| A list of Redis instance SSL Ports.                | `instances_ssl_ports` |
 | is_master_instance | A list of Redis instance is_master flag.           | `is_master_instance` |
 | is_primary_instance| A list of Redis instance is_primary flag.          | `is_primary_instance` |
 | max_clients        | A list of max clients in redis configuration.      | `max_clients`   |
-| max_memory_reserves| A list of max memory reserves in redis configuration.| `max_memory_reserves` |
-| max_fragmentation_memory_reserves| A list of max fragmentation memory reserves in redis configuration. | `max_fragmentation_memory_reserves` |
-| max_memory_deltas  | A list of max memory deltas in redis configuration. | `max_memory_deltas`|
+| max_memory_reserves| A list of max memory reserves in Redis configuration.| `max_memory_reserved` |
+| max_fragmentation_memory_reserves| A list of max fragmentation memory reserves in redis configuration. | `max_fragmentation_memory_reserved` |
+| max_memory_deltas  | A list of max memory deltas in Redis configuration. | `max_memory_delta`|
 | provisioning_states| A list of provisioning_states from the properties. | `provisioning_state` |
-| redis_versions     | A list of Redis versions from the properties.      | `redis_versions` |
+| redis_versions     | A list of Redis versions from the properties.      | `redis_version` |
 | enable_non_ssl_port | A list of Redis caches where the non-SSL Redis server port (6379) is enabled. | `enable_non_ssl_port` |
 | public_network_access | A list of public network access from the properties. | `public_network_access` |
 | access_keys        | A list of access keys from the properties.         | `access_keys`   |
-| host_names         | A list of host names from the properties.           | `host_names`    |
-| ports              | A list of ports from the properties.               | `ports`         |
-| ssl_ports          | A list of SSL ports from the properties.           | `ssl_ports`     |
-| linked_servers     | A list of linked_servers from the properties.      | `linked_servers`|
+| host_names         | A list of host names from the properties.           | `host_name`    |
+| ports              | A list of ports from the properties.               | `port`         |
+| ssl_ports          | A list of SSL ports from the properties.           | `ssl_port`     |
+| linked_servers     | A list of linked servers from the Redis caches.      | `linked_servers`|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
