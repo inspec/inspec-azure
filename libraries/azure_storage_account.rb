@@ -41,6 +41,10 @@ class AzureStorageAccount < AzureGenericResource
     upper_bound = to_utc(now)
     lower_bound = to_utc(now - ninety_days_ago)
 
+    if properties.creationTime > lower_bound
+      return true
+    end
+
     filter = "resourceId eq '#{id}' and "\
              "eventTimestamp ge '#{lower_bound}' and "\
              "eventTimestamp le '#{upper_bound}' and "\
@@ -85,6 +89,57 @@ class AzureStorageAccount < AzureGenericResource
     if properties
       create_resource_methods({ queue_properties: properties })
       public_send(:queue_properties) if respond_to?(:queue_properties)
+    end
+  end
+
+  def blobs
+    return unless exists?
+    url = "https://#{name}.blob#{@azure.storage_endpoint_suffix}"
+    params = { comp: 'list' }
+    # Calls to Azure Storage resources requires a special header `x-ms-version`
+    # https://docs.microsoft.com/en-us/rest/api/storageservices/versioning-for-the-azure-storage-services
+    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    body = @azure.rest_api_call(url: url, params: params, headers: headers)
+    return unless body
+    body_hash = Hash.from_xml(body)
+    hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)
+    if hash_with_snakecase_keys
+      create_resource_methods({ blobs: hash_with_snakecase_keys })
+      public_send(:blobs) if respond_to?(:blobs)
+    end
+  end
+
+  def blob_properties
+    return unless exists?
+    url = "https://#{name}.blob#{@azure.storage_endpoint_suffix}"
+    params = { restype: 'service', comp: 'properties' }
+    # @see #queues for the header `x-ms-version`
+    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    body = @azure.rest_api_call(url: url, params: params, headers: headers)
+    return unless body
+    body_hash = Hash.from_xml(body)
+    hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)
+    properties = hash_with_snakecase_keys['storage_service_properties']
+    if properties
+      create_resource_methods({ blob_properties: properties })
+      public_send(:blob_properties) if respond_to?(:blob_properties)
+    end
+  end
+
+  def table_properties
+    return unless exists?
+    url = "https://#{name}.table#{@azure.storage_endpoint_suffix}"
+    params = { restype: 'service', comp: 'properties' }
+    # @see #queues for the header `x-ms-version`
+    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    body = @azure.rest_api_call(url: url, params: params, headers: headers)
+    return unless body
+    body_hash = Hash.from_xml(body)
+    hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)
+    properties = hash_with_snakecase_keys['storage_service_properties']
+    if properties
+      create_resource_methods({ table_properties: properties })
+      public_send(:table_properties) if respond_to?(:table_properties)
     end
   end
 

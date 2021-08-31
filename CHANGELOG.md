@@ -1,10 +1,125 @@
 # Changelog
-<!-- latest_release 1.49.1 -->
+<!-- latest_release 1.66.2 -->
+## [v1.66.2](https://github.com/inspec/inspec-azure/tree/v1.66.2) (2021-08-31)
+
+#### Merged Pull Requests
+- Fix docs errors in redis cache/s resources [#445](https://github.com/inspec/inspec-azure/pull/445) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
+## [v1.66.1](https://github.com/inspec/inspec-azure/tree/v1.66.1) (2021-08-31)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.19.0 to ~&gt; 1.20.0 [#446](https://github.com/inspec/inspec-azure/pull/446) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.66.0](https://github.com/inspec/inspec-azure/tree/v1.66.0) (2021-08-27)
+
+#### Merged Pull Requests
+- Support resource health events [#412](https://github.com/inspec/inspec-azure/pull/412) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.65.0](https://github.com/inspec/inspec-azure/tree/v1.65.0) (2021-08-24)
+
+#### Merged Pull Requests
+- F/ddos protection [#415](https://github.com/inspec/inspec-azure/pull/415) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.64.0](https://github.com/inspec/inspec-azure/tree/v1.64.0) (2021-08-24)
+
+#### Merged Pull Requests
+- F/express circuit route [#420](https://github.com/inspec/inspec-azure/pull/420) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.63.1](https://github.com/inspec/inspec-azure/tree/v1.63.1) (2021-08-19)
+
+#### Merged Pull Requests
+- fixed issue azure_resource_group&#39;s resource_id expected format is inc… [#433](https://github.com/inspec/inspec-azure/pull/433) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.63.0](https://github.com/inspec/inspec-azure/tree/v1.63.0) (2021-08-18)
+
+#### Merged Pull Requests
+- allow helper method for dynamic population of filter table from response [#438](https://github.com/inspec/inspec-azure/pull/438) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.62.0](https://github.com/inspec/inspec-azure/tree/v1.62.0) (2021-08-17)
+
+#### Merged Pull Requests
+- adding &#39;virtual network peering&#39; resource [#421](https://github.com/inspec/inspec-azure/pull/421) ([Rohit1509](https://github.com/Rohit1509))
+
+## [v1.61.2](https://github.com/inspec/inspec-azure/tree/v1.61.2) (2021-08-17)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.18.2 to ~&gt; 1.19.0 [#436](https://github.com/inspec/inspec-azure/pull/436) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.61.1](https://github.com/inspec/inspec-azure/tree/v1.61.1) (2021-08-16)
+
+#### Merged Pull Requests
+- Fix parameters in the azure_dns_zones_resource.md [#431](https://github.com/inspec/inspec-azure/pull/431) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.61.0](https://github.com/inspec/inspec-azure/tree/v1.61.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/express route [#419](https://github.com/inspec/inspec-azure/pull/419) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.60.0](https://github.com/inspec/inspec-azure/tree/v1.60.0) (2021-08-13)
+
+#### Merged Pull Requests
+- F/azure dns [#416](https://github.com/inspec/inspec-azure/pull/416) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.59.0](https://github.com/inspec/inspec-azure/tree/v1.59.0) (2021-08-12)
+
+#### Merged Pull Requests
+- Support azure redis cache [#394](https://github.com/inspec/inspec-azure/pull/394) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.58.1](https://github.com/inspec/inspec-azure/tree/v1.58.1) (2021-08-11)
+
+#### Merged Pull Requests
+- Add .DS_Store to gitignore [#428](https://github.com/inspec/inspec-azure/pull/428) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.58.0](https://github.com/inspec/inspec-azure/tree/v1.58.0) (2021-08-06)
+
+#### Merged Pull Requests
+- F/bastion hosts [#414](https://github.com/inspec/inspec-azure/pull/414) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.57.0](https://github.com/inspec/inspec-azure/tree/v1.57.0) (2021-08-06)
+
+#### Merged Pull Requests
+- Account Storage Resource Fix [#423](https://github.com/inspec/inspec-azure/pull/423) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.56.0](https://github.com/inspec/inspec-azure/tree/v1.56.0) (2021-08-06)
+
+#### Merged Pull Requests
+- Support ad directory objects [#406](https://github.com/inspec/inspec-azure/pull/406) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.55.0](https://github.com/inspec/inspec-azure/tree/v1.55.0) (2021-08-05)
+
+#### Merged Pull Requests
+- Support resource health availability statuses [#411](https://github.com/inspec/inspec-azure/pull/411) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.54.0](https://github.com/inspec/inspec-azure/tree/v1.54.0) (2021-08-05)
+
+#### Merged Pull Requests
+- Support resource health emerging issues [#413](https://github.com/inspec/inspec-azure/pull/413) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.53.0](https://github.com/inspec/inspec-azure/tree/v1.53.0) (2021-08-05)
+
+#### Merged Pull Requests
+- Support ad domain services [#404](https://github.com/inspec/inspec-azure/pull/404) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.52.0](https://github.com/inspec/inspec-azure/tree/v1.52.0) (2021-07-29)
+
+#### Merged Pull Requests
+- Support container groups [#402](https://github.com/inspec/inspec-azure/pull/402) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.51.0](https://github.com/inspec/inspec-azure/tree/v1.51.0) (2021-07-23)
+
+#### Merged Pull Requests
+- Support db migration service [#393](https://github.com/inspec/inspec-azure/pull/393) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.50.0](https://github.com/inspec/inspec-azure/tree/v1.50.0) (2021-07-22)
+
+#### Merged Pull Requests
+- adding storage account blob and table services [#408](https://github.com/inspec/inspec-azure/pull/408) ([Rohit1509](https://github.com/Rohit1509))
+
 ## [v1.49.1](https://github.com/inspec/inspec-azure/tree/v1.49.1) (2021-07-06)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.17.0 to ~&gt; 1.18.2 [#405](https://github.com/inspec/inspec-azure/pull/405) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.49.0](https://github.com/inspec/inspec-azure/tree/v1.49.0) (2021-06-24)
 
