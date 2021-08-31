@@ -220,4 +220,11 @@ class AzureGenericResources < AzureResourceBase
       validate_resource_uri
     end
   end
+
+  def populate_filter_table_from_response
+    return unless @table.present?
+
+    table_schema = @table.first.keys.map { |key| { column: key.to_s.pluralize.to_sym, field: key, style: :simple } }
+    AzureGenericResources.populate_filter_table(:table, table_schema)
+  end
 end

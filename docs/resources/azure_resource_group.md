@@ -33,7 +33,7 @@ describe azure_resource_group(name: 'my_resource_group') do
 end
 ```
 ```ruby
-describe azure_resource_group(resource_id: '/{subscriptionId}/resourcegroups/{resourceGroupName}') do
+describe azure_resource_group(resource_id: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}') do
   it { should exist }
 end
 ```
@@ -42,7 +42,7 @@ end
 | Name                                  | Description |
 |---------------------------------------|-------------|
 | name                                  | Name of the resource group. `resourceGroupName` |
-| resource_id                           | The unique resource ID. `/{subscriptionId}/resourcegroups/{resourceGroupName}` |
+| resource_id                           | The unique resource ID. `/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}` |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
