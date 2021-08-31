@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.67.0 -->
+<!-- latest_release 1.68.0 -->
+## [v1.68.0](https://github.com/inspec/inspec-azure/tree/v1.68.0) (2021-08-31)
+
+#### Merged Pull Requests
+- Support azure synapse notebooks [#422](https://github.com/inspec/inspec-azure/pull/422) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.67.0](https://github.com/inspec/inspec-azure/tree/v1.67.0) (2021-08-31)
 
 #### Merged Pull Requests
 - Support virtual wans [#417](https://github.com/inspec/inspec-azure/pull/417) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.66.2](https://github.com/inspec/inspec-azure/tree/v1.66.2) (2021-08-31)
 
