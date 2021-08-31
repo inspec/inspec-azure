@@ -174,3 +174,7 @@ variable "sample_directory_object" {
 variable "inspec_compliance_redis_cache_name" {
   default = "inspec-compliance-redis-cache"
 }
+
+variable "inspec_wan_name" {
+  default = "inspec-nw-wan"
+}
