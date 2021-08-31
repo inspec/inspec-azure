@@ -1350,6 +1350,13 @@ resource "azurerm_bastion_host" "abh" {
   }
 }
 
+}
+  
+resource "azurerm_network_ddos_protection_plan" "andpp" {
+  name                = "example-protection-plan"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
 resource "azurerm_dns_zone" "example-public" {
   name                = "mydomain_example.com"
   resource_group_name = azurerm_resource_group.rg.name
@@ -1359,7 +1366,7 @@ resource "azurerm_private_dns_zone" "example-private" {
   name                = "mydomain_example.com"
   resource_group_name = azurerm_resource_group.rg.name
 }
-  
+
 resource "azurerm_data_factory" "adf" {
   name                = "adf-eaxmple"
   location            = azurerm_resource_group.rg.location
@@ -1387,4 +1394,22 @@ resource "azurerm_database_migration_service" "inspec-compliance-migration-dev" 
   resource_group_name = azurerm_resource_group.rg.name
   sku_name = var.inspec_db_migration_service.sku_name
   subnet_id = azurerm_subnet.subnet.id
+}
+
+resource "azurerm_express_route_circuit" "express_route" {
+  name                  = "expressRoute1"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  service_provider_name = "Equinix"
+  peering_location      = "Silicon Valley"
+  bandwidth_in_mbps     = 50
+
+  sku {
+    tier   = "Standard"
+    family = "MeteredData"
+  }
+
+  tags = {
+    environment = "Production"
+  }
 }

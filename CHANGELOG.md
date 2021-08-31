@@ -1,10 +1,35 @@
 # Changelog
-<!-- latest_release 1.63.0 -->
+<!-- latest_release 1.66.1 -->
+## [v1.66.1](https://github.com/inspec/inspec-azure/tree/v1.66.1) (2021-08-31)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.19.0 to ~&gt; 1.20.0 [#446](https://github.com/inspec/inspec-azure/pull/446) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
+## [v1.66.0](https://github.com/inspec/inspec-azure/tree/v1.66.0) (2021-08-27)
+
+#### Merged Pull Requests
+- Support resource health events [#412](https://github.com/inspec/inspec-azure/pull/412) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.65.0](https://github.com/inspec/inspec-azure/tree/v1.65.0) (2021-08-24)
+
+#### Merged Pull Requests
+- F/ddos protection [#415](https://github.com/inspec/inspec-azure/pull/415) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.64.0](https://github.com/inspec/inspec-azure/tree/v1.64.0) (2021-08-24)
+
+#### Merged Pull Requests
+- F/express circuit route [#420](https://github.com/inspec/inspec-azure/pull/420) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.63.1](https://github.com/inspec/inspec-azure/tree/v1.63.1) (2021-08-19)
+
+#### Merged Pull Requests
+- fixed issue azure_resource_group&#39;s resource_id expected format is inc… [#433](https://github.com/inspec/inspec-azure/pull/433) ([sa-progress](https://github.com/sa-progress))
+
 ## [v1.63.0](https://github.com/inspec/inspec-azure/tree/v1.63.0) (2021-08-18)
 
 #### Merged Pull Requests
 - allow helper method for dynamic population of filter table from response [#438](https://github.com/inspec/inspec-azure/pull/438) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.62.0](https://github.com/inspec/inspec-azure/tree/v1.62.0) (2021-08-17)
 
