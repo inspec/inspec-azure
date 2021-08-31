@@ -1,8 +1,8 @@
 require 'azure_generic_resource'
 
 class AzureMigrateProject < AzureGenericResource
-  name 'azure_migrate_project_database_instance'
-  desc 'Retrieves and verifies the settings of an Azure Migrate Project Database.'
+  name 'azure_migrate_project'
+  desc 'Retrieves and verifies the settings of an Azure Migrate Project.'
   example <<-EXAMPLE
     describe azure_migrate_project(resource_group: 'migrated_vms', name: 'zoneA_migrate_assessment_project') do
       it { should exist }

@@ -12,6 +12,6 @@ class AzureMigrateProjectConstructorTest < Minitest::Test
   end
 
   def test_resource_group_name_alone_ok
-    assert_raises(ArgumentError) { AzureMigrateProject.new(name: 'my-name', resource_group: 'test') }
+    assert_raises(ArgumentError) { AzureMigrateProject.new(resource_group: 'test') }
   end
 end

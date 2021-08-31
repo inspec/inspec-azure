@@ -26,18 +26,18 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name` is a required parameter and `resource_group` could be provided as an optional parameter.
+`name` and `resource_group` is a required parameter.
 
 ```ruby
-describe azure_migrate_project(resource_group: 'migrated_vms', name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_project(resource_group: 'migrated_vms', name: 'zoneA_migrate_project') do
   it                                      { should exist }
-  its('name')                             { should eq 'zoneA_migrate_assessment_project' }
+  its('name')                             { should eq 'zoneA_migrate_project' }
   its('type')                             { should eq 'Microsoft.Migrate/MigrateProjects' }
 end
 ```
 
 ```ruby
-describe azure_migrate_project(resource_group: 'migrated_vms', name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_project(resource_group: 'migrated_vms', name: 'zoneA_migrate_project') do
   it  { should exist }
 end
 ```
@@ -45,49 +45,35 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Migrate Project Database Instance to test.                                   |
+| name           | Name of the Azure Migrate Project to test.                                   |
 | resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Assessment Project.                                                |
 
 The parameter set should be provided for a valid query:
-- `resource_group` and `project_name` and `name`
+- `resource_group` and `name`
 
 ## Properties
 
 | Property                 | Description                                                      |
 |--------------------------|------------------------------------------------------------------|
-| id                       | Path reference to the Migrate Project Database Instance.         |
-| name                     | Unique name of an Migrate Project Database Instance.             |
-| type                     | Type of the object. `Microsoft.Migrate/MigrateProjects/Databases`|
-| properties               | The properties of the machine.                                    |
-| properties.discoveryData | The assessment details of the database instance published by various sources. |
-| properties.summary       | The database instances summary per solution.                     |
-| enqueueTimes             | The times the message were enqueued.                               |
-| extendedInfos            | The extended properties of the database server.                  |
-| hostNames                | The host names of the database servers.                          |
-| instanceIds              | The database instance Ids.                                       |
-| instanceNames            | The database instance names.                                     |
-| instanceTypes            | The database instance types.                                     |
-| instanceVersions         | The database instance versions.                                  |
-| ipAddresses              | The IP addresses of the database server. IP addresses could be IP V4 or IP V6.|
-| lastUpdatedTimes         | The time of the last modification of the database instance details.|
-| portNumbers              | The port numbers of the database server.                         |
-| solutionNames            | The names of the solution that sent the data.                    |
-
+| id                       | Path reference to the Migrate Project.                           |
+| eTag                     | The eTag for concurrency control.                                |
+| name                     | Unique name of an Migrate Project.                               |
+| type                     | Type of the object. `Microsoft.Migrate/MigrateProject`           |
+| properties               | The nested properties.                                           |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/projects/databases/get-database) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/projects/migrate-projects/get-migrate-project) for other properties available.
 Any attribute in the response nested within properties may be accessed with the key names separated by dots (`.`) and attributes nested in the assessmentData
 is pluralized and listed as collection.
 
 ## Examples
 
-### Test that the Migrate Project Database Instance has a SQL instanceType.
+### Test that the Migrate Project has Server Instances.
 
 ```ruby
-describe azure_migrate_project(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
-  its('instanceTypes') { should include 'SQL' }
+describe azure_migrate_project(resource_group: 'migrated_vms', name: 'zoneA_migrate_project') do
+  its('properties.summary.servers.instanceType') { should eq 'Servers' }
 end
 ```
 
@@ -99,11 +85,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Project is found it will exist
-describe azure_migrate_project(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
+describe azure_migrate_project(resource_group: 'migrated_vms', name: 'sql_db') do
   it { should exist }
 end
 # if Migrate Project is not found it will not exist
-describe azure_migrate_project(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
+describe azure_migrate_project(resource_group: 'migrated_vms', name: 'sql_db') do
   it { should_not exist }
 end
 ```
