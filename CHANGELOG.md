@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.66.2 -->
+<!-- latest_release 1.67.0 -->
+## [v1.67.0](https://github.com/inspec/inspec-azure/tree/v1.67.0) (2021-08-31)
+
+#### Merged Pull Requests
+- Support virtual wans [#417](https://github.com/inspec/inspec-azure/pull/417) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.66.2](https://github.com/inspec/inspec-azure/tree/v1.66.2) (2021-08-31)
 
 #### Merged Pull Requests
 - Fix docs errors in redis cache/s resources [#445](https://github.com/inspec/inspec-azure/pull/445) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.66.1](https://github.com/inspec/inspec-azure/tree/v1.66.1) (2021-08-31)
 
