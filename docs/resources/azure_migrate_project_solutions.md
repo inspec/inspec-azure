@@ -29,7 +29,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 An `azure_migrate_project_solutions` resource block returns all Azure Migrate Project Solutions within a project.
 
 ```ruby
-describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project') do
   #...
 end
 ```
@@ -38,7 +38,7 @@ end
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
 | resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Assessment Project.                                                |
+| project_name   | Azure Migrate Project.                                                           |
 
 The parameter set should be provided for a valid query:
 - `resource_group` and `project_name`
@@ -47,60 +47,45 @@ The parameter set should be provided for a valid query:
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | Path reference to the Project Solutions.                                     | `id`             |
-| names                          | Unique names for all Project Solutions.                                      | `name`           |
+| ids                            | Path reference to the Project Solutions.                               | `id`             |
+| names                          | Unique names for all Project Solutions.                                | `name`           |
 | types                          | Type of the objects.                                                   | `type`           |
-| eTags                          | A list of eTags for all the Project Solutions.                               | `eTag`           |
-| properties                     | A list of Properties for all the Project Solutions.                          | `properties`     |
-| azureDiskTypes                 | Storage type selected for the disk of all the assessments.             | `azureDiskType`  |
-| azureHybridUseBenefits         | AHUB discount on windows virtual machines of all the assessments.      | `azureHybridUseBenefit`|
-| azureLocations                 | Target Azure locations for which the machines should be assessed.      | `azureLocation` |
-| azureOfferCodes                | Offer codes according to which cost estimation is done.                | `azureOfferCode` |
-| azurePricingTiers              | Pricing tiers for Size evaluation.                                     | `azurePricingTier`|
-| azureStorageRedundancies       | Storage Redundancy types offered by Azure.                             | `azureStorageRedundancy`|
-| azureVmFamilies                | List of azure VM families.                                             | `azureVmFamilies`|
-| confidenceRatingInPercentages  | Confidence rating percentages for assessment.                          | `confidenceRatingInPercentage`|
-| createdTimestamps              | Time when this project was created.                                    | `createdTimestamp` |
-| currencies                     | Currencies to report prices in.                                        | `currency`       |
-| discountPercentages            | Custom discount percentages to be applied on final costs.              | `discountPercentage`|
-| eaSubscriptionIds              | Enterprise agreement subscription arm ids.                             | `eaSubscriptionId`|
-| monthlyBandwidthCosts          | Monthly network cost estimates for the machines.                       | `monthlyBandwidthCost`|
-| monthlyComputeCosts            | Monthly compute cost estimates for the machines.                       | `monthlyComputeCost`|
-| monthlyPremiumStorageCosts     | Monthly premium storage cost estimates for the machines.               | `monthlyPremiumStorageCost`|
-| monthlyStandardSSDStorageCosts | Monthly standard SSD storage cost estimates for the machines.          | `monthlyStandardSSDStorageCost`|
-| monthlyStorageCosts            | Monthly storage cost estimates for the machines.                       | `monthlyStorageCost` |
-| numberOfMachines               | Number of assessed machines part of the assessments.                   | `numberOfMachines` |
-| percentiles                    | Percentiles of performance data used to recommend Azure size.          | `percentile` |
-| perfDataEndTimes               | End times to consider performance data for assessments.                | `perfDataEndTime` |
-| perfDataStartTimes             | Start times to consider performance data for assessments.              | `perfDataStartTime` |
-| pricesTimestamps               | Times when the Azure Prices were queried.                              | `pricesTimestamp` |
-| reservedInstances              | Azure reserved instances.                                              | `reservedInstance`
-| scalingFactors                 | Scaling factors used over utilization data to add a performance buffer for new machines to be created in Azure.| `scalingFactor` |
-| sizingCriterions               | Assessment sizing criterions.                                          | `sizingCriterion` |
-| stages                         | User configurable setting that describes the status of the assessments.| `stage`           |
-| statuses                       | Whether the assessments has been created and is valid.                 | `status`          |
-| timeRanges                     | Time ranges of performance data used to recommend a size.              | `timeRange`       |
-| updatedTimestamps              | Times when the project was last updated.                               | `updatedTimestamp`|
-| vmUptimes                      | Specify the durations for which the VMs are up in the on-premises environment.| `vmUptime` |
+| eTags                          | A list of eTags for all the Project Solutions.                         | `eTag`           |
+| properties                     | A list of Properties for all the Project Solutions.                    | `properties`     |
+| tools                          | The tool being used in all the solutions.                              | `tool`           |
+| purposes                       | The purpose of all the solutions.                                      | `purpose`        |
+| goals                          | The goals of all the solutions.                                        | `goal`           |
+| statuses                       | The current status of all the solutions.                               | `status`         |
+| cleanupStates                  | The cleanup states of all the solutions.                               | `cleanupState`   |
+| summaries                      | The summary of all the solutions.                                      | `summary`        |
+| details                        | The details of all the solutions.                                      | `details`        |
+| instanceTypes                  | The Instance types.                                                    | `instanceType`   |
+| databasesAssessedCounts        | The count of databases assessed.                                       | `databasesAssessedCount` |
+| databaseInstancesAssessedCounts| The count of database instances assessed.                              | `databaseInstancesAssessedCount` |
+| migrationReadyCounts           | The count of databases ready for migration.                            | `migrationReadyCount` |
+| groupCounts                    | The count of groups reported by all the solutions.                     | `groupCount`     |
+| assessmentCounts               | The count of assessments reported by all the solutions.                | `assessmentCount`|
+| extendedDetails                | The extended details reported by all the solutions.                    | `extendedDetails`|
+
 
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-
+Also for further reference of the properties please refer [Azure Documentation](https://docs.microsoft.com/en-us/rest/api/migrate/projects/solutions/enumerate-solutions)
 ## Examples
 
 ### Loop through Migrate Project Solutions by their names.
 
 ```ruby
-azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').names.each do |name|
-  describe azure_container_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: name) do
+azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project').names.each do |name|
+  describe azure_migrate_project_solution(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project', name: name) do
     it { should exist }
   end
 end
 ```
-### Test that there are Migrate Project Solutions with local redundancy.
+### Test that there are Migrate Project Solutions for Assessment purpose.
 
 ```ruby
-describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').where(azureStorageRedundancy: 'LocallyRedundant') do
+describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project').where(purpose: 'Assessment') do
   it { should exist }
 end
 ```
@@ -113,11 +98,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # Should not exist if no Migrate Project Solutions are present in the project and in the resource group
-describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project') do
   it { should_not exist }
 end
 # Should exist if the filter returns at least one Migrate Project Solutions in the project and in the resource group
-describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_project_solutions(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project') do
   it { should exist }
 end
 ```

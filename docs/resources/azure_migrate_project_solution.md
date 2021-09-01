@@ -26,18 +26,18 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name` is a required parameter and `resource_group` could be provided as an optional parameter.
+`name` and `resource_group` is a required parameter.
 
 ```ruby
-describe azure_migrate_project_solution(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: 'zoneA_machines_migrate_assessment') do
+describe azure_migrate_project_solution(resource_group: 'migrate_vms', project_name: 'zoneA_migrate_project', name: 'zoneA_machines_migrate_solution') do
   it                                      { should exist }
-  its('name')                             { should cmp 'zoneA_machines_migrate_assessment' }
-  its('type')                             { should cmp 'Microsoft.Migrate/assessmentprojects/groups/assessments' }
+  its('name')                             { should cmp 'zoneA_machines_migrate_solution' }
+  its('type')                             { should cmp 'Microsoft.Migrate/MigrateProjects/Solutions' }
 end
 ```
 
 ```ruby
-describe azure_migrate_project_solution(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: 'zoneA_machines_migrate_assessment') do
+describe azure_migrate_project_solution(resource_group: 'migrate_vms', project_name: 'zoneA_migrate_project', name: 'zoneA_machines_migrate_solution') do
   it  { should exist }
 end
 ```
@@ -47,40 +47,38 @@ end
 |----------------|----------------------------------------------------------------------------------|
 | name           | Name of the Azure Migrate Project Solution to test.                                   |
 | resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Assessment Project.                                                |
-| group_name     | Unique name of a group within a project.                                         |
-| name           | Unique name of an assessment within a project.                                   |
+| project_name   | Azure Migrate Project.                                                |
 
 The parameter set should be provided for a valid query:
-- `resource_group` and `project_name` and `group_name` and `name`
+- `resource_group` and `project_name` and `name`
 
 ## Properties
 
 | Property                      | Description                                                      |
 |-------------------------------|------------------------------------------------------------------|
-| id                            | Path reference to the assessment.                                |
-| name                          | Unique name of an assessment.                                    |
-| type                          | Type of the object. `Microsoft.Migrate/assessmentProjects/groups/assessments` |
+| id                            | Path reference to the Project Solution.                          |
+| name                          | Unique name of the Project Solution.                             |
+| type                          | Type of the object. `Microsoft.Migrate/MigrateProjects/Solutions`|
 | eTag                          | For optimistic concurrency control.                              |
-| properties                    | Properties of the assessment.                                    |
-| properties.azureDiskType      | Storage type selected for this disk.                             |
-| properties.currency           | Currency to report prices in.                                    |
-| properties.sizingCriterion    | Assessment sizing criterion.                                     |
-| properties.reservedInstance   | Azure reserved instance.                                         |
+| properties                    | Properties of the project Solution.                              |
+| properties.cleanupState       | The cleanup state of the solution.                               |
+| properties.details            | The details of the solution.                                     |
+| properties.summary            | The summary of the solution.                                     |
+| properties.purpose            | The purpose of the solution.                                     |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/get) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/projects/solutions/get-solution) for other properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-### Test that the Migrate Project Solution has a minimum scalingFactor.
+### Test that the Migrate Project Solution is defined for Assessment purpose.
 
 ```ruby
-describe azure_migrate_project_solution(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: 'zoneA_machines_migrate_assessment') do
-  its('properties.scalingFactor') { should eq 1.0 }
+describe azure_migrate_project_solution(resource_group: 'migrate_vms', project_name: 'zoneA_migrate_project', name: 'zoneA_machines_migrate_solution') do
+  its('properties.purpose') { should eq 'Assessment' }
 end
 ```
 
@@ -92,12 +90,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Project Solution is found it will exist
-describe azure_migrate_project_solution(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: 'zoneA_machines_migrate_assessment') do
+describe azure_migrate_project_solution(resource_group: 'migrate_vms', project_name: 'zoneA_migrate_project', name: 'zoneA_machines_migrate_solution') do
   it { should exist }
 end
 
 # if Migrate Project Solution are not found it will not exist
-describe azure_migrate_project_solution(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: 'zoneA_machines_migrate_assessment') do
+describe azure_migrate_project_solution(resource_group: 'migrate_vms', project_name: 'zoneA_migrate_project', name: 'zoneA_machines_migrate_solution') do
   it { should_not exist }
 end
 ```
