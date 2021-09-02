@@ -7,10 +7,9 @@ control 'verify a azure migrate assessment machine' do
   describe azure_migrate_assessment_machine(resource_group: resource_group, project_name: project_name, name: name) do
     it { should exist }
     its('name') { should eq name }
-    its('type') { should eq 'Microsoft.Migrate/assessmentprojects/groups/assessments' }
-    its('properties.azurePricingTier') { should eq 'Standard' }
-    its('properties.azureStorageRedundancy') { should eq 'LocallyRedundant' }
-    its('properties.groupType') { should eq 'Import' }
-    its('properties.scalingFactor') { should eq 1.0 }
+    its('type') { should eq 'Microsoft.Migrate/assessmentprojects/machines' }
+    its('properties.bootType') { should eq 'BIOS' }
+    its('properties.megabytesOfMemory') { should eq 16384 }
+    its('properties.numberOfCores') { should eq 8 }
   end
 end
