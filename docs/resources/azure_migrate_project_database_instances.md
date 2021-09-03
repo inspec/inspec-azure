@@ -72,7 +72,7 @@ The parameter set should be provided for a valid query:
 ### Loop through Migrate Project Database Instances by their names.
 
 ```ruby
-azure_migrate_project_database_instancess(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project').names.each do |name|
+azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project').names.each do |name|
   describe azure_migrate_project_database_instance(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project', name: name) do
     it { should exist }
   end

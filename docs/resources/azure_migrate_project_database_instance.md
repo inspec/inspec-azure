@@ -26,13 +26,13 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name` is a required parameter and `resource_group` could be provided as an optional parameter.
+`name`, `resource_group` & `project_name` is a required parameter.
 
 ```ruby
 describe azure_migrate_project_database_instance(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
   it                                      { should exist }
   its('name')                             { should eq 'sql_db' }
-  its('type')                             { should eq 'Microsoft.Migrate/MigrateProjects/Databases' }
+  its('type')                             { should eq 'Microsoft.Migrate/MigrateProjects/DatabaseInstances' }
   its('solutionNames')                    { should include 'migrateDBSolution' }
 end
 ```
