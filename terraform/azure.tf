@@ -1338,6 +1338,7 @@ resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
     }
   PARAMETERS
 }
+
 resource "azurerm_bastion_host" "abh" {
   name                = "test_bastion"
   location            = azurerm_resource_group.rg.location
@@ -1349,7 +1350,7 @@ resource "azurerm_bastion_host" "abh" {
   }
 
 }
-  
+
 resource "azurerm_network_ddos_protection_plan" "andpp" {
   name                = "example-protection-plan"
   resource_group_name = azurerm_resource_group.rg.name
@@ -1410,4 +1411,10 @@ resource "azurerm_express_route_circuit" "express_route" {
   tags = {
     environment = "Production"
   }
+}
+
+resource "azurerm_virtual_wan" "inspec-nw-wan" {
+  location = var.location
+  name = var.inspec_wan_name
+  resource_group_name = azurerm_resource_group.rg.name
 }
