@@ -53,8 +53,29 @@ All the parameter sets needs be provided for a valid query:
 | name                           | Name of the Azure resource to test. `MyDf`                                       |
 | id                             | The sentinel_incident type.                                                 |
 | properties                     | The Properties of the Resource.                                | 
+| properties.severity | The severity of the incident | `properties.severity` |
+| properties.status| The status of the incident | `properties.status` |
+| properties.owner.email | The email of the user the incident is assigned to. | `properties.owner.email` |
+| properties.owner.userPrincipalName| The user principal name of the user the incident is assigned to. | `properties.owner.userPrincipalName` |
+| properties.owner.assignedTo | The name of the user the incident is assigned to. | `properties.owner.assignedTo` |
 
 ## Examples
+
+### Test if properties matches
+
+```ruby
+    describe azure_sentinel_incidents_resource(resource_group: resource_group, workspace_name: workspace_name, incident_id: incident_id) do
+        it { should exist }
+        its('name') { should eq '0367ce89-78ad-4009-8d90-399fad24aabf' }
+        its('type') { should eq 'Microsoft.SecurityInsights/Incidents' }
+        its('properties.severity') { should eq 'Informational' }
+        its('properties.status') { should eq 'New' }
+        its('properties.owner.email') { should eq 'owner_email' }
+        its('properties.owner.userPrincipalName') { should eq 'samir.anand_progress.com#EXT#@getchef.onmicrosoft.com' }
+        its('properties.owner.assignedTo') { should eq 'owner_name' }
+    end
+```
+
 
 ### Test that a sentinel_incident exists
 
