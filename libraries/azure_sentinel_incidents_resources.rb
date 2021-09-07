@@ -40,11 +40,22 @@ class AzureSentinelIncidentsResources < AzureGenericResources
 
   private
 
-  def populate_table
-    @resources.each do |resource|
-      @table << resource.merge(resource[:properties])
+  def flatten_hash(hash)
+    hash.each_with_object({}) do |(k, v), h|
+      if v.is_a? Hash
+        flatten_hash(v).map do |h_k, h_v|
+          h["#{k}_#{h_k}".to_sym] = h_v
+        end
+      else
+        h[k] = v
+      end
     end
   end
 
+  def populate_table
+    @resources.each do |resource|
+      resource = resource.merge(resource[:properties])
+      @table << flatten_hash(resource)
+    end
+  end
 end
-
