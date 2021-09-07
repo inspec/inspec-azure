@@ -1,5 +1,5 @@
 require_relative 'helper'
-require 'azure_sentinel_incidents_resources_test'
+require 'azure_sentinel_incidents_resources'
 
 class AzureSentinelIncidentsResourcesConstructorTest < Minitest::Test
   # resource_type should not be allowed.
