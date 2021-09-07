@@ -1,10 +1,40 @@
 # Changelog
-<!-- latest_release 1.65.0 -->
+<!-- latest_release 1.68.1 -->
+## [v1.68.1](https://github.com/inspec/inspec-azure/tree/v1.68.1) (2021-09-02)
+
+#### Merged Pull Requests
+- skip nested nil values in array [#449](https://github.com/inspec/inspec-azure/pull/449) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.68.0](https://github.com/inspec/inspec-azure/tree/v1.68.0) (2021-08-31)
+
+#### Merged Pull Requests
+- Support azure synapse notebooks [#422](https://github.com/inspec/inspec-azure/pull/422) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.67.0](https://github.com/inspec/inspec-azure/tree/v1.67.0) (2021-08-31)
+
+#### Merged Pull Requests
+- Support virtual wans [#417](https://github.com/inspec/inspec-azure/pull/417) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.66.2](https://github.com/inspec/inspec-azure/tree/v1.66.2) (2021-08-31)
+
+#### Merged Pull Requests
+- Fix docs errors in redis cache/s resources [#445](https://github.com/inspec/inspec-azure/pull/445) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.66.1](https://github.com/inspec/inspec-azure/tree/v1.66.1) (2021-08-31)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.19.0 to ~&gt; 1.20.0 [#446](https://github.com/inspec/inspec-azure/pull/446) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.66.0](https://github.com/inspec/inspec-azure/tree/v1.66.0) (2021-08-27)
+
+#### Merged Pull Requests
+- Support resource health events [#412](https://github.com/inspec/inspec-azure/pull/412) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.65.0](https://github.com/inspec/inspec-azure/tree/v1.65.0) (2021-08-24)
 
 #### Merged Pull Requests
 - F/ddos protection [#415](https://github.com/inspec/inspec-azure/pull/415) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.64.0](https://github.com/inspec/inspec-azure/tree/v1.64.0) (2021-08-24)
 
