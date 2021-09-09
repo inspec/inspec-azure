@@ -7,32 +7,25 @@ platform: azure
 
 Use the `azure_data_factory_linked_service` InSpec audit resource to test properties of an Azure Linked Service.
 
-## Azure REST API version, endpoint, and HTTP client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
-The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used.
-For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
+If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
-For more information, refer to the resource pack [README](../../README.md).
-For api related info : [`Azure Linked Services Docs`](https://docs.microsoft.com/en-us/rest/api/datafactory/linked-services/get).
-
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md). For API related info : [`Azure Linked Services Docs`](https://docs.microsoft.com/en-us/rest/api/datafactory/linked-services/get).
 
 ## Availability
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
-For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). For an example, `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
 
-`resource_group` and `linked_service_name`, `factory_name` must be given as parameters.
+`resource_group` and `linked_service_name`, `factory_name` are required parameters.
 
 ```ruby
 describe azure_data_factory_linked_service(resource_group: resource_group, factory_name: factory_name, linked_service_name: linked_service_name) do
-  
 end
 ```
 
@@ -41,20 +34,22 @@ end
 | Name                           | Description                                                                       |
 |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| factory_name                           | The factory name.                                                                 |
-| linked_service_name | The Linked Service Name. |
+| factory_name                   | The factory name.                                                                 |
+| linked_service_name            | The Linked Service Name. |
 
-All the parameter sets needs be provided for a valid query:
+All the parameter sets are required for a valid query:
+
 - `resource_group` , `factory_name` and `linked_service_name`
+
 ## Properties
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
 | name                           | Name of the Azure resource to test. `MyDf`                                       |
-| type                           | The resource type.                                                             |
-| linked_service_type             | The Linked Services type.                                                 |
-| type_properties        | The Properties of linked service type.                    |
-| properties        | The Properties of the Resource.                                | 
+| type                           | The resource type.                                                               |
+| linked_service_type            | The Linked Services type.                                                        |
+| type_properties                | The Properties of linked service type.                                           |
+| properties                     | The Properties of the Resource.                                                  |
 
 ## Examples
 
@@ -77,13 +72,13 @@ end
 ### Test properties of a Linked Service
 
 ```ruby
-describe azure_data_factory_linked_service(resource_group: resource_group, name: 'df_name') do
+describe azure_data_factory_linked_service(resource_group: resource_group, name: 'DF_NAME') do
   its('name') { should eq linked_service_name1 }
   its('type') { should eq 'Microsoft.DataFactory/factories/linkedservices' }
-  its('linked_service_type') { should eq 'MySql' }
+  its('linked_service_type') { should eq 'MYSQL' }
 end
 ```
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription you wish to test.
