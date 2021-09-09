@@ -31,7 +31,7 @@ where
 
 The following parameters can be passed for targeting a specific Azure resource.
 
-| Name                                 | Description                                                                                              |
+| Name                                 |Description                                                       |
 |--------------------------------------|----------------------------------------------------------------------------------------------------------|
 | resource_group                       | Azure resource group that the targeted resource has been created in. `MyResourceGroup`                   |
 | name                                 | Name of the Azure resource to test. `MyResourceName`                                                     |

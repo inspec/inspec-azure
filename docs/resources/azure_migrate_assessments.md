@@ -5,31 +5,27 @@ platform: azure
 
 # azure_migrate_assessments
 
-Use the `azure_migrate_assessments` InSpec audit resource to test properties related to all Azure Migrate Assessments within a project.
+Use the `azure_migrate_assessments` InSpec audit resource to test the properties related to all Azure Migrate Assessments within a project.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
-The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used.
-For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
+If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
-For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
-For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). For an example, `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
 
 An `azure_migrate_assessments` resource block returns all Azure Migrate Assessments within a project.
 
 ```ruby
-describe azure_migrate_assessments(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_assessments(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT') do
   #...
 end
 ```
@@ -60,7 +56,7 @@ The parameter set should be provided for a valid query:
 | azureStorageRedundancies       | Storage Redundancy types offered by Azure.                             | `azureStorageRedundancy`|
 | azureVmFamilies                | List of azure VM families.                                             | `azureVmFamilies`|
 | confidenceRatingInPercentages  | Confidence rating percentages for assessment.                          | `confidenceRatingInPercentage`|
-| createdTimestamps              | Time when this project was created.                                    | `createdTimestamp` |
+| createdTimestamps              | Time when this project is created.                                    | `createdTimestamp` |
 | currencies                     | Currencies to report prices in.                                        | `currency`       |
 | discountPercentages            | Custom discount percentages to be applied on final costs.              | `discountPercentage`|
 | eaSubscriptionIds              | Enterprise agreement subscription arm ids.                             | `eaSubscriptionId`|
@@ -73,14 +69,14 @@ The parameter set should be provided for a valid query:
 | percentiles                    | Percentiles of performance data used to recommend Azure size.          | `percentile` |
 | perfDataEndTimes               | End times to consider performance data for assessments.                | `perfDataEndTime` |
 | perfDataStartTimes             | Start times to consider performance data for assessments.              | `perfDataStartTime` |
-| pricesTimestamps               | Times when the Azure Prices were queried.                              | `pricesTimestamp` |
+| pricesTimestamps               | Times when the Azure Prices are queried.                              | `pricesTimestamp` |
 | reservedInstances              | Azure reserved instances.                                              | `reservedInstance`
 | scalingFactors                 | Scaling factors used over utilization data to add a performance buffer for new machines to be created in Azure.| `scalingFactor` |
 | sizingCriterions               | Assessment sizing criterions.                                          | `sizingCriterion` |
 | stages                         | User configurable setting that describes the status of the assessments.| `stage`           |
-| statuses                       | Whether the assessments has been created and is valid.                 | `status`          |
+| statuses                       | Whether the assessments have been created and is valid.                 | `status`          |
 | timeRanges                     | Time ranges of performance data used to recommend a size.              | `timeRange`       |
-| updatedTimestamps              | Times when the project was last updated.                               | `updatedTimestamp`|
+| updatedTimestamps              | Times when the project is last updated.                               | `updatedTimestamp`|
 | vmUptimes                      | Specify the durations for which the VMs are up in the on-premises environment.| `vmUptime` |
 
 
@@ -88,19 +84,20 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-### Loop through Migrate Assessments by their names.
+### Loop through Migrate Assessments by their names
 
 ```ruby
-azure_migrate_assessments(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').names.each do |name|
-  describe azure_container_group(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: name) do
+azure_migrate_assessments(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT').names.each do |name|
+  describe azure_container_group(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'ZONEA_MACHINES_GROUP', name: name) do
     it { should exist }
   end
 end
 ```
-### Test that there are Migrate Assessments with local redundancy.
+
+### Test to ensure Migrate Assessments with local redundancy
 
 ```ruby
-describe azure_migrate_assessments(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').where(azureStorageRedundancy: 'LocallyRedundant') do
+describe azure_migrate_assessments(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT').where(azureStorageRedundancy: 'LOCALLYREDUNDANT') do
   it { should exist }
 end
 ```
@@ -113,15 +110,16 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # Should not exist if no Migrate Assessments are present in the project and in the resource group
-describe azure_migrate_assessments(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_assessments(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT') do
   it { should_not exist }
 end
 
 # Should exist if the filter returns at least one Migrate Assessment in the project and in the resource group
-describe azure_migrate_assessments(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_assessments(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT') do
   it { should exist }
 end
 ```
+
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription you wish to test.
