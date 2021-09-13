@@ -41,7 +41,7 @@ An `azure_sentinel_incidents_resources` resource block returns all Azure sentine
 | Name                           | Description                                                                       |
   |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| workspace_name | Azure Workspace Name for which sentinel_incident are being retrived.|
+| workspace_name | Azure Workspace Name for which sentinel_incident are being retrieved.|
 
 ## Properties
 
