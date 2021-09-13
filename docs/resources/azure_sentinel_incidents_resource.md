@@ -41,7 +41,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 | Name                           | Description                                                                       |
   |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| workspace_name                           | Name for the data factory that you want to create your sentinel_incident in..                                                                 |
+| workspace_name                           | Name for the Workspace that you want to create your sentinel_incident in..                                                                 |
 | incident_id                 | The sentinel_incident Name. |
 
 All the parameter sets needs be provided for a valid query:
