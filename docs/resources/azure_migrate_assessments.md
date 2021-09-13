@@ -79,7 +79,7 @@ The parameter set should be provided for a valid query:
 | updatedTimestamps              | Times when the project is last updated.                               | `updatedTimestamp`|
 | vmUptimes                      | Specify the durations for which the VMs are up in the on-premises environment.| `vmUptime` |
 
-
+Refer to the [Azure Migrate assements documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/get) for additional information. 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
