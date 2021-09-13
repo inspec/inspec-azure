@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`name` is a required parameter, and `resource_group` is an optional parameter.
+`name`, `resource_group`, `project_name` & `group_name` is a required parameter.
 
 ```ruby
 describe azure_migrate_assessment(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'ZONEA_MACHINES_GROUP', NAME: 'ZONEA_MACHINES_MIGRATE_ASSESSMENT') do
