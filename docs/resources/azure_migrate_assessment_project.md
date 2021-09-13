@@ -65,7 +65,7 @@ The parameter set should be provided for a valid query:
 | properties.numberOfMachines   | Number of machines in the project.                               |
 | tags                          | Tags provided by Azure Tagging service.                          |
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to the [`azure_generic_resource`](azure_generic_resource.md#properties).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/projects/get) for other properties available. Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
