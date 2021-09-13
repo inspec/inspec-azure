@@ -41,7 +41,7 @@ An `azure_sentinel_incidents_resources` resource block returns all Azure sentine
 | Name                           | Description                                                                       |
   |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| workspace_name | Azure Factory Name for which sentinel_incident are being retrived.|
+| workspace_name | Azure Workspace Name for which sentinel_incident are being retrieved.|
 
 ## Properties
 
@@ -64,7 +64,7 @@ An `azure_sentinel_incidents_resources` resource block returns all Azure sentine
 ### Test if properties matches
 
 ```ruby
-    describe azure_sentinel_incidents_resource(resource_group: resource_group, workspace_name: workspace_name, incident_id: incident_id) do
+    describe azure_sentinel_incidents_resource(resource_group: resource_group, workspace_name: 'workspace_name') do
       it { should exist }
       its('names') { should include '0367ce89-78ad-4009-8d90-399fad24aabf' }
       its('types') { should include 'Microsoft.SecurityInsights/Incidents' }
