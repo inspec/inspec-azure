@@ -71,7 +71,7 @@ Refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/mig
 
 ## Examples
 
-### Test that the Migrate Assessments has a minimum scalingFactor
+### Test that the Migrate Assessments has a minimum scaling factor
 
 ```ruby
 describe azure_migrate_assessment(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'ZONEA_MACHINES_GROUP', name: 'ZONEA_MACHINES_MIGRATE_ASSESSMENT') do
