@@ -50,13 +50,13 @@ The parameter set should be provided for a valid query:
 | properties                     | A list of Properties for all the assessments.                          | `properties`     |
 | azureDiskTypes                 | Storage type selected for the disk of all the assessments.             | `azureDiskType`  |
 | azureHybridUseBenefits         | AHUB discount on windows virtual machines of all the assessments.      | `azureHybridUseBenefit`|
-| azureLocations                 | Target Azure locations for which the machines should be assessed.      | `azureLocation` |
+| azureLocations                 | Target Azure locations for which the machines should be assessed.      | `azureLocation`  |
 | azureOfferCodes                | Offer codes according to which cost estimation is done.                | `azureOfferCode` |
 | azurePricingTiers              | Pricing tiers for Size evaluation.                                     | `azurePricingTier`|
 | azureStorageRedundancies       | Storage Redundancy types offered by Azure.                             | `azureStorageRedundancy`|
 | azureVmFamilies                | List of azure VM families.                                             | `azureVmFamilies`|
 | confidenceRatingInPercentages  | Confidence rating percentages for assessment.                          | `confidenceRatingInPercentage`|
-| createdTimestamps              | Time when this project is created.                                    | `createdTimestamp` |
+| createdTimestamps              | Time when this project is created.                                     | `createdTimestamp` |
 | currencies                     | Currencies to report prices in.                                        | `currency`       |
 | discountPercentages            | Custom discount percentages to be applied on final costs.              | `discountPercentage`|
 | eaSubscriptionIds              | Enterprise agreement subscription arm ids.                             | `eaSubscriptionId`|
@@ -66,20 +66,20 @@ The parameter set should be provided for a valid query:
 | monthlyStandardSSDStorageCosts | Monthly standard SSD storage cost estimates for the machines.          | `monthlyStandardSSDStorageCost`|
 | monthlyStorageCosts            | Monthly storage cost estimates for the machines.                       | `monthlyStorageCost` |
 | numberOfMachines               | Number of assessed machines part of the assessments.                   | `numberOfMachines` |
-| percentiles                    | Percentiles of performance data used to recommend Azure size.          | `percentile` |
-| perfDataEndTimes               | End times to consider performance data for assessments.                | `perfDataEndTime` |
+| percentiles                    | Percentiles of performance data used to recommend Azure size.          | `percentile`     |
+| perfDataEndTimes               | End times to consider performance data for assessments.                | `perfDataEndTime`|
 | perfDataStartTimes             | Start times to consider performance data for assessments.              | `perfDataStartTime` |
-| pricesTimestamps               | Times when the Azure Prices are queried.                              | `pricesTimestamp` |
-| reservedInstances              | Azure reserved instances.                                              | `reservedInstance`
+| pricesTimestamps               | Times when the Azure Prices are queried.                               | `pricesTimestamp`|
+| reservedInstances              | Azure reserved instances.                                              | `reservedInstance`|
 | scalingFactors                 | Scaling factors used over utilization data to add a performance buffer for new machines to be created in Azure.| `scalingFactor` |
-| sizingCriterions               | Assessment sizing criterions.                                          | `sizingCriterion` |
-| stages                         | User configurable setting that describes the status of the assessments.| `stage`           |
-| statuses                       | Whether the assessments have been created and is valid.                 | `status`          |
-| timeRanges                     | Time ranges of performance data used to recommend a size.              | `timeRange`       |
-| updatedTimestamps              | Times when the project is last updated.                               | `updatedTimestamp`|
-| vmUptimes                      | Specify the durations for which the VMs are up in the on-premises environment.| `vmUptime` |
+| sizingCriterions               | Assessment sizing criterions.                                          | `sizingCriterion`|
+| stages                         | User configurable setting that describes the status of the assessments.| `stage`          |
+| statuses                       | Whether the assessments have been created and is valid.                | `status`         |
+| timeRanges                     | Time ranges of performance data used to recommend a size.              | `timeRange`      |
+| updatedTimestamps              | Times when the project is last updated.                                | `updatedTimestamp`|
+| vmUptimes                      | Specify the durations for which the VMs are up in the on-premises environment.| `vmUptime`|
 
-Refer to the [Azure Migrate assements documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/get) for additional information. 
+Refer to the [Azure Migrate assements documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/list-by-project) for additional information. 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
