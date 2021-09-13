@@ -5,7 +5,7 @@ platform: azure
 
 # azure_migrate_assessment
 
-Use the `azure_migrate_assessment` InSpec audit resource to test the properties related to Azure Migrate Assessments.
+Use the `azure_migrate_assessment` InSpec audit resource to test the properties related to Azure Migrate assessment.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -22,18 +22,18 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`name`, `resource_group`, `project_name` & `group_name` is a required parameter.
+`name`, `resource_group`, `project_name`, and `group_name` are required parameters.
 
 ```ruby
-describe azure_migrate_assessment(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'ZONEA_MACHINES_GROUP', NAME: 'ZONEA_MACHINES_MIGRATE_ASSESSMENT') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
   it                                      { should exist }
-  its('name')                             { should cmp 'ZONEA_MACHINES_MIGRATE_ASSESSMENT' }
+  its('name')                             { should cmp 'ZONEA_ASSESSMENT_NAME' }
   its('type')                             { should cmp 'Microsoft.Migrate/assessmentprojects/groups/assessments' }
 end
 ```
 
 ```ruby
-describe azure_migrate_assessment(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'ZONEA_MACHINES_GROUP', name: 'ZONEA_MACHINES_MIGRATE_ASSESSMENT') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
   it  { should exist }
 end
 ```
@@ -42,14 +42,14 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Migrate Assessment to test.                                   |
-| resource_group | Azure resource group where the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Assessment Project.                                                |
+| name           | Name of the Azure Migrate assessment to test.                                    |
+| resource_group | Azure resource group where the targeted resource resides in.                     |
+| project_name   | Azure Migrate assessment project.                                                |
 | group_name     | Unique name of a group within a project.                                         |
 
 The parameter set should be provided for a valid query:
 
-- `resource_group` and `project_name` and `group_name` and `name`
+- `resource_group`, `project_name`, `group_name`, and `name`.
 
 ## Properties
 
@@ -57,7 +57,7 @@ The parameter set should be provided for a valid query:
 |-------------------------------|------------------------------------------------------------------|
 | id                            | Path reference to the assessment.                                |
 | name                          | Unique name of an assessment.                                    |
-| type                          | Object type. `Microsoft.Migrate/assessmentProjects/groups/assessments` |
+| type                          | Object type.                                                     |
 | eTag                          | For optimistic concurrency control.                              |
 | properties                    | Properties of the assessment.                                    |
 | properties.azureDiskType      | Storage type selected for this disk.                             |
@@ -71,10 +71,10 @@ Refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/mig
 
 ## Examples
 
-### Test that the Migrate Assessments has a minimum scaling factor
+### Test that the migrate assessments has a minimum scaling factor
 
 ```ruby
-describe azure_migrate_assessment(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'ZONEA_MACHINES_GROUP', name: 'ZONEA_MACHINES_MIGRATE_ASSESSMENT') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
   its('properties.scalingFactor') { should eq 1.0 }
 end
 ```
@@ -87,12 +87,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Assessments is found, it will exist
-describe azure_migrate_assessment(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'ZONEA_MACHINES_GROUP', name: 'ZONEA_MACHINES_MIGRATE_ASSESSMENT') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
   it { should exist }
 end
 
 # if Migrate Assessments are not found, it will not exist
-describe azure_migrate_assessment(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', group_name: 'zONEA_MACHINES_GROUP', name: 'ZONEA_MACHINES_MIGRATE_ASSESSMENT') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
   it { should_not exist }
 end
 ```
