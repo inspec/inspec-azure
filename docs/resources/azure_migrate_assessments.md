@@ -94,7 +94,7 @@ azure_migrate_assessments(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_M
 end
 ```
 
-### Test to ensure Migrate Assessments with local redundancy
+### Test to ensure Migrate assessments exist with local redundancy
 
 ```ruby
 describe azure_migrate_assessments(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT').where(azureStorageRedundancy: 'LOCALLYREDUNDANT') do
