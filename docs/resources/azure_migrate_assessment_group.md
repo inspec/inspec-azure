@@ -5,13 +5,13 @@ platform: azure
 
 # azure_migrate_assessment_group
 
-Use the `azure_migrate_assessment_group` InSpec audit resource to test the properties related to an Azure Migrate Assessment Group.
+Use the `azure_migrate_assessment_group` InSpec audit resource to test the properties related to an Azure Migrate assessment group.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
@@ -21,18 +21,18 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`name`, `project_name` and `resource_group` are required parameters.
+`name`, `project_name`, and `resource_group` are required parameters.
 
 ```ruby
-describe azure_migrate_assessment_group(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', name: 'ZONEA_MACHINES_GROUP') do
+describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'GROUP_NAME') do
   it                                      { should exist }
-  its('name')                             { should eq 'ZONEA_MACHINES_GROUP' }
+  its('name')                             { should eq 'GROUP_NAME' }
   its('type')                             { should cmp 'Microsoft.Migrate/assessmentProjects/groups' }
 end
 ```
 
 ```ruby
-describe azure_migrate_assessment_group(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', name: 'ZONEA_MACHINES_GROUP') do
+describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'GROUP_NAME') do
   it  { should exist }
 end
 ```
@@ -41,13 +41,13 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Migrate Assessment Group to test.                                   |
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Assessment Project.                                                |
+| name           | Name of the Azure Migrate assessment group to test.                                   |
+| resource_group | Azure resource group that the targeted resource resides in. `Resource_Group`    |
+| project_name   | Azure Migrate assessment project.                                                |
 
 The parameter set should be provided for a valid query:
 
-- `resource_group` and `project_name` and `name`
+- `resource_group`, `project_name`, and `name`.
 
 ## Properties
 
@@ -59,7 +59,7 @@ The parameter set should be provided for a valid query:
 | eTag                          | For optimistic concurrency control.                               |
 | properties                    | Properties of the group.                                          |
 | properties.areAssessmentsRunning | If the assessments are in running state.                       |
-| properties.assessments        | List of References to Assessments created on this group.          |
+| properties.assessments        | List of references to assessments created on this group.          |
 | properties.machineCount       | Number of machines part of this group.                            |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
@@ -68,10 +68,10 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/m
 
 ## Examples
 
-### Test the Migrate Assessment Group has at-least 5 machines
+### Test the migrate assessment group has at-least 5 machines
 
 ```ruby
-describe azure_migrate_assessment_group(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', name: 'ZONEA_MACHINES_GROUP') do
+describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'GROUP_NAME') do
   its('properties.machineCount') { should be >= 5 }
 end
 ```
@@ -84,11 +84,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Assessment Group is found, it will exist
-describe azure_migrate_assessment_group(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', name: 'ZONEA_MACHINES_GROUP') do
+describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'GROUP_NAME') do
   it { should exist }
 end
 # if Migrate Assessment Group is not found, it will not exist
-describe azure_migrate_assessment_group(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', name: 'ZONEA_MACHINES_GROUP') do
+describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'GROUP_NAME') do
   it { should_not exist }
 end
 ```
