@@ -25,7 +25,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 An `azure_migrate_project_database` resource block returns all Azure Migrate Project Databases within a project.
 
 ```ruby
-describe azure_migrate_project_database(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_DB_PROJECT') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   #...
 end
 ```
@@ -34,12 +34,12 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Project.                                                |
+| resource_group | Azure resource group that the targeted resource resides in.                      |
+| project_name   | Azure Migrate Project.                                                           |
 
 The parameter set should be provided for a valid query:
 
-- `resource_group` and `project_name`
+- `resource_group` and `project_name`.
 
 ## Properties
 
@@ -56,7 +56,7 @@ The parameter set should be provided for a valid query:
 | compatibilityLevels            | The compatibility levels of the database.                              | `compatibilityLevel`   |
 | databaseNames                  | The database names.                                                    | `databaseName`   |
 | databaseSizeInMBs              | The sizes of the databases.                                            | `databaseSizeInMB`|
-| enqueueTimes                   | The list of times the message is enqueued.                            | `enqueueTime`    |
+| enqueueTimes                   | The list of times the message is enqueued.                             | `enqueueTime`    |
 | extendedInfos                  | The extended properties of all the database.                           | `extendedInfo`   |
 | instanceIds                    | The database server instance Ids.                                      | `instanceId`     |
 | isReadyForMigrations           | The values indicating whether the database is ready for migration.     | `isReadyForMigration` |
@@ -69,20 +69,20 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-### Loop through Migrate Project Databases by their names
+### Loop through migrate project databases by their names
 
 ```ruby
-azure_migrate_project_databases(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_DB_PROJECT').names.each do |name|
-  describe azure_migrate_project_database(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_DB_PROJECT', name: name) do
+azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
+  describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: name) do
     it { should exist }
   end
 end
 ```
 
-### Test there are Migrate Project Databases are ready for migration
+### Test there are migrate project databases are ready for migration
 
 ```ruby
-describe azure_migrate_project_database(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_DB_PROJECT').where{ isReadyForMigration.include?(true) } do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ isReadyForMigration.include?(true) } do
   it { should exist }
 end
 ```
@@ -95,12 +95,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # Should not exist if no Migrate Project Databases are present in the project and in the resource group
-describe azure_migrate_project_database(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_DB_PROJECT') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should_not exist }
 end
 
 # Should exist if the filter returns at least one Migrate Project Databases in the project and in the resource group
-describe azure_migrate_project_database(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_DB_PROJECT') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should exist }
 end
 ```
