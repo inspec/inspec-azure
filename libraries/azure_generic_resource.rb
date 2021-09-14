@@ -64,6 +64,10 @@ class AzureGenericResource < AzureResourceBase
       end
     end
 
+    if @opts[:transform_keys].present?
+      @resource_long_desc.deep_transform_keys!(&@opts[:transform_keys])
+    end
+
     # Create resource methods with the properties of the resource.
     create_resource_methods(@resource_long_desc)
   end
