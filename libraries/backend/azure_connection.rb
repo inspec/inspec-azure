@@ -129,6 +129,7 @@ class AzureConnection
     resp = send_request(opts)
 
     if resp.status == 200
+      return resp.headers if resp.env.method == :head
       resp.body
     else
       fail_api_query(resp)
