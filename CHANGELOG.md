@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.68.1 -->
+<!-- latest_release 1.68.2 -->
+## [v1.68.2](https://github.com/inspec/inspec-azure/tree/v1.68.2) (2021-09-14)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.20.0 to ~&gt; 1.21.0 [#478](https://github.com/inspec/inspec-azure/pull/478) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
 ## [v1.68.1](https://github.com/inspec/inspec-azure/tree/v1.68.1) (2021-09-02)
 
 #### Merged Pull Requests
 - skip nested nil values in array [#449](https://github.com/inspec/inspec-azure/pull/449) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.68.0](https://github.com/inspec/inspec-azure/tree/v1.68.0) (2021-08-31)
 
