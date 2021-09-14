@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.68.3 -->
+<!-- latest_release 1.68.4 -->
+## [v1.68.4](https://github.com/inspec/inspec-azure/tree/v1.68.4) (2021-09-14)
+
+#### Merged Pull Requests
+- Fix YAML frontmatter lines in resource docs pages [#479](https://github.com/inspec/inspec-azure/pull/479) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.68.3](https://github.com/inspec/inspec-azure/tree/v1.68.3) (2021-09-14)
 
 #### Merged Pull Requests
 - F/linked service [#430](https://github.com/inspec/inspec-azure/pull/430) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.68.2](https://github.com/inspec/inspec-azure/tree/v1.68.2) (2021-09-14)
 
