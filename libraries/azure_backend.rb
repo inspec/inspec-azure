@@ -622,6 +622,8 @@ class AzureResourceDynamicMethods
       else
         probes = []
         value.each do |value_item|
+          next if value_item.nil?
+
           probes << AzureResourceProbe.new(value_item)
         end
       end
