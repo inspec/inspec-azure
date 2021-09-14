@@ -33,7 +33,7 @@ end
 ## Parameters
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
+| resource_group | Azure resource group that the targeted resource resides in.                      |
 | project_name   | Azure Migrate assessment project.                                                |
 
 The parameter set should be provided for a valid query:
@@ -48,14 +48,13 @@ The parameter set should be provided for a valid query:
 | types                          | Type of the objects.                                                   | `type`             |
 | eTags                          | A list of eTags for all the groups.                                    | `eTag`             |
 | properties                     | A list of properties for all the groups.                               | `properties`       |
-| areAssessmentsRunnings         | A list of boolean describing the assessment run state.                  | `areAssessmentsRunning` |
+| areAssessmentsRunnings         | A list of boolean describing the assessment run state.                 | `areAssessmentsRunning` |
 | assessments                    | List of references to assessments created on this group.               | `assessments`      |
 | createdTimestamps              | List of creation times of the groups.                                  | `createdTimestamp` |
 | groupStatuses                  | List of creation status of the groups.                                 | `groupStatus`      |
 | groupTypes                     | List of group types.                                                   | `groupType`        |
 | machineCounts                  | List of machine counts.                                                | `machineCount`     |
 | updatedTimestamps              | List of updated timestamps of the groups.                              | `updatedTimestamp` |
-
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/groups/list-by-project) for the complete list of properties available.
 
@@ -65,7 +64,7 @@ The parameter set should be provided for a valid query:
 
 ```ruby
 azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
-  describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: name) do
+  describe azure_migrate_assessment_group(resource_group: RESOURCE_GROUP, project_name: PROJECT_NAME, name: name) do
     it { should exist }
   end
 end

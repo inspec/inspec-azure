@@ -41,8 +41,8 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Migrate assessment group to test.                                   |
-| resource_group | Azure resource group that the targeted resource resides in. `Resource_Group`    |
+| name           | Name of the Azure Migrate assessment group to test.                              |
+| resource_group | Azure resource group that the targeted resource resides in.                      |
 | project_name   | Azure Migrate assessment project.                                                |
 
 The parameter set should be provided for a valid query:
@@ -55,7 +55,7 @@ The parameter set should be provided for a valid query:
 |-------------------------------|-------------------------------------------------------------------|
 | id                            | Path reference to the group.                                      |
 | name                          | Name of the group.                                                |
-| type                          | Object type. `Microsoft.Migrate/assessmentProjects/groups` |
+| type                          | Object type. `Microsoft.Migrate/assessmentProjects/groups`        |
 | eTag                          | For optimistic concurrency control.                               |
 | properties                    | Properties of the group.                                          |
 | properties.areAssessmentsRunning | If the assessments are in running state.                       |
@@ -68,7 +68,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/m
 
 ## Examples
 
-### Test the migrate assessment group has at-least 5 machines
+### Test the migrate assessment group has at least 5 machines
 
 ```ruby
 describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'GROUP_NAME') do
