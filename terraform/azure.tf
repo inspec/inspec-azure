@@ -1420,7 +1420,7 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
 }
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
-  name               = "inspec-test"
+  name               = var.inspec_adls_file_system_name
   storage_account_id = azurerm_storage_account.sa.id
 
   properties = {

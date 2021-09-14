@@ -495,12 +495,12 @@ output "inspec_adls_account_name" {
   value = azurerm_storage_account.sa.name
 }
 
-output "inspec_adls_name" {
-  description = "The ADLS name"
+output "inspec_adls_fs_name" {
+  description = "The ADLS File System name"
   value = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
 }
 
 output "inspec_adls_dns_suffix" {
   description = "The default DNS suffix for ADLS"
-  value = "file.core.windows.net"
+  value = "dfs.core.windows.net"
 }
