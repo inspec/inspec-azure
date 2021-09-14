@@ -128,8 +128,10 @@ The following is a list of static resources.
 - [azure_container_registries](docs/resources/azure_container_registries.md)
 - [azure_container_registry](docs/resources/azure_container_registry.md)
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
+- [azure_data_lake_storage_gen2_filesystem](docs/resources/azure_data_lake_storage_gen2_filesystem.md)
+- [azure_data_lake_storage_gen2_filesystems](docs/resources/azure_data_lake_storage_gen2_filesystems.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
-- [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
+- [azure_db_migration_services](docs/resources/azure_db_migration_services.md)libraries/aws_elb.rb
 - [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
 - [azure_ddos_protection_resources](docs/resources/azure_ddos_protection_resources.md)
 - [azure_dns_zones_resource](docs/resources/azure_dns_zones_resource.md)
