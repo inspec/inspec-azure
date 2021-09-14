@@ -126,21 +126,7 @@ class AzureConnection
     opts[:headers]['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
     opts[:headers]['Accept'] = 'application/json'
     opts[:method] ||= 'get'
-    case opts[:method]
-    when 'get'
-      resp = @connection.get(opts[:url]) do |req|
-        req.params =  opts[:params] unless opts[:params].nil?
-        req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
-      end
-    when 'post'
-      resp = @connection.post(opts[:url]) do |req|
-        req.params = opts[:params] unless opts[:params].nil?
-        req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
-        req.body = opts[:req_body] unless opts[:req_body].nil?
-      end
-    else
-      raise StandardError, "This method is not supported: #{opts[:method]}"
-    end
+    resp = send_request(opts)
 
     if resp.status == 200
       resp.body
@@ -236,6 +222,29 @@ class AzureConnection
       raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, "#{message} #{body}"
     else
       raise UnsuccessfulAPIQuery::UnexpectedHTTPResponse, message
+    end
+  end
+
+  def send_request(opts)
+    case opts[:method]
+    when 'get'
+      @connection.get(opts[:url]) do |req|
+        req.params =  opts[:params] unless opts[:params].nil?
+        req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
+      end
+    when 'post'
+      @connection.post(opts[:url]) do |req|
+        req.params = opts[:params] unless opts[:params].nil?
+        req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
+        req.body = opts[:req_body] unless opts[:req_body].nil?
+      end
+    when 'head'
+      @connection.head(opts[:url]) do |req|
+        req.params = opts[:params] unless opts[:params].nil?
+        req.headers = opts[:headers] unless opts[:headers].nil?
+      end
+    else
+      raise StandardError, "This method is not supported: #{opts[:method]}"
     end
   end
 end
