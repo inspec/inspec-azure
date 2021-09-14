@@ -154,7 +154,7 @@ class AzureGenericResources < AzureResourceBase
       end
       query_params = { resource_uri: resource_uri }
     end
-    query_params[:query_parameters] = {}
+    query_params[:query_parameters] = @opts[:query_parameters].presence || {}
     unless @opts[:filter_free_text].nil?
       query_params[:query_parameters]['$filter'] = @opts[:filter_free_text]
     end
