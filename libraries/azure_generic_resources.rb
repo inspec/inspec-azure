@@ -41,7 +41,7 @@ class AzureGenericResources < AzureResourceBase
       return
     end
     if @opts.key?(:resource_uri)
-      validate_parameters(required: %i(resource_uri add_subscription_id), allow: %i(api_version filter_free_text is_uri_a_url audience))
+      validate_parameters(required: %i(resource_uri add_subscription_id), allow: %i(api_version filter_free_text is_uri_a_url audience query_parameters headers))
       validate_resource_uri
       collect_resources
       AzureGenericResources.populate_filter_table(:table, table_schema)
