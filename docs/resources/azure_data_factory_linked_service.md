@@ -5,7 +5,7 @@ platform: azure
 
 # azure_data_factory_linked_service
 
-Use the `azure_data_factory_linked_service` InSpec audit resource to test properties of an Azure Linked Service.
+Use the `azure_data_factory_linked_service` InSpec audit resource to test the properties of an Azure Linked service.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,10 +22,10 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`resource_group` and `linked_service_name`, `factory_name` are required parameters.
+`resource_group`, `linked_service_name`, and `factory_name` are required parameters.
 
 ```ruby
-describe azure_data_factory_linked_service(resource_group: resource_group, factory_name: factory_name, linked_service_name: linked_service_name) do
+describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: `FACTORY_NAME`, linked_service_name: `LINKED_SERVICE_NAME`) do
 end
 ```
 
@@ -33,46 +33,46 @@ end
 
 | Name                           | Description                                                                       |
 |--------------------------------|-----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
+| resource_group                 | Azure resource group that the targeted resource resides in.                       |
 | factory_name                   | The factory name.                                                                 |
-| linked_service_name            | The Linked Service Name. |
+| linked_service_name            | The name of the linked service. |
 
 All the parameter sets are required for a valid query:
 
-- `resource_group` , `factory_name` and `linked_service_name`
+- `resource_group` , `factory_name`, and `linked_service_name`.
 
 ## Properties
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
-| name                           | Name of the Azure resource to test. `MyDf`                                       |
+| name                           | Name of the Azure resource to test.                                              |
 | type                           | The resource type.                                                               |
-| linked_service_type            | The Linked Services type.                                                        |
-| type_properties                | The Properties of linked service type.                                           |
-| properties                     | The Properties of the Resource.                                                  |
+| linked_service_type            | The linked services type.                                                        |
+| type_properties                | The properties of linked service type.                                           |
+| properties                     | The properties of the resource.                                                  |
 
 ## Examples
 
 ### Test that a Linked Service exists
 
 ```ruby
-describe azure_data_factory_linked_service(resource_group: resource_group, factory_name: factory_name, linked_service_name: linked_service_name) do
+describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: `FACTORY_NAME`, linked_service_name: `LINKED_SERVICE_NAME`) do
   it { should exist }
 end
 ```
 
-### Test that a Linked Service does not exist
+### Test that a linked service does not exist
 
 ```ruby
-describe azure_data_factory_linked_service(resource_group: resource_group, factory_name: factory_name, linked_service_name: 'should not exit') do
+describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: `FACTORY_NAME`, linked_service_name: 'should not exit') do
   it { should_not exist }
 end
 ```
 
-### Test properties of a Linked Service
+### Test properties of a linked service
 
 ```ruby
-describe azure_data_factory_linked_service(resource_group: resource_group, name: 'DF_NAME') do
+describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, name: 'FACTORY_NAME') do
   its('name') { should eq linked_service_name1 }
   its('type') { should eq 'Microsoft.DataFactory/factories/linkedservices' }
   its('linked_service_type') { should eq 'MYSQL' }
