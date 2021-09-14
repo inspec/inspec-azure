@@ -5,14 +5,14 @@ platform: azure
 
 # azure_migrate_assessment_projects
 
-Use the `azure_migrate_assessment_projects` InSpec audit resource to test the properties related to all Azure Migrate Assessment Projects within a subscription.
+Use the `azure_migrate_assessment_projects` InSpec audit resource to test the properties related to all Azure Migrate assessment projects within a subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client are used. For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client are used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_migrate_assessment_projects` resource block returns all Azure Migrate Projects within a subscription.
+An `azure_migrate_assessment_projects` resource block returns all Azure Migrate projects within a subscription.
 
 ```ruby
 describe azure_migrate_assessment_projects do
@@ -46,7 +46,7 @@ end
 | customerStorageAccountArmIds   | The ARM ids of the storage account used for interactions when public access is disabled.| `customerStorageAccountArmId` |
 | customerWorkspaceIds           | The ARM ids of service map workspace created by customer.              | `customerWorkspaceId` |
 | customerWorkspaceLocations     | Locations of service map workspace created by customer.                | `customerWorkspaceLocation`|
-| lastAssessmentTimestamps       | Times when last assessment is created.                                | `lastAssessmentTimestamp` |
+| lastAssessmentTimestamps       | Times when last assessment is created.                                 | `lastAssessmentTimestamp` |
 | numberOfAssessments            | Number of assessments created in the project.                          | `numberOfAssessments`|
 | numberOfGroups                 | Number of groups created in all the projects.                          | `numberOfGroups`  |
 | numberOfMachines               | Number of machines in all the projects.                                | `numberOfMachines`|
@@ -55,23 +55,23 @@ end
 | provisioningStates             | Provisioning states of all the projects.                               | `provisioningState`|
 | publicNetworkAccesses          | Public Network Access for all the projects.                            | `publicNetworkAccess`|
 | serviceEndpoints               | Service Endpoints of all the projects.                                 | `serviceEndpoint` |
-| updatedTimestamps              | Times when this project is last updated.                              | `updatedTimestamp`|
+| updatedTimestamps              | Times when this project is last updated.                               | `updatedTimestamp`|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Loop through Migrate Assessment Projects by their names
+### Loop through migrate assessment projects by their names
 
 ```ruby
 azure_migrate_assessment_projects.names.each do |name|
-  describe azure_migrate_assessment_project(resource_group: 'MIGRATED_VMS', name: name) do
+  describe azure_migrate_assessment_project(resource_group: 'RESOURCE_GROUP', name: name) do
     it { should exist }
   end
 end
 ```
 
-### Test to ensure that Migrate Assessment Projects in West Europe Location
+### Test to ensure that migrate assessment projects in West Europe location
 
 ```ruby
 describe azure_migrate_assessment_projects.where(location: 'WESTEUROPE') do
