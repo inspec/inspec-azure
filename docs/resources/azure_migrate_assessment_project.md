@@ -55,7 +55,7 @@ The parameter set should be provided for a valid query:
 |-------------------------------|------------------------------------------------------------------|
 | id                            | Path reference to the project.                                   |
 | name                          | Name of the project.                                             |
-| type                          | Type of the object. `Microsoft.Migrate/assessmentProjects`       |
+| type                          | Type of the object.                                              |
 | eTag                          | For optimistic concurrency control.                              |
 | properties                    | Properties of the project.                                       |
 | location                      | Azure location in which project is created.                      |
