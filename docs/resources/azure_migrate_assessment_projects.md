@@ -74,7 +74,7 @@ end
 ### Test to ensure that migrate assessment projects in West Europe location
 
 ```ruby
-describe azure_migrate_assessment_projects.where(location: 'WESTEUROPE') do
+describe azure_migrate_assessment_projects.where(location: 'westeurope') do
   it { should exist }
 end
 ```
