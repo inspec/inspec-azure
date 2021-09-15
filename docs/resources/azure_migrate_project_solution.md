@@ -24,15 +24,15 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `name` and `resource_group` are required parameters.
 
 ```ruby
-describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_SOLUTION_NAME') do
   it                                      { should exist }
-  its('name')                             { should cmp 'ZONEA_ASSESSMENT_NAME' }
+  its('name')                             { should cmp 'PROJECT_SOLUTION_NAME' }
   its('type')                             { should cmp 'Microsoft.Migrate/MigrateProjects/Solutions' }
 end
 ```
 
 ```ruby
-describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_SOLUTION_NAME') do
   it  { should exist }
 end
 ```
@@ -72,7 +72,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/m
 ### Test that the migrate project solution is defined for assessment
 
 ```ruby
-describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_SOLUTION_NAME') do
   its('properties.purpose') { should eq 'ASSESSMENT' }
 end
 ```
@@ -85,12 +85,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Project Solution is found, it will exist
-describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_SOLUTION_NAME') do
   it { should exist }
 end
 
 # if Migrate Project Solution are not found, it will not exist
-describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_SOLUTION_NAME') do
   it { should_not exist }
 end
 ```
