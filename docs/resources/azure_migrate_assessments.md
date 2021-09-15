@@ -97,7 +97,7 @@ end
 ### Test to ensure migrate assessments exist with local redundancy
 
 ```ruby
-describe azure_migrate_assessments(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(azureStorageRedundancy: 'LOCALLYREDUNDANT') do
+describe azure_migrate_assessments(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(azureStorageRedundancy: 'LocallyRedundant') do
   it { should exist }
 end
 ```
