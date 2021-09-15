@@ -25,16 +25,16 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `name` is a required parameter and `resource_group` is an optional parameter.
 
 ```ruby
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'SQL_DB') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_DB_NAME') do
   it                                      { should exist }
-  its('name')                             { should eq 'SQL_DB' }
+  its('name')                             { should eq 'PROJECT_DB_NAME' }
   its('type')                             { should eq 'Microsoft.Migrate/MigrateProjects/Databases' }
   its('solutionNames')                    { should include 'MIGRATEDBSOLUTION' }
 end
 ```
 
 ```ruby
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'SQL_DB') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_DB_NAME') do
   it  { should exist }
 end
 ```
@@ -77,7 +77,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/m
 ### Test that migrate project database has a SQL assessmentTargetType
 
 ```ruby
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'SQL_DB') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_DB_NAME') do
   its('assessmentTargetTypes') { should include 'SQL' }
 end
 ```
@@ -90,12 +90,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Project Database is found, it will exist
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'SQL_DB') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_DB_NAME') do
   it { should exist }
 end
 
 # if Migrate Project Database is not found, it will not exist
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'SQL_DB') do
+describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_DB_NAME') do
   it { should_not exist }
 end
 ```
