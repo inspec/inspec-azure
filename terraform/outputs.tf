@@ -480,6 +480,10 @@ output "sample_directory_object" {
   value = var.sample_directory_object
 }
 
+output "linked_service_name" {
+  value = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+}
+
 output "inspec_redis_cache_name" {
   description = "The name of the redis cache created for cloud packs"
   value = azurerm_redis_cache.inspec_compliance_redis_cache.name
