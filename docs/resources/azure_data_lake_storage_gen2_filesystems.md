@@ -25,7 +25,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 An `azure_data_lake_storage_gen2_filesystems` resource block returns all Azure Data Lake Storage Gen2 Filesystems within a project.
 
 ```ruby
-describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME', dns_suffix: 'DNS_SUFFIX') do
+describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME') do
   #...
 end
 ```
@@ -37,7 +37,8 @@ end
 | dns_suffix     | The DNS suffix for the Azure Data Lake Storage endpoint.                         |
 
 The parameter set should be provided for a valid query:
-- `account_name` and `dns_suffix`
+- `account_name`
+- `account_name` and `dns_suffix` (optional)
 
 ## Properties
 
@@ -46,8 +47,8 @@ The parameter set should be provided for a valid query:
 | names                          | Unique names for all Azure Storage account Filesystems.                | `name`           |
 | lastModifieds                  | Last modified timestamps of Azure Storage account Filesystem.          | `lastModified`   |
 | eTags                          | A list of eTags for all the Azure Storage account Filesystems.         | `eTag`           |
-| DefaultEncryptionScopes        | A list of all Encryption scopes of the ADLS Filesystems
-| DenyEncryptionScopeOverrides   | A list 
+| DefaultEncryptionScopes        | A list of all Encryption scopes of the ADLS Filesystems.               | `DefaultEncryptionScope`|
+| DenyEncryptionScopeOverrides   | A list of all Deny Encryption Scope Overrides.                         | `DenyEncryptionScopeOverrides`|
 
 
 
@@ -66,10 +67,10 @@ azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').names.eac
 end
 ```
 
-### Test to ensure Data Lake Storage Gen2 Filesystems with 
+### Test to ensure Data Lake Storage Gen2 Filesystems with `$account-encryption-key` Encryption Scope
 
 ```ruby
-describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').where(azureStorageRedundancy: 'LOCALLYREDUNDANT') do
+describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').where(DefaultEncryptionScope: '$account-encryption-key') do
   it { should exist }
 end
 ```

@@ -52,15 +52,15 @@ The parameter set should be provided for a valid query:
 
 | Property                            | Description                                                      |
 |-------------------------------------|------------------------------------------------------------------|
-| last_modified                       |
-| etag                                |
-| x_ms_properties                     |
-| x_ms_namespace_enabled              |
-| x_ms_default_encryption_scope       |
-| x_ms_deny_encryption_scope_override |
-| x_ms_request_id                     |
-| x_ms_version                        |
-| date                                |
+| last_modified                       | Last Modified Timestamp of the resource.                         |
+| etag                                | HTTP strong entity tag value.                                    |
+| x_ms_properties                     | Properties of the filesystem.                                    |
+| x_ms_namespace_enabled              | Boolean String for Namespace enablement.                         |
+| x_ms_default_encryption_scope       | Default Encryption Scope.                                        |
+| x_ms_deny_encryption_scope_override | Boolean String for Deny Encryption Scope.                        |
+| x_ms_request_id                     | Request ID.                                                      |
+| x_ms_version                        | Version of the API.                                              |
+| date                                | Date String of the request.                                      |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
