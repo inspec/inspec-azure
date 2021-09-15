@@ -1,7 +1,7 @@
 ---
 title: About the azure_ddos_protection_resource Resource
 platform: azure
- ---
+---
 
 # azure_ddos_protection_resource
 
