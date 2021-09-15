@@ -64,7 +64,7 @@ The parameter set should be provided for a valid query:
 
 ```ruby
 azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
-  describe azure_migrate_assessment_group(resource_group: RESOURCE_GROUP, project_name: PROJECT_NAME, name: name) do
+  describe azure_migrate_assessment_group(resource_group: `RESOURCE_GROUP`, project_name: `PROJECT_NAME`, name: `NAME`) do
     it { should exist }
   end
 end
