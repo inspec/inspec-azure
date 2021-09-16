@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.70.1 -->
+<!-- latest_release 1.71.0 -->
+## [v1.71.0](https://github.com/inspec/inspec-azure/tree/v1.71.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support Azure Migrate Project Databases [#439](https://github.com/inspec/inspec-azure/pull/439) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.70.1](https://github.com/inspec/inspec-azure/tree/v1.70.1) (2021-09-16)
 
 #### Merged Pull Requests
 - Enhance backend [#481](https://github.com/inspec/inspec-azure/pull/481) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.70.0](https://github.com/inspec/inspec-azure/tree/v1.70.0) (2021-09-16)
 
