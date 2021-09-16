@@ -22,7 +22,7 @@ ATTRIBUTES_FILE_NAME = ''
 
 task default: :test
 desc 'Testing tasks'
-task test: %w{test:unit}
+task test: %w{lint test:unit}
 
 desc 'Linting tasks'
 task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
