@@ -493,3 +493,18 @@ output "inspec_virtual_wan" {
   description = "The resource name of the inspec virtual WAN"
   value = azurerm_virtual_wan.inspec-nw-wan.name
 }
+
+output "inspec_adls_account_name" {
+  description = "The storage account for the ADLS"
+  value = azurerm_storage_account.sa.name
+}
+
+output "inspec_adls_fs_name" {
+  description = "The ADLS File System name"
+  value = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
+}
+
+output "inspec_adls_dns_suffix" {
+  description = "The default DNS suffix for ADLS"
+  value = "dfs.core.windows.net"
+}

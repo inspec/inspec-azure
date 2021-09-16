@@ -132,6 +132,8 @@ The following is a list of static resources.
 - [azure_data_factory](docs/resources/azure_data_factory.md)
 - [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
 - [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
+- [azure_data_lake_storage_gen2_filesystem](docs/resources/azure_data_lake_storage_gen2_filesystem.md)
+- [azure_data_lake_storage_gen2_filesystems](docs/resources/azure_data_lake_storage_gen2_filesystems.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
 - [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
 - [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
@@ -423,7 +425,7 @@ They can be defined as environment variables or resource parameters (has priorit
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
 
 ### Developing a Static Resource
 

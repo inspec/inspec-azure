@@ -1425,3 +1425,12 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   name = var.inspec_wan_name
   resource_group_name = azurerm_resource_group.rg.name
 }
+
+resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
+  name               = var.inspec_adls_file_system_name
+  storage_account_id = azurerm_storage_account.sa.id
+
+  properties = {
+    inspec = "aGVsbG8="
+  }
+}
