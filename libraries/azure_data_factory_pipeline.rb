@@ -1,10 +1,10 @@
 require 'azure_generic_resource'
 
-class AzureDataFactoriesPipeline < AzureGenericResource
+class AzureDataFactoryPipeline < AzureGenericResource
   name 'azure_data_factory_pipeline'
-  desc 'get azure gateway unr ta factory.'
+  desc 'Verifies settings for Azure data factory pipeline '
   example <<-EXAMPLE
-      describe azure_data_factory_gateway(resource_group: resource_group, factory_name: factory_name, pipeline_name: pipeline_name)  do
+      describe azure_data_factory_pipeline(resource_group: resource_group, factory_name: factory_name, pipeline_name: pipeline_name)  do
         it { should exist }
       end
   EXAMPLE
@@ -26,6 +26,6 @@ class AzureDataFactoriesPipeline < AzureGenericResource
   end
 
   def to_s
-    super(AzureDataFactoriesPipeline)
+    super(AzureDataFactoryPipeline)
   end
 end
