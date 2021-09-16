@@ -1,6 +1,6 @@
 require 'azure_generic_resources'
 
-class AzureDataFactoriesPipelines < AzureGenericResources
+class AzureDataFactoryPipelines < AzureGenericResources
   name 'azure_data_factory_pipelines'
   desc 'List azure pipelines by  data factory.'
   example <<-EXAMPLE
@@ -34,7 +34,7 @@ class AzureDataFactoriesPipelines < AzureGenericResources
   end
 
   def to_s
-    super(AzureDataFactoriesPipelines)
+    super(AzureDataFactoryPipelines)
   end
 
   private
