@@ -14,5 +14,5 @@ end
 
 group :development, :test do
   gem 'minitest'
-  gem 'rubocop',  '~> 1.20.0'
+  gem 'rubocop',  '~> 1.21.0'
 end
