@@ -170,6 +170,8 @@ The following is a list of static resources.
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
 - [azure_migrate_assessment_project](docs/resources/azure_migrate_assessment_project.md)
 - [azure_migrate_assessment_projects](docs/resources/azure_migrate_assessment_projects.md)
+- [azure_migrate_project_database](docs/resources/azure_migrate_project_database.md)
+- [azure_migrate_project_databases](docs/resources/azure_migrate_project_databases.md)
 - [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
 - [azure_migrate_project_solutions](docs/resources/azure_migrate_project_solutions.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
