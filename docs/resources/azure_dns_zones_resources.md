@@ -1,7 +1,7 @@
 ---
 title: About the azure_dns_zones_resources Resource
 platform: azure
-  ---
+---
 
 # azure_dns_zones_resources
 

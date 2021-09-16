@@ -3,7 +3,7 @@ title: About the azure_policy_assignments Resource
 platform: azure
 ---
 
-## azure_policy_assignments
+# azure_policy_assignments
 
 Use the `azure_policy_assignments` InSpec resource to examine assignments of Azure policy to resources and resource groups.
 
