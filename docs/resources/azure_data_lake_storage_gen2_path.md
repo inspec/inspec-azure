@@ -59,15 +59,14 @@ The parameter set should be provided for a valid query:
 | x_ms_request_id                     | Request ID.                                                      |
 | x_ms_version                        | Version of the API.                                              |
 | date                                | Date String of the request.                                      |
-| content_length                      | 
-| content_type
-| content_md5
-| last_modified |
-| accept_ranges |
-| x_ms_resource_type
-| x_ms_lease_state |
-| x_ms_lease_status |
-| x_ms_server_encrypted |
+| content_length                      | Content Length of the file.                                      |
+| content_type                        | Content Type.                                                    |
+| content_md5                         | MD5 of the Content uploaded.                                     |
+| accept_ranges                       | File size described measurement. `bytes`                         |
+| x_ms_resource_type                  | Resource Type of the uploaded. `file`                            |
+| x_ms_lease_state                    | If the file is available or not.                                 |
+| x_ms_lease_status                   | Status of lease.                                                 |
+| x_ms_server_encrypted               | If the file is encrypted on the server.                          |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
@@ -76,11 +75,11 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/s
 
 ## Examples
 
-### Test that the Data Lake Storage Gen 2 Filesystem
+### Test that the Data Lake Storage Gen 2 Filesystem Path is server encrypted
 
 ```ruby
 describe azure_data_lake_storage_gen2_path(account_name: 'ACCOUNT_NAME', filesystem: 'FILE_SYSTEM', name: 'PATHNAME')  do
-  its() { should eq 1.0 }
+  its('x_ms_server_encrypted') { should eq 'true' }
 end
 ```
 
