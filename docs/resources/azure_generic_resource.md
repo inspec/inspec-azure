@@ -5,18 +5,18 @@ platform: azure
 
 # azure_generic_resource
 
-Use the `azure_generic_resource` Inspec audit resource to test any valid Azure resource available through Azure Resource Manager.
+Use the `azure_generic_resource` Inspec audit resource to test any valid Azure resource available through Azure Resource Manager. 
 
 ## Availability
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). For an example, `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
+For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
-
 ```ruby
-describe azure_generic_resource(resource_group: 'MYRESOURCEGROUP', name: 'MYRESOURCE') do
+describe azure_generic_resource(resource_group: 'MyResourceGroup', name: 'MyResource') do
   its('property') { should eq 'value' }
 end
 ```
@@ -31,7 +31,7 @@ where
 
 The following parameters can be passed for targeting a specific Azure resource.
 
-| Name                                 |Description                                                       |
+| Name                                 | Description                                                                                              |
 |--------------------------------------|----------------------------------------------------------------------------------------------------------|
 | resource_group                       | Azure resource group that the targeted resource has been created in. `MyResourceGroup`                   |
 | name                                 | Name of the Azure resource to test. `MyResourceName`                                                     |
@@ -47,7 +47,6 @@ The following parameters can be passed for targeting a specific Azure resource.
 <superscript>*</superscript> When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
 
 Either one of the parameter sets can be provided for a valid query:
-
 - `resource_id`
 - `resource_group` and `name`
 - `name`
@@ -58,11 +57,12 @@ Either one of the parameter sets can be provided for a valid query:
 
 Different parameter combinations can be tried. If it is not supported, either the InSpec resource or the Azure Rest API will raise an error.
 
-If the Azure Resource Manager endpoint returns multiple resources for a given query, this singular generic resource will fail. In that case, the [plural generic resource](azure_generic_resources.md) should be used.
+If the Azure Resource Manager endpoint returns multiple resources for a given query, this singular generic resource will fail. In that case, the [plural generic resource](azure_generic_resources.md) should be used. 
 
 ## Properties
 
-The properties that can be tested are dependent on the Azure Resource that is tested. One way to see what properties can be tested is checking their API pages. For example for virtual machines, see [here](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/get). Also the [Azure Resources Portal](https://resources.azure.com) can be used to select the resource you are interested in and see what can be tested.
+The properties that can be tested are dependent on the Azure Resource that is tested. One way to see what properties can be tested is checking their API pages. For example for virtual machines, see [here](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/get). 
+Also the [Azure Resources Portal](https://resources.azure.com) can be used to select the resource you are interested in and see what can be tested.
 
 The following properties are applicable to almost all resources.
 
@@ -80,67 +80,55 @@ For more properties, refer to specific Azure documents for the resource being te
 ## Examples
 
 ### Test Properties of a Virtual Machine and the Endpoint API Version
-
 ```ruby
-describe azure_generic_resource(resource_group: 'MY_VMS', name: 'MY_LINUX_VM') do
+describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') do
   its('properties.storageProfile.osDisk.osType') { should cmp 'Linux' }
   its('properties.storageProfile.osDisk.createOption') { should cmp 'FromImage' }
   its('properties.storageProfile.osDisk.name') { should cmp 'linux-external-osdisk' }
   its('properties.storageProfile.osDisk.caching') { should cmp 'ReadWrite' }
-
+  
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
 ```
-
 ### Test the API Version Used for the Query
-
 ```ruby
 describe azure_generic_resource(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}', api_version: '2017-01-01') do
   its('api_version_used_for_query_state') { should eq 'user_provided' }
   its('api_version_used_for_query') { should eq '2017-01-01' }
 end
 ```
-
 ### Test the Tags if Include Specific Values
-
 ```ruby
-describe azure_generic_resource(resource_group: 'MY_VMS', name: 'MY_LINUX_VM') do
+describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') do
   its('tags') { should include(name: 'MyVM') }
   # The tag key name can be tested in String or Symbol.
   its('tags') { should include(:name) }    # regardless of the value
   its('tags') { should include('name') }    # regardless of the value
 end
 ```
-
-### Test Properties of a Virtual Machine Resides in an Azure Dev Test Lab
-
+### Test Properties of a Virtual Machine Resides in an Azure Dev Test Lab 
 ```ruby
-describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', resource_path: '{labName}/virtualmachines', resource_group: 'MY_GROUP', name: 'MY_VM') do
+describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', resource_path: '{labName}/virtualmachines', resource_group: 'my_group', name: 'my_VM') do
   its('properties.userName') { should cmp 'admin' }
   its('properties.allowClaim') { should cmp false }
 end
 ```
-
-### Test a Resource Group
-
+### Test a Resource Group 
 ```ruby
-describe azure_generic_resource(add_subscription_id: true, resource_uri: '/resourcegroups/', name: 'MY_GROUP') do
+describe azure_generic_resource(add_subscription_id: true, resource_uri: '/resourcegroups/', name: 'my_group') do
   it { should exist }
   its('tags') { should include(:owner) }
   its('tags') { should include(owner: 'John Doe') }
 end
 ```
-
 ### Test a Policy Definition
-
 ```ruby
-describe azure_generic_resource(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions', name: 'MY_POLICY') do
+describe azure_generic_resource(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions', name: 'my_policy') do
   it { should exist }
   its('properties.policyRule.then.effect') { should cmp 'deny' }
   its('properties.policyType') { should cmp 'Custom' }
 end
 ```
-
 For more examples, please see the [integration tests](/test/integration/verify/controls/azure_generic_resource.rb).
 
 ## Matchers
@@ -148,21 +136,18 @@ For more examples, please see the [integration tests](/test/integration/verify/c
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exist
-
 ```ruby
 # Should not exist if there is no resource with a given name
-describe azure_generic_resource(name: 'FAKE_NAME') do
+describe azure_generic_resource(name: 'fake_name') do
   it { should_not exist }
 end
 ```
-
 ```ruby
 # Should exist if there is one resource with a given name
-describe azure_generic_resource(name: 'A_VERY_UNIQUE_NAME_WITHIN_SUBSCRIPTION') do
+describe azure_generic_resource(name: 'a_very_unique_name_within_subscription') do
   it { should exist }
 end
 ```
-
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
