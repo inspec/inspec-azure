@@ -508,3 +508,8 @@ output "inspec_adls_dns_suffix" {
   description = "The default DNS suffix for ADLS"
   value = "dfs.core.windows.net"
 }
+
+output "inspec_adls_fs_path" {
+  description = "The ADLS File System Path name"
+  value = azurerm_storage_data_lake_gen2_path.inspec_adls_gen2_path.path
+}

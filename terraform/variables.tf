@@ -182,3 +182,7 @@ variable "inspec_wan_name" {
 variable "inspec_adls_file_system_name" {
   default = "inspec-adls-fs"
 }
+
+variable "inspec_adls_path_name" {
+  default = "inspec-adls-fs-path"
+}
