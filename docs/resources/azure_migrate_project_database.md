@@ -90,12 +90,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Project Database is found, it will exist
-describe azure_migrate_project_database(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', name: 'SQL_DB') do
+describe azure_migrate_project_database(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
   it { should exist }
 end
 
 # if Migrate Project Database is not found, it will not exist
-describe azure_migrate_project_database(resource_group: 'MIGRATED_VMS', project_name: 'ZONEA_MIGRATE_ASSESSMENT_PROJECT', name: 'SQL_DB') do
+describe azure_migrate_project_database(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
   it { should_not exist }
 end
 ```
