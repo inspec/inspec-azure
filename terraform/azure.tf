@@ -1434,3 +1434,10 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
     inspec = "aGVsbG8="
   }
 }
+
+resource "azurerm_storage_data_lake_gen2_path" "inspec_adls_gen2_path" {
+  path               = var.inspec_adls_path_name
+  filesystem_name    = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
+  storage_account_id = azurerm_storage_account.sa.id
+  resource           = "directory"
+}
