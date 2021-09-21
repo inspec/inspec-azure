@@ -25,14 +25,14 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `resource_group`, `project_name` and `name` are required parameters.
 
 ```ruby
-describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'b92c68318ded') do
+describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_EVENT_NAME') do
   it                             { should exist }
-  its('properties.instanceType') { should eq 'Servers' }
+  its('properties.instanceType') { should eq 'SERVERS' }
 end
 ```
 
 ```ruby
-describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'b92c68318ded') do
+describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_EVENT_NAME') do
   it  { should exist }
 end
 ```
@@ -43,7 +43,7 @@ end
 |----------------|----------------------------------------------------------------------------------|
 | name           | Name of the Azure Migrate project event to test.                                 |
 | resource_group | Azure resource group that the targeted resource resides in.                      |
-| project_name   | Azure Migrate Assessment Project.                                                |
+| project_name   | Azure Migrate assessment project name.                                                |
 
 The parameter set should be provided for a valid query:
 
@@ -53,8 +53,8 @@ The parameter set should be provided for a valid query:
 
 | Property                      | Description                                                      |
 |-------------------------------|------------------------------------------------------------------|
-| id                            | Path reference to the migrate project event.                     |
-| name                          | Unique name of a migrate project event.                         |
+| id                            | Path reference to the Migrate project event.                     |
+| name                          | Unique name of a Migrate project event.                         |
 | type                          | Type of the object. `Microsoft.Migrate/MigrateProjects/Databases`|
 | properties                    | Properties of the assessment.                                    |
 
@@ -69,8 +69,8 @@ Any attribute in the response nested within properties is accessed with the key 
 ### Test that the migrate project event is of servers instanceType
 
 ```ruby
-describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'b92c68318ded') do
-  its('properties.instanceType') { should eq 'Servers' }
+describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_EVENT_NAME') do
+  its('properties.instanceType') { should eq 'SERVERS' }
 end
 ```
 
@@ -82,11 +82,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a migrate project event is found, it will exist
-describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'b92c68318ded') do
+describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_EVENT_NAME') do
   it { should exist }
 end
 # if migrate project event is not found, it will not exist
-describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'b92c68318ded') do
+describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_EVENT_NAME') do
   it { should_not exist }
 end
 ```

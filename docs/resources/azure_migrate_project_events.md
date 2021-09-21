@@ -67,7 +67,7 @@ For more details on the available properties, refer to [Azure documentation](htt
 
 ```ruby
 azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
-  describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: name) do
+  describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: `PROJECT_EVENT_NAME`) do
     it { should exist }
   end
 end
@@ -93,7 +93,7 @@ describe azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_
   it { should_not exist }
 end
 # Should exist, if the filter returns at least one migrate project events in the project and in the resource group
-describe azure_migrate_project_events(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project') do
+describe azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should exist }
 end
 ```
