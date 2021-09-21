@@ -27,7 +27,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do
   it{ should exist }
   its('properties.discoveryData') { should_not be_empty }
-  its('properties.discoveryData.first') { should include({ osType: 'windowsguest' }) }
+  its('properties.discoveryData.first') { should include({ osType: 'WINDOWSGUEST' }) }
 end
 ```
 
@@ -53,8 +53,8 @@ The parameter set must be provided for a valid query:
 
 | Property                      | Description                                                        |
 |-------------------------------|--------------------------------------------------------------------|
-| id                            | Path reference to the migrate project machine.                     |
-| name                          | Unique name of a migrate project machine.                         |
+| id                            | Path reference to the Migrate project machine.                     |
+| name                          | Unique name of a Migrate project machine.                         |
 | type                          | Type of the object. `Microsoft.Migrate/MigrateProjects/Databases`  |
 | properties                    | Properties of the assessment.                                      |
 | properties.assessmentData     | The assessment details of the machine published by various sources.|
@@ -72,7 +72,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/m
 
 ```ruby
 describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do
-  its('properties.discoveryData.first') { should include({ osType: 'windowsguest' }) }
+  its('properties.discoveryData.first') { should include({ osType: 'WINDOWSGUEST' }) }
 end
 ```
 
