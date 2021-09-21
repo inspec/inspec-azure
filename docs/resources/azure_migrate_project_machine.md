@@ -24,7 +24,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `resource_group`, `project_name` and `name` are required parameters.
 
 ```ruby
-describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'c042be9e-3d93-42cf-917f-b92c68318ded') do
+describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do
   it{ should exist }
   its('properties.discoveryData') { should_not be_empty }
   its('properties.discoveryData.first') { should include({ osType: 'windowsguest' }) }
@@ -32,7 +32,7 @@ end
 ```
 
 ```ruby
-describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'c042be9e-3d93-42cf-917f-b92c68318ded') do
+describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do
   it  { should exist }
 end
 ```
@@ -71,7 +71,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/m
 ### Test that the migrate project machine has a Windows OS
 
 ```ruby
-describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'c042be9e-3d93-42cf-917f-b92c68318ded') do
+describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do
   its('properties.discoveryData.first') { should include({ osType: 'windowsguest' }) }
 end
 ```
@@ -84,11 +84,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a migrate project machine is found, it will exist
-describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'c042be9e-3d93-42cf-917f-b92c68318ded') do
+describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do
   it { should exist }
 end
 # if migrate project machine is not found, it will not exist
-describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'c042be9e-3d93-42cf-917f-b92c68318ded') do
+describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do
   it { should_not exist }
 end
 ```
