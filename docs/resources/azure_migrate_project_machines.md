@@ -70,7 +70,7 @@ end
 ### Test that there are migrate project machines with Windows OS
 
 ```ruby
-describe azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ discoveryData.detect{ |data| data[:osType] == 'windowsguest' } } do
+describe azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ discoveryData.detect{ |data| data[:osType] == 'WINDOWSGUEST' } } do
   it { should exist }
 end
 ```
