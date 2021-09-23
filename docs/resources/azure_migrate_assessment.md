@@ -25,15 +25,15 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `name`, `resource_group`, `project_name`, and `group_name` are required parameters.
 
 ```ruby
-describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ASSESSMENT_NAME') do
   it                                      { should exist }
-  its('name')                             { should cmp 'ZONEA_ASSESSMENT_NAME' }
+  its('name')                             { should cmp 'ASSESSMENT_NAME' }
   its('type')                             { should cmp 'Microsoft.Migrate/assessmentprojects/groups/assessments' }
 end
 ```
 
 ```ruby
-describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ASSESSMENT_NAME') do
   it  { should exist }
 end
 ```
@@ -74,7 +74,7 @@ Refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/mig
 ### Test that the migrate assessments has a minimum scaling factor
 
 ```ruby
-describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ASSESSMENT_NAME') do
   its('properties.scalingFactor') { should eq 1.0 }
 end
 ```
@@ -87,12 +87,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # If a Migrate Assessments is found, it will exist
-describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ASSESSMENT_NAME') do
   it { should exist }
 end
 
 # if Migrate Assessments are not found, it will not exist
-describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ZONEA_ASSESSMENT_NAME') do
+describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ASSESSMENT_NAME') do
   it { should_not exist }
 end
 ```
