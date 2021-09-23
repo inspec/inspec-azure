@@ -1,10 +1,30 @@
 # Changelog
-<!-- latest_release 1.68.5 -->
+<!-- latest_release 1.71.0 -->
+## [v1.71.0](https://github.com/inspec/inspec-azure/tree/v1.71.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support Azure Migrate Project Databases [#439](https://github.com/inspec/inspec-azure/pull/439) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.70.1](https://github.com/inspec/inspec-azure/tree/v1.70.1) (2021-09-16)
+
+#### Merged Pull Requests
+- Enhance backend [#481](https://github.com/inspec/inspec-azure/pull/481) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.70.0](https://github.com/inspec/inspec-azure/tree/v1.70.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support Azure Migrate Assessment Project (s) [#426](https://github.com/inspec/inspec-azure/pull/426) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.69.0](https://github.com/inspec/inspec-azure/tree/v1.69.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support migrate project solutions [#432](https://github.com/inspec/inspec-azure/pull/432) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.68.5](https://github.com/inspec/inspec-azure/tree/v1.68.5) (2021-09-14)
 
 #### Merged Pull Requests
 - Add vale linter [#444](https://github.com/inspec/inspec-azure/pull/444) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.68.4](https://github.com/inspec/inspec-azure/tree/v1.68.4) (2021-09-14)
 
