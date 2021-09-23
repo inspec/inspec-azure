@@ -493,3 +493,8 @@ output "inspec_virtual_wan" {
   description = "The resource name of the inspec virtual WAN"
   value = azurerm_virtual_wan.inspec-nw-wan.name
 }
+
+output "power_bi_embedded_name" {
+  description = "The name of the Power BI Embedded"
+  value = azurerm_powerbi_embedded.power_bi_embedded.name
+}
