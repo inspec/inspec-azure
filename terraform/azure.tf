@@ -3,7 +3,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version         = "~> 2.1.0"
+  version         = "~> 2.2.0"
   subscription_id = var.subscription_id
   client_id       = var.client_id
   client_secret   = var.client_secret
@@ -1424,4 +1424,12 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   location = var.location
   name = var.inspec_wan_name
   resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_powerbi_embedded" "power_bi_embedded" {
+  name                = var.power_bi_embedded_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name            = "A1"
+  administrators      = ["sbabu@progress.com"]
 }
