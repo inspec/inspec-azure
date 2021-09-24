@@ -176,6 +176,8 @@ The following is a list of static resources.
 - [azure_migrate_assessment_groups](docs/resources/azure_migrate_assessment_groups.md)
 - [azure_migrate_project_database](docs/resources/azure_migrate_project_database.md)
 - [azure_migrate_project_databases](docs/resources/azure_migrate_project_databases.md)
+- [azure_migrate_project_event](docs/resources/azure_migrate_project_event.md)
+- [azure_migrate_project_events](docs/resources/azure_migrate_project_events.md)
 - [azure_migrate_project_machine](docs/resources/azure_migrate_project_machine.md)
 - [azure_migrate_project_machines](docs/resources/azure_migrate_project_machines.md)
 - [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
