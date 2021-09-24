@@ -128,6 +128,10 @@ The following is a list of static resources.
 - [azure_container_registries](docs/resources/azure_container_registries.md)
 - [azure_container_registry](docs/resources/azure_container_registry.md)
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
+- [azure_data_factories](docs/resources/azure_data_factories.md)
+- [azure_data_factory](docs/resources/azure_data_factory.md)
+- [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
+- [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
 - [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
 - [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
@@ -164,8 +168,20 @@ The following is a list of static resources.
 - [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
+- [azure_migrate_assessment](docs/resources/azure_migrate_assessment.md)
+- [azure_migrate_assessments](docs/resources/azure_migrate_assessments.md)
+- [azure_migrate_assessment_project](docs/resources/azure_migrate_assessment_project.md)
+- [azure_migrate_assessment_projects](docs/resources/azure_migrate_assessment_projects.md)
+- [azure_migrate_assessment_group](docs/resources/azure_migrate_assessment_group.md)
+- [azure_migrate_assessment_groups](docs/resources/azure_migrate_assessment_groups.md)
+- [azure_migrate_project_database](docs/resources/azure_migrate_project_database.md)
+- [azure_migrate_project_databases](docs/resources/azure_migrate_project_databases.md)
 - [azure_migrate_project_event](docs/resources/azure_migrate_project_event.md)
 - [azure_migrate_project_events](docs/resources/azure_migrate_project_events.md)
+- [azure_migrate_project_machine](docs/resources/azure_migrate_project_machine.md)
+- [azure_migrate_project_machines](docs/resources/azure_migrate_project_machines.md)
+- [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
+- [azure_migrate_project_solutions](docs/resources/azure_migrate_project_solutions.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
 - [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
@@ -219,6 +235,8 @@ The following is a list of static resources.
 - [azure_subnets](docs/resources/azure_subnets.md)
 - [azure_subscription](docs/resources/azure_subscription.md)
 - [azure_subscriptions](docs/resources/azure_subscriptions.md)
+- [azure_synapse_notebook](docs/resources/azure_synapse_notebook.md)
+- [azure_synapse_notebooks](docs/resources/azure_synapse_notebooks.md)
 - [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
 - [azure_virtual_machines](docs/resources/azure_virtual_machines.md)
 - [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)
@@ -228,6 +246,8 @@ The following is a list of static resources.
 - [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
 - [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
+- [azure_virtual_wan](docs/resources/azure_virtual_wan.md)
+- [azure_virtual_wans](docs/resources/azure_virtual_wans.md)
 - [azure_web_app_function](docs/resources/azure_web_app_function.md)
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
@@ -417,7 +437,7 @@ They can be defined as environment variables or resource parameters (has priorit
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
 ### Developing a Static Resource
 

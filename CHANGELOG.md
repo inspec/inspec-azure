@@ -1,10 +1,85 @@
 # Changelog
-<!-- latest_release 1.66.1 -->
+<!-- latest_release 1.74.0 -->
+## [v1.74.0](https://github.com/inspec/inspec-azure/tree/v1.74.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support Azure Migrate Assessment Group(s) [#429](https://github.com/inspec/inspec-azure/pull/429) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.73.0](https://github.com/inspec/inspec-azure/tree/v1.73.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support azure migrate assessments [#424](https://github.com/inspec/inspec-azure/pull/424) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.72.0](https://github.com/inspec/inspec-azure/tree/v1.72.0) (2021-09-23)
+
+#### Merged Pull Requests
+- Support azure migrate project machines [#448](https://github.com/inspec/inspec-azure/pull/448) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.71.0](https://github.com/inspec/inspec-azure/tree/v1.71.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support Azure Migrate Project Databases [#439](https://github.com/inspec/inspec-azure/pull/439) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.70.1](https://github.com/inspec/inspec-azure/tree/v1.70.1) (2021-09-16)
+
+#### Merged Pull Requests
+- Enhance backend [#481](https://github.com/inspec/inspec-azure/pull/481) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.70.0](https://github.com/inspec/inspec-azure/tree/v1.70.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support Azure Migrate Assessment Project (s) [#426](https://github.com/inspec/inspec-azure/pull/426) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.69.0](https://github.com/inspec/inspec-azure/tree/v1.69.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support migrate project solutions [#432](https://github.com/inspec/inspec-azure/pull/432) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.68.5](https://github.com/inspec/inspec-azure/tree/v1.68.5) (2021-09-14)
+
+#### Merged Pull Requests
+- Add vale linter [#444](https://github.com/inspec/inspec-azure/pull/444) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.68.4](https://github.com/inspec/inspec-azure/tree/v1.68.4) (2021-09-14)
+
+#### Merged Pull Requests
+- Fix YAML frontmatter lines in resource docs pages [#479](https://github.com/inspec/inspec-azure/pull/479) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.68.3](https://github.com/inspec/inspec-azure/tree/v1.68.3) (2021-09-14)
+
+#### Merged Pull Requests
+- F/linked service [#430](https://github.com/inspec/inspec-azure/pull/430) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.68.2](https://github.com/inspec/inspec-azure/tree/v1.68.2) (2021-09-14)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.20.0 to ~&gt; 1.21.0 [#478](https://github.com/inspec/inspec-azure/pull/478) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.68.1](https://github.com/inspec/inspec-azure/tree/v1.68.1) (2021-09-02)
+
+#### Merged Pull Requests
+- skip nested nil values in array [#449](https://github.com/inspec/inspec-azure/pull/449) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.68.0](https://github.com/inspec/inspec-azure/tree/v1.68.0) (2021-08-31)
+
+#### Merged Pull Requests
+- Support azure synapse notebooks [#422](https://github.com/inspec/inspec-azure/pull/422) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.67.0](https://github.com/inspec/inspec-azure/tree/v1.67.0) (2021-08-31)
+
+#### Merged Pull Requests
+- Support virtual wans [#417](https://github.com/inspec/inspec-azure/pull/417) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.66.2](https://github.com/inspec/inspec-azure/tree/v1.66.2) (2021-08-31)
+
+#### Merged Pull Requests
+- Fix docs errors in redis cache/s resources [#445](https://github.com/inspec/inspec-azure/pull/445) ([IanMadd](https://github.com/IanMadd))
+
 ## [v1.66.1](https://github.com/inspec/inspec-azure/tree/v1.66.1) (2021-08-31)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.19.0 to ~&gt; 1.20.0 [#446](https://github.com/inspec/inspec-azure/pull/446) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.66.0](https://github.com/inspec/inspec-azure/tree/v1.66.0) (2021-08-27)
 

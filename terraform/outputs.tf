@@ -383,7 +383,7 @@ output "ddos_protection_plan_location" {
   value = azurerm_network_ddos_protection_plan.andpp.location
 
 }
-  
+
 output "dns_zones" {
   value = azurerm_dns_zone.example-public.name
 }
@@ -480,7 +480,21 @@ output "sample_directory_object" {
   value = var.sample_directory_object
 }
 
+output "linked_service_name" {
+  value = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+}
+
 output "inspec_redis_cache_name" {
   description = "The name of the redis cache created for cloud packs"
   value = azurerm_redis_cache.inspec_compliance_redis_cache.name
+}
+
+output "inspec_virtual_wan" {
+  description = "The resource name of the inspec virtual WAN"
+  value = azurerm_virtual_wan.inspec-nw-wan.name
+}
+
+output "inspec_migrate_project_name" {
+  description = "The name of the Azure Migrate Project that was setup manually since there is no tf resource"
+  value = var.inspec_migrate_project_name
 }
