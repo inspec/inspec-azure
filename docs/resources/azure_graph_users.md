@@ -6,15 +6,15 @@ platform: azure
 # azure_graph_users
 Use the `azure_graph_users` InSpec audit resource to test properties of some or all Azure Active Directory users within a Tenant.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest stable version will be used.
 For more information, refer to [`azure_graph_generic_resources`](azure_graph_generic_resources.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
-For more information, refer to the resource pack [README](../../README.md). 
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used.
+For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
