@@ -580,6 +580,8 @@ class AzureResourceDynamicMethods
       data.each do |key, value|
         create_method(object, key, value)
       end
+      # require 'byebug'
+      # byebug
     else
       raise ArgumentError, "Unsupported data type: #{data.class}. Expected Hash."
     end
