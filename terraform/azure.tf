@@ -1350,8 +1350,6 @@ resource "azurerm_bastion_host" "abh" {
   }
 }
 
-}
-
 resource "azurerm_network_ddos_protection_plan" "andpp" {
   name                = "example-protection-plan"
   resource_group_name = azurerm_resource_group.rg.name
@@ -1425,4 +1423,12 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   location = var.location
   name = var.inspec_wan_name
   resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_data_factory_dataset_cosmosdb_sqlapi" "cosmosdb_dataset" {
+  name                = "cosmosdb_dataset_sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  linked_service_name = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+  collection_name = "bar"
 }
