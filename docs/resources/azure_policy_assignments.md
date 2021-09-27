@@ -3,18 +3,18 @@ title: About the azure_policy_assignments Resource
 platform: azure
 ---
 
-## azure_policy_assignments
+# azure_policy_assignments
 
 Use the `azure_policy_assignments` InSpec resource to examine assignments of Azure policy to resources and resource groups.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to the [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation

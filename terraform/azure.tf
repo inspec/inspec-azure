@@ -941,6 +941,13 @@ resource "azurerm_virtual_network" "app-gw" {
   address_space       = ["10.254.0.0/16"]
 }
 
+resource "azurerm_virtual_network_peering" "network_peering" {
+  name                      = "virtual-network-peering-test"
+  resource_group_name       = azurerm_resource_group.rg.name
+  virtual_network_name      = azurerm_virtual_network.vnet.name
+  remote_virtual_network_id = azurerm_virtual_network.app-gw.id
+}
+
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -1191,6 +1198,21 @@ resource "azurerm_storage_account" "web_app_function_db" {
   }
 }
 
+resource "azurerm_redis_cache" "inspec_compliance_redis_cache" {
+  name                = var.inspec_compliance_redis_cache_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  capacity            = 2
+  family              = "C"
+  sku_name            = "Standard"
+  enable_non_ssl_port = false
+  minimum_tls_version = "1.2"
+
+  redis_configuration {
+    maxfragmentationmemory_reserved = "50"
+  }
+}
+
 resource "azurerm_storage_blob" "functioncode" {
   name = "functionapp.zip"
   storage_account_name = azurerm_storage_account.web_app_function_db.name
@@ -1233,6 +1255,39 @@ resource "azurerm_function_app" "web_app_function" {
     user = terraform.workspace
   }
 }
+
+resource "azurerm_container_group" "inspec_container_trial" {
+  name                = var.inspec_container_group_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_address_type     = "public"
+  dns_name_label      = "inspec-container-trial-aci-label"
+  os_type             = "Linux"
+
+  container {
+    name   = "hello-world-inspec"
+    image  = "mcr.microsoft.com/azuredocs/aci-helloworld:latest"
+    cpu    = "0.5"
+    memory = "0.5"
+
+    ports {
+      port     = 443
+      protocol = "TCP"
+    }
+  }
+
+  container {
+    name   = "setup-hw-tutorials"
+    image  = "mcr.microsoft.com/azuredocs/aci-tutorial-sidecar"
+    cpu    = "0.5"
+    memory = "0.5"
+  }
+
+  tags = {
+    environment = "inspec_trial"
+  }
+}
+
 resource "azurerm_policy_definition" "inspec_policy_definition" {
   name = var.policy_definition_name
   policy_type = "Custom"
@@ -1284,6 +1339,47 @@ resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
   PARAMETERS
 }
 
+resource "azurerm_bastion_host" "abh" {
+  name = "test_bastion"
+  location = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_configuration {
+    name = "configuration"
+    subnet_id = azurerm_subnet.subnet.id
+    public_ip_address_id = azurerm_public_ip.public_ip_address.id
+  }
+}
+
+}
+
+resource "azurerm_network_ddos_protection_plan" "andpp" {
+  name                = "example-protection-plan"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_dns_zone" "example-public" {
+  name                = "mydomain_example.com"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_private_dns_zone" "example-private" {
+  name                = "mydomain_example.com"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_data_factory" "adf" {
+  name                = "adf-eaxmple"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_data_factory_linked_service_mysql" "dflsmsql" {
+  name                = "dflsm-sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  connection_string   = "Server=test;Port=3306;Database=test;User=test;SSLMode=1;UseSystemTrustStore=0;Password=test"
+}
+
 // the resource itself is not yet available in tf because of this open issue
 // https://github.com/terraform-providers/terraform-provider-azurerm/issues/9197
 //resource "azurerm_policy_exemption" "inspec_compliance_policy_exemption" {
@@ -1305,4 +1401,28 @@ resource "azurerm_database_migration_service" "inspec-compliance-migration-dev" 
   resource_group_name = azurerm_resource_group.rg.name
   sku_name = var.inspec_db_migration_service.sku_name
   subnet_id = azurerm_subnet.subnet.id
+}
+
+resource "azurerm_express_route_circuit" "express_route" {
+  name                  = "expressRoute1"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  service_provider_name = "Equinix"
+  peering_location      = "Silicon Valley"
+  bandwidth_in_mbps     = 50
+
+  sku {
+    tier   = "Standard"
+    family = "MeteredData"
+  }
+
+  tags = {
+    environment = "Production"
+  }
+}
+
+resource "azurerm_virtual_wan" "inspec-nw-wan" {
+  location = var.location
+  name = var.inspec_wan_name
+  resource_group_name = azurerm_resource_group.rg.name
 }
