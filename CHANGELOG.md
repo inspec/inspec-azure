@@ -1,10 +1,35 @@
 # Changelog
-<!-- latest_release 1.68.1 -->
+<!-- latest_release 1.69.0 -->
+## [v1.69.0](https://github.com/inspec/inspec-azure/tree/v1.69.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support migrate project solutions [#432](https://github.com/inspec/inspec-azure/pull/432) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.68.5](https://github.com/inspec/inspec-azure/tree/v1.68.5) (2021-09-14)
+
+#### Merged Pull Requests
+- Add vale linter [#444](https://github.com/inspec/inspec-azure/pull/444) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.68.4](https://github.com/inspec/inspec-azure/tree/v1.68.4) (2021-09-14)
+
+#### Merged Pull Requests
+- Fix YAML frontmatter lines in resource docs pages [#479](https://github.com/inspec/inspec-azure/pull/479) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.68.3](https://github.com/inspec/inspec-azure/tree/v1.68.3) (2021-09-14)
+
+#### Merged Pull Requests
+- F/linked service [#430](https://github.com/inspec/inspec-azure/pull/430) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.68.2](https://github.com/inspec/inspec-azure/tree/v1.68.2) (2021-09-14)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.20.0 to ~&gt; 1.21.0 [#478](https://github.com/inspec/inspec-azure/pull/478) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
 ## [v1.68.1](https://github.com/inspec/inspec-azure/tree/v1.68.1) (2021-09-02)
 
 #### Merged Pull Requests
 - skip nested nil values in array [#449](https://github.com/inspec/inspec-azure/pull/449) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.68.0](https://github.com/inspec/inspec-azure/tree/v1.68.0) (2021-08-31)
 
