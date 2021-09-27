@@ -128,6 +128,10 @@ The following is a list of static resources.
 - [azure_container_registries](docs/resources/azure_container_registries.md)
 - [azure_container_registry](docs/resources/azure_container_registry.md)
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
+- [azure_data_factories](docs/resources/azure_data_factories.md)
+- [azure_data_factory](docs/resources/azure_data_factory.md)
+- [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
+- [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
 - [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
 - [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
@@ -164,6 +168,8 @@ The following is a list of static resources.
 - [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
+- [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
+- [azure_migrate_project_solutions](docs/resources/azure_migrate_project_solutions.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
 - [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
@@ -421,7 +427,7 @@ They can be defined as environment variables or resource parameters (has priorit
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
 ### Developing a Static Resource
 
