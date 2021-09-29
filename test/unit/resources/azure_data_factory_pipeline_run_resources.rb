@@ -1,10 +1,10 @@
 require_relative 'helper'
 require 'azure_data_factory_pipeline_run_resources'
 
-class AzureDataFactoryPipelineRunResourceTestConstructorTest < Minitest::Test
+class AzureDataFactoryPipelineRunResourcesTestConstructorTest < Minitest::Test
   # resource_type should not be allowed.
   def test_resource_type_not_ok
-    assert_raises(ArgumentError) { AzureDataFactoryLinkedServices.new(resource_provider: 'some_type') }
+    assert_raises(ArgumentError) { AzureDataFactoryPipelineRunResources.new(resource_provider: 'some_type') }
   end
 
   def tag_value_not_ok

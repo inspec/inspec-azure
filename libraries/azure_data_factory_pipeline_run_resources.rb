@@ -19,8 +19,7 @@ class AzureDataFactoryPipelineRunResources < AzureGenericResources
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DataFactory/factories', opts)
     opts[:required_parameters] = %i(factory_name)
     opts[:resource_path] = [opts[:factory_name], 'queryPipelineRuns'].join('/')
-    require 'pry'
-    pry
+    opts[:method] = 'post'
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
@@ -57,7 +56,6 @@ class AzureDataFactoryPipelineRunResources < AzureGenericResources
 
   def populate_table
     @resources.each do |resource|
-      resource = resource.merge(resource[:properties])
       @table << flatten_hash(resource)
     end
   end
