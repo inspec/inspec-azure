@@ -1365,8 +1365,6 @@ resource "azurerm_bastion_host" "abh" {
   }
 }
 
-}
-
 resource "azurerm_network_ddos_protection_plan" "andpp" {
   name                = "example-protection-plan"
   resource_group_name = azurerm_resource_group.rg.name
