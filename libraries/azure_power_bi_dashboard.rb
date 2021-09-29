@@ -28,6 +28,7 @@ class AzurePowerBIDashboard < AzureGenericResource
     opts[:audience] = AUDIENCE
     opts[:add_subscription_id] = false
     opts[:is_uri_a_url] = true
+    opts[:api_version] = 'v1.0'
     super
   end
 

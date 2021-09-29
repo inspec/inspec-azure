@@ -21,6 +21,7 @@ class AzurePowerBIDashboards < AzureGenericResources
     opts[:audience] = AUDIENCE
     opts[:add_subscription_id] = false
     opts[:is_uri_a_url] = true
+    opts[:api_version] = 'v1.0'
     super
     return if failed_resource?
 
