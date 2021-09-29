@@ -1,4 +1,4 @@
-group_id = '95a4871a-33a4-4f35-9eea-8ff006b4840b'
+group_id = input(:inspec_powerbi_workspace_id, value: '')
 control 'verify settings of Power BI Dashboards in a group' do
   describe azure_power_bi_dashboards(group_id: group_id) do
     it { should exist }
