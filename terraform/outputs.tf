@@ -498,3 +498,8 @@ output "inspec_migrate_project_name" {
   description = "The name of the Azure Migrate Project that was setup manually since there is no tf resource"
   value = var.inspec_migrate_project_name
 }
+
+output "inspec_powerbi_workspace_id" {
+  description = "The name of the Azure Power BI Workspace"
+  value = powerbi_workspace.inspec_powerbi_workspace.id
+}
