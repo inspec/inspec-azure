@@ -1439,3 +1439,14 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   name = var.inspec_wan_name
   resource_group_name = azurerm_resource_group.rg.name
 }
+
+resource "powerbi_workspace" "inspec_powerbi_workspace" {
+  name = "Inspec Workspace"
+}
+
+resource "powerbi_workspace_access" "allow_access_to_user" {
+  workspace_id = powerbi_workspace.inspec_powerbi_workspace.id
+  group_user_access_right = "Member"
+  email_address           = "sbabu@progress.com"
+  principal_type          = "User"
+}
