@@ -1,5 +1,11 @@
 terraform {
   required_version = "~> 0.12.0"
+  required_providers {
+    powerbi = {
+      source = "codecutout/powerbi"
+      version = "~>1.3"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -9,6 +15,15 @@ provider "azurerm" {
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
   features {}
+}
+
+# this will work automatically when we upgrade to 0.13 ,
+# until than install provider as described here https://github.com/codecutout/terraform-provider-powerbi#local
+provider "powerbi" {
+  version         = "~> 1.3.1"
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 provider "random" {
