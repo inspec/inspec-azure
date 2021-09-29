@@ -1,4 +1,3 @@
-
 require 'azure_generic_resources'
 
 class AzureDataFactoryPipelineRunResources < AzureGenericResources
