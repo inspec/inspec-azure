@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.75.1 -->
+<!-- latest_release 1.75.2 -->
+## [v1.75.2](https://github.com/inspec/inspec-azure/tree/v1.75.2) (2021-09-30)
+
+#### Merged Pull Requests
+- doc minimum required role to run azure pack [#486](https://github.com/inspec/inspec-azure/pull/486) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.75.1](https://github.com/inspec/inspec-azure/tree/v1.75.1) (2021-09-24)
 
 #### Merged Pull Requests
 - Fix text on every page [#442](https://github.com/inspec/inspec-azure/pull/442) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.75.0](https://github.com/inspec/inspec-azure/tree/v1.75.0) (2021-09-24)
 
