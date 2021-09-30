@@ -1,10 +1,35 @@
 # Changelog
-<!-- latest_release 1.71.0 -->
+<!-- latest_release 1.75.1 -->
+## [v1.75.1](https://github.com/inspec/inspec-azure/tree/v1.75.1) (2021-09-24)
+
+#### Merged Pull Requests
+- Fix text on every page [#442](https://github.com/inspec/inspec-azure/pull/442) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
+## [v1.75.0](https://github.com/inspec/inspec-azure/tree/v1.75.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support azure migrate project events [#450](https://github.com/inspec/inspec-azure/pull/450) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.74.0](https://github.com/inspec/inspec-azure/tree/v1.74.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support Azure Migrate Assessment Group(s) [#429](https://github.com/inspec/inspec-azure/pull/429) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.73.0](https://github.com/inspec/inspec-azure/tree/v1.73.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support azure migrate assessments [#424](https://github.com/inspec/inspec-azure/pull/424) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.72.0](https://github.com/inspec/inspec-azure/tree/v1.72.0) (2021-09-23)
+
+#### Merged Pull Requests
+- Support azure migrate project machines [#448](https://github.com/inspec/inspec-azure/pull/448) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.71.0](https://github.com/inspec/inspec-azure/tree/v1.71.0) (2021-09-16)
 
 #### Merged Pull Requests
 - Support Azure Migrate Project Databases [#439](https://github.com/inspec/inspec-azure/pull/439) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.70.1](https://github.com/inspec/inspec-azure/tree/v1.70.1) (2021-09-16)
 

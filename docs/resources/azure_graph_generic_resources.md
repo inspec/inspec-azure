@@ -7,14 +7,14 @@ platform: azure
 
 Use the `azure_graph_generic_resources` Inspec audit resource to test any valid Azure resource available through Microsoft Azure Graph API. 
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with api versions supported by the Azure Graph API.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest stable version will be used.
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
-For more information, refer to the resource pack [README](../../README.md). 
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used.
+For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
