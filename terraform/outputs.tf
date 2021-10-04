@@ -498,3 +498,17 @@ output "inspec_migrate_project_name" {
   description = "The name of the Azure Migrate Project that was setup manually since there is no tf resource"
   value = var.inspec_migrate_project_name
 }
+
+output "workspace_name" {
+  value = azurerm_log_analytics_workspace.workspace.name
+}
+output "alert_rule_id" {
+  value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.name
+}
+output "alert_rule_name" {
+  value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.name
+}
+
+output "alert_rule_display_name" {
+  value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.display_name
+}
