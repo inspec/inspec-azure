@@ -28,11 +28,11 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 An `azure_sentinel_alert_rules` resource block returns all Azure alert_rule, either within a Resource Group (if provided), or within an entire Subscription.
 
-    ```ruby
-    describe azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'fn') do
-      #...
-    end
-    ```
+```ruby
+describe azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'fn') do
+  #...
+end
+```
 `resource_group` and `workspace_name` must be given as parameters.
 
 
