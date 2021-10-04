@@ -20,7 +20,6 @@ class AzureSentinelAlertRules < AzureGenericResources
     opts[:resource_path] = [opts[:workspace_name], 'providers/Microsoft.SecurityInsights/alertRules/'].join('/')
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
-
     # Check if the resource is failed.
     # It is recommended to check that after every usage of superclass methods or API calls.
     return if failed_resource?

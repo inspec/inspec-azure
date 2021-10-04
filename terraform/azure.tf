@@ -1350,8 +1350,6 @@ resource "azurerm_bastion_host" "abh" {
   }
 }
 
-}
-
 resource "azurerm_network_ddos_protection_plan" "andpp" {
   name                = "example-protection-plan"
   resource_group_name = azurerm_resource_group.rg.name
@@ -1425,4 +1423,17 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   location = var.location
   name = var.inspec_wan_name
   resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_sentinel_alert_rule_scheduled" "alert_rule_scheduled" {
+  name                       = "azurerm_sentinel_alert_rule_scheduled"
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
+  display_name               = "sentinel_alert_rule"
+  severity                   = "High"
+  query                      = <<QUERY
+AzureActivity |
+  where OperationName == "Create or Update Virtual Machine" or OperationName =="Create Deployment" |
+  where ActivityStatus == "Succeeded" |
+  make-series dcount(ResourceId) default=0 on EventSubmissionTimestamp in range(ago(7d), now(), 1d) by Caller
+QUERY
 }
