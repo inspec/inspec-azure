@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.75.2 -->
+<!-- latest_release 1.75.3 -->
+## [v1.75.3](https://github.com/inspec/inspec-azure/tree/v1.75.3) (2021-10-05)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.21.0 to ~&gt; 1.22.1 [#518](https://github.com/inspec/inspec-azure/pull/518) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
 ## [v1.75.2](https://github.com/inspec/inspec-azure/tree/v1.75.2) (2021-09-30)
 
 #### Merged Pull Requests
 - doc minimum required role to run azure pack [#486](https://github.com/inspec/inspec-azure/pull/486) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.75.1](https://github.com/inspec/inspec-azure/tree/v1.75.1) (2021-09-24)
 
