@@ -14,9 +14,7 @@ class AzurePowerBIGateways < AzureGenericResources
   def initialize(opts = {})
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
-    opts[:resource_uri] = ['https://api.powerbi.com/v1.0/myorg'].tap do |arr|
-      arr << 'gateways'
-    end.join('/')
+    opts[:resource_uri] = 'https://api.powerbi.com/v1.0/myorg/gateways'
     opts[:audience] = AUDIENCE
     opts[:add_subscription_id] = false
     opts[:is_uri_a_url] = true
@@ -28,7 +26,7 @@ class AzurePowerBIGateways < AzureGenericResources
   end
 
   def to_s
-    super(AzurePowerBiGateways)
+    super(AzurePowerBIGateways)
   end
 
   private
