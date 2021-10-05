@@ -1,10 +1,10 @@
 require 'azure_generic_resources'
 
-class AzureDataLakeAnalyticsResources < AzureGenericResources
-  name 'azure_data_lake_analytics_resources'
-  desc 'Verifies settings for Azure Virtual Machines'
+class AzureBastionHostsResources < AzureGenericResources
+  name 'azure_bastion_hosts_resources'
+  desc 'Lists all Bastion Hosts in a subscription'
   example <<-EXAMPLE
-    azure_data_lake_analytics_resources(resource_group: 'example') do
+    azure_bastion_hosts_resources(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE
@@ -16,15 +16,12 @@ class AzureDataLakeAnalyticsResources < AzureGenericResources
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
-    #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/
-    #   Microsoft.Compute/virtualMachines?api-version=2019-12-01
+    #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers
+    # /Microsoft.Network/bastionHosts?api-version=2020-11-01
     #
-    # or in a resource group only
-    #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
-    #   Microsoft.Compute/virtualMachines?api-version=2019-12-01
     #
     # The dynamic part that has to be created for this resource:
-    #   Microsoft.Compute/virtualMachines?api-version=2019-12-01
+    #   Microsoft.Network/bastionHosts?api-version=2019-12-01
     #
     # Parameters acquired from environment variables:
     #   - {subscriptionId} => Required parameter. It will be acquired by the backend from environment variables.
@@ -39,11 +36,11 @@ class AzureDataLakeAnalyticsResources < AzureGenericResources
     #     We don't have to do anything here.
     #
     # Following resource parameters have to be defined/created here.
-    #   resource_provider => Microsoft.Compute/virtualMachines
+    #   resource_provider => Microsoft.Network/bastionHosts
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.DataLakeAnalytics/accounts', opts)
+    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/bastionHosts', opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -60,7 +57,10 @@ class AzureDataLakeAnalyticsResources < AzureGenericResources
       { column: :names, field: :name },
       { column: :types, field: :type },
       { column: :ids, field: :id },
+      { column: :tags, field: :tags },
       { column: :provisioning_states, field: :provisioningState },
+      { column: :locations, field: :location },
+      { column: :properties, field: :properties },
     ]
 
     # FilterTable is populated at the very end due to being an expensive operation.
@@ -68,7 +68,7 @@ class AzureDataLakeAnalyticsResources < AzureGenericResources
   end
 
   def to_s
-    super(AzureDataLakeAnalyticsResources)
+    super(AzureBastionHostsResources)
   end
 
   private
@@ -88,7 +88,10 @@ class AzureDataLakeAnalyticsResources < AzureGenericResources
         id: resource[:id],
         name: resource[:name],
         type: resource[:type],
+        tags: resource[:tags],
         provisioningState: resource[:properties][:provisioningState],
+        location: resource[:location],
+        properties: resource[:properties],
       }
     end
   end

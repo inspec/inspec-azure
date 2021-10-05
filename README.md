@@ -42,7 +42,9 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ### Service Principal
 
-Your Azure Service Principal Account must have `contributor` or `owner` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
+Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against. 
+
+You should have the following pieces of information:
 
 * TENANT_ID
 * CLIENT_ID
@@ -64,7 +66,7 @@ To create your account Service Principal Account:
 11. Note your Subscription ID can be found here.
 12. Click `Access control (IAM)`
 13. Click Add
-14. Select the `contributor` role.
+14. Select the `reader` role.
 15. Select the application you just created and save.
 
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. 
@@ -113,18 +115,37 @@ With the generic resources:
  
 The following is a list of static resources. 
 
+- [azure_active_directory_domain_service](docs/resources/azure_active_directory_domain_service.md)
+- [azure_active_directory_domain_services](docs/resources/azure_active_directory_domain_services.md)
 - [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
 - [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
 - [azure_api_management](docs/resources/azure_api_management.md)
 - [azure_api_managements](docs/resources/azure_api_managements.md)
 - [azure_application_gateway](docs/resources/azure_application_gateway.md)
 - [azure_application_gateways](docs/resources/azure_application_gateways.md)
+- [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md)
+- [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md)
+- [azure_container_group](docs/resources/azure_container_group.md)
+- [azure_container_groups](docs/resources/azure_container_groups.md)
 - [azure_container_registries](docs/resources/azure_container_registries.md)
 - [azure_container_registry](docs/resources/azure_container_registry.md)
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
+- [azure_data_factories](docs/resources/azure_data_factories.md)
+- [azure_data_factory](docs/resources/azure_data_factory.md)
+- [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
+- [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
+- [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
+- [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
+- [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
+- [azure_ddos_protection_resources](docs/resources/azure_ddos_protection_resources.md)
+- [azure_dns_zones_resource](docs/resources/azure_dns_zones_resource.md)
+- [azure_dns_zones_resources](docs/resources/azure_dns_zones_resources.md)
 - [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md)
 - [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
 - [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
+- [azure_express_route_providers](docs/resources/azure_express_route_providers.md)
+- [azure_express_route_circuit](docs/resources/azure_express_route_circuit.md)
+- [azure_express_route_circuits](docs/resources/azure_express_route_circuits.md)
 - [azure_generic_resource](docs/resources/azure_generic_resource.md)
 - [azure_generic_resources](docs/resources/azure_generic_resources.md)
 - [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
@@ -149,6 +170,20 @@ The following is a list of static resources.
 - [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
+- [azure_migrate_assessment](docs/resources/azure_migrate_assessment.md)
+- [azure_migrate_assessments](docs/resources/azure_migrate_assessments.md)
+- [azure_migrate_assessment_project](docs/resources/azure_migrate_assessment_project.md)
+- [azure_migrate_assessment_projects](docs/resources/azure_migrate_assessment_projects.md)
+- [azure_migrate_assessment_group](docs/resources/azure_migrate_assessment_group.md)
+- [azure_migrate_assessment_groups](docs/resources/azure_migrate_assessment_groups.md)
+- [azure_migrate_project_database](docs/resources/azure_migrate_project_database.md)
+- [azure_migrate_project_databases](docs/resources/azure_migrate_project_databases.md)
+- [azure_migrate_project_event](docs/resources/azure_migrate_project_event.md)
+- [azure_migrate_project_events](docs/resources/azure_migrate_project_events.md)
+- [azure_migrate_project_machine](docs/resources/azure_migrate_project_machine.md)
+- [azure_migrate_project_machines](docs/resources/azure_migrate_project_machines.md)
+- [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
+- [azure_migrate_project_solutions](docs/resources/azure_migrate_project_solutions.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
 - [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
@@ -175,8 +210,15 @@ The following is a list of static resources.
 - [azure_postgresql_server](docs/resources/azure_postgresql_server.md)
 - [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md)
 - [azure_public_ip](docs/resources/azure_public_ip.md)
+- [azure_redis_cache](docs/resources/azure_redis_cache.md)
+- [azure_redis_caches](docs/resources/azure_redis_caches.md)
 - [azure_resource_group](docs/resources/azure_resource_group.md)
 - [azure_resource_groups](docs/resources/azure_resource_groups.md)
+- [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)
+- [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
+- [azure_resource_health_emerging_issue](docs/resources/azure_resource_health_emerging_issue.md)
+- [azure_resource_health_emerging_issues](docs/resources/azure_resource_health_emerging_issues.md)
+- [azure_resource_health_events](docs/resources/azure_resource_health_events.md)
 - [azure_role_definition](docs/resources/azure_role_definition.md)
 - [azure_role_definitions](docs/resources/azure_role_definitions.md)
 - [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
@@ -195,18 +237,23 @@ The following is a list of static resources.
 - [azure_subnets](docs/resources/azure_subnets.md)
 - [azure_subscription](docs/resources/azure_subscription.md)
 - [azure_subscriptions](docs/resources/azure_subscriptions.md)
+- [azure_synapse_notebook](docs/resources/azure_synapse_notebook.md)
+- [azure_synapse_notebooks](docs/resources/azure_synapse_notebooks.md)
 - [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
 - [azure_virtual_machines](docs/resources/azure_virtual_machines.md)
 - [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)
 - [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
+- [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
+- [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
+- [azure_virtual_wan](docs/resources/azure_virtual_wan.md)
+- [azure_virtual_wans](docs/resources/azure_virtual_wans.md)
 - [azure_web_app_function](docs/resources/azure_web_app_function.md)
 - [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
 - [azure_webapp](docs/resources/azure_webapp.md)
 - [azure_webapps](docs/resources/azure_webapps.md)
-
 
 For more details and different use cases, please refer to the specific resource pages.
 
@@ -392,7 +439,7 @@ They can be defined as environment variables or resource parameters (has priorit
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
 ### Developing a Static Resource
 

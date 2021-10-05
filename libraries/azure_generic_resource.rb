@@ -64,6 +64,10 @@ class AzureGenericResource < AzureResourceBase
       end
     end
 
+    if @opts[:transform_keys].present?
+      @resource_long_desc.deep_transform_keys!(&@opts[:transform_keys])
+    end
+
     # Create resource methods with the properties of the resource.
     create_resource_methods(@resource_long_desc)
   end
@@ -136,7 +140,7 @@ class AzureGenericResource < AzureResourceBase
     required_parameters = %i(resource_group resource_provider name)
     required_parameters += @opts[:required_parameters] if @opts.key?(:required_parameters)
     allowed_parameters = %i(resource_path resource_identifiers resource_id resource_uri add_subscription_id
-                            query_parameters is_uri_a_url audience)
+                            query_parameters is_uri_a_url audience transform_keys)
     allowed_parameters += @opts[:allowed_parameters] if @opts.key?(:allowed_parameters)
 
     if @opts.key?(:resource_id)
@@ -177,15 +181,15 @@ class AzureGenericResource < AzureResourceBase
     #
     # Use the provided resource_id
     if @opts.key?(:resource_uri)
-      validate_parameters(required: %i(resource_uri add_subscription_id name))
+      validate_parameters(required: %i(resource_uri add_subscription_id name), allow: %i(query_parameters is_uri_a_url audience headers transform_keys))
       validate_resource_uri
       @resource_id = [@opts[:resource_uri], @opts[:name]].join('/').gsub('//', '/')
     elsif @opts.key?(:resource_id)
-      validate_parameters(required: %i(resource_id))
+      validate_parameters(required: %i(resource_id), allow: %i(transform_keys))
       @resource_id = @opts[:resource_id]
     else
       validate_parameters(require_any_of: %i(resource_group resource_path name tag_name tag_value resource_id
-                                             resource_provider))
+                                             resource_provider), allow: %i(transform_keys))
       # resource_group + resource_provider + name
       if %i(resource_group resource_provider name).all? { |param| @opts.keys.include?(param) }
         @resource_id = construct_resource_id
