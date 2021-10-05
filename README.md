@@ -209,6 +209,8 @@ The following is a list of static resources.
 - [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md)
 - [azure_postgresql_server](docs/resources/azure_postgresql_server.md)
 - [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md)
+- [azure_power_bi_app](docs/resources/azure_power_bi_app.md)
+- [azure_power_bi_apps](docs/resources/azure_power_bi_apps.md)
 - [azure_public_ip](docs/resources/azure_public_ip.md)
 - [azure_redis_cache](docs/resources/azure_redis_cache.md)
 - [azure_redis_caches](docs/resources/azure_redis_caches.md)
