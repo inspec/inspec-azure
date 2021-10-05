@@ -55,11 +55,11 @@ Either one of the parameter sets can be provided for a valid query:
 
 | Property                                     | Description |
 |----------------------------------------------|-------------|
-| queues<superscript>*</superscript>           | Lists all of the queues in a given storage account. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/list-queues1) for more.
-| queue_properties<superscript>*</superscript> | gets the properties of a storage account’s Queue service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-properties) for more.
-| blobs<superscript>*</superscript>           | Lists all of the blob containers in a given storage account. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/list-containers2) for more.
-| blob_properties<superscript>*</superscript> | gets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-properties) for more.
-| table_properties<superscript>*</superscript> | gets the properties of a storage account’s Table service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/get-table-service-properties) for more.
+| queues<superscript>*</superscript>           | Lists all of the queues in a given storage account. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/list-queues1) for more. |
+| queue_properties<superscript>*</superscript> | gets the properties of a storage account’s Queue service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-properties) for more. |
+| blobs<superscript>*</superscript>           | Lists all of the blob containers in a given storage account. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/list-containers2) for more.  |
+| blob_properties<superscript>*</superscript> | gets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-properties) for more. |
+| table_properties<superscript>*</superscript> | gets the properties of a storage account’s Table service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules. See [here](https://docs.microsoft.com/en-us/rest/api/storageservices/get-table-service-properties) for more. |
 
 <superscript>*</superscript>: Note that the Azure endpoints return data in XML format; however, they will be converted to Azure Resource Probe to make the properties accessible via dot notation.
 The property names will be in snake case, `propety_name`. Therefore, `<EnumerationResults ServiceEndpoint="https://myaccount.queue.core.windows.net/">` can be tested via `its('enumeration_results.service_endpoint)`.
