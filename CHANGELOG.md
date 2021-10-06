@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.75.3 -->
+<!-- latest_release 1.75.4 -->
+## [v1.75.4](https://github.com/inspec/inspec-azure/tree/v1.75.4) (2021-10-06)
+
+#### Merged Pull Requests
+- Fix tables in MD text [#520](https://github.com/inspec/inspec-azure/pull/520) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.75.3](https://github.com/inspec/inspec-azure/tree/v1.75.3) (2021-10-05)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.21.0 to ~&gt; 1.22.1 [#518](https://github.com/inspec/inspec-azure/pull/518) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.75.2](https://github.com/inspec/inspec-azure/tree/v1.75.2) (2021-09-30)
 
