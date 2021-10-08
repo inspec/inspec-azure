@@ -7,15 +7,15 @@ platform: azure
 
 Use the `azure_resource_group` InSpec audit resource to test properties and configuration of an Azure resource group.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
-For more information, refer to the resource pack [README](../../README.md). 
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used.
+For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
@@ -33,7 +33,7 @@ describe azure_resource_group(name: 'my_resource_group') do
 end
 ```
 ```ruby
-describe azure_resource_group(resource_id: '/{subscriptionId}/resourcegroups/{resourceGroupName}') do
+describe azure_resource_group(resource_id: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}') do
   it { should exist }
 end
 ```
@@ -42,7 +42,7 @@ end
 | Name                                  | Description |
 |---------------------------------------|-------------|
 | name                                  | Name of the resource group. `resourceGroupName` |
-| resource_id                           | The unique resource ID. `/{subscriptionId}/resourcegroups/{resourceGroupName}` |
+| resource_id                           | The unique resource ID. `/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}` |
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
