@@ -18,8 +18,8 @@ github:
  version_tag_format: v{{version}}
 
 release_branches:
-  - master
-
+  - main
+ 
 changelog:
  categories:
   - "Type: New Resource": "New Resources"
