@@ -3,7 +3,7 @@
 set -exou pipefail
 
 PRODUCT=inspec-azure
-CURRENTDATE=$(date +"%m-%d-%Y")
+CURRENTDATE=$(date +"%Y-%m-%d")
 
 
 # Download the release-notes for our specific build
