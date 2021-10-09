@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.75.7 -->
+<!-- latest_release 1.75.8 -->
+## [v1.75.8](https://github.com/inspec/inspec-azure/tree/v1.75.8) (2021-10-09)
+
+#### Merged Pull Requests
+- Wiki main branch [#525](https://github.com/inspec/inspec-azure/pull/525) ([kagarmoe](https://github.com/kagarmoe))
+<!-- latest_release -->
+
 ## [v1.75.7](https://github.com/inspec/inspec-azure/tree/v1.75.7) (2021-10-09)
 
 #### Merged Pull Requests
 - fix datetime space [#524](https://github.com/inspec/inspec-azure/pull/524) ([kagarmoe](https://github.com/kagarmoe))
-<!-- latest_release -->
 
 ## [v1.75.6](https://github.com/inspec/inspec-azure/tree/v1.75.6) (2021-10-09)
 
