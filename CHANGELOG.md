@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.75.6 -->
+<!-- latest_release 1.75.7 -->
+## [v1.75.7](https://github.com/inspec/inspec-azure/tree/v1.75.7) (2021-10-09)
+
+#### Merged Pull Requests
+- fix datetime space [#524](https://github.com/inspec/inspec-azure/pull/524) ([kagarmoe](https://github.com/kagarmoe))
+<!-- latest_release -->
+
 ## [v1.75.6](https://github.com/inspec/inspec-azure/tree/v1.75.6) (2021-10-09)
 
 #### Merged Pull Requests
 - Add go modules for RN [#523](https://github.com/inspec/inspec-azure/pull/523) ([kagarmoe](https://github.com/kagarmoe))
-<!-- latest_release -->
 
 ## [v1.75.5](https://github.com/inspec/inspec-azure/tree/v1.75.5) (2021-10-09)
 
