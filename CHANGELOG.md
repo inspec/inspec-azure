@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.75.5 -->
+<!-- latest_release 1.75.6 -->
+## [v1.75.6](https://github.com/inspec/inspec-azure/tree/v1.75.6) (2021-10-09)
+
+#### Merged Pull Requests
+- Add go modules for RN [#523](https://github.com/inspec/inspec-azure/pull/523) ([kagarmoe](https://github.com/kagarmoe))
+<!-- latest_release -->
+
 ## [v1.75.5](https://github.com/inspec/inspec-azure/tree/v1.75.5) (2021-10-09)
 
 #### Merged Pull Requests
 - Add release notes automation [#522](https://github.com/inspec/inspec-azure/pull/522) ([kagarmoe](https://github.com/kagarmoe))
-<!-- latest_release -->
 
 ## [v1.75.4](https://github.com/inspec/inspec-azure/tree/v1.75.4) (2021-10-06)
 
