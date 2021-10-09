@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.75.4 -->
+<!-- latest_release 1.75.5 -->
+## [v1.75.5](https://github.com/inspec/inspec-azure/tree/v1.75.5) (2021-10-09)
+
+#### Merged Pull Requests
+- Add release notes automation [#522](https://github.com/inspec/inspec-azure/pull/522) ([kagarmoe](https://github.com/kagarmoe))
+<!-- latest_release -->
+
 ## [v1.75.4](https://github.com/inspec/inspec-azure/tree/v1.75.4) (2021-10-06)
 
 #### Merged Pull Requests
 - Fix tables in MD text [#520](https://github.com/inspec/inspec-azure/pull/520) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.75.3](https://github.com/inspec/inspec-azure/tree/v1.75.3) (2021-10-05)
 
