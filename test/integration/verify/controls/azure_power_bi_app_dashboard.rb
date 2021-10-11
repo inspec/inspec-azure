@@ -5,4 +5,3 @@ control 'Verify the settings of a Power BI App Dashboard' do
     it { should exist }
   end
 end
-
