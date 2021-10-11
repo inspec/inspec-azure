@@ -25,7 +25,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `app_id` is a required parameter.
 
 ```ruby
-describe azure_power_bi_app_dashboard(app_id: 'APP_ID') do
+describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID') do
   it  { should exist }
 end
 ```
@@ -34,33 +34,33 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| app_id         | The app ID.                                                                |
+| app_id         | The app ID.                                                                      |
+| dashboard_id   | The App Dashboard ID.                                                            |
 
 The parameter set should be provided for a valid query:
 
-- `app_id`
+- `app_id` & `dashboard_id`
 
 ## Properties
 
 | Property                            | Description                                                      |
 |-------------------------------------|------------------------------------------------------------------|
 | id                                  | The app ID.                                                      |
-| name                                | The app name.                                                    |
-| description                         | The app description.                                             |
-| publishedBy                         | The app publisher.                                               |
-| lastUpdate                          | The last time the app was updated.                               |
+| displayName                         | The dashboard display name.                                      |
+| embedUrl                            | The dashboard embed url.                                         |
+| isReadOnly                          | Is ReadOnly dashboard.                                           |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/apps/get-app) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/apps/get-dashboard) for other properties available.
 
 ## Examples
 
-### Test that the Power BI Apps is published by inspec-devs
+### Test that the Power BI App Dashboard is read only.
 
 ```ruby
-describe azure_power_bi_app_dashboard(app_id: 'APP_ID')  do
-  its('publishedBy') { should eq 'inspec-devs' }
+describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
+  its('isReadOnly') { should eq true }
 end
 ```
 
@@ -71,12 +71,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Azure Power BI App is found, it will exist
-describe azure_power_bi_app_dashboard(app_id: 'APP_ID')  do
+# If the Azure Power BI App Dashboard is found, it will exist
+describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
   it { should exist }
 end
-# if the Azure Power BI App is not found, it will not exist
-describe azure_power_bi_app_dashboard(app_id: 'APP_ID')  do
+# if the Azure Power BI App Dashboard is not found, it will not exist
+describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
   it { should_not exist }
 end
 ```
@@ -84,4 +84,4 @@ end
 ## Azure Permissions
 
 Currently this API does not support Service Principal Authentication. Hence one should use the AD account access tokens to access this resource.
-Your AD account must be set up with a `App.Read.All` role on the Azure Power BI Workspace you wish to test.
+Your AD account must be set up with a `Dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
