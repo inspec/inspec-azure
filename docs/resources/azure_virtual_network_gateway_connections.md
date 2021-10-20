@@ -75,7 +75,7 @@ end
 ### Test that there are Virtual Network Gateway Connection with connection type IPsec.
 
 ```ruby
-describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').where(connectionType: 'IPsec') do
+describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').where(connectionType: 'VPN_CONNECTION_TYPE') do
   it { should exist }
 end
 ```
