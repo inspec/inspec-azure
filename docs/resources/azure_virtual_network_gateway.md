@@ -26,17 +26,13 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`resource_group` and `name` or the `resource_id` must be given as a parameter.
+`resource_group` and `name` must be given as a parameter.
 ```ruby
-describe azure_virtual_network_gateway(resource_group: 'inspec-resource-group-9', name: 'example_lb') do
+describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_GATEWAY_NAME') do
   it { should exist }
 end
 ```
-```ruby
-describe azure_virtual_network_gateway(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/applicationGateways/{gatewayName}') do
-  it { should exist }
-end
-```
+
 ## Parameters
 
 | Name                           | Description                                                                       |
@@ -70,7 +66,7 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ### Test the VPN Client Protocol of an Virtual Network Gateway
 ```ruby
-describe azure_virtual_network_gateway(resource_group: 'resource_group', application_gateway_name: 'application_gateway_name') do
+describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_GATEWAY_NAME') do
   its('properties.vpnClientConfiguration.vpnClientProtocols') { should include 'OpenVPN' }
 end
 ```
@@ -82,12 +78,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 ```ruby
 # If we expect a virtual network gateway to always exist
-describe azure_virtual_network_gateway(resource_group: 'example', name: 'appgw-1') do
+describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_GATEWAY_NAME') do
   it { should exist }
 end
 
 # If we expect virtual network gateway to never exist
-describe azure_virtual_network_gateway(resource_group: 'example', name: 'appgw-1') do
+describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_GATEWAY_NAME') do
   it { should_not exist }
 end
 ```
