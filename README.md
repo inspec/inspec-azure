@@ -246,6 +246,8 @@ The following is a list of static resources.
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
 - [azure_virtual_network_gateway](docs/resources/azure_virtual_network_gateway.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
+- [azure_virtual_network_gateway_connection](docs/resources/azure_virtual_network_gateway_connection.md)
+- [azure_virtual_network_gateway_connections](docs/resources/azure_virtual_network_gateway_connections.md)
 - [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
 - [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
