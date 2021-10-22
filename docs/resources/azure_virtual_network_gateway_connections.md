@@ -5,28 +5,23 @@ platform: azure
 
 # azure_virtual_network_gateway_connections
 
-Use the `azure_virtual_network_gateway_connections` InSpec audit resource to test properties related to all Azure Virtual Network Gateway Connections within a project.
+Use the `azure_virtual_network_gateway_connections` InSpec audit resource to test the properties related to all Azure Virtual Network Gateway connections within a project.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
-The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used.
-For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
-For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client are used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
-For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). For an example, `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
 
-An `azure_virtual_network_gateway_connections` resource block returns all Azure Virtual Network Gateway Connections within a project.
+An `azure_virtual_network_gateway_connections` resource block returns all Azure Virtual Network Gateway <!-- markdownlint-configure-file { "MD013": { "line_length": 100 } } -->connections within a project.
 
 ```ruby
 describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP') do
@@ -35,9 +30,9 @@ end
 ```
 
 ## Parameters
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
+| Name           | Description                                                    |
+|----------------|----------------------------------------------------------------|
+| resource_group | Azure resource group name where the targeted resource resides. |
 
 The parameter set should be provided for a valid query:
 - `resource_group`
@@ -46,24 +41,23 @@ The parameter set should be provided for a valid query:
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | A list of resource ID.                                                 | `id`             |
+| ids                            | A list of resource IDs.                                                | `id`             |
 | names                          | A list of resource names.                                              | `name`           |
 | types                          | A list of types.                                                       | `type`           |
 | eTags                          | A list of eTags.                                                       | `eTag`           |
 | locations                      | A list of all locations.                                               | `location`       |
 | properties                     | A list of Properties for all the virtual network gateway connections.  | `properties`     |
 | provisioningStates             | A list of provisioning states.                                         | `provisioningState`|
-| connectionTypes                | A list of gateway connection type.                                     | `connectionType`|
+| connectionTypes                | A list of gateway connection types.                                    | `connectionType`|
 | connectionProtocols            | A list of connection protocols used for this connection.               | `connectionProtocol`|
 | useLocalAzureIpAddresses       | A list of private local Azure IPs for the connection.                  | `datacenterManagementServerName`|
 | ipsecPolicies                  | A list of all The IPSec Policies to be considered by this connection.  | `ipsecPolicies`  |                               | `description`    |
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-gateway/virtual-network-gateway-connections/list) for other properties available.
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-gateway/virtual-network-gateway-connections/list) for other properties available.
 
 ## Examples
 
-### Loop through Virtual Network Gateway Connection by their names.
+### Loop through Virtual Network Gateway connection by their names
 
 ```ruby
 azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -72,7 +66,8 @@ azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').name
   end
 end
 ```
-### Test that there are Virtual Network Gateway Connection with connection type IPsec.
+
+### Test that there are Virtual Network Gateway connection with IPsec type 
 
 ```ruby
 describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').where(connectionType: 'VPN_CONNECTION_TYPE') do
@@ -97,6 +92,7 @@ describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GRO
   it { should exist }
 end
 ```
+
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a minimum of `reader` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a minimum of `reader` role on the subscription you wish to test.
