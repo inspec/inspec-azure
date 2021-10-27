@@ -5,7 +5,7 @@ platform: azure
 
 # azure_power_bi_gateways
 
-Use the `azure_power_bi_gateways` InSpec audit resource to test the properties related to all AzurePower BI Gateways.
+Use the `azure_power_bi_gateways` InSpec audit resource to test the properties related to all Azure Power BI gateways.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_power_bi_gateways` resource block returns all AzurePower BI Gateways.
+An `azure_power_bi_gateways` resource block returns all Azure Power BI gateways.
 
 ```ruby
 describe azure_power_bi_gateways do
@@ -44,11 +44,11 @@ end
 
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/Gateways/get-Gateways) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/Gateways/get-Gateways) for other  available properties.
 
 ## Examples
 
-### Loop throughPower BI Gateways by their IDs
+### Loop through Power BI gateways by their IDs
 
 ```ruby
 azure_power_bi_gateways.ids.each do |id|
@@ -58,7 +58,7 @@ azure_power_bi_gateways.ids.each do |id|
 end
 ```
 
-### Test to ensure all Power BI Gateways exponent is `AQAB`
+### Test to ensure all Power BI gateways exponent is `AQAB`
 
 ```ruby
 describe azure_power_bi_gateways.where(exponent: 'AQAB') do
@@ -73,11 +73,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Gateways are present
+# Should not exist if no Power BI gateways are present
 describe azure_power_bi_gateways do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Gateways
+# Should exist if the filter returns at least one Power BI gateways
 describe azure_power_bi_gateways do
   it { should exist }
 end

@@ -5,7 +5,7 @@ platform: azure
 
 # azure_power_bi_gateway
 
-Use the `azure_power_bi_gateway` InSpec audit resource to test the properties related to Azure Power BI Gateway.
+Use the `azure_power_bi_gateway` InSpec audit resource to test the properties related to Azure Power BI gateway.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -32,13 +32,9 @@ end
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| gateway_id     | The gateway ID.                                                                |
+`gateway_id` _(required)_
 
-The parameter set should be provided for a valid query:
-
-- `gateway_id`
+The gateway ID.
 
 ## Properties
 
@@ -56,7 +52,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test that the Power BI Gateway's exponent is `AQAB`
+### Test that the Power BI gateway's exponent is `AQAB`
 
 ```ruby
 describe azure_power_bi_gateway(gateway_id: 'GATEWAY_ID')  do
@@ -71,11 +67,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Azure Power BI Gateway is found, it will exist
+# If the Azure Power BI gateway is found, it will exist
 describe azure_power_bi_gateway(gateway_id: 'GATEWAY_ID')  do
   it { should exist }
 end
-# if the Azure Power BI Gateway is not found, it will not exist
+# if the Azure Power BI gateway is not found, it will not exist
 describe azure_power_bi_gateway(gateway_id: 'GATEWAY_ID')  do
   it { should_not exist }
 end
