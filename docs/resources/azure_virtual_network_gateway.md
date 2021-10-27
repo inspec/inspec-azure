@@ -5,7 +5,7 @@ platform: azure
 
 # azure_virtual_network_gateway
 
-Use the `azure_virtual_network_gateway` InSpec audit resource to test properties and configuration of an Azure Virtual Network Gateway.
+Use the `azure_virtual_network_gateway` InSpec audit resource to test properties and configuration of an Azure virtual network gateway.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -26,7 +26,8 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`resource_group` and `name` must be given as a parameter.
+`resource_group` and `name` are required parameters.
+
 ```ruby
 describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_GATEWAY_NAME') do
   it { should exist }
@@ -35,36 +36,37 @@ end
 
 ## Parameters
 
-| Name                           | Description                                                                       |
-|--------------------------------|-----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| name                           | The unique name of the targeted resource. `gatewayName`                           |
+`resource_group` _(REQUIRED)_
 
-The below parameter sets should be provided for a valid query:
-- `resource_group` and `name`
+The Azure resource group that the targeted resource resides in.
+
+`name` _(REQUIRED)_
+
+The unique name of the targeted resource.
 
 ## Properties
 
 | Property                    | Description                                                              |
 |-----------------------------|--------------------------------------------------------------------------|
-| name                        | Resource name.                                                           |
-| id                          | Resource ID.                                                             |
+| name                        | The resource name.                                                           |
+| id                          | The resource ID.                                                             |
 | etag                        | A unique read-only string that changes whenever the resource is updated. |
-| type                        | Resource type.                                                           |
-| location                    | Resource location.                                                       |
-| tags                        | Resource tags.                                                           |
-| properties.bgpSettings      | Virtual network gateway's BGP speaker settings.                          |
+| type                        | The resource type.                                                           |
+| location                    | The resource location.                                                       |
+| tags                        | The resource tags.                                                           |
+| properties.bgpSettings      | The virtual network gateway's BGP speaker settings.                          |
 | properties.provisioningState| The provisioning state of the virtual network gateway resource.          |
 | properties.vpnClientConfiguration | The reference to the VpnClientConfiguration resource which represents the P2S VpnClient configurations. |
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-gateway/virtual-network-gateways/get) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-gateway/virtual-network-gateways/get) for other available properties.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-### Test the VPN Client Protocol of an Virtual Network Gateway
+### Test the VPN client protocol of a virtual network gateway
+
 ```ruby
 describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_GATEWAY_NAME') do
   its('properties.vpnClientConfiguration.vpnClientProtocols') { should include 'OpenVPN' }
@@ -76,6 +78,7 @@ end
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
 
 ### exists
+
 ```ruby
 # If we expect a virtual network gateway to always exist
 describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_GATEWAY_NAME') do
@@ -87,6 +90,7 @@ describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: '
   it { should_not exist }
 end
 ```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a minimum of `reader` role on the subscription you wish to test.
