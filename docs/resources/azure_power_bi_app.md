@@ -5,7 +5,7 @@ platform: azure
 
 # azure_power_bi_app
 
-Use the `azure_power_bi_app` InSpec audit resource to test the properties related to Azure Power BI Apps.
+Use the `azure_power_bi_app` InSpec audit resource to test the properties related to Azure Power BI apps.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -32,13 +32,9 @@ end
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| app_id         | The app ID.                                                                |
+`app_id` _(required)_
 
-The parameter set should be provided for a valid query:
-
-- `app_id`
+The app ID.
 
 ## Properties
 
@@ -56,7 +52,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test that the Power BI Apps is published by inspec-devs
+### Test that the Power BI app is published by inspec-devs
 
 ```ruby
 describe azure_power_bi_app(app_id: 'APP_ID')  do
@@ -71,11 +67,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Azure Power BI App is found, it will exist
+# If the Azure Power BI app is found, it will exist
 describe azure_power_bi_app(app_id: 'APP_ID')  do
   it { should exist }
 end
-# if the Azure Power BI App is not found, it will not exist
+# if the Azure Power BI app is not found, it will not exist
 describe azure_power_bi_app(app_id: 'APP_ID')  do
   it { should_not exist }
 end
@@ -83,5 +79,5 @@ end
 
 ## Azure Permissions
 
-Currently this API does not support Service Principal Authentication. Hence one should use the AD account access tokens to access this resource. 
-Your AD account must be set up with a `App.Read.All` role on the Azure Power BI Workspace you wish to test.
+This API does not support Service Principal Authentication. Use your Active Directory account access tokens to access this resource.
+Your Active Directory account must be set up with an `App.Read.All` role on the Azure Power BI workspace you wish to test.

@@ -5,7 +5,7 @@ platform: azure
 
 # azure_power_bi_apps
 
-Use the `azure_power_bi_apps` InSpec audit resource to test the properties related to all Azure Power BI Apps.
+Use the `azure_power_bi_apps` InSpec audit resource to test the properties related to all Azure Power BI apps.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_power_bi_apps` resource block returns all Azure Power BI Apps.
+An `azure_power_bi_apps` resource block returns all Azure Power BI apps.
 
 ```ruby
 describe azure_power_bi_apps do
@@ -32,14 +32,16 @@ end
 
 ## Parameters
 
+This resource does not require any parameters.
+
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | List of all App IDs.                                                   | `id`             |
-| names                          | List of all the App names.                                             | `name`           |
-| descriptions                   | List of all the App Descriptions.                                      | `description`    |
-| lastUpdates                    | List of all Last updated times of the Apps.                            | `lastUpdate`     |
+| ids                            | List of all app IDs.                                                   | `id`             |
+| names                          | List of all the app names.                                             | `name`           |
+| descriptions                   | List of all the app Descriptions.                                      | `description`    |
+| lastUpdates                    | List of all Last updated times of the apps.                            | `lastUpdate`     |
 
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
@@ -47,7 +49,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Loop through Power BI Apps by their IDs
+### Loop through Power BI apps by their IDs
 
 ```ruby
 azure_power_bi_apps.ids.each do |id|
@@ -57,7 +59,7 @@ azure_power_bi_apps.ids.each do |id|
 end
 ```
 
-### Test to ensure Power BI Apps for Finance exists
+### Test that a Power BI app named "Finance" exists
 
 ```ruby
 describe azure_power_bi_apps.where(name: 'Finance') do
@@ -72,11 +74,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Apps are present
+# Should not exist if no Power BI apps are present
 describe azure_power_bi_apps do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Apps
+# Should exist if the filter returns at least one Power BI apps
 describe azure_power_bi_apps do
   it { should exist }
 end
@@ -84,5 +86,5 @@ end
 
 ## Azure Permissions
 
-Currently this API does not support Service Principal Authentication. Hence one should use the AD account access tokens to access this resource.
-Your AD account must be set up with a `App.Read.All` role on the Azure Power BI Workspace you wish to test.
+This API does not support Service Principal Authentication. Use your Active Directory account access tokens to access this resource.
+Your Active Directory account must be set up with an `App.Read.All` role on the Azure Power BI workspace you wish to test.
