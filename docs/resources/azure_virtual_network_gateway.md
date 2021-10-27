@@ -40,7 +40,7 @@ end
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
 | name                           | The unique name of the targeted resource. `gatewayName`                           |
 
-Either one of the parameter sets can be provided for a valid query:
+The below parameter sets should be provided for a valid query:
 - `resource_group` and `name`
 
 ## Properties
