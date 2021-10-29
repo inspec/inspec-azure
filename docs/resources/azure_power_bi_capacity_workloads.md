@@ -25,7 +25,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 An `azure_power_bi_capacity_workloads` resource block returns all Azure Power BI Capacity Workloads.
 
 ```ruby
-describe azure_power_bi_capacity_workloads do
+describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID') do
   #...
 end
 ```
@@ -41,25 +41,21 @@ end
 
 |Property                   | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |---------------------------|------------------------------------------------------------------------|------------------|
-| ids                       | List of all Power Bi Capacity Workload IDs.                         | `id`             |
-| names                     | List of all the Power Bi Capacity Workload names.                   | `name`           |
-| kinds                     | List of all the Power Bi Capacity Workload Kinds                    | `kind`           |
-| refreshCounts             | List of the number of refreshes within the summary time windows.       | `refreshCount`   |
-| refreshFailures           | List of the number of refresh failures within the summary time window. | `refreshFailures`|
-| refreshesPerDays          | List of the number of refreshes.                                       | `refreshesPerDay`|
-| medianDurations           | List of the median duration in seconds of a refresh.                   | `medianDuration` |
-| averageDurations          | List of the average duration in seconds of a refresh.                  | `averageDuration`|
+| states                    | List of all Power Bi Capacity Workload IDs.                            | `state`          |
+| names                     | List of all the Power Bi Capacity Workload names.                      | `name`           |
+| maxMemoryPercentageSetByUsers | List of all the Power Bi Capacity Workload Kinds.                  | `maxMemoryPercentageSetByUser`|
+
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-Workloads) for other properties available.
 
 ## Examples
 
-### Test to ensure Power BI Capacity Workload schedules are enabled
+### Test to ensure Power BI Capacity Workload is enabled
 
 ```ruby
-describe azure_power_bi_capacity_workloads do
-  its('refreshSchedules') { should_not be empty }
+describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID').where(state: 'Enabled') do
+  it { should exist }
 end
 ```
 
@@ -71,11 +67,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # Should not exist if no Power BI Capacity Workloads are present
-describe azure_power_bi_capacity_workloads do
+describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID') do
   it { should_not exist }
 end
 # Should exist if the filter returns at least one Power BI Capacity Workloads
-describe azure_power_bi_capacity_workloads do
+describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID') do
   it { should exist }
 end
 ```

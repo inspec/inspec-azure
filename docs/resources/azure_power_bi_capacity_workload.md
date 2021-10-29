@@ -40,7 +40,7 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | The workload ID.                                  |
+| name           | The workload Name.                                  |
 | capacity_id    | The capacity ID.                                                            |
 
 The parameter set should be provided for a valid query:
@@ -51,29 +51,22 @@ The parameter set should be provided for a valid query:
 
 | Property                   | Description                                                      |
 |----------------------------|------------------------------------------------------------------|
-| id                         | The object ID of the workload.                                |
-| kind                       | The workload kind.                                            |
-| name                       | Display name of workload.                                     |
-| startTime                  | The start time of the window for which summary data exists.      |
-| endTime                    | The end time of the window for which summary data exists.        |
-| refreshCount               | The number of refreshes within the summary time window.          |
-| refreshFailures            | The number of refresh failures within the summary time window.   |
-| refreshesPerDay            | The number of refreshes (schedule+onDemand) per day within the summary time window with at most 60.|
-| refreshSchedule.days       | Days to execute the refresh.                                     |
-| refreshSchedule.enabled    | Is the refresh enabled.                                          |       
+| name                       | The workload name.                                               |
+| state                      | The capacity workload state.                                     |
+| maxMemoryPercentageSetByUser| The memory percentage maximum Limit set by the user.            |           
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-workload-for-capacity) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-workload) for other properties available.
 
 ## Examples
 
-### Test that the Power BI Capacity workload schedule is enabled
+### Test that the Power BI Capacity workload is enabled
 
 ```ruby
 describe azure_power_bi_capacity_workload(capacity_id: 'CAPACITY_ID', name: 'WORKLOAD_NAME')  do
-  its('refreshSchedules.enabled') { should be_truthy }
+  its('state') { should eq 'Enabled' }
 end
 ```
 
