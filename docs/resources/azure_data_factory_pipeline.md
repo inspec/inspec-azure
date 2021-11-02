@@ -30,11 +30,11 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 `resource_group` and `pipeline_name`, `factory_name` must be given as parameters.
 
- ```ruby
- describe azure_data_factory_pipeline(resource_group: resource_group, factory_name: factory_name, pipeline_name: pipeline_name) do
-   
- end
- ```
+```ruby
+describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do
+  #...
+end
+```
 
 ## Parameters
 
@@ -42,43 +42,43 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
  |--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
 | factory_name                           | Name for the data factory that you want to create your pipeline in..                                                                 |
-| pipeline_name                 | The pipeline Name. |
+| pipeline_name                 | The pipeline name. |
 
 All the parameter sets needs be provided for a valid query:
 - `resource_group` , `factory_name` and `pipeline_name`
 ## Properties
 
 | Name                           | Description                                                                      |
- |--------------------------------|----------------------------------------------------------------------------------|
-| name                           | Name of the Azure resource to test. `MyDf`                                       |
+|--------------------------------|----------------------------------------------------------------------------------|
+| name                           | Name of the Azure resource to test.                                      |
 | id                             | The pipeline type.                                                 |
-| properties                     | The Properties of the Resource.                                | 
+| properties                     | The properties of the Resource.                                |
 
 ## Examples
 
-### Test that a pipeline exists
+### Test That A Pipeline Exists
 
- ```ruby
- describe azure_data_factory_pipeline(resource_group: resource_group, factory_name: factory_name, pipeline_name: pipeline_name) do
-   it { should exist }
- end
+```ruby
+describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do
+  it { should exist }
+end
+```
+
+### Test That A Pipeline Does Not Exist
+
+```ruby
+describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do
+  it { should_not exist }
+end
  ```
 
-### Test that a pipeline does not exist
+### Test Properties Of A Pipeline
 
- ```ruby
- describe azure_data_factory_pipeline(resource_group: resource_group, factory_name: factory_name, pipeline_name: 'should not exit') do
-   it { should_not exist }
- end
- ```
-
-### Test properties of a pipeline
-
- ```ruby
- describe azure_data_factory_pipeline(resource_group: resource_group, factory_name: factory_name, pipeline_name: 'pipeline_name1') do
-   its('name') { should eq 'pipeline_name1' }
- end
- ```
+```ruby
+describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do
+  its('name') { should eq 'PIPELINE_NAME' }
+end
+```
 
 ## Azure Permissions
 
