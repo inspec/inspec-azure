@@ -5,18 +5,18 @@ platform: azure
 
 # azure_sentinel_incidents_resources
 
-Use the `azure_sentinel_incidents_resources` InSpec audit resource to test properties related to sentinel_incident for a resource group or the entire subscription.
+Use the `azure_sentinel_incidents_resources` InSpec audit resource to test properties of Azure Sentinel incidents for a resource group or the entire subscription.
 
-## Azure REST API version, endpoint, and HTTP client parameters
+## Azure Rest API Version, Endpoint, And HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
 Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
-For api related info : [`Azure sentinel_incident Docs`](https://docs.microsoft.com/en-us/rest/api/securityinsights/incidents/list).
+
 ## Availability
 
 ### Installation
@@ -26,29 +26,30 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_sentinel_incidents_resources` resource block returns all Azure sentinel_incident, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_sentinel_incidents_resources` resource block returns all Azure sentinel incident, either within a resource group (if provided), or within an entire Subscription.
 
-  ```ruby
-  describe azure_sentinel_incidents_resources(resource_group: 'example', workspace_name: 'fn') do
-    #...
-  end
-  ```
-`resource_group` and `workspace_name` must be given as parameters.
+```ruby
+describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
+  #...
+end
+```
+
+`resource_group` and `workspace_name` are required parameters.
 
 
 ## Parameters
 
 | Name                           | Description                                                                       |
-  |--------------------------------|-----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| workspace_name | Azure Workspace Name for which sentinel_incident are being retrieved.|
+|--------------------------------|-----------------------------------------------------------------------------------|
+| resource_group                 | Azure resource group that the targeted resource resides in.  |
+| workspace_name | Azure Workspace Name for which Azure Sentinel incident are being retrieved.|
 
 ## Properties
 
 | Property        | Description                                            | Filter Criteria<superscript>*</superscript> |
-  |-----------------|---------------------------------------------------------|-----------------|
+|-----------------|---------------------------------------------------------|-----------------|
 | names           | A list of the unique resource names.                    | `name`          |
-| ids             | A list of sentinel_incident IDs .                       | `id`            |
+| ids             | A list of Azure Sentinel incident IDs .                       | `id`            |
 | properties      | A list of properties for the resource                   | `properties`          |
 | descriptions      | A list of descriptions for each resource              | `description`          |
 | severities | The severity of the incident                                 | `severity` |
@@ -61,38 +62,40 @@ An `azure_sentinel_incidents_resources` resource block returns all Azure sentine
 
 ## Examples
 
-### Test if properties matches
+### Test Properties of Incidents in a Resource Group
 
 ```ruby
-    describe azure_sentinel_incidents_resource(resource_group: resource_group, workspace_name: 'workspace_name') do
-      it { should exist }
-      its('names') { should include '0367ce89-78ad-4009-8d90-399fad24aabf' }
-      its('types') { should include 'Microsoft.SecurityInsights/Incidents' }
-      its('titles') { should include 'test-ana' }
-      its('descriptions') { should include 'test-rule' }
-      its('severities') { should include 'Informational' }
-      its('statuses') { should include 'New' }
-      its('owner_emails') { should include 'mailid' }
-      its('owner_userPrincipalNames') { should include 'mail#EXT#@getchef.onmicrosoft.com' }
-      its('owner_assignedTos') { should include 'Name' }
-    end
+describe azure_sentinel_incidents_resource(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
+  it { should exist }
+  its('names') { should include 'RESOURCE_NAME' }
+  its('types') { should include 'Microsoft.SecurityInsights/Incidents' }
+  its('titles') { should include 'TITLE' }
+  its('descriptions') { should include 'DESCRIPTION_TEXT' }
+  its('severities') { should include 'Informational' }
+  its('statuses') { should include 'New' }
+  its('owner_emails') { should include 'EMAIL_ADDRESS' }
+  its('owner_userPrincipalNames') { should include 'PRINCIPAL_NAME' }
+  its('owner_assignedTos') { should include 'ASSIGNED_TO_NAME' }
+end
 ```
 
-### Test if any sentinel_incident exist in the resource group
+### Test If Any Azure Sentinel Incident Exists in a Resource Group
 
-  ```ruby
-  describe azure_sentinel_incidents_resources(resource_group: 'example', workspace_name: 'fn') do
-    it { should exist }
-  end
-  ```
-### Test that there aren't any sentinel_incident in a resource group
+```ruby
+describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
+  it { should exist }
+end
+```
 
-  ```ruby
-  # Should not exist if no sentinel_incident are in the resource group
-  describe azure_sentinel_incidents_resources(resource_group: 'example', workspace_name: 'fake') do
-    it { should_not exist }
-  end
-  ```
+### Test That There Aren't Any Azure Sentinel Incident in a Resource Group
+
+```ruby
+# Should not exist if no Azure Sentinel incident are in the resource group
+describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
+  it { should_not exist }
+end
+```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
