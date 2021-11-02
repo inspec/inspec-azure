@@ -5,16 +5,16 @@ platform: azure
 
 # azure_migrate_assessment_machine
 
-Use the `azure_migrate_assessment_machine` InSpec audit resource to test properties related to an Azure Migrate Assessment Machine.
+Use the `azure_migrate_assessment_machine` InSpec audit resource to test properties related to an Azure Migrate assessment machine.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
@@ -26,10 +26,10 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name`, `project_name` and `resource_group`  is a required parameter.
+`name`, `project_name` and `resource_group`  are required parameters.
 
 ```ruby
-describe azure_migrate_assessment_machine(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_migrate_assessment') do
+describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME' name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
   it                                      { should exist }
   its('name')                             { should eq 'zoneA_machines_migrate_assessment' }
   its('type')                             { should eq 'Microsoft.Migrate/assessmentprojects/machines' }
@@ -37,20 +37,23 @@ end
 ```
 
 ```ruby
-describe azure_migrate_assessment_machine(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_migrate_assessment') do
+describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME' name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
   it  { should exist }
 end
 ```
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Migrate Assessment Machine to test.                                   |
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Assessment Project.                                                |
+`name` _(required)_
 
-The parameter set should be provided for a valid query:
-- `resource_group` and `project_name` and `group_name` and `name`
+Name of the Azure Migrate assessment machine to test.
+
+`resource_group` _(required)_
+
+Azure resource group that the targeted resource resides in.
+
+`project_name` _(required)_
+
+The Azure Migrate Assessment Project.
 
 ## Properties
 
@@ -74,10 +77,10 @@ Any attribute in the response may be accessed with the key names separated by do
 
 ## Examples
 
-### Test that the Migrate Assessment Machine has a minimum scalingFactor.
+### Test the Boot Type of Migrate assessment machine
 
 ```ruby
-describe azure_migrate_assessment_machine(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_migrate_assessment') do
+describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME', name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
   its('properties.bootType') { should eq 'BIOS' }
 end
 ```
@@ -89,13 +92,13 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If a Migrate Assessment Machine is found it will exist
-describe azure_migrate_assessment_machine(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_migrate_assessment') do
+# If a Migrate assessment machine is found it exists
+describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME' name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
   it { should exist }
 end
 
-# if Migrate Assessment Machine is not found it will not exist
-describe azure_migrate_assessment_machine(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_migrate_assessment') do
+# if Migrate assessment machine is not found it does not exist
+describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME' name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
   it { should_not exist }
 end
 ```

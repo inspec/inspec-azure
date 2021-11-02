@@ -5,16 +5,16 @@ platform: azure
 
 # azure_migrate_assessment_machines
 
-Use the `azure_migrate_assessment_machines` InSpec audit resource to test properties related to all Azure Migrate Assessment Machines within a project.
+Use the `azure_migrate_assessment_machines` InSpec audit resource to test properties related to all Azure Migrate assessment machines within a project.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
@@ -26,33 +26,34 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_migrate_assessment_machines` resource block returns all Azure Migrate Assessment Machines within a project.
+An `azure_migrate_assessment_machines` resource block returns all Azure Migrate assessment machines within a project.
 
 ```ruby
-describe azure_migrate_assessment_machines(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+describe azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME') do
   #...
 end
 ```
 
 ## Parameters
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Assessment Project.                                                |
 
-The parameter set should be provided for a valid query:
-- `resource_group` and `project_name`
+`resource_group` _(required)_
+
+Azure resource group that the targeted resource resides in.
+
+`project_name` _(required)_
+
+The Azure Migrate Assessment Project.
 
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | Path reference to the Assessment Machines.                             | `id`             |
-| names                          | Unique names for all Assessment Machines.                              | `name`           |
+| ids                            | Path reference to the assessment machines.                             | `id`             |
+| names                          | Unique names for all assessment machines.                              | `name`           |
 | types                          | Type of the objects.                                                   | `type`           |
-| eTags                          | A list of eTags for all the Assessment Machines.                       | `eTag`           |
-| properties                     | A list of Properties for all the Assessment Machines.                  | `properties`     |
-| bootTypes                      | A list of Boot type of the machines.                                   | `bootType`       |
+| eTags                          | A list of eTags for all the assessment machines.                       | `eTag`           |
+| properties                     | A list of properties for all the assessment machines.                  | `properties`     |
+| bootTypes                      | A list of boot type of the machines.                                   | `bootType`       |
 | createdTimestamps              | Times when this machine was created.                                   | `createdTimestamp`|
 | datacenterManagementServerArmIds | A list of ARM IDs of the data center as tracked by the Microsoft.OffAzure.| `datacenterManagementServerArmId` |
 | datacenterManagementServerNames| Name of the servers hosting the datacenter management solution.        | `datacenterManagementServerName`|
@@ -64,28 +65,29 @@ The parameter set should be provided for a valid query:
 | megabytesOfMemories            | A list of Memories in Megabytes.                                       | `megabytesOfMemory`|
 | networkAdapters                | Dictionary of network adapters attached to all the machines. Key is ID of network adapter. Value is a network adapter object. | `networkAdapters` |
 | numberOfCores                  | Processor counts.                                                      | `numberOfCores`  |
-| operatingSystemNames           | Operating System names of all the machines.                            | `operatingSystemName`|
-| operatingSystemTypes           | Operating System types of all the machines.                            | `operatingSystemType`|
-| operatingSystemVersions        | Operating System versions of all the machines.                         | `operatingSystemVersion`|
+| operatingSystemTypes           | Operating system types of all the machines.                            | `operatingSystemType`|
+| operatingSystemNames           | Operating system names of all the machines.                            | `operatingSystemName`|
+| operatingSystemVersions        | Operating system versions of all the machines.                         | `operatingSystemVersion`|
 | updatedTimestamps              | Time when the machines were last updated.                              | `updatedTimestamp` |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Loop through Migrate Assessment Machines by their names.
+### Loop through Migrate assessment machines by their names.
 
 ```ruby
-azure_migrate_assessment_machines(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').names.each do |name|
-  describe azure_migrate_assessment_machine(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', group_name: 'zoneA_machines_group', name: name) do
+azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME').names.each do |name|
+  describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME', group_name: 'MACHINE_GROUP_NAME', name: name) do
     it { should exist }
   end
 end
 ```
-### Test that there are Migrate Assessment Machines with BIOS boot type.
+
+### Test that there are Migrate assessment machines with BIOS boot type.
 
 ```ruby
-describe azure_migrate_assessment_machines(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project').where(bootType: 'BIOS') do
+describe azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME').where(bootType: 'BIOS') do
   it { should exist }
 end
 ```
@@ -97,13 +99,13 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Migrate Assessment Machines are present in the project and in the resource group
-describe azure_migrate_assessment_machines(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+# Should not exist if no Migrate assessment machines are present in the project and in the resource group
+describe azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME') do
   it { should_not exist }
 end
 
-# Should exist if the filter returns at least one Migrate Assessment Machines in the project and in the resource group
-describe azure_migrate_assessment_machines(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
+# Should exist if the filter returns at least one Migrate assessment machines in the project and in the resource group
+describe azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME') do
   it { should exist }
 end
 ```
