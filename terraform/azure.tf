@@ -948,6 +948,8 @@ resource "azurerm_virtual_network_peering" "network_peering" {
   remote_virtual_network_id = azurerm_virtual_network.app-gw.id
 }
 
+
+
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -1340,15 +1342,14 @@ resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
 }
 
 resource "azurerm_bastion_host" "abh" {
-  name                = "test_bastion"
-  location            = azurerm_resource_group.rg.location
+  name = "test_bastion"
+  location = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   ip_configuration {
-    name                 = "configuration"
-    subnet_id            = azurerm_subnet.subnet.id
+    name = "configuration"
+    subnet_id = azurerm_subnet.subnet.id
     public_ip_address_id = azurerm_public_ip.public_ip_address.id
   }
-
 }
 
 resource "azurerm_network_ddos_protection_plan" "andpp" {
@@ -1370,6 +1371,13 @@ resource "azurerm_data_factory" "adf" {
   name                = "adf-eaxmple"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_data_factory_linked_service_mysql" "dflsmsql" {
+  name                = "dflsm-sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  connection_string   = "Server=test;Port=3306;Database=test;User=test;SSLMode=1;UseSystemTrustStore=0;Password=test"
 }
 
 // the resource itself is not yet available in tf because of this open issue
@@ -1417,4 +1425,88 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   location = var.location
   name = var.inspec_wan_name
   resource_group_name = azurerm_resource_group.rg.name
+}
+
+
+resource "azurerm_virtual_network" "inspec-gw-vnw" {
+  name                = "inspec-gw-vnw"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  address_space       = ["10.0.0.0/16"]
+}
+
+resource "azurerm_subnet" "inspec-gw-subnet" {
+  name                 = "GatewaySubnet"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.inspec-gw-vnw.name
+  address_prefix     = "10.0.1.0/24"
+}
+
+resource "azurerm_virtual_network_gateway" "inspec-nw-gateway" {
+  name                = "inspec-dev-vnw-gateway"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  type     = "Vpn"
+  vpn_type = "RouteBased"
+
+  active_active = false
+  enable_bgp    = false
+  sku           = "Basic"
+
+  ip_configuration {
+    name                          = "vnetGatewayConfig"
+    public_ip_address_id          = azurerm_public_ip.test.id
+    private_ip_address_allocation = "Dynamic"
+    subnet_id                     = azurerm_subnet.inspec-gw-subnet.id
+  }
+
+  vpn_client_configuration {
+    address_space = ["10.2.0.0/24"]
+
+    root_certificate {
+      name = "DigiCert-Federated-ID-Root-CA"
+
+      public_cert_data = <<EOF
+MIIDuzCCAqOgAwIBAgIQCHTZWCM+IlfFIRXIvyKSrjANBgkqhkiG9w0BAQsFADBn
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMSYwJAYDVQQDEx1EaWdpQ2VydCBGZWRlcmF0ZWQgSUQg
+Um9vdCBDQTAeFw0xMzAxMTUxMjAwMDBaFw0zMzAxMTUxMjAwMDBaMGcxCzAJBgNV
+BAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdp
+Y2VydC5jb20xJjAkBgNVBAMTHURpZ2lDZXJ0IEZlZGVyYXRlZCBJRCBSb290IENB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvAEB4pcCqnNNOWE6Ur5j
+QPUH+1y1F9KdHTRSza6k5iDlXq1kGS1qAkuKtw9JsiNRrjltmFnzMZRBbX8Tlfl8
+zAhBmb6dDduDGED01kBsTkgywYPxXVTKec0WxYEEF0oMn4wSYNl0lt2eJAKHXjNf
+GTwiibdP8CUR2ghSM2sUTI8Nt1Omfc4SMHhGhYD64uJMbX98THQ/4LMGuYegou+d
+GTiahfHtjn7AboSEknwAMJHCh5RlYZZ6B1O4QbKJ+34Q0eKgnI3X6Vc9u0zf6DH8
+Dk+4zQDYRRTqTnVO3VT8jzqDlCRuNtq6YvryOWN74/dq8LQhUnXHvFyrsdMaE1X2
+DwIDAQABo2MwYTAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAdBgNV
+HQ4EFgQUGRdkFnbGt1EWjKwbUne+5OaZvRYwHwYDVR0jBBgwFoAUGRdkFnbGt1EW
+jKwbUne+5OaZvRYwDQYJKoZIhvcNAQELBQADggEBAHcqsHkrjpESqfuVTRiptJfP
+9JbdtWqRTmOf6uJi2c8YVqI6XlKXsD8C1dUUaaHKLUJzvKiazibVuBwMIT84AyqR
+QELn3e0BtgEymEygMU569b01ZPxoFSnNXc7qDZBDef8WfqAV/sxkTi8L9BkmFYfL
+uGLOhRJOFprPdoDIUBB+tmCl3oDcBy3vnUeOEioz8zAkprcb3GHwHAK+vHmmfgcn
+WsfMLH4JCLa/tRYL+Rw/N3ybCkDp00s0WUZ+AoDywSl0Q/ZEnNY0MsFiw6LyIdbq
+M/s/1JRtO3bDSzD9TazRVzn2oBqzSa8VgIo5C1nOnoAKJTlsClJKvIhnRlaLQqk=
+EOF
+
+    }
+
+    revoked_certificate {
+      name       = "Verizon-Global-Root-CA"
+      thumbprint = "912198EEF23DCAC40939312FEE97DD560BAE49B1"
+    }
+  }
+}
+
+resource "azurerm_virtual_network_gateway_connection" "nw-gateway-connection" {
+  name                = "inspec-nw-gateway-connection"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  type                            = "Vnet2Vnet"
+  virtual_network_gateway_id      = azurerm_virtual_network_gateway.inspec-nw-gateway.id
+  peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.inspec-nw-gateway.id
+
+  shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
 }

@@ -3,7 +3,7 @@ title: About the azure_virtual_wan Resource
 platform: azure
 ---
 
-## azure_virtual_wan
+# azure_virtual_wan
 
 Use the `azure_virtual_wan` InSpec audit resource to test the properties related to a Azure Virtual WAN in a given resource group.
 
