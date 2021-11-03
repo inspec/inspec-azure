@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.76.0 -->
+<!-- latest_release 1.77.0 -->
+## [v1.77.0](https://github.com/inspec/inspec-azure/tree/v1.77.0) (2021-11-03)
+
+#### Merged Pull Requests
+- Support azure vitual nw gateways [#530](https://github.com/inspec/inspec-azure/pull/530) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.76.0](https://github.com/inspec/inspec-azure/tree/v1.76.0) (2021-10-28)
 
 #### Merged Pull Requests
 - Support virtual nw gateway connections [#531](https://github.com/inspec/inspec-azure/pull/531) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.75.9](https://github.com/inspec/inspec-azure/tree/v1.75.9) (2021-10-09)
 
