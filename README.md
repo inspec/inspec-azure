@@ -425,7 +425,7 @@ They can be defined as environment variables or resource parameters (has priorit
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
 ### Developing a Static Resource
 

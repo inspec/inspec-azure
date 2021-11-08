@@ -7,7 +7,7 @@ platform: azure
 
 Use the `azure_data_lake_storage_gen2_filesystem` InSpec audit resource to test the properties related to Azure Data Lake Storage Gen2 Filesystem.
 
-## Azure REST API version, Endpoint, and HTTP Client Parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`name`, `account_name` is a required parameter and `dns_suffix` is an optional parameter.
+`name` and `account_name` are required parameters, and `dns_suffix` is an optional parameter.
 
 ```ruby
 describe azure_data_lake_storage_gen2_filesystem(account_name: 'ACCOUNT_NAME', name: 'FILE_SYSTEM') do
@@ -38,29 +38,31 @@ end
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Date Lake Storage Gen2 to test.                                |
-| account_name   | Azure Storage Account Name.                                                       |
-| dns_suffix     | The DNS suffix for the Azure Data Lake Storage endpoint.                        |
+`name` _(required)_
 
-The parameter set should be provided for a valid query:
+Name of the Azure Date Lake Storage Gen2 to test.
 
-- `name` and `account_name`
+`account_name` _(required)_
+
+Azure storage account name.
+
+`dns_suffix` _(optional)_
+
+The DNS suffix for the Azure Data Lake Storage endpoint.
 
 ## Properties
 
 | Property                            | Description                                                      |
 |-------------------------------------|------------------------------------------------------------------|
-| last_modified                       | Last Modified Timestamp of the resource.                         |
+| last_modified                       | Last modified timestamp of the resource.                         |
 | etag                                | HTTP strong entity tag value.                                    |
 | x_ms_properties                     | Properties of the filesystem.                                    |
-| x_ms_namespace_enabled              | Boolean String for Namespace enablement.                         |
-| x_ms_default_encryption_scope       | Default Encryption Scope.                                        |
-| x_ms_deny_encryption_scope_override | Boolean String for Deny Encryption Scope.                        |
+| x_ms_namespace_enabled              | Boolean string for namespace enablement.                         |
+| x_ms_default_encryption_scope       | Default encryption scope.                                        |
+| x_ms_deny_encryption_scope_override | Boolean string for deny encryption scope.                        |
 | x_ms_request_id                     | Request ID.                                                      |
 | x_ms_version                        | Version of the API.                                              |
-| date                                | Date String of the request.                                      |
+| date                                | Date string of the request.                                      |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
@@ -69,7 +71,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/s
 
 ## Examples
 
-### Test that the Data Lake Storage Gen 2 Filesystem 
+### Test that the Data Lake Storage Gen2 filesystem
 
 ```ruby
 describe azure_data_lake_storage_gen2_filesystem(account_name: 'ACCOUNT_NAME', name: 'FILE_SYSTEM')  do
@@ -84,12 +86,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Data Lake Storage Gen 2 Filesystem is found, it will exist
+# If the Data Lake Storage Gen2 Filesystem is found, it exists
 describe azure_data_lake_storage_gen2_filesystem(account_name: 'ACCOUNT_NAME', name: 'FILE_SYSTEM')  do
   it { should exist }
 end
 
-# if the Data Lake Storage Gen 2 Filesystem is not found, it will not exist
+# Ff the Data Lake Storage Gen2 Filesystem is not found, it exists
 describe azure_data_lake_storage_gen2_filesystem(account_name: 'ACCOUNT_NAME', name: 'FILE_SYSTEM')  do
   it { should_not exist }
 end

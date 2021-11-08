@@ -7,7 +7,7 @@ platform: azure
 
 Use the `azure_data_lake_storage_gen2_filesystems` InSpec audit resource to test the properties related to all Azure Data Lake Storage Gen2 Filesystems within a project.
 
-## Azure REST API version, Endpoint, and HTTP Client Parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_data_lake_storage_gen2_filesystems` resource block returns all Azure Data Lake Storage Gen2 Filesystems within a project.
+An `azure_data_lake_storage_gen2_filesystems` resource block returns all Azure Data Lake Storage Gen2 filesystems within a project.
 
 ```ruby
 describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME') do
@@ -31,14 +31,14 @@ end
 ```
 
 ## Parameters
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| account_name   | The Azure Storage account name.                                                  |
-| dns_suffix     | The DNS suffix for the Azure Data Lake Storage endpoint.                         |
 
-The parameter set should be provided for a valid query:
-- `account_name`
-- `account_name` and `dns_suffix` (optional)
+`account_name` _(required)_
+
+The Azure Storage account name.
+
+`dns_suffix` _(optional)_
+
+The DNS suffix for the Azure Data Lake Storage endpoint.
 
 ## Properties
 
@@ -50,14 +50,12 @@ The parameter set should be provided for a valid query:
 | DefaultEncryptionScopes        | A list of all Encryption scopes of the ADLS Filesystems.               | `DefaultEncryptionScope`|
 | DenyEncryptionScopeOverrides   | A list of all Deny Encryption Scope Overrides.                         | `DenyEncryptionScopeOverrides`|
 
-
-
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/filesystem/list) for other properties available. 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/filesystem/list) for other properties available.
 
 ## Examples
 
-### Loop through Data Lake Storage Gen2 Filesystems by their names
+### Loop Through Data Lake Storage Gen2 Filesystems by Their Names and Verify That Each Exists
 
 ```ruby
 azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').names.each do |name|
@@ -67,7 +65,7 @@ azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').names.eac
 end
 ```
 
-### Test to ensure Data Lake Storage Gen2 Filesystems with `$account-encryption-key` Encryption Scope
+### Test To Ensure Data Lake Storage Gen2 Filesystems With ‘$account-encryption-key’ Encryption Scope
 
 ```ruby
 describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').where(DefaultEncryptionScope: '$account-encryption-key') do
@@ -82,12 +80,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Data Lake Storage Gen2 Filesystems are present in the project and in the resource group
+# Should not exist if no Data Lake Storage Gen2 filesystems are present in the project and in the resource group
 describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME') do
   it { should_not exist }
 end
 
-# Should exist if the filter returns at least one Migrate Assessment in the project and in the resource group
+# Should exist if the filter returns at least one Data Lake Storage Gen2 filesystem in the project and in the resource group
 describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME') do
   it { should exist }
 end
