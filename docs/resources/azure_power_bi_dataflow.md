@@ -40,8 +40,8 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | The workload Name.                                  |
-| group_id    | The capacity ID.                                                            |
+| name           | The Dataflow ID.                                                               |
+| group_id       | The Workspace ID.                                                                |
 
 The parameter set should be provided for a valid query:
 
@@ -51,10 +51,10 @@ The parameter set should be provided for a valid query:
 
 | Property                   | Description                                                      |
 |----------------------------|------------------------------------------------------------------|
-| name                       | The workload name.                                               |
-| objectId                      | The Dataflow state.                                     |
-| description| The memory percentage maximum Limit set by the user.            |           
-| modelUrl
+| name                       | The Dataflow name.                                               |
+| objectId                   | The Dataflow ID.                                                 |
+| description                | The dataflow description.                                        |           
+| modelUrl                   | A URL to the dataflow definition file (model.json)               |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
@@ -63,7 +63,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test that the Power BI Dataflow exists
+### Test that the Power BI Dataflow for Finance exists
 
 ```ruby
 describe azure_power_bi_dataflow(group_id: 'GROUP_ID', name: 'DATAFLOW_ID')  do
@@ -91,4 +91,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataflow.Read.All` role on the Azure Power BI Capacity you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataflow.Read.All` role on the Azure Power BI Dataflow you wish to test.

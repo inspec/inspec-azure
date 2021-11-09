@@ -34,17 +34,17 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| group_id    | The Group ID.                                                                      |
+| group_id       | The Workspace ID.                                                                |
 
 
 ## Properties
 
 |Property                   | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |---------------------------|------------------------------------------------------------------------|------------------|
-| objectIds                    | List of all Power Bi Capacity Workload IDs.                            | `objectId`          |
-| names                     | List of all the Power Bi Capacity Workload names.                      | `name`           |
-| descriptions | List of all the Power Bi Capacity Workload Kinds.                  | `description`|
-| modelUrls   |                                                                                         | `modelUrl` |
+| objectIds                 | List of all Power BI dataflow IDs.                                     | `objectId`       |
+| names                     | List of all the Power BI dataflow names.                               | `name`           |
+| descriptions              | List of all the Power BI dataflow descriptions.                        | `description`    |
+| modelUrls                 | List of all URLs to the dataflow definition file                       | `modelUrl`       |                                                          | `modelUrl` |
 
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
@@ -52,7 +52,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test to ensure Power BI Dataflow exists
+### Test to ensure Power BI Dataflow for Finance exists
 
 ```ruby
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID').where(name: 'FinanceWorks') do
@@ -78,4 +78,4 @@ end
 ```
 
 ## Azure Permissions
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataflow.Read.All` role on the Azure Power BI Capacity you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataflow.Read.All` role on the Azure Power BI Dataflow you wish to test.
