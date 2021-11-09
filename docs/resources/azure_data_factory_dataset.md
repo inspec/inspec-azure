@@ -5,19 +5,19 @@ platform: azure
 
 # azure_data_factory_dataset
 
-Use the `azure_data_factory_dataset` InSpec audit resource to test properties related to a data factory data set.
+Use the `azure_data_factory_dataset` InSpec audit resource to test properties related to an Azure Data Factory dataset.
 
-## Azure REST API version, endpoint and http client parameters
+See the [`Azure Data Factories Dataset documentation`](https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/get) for additional information.
 
-This resource interacts with api versions supported by the resource provider.
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
+
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
-For api related info : [`Azure Data Factories Dataset Docs`](https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/get).
-
 
 ## Availability
 
@@ -28,10 +28,10 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`resource_group`, `factory_name` and `dataset_name` must be given as a parameter.
+`resource_group`, `factory_name`, and `dataset_name` are required parameters.
 
 ```ruby
-describe azure_data_factory_dataset(resource_group: resource_group, factory_name: factory_name, dataset_name: dataset_name) do
+describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do
   it { should exist }
 end
 ```
@@ -40,48 +40,56 @@ end
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| dataset_name                   | Name of the Azure resource to test.                                      |
-| factory_name                   | The factory name.                                                            |
+| resource_group                 | Azure resource group that the targeted resource resides in.                      |
+| dataset_name                   | Name of the Azure resource to test.                                              |
+| factory_name                   | The factory name.                                                                |
 
 ## Properties
 
 | Name                           | Description                                                                      |
 |--------------------------------|----------------------------------------------------------------------------------|
-| name                           | Name of the Azure resource to test.                                       |
-| id                             | The azure_sentinel_alert_rule type.                                                 |
-| properties                     | The Properties of the Resource.                                | 
-| type                           | Azure resource type. |
-| description                    | The description of dataset type. |
-| properties.linkedServiceName.referenceName | The Linked service used.  |
-| properties.linkedServiceName.type          | The Linked service type.  |
-| properties.type                | The dataset type.`AmazonMWSObjectDataset`, `AvroDataset`  |
+| name                           | Name of the Azure resource to test.                                              |
+| id                             | The azure_sentinel_alert_rule type.                                              |
+| properties                     | The properties of the resource.                                                  |
+| type                           | Azure resource type.                                                             |
+| description                    | The description of dataset type.                                                 |
+| properties.linkedServiceName.referenceName | Reference LinkedService name.                                             |
+| properties.linkedServiceName.type          | Linked service reference type.                                           |
+| properties.type                | The dataset type.`AmazonMWSObjectDataset`, `AvroDataset`                         |
 
 ## Examples
 
-### exists
-```ruby
-# If a Data set is found it will exist
-describe azure_data_factory_dataset(resource_group: resource_group, factory_name: factory_name, dataset_name: dataset_name) do
-  it { should exist }
-end
-
-describe azure_data_factory_dataset(resource_group: resource_group, factory_name: factory_name, dataset_name: 'fake') do
-  it { should_not exist }
-end
-```
-### Test if properties matches
+### Test if Properties Match
 
 ```ruby
-describe azure_data_factory_dataset(resource_group: resource_group, factory_name: factory_name, dataset_name: dataset_name) do
+describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do
   it { should exist }
-  its('name') { should eq 'BinaryDatasetForDeleteActivity' }
+  its('name') { should eq 'DATASET_NAME'}
   its('type') { should eq 'Microsoft.DataFactory/factories/datasets' }
-  its('properties.description') { should eq 'Connect to your source store to delete files.' }
-  its('properties.linkedServiceName.referenceName') { should eq 'linkedService1' }
+  its('properties.description') { should eq 'Description of dataset.' }
+  its('properties.linkedServiceName.referenceName') { should eq 'LINKED_SERVICE_NAME' }
   its('properties.linkedServiceName.type') { should eq 'LinkedServiceReference' }
 end
 ```
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
+
+### exists
+
+```ruby
+# If a dataset should exist
+describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do
+  it { should exist }
+end
+
+# If a dataset should not exist
+describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do
+  it { should_not exist }
+end
+```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
