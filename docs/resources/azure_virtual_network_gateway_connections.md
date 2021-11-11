@@ -21,7 +21,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_virtual_network_gateway_connections` resource block returns all Azure Virtual Network Gateway <!-- markdownlint-configure-file { "MD013": { "line_length": 100 } } -->connections within a project.
+An `azure_virtual_network_gateway_connections` resource block returns all Azure Virtual Network Gateway connections within a project.
 
 ```ruby
 describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP') do
@@ -30,11 +30,13 @@ end
 ```
 
 ## Parameters
+
 | Name           | Description                                                    |
 |----------------|----------------------------------------------------------------|
 | resource_group | Azure resource group name where the targeted resource resides. |
 
 The parameter set should be provided for a valid query:
+
 - `resource_group`
 
 ## Properties
@@ -51,7 +53,7 @@ The parameter set should be provided for a valid query:
 | connectionTypes                | A list of gateway connection types.                                    | `connectionType`|
 | connectionProtocols            | A list of connection protocols used for this connection.               | `connectionProtocol`|
 | useLocalAzureIpAddresses       | A list of private local Azure IPs for the connection.                  | `datacenterManagementServerName`|
-| ipsecPolicies                  | A list of all The IPSec Policies to be considered by this connection.  | `ipsecPolicies`  |                               | `description`    |
+| ipsecPolicies                  | A list of all The IPSec Policies to be considered by this connection.  | `ipsecPolicies`  |
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-gateway/virtual-network-gateway-connections/list) for other properties available.
 
