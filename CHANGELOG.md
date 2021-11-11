@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.77.1 -->
+<!-- latest_release 1.77.2 -->
+## [v1.77.2](https://github.com/inspec/inspec-azure/tree/v1.77.2) (2021-11-11)
+
+#### Merged Pull Requests
+- Minor docs fixes [#548](https://github.com/inspec/inspec-azure/pull/548) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.77.1](https://github.com/inspec/inspec-azure/tree/v1.77.1) (2021-11-08)
 
 #### Merged Pull Requests
 - Fix dates in release-dates.json [#537](https://github.com/inspec/inspec-azure/pull/537) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.77.0](https://github.com/inspec/inspec-azure/tree/v1.77.0) (2021-11-03)
 
