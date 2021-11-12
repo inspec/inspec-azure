@@ -42,7 +42,9 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ### Service Principal
 
-Your Azure Service Principal Account must have `contributor` or `owner` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
+Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against. 
+
+You should have the following pieces of information:
 
 * TENANT_ID
 * CLIENT_ID
@@ -64,7 +66,7 @@ To create your account Service Principal Account:
 11. Note your Subscription ID can be found here.
 12. Click `Access control (IAM)`
 13. Click Add
-14. Select the `contributor` role.
+14. Select the `reader` role.
 15. Select the application you just created and save.
 
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. 
@@ -244,7 +246,10 @@ The following is a list of static resources.
 - [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)
 - [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
+- [azure_virtual_network_gateway](docs/resources/azure_virtual_network_gateway.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
+- [azure_virtual_network_gateway_connection](docs/resources/azure_virtual_network_gateway_connection.md)
+- [azure_virtual_network_gateway_connections](docs/resources/azure_virtual_network_gateway_connections.md)
 - [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
 - [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)

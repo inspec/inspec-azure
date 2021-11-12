@@ -503,3 +503,8 @@ output "inspec_migrate_project_name" {
   description = "The name of the Azure Migrate Project that was setup manually since there is no tf resource"
   value = var.inspec_migrate_project_name
 }
+
+output "inspec_vnw_gateway_name" {
+  description = "The name of the Azure Virtual Network Gateway"
+  value = azurerm_virtual_network_gateway.inspec-nw-gateway.name
+}
