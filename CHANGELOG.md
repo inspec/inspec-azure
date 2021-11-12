@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.77.2 -->
+<!-- latest_release 1.78.0 -->
+## [v1.78.0](https://github.com/inspec/inspec-azure/tree/v1.78.0) (2021-11-12)
+
+#### Merged Pull Requests
+- Support migrate assessments machines [#434](https://github.com/inspec/inspec-azure/pull/434) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.77.2](https://github.com/inspec/inspec-azure/tree/v1.77.2) (2021-11-11)
 
 #### Merged Pull Requests
 - Minor docs fixes [#548](https://github.com/inspec/inspec-azure/pull/548) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.77.1](https://github.com/inspec/inspec-azure/tree/v1.77.1) (2021-11-08)
 
