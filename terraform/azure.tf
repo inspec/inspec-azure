@@ -1373,6 +1373,11 @@ resource "azurerm_data_factory" "adf" {
   resource_group_name = azurerm_resource_group.rg.name
 }
 
+resource "azurerm_data_factory_pipeline" "df_pipeline" {
+  name                = "example-pipeline"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+}
 resource "azurerm_data_factory_linked_service_mysql" "dflsmsql" {
   name                = "dflsm-sql"
   resource_group_name = azurerm_resource_group.rg.name

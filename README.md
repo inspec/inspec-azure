@@ -134,6 +134,8 @@ The following is a list of static resources.
 - [azure_data_factory](docs/resources/azure_data_factory.md)
 - [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
 - [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
+- [azure_data_factory_pipeline](docs/resources/azure_data_factory_pipeline.md)
+- [azure_data_factory_pipelines](docs/resources/azure_data_factory_pipelines.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
 - [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
 - [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
