@@ -1,10 +1,125 @@
 # Changelog
-<!-- latest_release 1.68.5 -->
+<!-- latest_release 1.78.1 -->
+## [v1.78.1](https://github.com/inspec/inspec-azure/tree/v1.78.1) (2021-11-12)
+
+#### Merged Pull Requests
+- adding pipeline resource [#441](https://github.com/inspec/inspec-azure/pull/441) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
+## [v1.78.0](https://github.com/inspec/inspec-azure/tree/v1.78.0) (2021-11-12)
+
+#### Merged Pull Requests
+- Support migrate assessments machines [#434](https://github.com/inspec/inspec-azure/pull/434) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.77.2](https://github.com/inspec/inspec-azure/tree/v1.77.2) (2021-11-11)
+
+#### Merged Pull Requests
+- Minor docs fixes [#548](https://github.com/inspec/inspec-azure/pull/548) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.77.1](https://github.com/inspec/inspec-azure/tree/v1.77.1) (2021-11-08)
+
+#### Merged Pull Requests
+- Fix dates in release-dates.json [#537](https://github.com/inspec/inspec-azure/pull/537) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.77.0](https://github.com/inspec/inspec-azure/tree/v1.77.0) (2021-11-03)
+
+#### Merged Pull Requests
+- Support azure vitual nw gateways [#530](https://github.com/inspec/inspec-azure/pull/530) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.76.0](https://github.com/inspec/inspec-azure/tree/v1.76.0) (2021-10-28)
+
+#### Merged Pull Requests
+- Support virtual nw gateway connections [#531](https://github.com/inspec/inspec-azure/pull/531) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.75.9](https://github.com/inspec/inspec-azure/tree/v1.75.9) (2021-10-09)
+
+#### Merged Pull Requests
+- Release Notes [#527](https://github.com/inspec/inspec-azure/pull/527) ([kagarmoe](https://github.com/kagarmoe))
+
+## [v1.75.8](https://github.com/inspec/inspec-azure/tree/v1.75.8) (2021-10-09)
+
+#### Merged Pull Requests
+- Wiki main branch [#525](https://github.com/inspec/inspec-azure/pull/525) ([kagarmoe](https://github.com/kagarmoe))
+
+## [v1.75.7](https://github.com/inspec/inspec-azure/tree/v1.75.7) (2021-10-09)
+
+#### Merged Pull Requests
+- fix datetime space [#524](https://github.com/inspec/inspec-azure/pull/524) ([kagarmoe](https://github.com/kagarmoe))
+
+## [v1.75.6](https://github.com/inspec/inspec-azure/tree/v1.75.6) (2021-10-09)
+
+#### Merged Pull Requests
+- Add go modules for RN [#523](https://github.com/inspec/inspec-azure/pull/523) ([kagarmoe](https://github.com/kagarmoe))
+
+## [v1.75.5](https://github.com/inspec/inspec-azure/tree/v1.75.5) (2021-10-09)
+
+#### Merged Pull Requests
+- Add release notes automation [#522](https://github.com/inspec/inspec-azure/pull/522) ([kagarmoe](https://github.com/kagarmoe))
+
+## [v1.75.4](https://github.com/inspec/inspec-azure/tree/v1.75.4) (2021-10-06)
+
+#### Merged Pull Requests
+- Fix tables in MD text [#520](https://github.com/inspec/inspec-azure/pull/520) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.75.3](https://github.com/inspec/inspec-azure/tree/v1.75.3) (2021-10-05)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.21.0 to ~&gt; 1.22.1 [#518](https://github.com/inspec/inspec-azure/pull/518) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.75.2](https://github.com/inspec/inspec-azure/tree/v1.75.2) (2021-09-30)
+
+#### Merged Pull Requests
+- doc minimum required role to run azure pack [#486](https://github.com/inspec/inspec-azure/pull/486) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.75.1](https://github.com/inspec/inspec-azure/tree/v1.75.1) (2021-09-24)
+
+#### Merged Pull Requests
+- Fix text on every page [#442](https://github.com/inspec/inspec-azure/pull/442) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.75.0](https://github.com/inspec/inspec-azure/tree/v1.75.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support azure migrate project events [#450](https://github.com/inspec/inspec-azure/pull/450) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.74.0](https://github.com/inspec/inspec-azure/tree/v1.74.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support Azure Migrate Assessment Group(s) [#429](https://github.com/inspec/inspec-azure/pull/429) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.73.0](https://github.com/inspec/inspec-azure/tree/v1.73.0) (2021-09-24)
+
+#### Merged Pull Requests
+- Support azure migrate assessments [#424](https://github.com/inspec/inspec-azure/pull/424) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.72.0](https://github.com/inspec/inspec-azure/tree/v1.72.0) (2021-09-23)
+
+#### Merged Pull Requests
+- Support azure migrate project machines [#448](https://github.com/inspec/inspec-azure/pull/448) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.71.0](https://github.com/inspec/inspec-azure/tree/v1.71.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support Azure Migrate Project Databases [#439](https://github.com/inspec/inspec-azure/pull/439) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.70.1](https://github.com/inspec/inspec-azure/tree/v1.70.1) (2021-09-16)
+
+#### Merged Pull Requests
+- Enhance backend [#481](https://github.com/inspec/inspec-azure/pull/481) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.70.0](https://github.com/inspec/inspec-azure/tree/v1.70.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support Azure Migrate Assessment Project (s) [#426](https://github.com/inspec/inspec-azure/pull/426) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.69.0](https://github.com/inspec/inspec-azure/tree/v1.69.0) (2021-09-16)
+
+#### Merged Pull Requests
+- Support migrate project solutions [#432](https://github.com/inspec/inspec-azure/pull/432) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.68.5](https://github.com/inspec/inspec-azure/tree/v1.68.5) (2021-09-14)
 
 #### Merged Pull Requests
 - Add vale linter [#444](https://github.com/inspec/inspec-azure/pull/444) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.68.4](https://github.com/inspec/inspec-azure/tree/v1.68.4) (2021-09-14)
 

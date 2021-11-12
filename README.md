@@ -42,7 +42,9 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ### Service Principal
 
-Your Azure Service Principal Account must have `contributor` or `owner` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
+Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against. 
+
+You should have the following pieces of information:
 
 * TENANT_ID
 * CLIENT_ID
@@ -64,7 +66,7 @@ To create your account Service Principal Account:
 11. Note your Subscription ID can be found here.
 12. Click `Access control (IAM)`
 13. Click Add
-14. Select the `contributor` role.
+14. Select the `reader` role.
 15. Select the application you just created and save.
 
 These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. 
@@ -132,6 +134,8 @@ The following is a list of static resources.
 - [azure_data_factory](docs/resources/azure_data_factory.md)
 - [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
 - [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
+- [azure_data_factory_pipeline](docs/resources/azure_data_factory_pipeline.md)
+- [azure_data_factory_pipelines](docs/resources/azure_data_factory_pipelines.md)
 - [azure_data_lake_storage_gen2_filesystem](docs/resources/azure_data_lake_storage_gen2_filesystem.md)
 - [azure_data_lake_storage_gen2_filesystems](docs/resources/azure_data_lake_storage_gen2_filesystems.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
@@ -170,6 +174,22 @@ The following is a list of static resources.
 - [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
+- [azure_migrate_assessment](docs/resources/azure_migrate_assessment.md)
+- [azure_migrate_assessments](docs/resources/azure_migrate_assessments.md)
+- [azure_migrate_assessment_machine](docs/resources/azure_migrate_assessment_machine.md)
+- [azure_migrate_assessment_machines](docs/resources/azure_migrate_assessment_machines.md)
+- [azure_migrate_assessment_project](docs/resources/azure_migrate_assessment_project.md)
+- [azure_migrate_assessment_projects](docs/resources/azure_migrate_assessment_projects.md)
+- [azure_migrate_assessment_group](docs/resources/azure_migrate_assessment_group.md)
+- [azure_migrate_assessment_groups](docs/resources/azure_migrate_assessment_groups.md)
+- [azure_migrate_project_database](docs/resources/azure_migrate_project_database.md)
+- [azure_migrate_project_databases](docs/resources/azure_migrate_project_databases.md)
+- [azure_migrate_project_event](docs/resources/azure_migrate_project_event.md)
+- [azure_migrate_project_events](docs/resources/azure_migrate_project_events.md)
+- [azure_migrate_project_machine](docs/resources/azure_migrate_project_machine.md)
+- [azure_migrate_project_machines](docs/resources/azure_migrate_project_machines.md)
+- [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
+- [azure_migrate_project_solutions](docs/resources/azure_migrate_project_solutions.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
 - [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
@@ -230,7 +250,10 @@ The following is a list of static resources.
 - [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)
 - [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
+- [azure_virtual_network_gateway](docs/resources/azure_virtual_network_gateway.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
+- [azure_virtual_network_gateway_connection](docs/resources/azure_virtual_network_gateway_connection.md)
+- [azure_virtual_network_gateway_connections](docs/resources/azure_virtual_network_gateway_connections.md)
 - [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
 - [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)

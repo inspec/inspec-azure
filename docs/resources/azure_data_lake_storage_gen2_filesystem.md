@@ -71,11 +71,11 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/s
 
 ## Examples
 
-### Test that the Data Lake Storage Gen2 filesystem
+### Test that the Data Lake Storage Gen2 filesystem has namespace enabled
 
 ```ruby
 describe azure_data_lake_storage_gen2_filesystem(account_name: 'ACCOUNT_NAME', name: 'FILE_SYSTEM')  do
-  its() { should eq 1.0 }
+  its('x_ms_namespace_enabled') { should eq 'false' }
 end
 ```
 

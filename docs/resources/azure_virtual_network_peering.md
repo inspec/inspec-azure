@@ -7,15 +7,15 @@ platform: azure
 
 Use the `azure_virtual_network_peering` InSpec audit resource to test properties related to a peering for a virtual network.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
-For more information, refer to the resource pack [README](../../README.md). 
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used.
+For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 

@@ -9,12 +9,12 @@ Use the `azure_resource_health_emerging_issues` InSpec audit resource to test pr
 
 ## Azure REST API version, endpoint, and HTTP client parameters
 
-This resource interacts with api versions supported by the resource provider.
+This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used.
 For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
