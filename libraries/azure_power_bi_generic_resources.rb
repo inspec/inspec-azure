@@ -27,7 +27,6 @@ class AzurePowerBIGenericResources < AzureGenericResources
     opts[:is_uri_a_url] = true
     opts[:api_version] = 'v1.0'
     super
-    binding.pry
     return if failed_resource?
 
     populate_filter_table_from_response
