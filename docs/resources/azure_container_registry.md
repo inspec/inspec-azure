@@ -7,7 +7,7 @@ platform: azure
 
 Use the `azure_container_registry` InSpec audit resource to test properties and configuration of an Azure Container Registry.
 
-## Azure REST API version, endpoint and HTTP client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider.
 The `api_version` can be defined as a resource parameter.
