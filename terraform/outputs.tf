@@ -508,3 +508,18 @@ output "inspec_vnw_gateway_name" {
   description = "The name of the Azure Virtual Network Gateway"
   value = azurerm_virtual_network_gateway.inspec-nw-gateway.name
 }
+
+output "inspec_adls_account_name" {
+  description = "The storage account for the ADLS"
+  value = azurerm_storage_account.sa.name
+}
+
+output "inspec_adls_fs_name" {
+  description = "The ADLS File System name"
+  value = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
+}
+
+output "inspec_adls_dns_suffix" {
+  description = "The default DNS suffix for ADLS"
+  value = "dfs.core.windows.net"
+}
