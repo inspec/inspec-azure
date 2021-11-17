@@ -21,7 +21,7 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
@@ -61,9 +61,10 @@ Either one of the parameter sets can be provided for a valid query:
 | public_ip               | The public IP address ID of the interrogated network interface's primary IP configuration. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}` |
 | public_ip_id_list       | A list of all the public IP address IDs of the interrogated network interface. |
 | has_public_address_ip?  | Indicates whether the interrogated network interface has a public IP address. |
+
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networkinterfaces/get#networkinterface) for other properties available. 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networkinterfaces/get#networkinterface) for other properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`), eg. `properties.<attribute>`.
 
 ## Examples
