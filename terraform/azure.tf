@@ -1515,3 +1515,14 @@ resource "azurerm_virtual_network_gateway_connection" "nw-gateway-connection" {
 
   shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
 }
+
+resource "azurerm_servicebus_namespace" "sb" {
+  name                = "inspec-servicebus-namespace"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+
+  tags = {
+    source = "inspec"
+  }
+}
