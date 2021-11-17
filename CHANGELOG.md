@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.79.2 -->
+<!-- latest_release 1.80.0 -->
+## [v1.80.0](https://github.com/inspec/inspec-azure/tree/v1.80.0) (2021-11-17)
+
+#### Merged Pull Requests
+- Support data lake storage gen2 filesystems [#482](https://github.com/inspec/inspec-azure/pull/482) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.79.2](https://github.com/inspec/inspec-azure/tree/v1.79.2) (2021-11-17)
 
 #### Merged Pull Requests
 - F/sentinel incidents [#459](https://github.com/inspec/inspec-azure/pull/459) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.79.1](https://github.com/inspec/inspec-azure/tree/v1.79.1) (2021-11-16)
 
