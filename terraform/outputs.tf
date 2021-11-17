@@ -508,3 +508,8 @@ output "inspec_vnw_gateway_name" {
   description = "The name of the Azure Virtual Network Gateway"
   value = azurerm_virtual_network_gateway.inspec-nw-gateway.name
 }
+
+output "service_bus_namespace_name" {
+  description = "The name of the Azure Service Bus Namespace"
+  value = azurerm_servicebus_namespace.sb.name
+}
