@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.79.1 -->
+<!-- latest_release 1.79.2 -->
+## [v1.79.2](https://github.com/inspec/inspec-azure/tree/v1.79.2) (2021-11-17)
+
+#### Merged Pull Requests
+- F/sentinel incidents [#459](https://github.com/inspec/inspec-azure/pull/459) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.79.1](https://github.com/inspec/inspec-azure/tree/v1.79.1) (2021-11-16)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.22.1 to ~&gt; 1.23.0 [#550](https://github.com/inspec/inspec-azure/pull/550) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.79.0](https://github.com/inspec/inspec-azure/tree/v1.79.0) (2021-11-15)
 
