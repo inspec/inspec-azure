@@ -5,9 +5,9 @@ platform: azure
 
 # azure_power_bi_dashboard_tiles
 
-Use the `azure_power_bi_dashboard_tiles` InSpec audit resource to test the properties related to all Azure  Power BI Dashboard Tiles within a project.
+Use the `azure_power_bi_dashboard_tiles` InSpec audit resource to test the properties related to all Azure Power BI dashboard tiles within a project.
 
-## Azure REST API version, Endpoint, and HTTP Client Parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
@@ -22,10 +22,10 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_power_bi_dashboard_tiles` resource block returns all Azure Power BI Dashboard Tiles within dashboard and a group.
+An `azure_power_bi_dashboard_tiles` resource block returns all Azure Power BI dashboard tiles within dashboard and a group.
 
 ```ruby
-describe azure_power_bi_dashboard_tiles(dashboard_id: 'DASHBOARD_ID') do
+describe azure_power_bi_dashboard_tiles(dashboard_id: 'dashboard_ID') do
   #...
 end
 ```
@@ -64,7 +64,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Loop through Power BI Dashboard Tiles by their IDs
+### Loop through Power BI dashboard tiles by their IDs
 
 ```ruby
 azure_power_bi_dashboard_tiles.ids.each do |id|
@@ -74,7 +74,7 @@ azure_power_bi_dashboard_tiles.ids.each do |id|
 end
 ```
 
-### Test to ensure all Power BI Dashboard Tiles that are in top left corner
+### Test to ensure all Power BI dashboard tiles that are in top left corner
 
 ```ruby
 describe azure_power_bi_dashboard_tiles.where(rowSpan: true) do
@@ -89,11 +89,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Dashboard Tiles are present in the group
+# Use should to test for an Azure Power BI dashboard tile that should be in the resource group.
 describe azure_power_bi_dashboard_tiles do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Dashboard tiles in the group
+
+# Use should_not to test for an Azure Power BI dashboard tile that should not be in the resource group
 describe azure_power_bi_dashboard_tiles do
   it { should exist }
 end
@@ -101,4 +102,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.

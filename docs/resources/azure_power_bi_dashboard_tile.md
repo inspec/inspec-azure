@@ -5,9 +5,9 @@ platform: azure
 
 # azure_power_bi_dashboard_tile
 
-Use the `azure_power_bi_dashboard_tile` InSpec audit resource to test the properties related to Azure Power BI Dashboard Tile.
+Use the `azure_power_bi_dashboard_tile` InSpec audit resource to test the properties related to Azure Power BI dashboard tile.
 
-## Azure REST API version, Endpoint, and HTTP Client Parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
@@ -22,34 +22,33 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`dashboard_id` is a required parameter and `group_id` is an optional parameter.
-
 ```ruby
-describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID', title_id: 'TITLE_ID') do
+describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID', title_id: 'TITLE_ID') do
   it  { should exist }
 end
 ```
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| dashboard_id   | The dashboard ID.                                                                |
-| group_id       | The workspace ID.                                                                |
-| tile_id        | The Tile ID.                                                                     |
+`dashboard_id` _(required)_
 
-The parameter set should be provided for a valid query:
+The dashboard ID.
 
-- `dashboard_id` and `tile_id`
-- `dashboard_id`, `tile_id` and `group_id`
+`tile_id` _(required)_
+
+The tile ID.
+
+`group_id` _(optional)_
+
+The workspace ID.
 
 ## Properties
 
 | Property                            | Description                                                      |
 |-------------------------------------|------------------------------------------------------------------|
-| id                                  | Power BI Dashboard Tile ID.                                      |
+| id                                  | Power BI dashboard tile ID.                                      |
 | title                               | The dashboard display name.                                      |
-| embedUrl                            | The tile embed url.                                              |   
+| embedUrl                            | The tile embed url.                                              |
 | rowSpan                             | number of rows a tile should span.                               |
 | colSpan                             | number of columns a tile should span.                            |
 | reportId                            | The report ID, which is available only for tiles created from a report.|
@@ -61,10 +60,10 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test that the Power BI Dashboard Tile is on left corner
+### Test that the Power BI dashboard tile is on left corner
 
 ```ruby
-describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID', title_id: 'TITLE_ID')  do
+describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID', title_id: 'TITLE_ID')  do
   its('rowSpan') { should eq 0 }
 end
 ```
@@ -76,16 +75,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Azure Power BI Dashboard Tile is found, it will exist
-describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID', title_id: 'TITLE_ID')  do
+# Use should to test for an Azure Power BI dashboard tile that should be in the resource group
+describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID', title_id: 'TITLE_ID')  do
   it { should exist }
 end
-# if the Azure Power BI Dashboard Tile is not found, it will not exist
-describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID', title_id: 'TITLE_ID')  do
+
+# Use should_not to test for an Azure Power BI dashboard tile that should not be in the resource group
+describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID', title_id: 'TITLE_ID')  do
   it { should_not exist }
 end
 ```
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
