@@ -5,9 +5,9 @@ platform: azure
 
 # azure_power_bi_dashboard
 
-Use the `azure_power_bi_dashboard` InSpec audit resource to test the properties related to Azure Power BI Dashboard.
+Use the `azure_power_bi_dashboard` InSpec audit resource to test the properties related to Azure Power BI dashboard.
 
-## Azure REST API version, Endpoint, and HTTP Client Parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
@@ -25,28 +25,26 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 `dashboard_id` is a required parameter and `group_id` is an optional parameter.
 
 ```ruby
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID') do
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID') do
   it  { should exist }
 end
 ```
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| dashboard_id   | The dashboard ID.                                                                |
-| group_id       | The workspace ID.                                                                |
+`dashboard_id` _(required)_
 
-The parameter set should be provided for a valid query:
+The dashboard ID.
 
-- `dashboard_id`
-- `dashboard_id` and `group_id`
+`group_id` _(optional)_
+
+The workspace ID. 
 
 ## Properties
 
 | Property                            | Description                                                      |
 |-------------------------------------|------------------------------------------------------------------|
-| id                                  | Power BI Dashboard ID.                                           |
+| id                                  | Power BI dashboard ID.                                           |
 | displayName                         | The dashboard display name.                                      |
 | embedUrl                            | The dashboard embed url.                                         |
 | isReadOnly                          | Is ReadOnly dashboard.                                           |
@@ -57,10 +55,10 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test that the Power BI Dashboard is read only
+### Test that the Power BI dashboard is read only
 
 ```ruby
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID')  do
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID')  do
   its('isReadOnly') { should eq 'true' }
 end
 ```
@@ -72,16 +70,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Azure Power BI Dashboard is found, it will exist
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID')  do
+# Should exist if the Power BI dashboard is present in the group
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID')  do
   it { should exist }
 end
-# if the Azure Power BI Dashboard is not found, it will not exist
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID')  do
+
+# Should not exist if the Power BI dashboard is not present in the group
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID')  do
   it { should_not exist }
 end
 ```
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
