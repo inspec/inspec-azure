@@ -5,7 +5,7 @@ platform: azure
 
 # azure_power_bi_capacity_refreshables
 
-Use the `azure_power_bi_capacity_refreshables` InSpec audit resource to test the properties related to all Azure Power BI Capacity Refreshables.
+Use the `azure_power_bi_capacity_refreshables` InSpec audit resource to test the properties of multiple Azure Power BI Capacity refreshables.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_power_bi_capacity_refreshables` resource block returns all Azure Power BI Capacity Refreshables.
+An `azure_power_bi_capacity_refreshables` resource block returns all Azure Power BI Capacity refreshables.
 
 ```ruby
 describe azure_power_bi_capacity_refreshables do
@@ -32,18 +32,18 @@ end
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| capacity_id    | The capacity ID. This parameter is an optional parameter.                                                                      |
+`capacity_id` _(optional)_
+
+The capacity ID.
 
 
 ## Properties
 
 |Property                   | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |---------------------------|------------------------------------------------------------------------|------------------|
-| ids                       | List of all Power Bi Capacity Refreshable IDs.                         | `id`             |
-| names                     | List of all the Power Bi Capacity Refreshable names.                   | `name`           |
-| kinds                     | List of all the Power Bi Capacity Refreshable Kinds                    | `kind`           |
+| ids                       | List of all Power Bi Capacity refreshable IDs.                         | `id`             |
+| names                     | List of all the Power Bi Capacity refreshable names.                   | `name`           |
+| kinds                     | List of all the Power Bi Capacity refreshable kinds                    | `kind`           |
 | refreshCounts             | List of the number of refreshes within the summary time windows.       | `refreshCount`   |
 | refreshFailures           | List of the number of refresh failures within the summary time window. | `refreshFailures`|
 | refreshesPerDays          | List of the number of refreshes.                                       | `refreshesPerDay`|
@@ -51,11 +51,12 @@ end
 | averageDurations          | List of the average duration in seconds of a refresh.                  | `averageDuration`|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-refreshables) for other properties available.
+
+For additional information, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-refreshables) for other properties available.
 
 ## Examples
 
-### Test to ensure Power BI Capacity Refreshable schedules are enabled
+### Test to ensure Power BI Capacity refreshable schedules are enabled
 
 ```ruby
 describe azure_power_bi_capacity_refreshables do
@@ -70,15 +71,16 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Capacity Refreshables are present
+# Should not exist if no Power BI Capacity refreshables are present
 describe azure_power_bi_capacity_refreshables do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Capacity Refreshables
+# Should exist if the filter returns at least one Power BI Capacity refreshables
 describe azure_power_bi_capacity_refreshables do
   it { should exist }
 end
 ```
 
 ## Azure Permissions
+
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Capacity.Read.All` role on the Azure Power BI Capacity you wish to test.

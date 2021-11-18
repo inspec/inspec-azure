@@ -5,7 +5,7 @@ platform: azure
 
 # azure_power_bi_capacity_refreshable
 
-Use the `azure_power_bi_capacity_refreshable` InSpec audit resource to test the properties related to Azure Power BI Capacity Refreshable.
+Use the `azure_power_bi_capacity_refreshable` InSpec audit resource to test the properties of an Azure Power BI Capacity refreshable.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -22,30 +22,27 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`name` and `capacity_id` is a required parameter.
-
 ```ruby
 describe azure_power_bi_capacity_refreshable(capacity_id: 'CAPACITY_ID', name: 'REFRESHABLE_ID') do
-  it  { should exist }
+  it { should exist }
 end
 ```
 
 ```ruby
 describe azure_power_bi_capacity_refreshable(capacity_id: 'CAPACITY_ID', name: 'REFRESHABLE_ID')  do
-  it  { should exist }
+  it { should exist }
 end
 ```
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| name           | The refreshable ID.                                  |
-| capacity_id    | The capacity ID.                                                            |
+`name` _(required)_
 
-The parameter set should be provided for a valid query:
+The refreshable ID.
 
-- `name` and `capacity_id`
+`capacity_id` _(required)_
+
+The capacity ID.
 
 ## Properties
 
@@ -60,7 +57,7 @@ The parameter set should be provided for a valid query:
 | refreshFailures            | The number of refresh failures within the summary time window.   |
 | refreshesPerDay            | The number of refreshes (schedule+onDemand) per day within the summary time window with at most 60.|
 | refreshSchedule.days       | Days to execute the refresh.                                     |
-| refreshSchedule.enabled    | Is the refresh enabled.                                          |       
+| refreshSchedule.enabled    | Is the refresh enabled.                                          |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
@@ -69,7 +66,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test that the Power BI Capacity Refreshable schedule is enabled
+### Test that the Power BI Capacity refreshable schedule is enabled
 
 ```ruby
 describe azure_power_bi_capacity_refreshable(capacity_id: 'CAPACITY_ID', name: 'REFRESHABLE_ID')  do
@@ -84,11 +81,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Power BI Capacity Refreshable is found, it will exist
+# If the Power BI Capacity refreshable is found, it will exist
 describe azure_power_bi_capacity_refreshable(capacity_id: 'CAPACITY_ID', name: 'REFRESHABLE_ID')  do
   it { should exist }
 end
-# if the Power BI Capacity Refreshable is not found, it will not exist
+# if the Power BI Capacity refreshable is not found, it will not exist
 describe azure_power_bi_capacity_refreshable(capacity_id: 'CAPACITY_ID', name: 'REFRESHABLE_ID')  do
   it { should_not exist }
 end
