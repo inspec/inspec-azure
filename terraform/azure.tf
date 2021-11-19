@@ -3,7 +3,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version         = "~> 2.1.0"
+  version         = "~> 2.76.0"
   subscription_id = var.subscription_id
   client_id       = var.client_id
   client_secret   = var.client_secret
@@ -1522,4 +1522,38 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
   properties = {
     inspec = "aGVsbG8="
   }
+}
+
+resource "azurerm_route_table" "route_table_sql_instance_inspec" {
+  name                          = "routetable-inspec"
+  location                      = azurerm_resource_group.rg.location
+  resource_group_name           = azurerm_resource_group.rg.name
+  disable_bgp_route_propagation = false
+  depends_on = [
+    azurerm_subnet.subnet,
+  ]
+}
+
+resource "azurerm_subnet_route_table_association" "route_table_assoc_inspec" {
+  subnet_id      = azurerm_subnet.subnet.id
+  route_table_id = azurerm_route_table.route_table_sql_instance_inspec.id
+}
+
+
+resource "azurerm_sql_managed_instance" "sql_instance_for_inspec" {
+  name                         = "sql-instance-for-inspec"
+  resource_group_name          = azurerm_resource_group.rg.name
+  location                     = azurerm_resource_group.rg.location
+  administrator_login          = "inspec-admin"
+  administrator_login_password = "Qwertyuiopasdfghjkl1"
+  license_type                 = "BasePrice"
+  subnet_id                    = azurerm_subnet.subnet.id
+  sku_name                     = "GP_Gen5"
+  vcores                       = 4
+  storage_size_in_gb           = 32
+
+  depends_on = [
+    azurerm_subnet_network_security_group_association.subnet_nsg,
+    azurerm_subnet_route_table_association.route_table_assoc_inspec,
+  ]
 }
