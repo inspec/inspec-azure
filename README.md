@@ -236,6 +236,8 @@ The following is a list of static resources.
 - [azure_sentinel_incidents_resources](docs/resources/azure_sentinel_incidents_resources.md)
 - [azure_sql_database](docs/resources/azure_sql_database.md)
 - [azure_sql_databases](docs/resources/azure_sql_databases.md)
+- [azure_sql_managed_instance](docs/resources/azure_sql_managed_instance.md)
+- [azure_sql_managed_instances](docs/resources/azure_sql_managed_instances.md)
 - [azure_sql_server](docs/resources/azure_sql_server.md)
 - [azure_sql_servers](docs/resources/azure_sql_servers.md)
 - [azure_storage_account](docs/resources/azure_storage_account.md)
