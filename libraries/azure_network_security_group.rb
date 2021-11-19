@@ -170,10 +170,9 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   end
 
   def destination_port_ranges(properties)
-    properties_hash = properties.to_h
-    return Array(properties.destinationPortRange) unless properties_hash.include?(:destinationPortRanges)
+    return Array(properties.destinationPortRange) unless properties.include?(:destinationPortRanges)
 
-    return properties.destinationPortRanges unless properties_hash.include?(:destinationPortRange)
+    return properties.destinationPortRanges unless properties.include?(:destinationPortRange)
 
     properties.destinationPortRanges + Array(properties.destinationPortRange)
   end
