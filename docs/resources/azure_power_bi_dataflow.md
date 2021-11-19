@@ -5,9 +5,9 @@ platform: azure
 
 # azure_power_bi_dataflow
 
-Use the `azure_power_bi_dataflow` InSpec audit resource to test the properties related to Azure Power BI Dataflow.
+Use the `azure_power_bi_dataflow` InSpec audit resource to test the properties of a single Azure Power BI dataflow.
 
-## Azure REST API version, Endpoint, and HTTP Client Parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
@@ -21,8 +21,6 @@ Unless defined, `azure_cloud` global endpoint and default values for the HTTP cl
 This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). For an example, `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
-
-`name` and `group_id` is a required parameter.
 
 ```ruby
 describe azure_power_bi_dataflow(group_id: 'GROUP_ID', name: 'DATAFLOW_ID') do
@@ -38,22 +36,22 @@ end
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| name           | The Dataflow ID.                                                               |
-| group_id       | The Workspace ID.                                                                |
+`name` _(required)_
 
-The parameter set should be provided for a valid query:
+The dataflow ID.
 
-- `name` and `group_id`
+`group_id` _(required)_
+
+The workspace ID.
+
 
 ## Properties
 
 | Property                   | Description                                                      |
 |----------------------------|------------------------------------------------------------------|
-| name                       | The Dataflow name.                                               |
-| objectId                   | The Dataflow ID.                                                 |
-| description                | The dataflow description.                                        |           
+| name                       | The dataflow name.                                               |
+| objectId                   | The dataflow ID.                                                 |
+| description                | The dataflow description.                                        |
 | modelUrl                   | A URL to the dataflow definition file (model.json)               |
 
 
@@ -63,12 +61,12 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test that the Power BI Dataflow for Finance exists
+### Test that the Power BI dataflow name exists
 
 ```ruby
 describe azure_power_bi_dataflow(group_id: 'GROUP_ID', name: 'DATAFLOW_ID')  do
   it { should exist }
-  its('name') { should eq 'FinanceWorks' }
+  its('name') { should eq 'DATAFLOW_NAME' }
 end
 ```
 
@@ -78,12 +76,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 
+Use `should` to test that the entity exists.
+
 ```ruby
-# If the Power BI Dataflow is found, it will exist
 describe azure_power_bi_dataflow(group_id: 'GROUP_ID', name: 'DATAFLOW_ID')  do
   it { should exist }
 end
-# if the Power BI Dataflow is not found, it will not exist
+```
+
+Use `should_not` to test the entity does not exist.
+
+```ruby
 describe azure_power_bi_dataflow(group_id: 'GROUP_ID', name: 'DATAFLOW_ID')  do
   it { should_not exist }
 end
@@ -91,4 +94,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataflow.Read.All` role on the Azure Power BI Dataflow you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataflow.Read.All` role on the Azure Power BI dataflow you wish to test.

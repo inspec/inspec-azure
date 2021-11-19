@@ -5,9 +5,9 @@ platform: azure
 
 # azure_power_bi_dataflows
 
-Use the `azure_power_bi_dataflows` InSpec audit resource to test the properties related to all Azure Power BI Dataflows.
+Use the `azure_power_bi_dataflows` InSpec audit resource to test the properties related to all Azure Power BI dataflows.
 
-## Azure REST API version, Endpoint, and HTTP Client Parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
@@ -22,7 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_power_bi_dataflows` resource block returns all Azure Power BI Dataflows.
+An `azure_power_bi_dataflows` resource block returns all Azure Power BI dataflows.
 
 ```ruby
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID') do
@@ -55,7 +55,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 ### Test to ensure Power BI Dataflow for Finance exists
 
 ```ruby
-describe azure_power_bi_dataflows(group_id: 'GROUP_ID').where(name: 'FinanceWorks') do
+describe azure_power_bi_dataflows(group_id: 'GROUP_ID').where(name: 'DATAFLOW_NAME') do
   it { should exist }
 end
 ```
@@ -67,11 +67,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Dataflows are present
+# Should not exist if no Power BI dataflows are present
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Dataflows
+# Should exist if the filter returns at least one Power BI dataflows
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID') do
   it { should exist }
 end
