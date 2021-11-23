@@ -1536,3 +1536,11 @@ resource "azurerm_servicebus_namespace" "sb" {
     source = "inspec"
   }
 }
+
+resource "azurerm_servicebus_topic" "inspec_sb_topic" {
+  name                = "inspec-servicebus-topic"
+  resource_group_name = azurerm_resource_group.rg.name
+  namespace_name      = azurerm_servicebus_namespace.sb.name
+
+  enable_partitioning = true
+}
