@@ -948,6 +948,8 @@ resource "azurerm_virtual_network_peering" "network_peering" {
   remote_virtual_network_id = azurerm_virtual_network.app-gw.id
 }
 
+
+
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -1521,5 +1523,16 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
 
   properties = {
     inspec = "aGVsbG8="
+  }
+}
+
+resource "azurerm_servicebus_namespace" "sb" {
+  name                = "inspec-servicebus-namespace"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+
+  tags = {
+    source = "inspec"
   }
 }

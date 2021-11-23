@@ -523,3 +523,8 @@ output "inspec_adls_dns_suffix" {
   description = "The default DNS suffix for ADLS"
   value = "dfs.core.windows.net"
 }
+
+output "service_bus_namespace_name" {
+  description = "The name of the Azure Service Bus Namespace"
+  value = azurerm_servicebus_namespace.sb.name
+}
