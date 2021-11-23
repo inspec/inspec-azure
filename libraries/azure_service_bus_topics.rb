@@ -4,7 +4,7 @@ class AzureServiceBusTopics < AzureGenericResources
   name 'azure_service_bus_topics'
   desc 'Verifies settings for a collection of Azure Service Bus Topics.'
   example <<-EXAMPLE
-    describe azure_service_bus_topics(resource_group: 'inspec-group') do
+    describe azure_service_bus_topics(resource_group: 'inspec-group', namespace_name: 'inspec-ns') do
         it { should exist }
     end
   EXAMPLE
@@ -13,7 +13,8 @@ class AzureServiceBusTopics < AzureGenericResources
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.ServiceBus/namespaces', opts)
-    opts[:resource_path] = 'topics'
+    opts[:required_parameters] = %i(namespace_name)
+    opts[:resource_path] = "#{opts[:namespace_name]}/topics"
     super(opts, true)
     return if failed_resource?
 
