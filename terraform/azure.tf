@@ -948,8 +948,6 @@ resource "azurerm_virtual_network_peering" "network_peering" {
   remote_virtual_network_id = azurerm_virtual_network.app-gw.id
 }
 
-
-
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -1378,6 +1376,7 @@ resource "azurerm_data_factory_pipeline" "df_pipeline" {
   resource_group_name = azurerm_resource_group.rg.name
   data_factory_name   = azurerm_data_factory.adf.name
 }
+
 resource "azurerm_data_factory_linked_service_mysql" "dflsmsql" {
   name                = "dflsm-sql"
   resource_group_name = azurerm_resource_group.rg.name
@@ -1514,6 +1513,15 @@ resource "azurerm_virtual_network_gateway_connection" "nw-gateway-connection" {
   peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.inspec-nw-gateway.id
 
   shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
+}
+
+resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
+  name               = var.inspec_adls_file_system_name
+  storage_account_id = azurerm_storage_account.sa.id
+
+  properties = {
+    inspec = "aGVsbG8="
+  }
 }
 
 resource "azurerm_servicebus_namespace" "sb" {
