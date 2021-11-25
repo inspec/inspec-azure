@@ -948,6 +948,8 @@ resource "azurerm_virtual_network_peering" "network_peering" {
   remote_virtual_network_id = azurerm_virtual_network.app-gw.id
 }
 
+
+
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -1533,4 +1535,12 @@ resource "azurerm_servicebus_namespace" "sb" {
   tags = {
     source = "inspec"
   }
+}
+
+resource "azurerm_servicebus_topic" "inspec_sb_topic" {
+  name                = "inspec-servicebus-topic"
+  resource_group_name = azurerm_resource_group.rg.name
+  namespace_name      = azurerm_servicebus_namespace.sb.name
+
+  enable_partitioning = true
 }
