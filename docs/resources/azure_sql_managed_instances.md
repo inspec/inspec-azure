@@ -5,28 +5,23 @@ platform: azure
 
 # azure_sql_managed_instances
 
-Use the `azure_sql_managed_instances` InSpec audit resource to test properties related to all Azure SQL Managed Instances within a project.
+Use the `azure_sql_managed_instances` InSpec audit resource to test the properties related to all Azure SQL managed instances within a project.
 
-## Azure REST API version, endpoint and http client parameters
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with api versions supported by the resource provider.
-The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used.
-For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. The `api_version` is known as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the http client will be used.
-For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
-For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). For an example, `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
 
-An `azure_sql_managed_instances` resource block returns all Azure SQL Managed Instances within a project.
+An `azure_sql_managed_instances` resource block returns all Azure SQL managed instances within a project.
 
 ```ruby
 describe azure_sql_managed_instances do
@@ -35,32 +30,31 @@ end
 ```
 
 ## Parameters
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup` (Optional)   |
+| Name             | Description                                                                        |
+|:----------------:|:----------------------------------------------------------------------------------:|
+| resource_group   | Azure resource group that the targeted resource resides in. _Optional_             |
 
-The parameter set optionally be provided for a valid query:
-- `resource_group`
+The parameter set optionally be provided for a valid query: `resource_group`.
 
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
 | ids                            | A list of resource IDs.                                                | `id`             |
-| names                          | A list of resource Names.                                              | `name`           |
+| names                          | A list of resource names.                                              | `name`           |
 | types                          | A list of the resource types.                                          | `type`           |
-| properties                     | A list of Properties for all the SQL Managed Instances.                | `properties`     |
+| properties                     | A list of properties for all the SQL managed instances.                | `properties`     |
 | locations                      | A list of the locations.                                               | `location`       |
-| provisioningStates             | A list of provisioning states of all the SQL Managed Instances.        | `provisioningState`|
-| minimalTlsVersions             | A list of minimalTlsVersion for all the SQL Managed Instances.         | `minimalTlsVersion` |
-| sku_names                      | A list of names for the sku                                            | `sku_name`       |
-| sku_tiers                      | A list of tiers for the sku                                            | `sku_tier`       |
+| provisioningStates             | A list of provisioning states of all the SQL managed instances.        | `provisioningState`|
+| minimalTlsVersions             | A list of minimalTlsVersion for all the SQL managed instances.         | `minimalTlsVersion` |
+| sku_names                      | A list of names for the sku.                                           | `sku_name`       |
+| sku_tiers                      | A list of tiers for the sku.                                           | `sku_tier`       |
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
+<superscript>*</superscript> For information on how to use filter criteria on plural resources, refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Loop through SQL Managed Instances by their names.
+### Loop through SQL managed instances by their names
 
 ```ruby
 azure_sql_managed_instances(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -69,7 +63,8 @@ azure_sql_managed_instances(resource_group: 'RESOURCE_GROUP').names.each do |nam
   end
 end
 ```
-### Test that there are SQL Managed Instances that are successfully provisioned.
+
+### Test that there are SQL managed instances that are successfully provisioned
 
 ```ruby
 describe azure_sql_managed_instances.where(provisioningState: 'Succeeded') do
@@ -93,6 +88,7 @@ describe azure_sql_managed_instances do
   it { should exist }
 end
 ```
+
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `reader` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `reader` role on the subscription you wish to test.
