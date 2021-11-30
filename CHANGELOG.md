@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.82.0 -->
+<!-- latest_release 1.83.0 -->
+## [v1.83.0](https://github.com/inspec/inspec-azure/tree/v1.83.0) (2021-11-30)
+
+#### Merged Pull Requests
+- Support managed sql instance [#563](https://github.com/inspec/inspec-azure/pull/563) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.82.0](https://github.com/inspec/inspec-azure/tree/v1.82.0) (2021-11-22)
 
 #### Merged Pull Requests
 - Removed broken type conversion in NSG resource [#564](https://github.com/inspec/inspec-azure/pull/564) ([voojoe](https://github.com/voojoe))
-<!-- latest_release -->
 
 ## [v1.81.0](https://github.com/inspec/inspec-azure/tree/v1.81.0) (2021-11-18)
 
