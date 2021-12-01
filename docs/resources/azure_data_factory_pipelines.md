@@ -1,7 +1,7 @@
 ---
 title: About the azure_data_factory_pipelines Resource
 platform: azure
- ---
+---
 
 # azure_data_factory_pipelines
 
