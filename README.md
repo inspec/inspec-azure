@@ -170,6 +170,8 @@ The following is a list of static resources.
 - [azure_load_balancers](docs/resources/azure_load_balancers.md)
 - [azure_lock](docs/resources/azure_lock.md)
 - [azure_locks](docs/resources/azure_locks.md)
+- [azure_managed_application](docs/resources/azure_managed_application.md)
+- [azure_managed_applications](docs/resources/azure_managed_applications.md)
 - [azure_management_group](docs/resources/azure_management_group.md)
 - [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
