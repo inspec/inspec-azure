@@ -1557,3 +1557,33 @@ resource "azurerm_sql_managed_instance" "sql_instance_for_inspec" {
     azurerm_subnet_route_table_association.route_table_assoc_inspec,
   ]
 }
+
+resource "azurerm_managed_application_definition" "mng_app_def" {
+  name                = "inspecmngappdef"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  lock_level          = "ReadOnly"
+  package_file_uri    = "https://github.com/Azure/azure-managedapp-samples/raw/master/Managed Application Sample Packages/201-managed-storage-account/managedstorage.zip"
+  display_name        = "InspecManagedAppDefinition"
+  description         = "Test Managed App Definition for Inspec"
+
+  authorization {
+    service_principal_id = data.azurerm_client_config.current.object_id
+    role_definition_id   = split("/", data.azurerm_role_definition.contributor.id)[length(split("/", data.azurerm_role_definition.contributor.id)) - 1]
+  }
+}
+
+resource "azurerm_managed_application" "mng_app" {
+  name                        = "inspectestmngapp"
+  location                    = azurerm_resource_group.rg.location
+  resource_group_name         = azurerm_resource_group.rg.name
+  kind                        = "ServiceCatalog"
+  managed_resource_group_name = "InspecGroup"
+  application_definition_id   = azurerm_managed_application_definition.mng_app_def.id
+
+  parameters = {
+    location                 = azurerm_resource_group.rg.location
+    storageAccountNamePrefix = "storeNamePrefix"
+    storageAccountType       = "Standard_LRS"
+  }
+}
