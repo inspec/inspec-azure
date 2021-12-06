@@ -167,6 +167,10 @@ variable "inspec_container_group_name" {
   default = "inspec_container_trial"
 }
 
+variable "inspec_migrate_project_name" {
+  default = "inspec-migrate-integ117eproject"
+}
+
 variable "sample_directory_object" {
   default = "adc07321-ef2b-44d5-a210-559aa5f10f2d"
 }
@@ -177,4 +181,8 @@ variable "inspec_compliance_redis_cache_name" {
 
 variable "inspec_wan_name" {
   default = "inspec-nw-wan"
+}
+
+variable "inspec_adls_file_system_name" {
+  default = "inspec-adls-fs"
 }

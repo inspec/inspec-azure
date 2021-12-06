@@ -10,29 +10,34 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
-  - [Service Principal](#service-principal)
-  - [Use the Resources](#use-the-resources)
-    - [Create a new profile](#create-a-new-profile)
-- [Resource Documentation](#resource-documentation)
-- [Examples](#examples)
-  - [Filter Resources by Their Names](#interrogate-all-resources-that-have-project_a-in-their-names-within-your-subscription-regardless-of-their-type-and-resource-group)
-  - [Filter Resources by Their Tags](#interrogate-all-resources-that-have-a-tag-defined-with-the-name-project_a-regardless-of-its-value)
-  - [Verify Properties of an Azure Virtual Machine](#verify-properties-of-an-azure-virtual-machine)
-  - [Verify Properties of a Network Security Group](#verify-properties-of-a-network-security-group)
-- [Parameters Applicable To All Resources](#parameters-applicable-to-all-resources)
-  - [`api_version`](#api_version)
-  - [`endpoint`](#endpoint)
-  - [http_client parameters](#http_client-parameters)
-- [Development](#development)
-  - [Developing a Static Resource](#developing-a-static-resource)
-    - [Singular Resources](#singular-resources)
-    - [Plural Resources](#plural-resources)
-  - [Setting the Environment Variables](#setting-the-environment-variables)
-  - [Starting an Environment](#starting-an-environment)
-  - [Direnv](#direnv)
-  - [Rake Commands](#rake-commands)
-  - [Optional Components](#optional-components)
+- [InSpec for Azure](#inspec-for-azure)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+    - [Service Principal](#service-principal)
+    - [Use the Resources](#use-the-resources)
+      - [Create a new profile](#create-a-new-profile)
+  - [Resource Documentation](#resource-documentation)
+  - [Examples](#examples)
+    - [Interrogate All Resources that Have `project_A` in Their Names within Your Subscription Regardless of Their Type and Resource Group](#interrogate-all-resources-that-have-project_a-in-their-names-within-your-subscription-regardless-of-their-type-and-resource-group)
+    - [Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value](#interrogate-all-resources-that-have-a-tag-defined-with-the-name-project_a-regardless-of-its-value)
+    - [Verify Properties of an Azure Virtual Machine](#verify-properties-of-an-azure-virtual-machine)
+    - [Verify Properties of a Network Security Group](#verify-properties-of-a-network-security-group)
+  - [Parameters Applicable To All Resources](#parameters-applicable-to-all-resources)
+    - [`api_version`](#api_version)
+    - [User Provided Api Version](#user-provided-api-version)
+    - [Pre-defined Default Api Version](#pre-defined-default-api-version)
+    - [Latest Api Version](#latest-api-version)
+    - [`endpoint`](#endpoint)
+    - [http_client parameters](#http_client-parameters)
+  - [Development](#development)
+    - [Developing a Static Resource](#developing-a-static-resource)
+      - [Singular Resources](#singular-resources)
+      - [Plural Resources](#plural-resources)
+    - [Setting the Environment Variables](#setting-the-environment-variables)
+    - [Starting an Environment](#starting-an-environment)
+    - [Direnv](#direnv)
+    - [Rake Commands](#rake-commands)
+    - [Optional Components](#optional-components)
 
 ## Prerequisites
 
@@ -42,7 +47,9 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ### Service Principal
 
-Your Azure Service Principal Account must have `contributor` or `owner` role to any subscription that you'd like to use this resource pack against. You should have the following pieces of information:
+Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against. 
+
+You should have the following pieces of information:
 
 * TENANT_ID
 * CLIENT_ID
@@ -57,18 +64,17 @@ To create your account Service Principal Account:
 4. Click on `New application registration`.
 5. Fill in a name and select `Web` from the `Application Type` drop down. Save your application.
 6. Note your Application ID. This is your `client_id` above.
-7. Click on `Certificates & secrets`
-8. Click on `New client secret`
+7. Click on `Certificates & secrets`.
+8. Click on `New client secret`.
 9. Create a new password. This value is your `client_secret` above.
 10. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
 11. Note your Subscription ID can be found here.
-12. Click `Access control (IAM)`
-13. Click Add
-14. Select the `contributor` role.
+12. Click `Access control (IAM)`.
+13. Click **Add**.
+14. Select the `reader` role.
 15. Select the application you just created and save.
 
-These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv then you may save these values in your own `.envrc` file. 
-Either source it or run `direnv allow`. If you don't use Dotenv then you may just create environment variables in the way that your prefer.
+These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv, then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv, then you may just create environment variables in the way that your prefer.
 
 ### Use the Resources
 
@@ -128,6 +134,10 @@ The following is a list of static resources.
 - [azure_container_registries](docs/resources/azure_container_registries.md)
 - [azure_container_registry](docs/resources/azure_container_registry.md)
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
+- [azure_data_factories](docs/resources/azure_data_factories.md)
+- [azure_data_factory](docs/resources/azure_data_factory.md)
+- [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
+- [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
 - [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
 - [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
@@ -164,6 +174,20 @@ The following is a list of static resources.
 - [azure_management_groups](docs/resources/azure_management_groups.md)
 - [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
 - [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
+- [azure_migrate_assessment](docs/resources/azure_migrate_assessment.md)
+- [azure_migrate_assessments](docs/resources/azure_migrate_assessments.md)
+- [azure_migrate_assessment_project](docs/resources/azure_migrate_assessment_project.md)
+- [azure_migrate_assessment_projects](docs/resources/azure_migrate_assessment_projects.md)
+- [azure_migrate_assessment_group](docs/resources/azure_migrate_assessment_group.md)
+- [azure_migrate_assessment_groups](docs/resources/azure_migrate_assessment_groups.md)
+- [azure_migrate_project_database](docs/resources/azure_migrate_project_database.md)
+- [azure_migrate_project_databases](docs/resources/azure_migrate_project_databases.md)
+- [azure_migrate_project_event](docs/resources/azure_migrate_project_event.md)
+- [azure_migrate_project_events](docs/resources/azure_migrate_project_events.md)
+- [azure_migrate_project_machine](docs/resources/azure_migrate_project_machine.md)
+- [azure_migrate_project_machines](docs/resources/azure_migrate_project_machines.md)
+- [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
+- [azure_migrate_project_solutions](docs/resources/azure_migrate_project_solutions.md)
 - [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
 - [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
 - [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
@@ -226,7 +250,10 @@ The following is a list of static resources.
 - [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)
 - [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
 - [azure_virtual_network](docs/resources/azure_virtual_network.md)
+- [azure_virtual_network_gateway](docs/resources/azure_virtual_network_gateway.md)
 - [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
+- [azure_virtual_network_gateway_connection](docs/resources/azure_virtual_network_gateway_connection.md)
+- [azure_virtual_network_gateway_connections](docs/resources/azure_virtual_network_gateway_connections.md)
 - [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
 - [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
 - [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
@@ -242,6 +269,7 @@ For more details and different use cases, please refer to the specific resource 
 ## Examples
 
 ### Interrogate All Resources that Have `project_A` in Their Names within Your Subscription Regardless of Their Type and Resource Group
+
 ```ruby
 azure_generic_resources(substring_of_name: 'project_A').ids.each do |id|
   describe azure_generic_resource(resource_id: id) do
@@ -251,6 +279,7 @@ end
 ``` 
 
 ### Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value
+
 ```ruby
 azure_generic_resources(tag_name: 'project_A').ids.each do |id|
   describe azure_generic_resource(resource_id: id) do
@@ -260,6 +289,7 @@ end
 ``` 
 
 ### Verify Properties of an Azure Virtual Machine
+
 ```ruby
 describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'prod-web-01') do
   it { should exist }
@@ -273,6 +303,7 @@ end
 ```
 
 ### Verify Properties of a Network Security Group
+
 ```ruby
 describe azure_network_security_group(resource_group: 'ProductionResourceGroup', name: 'ProdServers') do
   it { should exist }
@@ -293,10 +324,10 @@ The generic resources and their derivations support following parameters unless 
 ### `api_version`
 
 As an Azure resource provider enables new features, it releases a new version of the REST API. They are generally in the format of `2020-01-01`.
-InSpec Azure resources can be forced to use a specific version of the API to eliminate the behavioural changes between the tests using different API versions.
-The latest version will be used unless a specific version is provided.
+InSpec Azure resources can be forced to use a specific version of the API to eliminate the behavioural changes between the tests using different API versions. The latest version will be used unless a specific version is provided.
 
 ### User Provided Api Version
+
 ```ruby
 describe azure_virtual_machine(resource_group: 'my_group', name: 'my_VM', api_version: '2020-01-01') do
   its('api_version_used_for_query_state') { should eq 'user_provided' }
@@ -307,6 +338,7 @@ end
 ### Pre-defined Default Api Version
 
 `default` api version can be used if it is supported by the resource provider.
+
 ```ruby
 describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', name: 'my_VM', api_version: 'default') do
   its('api_version_used_for_query_state') { should eq 'default' }
@@ -314,21 +346,24 @@ end
 ```
 
 ### Latest Api Version
-`latest` version will be determined by this resource pack within the supported api versions.
-If the latest version is a `preview` than an older but a stable version might be used. 
-Explicitly forcing to use the `latest` version.
+`latest` version will be determined by this resource pack within the supported api versions. If the latest version is a `preview` than an older but a stable version might be used. Explicitly forcing to use the `latest` version.
+
 ```ruby
 describe azure_virtual_networks(api_version: 'latest') do
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
 ```
+
 `latest` version will be used unless provided (Implicit).
+
 ```ruby
 describe azure_network_security_groups(resource_group: 'my_group') do
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
 ```
+
 `latest` version will be used if the provided is invalid.
+
 ```ruby
 describe azure_network_security_groups(resource_group: 'my_group', api_version: 'invalid_api_version') do
   its('api_version_used_for_query_state') { should eq 'latest' }
@@ -337,9 +372,7 @@ end
 
 ### `endpoint`
 
-Microsoft Azure cloud services are available through a global and three national network of datacenter as described [here](https://docs.microsoft.com/en-us/graph/deployments).
-The preferred data center can be defined via `endpoint` parameter.
-Azure Global Cloud will be used if not provided.
+Microsoft Azure cloud services are available through a global and three national network of datacenter as described [here](https://docs.microsoft.com/en-us/graph/deployments). The preferred data center can be defined via `endpoint` parameter. Azure Global Cloud will be used if not provided.
 
 - `azure_cloud` (default)
 - `azure_china_cloud`
@@ -421,16 +454,16 @@ They can be defined as environment variables or resource parameters (has priorit
 
 If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
 
-For a detailed walk-through of resource creation, see the [Resource Creation Guide](docs/resource_creation_guide.md).
+For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
 ### Developing a Static Resource
 
-The static resource is an InSpec Azure resource that is used to interrogate a specific Azure resource, such as, `azure_virtual_machine`, `azure_key_vaults`.
-As opposed to the generic resources, they might have some static properties created by processing the dynamic properties of a resource, such as, `azure_virtual_machine.admin_username`.
+The static resource is an InSpec Azure resource that is used to interrogate a specific Azure resource, such as, `azure_virtual_machine`, `azure_key_vaults`. As opposed to the generic resources, they might have some static properties created by processing the dynamic properties of a resource, such as, `azure_virtual_machine.admin_username`.
 
 The easiest way to start is checking the existing static resources. They have detailed information on how to leverage the backend class within their comments.
 
 The common parameters are:
+
 - `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author via the `specific_resource_constraint` method, and it should be the first parameter defined in the resource. This method includes user-supplied input validation.  
 - `display_name`: A generic one will be created unless defined.
 - `required_parameters`: Define mandatory parameters. The `resource_group` and resource `name` in the singular resources are default mandatory in the base class.
@@ -471,7 +504,7 @@ export AZURE_CLIENT_SECRET=<client secret>
 
 For PowerShell, set the following environment variables
 
-```
+```shell
 $env:AZURE_SUBSCRIPTION_ID="<subscription id>"
 $env:AZURE_CLIENT_ID="<client id>"
 $env:AZURE_CLIENT_SECRET="<client secret>"
@@ -500,48 +533,67 @@ This environment may be used to run your profile against or to run integration t
 ### Rake Commands
 
 Creating a new environment:
+
 ```shell
 rake azure:login
 rake tf:apply
 ```
+
 Updating a running environment (e.g. when you change the .tf file):
+
 ```shell
 rake tf:apply
 ```
+
 Checking if your state has diverged from your plan:
+
 ```shell
 rake tf:plan
 ```
+
 Destroying your environment:
+
 ```shell
 rake tf:destroy
 ```
+
 To run Rubocop and Syntax check for Ruby and InSpec:
+
 ```shell
 rake test:lint
 ```
+
 To run unit tests:
+
 ```shell
 rake test:unit
 ```
+
 To run integration tests:
+
 ```shell
 rake test:integration
 ```
+
 Please note that Graph API resource requires specific privileges granted to your service principal.
 Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
 
 To run a control called `azure_virtual_machine` only:
+
 ```shell
 rake test:integration[azurerm_virtual_machine]
 ```
+
 Note that in zsh you need to escape the `[`, `]` characters.
 
 You may run selected multiple controls only:
+
 ```shell
 rake test:integration[azure_aks_cluster,azure_virtual_machine]
 ```
+
 To run lint and unit tests:
+
 ```shell
 rake
 ```
@@ -555,24 +607,33 @@ The creation of the following resources can be skipped if there is any resource 
 ```shell
 rake tf:apply[network_watcher]
 ```
+
 - HDinsight Interactive Query Cluster
+
 ```shell
 rake tf:apply[hdinsight_cluster]
 ```
+
 - Public IP
+
 ```shell
 rake tf:apply[public_ip]
 ```
+
 - API Management
+
 ```shell
 rake tf:apply[api_management]
 ```
+
 - Management Group
+
 ```shell
 rake tf:apply[management_group]
 ```
 
 A combination of the above can be provided.
+
 ```shell
 rake tf:apply[management_group,public_ip,network_watcher]
 ```
