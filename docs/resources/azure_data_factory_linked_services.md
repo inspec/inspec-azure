@@ -1,11 +1,11 @@
 ---
-title: About the azure_data_factory_linked_service Resource
+title: About the azure_data_factory_linked_services Resource
 platform: azure
 ---
 
-# azure_data_factory_linked_service
+# azure_data_factory_linked_services
 
-Use the `azure_data_factory_linked_service` InSpec audit resource to test the properties related to linked services for a resource group or the entire subscription.
+Use the `azure_data_factory_linked_services` InSpec audit resource to test the properties related to linked services for a resource group or the entire subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -21,7 +21,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_data_factory_linked_service` resource block returns all Azure Linked Services, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_data_factory_linked_services` resource block returns all Azure Linked Services, either within a Resource Group (if provided), or within an entire Subscription.
 
 ```ruby
 describe (resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
@@ -56,7 +56,7 @@ end
 ### Test if any linked services exist in the resource group
 
 ```ruby
-describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
+describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
   it { should exist }
   its('names') { should include "factory_name" }
 end
@@ -66,7 +66,7 @@ end
 
 ```ruby
 # Should not exist if no Linked Services are in the resource group
-describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
+describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
   it { should_not exist }
 end
 ```
@@ -74,7 +74,7 @@ end
 ### Filter Linked Services in a resource group by properties
 
 ```ruby
-describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
+describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
   its('names') { should include linked_service_name1 }
   its('types') { should include 'Microsoft.DataFactory/factories/linkedservices' }
   its('linked_service_types') { should include('MySql') }
