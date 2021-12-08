@@ -27,21 +27,30 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 ## Syntax
 
 An `azure_web_app_functions` resource block returns all Azure functions, either within a Resource Group (if provided), or within an entire Subscription.
+
 ```ruby
 describe azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http') do
   #...
 end
 ```
+
 or
+
 ```ruby
 describe azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http') do
   #...
 end
 ```
+
 ## Parameters
 
-- `resource_group` 
-- `site_name`: Name of the function App 
+`resource_group`
+
+The name of the resource group.
+
+`site_name`
+
+The name of the function App.
 
 ## Properties
 
@@ -57,26 +66,30 @@ end
 
 ## Examples
 
-### Loop through functions by Their Ids
+### Loop through functions by their IDs
+
 ```ruby
 azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http').ids.each do |id|
   describe azure_web_app_function(resource_id: id) do
     it { should exist }
   end
-end  
-```     
-### Test that There are functions that Includes a Certain String in their Names (Client Side Filtering)
+end
+```
+
+### Test that there are functions that includes a certain string in their names (Client Side Filtering)
+
 ```ruby
 describe azure_web_app_functions(resource_group: 'my-rg', site_name: 'function-app-http').where { name.include?('queue') } do
   it { should exist }
 end
-```    
+```
 
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
 
 ### exists
+
 ```ruby
 # Should not exist if no functions are in the resource group
 describe azure_web_app_functions(resource_group: 'MyResourceGroup', site_name: 'function-app-http') do
@@ -88,6 +101,7 @@ describe azure_web_app_functions(resource_group: 'MyResourceGroup', site_name: '
   it { should exist }
 end
 ```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

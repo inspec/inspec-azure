@@ -30,6 +30,10 @@ describe azure_policy_assignments do
 end
 ```
 
+## Parameters
+
+This resource does not expect any parameters.
+
 ## Properties
 
 Please review the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/policy/policyassignments/list#policyassignment) for a full description of the available properties.

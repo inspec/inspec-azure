@@ -30,11 +30,10 @@ end
 ```
 
 ## Parameters
-| Name             | Description                                                                        |
-|:----------------:|:----------------------------------------------------------------------------------:|
-| resource_group   | Azure resource group that the targeted resource resides in. _Optional_             |
 
-The parameter set optionally be provided for a valid query: `resource_group`.
+`resource_group` _(optional)_
+
+The Azure resource group that the targeted resource resides in.
 
 ## Properties
 

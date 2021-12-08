@@ -30,6 +30,10 @@ describe azure_migrate_assessment_projects do
 end
 ```
 
+## Parameters
+
+This resource does not expect any parameters.
+
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
