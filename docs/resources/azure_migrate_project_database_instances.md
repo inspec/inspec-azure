@@ -5,7 +5,7 @@ platform: azure
 
 # azure_migrate_project_database_instances
 
-Use the `azure_migrate_project_database_instances` InSpec audit resource to test properties related to all Azure Migrate Project Database Instances within a project.
+Use the `azure_migrate_project_database_instances` InSpec audit resource to test properties of all Azure Migrate project database instances in a migrate project.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,42 +26,43 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_migrate_project_database_instances` resource block returns all Azure Migrate Project Database Instances within a project.
+An `azure_migrate_project_database_instances` resource block returns all Azure Migrate project database instances within a project.
 
 ```ruby
-describe azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project') do
+describe azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   #...
 end
 ```
 
 ## Parameters
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| project_name   | Azure Migrate Project.                                                |
 
-The parameter set should be provided for a valid query:
-- `resource_group` and `project_name`
+`resource_group` _(required)_
+
+Name of the Azure Resource Group that migrate project is part of.
+
+`project_name` _(required)_
+
+Name of the Azure Migrate project.
 
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | Path reference to the Project Database Instances.                      | `id`             |
-| names                          | Unique names for all Project Database Instances.                       | `name`           |
+| ids                            | Path reference to the project database instances.                      | `id`             |
+| names                          | Unique names for all project database instances.                       | `name`           |
 | types                          | Type of the objects.                                                   | `type`           |
-| properties                     | A list of Properties for all the Project Database Instances.           | `properties`     |
+| properties                     | A list of properties for all the project database instances.           | `properties`     |
 | discoveryDatas                 | The assessment details of the database published by various sources.   | `assessmentData` |
 | summaries                      | The database instances summaries per solution.                         | `summary`        |
 | lastUpdatedTimes               | The time of the last modification of the database instance details.    | `lastUpdatedTime`|
-| enqueueTimes                   | The times the message were enqueued.                                   | `enqueueTimes`   |   
+| enqueueTimes                   | The times the message were enqueued.                                   | `enqueueTimes`   |
 | extendedInfos                  | The extended properties of the database servers.                       | `extendedInfos`  |
 | hostNames                      | The host names of the database servers.                                | `hostNames`      |
-| instanceIds                    | The database instance Ids.                                             | `instanceIds`    |
+| instanceIds                    | The database instance IDs.                                             | `instanceIds`    |
 | instanceNames                  | The database instance names.                                           | `instanceNames`  |
 | instanceTypes                  | The database instance types.                                           | `instanceTypes`  |
 | instanceVersions               | The database instance versions.                                        | `instanceVersions`|
-| ipAddresses                    | The IP addresses of the database server. IP addresses could be IP V4 or IP V6.| `ipAddresses` |
+| ipAddresses                    | The IP addresses of the database server. IP addresses could be IPV4 or IPV6.| `ipAddresses` |
 | portNumbers                    | The port numbers of the database server.                               | `portNumbers`    |
 | solutionNames                  | The names of the solution that sent the data.                          | `solutionNames`  |
 
@@ -69,19 +70,20 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-### Loop through Migrate Project Database Instances by their names.
+### Loop through Migrate project database instances by their names.
 
 ```ruby
-azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project').names.each do |name|
-  describe azure_migrate_project_database_instance(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project', name: name) do
+azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
+  describe azure_migrate_project_database_instance(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: name) do
     it { should exist }
   end
 end
 ```
-### Test that there are Migrate Project Database Instances that are of SQL Instance types.
+
+### Test that there are Migrate project database instances that are of SQL instance types.
 
 ```ruby
-describe azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project').where{ instanceTypes.include?('SQL') } do
+describe azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ instanceTypes.include?('SQL') } do
   it { should exist }
 end
 ```
@@ -93,12 +95,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Migrate Project Database Instances are present in the project and in the resource group
-describe azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project') do
+# Should not exist if no Migrate project database instances are present in the project and in the resource group
+describe azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Migrate Project Database Instances in the project and in the resource group
-describe azure_migrate_project_database_instances(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_DB_project') do
+# Should exist if the filter returns at least one Migrate project database instances in the project and in the resource group
+describe azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should exist }
 end
 ```
