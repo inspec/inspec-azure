@@ -5,7 +5,7 @@ platform: azure
 
 # azure_power_bi_datasets
 
-Use the `azure_power_bi_datasets` InSpec audit resource to test the properties related to all Azure Power BI Datasets.
+Use the `azure_power_bi_datasets` InSpec audit resource to test the properties of all Azure Power BI datasets.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
@@ -22,9 +22,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`group_id` is an optional parameter.
-
-An `azure_power_bi_datasets` resource block returns all Azure Power BI Datasets.
+An `azure_power_bi_datasets` resource block returns all Azure Power BI datasets.
 
 ```ruby
 describe azure_power_bi_datasets do
@@ -34,31 +32,29 @@ end
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| group_id       | The workspace ID.(optional)                                                          |
+`group_id` _(optional)_
 
+The workspace ID.
 
 ## Properties
 
 |Property                   | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |---------------------------|------------------------------------------------------------------------|------------------|
-| ids                       | List of all Power BI Dataset IDs.                                      | `id`             |
-| names                     | List of all the Power BI Dataset names.                                | `name`           |
+| ids                       | List of all Power BI dataset IDs.                                      | `id`             |
+| names                     | List of all the Power BI dataset names.                                | `name`           |
 | addRowsAPIEnableds        | List of boolean flags which describes whether the dataset allows adding new rows.| `addRowsAPIEnabled`|
-| isRefreshables            | List of boolean flags that represent refreshable parameter of Datasets. | `isRefreshable` |
+| isRefreshables            | List of boolean flags that represent refreshable parameter of datasets. | `isRefreshable` |
 | isEffectiveIdentityRequireds | List of boolean flags that represent effective identity.             | `isEffectiveIdentityRequired` |
 | isEffectiveIdentityRolesRequireds | List of boolean flags that describes whether RLS is defined inside the PBIX file. | `isEffectiveIdentityRolesRequired` |
 | isOnPremGatewayRequireds | List of boolean flags that describes whether dataset requires an On-premises Data Gateway.| `isOnPremGatewayRequired` |
 
-
-
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
+
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/datasets/get-datasets) for other properties available.
 
 ## Examples
 
-### Test to ensure Power BI Dataset is refreshable
+### Test to ensure Power BI dataset is refreshable
 
 ```ruby
 describe azure_power_bi_datasets.where(isRefreshable: true) do
@@ -73,15 +69,16 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Datasets are present
+# Should not exist if no Power BI datasets are present
 describe azure_power_bi_datasets do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Datasets
+# Should exist if the filter returns at least one Power BI datasets
 describe azure_power_bi_datasets do
   it { should exist }
 end
 ```
 
 ## Azure Permissions
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataset.Read.All` role on the Azure Power BI Dataset you wish to test.
+
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataset.Read.All` role on the Azure Power BI dataset you wish to test.
