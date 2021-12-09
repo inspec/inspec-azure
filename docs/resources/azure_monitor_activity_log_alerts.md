@@ -5,7 +5,7 @@ platform: azure
 
 # azure_monitor_activity_log_alerts
 
-Use the `azure_monitor_activity_log_alerts` InSpec audit resource to test properties and configuration of multiple Activity Log Alerts.
+Use the `azure_monitor_activity_log_alerts` InSpec audit resource to test properties and configuration of multiple Azure Monitor activity log alerts.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -26,21 +26,27 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_monitor_activity_log_alerts` resource block returns all Activity Log Alerts, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_monitor_activity_log_alerts` resource block returns all activity log alerts, either within a Resource Group (if provided), or within an entire Subscription.
+
 ```ruby
 describe azure_monitor_activity_log_alerts do
   it { should exist }
 end
 ```
+
 or
+
 ```ruby
 describe azure_monitor_activity_log_alerts(resource_group: 'my-rg') do
   it { should exist }
 end
 ```
+
 ## Parameters
 
-- `resource_group` (Optional)
+`resource_group` _(optional)_
+
+The name of the resource group.
 
 ## Properties
 
@@ -57,13 +63,16 @@ end
 
 ## Examples
 
-### Test that a Subscription Has the Named Activity Log Alert
+### Test that a subscription has the named activity log alert
+
 ```ruby
 describe azure_monitor_activity_log_alerts do
   its('names') { should include('ExampleLogAlert') }
 end
 ```
-### Loop through All Resources with `resource_id`
+
+### Loop through all resources with `resource_id`
+
 ```ruby
 azure_monitor_activity_log_alerts.ids.each do |id|
   describe azure_monitor_activity_log_alert(resource_id: id) do
@@ -71,6 +80,7 @@ azure_monitor_activity_log_alerts.ids.each do |id|
   end
 end
 ```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
@@ -78,17 +88,19 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have Activity Log Alerts
+# If we expect 'ExampleGroup' Resource Group to have activity log alerts
 describe azure_monitor_activity_log_alerts(resource_group: 'ExampleGroup') do
   it { should exist }
 end
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have Activity Log Alerts
+# If we expect 'EmptyExampleGroup' Resource Group to not have activity log alerts
 describe azure_monitor_activity_log_alerts(resource_group: 'ExampleGroup') do
   it { should_not exist }
 end
 ```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

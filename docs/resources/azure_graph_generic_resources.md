@@ -41,13 +41,13 @@ where
 
 The following parameters can be passed for targeting specific Azure resources.
 
-| Name              | Description                                                                                                                                                           | Example                             |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| resource          | Azure resource type that the targeted resource belongs to. This is the only **MANDATORY** parameter.                                                                  | `users`                             |
-| filter            | A hash containing the filtering options and their values. The `starts_with_` operator can be used for fuzzy string matching. Parameter names are in snakecase. | `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}` |
-| filter_free_text  | [OData](https://www.odata.org/getting-started/basic-tutorial/) query string in double quotes, `"`. Property names are in camelcase, refer to [here](https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter) for more information. | `"startswith(displayName,'J') and surname eq 'Doe'"`    |
-| select            | A list of the query parameters defining which attributes that the resource will expose and to be tested. Property names are in camelcase. If not provided then the predefined attributes will be returned from the API. | `['givenName', 'surname', 'department']`    |
-| api_version       | API version of the Azure Graph API to use when interrogating the resource. If not set then the predefined stable version will be used.                                 | `v1.0`, `beta`                      |
+| Name              | Description                                                                                                                                                           |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| resource          | Azure resource type that the targeted resource belongs to. This is the only **MANDATORY** parameter. For example, `users`.                                            |
+| filter            | A hash containing the filtering options and their values. The `starts_with_` operator can be used for fuzzy string matching. Parameter names are in snake case. For example, `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}`. |
+| filter_free_text  | [OData](https://www.odata.org/getting-started/basic-tutorial/) query string in double quotes, `"`. Property names are in camel case, refer to [Azure query parameters documentation](https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter) for more information. For example, `"startswith(displayName,'J') and surname eq 'Doe'"`. |
+| select            | A list of the query parameters defining which attributes that the resource will expose and to be tested. Property names are in camel case. If not provided then the predefined attributes will be returned from the API. For example, `['givenName', 'surname', 'department']`. |
+| api_version       | API version of the Azure Graph API to use when interrogating the resource. If not set then the predefined stable version will be used. For example, `v1.0` or `beta`. |
 
 It is advised to use `filter` or `filter_free_text` to narrow down the targeted resources at the server side, Azure Graph API, for a more efficient test.
 

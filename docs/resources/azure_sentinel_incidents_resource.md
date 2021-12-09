@@ -1,7 +1,7 @@
 ---
 title: About the azure_sentinel_incidents_resource Resource
 platform: azure
-  ---
+---
 
 # azure_sentinel_incidents_resource
 
@@ -40,9 +40,9 @@ end
 
 | Name                           | Description                                                                       |
 |--------------------------------|-----------------------------------------------------------------------------------|
-| resource_group                 | Azure resource group that the targeted resource resides in.     |
-| workspace_name                 | Name for the workspace that you want to create your Azure Sentinel incident  in. |
-| incident_id                    | The Azure Sentinel incident  name. |
+| resource_group                 | Azure resource group that the targeted resource resides in.                       |
+| workspace_name                 | Name for the workspace that you want to create your Azure Sentinel incident  in.  |
+| incident_id                    | The Azure Sentinel incident name.                                                 |
 
 All the parameter sets needs be provided for a valid query:
 - `resource_group` , `workspace_name` and `incident_id`
@@ -50,15 +50,15 @@ All the parameter sets needs be provided for a valid query:
 ## Properties
 
 | Name                           | Description                                                                      |
-  |--------------------------------|----------------------------------------------------------------------------------|
-| name                           | Name of the Azure resource to test.                                        |
-| id                             | The Azure Sentinel incident  type.                                                 |
-| properties                     | The Properties of the Resource.                                |
-| properties.severity | The severity of the incident | `properties.severity` |
-| properties.status| The status of the incident | `properties.status` |
-| properties.owner.email | The email of the user the incident is assigned to. | `properties.owner.email` |
-| properties.owner.userPrincipalName| The user principal name of the user the incident is assigned to. | `properties.owner.userPrincipalName` |
-| properties.owner.assignedTo | The name of the user the incident is assigned to. | `properties.owner.assignedTo` |
+|--------------------------------|----------------------------------------------------------------------------------|
+| name                           | Name of the Azure resource to test.                                              |
+| id                             | The Azure Sentinel incident  type.                                               |
+| properties                     | The Properties of the Resource.                                                  |
+| properties.severity | The severity of the incident.                                                               |
+| properties.status| The status of the incident.                                                                    |
+| properties.owner.email | The email of the user the incident is assigned to.                                       |
+| properties.owner.userPrincipalName| The user principal name of the user the incident is assigned to.              |
+| properties.owner.assignedTo | The name of the user the incident is assigned to.                                   |
 
 ## Examples
 
@@ -76,7 +76,6 @@ describe azure_sentinel_incidents_resource(resource_group: 'RESOURCE_GROUP', wor
   its('properties.owner.assignedTo') { should eq 'OWNER_NAME' }
 end
 ```
-
 
 ### Test That An Azure Sentinel Incident Exists
 

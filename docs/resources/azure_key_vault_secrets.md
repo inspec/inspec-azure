@@ -27,14 +27,18 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 ## Syntax
 
 An `azure_key_vault_secrets` resource block returns all secrets within a vault.
+
 ```ruby
 describe azure_key_vault_secrets(vault_name: 'example_vault') do
   #...
 end
 ```
+
 ## Parameters
 
-- `vault_name`: The name of the vault.
+`vault_name`
+
+The name of the vault.
 
 ## Properties
 

@@ -41,7 +41,9 @@ end
 ```
 ## Parameters
 
-- `resource_group` (Optional)
+`resource_group` _(optional)_
+
+The name of the resource group.
 
 ## Properties
 

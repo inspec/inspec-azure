@@ -32,15 +32,20 @@ describe azure_policy_definitions do
   it { should exist }
 end
 ```
+
 or
+
 ```ruby
 describe azure_policy_definitions(built_in_only: true) do
   it { should exist }
 end
 ```
+
 ## Parameters
 
-- `built_in_only`: Indicates whether the interrogated policy definitions are built-in only. Optional. Defaults to `false` if not supplied.
+`built_in_only` _(optional)_
+
+Indicates whether the interrogated policy definitions are built-in only. Defaults to `false` if not supplied.
 
 ## Properties
 
