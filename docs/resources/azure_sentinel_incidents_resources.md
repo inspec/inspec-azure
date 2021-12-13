@@ -1,7 +1,7 @@
 ---
 title: About the azure_sentinel_incidents_resources Resource
 platform: azure
-  ---
+---
 
 # azure_sentinel_incidents_resources
 

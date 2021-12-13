@@ -27,20 +27,26 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 ## Syntax
 
 An `azure_network_watchers` resource block returns all network watchers, either within a Resource Group (if provided), or within an entire Subscription.
+
 ```ruby
 describe azure_network_watchers do
   #...
 end
 ```
+
 or
+
 ```ruby
 describe azure_network_watchers(resource_group: 'my-rg') do
   #...
 end
 ```
+
 ## Parameters
 
-- `resource_group` (Optional)
+`resource_group` _(optional)_
+
+The name of the resource group.
 
 ## Properties
 
@@ -56,11 +62,13 @@ end
 ## Examples
 
 ### Test that an Example Resource Group has the Named Network Watcher
+
 ```ruby
 describe azure_network_watchers(resource_group: 'ExampleGroup') do
   its('names') { should include('NetworkWatcherName') }
 end
 ```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
@@ -68,6 +76,7 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 # If we expect 'ExampleGroup' Resource Group to have Network Watchers
 describe azure_network_watchers(resource_group: 'ExampleGroup') do
@@ -79,6 +88,7 @@ describe azure_network_watchers(resource_group: 'EmptyExampleGroup') do
   it { should_not exist }
 end
 ```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

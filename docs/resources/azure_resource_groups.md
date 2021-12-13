@@ -21,20 +21,22 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
 
 An `azure_resource_groups` resource block returns all resource groups within a subscription.
+
 ```ruby
 describe azure_resource_groups do
   it { should exist }
 end
 ```
+
 ## Parameters
 
-- None required.
+This resource does not accept any parameters.
 
 ## Properties
 
@@ -49,25 +51,31 @@ end
 
 ## Examples
 
-### Check a Specific Resource Group is Present
+### Check if a specific resource group is present
+
 ```ruby
 describe azure_resource_groups do
   its('names')  { should include 'my-resource-group' }
 end
 ```
+
 ### Filters the Results to Include Only Those Resource Groups which Include the Given Name
+
 ```ruby
 describe azure_resource_groups.where{ name.include?('my-resource-group') } do
   it { should exist }
 end
 ```
+
 ## Filters the Results to Include Only The Resource Groups that Have Certain Tag
+
 ```ruby
 describe azure_resource_groups.where{ tags.has_key?('owner') && tags['owner'] == "InSpec" } do
   it { should exist }
   its('count') { should be 15 }
 end
-```    
+```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
@@ -75,11 +83,13 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 describe azure_resource_groups do
   it { should exist }
 end
 ```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.

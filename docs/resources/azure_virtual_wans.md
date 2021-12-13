@@ -29,6 +29,10 @@ describe azure_virtual_wans do
 end
 ```
 
+## Parameters
+
+This resource does not expect any parameters.
+
 ## Properties
 
 |Property            | Description                                        | Filter Criteria<superscript>*</superscript> |

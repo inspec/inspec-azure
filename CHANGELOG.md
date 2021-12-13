@@ -1,10 +1,20 @@
 # Changelog
-<!-- latest_release 1.83.0 -->
+<!-- latest_release 1.84.1 -->
+## [v1.84.1](https://github.com/inspec/inspec-azure/tree/v1.84.1) (2021-12-09)
+
+#### Merged Pull Requests
+- Resource docs fixes [#577](https://github.com/inspec/inspec-azure/pull/577) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
+## [v1.84.0](https://github.com/inspec/inspec-azure/tree/v1.84.0) (2021-12-09)
+
+#### Merged Pull Requests
+- F/alert rule template [#476](https://github.com/inspec/inspec-azure/pull/476) ([sa-progress](https://github.com/sa-progress))
+
 ## [v1.83.0](https://github.com/inspec/inspec-azure/tree/v1.83.0) (2021-11-30)
 
 #### Merged Pull Requests
 - Support managed sql instance [#563](https://github.com/inspec/inspec-azure/pull/563) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.82.0](https://github.com/inspec/inspec-azure/tree/v1.82.0) (2021-11-22)
 

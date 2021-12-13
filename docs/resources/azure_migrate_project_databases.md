@@ -1,11 +1,11 @@
 ---
-title: About the azure_migrate_project_database Resource
+title: About the azure_migrate_project_databases Resource
 platform: azure
 ---
 
-# azure_migrate_project_database
+# azure_migrate_project_databases
 
-Use the `azure_migrate_project_database` InSpec audit resource to test the properties related to all Azure Migrate Project Databases within a project.
+Use the `azure_migrate_project_databases` InSpec audit resource to test the properties of all Azure Migrate project databases within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,10 +22,10 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-An `azure_migrate_project_database` resource block returns all Azure Migrate Project Databases within a project.
+An `azure_migrate_project_databases` resource block returns all Azure Migrate project databases within a project.
 
 ```ruby
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
+describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   #...
 end
 ```
@@ -45,10 +45,10 @@ The parameter set should be provided for a valid query:
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
-| ids                            | Path reference to the Project Databases.                               | `id`             |
-| names                          | Unique names for all Project Databases.                                | `name`           |
+| ids                            | Path reference to the project databases.                               | `id`             |
+| names                          | Unique names for all project databases.                                | `name`           |
 | types                          | Type of the objects.                                                   | `type`           |
-| properties                     | A list of Properties for all the Project Databases.                    | `properties`     |
+| properties                     | A list of Properties for all the project databases.                    | `properties`     |
 | assessmentDatas                | The assessment details of the database published by various sources.   | `assessmentData` |
 | assessmentIds                  | The database assessment scopes/Ids.                                    | `assessmentId`   |
 | assessmentTargetTypes          | The assessed target database types.                                    | `assessmentTargetType` |
@@ -69,7 +69,7 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-### Loop through migrate project databases by their names
+### Loop through Migrate project databases by their names
 
 ```ruby
 azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -79,10 +79,10 @@ azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 
 end
 ```
 
-### Test there are migrate project databases are ready for migration
+### Test there are Migrate project databases are ready for migration
 
 ```ruby
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ isReadyForMigration.include?(true) } do
+describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ isReadyForMigration.include?(true) } do
   it { should exist }
 end
 ```
@@ -94,13 +94,13 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Migrate Project Databases are present in the project and in the resource group
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
+# Should not exist if no Migrate project databases are present in the project and in the resource group
+describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should_not exist }
 end
 
-# Should exist if the filter returns at least one Migrate Project Databases in the project and in the resource group
-describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
+# Should exist if the filter returns at least one Migrate project databases in the project and in the resource group
+describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should exist }
 end
 ```
