@@ -229,6 +229,8 @@ The following is a list of static resources.
 - [azure_security_center_policies](docs/resources/azure_security_center_policies.md)
 - [azure_sentinel_alert_rule_template](docs/resources/azure_sentinel_alert_rule_template.md)
 - [azure_sentinel_alert_rule_templates](docs/resources/azure_sentinel_alert_rule_templates.md)
+- [azure_service_fabric_mesh_replica](docs/resources/azure_service_fabric_mesh_replica.md)
+- [azure_service_fabric_mesh_replicas](docs/resources/azure_service_fabric_mesh_replicas.md)
 - [azure_sql_database](docs/resources/azure_sql_database.md)
 - [azure_sql_databases](docs/resources/azure_sql_databases.md)
 - [azure_sql_server](docs/resources/azure_sql_server.md)
