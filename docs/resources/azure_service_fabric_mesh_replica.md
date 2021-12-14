@@ -65,7 +65,7 @@ The parameter set should be provided for a valid query:
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/servicefabric/sfmeshrp-api-replica_listbyservicename) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/servicefabric/sfmeshrp-api-replica_get) for other properties available.
 
 ## Examples
 
