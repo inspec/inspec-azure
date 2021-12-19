@@ -246,6 +246,8 @@ The following is a list of static resources.
 - [azure_sql_databases](https://docs.chef.io/inspec/resources/azure_sql_databases/)
 - [azure_sql_server](https://docs.chef.io/inspec/resources/azure_sql_server/)
 - [azure_sql_servers](https://docs.chef.io/inspec/resources/azure_sql_servers/)
+- [azure_sql_virtual_machine](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine.md)
+- [azure_sql_virtual_machines](https://docs.chef.io/inspec/resources/azure_sql_virtual_machines.md)
 - [azure_storage_account](https://docs.chef.io/inspec/resources/azure_storage_account/)
 - [azure_storage_accounts](https://docs.chef.io/inspec/resources/azure_storage_accounts/)
 - [azure_storage_account_blob_container](https://docs.chef.io/inspec/resources/azure_storage_account_blob_container/)
