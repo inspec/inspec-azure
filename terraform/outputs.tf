@@ -528,3 +528,8 @@ output "inspec_sql_managed_instance_name" {
   description = "The SQL managed instance name"
   value = azurerm_sql_managed_instance.sql_instance_for_inspec.name
 }
+
+output "synapse_inspec_ws_name" {
+  description = "Synapse Workspace Name"
+  value = azurerm_synapse_workspace.synapse_inspec_ws.name
+}
