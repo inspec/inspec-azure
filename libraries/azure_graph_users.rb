@@ -68,27 +68,3 @@ class AzureGraphUsers < AzureGraphGenericResources
     super(AzureGraphUsers)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermAdUsers < AzureGraphUsers
-  name 'azurerm_ad_users'
-  desc 'Verifies settings for an Azure Active Directory User'
-  example <<-EXAMPLE
-    describe azurerm_ad_users do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    if opts[:filter].is_a?(String)
-      # This is for backward compatibility.
-      # Same feature is supported via `filter_free_text` parameter with the new backend.
-      opts[:filter_free_text] = opts[:filter]
-      opts.delete(:filter)
-    end
-
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureGraphUsers.name)
-    super
-  end
-end

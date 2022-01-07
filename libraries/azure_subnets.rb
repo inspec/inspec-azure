@@ -75,25 +75,3 @@ class AzureSubnets < AzureGenericResources
     super(AzureSubnets)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermSubnets < AzureSubnets
-  name 'azurerm_subnets'
-  desc 'Verifies settings for Azure Virtual Network Subnets'
-  example <<-EXAMPLE
-    azurerm_subnets(resource_group: 'example', vnet: 'virtual-network-name') do
-      it{ should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSubnets.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
-    super
-  end
-end

@@ -43,25 +43,3 @@ class AzureMonitorLogProfiles < AzureGenericResources
     super(AzureMonitorLogProfiles)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermMonitorLogProfiles < AzureMonitorLogProfiles
-  name 'azurerm_monitor_log_profiles'
-  desc 'Fetches all Azure Monitor Log Profiles'
-  example <<-EXAMPLE
-    describe azurerm_monitor_log_profiles do
-      its('names') { should include('default') }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMonitorLogProfiles.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2016-03-01'
-    super
-  end
-end

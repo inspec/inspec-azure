@@ -92,30 +92,3 @@ class AzureSqlServer < AzureGenericResource
     )
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermSqlServer < AzureSqlServer
-  name 'azurerm_sql_server'
-  desc 'Verifies settings for an Azure SQL Server'
-  example <<-EXAMPLE
-    describe azurerm_sql_server(resource_group: 'rg-1', server_name: 'my-server-name') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlServer.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2018-06-01-preview'
-    opts[:firewall_rules_api_version] ||= '2014-04-01'
-    opts[:auditing_settings_api_version] ||= '2017-03-01-preview'
-    opts[:threat_detection_settings_api_version] ||= '2017-03-01-preview'
-    opts[:administrators_api_version] ||= '2014-04-01'
-    opts[:encryption_protector_api_version] ||= '2015-05-01-preview'
-    super
-  end
-end

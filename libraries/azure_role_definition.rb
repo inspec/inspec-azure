@@ -39,27 +39,3 @@ class AzureRoleDefinition < AzureGenericResource
     super(AzureRoleDefinition)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermRoleDefinition < AzureRoleDefinition
-  name 'azurerm_role_definition'
-  desc 'Verifies settings for an Azure Role'
-  example <<-EXAMPLE
-    describe azurerm_role_definition(name: 'Mail-Account') do
-      it                { should exist }
-      its ('role_name') { should be 'Mail-Account' }
-      its ('role_type') { should be 'CustomRole' }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureRoleDefinition.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2015-07-01'
-    super
-  end
-end

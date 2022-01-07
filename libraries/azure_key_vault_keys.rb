@@ -67,25 +67,3 @@ class AzureKeyVaultKeys < AzureGenericResources
     end
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermKeyVaultKeys < AzureKeyVaultKeys
-  name 'azurerm_key_vault_keys'
-  desc 'Verifies settings for a collection of Azure Keys belonging to a Vault'
-  example <<-EXAMPLE
-    describe azurerm_key_vault_keys('vault-101') do
-        it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(vault_name)
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKeys.name)
-    # This is for backward compatibility.
-    opts = {
-      vault_name: vault_name,
-      api_version: '2016-10-01',
-    }
-    super(opts)
-  end
-end

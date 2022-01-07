@@ -65,25 +65,3 @@ class AzureLocks < AzureGenericResources
     super(AzureLocks)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermLocks < AzureLocks
-  name 'azurerm_locks'
-  desc 'Verifies settings for an Azure Lock on a Resource'
-  example <<-EXAMPLE
-    describe azurerm_locks(resource_group: 'my-rg', resource_name: 'my-vm', resource_type: 'Microsoft.Compute/virtualMachines') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureLocks.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2016-09-01'
-    super
-  end
-end

@@ -88,20 +88,3 @@ class AzureGraphUser < AzureGraphGenericResource
   end
   # Methods for backward compatibility ends here <<<<
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermAdUser < AzureGraphUser
-  name 'azurerm_ad_user'
-  desc 'Verifies settings for an Azure Active Directory User'
-  example <<-EXAMPLE
-    describe azurerm_ad_user(user_id: 'userId') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureGraphUser.name)
-    super
-  end
-end
