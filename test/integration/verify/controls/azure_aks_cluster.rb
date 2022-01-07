@@ -1,8 +1,8 @@
 resource_group = input('resource_group', value: nil)
 cluster_fqdn   = input('cluster_fqdn',   value: nil)
 
-control 'azurerm_aks_cluster' do
-  describe azurerm_aks_cluster(resource_group: resource_group, name: 'inspecakstest', api_version: '2018-03-31') do
+control 'azure_aks_cluster' do
+  describe azure_aks_cluster(resource_group: resource_group, name: 'inspecakstest', api_version: '2018-03-31') do
     it                                                       { should exist }
     its('name')                                              { should cmp 'inspecakstest' }
     its('type')                                              { should cmp 'Microsoft.ContainerService/managedClusters' }
@@ -18,11 +18,11 @@ control 'azurerm_aks_cluster' do
     its('properties.kubernetesVersion')                      { should_not be nil }
   end
 
-  describe azurerm_aks_cluster(resource_group: resource_group, name: 'fake') do
+  describe azure_aks_cluster(resource_group: resource_group, name: 'fake') do
     it { should_not exist }
   end
 
-  describe azurerm_aks_cluster(resource_group: 'does-not-exist', name: 'fake') do
+  describe azure_aks_cluster(resource_group: 'does-not-exist', name: 'fake') do
     it { should_not exist }
   end
 end
