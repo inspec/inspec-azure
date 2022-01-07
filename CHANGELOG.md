@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.84.1 -->
+<!-- latest_release 1.84.2 -->
+## [v1.84.2](https://github.com/inspec/inspec-azure/tree/v1.84.2) (2022-01-07)
+
+#### Merged Pull Requests
+- Move release-dates.json file to assets dir [#603](https://github.com/inspec/inspec-azure/pull/603) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.84.1](https://github.com/inspec/inspec-azure/tree/v1.84.1) (2021-12-09)
 
 #### Merged Pull Requests
 - Resource docs fixes [#577](https://github.com/inspec/inspec-azure/pull/577) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.84.0](https://github.com/inspec/inspec-azure/tree/v1.84.0) (2021-12-09)
 
