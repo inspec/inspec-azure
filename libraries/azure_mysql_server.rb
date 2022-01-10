@@ -4,7 +4,7 @@ class AzureMysqlServer < AzureGenericResource
   name 'azure_mysql_server'
   desc 'Verifies settings for an Azure My SQL Server'
   example <<-EXAMPLE
-    describe azurerm_mysql_server(resource_group: 'example', server_name: 'vm-name') do
+    describe azure_mysql_server(resource_group: 'example', server_name: 'vm-name') do
       it { should have_monitoring_agent_installed }
     end
   EXAMPLE
