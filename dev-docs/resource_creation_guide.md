@@ -380,7 +380,7 @@ class AzureKeyVaults < AzureGenericResources
   name 'azure_key_vaults'
   desc 'Verifies settings for a collection of Azure Key Vaults'
   example <<-EXAMPLE
-    describe azurerm_key_vaults(resource_group: 'rg-1') do
+    describe azure_key_vaults(resource_group: 'rg-1') do
         it              { should exist }
         its('names')    { should include 'vault-1'}
     end
@@ -471,7 +471,7 @@ class AzureKeyVaults < AzureGenericResources
   name 'azure_key_vaults'
   desc 'Verifies settings for a collection of Azure Key Vaults'
   example <<-EXAMPLE
-    describe azurerm_key_vaults(resource_group: 'rg-1') do
+    describe azure_key_vaults(resource_group: 'rg-1') do
         it              { should exist }
         its('names')    { should include 'vault-1'}
     end
