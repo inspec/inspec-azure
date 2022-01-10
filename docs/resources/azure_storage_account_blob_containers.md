@@ -28,7 +28,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 The `resource_group`, and `storage_account_name` must be given as a parameter.
 ```ruby
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
+describe azure_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
   its('names') { should include 'my-container'}
 end
 ```
@@ -55,7 +55,7 @@ end
 
 ### Check If a Specific Container Exists
 ```ruby
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
+describe azure_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
   its('names') { should include('my-container') }
 end
 ```
@@ -64,12 +64,12 @@ end
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
 ```ruby
 # If we expect at least one resource to exists on a specified account
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
+describe azure_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
   it { should exist }
 end
 
 # If we expect not to exist any containers on a specified account
-describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
+describe azure_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do
   it { should_not exist }
 end
 ```

@@ -80,7 +80,7 @@ describe azure_management_group(group_id: 'abc-1234', recurse: true, expand: 'ch
   its('children_display_names') { should include('I am a child of the group!') }
 end
 ```
-See [integration tests](../../test/integration/verify/controls/azurerm_management_group.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azure_management_group.rb) for more examples.
 
 ## Matchers
 

@@ -79,7 +79,7 @@ describe azure_hdinsight_cluster(resource_group: 'example', name: 'ClusterName')
   its('properties.clusterVersion') { should cmp  '4.0' }
 end
 ```
-See [integration tests](../../test/integration/verify/controls/azurerm_hdinsight_cluster.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azure_hdinsight_cluster.rb) for more examples.
 
 ## Matchers
 

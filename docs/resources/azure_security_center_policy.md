@@ -104,7 +104,7 @@ describe azure_security_center_policy(resource_group: 'my-rg', name: 'my_policy'
   its('notifications_enabled') { should be true }
 end
 ```    
-See [integration tests](../../test/integration/verify/controls/azurerm_security_center_policy.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azure_security_center_policy.rb) for more examples.
 
 ## Matchers
 

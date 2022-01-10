@@ -73,7 +73,7 @@ describe azure_public_ip(resource_id: '/subscriptions/{subscriptionId}/resourceG
   its('properties.ipAddress') { should cmp '51.224.11.75' }
 end
 ``` 
-See [integration tests](../../test/integration/verify/controls/azurerm_public_ip.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azure_public_ip.rb) for more examples.
 
 ## Matchers
 
