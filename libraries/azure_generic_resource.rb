@@ -35,7 +35,7 @@ class AzureGenericResource < AzureResourceBase
       query_params = { resource_uri: @opts[:resource_uri] }
     elsif @opts[:resource_data].present?
       @opts[:resource_data] = @opts[:resource_data].to_h
-      query_params = { resource_uri: @resource_id }
+      query_params = { resource_uri: @resource_id, resource_data: @opts[:resource_data] }
     else
       resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
       # This is the last check on resource_id before talking to resource manager endpoint to get the detailed information.
