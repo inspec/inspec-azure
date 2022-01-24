@@ -44,10 +44,13 @@ end
 | resource_group                 | Azure resource group that the targeted resource resides in.`MyResourceGroup`     |
 | name                           | Name of the Azure resource to test. `MyNSG`                                      |
 | resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/networkSecurityGroups/{nsgName}` |
+| resource_data                  | In-Memory cached Azure Network Security Group Data. This is an optional parameter and can be provided to increase performance since it avoids multiple network calls to the same resource. When provided it binds the values directly to the resource. | 
+[Warning] when `resource_data` parameter is in use, the resource state itself could be stale and it is the user's responsibility to refresh the data.
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
 - `resource_group` and `name`
+- `resource_data`
 
 ## Properties
 
@@ -122,7 +125,17 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
   it { should allow(destination_ip_range: '10.0.0.0/24', direction: 'outbound') }
   it { should allow_out(ip_range: '10.0.0.0/24') }   # same test with the specific outbound rule check
 end
-```    
+```
+
+### Test that a Network Security Group does not allow inbound traffic from already cached data 
+```ruby
+azure_network_security_groups.entries.each do |azure_network_security_group_data|
+    describe azure_network_security_group(resource_data: azure_network_security_group_data) do
+      it { should_not allow(destination_ip_range: '10.0.0.0/24', direction: 'inbound') }
+      it { should_not allow_in(ip_range: '10.0.0.0/24') }   # same test with the specific outbound rule check
+    end
+end
+```
 Please note that `allow` requires `direction` parameter is set to either `inbound` or `outbound` and prefix the `ip_range`, `service_tag` and `port` with either `source_` or `destination_` identifiers.     
     
 ## Matchers
@@ -146,5 +159,5 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a minimum of `reader` role on the subscription you wish to test.
 
