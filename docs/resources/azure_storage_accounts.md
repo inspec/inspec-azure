@@ -53,6 +53,7 @@ The name of the resource group.
 | names         | A list of names of all the resources being interrogated.                             | `name`          |
 | type          | A list of types of all the resources being interrogated.                             | `type`          |
 | tags          | A list of `tag:value` pairs defined on the resources being interrogated.             | `tags`          |
+| properties    | A list of all properties of all the resources.                                       | `properties`    | 
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 

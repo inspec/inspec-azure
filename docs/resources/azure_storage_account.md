@@ -46,10 +46,13 @@ end
 | resource_id                    | The unique resource ID. `/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}` |
 | activity_log_alert_api_version | The activity log alerts endpoint api version used in `have_recently_generated_access_key` matcher. The latest version will be used unless provided. |
 | storage_service_endpoint_api_version | The storage service endpoint api version. `2019-12-12` wil be used unless provided. |
+| resource_data                  | In-Memory cached Azure Storage Account Data. This is an optional parameter and can be provided to increase performance since it avoids multiple network calls to the same resource. When provided it binds the values directly to the resource. | 
+[Warning] when `resource_data` parameter is in use, the resource state itself could be stale and it is the user's responsibility to refresh the data.
 
 Either one of the parameter sets can be provided for a valid query:
 - `resource_id`
 - `resource_group` and `name`
+- `resource_data`
 
 ## Properties
 
@@ -118,6 +121,16 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('table_properties.logging.version') { should cmp '1.0' }
 end
 ```
+
+### Test that Blobs Service Endpoint exist from already cached data
+```ruby
+azure_storage_accounts.entries.each do |azure_storage_account_data|
+    describe azure_storage_account(resource_data: azure_storage_account_data) do
+      its('blobs.enumeration_results.service_endpoint') { should cmp 'https://mysa.blob.core.windows.net/' }
+    end
+end
+```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
