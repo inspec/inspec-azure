@@ -1,7 +1,7 @@
 ---
 title: About the azure_sentinel_alert_rule_template Resource
 platform: azure
-   ---
+---
 
 # azure_sentinel_alert_rule_template
 

@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.84.3 -->
+<!-- latest_release 1.84.4 -->
+## [v1.84.4](https://github.com/inspec/inspec-azure/tree/v1.84.4) (2022-01-24)
+
+#### Merged Pull Requests
+- Fix yaml in resource docs [#625](https://github.com/inspec/inspec-azure/pull/625) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.84.3](https://github.com/inspec/inspec-azure/tree/v1.84.3) (2022-01-07)
 
 #### Merged Pull Requests
 - Publish latest release notes 2022-01-07 [#604](https://github.com/inspec/inspec-azure/pull/604) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.84.2](https://github.com/inspec/inspec-azure/tree/v1.84.2) (2022-01-07)
 
