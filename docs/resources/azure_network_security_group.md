@@ -21,7 +21,7 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
@@ -44,10 +44,10 @@ end
 | resource_group                 | Azure resource group that the targeted resource resides in.`MyResourceGroup`     |
 | name                           | Name of the Azure resource to test. `MyNSG`                                      |
 | resource_id                    | The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/networkSecurityGroups/{nsgName}` |
-| resource_data                  | In-Memory cached Azure Network Security Group Data. This is an optional parameter and can be provided to increase performance since it avoids multiple network calls to the same resource. When provided it binds the values directly to the resource. | 
-[Warning] when `resource_data` parameter is in use, the resource state itself could be stale and it is the user's responsibility to refresh the data.
+| resource_data                  | In-memory cached Azure Network security group data. Passing data to this parameter can increase performance since it avoids multiple network calls to the same Azure resource. When provided, it binds the values directly to the resource. Data passed to the `resource_data` parameter could be stale. It is the user's responsibility to refresh the data. |
 
-Either one of the parameter sets can be provided for a valid query:
+Provide one of the following parameter sets for a valid query:
+
 - `resource_id`
 - `resource_group` and `name`
 - `resource_data`
@@ -75,13 +75,13 @@ Therefore, it is recommended to use `allow`, `allow_in` or `allow_out` propertie
 <superscript>**</superscript> These properties do not compare criteria defined by explicit ip ranges with the security rules defined by [Azure service tags](https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview) and vice versa.
 For example, providing that a network security group has a single security rule allowing all traffics from internet by using `Internet` service tag in the source will fail the `allow_in(ip_range: '64.233.160.0')` test due to incompatible source definitions.
 This is because InSpec Azure resource pack has no control over which ip ranges are defined in Azure service tags.
-Therefore, tests using these methods should be written explicitly for service tags and ip ranges. 
+Therefore, tests using these methods should be written explicitly for service tags and ip ranges.
 For more information about network security groups and security rules refer to [here](https://docs.microsoft.com/en-us/azure/virtual-network/security-overview).
-`*ip_range` used in these methods support IPv4 and IPv6. The ip range criteriaom should be written in CIDR notation.   
+`*ip_range` used in these methods support IPv4 and IPv6. The ip range criteriaom should be written in CIDR notation.
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups/get#networksecuritygroup) for other properties available. 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups/get#networksecuritygroup) for other properties available.
 Any property in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
@@ -97,28 +97,28 @@ end
 describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
   it { should allow_ssh_from_internet }
 end
-```    
+```
 ### Test that a Network Security Group Allows Inbound Traffics from a Certain Ip Range in Any Port and Any Protocol
 ```ruby
 describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
   it { should allow(source_ip_range: '10.0.0.0/24', direction: 'inbound') }
   it { should allow_in(ip_range: '10.0.0.0/24') }    # same test with the specific inbound rule check
 end
-```    
+```
 ### Test that a Network Security Group Allows Inbound Traffics from Internet Service Tag in Port `80` and `TCP` Protocol
 ```ruby
 describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
   it { should allow(source_service_tag: 'Internet', destination_port: '22', protocol: 'TCP', direction: 'inbound') }
   it { should allow_in(service_tag: 'Internet', port: '22', protocol: 'TCP') }    # same test with the specific inbound rule check
 end
-```        
+```
 ### Test that a Network Security Group Allows Inbound Traffics from Virtual Network Service Tag in a Range of Ports and Any Protocol
 ```ruby
 describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
   it { should allow(source_service_tag: 'VirtualNetwork', destination_port: %w{22 8080 56-78}, direction: 'inbound') }
   it { should allow_in(service_tag: 'VirtualNetwork', port: %w{22 8080 56-78}) }    # same test with the specific inbound rule check
 end
-```            
+```
 ### Test that a Network Security Group Allows Outbound Traffics to a Certain Ip Range in any Port and Any Protocol
 ```ruby
 describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
@@ -127,17 +127,20 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
 end
 ```
 
-### Test that a Network Security Group does not allow inbound traffic from already cached data 
+### Loop through multiple network security groups and verify that each does not allow inbound traffic from already cached data
+
 ```ruby
 azure_network_security_groups.entries.each do |azure_network_security_group_data|
-    describe azure_network_security_group(resource_data: azure_network_security_group_data) do
-      it { should_not allow(destination_ip_range: '10.0.0.0/24', direction: 'inbound') }
-      it { should_not allow_in(ip_range: '10.0.0.0/24') }   # same test with the specific outbound rule check
-    end
+  describe azure_network_security_group(resource_data: azure_network_security_group_data) do
+    it { should_not allow(destination_ip_range: '10.0.0.0/24', direction: 'inbound') }
+    it { should_not allow_in(ip_range: '10.0.0.0/24') }   # same test with the specific outbound rule check
+  end
 end
 ```
-Please note that `allow` requires `direction` parameter is set to either `inbound` or `outbound` and prefix the `ip_range`, `service_tag` and `port` with either `source_` or `destination_` identifiers.     
-    
+
+Please note that `allow` requires the `direction` parameter be set to either `inbound` or `outbound`
+and you must prefix the `ip_range`, `service_tag`, and `port` with either `source_` or `destination_` identifiers.
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
