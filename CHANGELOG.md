@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.84.5 -->
+<!-- latest_release 1.85.0 -->
+## [v1.85.0](https://github.com/inspec/inspec-azure/tree/v1.85.0) (2022-02-01)
+
+#### Merged Pull Requests
+- Support caching of azure nw sgs [#624](https://github.com/inspec/inspec-azure/pull/624) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.84.5](https://github.com/inspec/inspec-azure/tree/v1.84.5) (2022-01-31)
 
 #### Merged Pull Requests
 - Remove release notes from static dir [#629](https://github.com/inspec/inspec-azure/pull/629) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.84.4](https://github.com/inspec/inspec-azure/tree/v1.84.4) (2022-01-24)
 
