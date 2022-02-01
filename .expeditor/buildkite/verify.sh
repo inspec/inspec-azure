@@ -9,8 +9,7 @@ bundle --version
 
 echo "--- bundle install"
 bundle config set --local without tools maintenance deploy
-bundle install --jobs=7 --retry=3
-bundle update
+bundle install --jobs=5
 
 echo "+++ bundle exec rake lint"
 bundle exec rake lint
