@@ -27,16 +27,19 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 ## Syntax
 
 An `azure_network_security_group` resource block identifies a Network Security Group by `name` and `resource_group` or the `resource_id`.
+
 ```ruby
 describe azure_network_security_group(resource_group: 'example', name: 'GroupName') do
   it { should exist }
 end
 ```
+
 ```ruby
 describe azure_network_security_group(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/networkSecurityGroups/{nsgName}') do
   it { should exist }
 end
 ```
+
 ## Parameters
 
 | Name                           | Description                                                                      |
@@ -127,7 +130,7 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
 end
 ```
 
-### Loop through multiple network security groups and verify that each does not allow inbound traffic from already cached data
+### Loop through multiple network security groups and verify that each group does not allow inbound traffic from already cached data
 
 ```ruby
 azure_network_security_groups.entries.each do |azure_network_security_group_data|
