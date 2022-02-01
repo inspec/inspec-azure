@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.85.0 -->
+<!-- latest_release 1.86.0 -->
+## [v1.86.0](https://github.com/inspec/inspec-azure/tree/v1.86.0) (2022-02-01)
+
+#### Merged Pull Requests
+- Support cache for storage accounts [#628](https://github.com/inspec/inspec-azure/pull/628) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.85.0](https://github.com/inspec/inspec-azure/tree/v1.85.0) (2022-02-01)
 
 #### Merged Pull Requests
 - Support caching of azure nw sgs [#624](https://github.com/inspec/inspec-azure/pull/624) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.84.5](https://github.com/inspec/inspec-azure/tree/v1.84.5) (2022-01-31)
 
