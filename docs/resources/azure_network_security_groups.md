@@ -53,6 +53,7 @@ The name of the resource group.
 | names         | A list of all the network security group names.                                      | `name`          |
 | tags          | A list of `tag:value` pairs defined on the resources.                                | `tags`          |
 | etags         | A list of etags defined on the resources.                                            | `etag`          |
+| properties    | A list of all properties of all the resources.                                       | `properties`    | 
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
@@ -98,4 +99,4 @@ end
 ```
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a minimum of `reader` role on the subscription you wish to test.
