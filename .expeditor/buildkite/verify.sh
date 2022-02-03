@@ -6,8 +6,6 @@ echo "--- system details"
 uname -a
 ruby -v
 bundle --version
-echo "--- number of cores"
-nproc
 
 echo "--- bundle install"
 bundle config set --local without tools maintenance deploy
