@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.86.0 -->
+<!-- latest_release unreleased -->
+## Unreleased
+
+#### Merged Pull Requests
+- stick active support to older versions for ruby &lt; 2.7 [#608](https://github.com/inspec/inspec-azure/pull/608) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.86.0](https://github.com/inspec/inspec-azure/tree/v1.86.0) (2022-02-01)
 
 #### Merged Pull Requests
 - Support cache for storage accounts [#628](https://github.com/inspec/inspec-azure/pull/628) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.85.0](https://github.com/inspec/inspec-azure/tree/v1.85.0) (2022-02-01)
 
