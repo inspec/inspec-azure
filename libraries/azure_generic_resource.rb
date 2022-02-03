@@ -33,6 +33,9 @@ class AzureGenericResource < AzureResourceBase
                     end
     if @opts[:is_uri_a_url]
       query_params = { resource_uri: @opts[:resource_uri] }
+    elsif @opts[:resource_data].present?
+      @opts[:resource_data] = @opts[:resource_data].to_h
+      query_params = { resource_uri: @resource_id, resource_data: @opts[:resource_data] }
     else
       resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
       # This is the last check on resource_id before talking to resource manager endpoint to get the detailed information.
@@ -140,8 +143,16 @@ class AzureGenericResource < AzureResourceBase
     required_parameters = %i(resource_group resource_provider name)
     required_parameters += @opts[:required_parameters] if @opts.key?(:required_parameters)
     allowed_parameters = %i(resource_path resource_identifiers resource_id resource_uri add_subscription_id
-                            query_parameters is_uri_a_url audience transform_keys)
+                            query_parameters is_uri_a_url audience transform_keys resource_data)
     allowed_parameters += @opts[:allowed_parameters] if @opts.key?(:allowed_parameters)
+
+
+    if @opts.key?(:resource_data)
+      @opts[:resource_data] = @opts[:resource_data].to_h
+      validate_parameters(allow: allowed_parameters + required_parameters)
+      @resource_id = @opts[:resource_data][:id]
+      return
+    end
 
     if @opts.key?(:resource_id)
       validate_parameters(required: %i(resource_provider resource_id), allow: allowed_parameters + required_parameters)
