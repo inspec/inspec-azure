@@ -1,10 +1,45 @@
 # Changelog
-<!-- latest_release 1.84.1 -->
+<!-- latest_release unreleased -->
+## Unreleased
+
+#### Merged Pull Requests
+- stick active support to older versions for ruby &lt; 2.7 [#608](https://github.com/inspec/inspec-azure/pull/608) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.86.0](https://github.com/inspec/inspec-azure/tree/v1.86.0) (2022-02-01)
+
+#### Merged Pull Requests
+- Support cache for storage accounts [#628](https://github.com/inspec/inspec-azure/pull/628) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.85.0](https://github.com/inspec/inspec-azure/tree/v1.85.0) (2022-02-01)
+
+#### Merged Pull Requests
+- Support caching of azure nw sgs [#624](https://github.com/inspec/inspec-azure/pull/624) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.84.5](https://github.com/inspec/inspec-azure/tree/v1.84.5) (2022-01-31)
+
+#### Merged Pull Requests
+- Remove release notes from static dir [#629](https://github.com/inspec/inspec-azure/pull/629) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.84.4](https://github.com/inspec/inspec-azure/tree/v1.84.4) (2022-01-24)
+
+#### Merged Pull Requests
+- Fix yaml in resource docs [#625](https://github.com/inspec/inspec-azure/pull/625) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.84.3](https://github.com/inspec/inspec-azure/tree/v1.84.3) (2022-01-07)
+
+#### Merged Pull Requests
+- Publish latest release notes 2022-01-07 [#604](https://github.com/inspec/inspec-azure/pull/604) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.84.2](https://github.com/inspec/inspec-azure/tree/v1.84.2) (2022-01-07)
+
+#### Merged Pull Requests
+- Move release-dates.json file to assets dir [#603](https://github.com/inspec/inspec-azure/pull/603) ([IanMadd](https://github.com/IanMadd))
+
 ## [v1.84.1](https://github.com/inspec/inspec-azure/tree/v1.84.1) (2021-12-09)
 
 #### Merged Pull Requests
 - Resource docs fixes [#577](https://github.com/inspec/inspec-azure/pull/577) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.84.0](https://github.com/inspec/inspec-azure/tree/v1.84.0) (2021-12-09)
 

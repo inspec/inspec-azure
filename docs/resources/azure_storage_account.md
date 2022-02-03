@@ -21,7 +21,7 @@ For more information, refer to the resource pack [README](../../README.md).
 
 ### Installation
 
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). 
+This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure).
 For an example `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
 
 ## Syntax
@@ -46,10 +46,14 @@ end
 | resource_id                    | The unique resource ID. `/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}` |
 | activity_log_alert_api_version | The activity log alerts endpoint api version used in `have_recently_generated_access_key` matcher. The latest version will be used unless provided. |
 | storage_service_endpoint_api_version | The storage service endpoint api version. `2019-12-12` wil be used unless provided. |
+| resource_data                  | In-memory cached Azure Network security group data. Passing data to this parameter can increase performance since it avoids multiple network calls to the same Azure resource. When provided, it binds the values directly to the resource. Data passed to the `resource_data` parameter could be stale. It is the user's responsibility to refresh the data. |
 
-Either one of the parameter sets can be provided for a valid query:
+
+Pass one of the following parameter sets for a valid query:
+
 - `resource_id`
 - `resource_group` and `name`
+- `resource_data`
 
 ## Properties
 
@@ -68,7 +72,7 @@ The property names will be in snake case, `propety_name`. Therefore, `<Enumerati
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storagerp/storageaccounts/getproperties#storageaccount) for other properties available. 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storagerp/storageaccounts/getproperties#storageaccount) for other properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
@@ -118,6 +122,17 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('table_properties.logging.version') { should cmp '1.0' }
 end
 ```
+
+### Loop through all storage accounts and test a blob service endpoint exists from already cached data
+
+```ruby
+azure_storage_accounts.entries.each do |azure_storage_account_data|
+    describe azure_storage_account(resource_data: azure_storage_account_data) do
+      its('blobs.enumeration_results.service_endpoint') { should cmp 'https://mysa.blob.core.windows.net/' }
+    end
+end
+```
+
 ## Matchers
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
@@ -152,4 +167,4 @@ end
 ```
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a minimum of `reader` role on the subscription you wish to test.
