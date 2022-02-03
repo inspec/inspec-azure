@@ -146,7 +146,6 @@ class AzureGenericResource < AzureResourceBase
                             query_parameters is_uri_a_url audience transform_keys resource_data)
     allowed_parameters += @opts[:allowed_parameters] if @opts.key?(:allowed_parameters)
 
-
     if @opts.key?(:resource_data)
       @opts[:resource_data] = @opts[:resource_data].to_h
       validate_parameters(allow: allowed_parameters + required_parameters)

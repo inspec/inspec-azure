@@ -212,8 +212,6 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     !properties.protocol.match?(/ICMP/)
   end
 
-  private
-
   def get_resource(opts = {})
     opts[:resource_data].presence || super
   end
