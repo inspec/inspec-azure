@@ -5,7 +5,7 @@ platform: azure
 
 # azure_sql_virtual_machine
 
-Use the `azure_sql_virtual_machine` InSpec audit resource to test properties related to an Azure SQL Virtual Machine.
+Use the `azure_sql_virtual_machine` Chef InSpec audit resource to test properties of an Azure SQL virtual machine.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,8 +26,6 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name`, `resource_group` is a required parameter.
-
 ```ruby
 describe azure_sql_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'SQL_VM_NAME') do
   it                                      { should exist }
@@ -43,24 +41,24 @@ end
 ```
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure SQL Virtual Machine to test.                                   |
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
+`name` _(required)_
 
-The parameter set should be provided for a valid query:
-- `resource_group` and `name`
+Name of the Azure SQL Virtual Machine to test.
+
+`resource_group` _(required)_
+
+Azure resource group that the targeted resource resides in.  |
 
 ## Properties
 
-| Property                 | Description                                                      |
-|--------------------------|------------------------------------------------------------------|
-| id                       | Resource Id.                                                     |
-| name                     | Resource name.                                                   |
-| type                     | Resource type. `Microsoft.SqlVirtualMachine/sqlVirtualMachines`        |
-| location                 | The Geo-location where the resource lives.                       |
-| properties               | The properties of the SQL Virtual Machine.           |
-| properties.provisioningState | State of the resource.                                       |
+| Property                 | Description                                                         |
+|--------------------------|---------------------------------------------------------------------|
+| id                       | The resource ID.                                                    |
+| name                     | The resource name.                                                  |
+| type                     | The resource type. `Microsoft.SqlVirtualMachine/sqlVirtualMachines` |
+| location                 | The resource location.                                              |
+| properties               | The properties of the SQL virtual machine.                          |
+| properties.provisioningState | State of the resource.                                          |
 
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
@@ -69,7 +67,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/s
 
 ## Examples
 
-### Test that the SQL Virtual Machine is provisioned successfully.
+### Test that the SQL virtual machine is provisioned successfully.
 
 ```ruby
 describe azure_sql_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'SQL_VM_NAME') do
