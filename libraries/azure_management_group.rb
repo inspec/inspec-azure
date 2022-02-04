@@ -108,25 +108,3 @@ class AzureManagementGroup < AzureGenericResource
     Array(children).map(&:type)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermManagementGroup < AzureManagementGroup
-  name 'azurerm_management_group'
-  desc 'Verifies settings for an Azure Management Group'
-  example <<-EXAMPLE
-    describe azurerm_management_group(group_id: 'example-group') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureManagementGroup.name)
-    # For backward compatibility.
-    opts[:api_version] ||= '2018-03-01-preview'
-    super
-  end
-end

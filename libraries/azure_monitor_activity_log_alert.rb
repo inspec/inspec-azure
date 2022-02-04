@@ -45,26 +45,3 @@ class AzureMonitorActivityLogAlert < AzureGenericResource
     super(AzureMonitorActivityLogAlert)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermMonitorActivityLogAlert < AzureMonitorActivityLogAlert
-  name 'azurerm_monitor_activity_log_alert'
-  desc 'Verifies settings for a Azure Monitor Activity Log Alert'
-  example <<-EXAMPLE
-    describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
-      it { should exist }
-      its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMonitorActivityLogAlert.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2017-04-01'
-    super
-  end
-end

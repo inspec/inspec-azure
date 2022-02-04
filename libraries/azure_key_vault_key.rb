@@ -57,28 +57,3 @@ class AzureKeyVaultKey < AzureGenericResource
     version.downcase.scan(VALID_VERSION_REGEX).any?
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermKeyVaultKey < AzureKeyVaultKey
-  name 'azurerm_key_vault_key'
-  desc 'Verifies configuration for an Azure Key within a Vault'
-  example <<-EXAMPLE
-    describe azurerm_key_vault_key('vault-101', 'key') do
-      it { should exist }
-      its('attributes.enabled') { should eq true }
-    end
-  EXAMPLE
-
-  def initialize(vault_name, key_name, key_version = nil)
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaultKey.name)
-    # This is for backward compatibility.
-    opts = {
-      vault_name: vault_name,
-        key_name: key_name,
-        api_version: '2016-10-01',
-    }
-    opts[:key_version] = key_version unless key_version.nil?
-    super(opts)
-  end
-end

@@ -171,25 +171,3 @@ class AzureStorageAccount < AzureGenericResource
     datetime.to_time.utc.iso8601
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermStorageAccount < AzureStorageAccount
-  name 'azurerm_storage_account'
-  desc 'Verifies settings for a Azure Storage Account'
-  example <<-EXAMPLE
-    describe azurerm_storage_account(resource_group: resource_name, name: 'default') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureStorageAccount.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2017-06-01'
-    super
-  end
-end

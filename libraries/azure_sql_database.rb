@@ -71,28 +71,3 @@ class AzureSqlDatabase < AzureGenericResource
     )
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermSqlDatabase < AzureSqlDatabase
-  name 'azurerm_sql_database'
-  desc 'Verifies settings for an Azure SQL Database'
-  example <<-EXAMPLE
-    describe azurerm_sql_database(resource_group: 'rg-1', server_name: 'sql-server-1' database_name: 'customer-db') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlDatabase.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2017-10-01-preview'
-    opts[:auditing_settings_api_version] ||= '2017-03-01-preview'
-    opts[:threat_detection_settings_api_version] ||= '2014-04-01'
-    opts[:encryption_settings_api_version] ||= '2014-04-01'
-    super
-  end
-end

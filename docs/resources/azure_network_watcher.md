@@ -90,7 +90,7 @@ azure_network_security_groups.where(location: 'eastus').ids.each do |nsg_id|
   end
 end
 ```
-See [integration tests](../../test/integration/verify/controls/azurerm_network_watcher.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azure_network_watcher.rb) for more examples.
 
 ## Matchers
 

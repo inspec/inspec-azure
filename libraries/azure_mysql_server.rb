@@ -4,7 +4,7 @@ class AzureMysqlServer < AzureGenericResource
   name 'azure_mysql_server'
   desc 'Verifies settings for an Azure My SQL Server'
   example <<-EXAMPLE
-    describe azurerm_mysql_server(resource_group: 'example', server_name: 'vm-name') do
+    describe azure_mysql_server(resource_group: 'example', server_name: 'vm-name') do
       it { should have_monitoring_agent_installed }
     end
   EXAMPLE
@@ -77,27 +77,5 @@ class AzureMysqlServer < AzureGenericResource
         api_version: @opts[:firewall_rules_api_version],
       },
     )
-  end
-end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermMysqlServer < AzureMysqlServer
-  name 'azurerm_mysql_server'
-  desc 'Verifies settings for an Azure My SQL Server'
-  example <<-EXAMPLE
-    describe azurerm_mysql_server(resource_group: 'example', server_name: 'vm-name') do
-      it { should have_monitoring_agent_installed }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMysqlServer.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2017-12-01'
-    super
   end
 end

@@ -402,53 +402,8 @@ They can be defined as environment variables or resource parameters (has priorit
 
 <hr>
 
-> <b>WARNING</b> The following resources are using their `azure_` counterparts under the hood and they will be deprecated in the InSpec Azure version **2**.
-> Their api versions are fixed (see below) for full backward compatibility.
-> It is strongly advised to start using the resources with `azure_` prefix for an up-to-date testing experience.
-
-| Legacy Resource Name              | Fixed [api version](#api_version) | Replaced by                   |
-|------------------------------------------|----------------------------|-------------------------------|
-| azurerm_ad_user, azurerm_ad_users | `v1.0` | [azure_graph_user](docs/resources/azure_graph_user.md), [azure_graph_users](docs/resources/azure_graph_users.md) |
-| azurerm_aks_cluster, azurerm_aks_clusters | `2018-03-31` | [azure_aks_cluster](docs/resources/azure_aks_cluster.md), [azure_aks_cluster](docs/resources/azure_aks_cluster.md) |
-| azurerm_api_management, azurerm_api_managements | `2019-12-01` | [azure_api_management](docs/resources/azure_api_management.md), [azure_api_managements](docs/resources/azure_api_managements.md) |
-| azurerm_application_gateway, azurerm_application_gateways | `2019-12-01` | [azure_application_gateway](docs/resources/azure_application_gateway.md), [azure_application_gateways](docs/resources/azure_application_gateways.md) |
-| azurerm_cosmosdb_database_account | `2015-04-08` | [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md) |
-| azurerm_event_hub_authorization_rule | `2017-04-01` | [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md) |
-| azurerm_event_hub_event_hub | `2017-04-01` | [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md) |
-| azurerm_event_hub_namespace | `2017-04-01` | [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md) |
-| azurerm_hdinsight_cluster | `2015-03-01-preview` | [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md) |
-| azurerm_iothub | `2018-04-01` | [azure_iothub](docs/resources/azure_iothub.md) |
-| azurerm_iothub_event_hub_consumer_group, azurerm_iothub_event_hub_consumer_groups |`2018-04-01` | [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md), [azure_iothub_event_hub_consumer_groups](docs/resources/azure_iothub_event_hub_consumer_groups.md) |
-| azurerm_key_vault, azurerm_key_vaults | `2016-10-01` | [azure_key_vault](docs/resources/azure_key_vault.md), [azure_key_vaults](docs/resources/azure_key_vaults.md) |
-| azurerm_key_vault_key, azurerm_key_vault_keys | `2016-10-01` | [azure_key_vault_key](docs/resources/azure_key_vault_key.md), [azure_key_vault_keys](docs/resources/azure_key_vault_keys.md) |
-| azurerm_key_vault_secret, azurerm_key_vault_secrets | `2016-10-01` | [azure_key_vault_secret](docs/resources/azure_key_vault_secret.md), [azure_key_vault_secrets](docs/resources/azure_key_vault_secrets.md) |
-| azurerm_load_balancer, azurerm_load_balancers | `2018-11-01` | [azure_load_balancer](docs/resources/azure_load_balancer.md), [azure_load_balancers](docs/resources/azure_load_balancers.md) |
-| azurerm_locks | `2016-09-01` | [azure_locks](docs/resources/azure_locks.md) |
-| azurerm_management_group, azurerm_management_groups | `2018-03-01-preview` | [azure_management_group](docs/resources/azure_management_group.md), [azure_management_groups](docs/resources/azure_management_groups.md) |
-| azurerm_mariadb_server, azurerm_mariadb_servers | `2018-06-01-preview` | [azure_mariadb_server](docs/resources/azure_mariadb_server.md), [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md) |
-| azurerm_monitor_activity_log_alert, azurerm_monitor_activity_log_alerts | `2017-04-01` | [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md), [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md) |
-| azurerm_monitor_log_profile, azurerm_monitor_log_profiles | `2016-03-01` | [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md), [azure_monitor_log_profiles](docs/resources/azure_monitor_log_profiles.md) |
-| azurerm_mysql_database, azurerm_mysql_databases | `2017-12-01` | [azure_mysql_database](docs/resources/azure_mysql_database.md), [azure_mysql_databases](docs/resources/azure_mysql_databases.md) |
-| azurerm_mysql_server, azurerm_mysql_servers | `2017-12-01` | [azure_mysql_server](docs/resources/azure_mysql_server.md), [azure_mysql_servers](docs/resources/azure_mysql_servers.md) |
-| azurerm_network_interface, azurerm_network_interfaces | `2018-11-01` | [azure_network_interface](docs/resources/azure_network_interface.md), [azure_network_interfaces](docs/resources/azure_network_interfaces.md) |
-| azurerm_network_security_group, azurerm_network_security_groups | `2018-02-01` | [azure_network_security_group](docs/resources/azure_network_security_group.md), [azure_network_security_groups](docs/resources/azure_network_security_groups.md) |
-| azurerm_network_watcher, azurerm_network_watchers | `2018-02-01` | [azure_network_watcher](docs/resources/azure_network_watcher.md), [azure_network_watchers](docs/resources/azure_network_watchers.md) |
-| azurerm_postgresql_database, azurerm_postgresql_databases | `2017-12-01` | [azure_postgresql_database](docs/resources/azure_postgresql_database.md), [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md) |
-| azurerm_postgresql_server, azurerm_postgresql_servers | `2017-12-01` | [azure_postgresql_server](docs/resources/azure_postgresql_server.md), [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md) |
-| azurerm_public_ip | `2020-05-01` | [azure_public_ip](docs/resources/azure_public_ip.md) |
-| azurerm_resource_groups | `2018-02-01` | [azure_resource_groups](docs/resources/azure_resource_groups.md) |
-| azurerm_role_definition, azurerm_role_definitions | `2015-07-01` | [azure_role_definition](docs/resources/azure_role_definition.md), [azure_role_definitions](docs/resources/azure_role_definitions.md) |
-| azurerm_security_center_policy, azurerm_security_center_policies | `2015-06-01-Preview` | [azure_security_center_policy](docs/resources/azure_security_center_policy.md), [azure_security_center_policies](docs/resources/azure_security_center_policies.md) |
-| azurerm_sql_database, azurerm_sql_databases | `2017-10-01-preview` | [azure_sql_database](docs/resources/azure_sql_database.md), [azure_sql_databases](docs/resources/azure_sql_databases.md) |
-| azurerm_sql_server, azurerm_sql_servers | `2018-06-01-preview` | [azure_sql_server](docs/resources/azure_sql_server.md), [azure_sql_servers](docs/resources/azure_sql_servers.md) |
-| azurerm_storage_account, azurerm_storage_accounts  | `2017-06-01` | [azure_storage_account](docs/resources/azure_storage_account.md), [azure_storage_accounts](docs/resources/azure_storage_accounts.md) | 
-| azurerm_storage_account_blob_container, azurerm_storage_account_blob_containers  | `2018-07-01` | [azure_storage_account_blob_container](docs/resources/azure_storage_account_blob_container.md), [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md) | 
-| azurerm_subnet, azurerm_subnets | `2018-02-01` | [azure_subnet](docs/resources/azure_subnet.md), [azure_subnets](docs/resources/azure_subnets.md) |
-| azurerm_subscription | `2019-10-01` | [azure_subscription](docs/resources/azure_subscription.md) |
-| azurerm_virtual_machine, azurerm_virtual_machines | `2017-12-01` | [azure_virtual_machine](docs/resources/azure_virtual_machine.md), [azure_virtual_machines](docs/resources/azure_virtual_machines.md) |
-| azurerm_virtual_machine_disk, azurerm_virtual_machine_disks | `2017-03-30` | [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md), [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md) |
-| azurerm_virtual_network, azurerm_virtual_networks | `2018-02-01` | [azure_virtual_network](docs/resources/azure_virtual_network.md), [azure_virtual_networks](docs/resources/azure_virtual_networks.md) |
-| azurerm_webapp, azurerm_webapps | `2016-08-01` | [azure_webapp](docs/resources/azure_webapp.md), [azure_webapps](docs/resources/azure_webapps.md) |
+> <b>WARNING</b> The `azurerm_` resources are removed completely from inspec-azure V2.
+> It is mandatory to use resources only with `azure_` prefix for an up-to-date testing experience.
 
 ## Development
 
@@ -581,7 +536,7 @@ Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/a
 To run a control called `azure_virtual_machine` only:
 
 ```shell
-rake test:integration[azurerm_virtual_machine]
+rake test:integration[azure_virtual_machine]
 ```
 
 Note that in zsh you need to escape the `[`, `]` characters.

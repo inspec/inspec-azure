@@ -37,25 +37,3 @@ class AzureSecurityCenterPolicies < AzureGenericResources
     super(AzureSecurityCenterPolicies)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermSecurityCenterPolicies < AzureSecurityCenterPolicies
-  name 'azurerm_security_center_policies'
-  desc 'Verifies settings for Security Center'
-  example <<-EXAMPLE
-    describe azurerm_security_center_policies do
-      its('policy_names') { should include('default') }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSecurityCenterPolicies.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2015-06-01-Preview'
-    super
-  end
-end

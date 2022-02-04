@@ -94,25 +94,3 @@ class AzureVirtualNetwork < AzureGenericResource
     subs.collect(&:name)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermVirtualNetwork < AzureVirtualNetwork
-  name 'azurerm_virtual_network'
-  desc 'Verifies settings for an Azure Virtual Network'
-  example <<-EXAMPLE
-    describe azurerm_virtual_network(resource_group: 'example', name: 'vnet-name') do
-      it { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureVirtualNetwork.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
-    super
-  end
-end

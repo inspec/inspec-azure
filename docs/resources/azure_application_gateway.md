@@ -77,7 +77,7 @@ describe azure_application_gateway(resource_id: '/subscriptions/{subscriptionId}
 end
 ```
 
-See [integration tests](../../test/integration/verify/controls/azurerm_application_gateway.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azure_application_gateway.rb) for more examples.
 
 ## Matchers
 

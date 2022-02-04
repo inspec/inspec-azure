@@ -80,7 +80,7 @@ azure_api_managements.ids.each do |resource_id|
   end
 end
 ```
-See [integration tests](../../test/integration/verify/controls/azurerm_api_management.rb) for more examples.
+See [integration tests](../../test/integration/verify/controls/azure_api_management.rb) for more examples.
 
 ## Matchers
 

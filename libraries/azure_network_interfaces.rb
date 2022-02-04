@@ -44,25 +44,3 @@ class AzureNetworkInterfaces < AzureGenericResources
     super(AzureNetworkInterfaces)
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermNetworkInterfaces < AzureNetworkInterfaces
-  name 'azurerm_network_interfaces'
-  desc 'Verifies settings for a collection of Azure Network Interfaces'
-  example <<-EXAMPLE
-    describe azurerm_network_interfaces do
-        it  { should exist }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkInterfaces.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2018-11-01'
-    super
-  end
-end

@@ -100,26 +100,3 @@ class AzureKeyVault < AzureGenericResource
     result
   end
 end
-
-# Provide the same functionality under the old resource name.
-# This is for backward compatibility.
-class AzurermKeyVault < AzureKeyVault
-  name 'azurerm_key_vault'
-  desc 'Verifies settings and configuration for an Azure Key Vault'
-  example <<-EXAMPLE
-    describe azurerm_key_vault(resource_group: 'rg-1', vault_name: 'vault-1') do
-      it            { should exist }
-      its('name')   { should eq('vault-1') }
-    end
-  EXAMPLE
-
-  def initialize(opts = {})
-    Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVault.name)
-    # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-
-    # For backward compatibility.
-    opts[:api_version] ||= '2016-10-01'
-    super
-  end
-end
