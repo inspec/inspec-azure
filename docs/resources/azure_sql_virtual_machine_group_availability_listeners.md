@@ -5,7 +5,7 @@ platform: azure
 
 # azure_sql_virtual_machine_group_availability_listeners
 
-Use the `azure_sql_virtual_machine_group_availability_listeners` InSpec audit resource to test properties related to all Azure SQL Virtual Machine Group Availability Listeners.
+Use the `azure_sql_virtual_machine_group_availability_listeners` InSpec audit resource to test properties related to all Azure SQL virtual machine group availability listeners.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-An `azure_sql_virtual_machine_group_availability_listeners` resource block returns all Azure SQL Virtual Machine Group Availability Listeners.
+An `azure_sql_virtual_machine_group_availability_listeners` resource block returns all Azure SQL virtual machine group availability listeners.
 
 ```ruby
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME') do
@@ -35,29 +35,30 @@ end
 ```
 
 ## Parameters
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
-| sql_virtual_machine_group_name | AQL Virtual Machine Group Name                                   |
 
-The parameter set should be provided for a valid query:
-- `resource_group` && `sql_virtual_machine_group_name`
+`resource_group` _(required)_
+
+Azure resource group that the targeted resource resides in.
+
+`sql_virtual_machine_group_name` _(required)_
+
+Azure SQL virtual machine group name
 
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
 | ids                            | A list of resource IDs.                                                | `id`             |
-| names                          | A list of resource Names.                                              | `name`           |
+| names                          | A list of resource names.                                              | `name`           |
 | types                          | A list of the resource types.                                          | `type`           |
-| properties                     | A list of Properties for all the SQL Virtual Machine Group Availability Listeners.     | `properties`     |
-| provisioningStates             | A list of provisioning states of the SQL Virtual Machine Group Availability Listeners. | `provisioningState`|
+| properties                     | A list of Properties for all the SQL virtual machine group availability listeners.     | `properties`     |
+| provisioningStates             | A list of provisioning states of the SQL virtual machine group availability listeners. | `provisioningState`|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Loop through SQL Virtual Machine Group Availability Listeners by their names.
+### Loop through SQL virtual machine group availability listeners by their names.
 
 ```ruby
 azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME').names.each do |name|
@@ -66,7 +67,8 @@ azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE
   end
 end
 ```
-### Test that there are SQL Virtual Machine Group Availability Listeners that are successfully provisioned.
+
+### Test that there are SQL virtual machine group availability listeners that are successfully provisioned.
 
 ```ruby
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME').where(provisioningState: 'Succeeded') do
@@ -81,15 +83,16 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no SQL Virtual Machine Group Availability Listeners are present
+# Should not exist if no SQL virtual machine group availability listeners are present
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one SQL Virtual Machine Group Availability Listeners
+# Should exist if the filter returns at least one SQL virtual machine group availability listeners
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME') do
   it { should exist }
 end
 ```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `reader` role on the subscription you wish to test.
