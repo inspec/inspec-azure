@@ -5,7 +5,7 @@ platform: azure
 
 # azure_sql_virtual_machine_group
 
-Use the `azure_sql_virtual_machine_group` InSpec audit resource to test properties related to an Azure SQL Virtual Machine Group.
+Use the `azure_sql_virtual_machine_group` InSpec audit resource to test properties related to an Azure SQL virtual machine group.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -26,7 +26,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 ## Syntax
 
-`name`, `resource_group` is a required parameter.
+`name`, `resource_group` are required parameters.
 
 ```ruby
 describe azure_sql_virtual_machine_group(resource_group: 'RESOURCE_GROUP', name: 'SQL_VIRTUAL_MACHINE_GROUP') do
@@ -41,15 +41,16 @@ describe azure_sql_virtual_machine_group(resource_group: 'RESOURCE_GROUP', name:
   it  { should exist }
 end
 ```
+
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure SQL Virtual Machine Groups to test.                                   |
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup`    |
+`name` _(required)_
 
-The parameter set should be provided for a valid query:
-- `resource_group` and `name`
+Name of the Azure SQL virtual machine group to test.
+
+`resource_group` _(required)_
+
+Azure resource group that the targeted resource resides in.
 
 ## Properties
 
@@ -59,7 +60,7 @@ The parameter set should be provided for a valid query:
 | name                     | Resource name.                                                   |
 | type                     | Resource type. `Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups`|
 | location                 | The Geo-location where the resource lives.                       |
-| properties               | The properties of the SQL Virtual Machine Group.                 |
+| properties               | The properties of the SQL virtual machine group.                 |
 | properties.provisioningState | State of the resource.                                       |
 
 
@@ -69,7 +70,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/s
 
 ## Examples
 
-### Test that the SQL Virtual Machine Group is provisioned successfully.
+### Test that the SQL virtual machine group is provisioned successfully.
 
 ```ruby
 describe azure_sql_virtual_machine_group(resource_group: 'RESOURCE_GROUP', name: 'SQL_VIRTUAL_MACHINE_GROUP') do
@@ -84,11 +85,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If a SQL Virtual Machine Group is found it will exist
+# If a SQL virtual machine group is found it will exist
 describe azure_sql_virtual_machine_group(resource_group: 'RESOURCE_GROUP', name: 'SQL_VIRTUAL_MACHINE_GROUP') do
   it { should exist }
 end
-# if SQL Virtual Machine Group is not found it will not exist
+# if SQL virtual machine group is not found it will not exist
 describe azure_sql_virtual_machine_group(resource_group: 'RESOURCE_GROUP', name: 'SQL_VIRTUAL_MACHINE_GROUP') do
   it { should_not exist }
 end

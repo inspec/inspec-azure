@@ -5,7 +5,7 @@ platform: azure
 
 # azure_sql_virtual_machine_groups
 
-Use the `azure_sql_virtual_machine_groups` InSpec audit resource to test properties related to all Azure SQL Virtual Machine Groups.
+Use the `azure_sql_virtual_machine_groups` InSpec audit resource to test properties related to all Azure SQL virtual machine groups.
 
 ## Azure REST API version, endpoint and http client parameters
 
@@ -35,29 +35,27 @@ end
 ```
 
 ## Parameters
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| resource_group | Azure resource group that the targeted resource resides in. `MyResourceGroup` (Optional)   |
 
-The parameter set optionally be provided for a valid query:
-- `resource_group`
+`resource_group` _(optional)_
+
+Azure resource group that the targeted resource resides in.
 
 ## Properties
 
 |Property                        | Description                                                            | Filter Criteria<superscript>*</superscript> |
 |--------------------------------|------------------------------------------------------------------------|------------------|
 | ids                            | A list of resource IDs.                                                | `id`             |
-| names                          | A list of resource Names.                                              | `name`           |
+| names                          | A list of resource names.                                              | `name`           |
 | types                          | A list of the resource types.                                          | `type`           |
-| properties                     | A list of Properties for all the SQL Virtual Machine Groups.           | `properties`     |
-| locations                      | A list of the Geo-locations.                                           | `location`       |
-| provisioningStates             | A list of provisioning states of the SQL Virtual Machine Groups.       | `provisioningState`|
+| properties                     | A list of properties for all the SQL virtual machine groups.           | `properties`     |
+| locations                      | A list of the resource locations.                                      | `location`       |
+| provisioningStates             | A list of provisioning states of the SQL virtual machine groups.       | `provisioningState`|
 
 <superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
 
 ## Examples
 
-### Loop through SQL Virtual Machine Groups by their names.
+### Loop through SQL virtual machine groups by their names.
 
 ```ruby
 azure_sql_virtual_machine_groups(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -66,7 +64,8 @@ azure_sql_virtual_machine_groups(resource_group: 'RESOURCE_GROUP').names.each do
   end
 end
 ```
-### Test that there are SQL Virtual Machine Groups that are successfully provisioned.
+
+### Test that there are SQL virtual machine groups that are successfully provisioned.
 
 ```ruby
 describe azure_sql_virtual_machine_groups(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do
