@@ -1,10 +1,26 @@
 # Changelog
-<!-- latest_release 1.84.5 -->
+<!-- latest_release 1.86.1 -->
+## [v1.86.1](https://github.com/inspec/inspec-azure/tree/v1.86.1) (2022-02-09)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.23.0 to ~&gt; 1.24.0 [#597](https://github.com/inspec/inspec-azure/pull/597) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- stick active support to older versions for ruby &lt; 2.7 [#608](https://github.com/inspec/inspec-azure/pull/608) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.86.0](https://github.com/inspec/inspec-azure/tree/v1.86.0) (2022-02-01)
+
+#### Merged Pull Requests
+- Support cache for storage accounts [#628](https://github.com/inspec/inspec-azure/pull/628) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.85.0](https://github.com/inspec/inspec-azure/tree/v1.85.0) (2022-02-01)
+
+#### Merged Pull Requests
+- Support caching of azure nw sgs [#624](https://github.com/inspec/inspec-azure/pull/624) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.84.5](https://github.com/inspec/inspec-azure/tree/v1.84.5) (2022-01-31)
 
 #### Merged Pull Requests
 - Remove release notes from static dir [#629](https://github.com/inspec/inspec-azure/pull/629) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.84.4](https://github.com/inspec/inspec-azure/tree/v1.84.4) (2022-01-24)
 
