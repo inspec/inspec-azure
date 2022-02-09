@@ -1,11 +1,16 @@
 # Changelog
-<!-- latest_release 1.86.1 -->
+<!-- latest_release 1.86.2 -->
+## [v1.86.2](https://github.com/inspec/inspec-azure/tree/v1.86.2) (2022-02-09)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.24.0 to ~&gt; 1.25.1 [#631](https://github.com/inspec/inspec-azure/pull/631) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
 ## [v1.86.1](https://github.com/inspec/inspec-azure/tree/v1.86.1) (2022-02-09)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.23.0 to ~&gt; 1.24.0 [#597](https://github.com/inspec/inspec-azure/pull/597) ([dependabot[bot]](https://github.com/dependabot[bot]))
 - stick active support to older versions for ruby &lt; 2.7 [#608](https://github.com/inspec/inspec-azure/pull/608) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.86.0](https://github.com/inspec/inspec-azure/tree/v1.86.0) (2022-02-01)
 
