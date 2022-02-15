@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.86.2 -->
+<!-- latest_release 1.86.3 -->
+## [v1.86.3](https://github.com/inspec/inspec-azure/tree/v1.86.3) (2022-02-10)
+
+#### Merged Pull Requests
+- RESOURCE-31 Add SimpleCov [#633](https://github.com/inspec/inspec-azure/pull/633) ([clintoncwolfe](https://github.com/clintoncwolfe))
+<!-- latest_release -->
+
 ## [v1.86.2](https://github.com/inspec/inspec-azure/tree/v1.86.2) (2022-02-09)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.24.0 to ~&gt; 1.25.1 [#631](https://github.com/inspec/inspec-azure/pull/631) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.86.1](https://github.com/inspec/inspec-azure/tree/v1.86.1) (2022-02-09)
 
