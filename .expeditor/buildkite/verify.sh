@@ -28,8 +28,14 @@ if [ -n "${CI_ENABLE_COVERAGE:-}" ]; then
   export PATH=$SONAR_SCANNER_HOME/bin:$PATH
   export SONAR_SCANNER_OPTS="-server"
 
+  echo "--- installing vault"
+  export VAULT_VERSION=1.9.3
+  export VAULT_HOME=$HOME/vault
+  curl --create-dirs -sSLo $VAULT_HOME/vault.zip https://releases.hashicorp.com/vault/$VAULT_VERSION/vault_${VAULT_VERSION}_linux_amd64.zip
+  unzip -o $VAULT_HOME/vault.zip -d $VAULT_HOME
+
   echo "--- fetching Sonar token"
-  export SONAR_TOKEN=$(vault kv get -field token secrets/cubbyhole/inspec-sonar-token)
+  export SONAR_TOKEN=$($VAULT_HOME/vault kv get -field token secrets/cubbyhole/inspec-sonar-token)
 
   echo "--- running sonarscanner"
   sonar-scanner \
