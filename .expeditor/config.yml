@@ -9,7 +9,7 @@ slack:
 pipelines:
  - verify:
     description: Pull Request validation tests
-    public: false
+    public: true
 
 github:
  delete_branch_on_merge: true
