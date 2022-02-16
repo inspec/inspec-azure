@@ -18,7 +18,10 @@ steps:
   command:
     - CI_ENABLE_COVERAGE=1 /workdir/.expeditor/buildkite/verify.sh
   expeditor:
-    secrets: true
+    secrets:
+      SONAR_TOKEN:
+        path: secrets/cubbyhole/inspec-sonar-token
+        field: token
     executor:
       docker:
         image: ruby:2.7-buster
