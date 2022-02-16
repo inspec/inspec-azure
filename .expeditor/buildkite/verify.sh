@@ -19,7 +19,7 @@ bundle exec rake test:unit
 RAKE_EXIT=$?
 
 # If coverage is enabled, then we need to pick up the coverage/coverage.json file
-if [ -n "$CI_ENABLE_COVERAGE" ]; then
+if [ -n "${CI_ENABLE_COVERAGE:-}" ]; then
   echo "--- installing sonarscanner"
   export SONAR_SCANNER_VERSION=4.6.2.2472
   export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -27,6 +27,9 @@ if [ -n "$CI_ENABLE_COVERAGE" ]; then
   unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
   export PATH=$SONAR_SCANNER_HOME/bin:$PATH
   export SONAR_SCANNER_OPTS="-server"
+
+  echo "--- fetching Sonar token"
+  export SONAR_TOKEN=$(vault kv get -field token secrets/cubbyhole/inspec-sonar-token)
 
   echo "--- running sonarscanner"
   sonar-scanner \
