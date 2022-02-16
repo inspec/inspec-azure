@@ -34,7 +34,7 @@ if [ -n "${CI_ENABLE_COVERAGE:-}" ]; then
   curl --create-dirs -sSLo $VAULT_HOME/vault.zip https://releases.hashicorp.com/vault/$VAULT_VERSION/vault_${VAULT_VERSION}_linux_amd64.zip
   unzip -o $VAULT_HOME/vault.zip -d $VAULT_HOME
 
-  echo "--- fetching Sonar token"
+  echo "--- fetching Sonar token from vault"
   export SONAR_TOKEN=$($VAULT_HOME/vault kv get -field token secrets/cubbyhole/inspec-sonar-token)
 
   echo "--- running sonarscanner"
