@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.86.4 -->
+<!-- latest_release 1.86.5 -->
+## [v1.86.5](https://github.com/inspec/inspec-azure/tree/v1.86.5) (2022-02-16)
+
+#### Merged Pull Requests
+- Add code to run SonarScanner on test unit runs [#634](https://github.com/inspec/inspec-azure/pull/634) ([clintoncwolfe](https://github.com/clintoncwolfe))
+<!-- latest_release -->
+
 ## [v1.86.4](https://github.com/inspec/inspec-azure/tree/v1.86.4) (2022-02-15)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.24.0 to ~&gt; 1.25.1 [#635](https://github.com/inspec/inspec-azure/pull/635) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.86.3](https://github.com/inspec/inspec-azure/tree/v1.86.3) (2022-02-10)
 
