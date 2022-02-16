@@ -35,7 +35,7 @@ if [ -n "${CI_ENABLE_COVERAGE:-}" ]; then
   unzip -o $VAULT_HOME/vault.zip -d $VAULT_HOME
 
   echo "--- fetching Sonar token from vault"
-  export SONAR_TOKEN=$($VAULT_HOME/vault kv get -field token secrets/cubbyhole/inspec-sonar-token)
+  export SONAR_TOKEN=$($VAULT_HOME/vault kv get -field token secrets/secret/inspec-sonar-token)
 
   echo "--- running sonarscanner"
   sonar-scanner \
