@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.86.5 -->
+<!-- latest_release 1.87.0 -->
+## [v1.87.0](https://github.com/inspec/inspec-azure/tree/v1.87.0) (2022-02-17)
+
+#### Merged Pull Requests
+- RESOURCE-154 Support azure power bi apps [#519](https://github.com/inspec/inspec-azure/pull/519) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.86.5](https://github.com/inspec/inspec-azure/tree/v1.86.5) (2022-02-16)
 
 #### Merged Pull Requests
 - Add code to run SonarScanner on test unit runs [#634](https://github.com/inspec/inspec-azure/pull/634) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_release -->
 
 ## [v1.86.4](https://github.com/inspec/inspec-azure/tree/v1.86.4) (2022-02-15)
 
