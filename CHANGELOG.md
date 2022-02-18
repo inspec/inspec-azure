@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.88.0 -->
+<!-- latest_release 1.89.0 -->
+## [v1.89.0](https://github.com/inspec/inspec-azure/tree/v1.89.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-150 Support power bi capacities [#532](https://github.com/inspec/inspec-azure/pull/532) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.88.0](https://github.com/inspec/inspec-azure/tree/v1.88.0) (2022-02-18)
 
 #### Merged Pull Requests
 - RESOURCE-151 Support azure power bi app dashboard tiles [#528](https://github.com/inspec/inspec-azure/pull/528) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.87.2](https://github.com/inspec/inspec-azure/tree/v1.87.2) (2022-02-18)
 
