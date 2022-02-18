@@ -5,10 +5,10 @@ gh_repo = "inspec"
 platform = "azure"
 
 [menu]
-  [menu.automate]
+  [menu.inspec]
     title = "{{ .Name | humanize | title }}"
     identifier = "inspec/resources/azure/{{ .Name | humanize | title }}"
-    parent = "inspec/"
+    parent = "inspec/resources/azure"
 +++
 
 
