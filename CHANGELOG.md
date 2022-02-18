@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.91.0 -->
+<!-- latest_release 1.92.0 -->
+## [v1.92.0](https://github.com/inspec/inspec-azure/tree/v1.92.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-141 Support azure power bi datasets [#536](https://github.com/inspec/inspec-azure/pull/536) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.91.0](https://github.com/inspec/inspec-azure/tree/v1.91.0) (2022-02-18)
 
 #### Merged Pull Requests
 - RESOURCE-142 Support power bi dataflows [#535](https://github.com/inspec/inspec-azure/pull/535) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.90.0](https://github.com/inspec/inspec-azure/tree/v1.90.0) (2022-02-18)
 
