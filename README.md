@@ -222,6 +222,8 @@ The following is a list of static resources.
 - [azure_power_bi_capacities](https://docs.chef.io/inspec/resources/azure_power_bi_capacities.md)
 - [azure_power_bi_capacity_refreshable](https://docs.chef.io/inspec/resources/azure_power_bi_capacity_refreshable.md)
 - [azure_power_bi_capacity_refreshables](https://docs.chef.io/inspec/resources/azure_power_bi_capacity_refreshables.md)
+- [azure_power_bi_dataflow](https://docs.chef.io/inspec/resources/azure_power_bi_dataflow.md)
+- [azure_power_bi_dataflows](https://docs.chef.io/inspec/resources/azure_power_bi_dataflows.md)
 - [azure_public_ip](https://docs.chef.io/inspec/resources/azure_public_ip/)
 - [azure_redis_cache](https://docs.chef.io/inspec/resources/azure_redis_cache/)
 - [azure_redis_caches](https://docs.chef.io/inspec/resources/azure_redis_caches/)
