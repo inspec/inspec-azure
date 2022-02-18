@@ -47,7 +47,7 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ### Service Principal
 
-Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against. 
+Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against.
 
 You should have the following pieces of information:
 
@@ -110,14 +110,14 @@ The following is a list of generic resources.
 - [azure_generic_resources](https://docs.chef.io/inspec/resources/azure_generic_resources/)
 - [azure_graph_generic_resource](https://docs.chef.io/inspec/resources/azure_graph_generic_resource/)
 - [azure_graph_generic_resources](https://docs.chef.io/inspec/resources/azure_graph_generic_resources/)
- 
+
 With the generic resources:
 
 - Azure cloud resources that this resource pack does not include a static InSpec resource for can be tested.
 - Azure resources from different resource providers and resource groups can be tested at the same time.
 - Server side filtering can be used for more efficient tests.
- 
-The following is a list of static resources. 
+
+The following is a list of static resources.
 
 - [azure_active_directory_domain_service](https://docs.chef.io/inspec/resources/azure_active_directory_domain_service/)
 - [azure_active_directory_domain_services](https://docs.chef.io/inspec/resources/azure_active_directory_domain_services/)
@@ -217,6 +217,8 @@ The following is a list of static resources.
 - [azure_postgresql_servers](https://docs.chef.io/inspec/resources/azure_postgresql_servers/)
 - [azure_power_bi_app](https://docs.chef.io/inspec/resources/azure_power_bi_app/)
 - [azure_power_bi_apps](https://docs.chef.io/inspec/resources/azure_power_bi_apps/)
+- [azure_power_bi_app_dashboard_tile](https://docs.chef.io/inspec/resources/azure_power_bi_app_dashboard_tile.md)
+- [azure_power_bi_app_dashboard_tiles](https://docs.chef.io/inspec/resources/azure_power_bi_app_dashboard_tiles.md)
 - [azure_public_ip](https://docs.chef.io/inspec/resources/azure_public_ip/)
 - [azure_redis_cache](https://docs.chef.io/inspec/resources/azure_redis_cache/)
 - [azure_redis_caches](https://docs.chef.io/inspec/resources/azure_redis_caches/)
@@ -280,7 +282,7 @@ azure_generic_resources(substring_of_name: 'project_A').ids.each do |id|
     its('location') { should eq 'eastus' }
   end
 end
-``` 
+```
 
 ### Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value
 
@@ -290,7 +292,7 @@ azure_generic_resources(tag_name: 'project_A').ids.each do |id|
     its('location') { should eq 'eastus' }
   end
 end
-``` 
+```
 
 ### Verify Properties of an Azure Virtual Machine
 
@@ -317,11 +319,11 @@ describe azure_network_security_group(resource_group: 'ProductionResourceGroup',
   it { should_not allow_rdp_from_internet }
   it { should_not allow_ssh_from_internet }
   it { should allow(source_ip_range: '0.0.0.0', destination_port: '22', direction: 'inbound') }
-  it { should allow_in(service_tag: 'Internet', port: %w{1433-1434 1521 4300-4350 5000-6000}) } 
+  it { should allow_in(service_tag: 'Internet', port: %w{1433-1434 1521 4300-4350 5000-6000}) }
 end
 ```
 
-## Parameters Applicable To All Resources 
+## Parameters Applicable To All Resources
 
 The generic resources and their derivations support following parameters unless stated otherwise in their specific resource page.
 
@@ -445,8 +447,8 @@ They can be defined as environment variables or resource parameters (has priorit
 | azurerm_security_center_policy, azurerm_security_center_policies | `2015-06-01-Preview` | [azure_security_center_policy](https://docs.chef.io/inspec/resources/azure_security_center_policy/), [azure_security_center_policies](https://docs.chef.io/inspec/resources/azure_security_center_policies/) |
 | azurerm_sql_database, azurerm_sql_databases | `2017-10-01-preview` | [azure_sql_database](https://docs.chef.io/inspec/resources/azure_sql_database/), [azure_sql_databases](https://docs.chef.io/inspec/resources/azure_sql_databases/) |
 | azurerm_sql_server, azurerm_sql_servers | `2018-06-01-preview` | [azure_sql_server](https://docs.chef.io/inspec/resources/azure_sql_server/), [azure_sql_servers](https://docs.chef.io/inspec/resources/azure_sql_servers/) |
-| azurerm_storage_account, azurerm_storage_accounts  | `2017-06-01` | [azure_storage_account](https://docs.chef.io/inspec/resources/azure_storage_account/), [azure_storage_accounts](https://docs.chef.io/inspec/resources/azure_storage_accounts/) | 
-| azurerm_storage_account_blob_container, azurerm_storage_account_blob_containers  | `2018-07-01` | [azure_storage_account_blob_container](https://docs.chef.io/inspec/resources/azure_storage_account_blob_container/), [azure_storage_account_blob_containers](https://docs.chef.io/inspec/resources/azure_storage_account_blob_containers/) | 
+| azurerm_storage_account, azurerm_storage_accounts  | `2017-06-01` | [azure_storage_account](https://docs.chef.io/inspec/resources/azure_storage_account/), [azure_storage_accounts](https://docs.chef.io/inspec/resources/azure_storage_accounts/) |
+| azurerm_storage_account_blob_container, azurerm_storage_account_blob_containers  | `2018-07-01` | [azure_storage_account_blob_container](https://docs.chef.io/inspec/resources/azure_storage_account_blob_container/), [azure_storage_account_blob_containers](https://docs.chef.io/inspec/resources/azure_storage_account_blob_containers/) |
 | azurerm_subnet, azurerm_subnets | `2018-02-01` | [azure_subnet](https://docs.chef.io/inspec/resources/azure_subnet/), [azure_subnets](https://docs.chef.io/inspec/resources/azure_subnets/) |
 | azurerm_subscription | `2019-10-01` | [azure_subscription](https://docs.chef.io/inspec/resources/azure_subscription/) |
 | azurerm_virtual_machine, azurerm_virtual_machines | `2017-12-01` | [azure_virtual_machine](https://docs.chef.io/inspec/resources/azure_virtual_machine/), [azure_virtual_machines](https://docs.chef.io/inspec/resources/azure_virtual_machines/) |
@@ -456,7 +458,7 @@ They can be defined as environment variables or resource parameters (has priorit
 
 ## Development
 
-If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
+If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md).
 
 For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
@@ -468,10 +470,10 @@ The easiest way to start is checking the existing static resources. They have de
 
 The common parameters are:
 
-- `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author via the `specific_resource_constraint` method, and it should be the first parameter defined in the resource. This method includes user-supplied input validation.  
+- `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author via the `specific_resource_constraint` method, and it should be the first parameter defined in the resource. This method includes user-supplied input validation.
 - `display_name`: A generic one will be created unless defined.
 - `required_parameters`: Define mandatory parameters. The `resource_group` and resource `name` in the singular resources are default mandatory in the base class.
-- `allowed_parameters`: Define optional parameters. The `resource_group` is optional in plural resources, but this can be made mandatory in the static resource. 
+- `allowed_parameters`: Define optional parameters. The `resource_group` is optional in plural resources, but this can be made mandatory in the static resource.
 - `resource_uri`: Azure REST API URI of a resource. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` to be set to either `true` or `false`. See [azure_policy_definition](libraries/azure_policy_definition.rb) and [azure_policy_definitions](libraries/azure_policy_definitions.rb).
 - `add_subscription_id`: It indicates whether the subscription ID should be included in the `resource_uri` or not.
 
@@ -482,7 +484,7 @@ The singular resource is used to test a specific resource of a specific type and
 - In most cases `resource_group` and resource `name` should be required from the users and a single API call would be enough for creating methods on the resource. See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
 - If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
 - If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
-- If it is necessary to make an additional API call within a static method, the `create_additional_properties` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
+- If it is necessary to make an additional API call within a static method, the `create_additional_properties` should be used. See [azure_key_vault](libraries/azure_key_vault.rb).
 
 #### Plural Resources
 
