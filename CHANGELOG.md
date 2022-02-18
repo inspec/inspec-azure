@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.87.2 -->
+<!-- latest_release 1.88.0 -->
+## [v1.88.0](https://github.com/inspec/inspec-azure/tree/v1.88.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-151 Support azure power bi app dashboard tiles [#528](https://github.com/inspec/inspec-azure/pull/528) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.87.2](https://github.com/inspec/inspec-azure/tree/v1.87.2) (2022-02-18)
 
 #### Merged Pull Requests
 -  Munge docs content so we can deploy it on docs.chef.io [#639](https://github.com/inspec/inspec-azure/pull/639) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.87.1](https://github.com/inspec/inspec-azure/tree/v1.87.1) (2022-02-17)
 
