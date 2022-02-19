@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.92.2 -->
+<!-- latest_release 1.92.3 -->
+## [v1.92.3](https://github.com/inspec/inspec-azure/tree/v1.92.3) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-109 Support sql vm groups [#595](https://github.com/inspec/inspec-azure/pull/595) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.92.2](https://github.com/inspec/inspec-azure/tree/v1.92.2) (2022-02-19)
 
 #### Merged Pull Requests
 - RESOURCE-110 Support availability group listeners sql vm [#596](https://github.com/inspec/inspec-azure/pull/596) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.92.1](https://github.com/inspec/inspec-azure/tree/v1.92.1) (2022-02-19)
 
