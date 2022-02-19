@@ -248,6 +248,8 @@ The following is a list of static resources.
 - [azure_sql_servers](https://docs.chef.io/inspec/resources/azure_sql_servers/)
 - [azure_sql_virtual_machine](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine.md)
 - [azure_sql_virtual_machines](https://docs.chef.io/inspec/resources/azure_sql_virtual_machines.md)
+- [azure_sql_virtual_machine_group](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_group.md)
+- [azure_sql_virtual_machine_groups](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_groups.md)
 - [azure_sql_virtual_machine_group_availability_listener](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_group_availability_listener.md)
 - [azure_sql_virtual_machine_group_availability_listeners](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_group_availability_listeners.md)
 - [azure_storage_account](https://docs.chef.io/inspec/resources/azure_storage_account/)
