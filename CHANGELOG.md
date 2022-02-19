@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.92.0 -->
+<!-- latest_release 1.92.1 -->
+## [v1.92.1](https://github.com/inspec/inspec-azure/tree/v1.92.1) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-111 Support sql vms [#594](https://github.com/inspec/inspec-azure/pull/594) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.92.0](https://github.com/inspec/inspec-azure/tree/v1.92.0) (2022-02-18)
 
 #### Merged Pull Requests
 - RESOURCE-141 Support azure power bi datasets [#536](https://github.com/inspec/inspec-azure/pull/536) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.91.0](https://github.com/inspec/inspec-azure/tree/v1.91.0) (2022-02-18)
 
