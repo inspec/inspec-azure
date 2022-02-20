@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.92.3 -->
+<!-- latest_release 1.92.4 -->
+## [v1.92.4](https://github.com/inspec/inspec-azure/tree/v1.92.4) (2022-02-20)
+
+#### Merged Pull Requests
+- RESOURCE-33 Fetch sonar token as early as possible [#638](https://github.com/inspec/inspec-azure/pull/638) ([clintoncwolfe](https://github.com/clintoncwolfe))
+<!-- latest_release -->
+
 ## [v1.92.3](https://github.com/inspec/inspec-azure/tree/v1.92.3) (2022-02-19)
 
 #### Merged Pull Requests
 - RESOURCE-109 Support sql vm groups [#595](https://github.com/inspec/inspec-azure/pull/595) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.92.2](https://github.com/inspec/inspec-azure/tree/v1.92.2) (2022-02-19)
 
