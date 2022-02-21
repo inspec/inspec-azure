@@ -37,6 +37,8 @@ class AzureStorageAccounts < AzureGenericResources
 
     # FilterTable is populated at the very end due to being an expensive operation.
     AzureGenericResources.populate_filter_table(:table, table_schema)
+
+    populate_filter_table_from_response
   end
 
   def to_s
