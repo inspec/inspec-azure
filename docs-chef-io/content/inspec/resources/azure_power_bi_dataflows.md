@@ -1,24 +1,24 @@
----
-title: About the azure_power_bi_dataflows Resource
-platform: azure
----
++++
+title = "azure_power_bi_dataflows Resource"
+platform = "azure"
+draft = false
+gh_repo = "inspec-azure"
 
-# azure_power_bi_dataflows
+[menu.inspec]
+title = "azure_power_bi_dataflows"
+identifier = "inspec/resources/azure/azure_power_bi_dataflows Resource"
+parent = "inspec/resources/azure"
++++
 
 Use the `azure_power_bi_dataflows` InSpec audit resource to test the properties related to all Azure Power BI dataflows.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
-If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+{{% inspec_azure_common_parameters %}}
 
-Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
+## Installation
 
-## Availability
-
-### Installation
-
-This resource is available in the [InSpec Azure resource pack](https://github.com/inspec/inspec-azure). For an example, `inspec.yml` file and how to set up your Azure credentials, refer to resource pack [README](../../README.md#Service-Principal).
+{{% inspec_azure_install %}}
 
 ## Syntax
 
@@ -32,9 +32,8 @@ end
 
 ## Parameters
 
-| Name           | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| group_id       | The Workspace ID.                                                                |
+`group_id`
+: The Workspace ID.
 
 
 ## Properties
@@ -52,7 +51,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-### Test to ensure Power BI Dataflow for Finance exists
+**Test to ensure Power BI Dataflow for Finance exists.**
 
 ```ruby
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID').where(name: 'DATAFLOW_NAME') do
@@ -68,14 +67,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ```ruby
 # Should not exist if no Power BI dataflows are present
+
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID') do
   it { should_not exist }
 end
 # Should exist if the filter returns at least one Power BI dataflows
+
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID') do
   it { should exist }
 end
 ```
 
 ## Azure Permissions
+
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataflow.Read.All` role on the Azure Power BI Dataflow you wish to test.

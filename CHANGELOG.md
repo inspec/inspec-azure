@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.92.4 -->
+<!-- latest_release 1.92.5 -->
+## [v1.92.5](https://github.com/inspec/inspec-azure/tree/v1.92.5) (2022-02-21)
+
+#### Merged Pull Requests
+- Munge docs content so we can deploy it on docs.chef.io  [#640](https://github.com/inspec/inspec-azure/pull/640) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.92.4](https://github.com/inspec/inspec-azure/tree/v1.92.4) (2022-02-20)
 
 #### Merged Pull Requests
 - RESOURCE-33 Fetch sonar token as early as possible [#638](https://github.com/inspec/inspec-azure/pull/638) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_release -->
 
 ## [v1.92.3](https://github.com/inspec/inspec-azure/tree/v1.92.3) (2022-02-19)
 
