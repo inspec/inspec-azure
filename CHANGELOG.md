@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.92.5 -->
+<!-- latest_release 1.93.0 -->
+## [v1.93.0](https://github.com/inspec/inspec-azure/tree/v1.93.0) (2022-02-22)
+
+#### Merged Pull Requests
+- Support azure migrate db instances [#440](https://github.com/inspec/inspec-azure/pull/440) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.92.5](https://github.com/inspec/inspec-azure/tree/v1.92.5) (2022-02-21)
 
 #### Merged Pull Requests
 - Munge docs content so we can deploy it on docs.chef.io  [#640](https://github.com/inspec/inspec-azure/pull/640) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.92.4](https://github.com/inspec/inspec-azure/tree/v1.92.4) (2022-02-20)
 
