@@ -184,6 +184,8 @@ The following is a list of static resources.
 - [azure_migrate_assessment_groups](https://docs.chef.io/inspec/resources/azure_migrate_assessment_groups/)
 - [azure_migrate_project_database](https://docs.chef.io/inspec/resources/azure_migrate_project_database/)
 - [azure_migrate_project_databases](https://docs.chef.io/inspec/resources/azure_migrate_project_databases/)
+- [azure_migrate_project_database_instance](docs/resources/azure_migrate_project_database_instance.md)
+- [azure_migrate_project_database_instances](docs/resources/azure_migrate_project_database_instances.md)
 - [azure_migrate_project_event](https://docs.chef.io/inspec/resources/azure_migrate_project_event/)
 - [azure_migrate_project_events](https://docs.chef.io/inspec/resources/azure_migrate_project_events/)
 - [azure_migrate_project_machine](https://docs.chef.io/inspec/resources/azure_migrate_project_machine/)
