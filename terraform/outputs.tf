@@ -414,6 +414,11 @@ output "df_name" {
 output "df_location" {
   value = azurerm_data_factory.adf.location
 }
+
+output "df_pipeline_name" {
+  value = azurerm_data_factory_pipeline.df_pipeline.name
+}
+
 output "inspec_db_migration_service_name" {
   value = var.inspec_db_migration_service.name
 }
@@ -494,6 +499,16 @@ output "inspec_virtual_wan" {
   value = azurerm_virtual_wan.inspec-nw-wan.name
 }
 
+output "inspec_migrate_project_name" {
+  description = "The name of the Azure Migrate Project that was setup manually since there is no tf resource"
+  value = var.inspec_migrate_project_name
+}
+
+output "inspec_vnw_gateway_name" {
+  description = "The name of the Azure Virtual Network Gateway"
+  value = azurerm_virtual_network_gateway.inspec-nw-gateway.name
+}
+
 output "inspec_adls_account_name" {
   description = "The storage account for the ADLS"
   value = azurerm_storage_account.sa.name
@@ -512,4 +527,14 @@ output "inspec_adls_dns_suffix" {
 output "inspec_adls_fs_path" {
   description = "The ADLS File System Path name"
   value = azurerm_storage_data_lake_gen2_path.inspec_adls_gen2_path.path
+}
+
+output "inspec_sql_managed_instance_name" {
+  description = "The SQL managed instance name"
+  value = azurerm_sql_managed_instance.sql_instance_for_inspec.name
+}
+
+output "inspec_sql_virtual_machine" {
+  description = "SQL VM"
+  value = azurerm_mssql_virtual_machine.inspec_sql_vm.id
 }
