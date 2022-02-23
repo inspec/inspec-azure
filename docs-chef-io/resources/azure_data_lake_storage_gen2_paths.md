@@ -34,6 +34,7 @@ end
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
 | account_name   | The Azure Storage account name.                                                  |
+| filesystem     | The filesystem identifier.                                                       |
 | dns_suffix     | The DNS suffix for the Azure Data Lake Storage endpoint.                         |
 
 The parameter set should be provided for a valid query:
@@ -93,4 +94,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription and `Storage Blob Data Contributor` role on the ADLS Gen2 Storage Account you wish to test.

@@ -40,14 +40,14 @@ end
 
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
-| name           | Name of the Azure Date Lake Storage Gen2 to test.                                |
+| filesystem     | The filesystem identifier.                                                       |
 | account_name   | Azure Storage Account Name.                                                      |
-| path           | Path of the file.                                                                |
+| name           | The file or directory path.                                                      |
 | dns_suffix     | The DNS suffix for the Azure Data Lake Storage endpoint.                         |
 
 The parameter set should be provided for a valid query:
 
-- `name`, `account_name` and `path`
+- `name`, `account_name` and `filesystem`
 
 ## Properties
 
