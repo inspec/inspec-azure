@@ -16,7 +16,7 @@ steps:
 
 - label: run-tests-ruby-2.7
   command:
-    - RAKE_TASK=default /workdir/.expeditor/buildkite/verify.sh
+    - CI_ENABLE_COVERAGE=1 /workdir/.expeditor/buildkite/verify.sh
   expeditor:
     executor:
       docker:
@@ -24,7 +24,7 @@ steps:
 
 - label: run-tests-ruby-3.0
   command:
-    - RAKE_TASK=default /workdir/.expeditor/buildkite/verify.sh
+    - CI_ENABLE_COVERAGE=1 /workdir/.expeditor/buildkite/verify.sh
   expeditor:
     executor:
       docker:
