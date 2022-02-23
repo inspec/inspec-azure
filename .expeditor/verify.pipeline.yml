@@ -20,7 +20,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.7
+        image: ruby:2.7-buster
 
 - label: run-tests-ruby-3.0
   command:
