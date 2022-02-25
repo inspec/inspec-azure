@@ -1,5 +1,11 @@
 terraform {
   required_version = "~> 0.12.0"
+  required_providers {
+    powerbi = {
+      source = "codecutout/powerbi"
+      version = "~>1.3"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -9,6 +15,15 @@ provider "azurerm" {
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
   features {}
+}
+
+# this will work automatically when we upgrade to 0.13 ,
+# until than install provider as described here https://github.com/codecutout/terraform-provider-powerbi#local
+provider "powerbi" {
+  version         = "~> 1.3.1"
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 provider "random" {
@@ -299,7 +314,7 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefix       = "10.1.1.0/24"
   # "Soft" deprecated, required until v2 of azurerm provider:
-#  network_security_group_id = azurerm_network_security_group.nsg.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
@@ -1431,7 +1446,6 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   resource_group_name = azurerm_resource_group.rg.name
 }
 
-
 resource "azurerm_virtual_network" "inspec-gw-vnw" {
   name                = "inspec-gw-vnw"
   location            = azurerm_resource_group.rg.location
@@ -1572,4 +1586,23 @@ resource "azurerm_mssql_virtual_machine" "inspec_sql_vm" {
     maintenance_window_duration_in_minutes = 60
     maintenance_window_starting_hour       = 2
   }
+}
+
+resource "powerbi_workspace" "inspec_powerbi_workspace" {
+  name = "Inspec Workspace"
+}
+
+resource "powerbi_workspace_access" "allow_access_to_user" {
+  workspace_id = powerbi_workspace.inspec_powerbi_workspace.id
+  group_user_access_right = "Member"
+  email_address           = "sbabu@progress.com"
+  principal_type          = "User"
+}
+
+resource "azurerm_data_factory_dataset_cosmosdb_sqlapi" "cosmosdb_dataset" {
+  name                = "cosmosdb_dataset_sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  linked_service_name = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+  collection_name = "bar"
 }
