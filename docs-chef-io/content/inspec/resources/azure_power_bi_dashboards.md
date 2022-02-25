@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_power_bi_dashboards Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_power_bi_dashboards` InSpec audit resource to test the properties related to all AzurePower BI dashboards within a project.
+Use the `azure_power_bi_dashboards` InSpec audit resource to test the properties related to all AzurePower BI Dashboards within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_power_bi_dashboards` InSpec audit resource to test the properties
 
 ## Syntax
 
-An `azure_power_bi_dashboards` resource block returns all AzurePower BI dashboards within a group.
+An `azure_power_bi_dashboards` resource block returns all AzurePower BI Dashboards within a group.
 
 ```ruby
 describe azure_power_bi_dashboards do
@@ -70,7 +70,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Loop throughPower BI dashboards by their IDs.**
+**Loop throughPower BI Dashboards by their IDs.**
 
 ```ruby
 azure_power_bi_dashboards.ids.each do |id|
