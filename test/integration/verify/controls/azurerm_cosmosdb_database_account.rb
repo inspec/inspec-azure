@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-cosmosdb_database_account = attribute('cosmosdb_database_account', default: nil)
+resource_group = attribute('resource_group', value: nil)
+cosmosdb_database_account = attribute('cosmosdb_database_account', value: nil)
 
 control 'azurerm_cosmosdb_database_account' do
 

@@ -1,4 +1,4 @@
-control 'verify the settings of all Azure Power BI Capacity Refreshables' do
+control 'verify the settings of all Azure Power BI Capacity Refreshable' do
 
   impact 1.0
   title 'Testing the plural resource of azure_power_bi_capacity_refreshables.'

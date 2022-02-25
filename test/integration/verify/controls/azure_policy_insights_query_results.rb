@@ -1,5 +1,5 @@
 # # policy_definition = input(:policy_definition_id, value: nil)
-#
+
 control 'azure_policy_insights_query_results for non-compliant resources' do
   text = 'IsCompliant eq false'
 

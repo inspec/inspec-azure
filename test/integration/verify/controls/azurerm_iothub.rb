@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-iothub_resource_name = attribute('iothub_resource_name', default: nil)
+resource_group = attribute('resource_group', value: nil)
+iothub_resource_name = attribute('iothub_resource_name', value: nil)
 
 control 'azurerm_iothub' do
 

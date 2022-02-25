@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-nic_name = attribute('windows_vm_nic_name', default: nil)
+resource_group = attribute('resource_group', value: nil)
+nic_name = attribute('windows_vm_nic_name', value: nil)
 
 control 'azurerm_network_interfaces' do
 

@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-application_gateway_name = attribute('application_gateway_name', default: nil)
+resource_group = attribute('resource_group', value: nil)
+application_gateway_name = attribute('application_gateway_name', value: nil)
 
 control 'azurerm_application_gateways' do
 

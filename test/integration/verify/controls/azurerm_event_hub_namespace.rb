@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-event_hub_namespace_name = attribute('event_hub_namespace_name', default: nil)
+resource_group = attribute('resource_group', value: nil)
+event_hub_namespace_name = attribute('event_hub_namespace_name', value: nil)
 
 control 'azurerm_event_hub_namespace' do
 

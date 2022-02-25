@@ -1,5 +1,5 @@
-resource_group = attribute('resource_group', default: nil)
-api_management_name = attribute('api_management_name', default: '')
+resource_group = attribute('resource_group', value: nil)
+api_management_name = attribute('api_management_name', value: '')
 
 control 'azurerm_api_management' do
 

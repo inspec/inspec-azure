@@ -1,5 +1,5 @@
-resource_group_name = attribute(:resource_group, default: nil)
-inspec_redis_cache_name = attribute(:inspec_redis_cache_name, default: nil)
+resource_group_name = attribute(:resource_group, value: nil)
+inspec_redis_cache_name = attribute(:inspec_redis_cache_name, value: nil)
 
 control 'azure_redis_cache' do
 

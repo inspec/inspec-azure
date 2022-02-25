@@ -1,5 +1,6 @@
 resource_group = input(:resource_group, value: '')
 project_name = input(:inspec_migrate_project_name, value: '')
+
 name = 'inspec-migrate-test-assement'
 
 control 'verify all azure migrate assessments in a project' do
