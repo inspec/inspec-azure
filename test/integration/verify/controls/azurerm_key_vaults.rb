@@ -24,4 +24,8 @@ control 'azure_key_vaults' do
       its('type') { should eq 'Microsoft.KeyVault/vaults' }
     end
   end
+
+  describe azurerm_key_vaults(resource_group: resource_group) do
+    it { should exist }
+  end
 end

@@ -47,8 +47,10 @@ control 'azurerm_virtual_machines' do
 end
 
 control 'azure_virtual_machines' do
+
   impact 1.0
   title 'Ensure azure_virtual_machines works without providing resource_group.'
+  desc 'Testing the plural resource of azurerm_virtual_machines.'
 
   describe azure_virtual_machines do
     it { should exist }
