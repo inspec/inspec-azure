@@ -68,7 +68,7 @@ describe EnvironmentFile do
       CONTENT
     end
 
-    it 'raises an error when unkown keys are given' do
+    it 'raises an error when unknown keys are given' do
       assert_raises RuntimeError do
         @env_file.synchronize(%w{network_watcher graph unknown})
       end
