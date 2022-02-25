@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.96.0 -->
+<!-- latest_release 1.96.1 -->
+## [v1.96.1](https://github.com/inspec/inspec-azure/tree/v1.96.1) (2022-02-25)
+
+#### Merged Pull Requests
+- Update resource docs for Hugo [#642](https://github.com/inspec/inspec-azure/pull/642) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.96.0](https://github.com/inspec/inspec-azure/tree/v1.96.0) (2022-02-25)
 
 #### Merged Pull Requests
 - RESOURCE-140 Support Azure Power BI dataset datasources [#538](https://github.com/inspec/inspec-azure/pull/538) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.95.0](https://github.com/inspec/inspec-azure/tree/v1.95.0) (2022-02-25)
 
