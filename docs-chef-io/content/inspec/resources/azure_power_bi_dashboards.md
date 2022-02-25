@@ -65,6 +65,7 @@ end
 
 
 {{% inspec_filter_table %}}
+
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/dashboards/get-dashboards) for other properties available.
 
 ## Examples
@@ -79,7 +80,7 @@ azure_power_bi_dashboards.ids.each do |id|
 end
 ```
 
-**Test to ensure all Power BI Dashboards are ready only .**
+**Test to ensure all Power BI dashboards are ready only.**
 
 ```ruby
 describe azure_power_bi_dashboards.where(isReadOnly: true) do
@@ -94,12 +95,13 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Dashboards are present in the group
+# Should not exist if no Power BI dashboards are present in the group
 
 describe azure_power_bi_dashboards do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Dashboard in the group
+
+# Should exist if the filter returns at least one Power BI dashboard in the group
 
 describe azure_power_bi_dashboards do
   it { should exist }
@@ -108,4 +110,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.

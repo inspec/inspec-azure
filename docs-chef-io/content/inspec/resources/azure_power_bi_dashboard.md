@@ -25,7 +25,7 @@ Use the `azure_power_bi_dashboard` InSpec audit resource to test the properties 
 `dashboard_id` is a required parameter and `group_id` is an optional parameter.
 
 ```ruby
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID') do
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID') do
   it  { should exist }
 end
 ```
@@ -33,15 +33,17 @@ end
 ## Parameters
 
 `dashboard_id` _(required)_
+
 : The dashboard ID.
 
 `group_id` _(optional)_
+
 : The workspace ID.
 
 ## Properties
 
 `id`
-: Power BI Dashboard ID.
+: Power BI dashboard ID.
 
 `displayName`
 : The dashboard display name.
@@ -73,12 +75,15 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If the Azure Power BI Dashboard is found, it will exist
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID')  do
+# Should exist if the Power BI dashboard is present in the group
+
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID')  do
   it { should exist }
 end
-# if the Azure Power BI Dashboard is not found, it will not exist
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID')  do
+
+# Should not exist if the Power BI dashboard is not present in the group
+
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID')  do
   it { should_not exist }
 end
 ```

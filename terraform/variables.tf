@@ -182,3 +182,11 @@ variable "inspec_compliance_redis_cache_name" {
 variable "inspec_wan_name" {
   default = "inspec-nw-wan"
 }
+
+variable "dataset_type" {
+  default = "CosmosDbSqlApiCollection"
+}
+
+variable "inspec_adls_file_system_name" {
+  default = "inspec-adls-fs"
+}
