@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_power_bi_dashboard Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_power_bi_dashboard` InSpec audit resource to test the properties related to Azure Power BI dashboard.
+Use the `azure_power_bi_dashboard` InSpec audit resource to test the properties related to Azure Power BI Dashboard.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -60,10 +60,10 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Test that the Power BI dashboard is read only.**
+**Test that the Power BI Dashboard is read only.**
 
 ```ruby
-describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID')  do
+describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID')  do
   its('isReadOnly') { should eq 'true' }
 end
 ```
@@ -90,4 +90,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
