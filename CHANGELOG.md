@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.94.0 -->
+<!-- latest_release 1.94.1 -->
+## [v1.94.1](https://github.com/inspec/inspec-azure/tree/v1.94.1) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-136 F/df ds [#506](https://github.com/inspec/inspec-azure/pull/506) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.94.0](https://github.com/inspec/inspec-azure/tree/v1.94.0) (2022-02-25)
 
 #### Merged Pull Requests
 - RESOURCE-144 Support power bi dashboards [#507](https://github.com/inspec/inspec-azure/pull/507) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.93.1](https://github.com/inspec/inspec-azure/tree/v1.93.1) (2022-02-23)
 
