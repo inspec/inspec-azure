@@ -10,4 +10,8 @@ control 'azure_active_directory_domain_service' do
       its('isVerified') { should eq true }
     end
   end
+
+  describe azure_active_directory_domain_service(id: 'dummy') do
+    it { should_not exist }
+  end
 end

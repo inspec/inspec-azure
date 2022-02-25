@@ -4,6 +4,10 @@ event_hub_name = attribute('event_hub_name', default: nil)
 
 control 'azurerm_event_hub_event_hub' do
 
+  impact 1.0
+  title 'Testing the singular resource of azurerm_event_hub_event_hub.'
+  desc 'Testing the singular resource of azurerm_event_hub_event_hub.'
+
   describe azurerm_event_hub_event_hub(resource_group: resource_group, namespace_name: event_hub_namespace_name, event_hub_name: event_hub_name) do
     it          { should exist }
     its('name') { should eq event_hub_name }

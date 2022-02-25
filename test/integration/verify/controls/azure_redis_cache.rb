@@ -2,6 +2,11 @@ resource_group_name = attribute(:resource_group, default: nil)
 inspec_redis_cache_name = attribute(:inspec_redis_cache_name, default: nil)
 
 control 'azure_redis_cache' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_redis_cache.'
+  desc 'Testing the singular resource of azure_redis_cache.'
+
   describe azure_redis_cache(resource_group: resource_group_name, name: inspec_redis_cache_name) do
     it { should exist }
     it { should_not be_enabled_non_ssl_port }

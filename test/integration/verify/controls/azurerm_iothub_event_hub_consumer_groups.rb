@@ -5,6 +5,10 @@ consumer_groups = attribute('consumer_groups', default: nil)
 
 control 'azurerm_iothub_event_hub_consumer_groups' do
 
+  impact 1.0
+  title 'Testing the plural resource of azurerm_iothub_event_hub_consumer_groups.'
+  desc 'Testing the plural resource of azurerm_iothub_event_hub_consumer_groups.'
+
   azurerm_iothub_event_hub_consumer_groups(resource_group: resource_group,
                                            resource_name: iothub_resource_name,
                                            event_hub_endpoint: iothub_event_hub_endpoint).entries.each do |consumer_group|

@@ -3,6 +3,11 @@ wan_name = input(:inspec_virtual_wan, value: '')
 location = input(:location, value: '')&.downcase&.gsub(' ', '')
 
 control 'verifies settings of an individual azure virtual WAN' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_streaming_analytics_function.'
+  desc 'Testing the singular resource of azure_streaming_analytics_function.'
+
   describe azure_virtual_wan(resource_group: resource_group, name: wan_name) do
     it { should exist }
     its('name') { should include wan_name }

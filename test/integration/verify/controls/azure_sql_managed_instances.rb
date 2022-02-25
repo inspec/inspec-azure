@@ -3,6 +3,11 @@ sql_managed_instance_name = input(:inspec_sql_managed_instance_name, value: '')
 location = input(:location, value: '')
 
 control 'test the properties of all Azure SQL Managed Instances in the resource group' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_sql_managed_instances.'
+  desc 'Testing the plural resource of azure_sql_managed_instances.'
+
   describe azure_sql_managed_instances(resource_group: resource_group) do
     it { should exist }
     its('names') { should include sql_managed_instance_name }
