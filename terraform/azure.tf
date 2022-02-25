@@ -1598,3 +1598,11 @@ resource "powerbi_workspace_access" "allow_access_to_user" {
   email_address           = "sbabu@progress.com"
   principal_type          = "User"
 }
+
+resource "azurerm_data_factory_dataset_cosmosdb_sqlapi" "cosmosdb_dataset" {
+  name                = "cosmosdb_dataset_sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  linked_service_name = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+  collection_name = "bar"
+}

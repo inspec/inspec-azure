@@ -301,6 +301,8 @@ The following is a list of static resources.
 - [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
 - [azure_data_factories](docs/resources/azure_data_factories.md)
 - [azure_data_factory](docs/resources/azure_data_factory.md)
+- [azure_data_factory_dataset](docs/resources/azure_data_factory_dataset.md)
+- [azure_data_factory_datasets](docs/resources/azure_data_factory_datasets.md)
 - [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
 - [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
 - [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
