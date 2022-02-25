@@ -18,7 +18,7 @@ class AzureDataFactoryDataSets < AzureGenericResources
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DataFactory/factories', opts)
     opts[:required_parameters] = %i(factory_name)
     opts[:resource_path] = [opts[:factory_name], 'datasets'].join('/')
-    
+
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
