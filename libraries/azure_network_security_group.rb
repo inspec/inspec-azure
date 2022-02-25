@@ -45,6 +45,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     #       not to accept a different `resource_provider`.
     #
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/networkSecurityGroups', opts)
+    opts[:allowed_parameters] = %i(resource_data)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -170,10 +171,9 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   end
 
   def destination_port_ranges(properties)
-    properties_hash = properties.to_h
-    return Array(properties.destinationPortRange) unless properties_hash.include?(:destinationPortRanges)
+    return Array(properties.destinationPortRange) unless properties.include?(:destinationPortRanges)
 
-    return properties.destinationPortRanges unless properties_hash.include?(:destinationPortRange)
+    return properties.destinationPortRanges unless properties.include?(:destinationPortRange)
 
     properties.destinationPortRanges + Array(properties.destinationPortRange)
   end
@@ -210,6 +210,10 @@ class AzureNetworkSecurityGroup < AzureGenericResource
 
   def not_icmp?(properties)
     !properties.protocol.match?(/ICMP/)
+  end
+
+  def get_resource(opts = {})
+    opts[:resource_data].presence || super
   end
 
   # Code for backward compatibility ends here <<<<<<<<
