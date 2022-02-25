@@ -1,0 +1,35 @@
+require 'azure_generic_resources'
+
+class AzurePowerBIDashboardTiles < AzureGenericResources
+  name 'azure_power_bi_dashboard_tiles'
+  desc 'Retrieves and verifies the settings of all Azure Power BI Dashboard Tiles'
+  example <<-EXAMPLE
+    describe azure_power_bi_dashboard_tiles(dashboard_id: 'b84b01c6-3262-4671-bdc8-ff99becf2a0b', group_id: '95a4871a-33a4-4f35-9eea-8ff006b4840b') do
+      it { should exist }
+    end
+  EXAMPLE
+
+  AUDIENCE = 'https://analysis.windows.net/powerbi/api'.freeze
+
+  def initialize(opts = {})
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+
+    opts[:resource_uri] = ['https://api.powerbi.com/v1.0/myorg'].tap do |arr|
+      arr << "groups/#{opts.delete(:group_id)}" if opts[:group_id].present?
+      arr << "dashboards/#{opts[:name]}"
+      arr << 'tiles'
+    end.join('/')
+    opts[:audience] = AUDIENCE
+    opts[:add_subscription_id] = false
+    opts[:is_uri_a_url] = true
+    opts[:api_version] = 'v1.0'
+    super
+    return if failed_resource?
+
+    populate_filter_table_from_response
+  end
+
+  def to_s
+    super(AzurePowerBIDashboardTiles)
+  end
+end

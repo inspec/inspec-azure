@@ -1,10 +1,60 @@
 # Changelog
-<!-- latest_release 1.92.0 -->
+<!-- latest_release 1.95.0 -->
+## [v1.95.0](https://github.com/inspec/inspec-azure/tree/v1.95.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-143 Support power bi dashboard tiles [#516](https://github.com/inspec/inspec-azure/pull/516) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.94.1](https://github.com/inspec/inspec-azure/tree/v1.94.1) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-136 F/df ds [#506](https://github.com/inspec/inspec-azure/pull/506) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.94.0](https://github.com/inspec/inspec-azure/tree/v1.94.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-144 Support power bi dashboards [#507](https://github.com/inspec/inspec-azure/pull/507) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.93.1](https://github.com/inspec/inspec-azure/tree/v1.93.1) (2022-02-23)
+
+#### Merged Pull Requests
+- Resource-202 update azure tests to use ruby versions 2.7 and 3.0 only  [#641](https://github.com/inspec/inspec-azure/pull/641) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.93.0](https://github.com/inspec/inspec-azure/tree/v1.93.0) (2022-02-22)
+
+#### Merged Pull Requests
+- Support azure migrate db instances [#440](https://github.com/inspec/inspec-azure/pull/440) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.92.5](https://github.com/inspec/inspec-azure/tree/v1.92.5) (2022-02-21)
+
+#### Merged Pull Requests
+- Munge docs content so we can deploy it on docs.chef.io  [#640](https://github.com/inspec/inspec-azure/pull/640) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.92.4](https://github.com/inspec/inspec-azure/tree/v1.92.4) (2022-02-20)
+
+#### Merged Pull Requests
+- RESOURCE-33 Fetch sonar token as early as possible [#638](https://github.com/inspec/inspec-azure/pull/638) ([clintoncwolfe](https://github.com/clintoncwolfe))
+
+## [v1.92.3](https://github.com/inspec/inspec-azure/tree/v1.92.3) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-109 Support sql vm groups [#595](https://github.com/inspec/inspec-azure/pull/595) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.92.2](https://github.com/inspec/inspec-azure/tree/v1.92.2) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-110 Support availability group listeners sql vm [#596](https://github.com/inspec/inspec-azure/pull/596) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.92.1](https://github.com/inspec/inspec-azure/tree/v1.92.1) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-111 Support sql vms [#594](https://github.com/inspec/inspec-azure/pull/594) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.92.0](https://github.com/inspec/inspec-azure/tree/v1.92.0) (2022-02-18)
 
 #### Merged Pull Requests
 - RESOURCE-141 Support azure power bi datasets [#536](https://github.com/inspec/inspec-azure/pull/536) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.91.0](https://github.com/inspec/inspec-azure/tree/v1.91.0) (2022-02-18)
 
