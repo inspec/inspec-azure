@@ -1538,6 +1538,13 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
   }
 }
 
+resource "azurerm_storage_data_lake_gen2_path" "inspec_adls_gen2_path" {
+  path               = var.inspec_adls_path_name
+  filesystem_name    = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
+  storage_account_id = azurerm_storage_account.sa.id
+  resource           = "directory"
+}
+
 resource "azurerm_route_table" "route_table_sql_instance_inspec" {
   name                          = "routetable-inspec"
   location                      = azurerm_resource_group.rg.location
