@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.96.1 -->
+<!-- latest_release 1.97.0 -->
+## [v1.97.0](https://github.com/inspec/inspec-azure/tree/v1.97.0) (2022-02-28)
+
+#### Merged Pull Requests
+- RESOURCE-139 Support adls paths [#485](https://github.com/inspec/inspec-azure/pull/485) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.96.1](https://github.com/inspec/inspec-azure/tree/v1.96.1) (2022-02-25)
 
 #### Merged Pull Requests
 - Update resource docs for Hugo [#642](https://github.com/inspec/inspec-azure/pull/642) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.96.0](https://github.com/inspec/inspec-azure/tree/v1.96.0) (2022-02-25)
 
