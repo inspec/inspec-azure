@@ -1,10 +1,40 @@
 # Changelog
-<!-- latest_release 1.93.0 -->
+<!-- latest_release 1.96.1 -->
+## [v1.96.1](https://github.com/inspec/inspec-azure/tree/v1.96.1) (2022-02-25)
+
+#### Merged Pull Requests
+- Update resource docs for Hugo [#642](https://github.com/inspec/inspec-azure/pull/642) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
+## [v1.96.0](https://github.com/inspec/inspec-azure/tree/v1.96.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-140 Support Azure Power BI dataset datasources [#538](https://github.com/inspec/inspec-azure/pull/538) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.95.0](https://github.com/inspec/inspec-azure/tree/v1.95.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-143 Support power bi dashboard tiles [#516](https://github.com/inspec/inspec-azure/pull/516) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.94.1](https://github.com/inspec/inspec-azure/tree/v1.94.1) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-136 F/df ds [#506](https://github.com/inspec/inspec-azure/pull/506) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.94.0](https://github.com/inspec/inspec-azure/tree/v1.94.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-144 Support power bi dashboards [#507](https://github.com/inspec/inspec-azure/pull/507) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.93.1](https://github.com/inspec/inspec-azure/tree/v1.93.1) (2022-02-23)
+
+#### Merged Pull Requests
+- Resource-202 update azure tests to use ruby versions 2.7 and 3.0 only  [#641](https://github.com/inspec/inspec-azure/pull/641) ([soumyo13](https://github.com/soumyo13))
+
 ## [v1.93.0](https://github.com/inspec/inspec-azure/tree/v1.93.0) (2022-02-22)
 
 #### Merged Pull Requests
 - Support azure migrate db instances [#440](https://github.com/inspec/inspec-azure/pull/440) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.92.5](https://github.com/inspec/inspec-azure/tree/v1.92.5) (2022-02-21)
 
