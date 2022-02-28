@@ -156,8 +156,7 @@ output "windows_vm_os_disk" {
 }
 
 output "windows_vm_data_disks" {
-  value = [
-    var.windows_internal_data_disk]
+  value = [var.windows_internal_data_disk]
 }
 
 output "windows_vm_nic_name" {
@@ -337,10 +336,12 @@ output "api_management_name" {
   description = "the name for the azurerm_api_management resource"
   value       = var.api_management_count > 0 ? azurerm_api_management.apim01[0].name : ""
 }
+
 output "azure_streaming_job_function_name" {
   description = "the name for the azure_streaming_service_job"
   value       = azurer_stream_analytics_function_javascript_udf.streaming_job_function.name
 }
+
 output "azure_streaming_job_name" {
   description = "the name for the azure_streaming_service_resource_job_function"
   value       = azurer_stream_analytics_job.streaming_job.name
@@ -370,6 +371,7 @@ output "policy_definition_id" {
   description = "The ID of the policy Definition"
   value = azurerm_policy_definition.inspec_policy_definition.id
 }
+
 output "policy_definition_associated_cosmodb_id" {
   description = "The Resource ID for which a policy definition is run against"
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
@@ -524,7 +526,22 @@ output "inspec_adls_dns_suffix" {
   value = "dfs.core.windows.net"
 }
 
+output "inspec_adls_fs_path" {
+  description = "The ADLS File System Path name"
+  value = azurerm_storage_data_lake_gen2_path.inspec_adls_gen2_path.path
+}
+
 output "inspec_sql_managed_instance_name" {
   description = "The SQL managed instance name"
   value = azurerm_sql_managed_instance.sql_instance_for_inspec.name
+}
+
+output "inspec_sql_virtual_machine" {
+  description = "SQL VM"
+  value = azurerm_mssql_virtual_machine.inspec_sql_vm.id
+}
+
+output "inspec_powerbi_workspace_id" {
+  description = "The name of the Azure Power BI Workspace"
+  value = powerbi_workspace.inspec_powerbi_workspace.id
 }
