@@ -1,11 +1,11 @@
 ---
-title: About the azure_sentinel_alert_rules Resource
+title: About the azure_sentinel_alert_rule Resource
 platform: azure
 ---
 
-# azure_sentinel_alert_rules
+# azure_sentinel_alert_rule
 
-Use the `azure_sentinel_alert_rules` InSpec audit resource to test properties related to alert_rule for a resource group or the entire subscription.
+Use the `azure_sentinel_alert_rule` InSpec audit resource to test properties related to alert_rule for a resource group or the entire subscription.
 
 ## Azure REST API version, endpoint, and HTTP client parameters
 
@@ -16,7 +16,7 @@ For more information, refer to [`azure_generic_resource`](azure_generic_resource
 
 Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
 For more information, refer to the resource pack [README](../../README.md).
-For api related info : [`Azure alert_rule Docs`](https://docs.microsoft.com/en-us/rest/api/securityinsights/alert-rules/list).
+For api related info : [`Azure alert_rule Docs`](https://docs.microsoft.com/en-us/rest/api/securityinsights/stable/alert-rules/get).
 ## Availability
 
 ### Installation
@@ -29,67 +29,92 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 An `azure_sentinel_alert_rules` resource block returns all Azure alert_rule, either within a Resource Group (if provided), or within an entire Subscription.
 
 ```ruby
-describe azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'fn') do
-  #...
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  it { should exit }
 end
 ```
-`resource_group` and `workspace_name` must be given as parameters.
-
 
 ## Parameters
 
+`resource_group`, `workspace_name` and `rule_id` must be given as parameters.
+
 | Name                           | Description                                                                       |
-    |--------------------------------|-----------------------------------------------------------------------------------|
+|--------------------------------|-----------------------------------------------------------------------------------|
 | resource_group                 | Azure resource group that the targeted resource resides in. `MyResourceGroup`     |
-| workspace_name | Azure workspace Name for which alert_rule are being retrieved.|
+| workspace_name                 | Azure workspace Name for which alert_rule are being retrieved. |
+| rule_id                        | Alert rule ID. |
 
 ## Properties
 
-| Property        | Description                                            | Filter Criteria<superscript>*</superscript> |
-    |-----------------|---------------------------------------------------------|-----------------|
-| names           | A list of the unique resource names.                    | `name`          |
-| ids             | A list of alert_rule IDs .                       | `id`            |
-| properties      | A list of properties for the resource                   | `properties`          |
-| types      | A list of types for each resource              | `type`          |
-| severities | The severity for alerts created by this alert rule.                                 | `severity` |
-| displayNames| The List of display name for alerts created by this alert rule.. | `displayName` |
-| enableds | The list of flags which Determines whether this alert rule is enabled or disabled. | `enabled` |
-| kinds| The alert rule kind |`kind`|
-| alertRuleTemplateNames| The Name of the alert rule template used to create this rule.|`alertRuleTemplateName`|
-
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
+| Property                  | Description                       |
+| ------------------------- | --------------------------------- |
+| id                        | The id of the alert rule.         |
+| name                      | The name of the alert rule.       |
+| type                      | The type of the alert rule.       |
+| kind                      | The kind of the alert rule.       |
+| etag                      | The etag of the alert rule.       |
+| properties                | The properties of the alert rule  |
 
 ## Examples
 
-### Test if properties matches
+### Test if rule id exists
 
- ```ruby
-      describe azure_sentinel_alert_rules(resource_group: resource_group, workspace_name: workspace_name) do
-      its('names') { should include 'BuiltInFusion' }
-      its('types') { should include 'Microsoft.SecurityInsights/alertRules' }
-      its('kinds') { should include 'Fusion' }
-      its('severities') { should include 'High' }
-      its('enableds') { should include true }
-      its('displayNames') { should include 'Advanced Multistage Attack Detection' }
-      its('alertRuleTemplateNames') { should include 'f71aba3d-28fb-450b-b192-4e76a83015c8' }
-      end
- ```
+```ruby
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  its('id') { should eq 'ALERRT_RULE_ID' }
+end
+```
 
-### Test if any alert_rule exist in the resource group
+### Test if rule name exists
 
- ```ruby
-    describe azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'fn') do
-      it { should exist }
-    end
- ```
-### Test that there aren't any alert_rule in a resource group
+```ruby
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  its('name') { should eq 'ALERRT_RULE_NAME' }
+end
+```
 
- ```ruby
-     # Should not exist if no alert_rule are in the resource group
-     describe azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'fake') do
-      it { should_not exist }
-     end
- ```
+### Test if rule kind is `Scheduled`
+
+```ruby
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  its('kind') { should eq 'Scheduled' }
+end
+```
+
+### Test if rule type is `Microsoft.SecurityInsights/alertRules`
+
+```ruby
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  its('type') { should eq 'Microsoft.SecurityInsights/alertRules' }
+end
+```
+
+### Test if the display name is present or not.
+
+```ruby
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  its('properties.displayName') { should eq "DISPLAY_NAME" }
+end
+```
+
+## Matchers
+
+This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+
+### exists
+
+```ruby
+# If we expect a resource to always exist
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  it { should exist }
+end
+
+# If we expect a resource to never exist
+describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+  it { should_not exist }
+end
+```
+
 ## Azure Permissions
 
 Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be setup with a `contributor` role on the subscription you wish to test.
