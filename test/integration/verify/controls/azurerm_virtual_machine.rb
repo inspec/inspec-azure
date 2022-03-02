@@ -8,6 +8,11 @@ win_data_disk_names       = input('windows_vm_data_disks', value: nil)
 win_monitoring_agent_name = input('monitoring_agent_name', value: nil)
 
 control 'azurerm_virtual_machine' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_virtual_machine.'
+  desc 'Testing the singular resource of azurerm_virtual_machine.'
+
   describe azurerm_virtual_machine(resource_group: resource_group, name: win_name) do
     it                                { should exist }
     it                                { should have_monitoring_agent_installed }
@@ -39,8 +44,11 @@ control 'azurerm_virtual_machine' do
 end
 
 control 'azure_virtual_machine' do
+
   impact 1.0
   title 'Ensure azure_virtual_machine accepts resource_id and tests resource_group as a property.'
+  desc 'Testing the singular resource of azure_virtual_machine.'
+
   describe azure_virtual_machine(resource_id: win_id) do
     its('name') { should eq win_name }
     its('resource_group') { should eq resource_group }

@@ -5,6 +5,11 @@ nsg_insecure   = input('network_security_group_insecure', value: nil)
 nsg_open       = input('network_security_group_open', value: nil)
 
 control 'azurerm_network_security_group' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_network_security_group.'
+  desc 'Testing the singular resource of azure_network_security_group.'
+
   describe azurerm_network_security_group(resource_group: resource_group, name: nsg) do
     it                            { should exist }
     its('id')                     { should eq nsg_id }
@@ -58,6 +63,10 @@ control 'azurerm_network_security_group' do
 end
 
 control 'azure_network_security_group' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_network_security_group.'
+  desc 'Testing the singular resource of azure_network_security_group.'
 
   describe azure_network_security_group(resource_group: resource_group, name: nsg_insecure) do
     it { should allow_in(ip_range: '0.0.0.0', port: '22') }
