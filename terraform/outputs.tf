@@ -526,6 +526,11 @@ output "inspec_adls_dns_suffix" {
   value = "dfs.core.windows.net"
 }
 
+output "inspec_adls_fs_path" {
+  description = "The ADLS File System Path name"
+  value = azurerm_storage_data_lake_gen2_path.inspec_adls_gen2_path.path
+}
+
 output "inspec_sql_managed_instance_name" {
   description = "The SQL managed instance name"
   value = azurerm_sql_managed_instance.sql_instance_for_inspec.name
