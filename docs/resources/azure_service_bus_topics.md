@@ -28,7 +28,7 @@ For an example `inspec.yml` file and how to set up your Azure credentials, refer
 
 An `azure_service_bus_topics` resource block returns all Azure Service Bus Topics within a project.
 
-`name`, `namespace_name` and `resource_group` is a required parameter.
+`name`, `namespace_name`, and `resource_group` are the required parameters.
 
 ```ruby
 describe azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERVICE_BUS_NAMESPACE_NAME') do
