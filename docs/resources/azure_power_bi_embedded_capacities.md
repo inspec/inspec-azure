@@ -31,13 +31,13 @@ end
 ```
 
 ## Parameters
+
 | Name           | Description                                                                      |
 |----------------|----------------------------------------------------------------------------------|
 | account_name   | The Azure Storage account name.                                                  |
 | dns_suffix     | The DNS suffix for the Azure Data Lake Storage endpoint.                         |
 
-The parameter set should be provided for a valid query:
-- `account_name`
+The below parameters are optional.
 - `account_name` and `dns_suffix` (optional)
 
 ## Properties
@@ -87,13 +87,14 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Embedded Capacities are present in the project and in the resource group
-describe azure_power_bi_embedded_capacities do
-  it { should_not exist }
-end
 # Should exist if the filter returns at least one Migrate Assessment in the project and in the resource group
 describe azure_power_bi_embedded_capacities do
   it { should exist }
+end
+
+# Should not exist if no Power BI Embedded Capacities are present in the project and in the resource group
+describe azure_power_bi_embedded_capacities do
+  it { should_not exist }
 end
 ```
 

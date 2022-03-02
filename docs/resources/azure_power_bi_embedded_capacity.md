@@ -72,7 +72,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ```ruby
 describe azure_power_bi_embedded_capacity(resource_group: 'RESOURCE_GROUP', name: 'POWER_BI_EMBEDDED')  do
-  its() { should eq 1.0 }
+  its('count') { should eq 1.0 }
 end
 ```
 
