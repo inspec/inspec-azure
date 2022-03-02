@@ -1,6 +1,6 @@
 location = input(:location, value: '')
 
-skip_control 'test the properties of all Azure Service Fabric Mesh Applications' do
+skip_control 'test the properties of all Azure Service Fabric Mesh Volumes' do
   describe azure_service_fabric_mesh_volumes do
     it { should exist }
     its('names') { should include 'inspec-fb-mesh-vol' }
