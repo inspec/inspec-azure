@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.97.0 -->
+<!-- latest_release 1.97.1 -->
+## [v1.97.1](https://github.com/inspec/inspec-azure/tree/v1.97.1) (2022-03-02)
+
+#### Merged Pull Requests
+- Removes the unwanted warnings from the integration tests [#643](https://github.com/inspec/inspec-azure/pull/643) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.97.0](https://github.com/inspec/inspec-azure/tree/v1.97.0) (2022-02-28)
 
 #### Merged Pull Requests
 - RESOURCE-139 Support adls paths [#485](https://github.com/inspec/inspec-azure/pull/485) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.96.1](https://github.com/inspec/inspec-azure/tree/v1.96.1) (2022-02-25)
 
