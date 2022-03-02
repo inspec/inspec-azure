@@ -1,7 +1,7 @@
 location = input(:location, value: '')
 rg = input(:resource_group, value: '')
 
-control 'test the properties of all Azure Service Fabric Mesh Networks' do
+skip_control 'Test the properties of a Azure Service Fabric Mesh Network' do
   describe azure_service_fabric_mesh_networks(resource_group: rg, name: 'mesh-fabric-name') do
     it { should exist }
     its('location') { should eq location.downcase.gsub("\s", '') }
