@@ -1,20 +1,18 @@
 +++
-title = "{{ .Name | humanize | title }} resource"
+title = "{{ .Name }} resource"
 draft = false
 gh_repo = "inspec"
 platform = "azure"
 
 [menu]
   [menu.inspec]
-    title = "{{ .Name | humanize | title }}"
-    identifier = "inspec/resources/azure/{{ .Name | humanize | title }}"
+    title = "{{ .Name }}"
+    identifier = "inspec/resources/azure/{{ .Name }}"
     parent = "inspec/resources/azure"
 +++
+{{/* Run `hugo new -k resource inspec/resources/RESOURCE_NAME.md` to generate a new resource page. */}}
 
-
-{{% Run `hugo new -k resource resources/RESOURCE_NAME.md` to generate a new resource page. %}}
-
-Use the `{{ .Name | humanize | title }}` Chef InSpec audit resource to test properties of...
+Use the `{{ .Name }}` Chef InSpec audit resource to test properties of...
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -27,7 +25,9 @@ Use the `{{ .Name | humanize | title }}` Chef InSpec audit resource to test prop
 ## Syntax
 
 ```ruby
+describe {{ .Name }} do
 
+end
 ```
 
 ## Parameters
@@ -51,13 +51,17 @@ Use the `{{ .Name | humanize | title }}` Chef InSpec audit resource to test prop
 **EXAMPLE DESCRIPTION**
 
 ```ruby
+describe {{ .Name }} do
 
+end
 ```
 
 **EXAMPLE DESCRIPTION**
 
 ```ruby
+describe {{ .Name }} do
 
+end
 ```
 
 ## Matchers
