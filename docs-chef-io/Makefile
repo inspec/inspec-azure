@@ -3,8 +3,8 @@
 SHELL=bash
 
 preview_netlify: chef_web_docs
-	cp -R content/inspec/resources/* chef-web-docs/_vendor/github.com/inspec/inspec-aws/docs-chef-io/content/inspec/resources/
-	cp -R config.toml chef-web-docs/_vendor/github.com/inspec/inspec-aws/docs-chef-io/
+	cp -R content/inspec/resources/* chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/content/inspec/resources/
+	cp -R config.toml chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/
 	pushd chef-web-docs && make assets; hugo --gc --minify --buildFuture && popd
 
 

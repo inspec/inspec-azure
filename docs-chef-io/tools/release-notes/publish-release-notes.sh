@@ -2,25 +2,25 @@
 
 set -eou pipefail
 
-PRODUCT=inspec-aws
+PRODUCT=inspec-azure
 CURRENTDATE=$(date +"%Y-%m-%d")
-DOCS_ASSETS_DIR="assets/release-notes/inspec-aws"
+DOCS_ASSETS_DIR="assets/release-notes/inspec-azure"
 
 
-git clone "https://github.com/inspec/inspec-aws.wiki.git"
+git clone "https://github.com/inspec/inspec-azure.wiki.git"
 
-# Append the date to the array of dates in assets/release-notes/inspec-aws/release-dates.json
+# Append the date to the array of dates in assets/release-notes/inspec-azure/release-dates.json
 DATES_FILE="${DOCS_ASSETS_DIR}/release-dates.json"
 DATES=$( cat "$DATES_FILE" | jq --arg DATE "$CURRENTDATE" '. |= .+ [$DATE]' )
 echo $DATES | jq . > "$DATES_FILE"
 
-pushd ./inspec-aws.wiki
+pushd ./inspec-azure.wiki
   # Publish release notes to S3
   aws s3 cp Pending-Release-Notes.md "s3://chef-automate-artifacts/release-notes/${PRODUCT}/${CURRENTDATE}.md" --acl public-read --content-type "text/plain" --profile chef-cd
 
   # Reset "Release Notes" wiki page
   cat >./Pending-Release-Notes.md <<EOH
-## New AWS Cloud Resources
+## New Azure Cloud Resources
 -
 ## Improvements
 -
@@ -34,9 +34,9 @@ EOH
   git push origin master
 popd
 
-rm -rf inspec-aws.wiki
+rm -rf inspec-azure.wiki
 
-# Commit changes to inspec-aws/docs-chef-io/static/release-notes/inspec-aws
+# Commit changes to inspec-azure/docs-chef-io/static/release-notes/inspec-azure
 
 git add .
 
