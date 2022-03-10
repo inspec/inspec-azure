@@ -3,6 +3,11 @@ sql_server_name = input('sql_server_name', value: nil)
 sql_db_name     = input('sql_database_name', value: nil)
 
 control 'azurerm_sql_database' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_sql_database.'
+  desc 'Testing the singular resource of azure_sql_database.'
+
   only_if { !sql_db_name.nil? }
 
   describe azurerm_sql_database(resource_group: resource_group,
@@ -18,6 +23,11 @@ control 'azurerm_sql_database' do
 end
 
 control 'azure_sql_database' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_sql_database.'
+  desc 'Testing the singular resource of azure_sql_database.'
+
   only_if { !sql_db_name.nil? }
 
   sql_db_id = azure_sql_database(resource_group: resource_group,

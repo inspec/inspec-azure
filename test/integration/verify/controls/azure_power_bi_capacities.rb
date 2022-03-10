@@ -1,4 +1,9 @@
 control 'Verify the settings of all Power BI App Capacities' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_power_bi_app_capacities.'
+  desc 'Testing the plural resource of azure_power_bi_app_capacities.'
+
   describe azure_power_bi_app_capacities do
     it { should exist }
     its('skus') { should include 'A1' }

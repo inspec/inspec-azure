@@ -2,6 +2,11 @@ resource_group = input('resource_group', value: nil)
 cluster_name = input('hdinsight_cluster_name', value: '')
 
 control 'azurerm_hdinsight_cluster' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_hdinsight_cluster.'
+  desc 'Testing the singular resource of azurerm_hdinsight_cluster.'
+
   only_if { !cluster_name.empty? }
   describe azurerm_hdinsight_cluster(resource_group: resource_group, name: cluster_name) do
     it                                                       { should exist }

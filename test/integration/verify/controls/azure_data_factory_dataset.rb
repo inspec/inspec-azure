@@ -6,6 +6,11 @@ linked_service_name = input('linked_service_name', value: nil)
 dataset_type = input('dataset_type', value: nil)
 
 control 'azure_data_factory_dataset' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_data_factory_dataset.'
+  desc 'Testing the singular resource of azure_data_factory_dataset.'
+
   describe azure_data_factory_dataset(resource_group: resource_group, factory_name: factory_name, dataset_name: dataset_name) do
     it { should exist }
     its('name') { should eq dataset_name }

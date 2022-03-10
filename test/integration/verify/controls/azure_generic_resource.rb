@@ -5,6 +5,11 @@ win_location              = input('windows_vm_location',   value: nil)
 win_tags                  = input('windows_vm_tags',       value: nil)
 
 control 'azure_generic_resource' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_generic_resource.'
+  desc 'Testing the singular resource of azure_generic_resource.'
+
   describe azure_generic_resource(resource_group: resource_group, name: win_name) do
     it { should exist }
     its('id') { should cmp win_id }

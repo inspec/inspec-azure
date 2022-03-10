@@ -3,6 +3,11 @@ sql_vm = input(:inspec_sql_virtual_machine, value: '')
 location = input(:location, value: '')
 
 control 'Verify settings of an Azure SQL Virtual Machine' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_sql_virtual_machine.'
+  desc 'Testing the singular resource of azure_sql_virtual_machine.'
+
   describe azure_sql_virtual_machine(resource_group: rg, name: sql_vm) do
     it { should exist }
     its('location') { should eq location.downcase.gsub("\s", '') }
