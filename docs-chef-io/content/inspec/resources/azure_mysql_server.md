@@ -78,6 +78,7 @@ describe azure_mysql_server(resource_group: 'my-rg', name: 'sql-server-1') do
   it { should exist }
 end
 ```
+
 **Test If a MySQL Server is Referenced with an Invalid Name.**
 
 ```ruby

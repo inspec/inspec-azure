@@ -100,6 +100,7 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('properties.primaryEndpoints.file') { should cmp 'https://mysa.file.core.windows.net/' }
 end
 ```
+
 **Verify that Only HTTPs is Supported.**
 
 ```ruby
@@ -107,6 +108,7 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('properties.supportsHttpsTrafficOnly') { should be true }
 end
 ```
+
 **Test Queues Service Endpoint.**
 
 ```ruby
@@ -114,6 +116,7 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('queues.enumeration_results.service_endpoint') { should cmp 'https://mysa.queue.core.windows.net/' }
 end
 ```
+
 **Test Blobs Service Endpoint.**
 
 ```ruby
@@ -121,6 +124,7 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('blobs.enumeration_results.service_endpoint') { should cmp 'https://mysa.blob.core.windows.net/' }
 end
 ```
+
 **Test Queue Properties Logging Version.**
 
 ```ruby
@@ -128,6 +132,7 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('queue_properties.logging.version') { should cmp '1.0' }
 end
 ```
+
 **Test Blob Properties Logging Version.**
 
 ```ruby
@@ -135,6 +140,7 @@ describe azure_storage_account(resource_group: 'rg', name: 'mysa') do
   its('blob_properties.logging.version') { should cmp '1.0' }
 end
 ```
+
 **Test Table Properties Logging Version.**
 
 ```ruby

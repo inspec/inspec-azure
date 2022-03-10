@@ -120,6 +120,7 @@ describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') d
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
 ```
+
 **Test the API Version Used for the Query.**
 
 ```ruby
@@ -128,6 +129,7 @@ describe azure_generic_resource(resource_id: '/subscriptions/{subscriptionId}/re
   its('api_version_used_for_query') { should eq '2017-01-01' }
 end
 ```
+
 **Test the Tags if Include Specific Values.**
 
 ```ruby
@@ -139,6 +141,7 @@ describe azure_generic_resource(resource_group: 'my_vms', name: 'my_linux_vm') d
 
 end
 ```
+
 **Test Properties of a Virtual Machine Resides in an Azure Dev Test Lab .**
 
 ```ruby
@@ -147,6 +150,7 @@ describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', 
   its('properties.allowClaim') { should cmp false }
 end
 ```
+
 **Test a Resource Group .**
 
 ```ruby
@@ -156,6 +160,7 @@ describe azure_generic_resource(add_subscription_id: true, resource_uri: '/resou
   its('tags') { should include(owner: 'John Doe') }
 end
 ```
+
 **Test a Policy Definition.**
 
 ```ruby
@@ -169,7 +174,7 @@ For more examples, please see the [integration tests](/test/integration/verify/c
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exist
 

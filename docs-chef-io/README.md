@@ -57,9 +57,8 @@ This documentation set has three shortcodes located in the `docs-chef-io/layouts
 - azure_permissions_service_principal.md
 - inspec_azure_common_parameters.md
 - inspec_azure_install.md
-- inspec_filter_table.md
 
-Add a shortcode to a resource page by wrapping the filename, without the `.md` file suffix, in double curly braces and percent symbols. For example: `{{% inspec_filter_table %}}`.
+Add a shortcode to a resource page by wrapping the filename, without the `.md` file suffix, in double curly braces and percent symbols. For example: `{{% inspec_azure_install %}}`.
 
 The `azure_permissions_service_principal.md` shortcode requires a `role` parameter, which is the role that the service principal must have for the subscription that will be tested. For example, the azure_redis_cache Resource page has:
 
@@ -70,6 +69,8 @@ The `azure_permissions_service_principal.md` shortcode requires a `role` paramet
 which will render the following text:
 
 > Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with at least a `contributor` role on the subscription you wish to test.
+
+**Note:** You can add shortcodes from other repositories. For example, the `inspec_filter_table.md` and the `inspec_matchers_link.md` shortcodes are both located in the chef/chef-web-docs repository, but they can be added to this documentation set using the same method described above.
 
 ### Release Dates
 

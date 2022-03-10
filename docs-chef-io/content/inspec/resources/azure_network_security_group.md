@@ -116,6 +116,7 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
   it { should exist }
 end
 ```
+
 **Test that a Network Security Group Allows SSH from the Internet.**
 
 ```ruby
@@ -123,6 +124,7 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
   it { should allow_ssh_from_internet }
 end
 ```
+
 **Test that a Network Security Group Allows Inbound Traffics from a Certain Ip Range in Any Port and Any Protocol.**
 
 ```ruby
@@ -132,6 +134,7 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
 
 end
 ```
+
 **Test that a Network Security Group Allows Inbound Traffics from Internet Service Tag in Port `80` and `TCP` Protocol.**
 
 ```ruby
@@ -141,6 +144,7 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
 
 end
 ```
+
 **Test that a Network Security Group Allows Inbound Traffics from Virtual Network Service Tag in a Range of Ports and Any Protocol.**
 
 ```ruby
@@ -150,6 +154,7 @@ describe azure_network_security_group(resource_group: 'example', name: 'GroupNam
 
 end
 ```
+
 **Test that a Network Security Group Allows Outbound Traffics to a Certain Ip Range in any Port and Any Protocol.**
 
 ```ruby
@@ -177,7 +182,7 @@ and you must prefix the `ip_range`, `service_tag`, and `port` with either `sourc
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

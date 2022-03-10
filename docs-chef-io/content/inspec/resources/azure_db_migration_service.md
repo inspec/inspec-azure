@@ -105,6 +105,7 @@ describe azure_db_migration_service(resource_group: 'MyResourceGroup', service_n
   its('properties.provisioningState') { should eq 'Succeeded' }
 end
 ```
+
 **Test <>.**
 
 ```ruby

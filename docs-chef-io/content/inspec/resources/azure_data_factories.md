@@ -117,6 +117,7 @@ describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
   its('names') { should include "factory_name" }
 end
 ```
+
 **Test that there aren't any Data Factories in a resource group.**
 
 ```ruby

@@ -156,6 +156,7 @@ describe azure_generic_resources(resource_provider: 'Microsoft.Compute/virtualMa
   its('count') { should eq 43 }
 end
 ```
+
 **Test All Resources Regardless of Their Type and Resource Group with a Common String in Their Names (Server Side Filtering).**
 
 ```ruby
@@ -183,6 +184,7 @@ describe azure_generic_resources.where(location: 'eastus') do
   it { should exist }
 end
 ```
+
 **Filters the Results to Only Include Those that Created within Last 24 Hours (Client Side Filtering).**
 
 ```ruby
@@ -190,6 +192,7 @@ describe azure_generic_resources.where{ created_time > Time.now - 86400 } do
   it { should exist }
 end
 ```
+
 **Test Policy Definitions.**
 
 ```ruby
@@ -197,6 +200,7 @@ describe azure_generic_resources(add_subscription_id: true, resource_uri: 'provi
   it { should exist }
 end
 ```
+
 **Filter Role Assignments via `filter_free_text`.**
 
 ```ruby
@@ -211,7 +215,7 @@ For more examples, please see the [integration tests](/test/integration/verify/c
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exist
 

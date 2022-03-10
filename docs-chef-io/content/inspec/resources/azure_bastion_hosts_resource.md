@@ -67,6 +67,7 @@ describe azure_bastion_hosts_resource(resource_group: 'MyResourceGroup', name: '
   its('type') { should eq 'Microsoft.Network/bastionHosts' }
 end
 ```
+
 **Ensure that the bastion hosts resource is in successful state.**
 
 ```ruby
