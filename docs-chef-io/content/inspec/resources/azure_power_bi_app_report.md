@@ -66,12 +66,12 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Test that the Power BI App report is at the left corner.**
+**Test that the Power BI App report is paginated and embed URL is present.**
 
 ```ruby
 describe azure_power_bi_app_report(app_id: 'APP_ID', report_id: 'REPORT_ID')  do
-  its('rowSpan') { should eq 0 }
-  its('colSpan') { should eq 0 }
+  its('reportType') { should eq 'PaginatedReport' }
+  its('embedUrl') { should_not be_empty }
 end
 ```
 
