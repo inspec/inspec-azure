@@ -103,7 +103,7 @@ The parameter set should be provided for a valid query:
 
 : **Field**: `updatedTimestamp`
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/groups/list-by-project) for the complete list of properties available.
+{{% inspec_filter_table %}}
 
 ## Examples
 

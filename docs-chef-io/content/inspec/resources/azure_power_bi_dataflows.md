@@ -35,19 +35,34 @@ end
 `group_id`
 : The Workspace ID.
 
-
 ## Properties
 
-|Property                   | Description                                                            | Filter Criteria<superscript>*</superscript> |
-|---------------------------|------------------------------------------------------------------------|------------------|
-| objectIds                 | List of all Power BI dataflow IDs.                                     | `objectId`       |
-| names                     | List of all the Power BI dataflow names.                               | `name`           |
-| descriptions              | List of all the Power BI dataflow descriptions.                        | `description`    |
-| modelUrls                 | List of all URLs to the dataflow definition file                       | `modelUrl`       |                                                          | `modelUrl` |
+`objectIds`
+
+: List of all Power BI dataflow IDs.
+
+: **Field**: `objectId`
+
+`names`
+
+: List of all the Power BI dataflow names.
+
+: **Field**: `name`
+
+`descriptions`
+
+: List of all the Power BI dataflow descriptions.
+
+: **Field**: `descriptio
+
+`modelUrls`
+
+: List of all URLs to the dataflow definition file
+
+: **Field**: `modelUrl`
 
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/dataflows/get-dataflows) for other properties available.
+{{% inspec_filter_table %}}
 
 ## Examples
 

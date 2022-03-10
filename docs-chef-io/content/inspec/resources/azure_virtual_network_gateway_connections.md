@@ -96,7 +96,7 @@ The parameter set should be provided for a valid query:
 
 : **Field**: `ipsecPolicies`
 
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-gateway/virtual-network-gateway-connections/list) for other properties available.
+{{% inspec_filter_table %}}
 
 ## Examples
 

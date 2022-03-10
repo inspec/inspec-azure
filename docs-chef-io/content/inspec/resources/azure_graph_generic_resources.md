@@ -104,7 +104,8 @@ end
       it { should exist }
     end
 ```
-<superscript>*</superscript>For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Please note that instead of client side filtering with `where`, it is much more efficient to use server side filtering at Azure Graph API with `filter` or `filter_free_text` at resource creation as described in previous examples.
+
+{{% inspec_filter_table %}}
 
 **Test `given_names` Parameter.**
 

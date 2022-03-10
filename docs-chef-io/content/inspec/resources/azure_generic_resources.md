@@ -204,7 +204,8 @@ describe azure_generic_resources(add_subscription_id: true, resource_uri: "provi
   it { should exist }
 end
 ```
-Please see [here](https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md) for more information on how to leverage FilterTable capabilities on plural resources. 
+
+{{% inspec_filter_table %}}
 
 For more examples, please see the [integration tests](/test/integration/verify/controls/azure_generic_resources.rb).
 
