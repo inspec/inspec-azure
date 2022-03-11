@@ -3,14 +3,13 @@ title: About the azure_power_bi_embedded_capacity Resource
 platform: azure
 ---
 
-# azure_power_bi_embedded_capacity
+## azure_power_bi_embedded_capacity
 
 Use the `azure_power_bi_embedded_capacity` InSpec audit resource to test the properties related to Azure Power BI Embedded Capacity.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
-If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
 Unless defined, `azure_cloud` global endpoint and default values for the HTTP client are used. For more information, refer to the resource pack [README](../../README.md).
 
@@ -22,7 +21,7 @@ This resource is available in the [InSpec Azure resource pack](https://github.co
 
 ## Syntax
 
-`name` and `resource_group` is a required parameter.
+`name` and `resource_group` are required parameters.
 
 ```ruby
 describe azure_power_bi_embedded_capacity(resource_group: 'RESOURCE_GROUP', name: 'POWER_BI_EMBEDDED') do
@@ -43,9 +42,7 @@ end
 | name           | Name of the Power BI Embedded Capacity to test.                                  |
 | resource_group | Azure Resource Group.                                                            |
 
-The parameter set should be provided for a valid query:
-
-- `name` and `account_name`
+The parameter set for a valid query that should be provided are `name` and `account_name`.
 
 ## Properties
 
@@ -60,7 +57,6 @@ The parameter set should be provided for a valid query:
 | sku                        | The SKU of the PowerBI Dedicated resource.                       |
 | tags                       | Key-value pairs of additional resource provisioning properties.  |
 | type                       | The type of the PowerBI Dedicated resource.                      |
-
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource.md#properties).
 

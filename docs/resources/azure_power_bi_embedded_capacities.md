@@ -3,16 +3,15 @@ title: About the azure_power_bi_embedded_capacities Resource
 platform: azure
 ---
 
-# azure_power_bi_embedded_capacities
+## azure_power_bi_embedded_capacities
 
 Use the `azure_power_bi_embedded_capacities` InSpec audit resource to test the properties related to all Azure Power BI Embedded Capacities within a project.
 
 ## Azure REST API version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter.
-If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
+This resource interacts with API versions supported by the resource provider. The `api_version` is defined as a resource parameter. If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
-Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](../../README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client are used. For more information, refer to the resource pack [README](../../README.md).
 
 ## Availability
 
@@ -37,8 +36,7 @@ end
 | account_name   | The Azure Storage account name.                                                  |
 | dns_suffix     | The DNS suffix for the Azure Data Lake Storage endpoint.                         |
 
-The below parameters are optional.
-- `account_name` and `dns_suffix` (optional)
+The following parameters are optional,`account_name` and `dns_suffix`.
 
 ## Properties
 
@@ -46,19 +44,16 @@ The below parameters are optional.
 |--------------------|---------------------------------------------------------------|------------------|
 | ids                | A list of PowerBI Dedicated resources.                        | `id`             |
 | names              | The names of all the PowerBI Dedicated resource.              | `name`           |
-| locations          | A list of all locations of all the PowerBI Dedicated resource.| `location`       |
+| locations          | A location list of all the PowerBI Dedicated resource.        | `location`       |
 | modes              | A list of all the capacity modes.                             | `mode`           |
-| provisioningStates | A list of all provisioning state.                             |`provisioningState`|
+| provisioningStates | A list of all provisioning states.                            |`provisioningState`|
 | states             | The current state of all PowerBI Dedicated resources.         | `state`          |
 | sku_names          | The SKU name of the PowerBI Dedicated resource.               | `sku_name`       |
 | sku_tiers          | The SKU tier of the PowerBI Dedicated resource.               | `sku_tier`       |
 | sku_capacities     | The SKU capacities of the PowerBI Dedicated resource.         | `sku_capacity`   |
-| administration_members | A collection of Dedicated capacity administrators.        | `administration_members` |
+| administration_members | A collection of dedicated capacity administrators.        | `administration_members` |
 
-
-
-<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md).
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi-embedded/capacities/list) for other properties available.
+<superscript>*</superscript> For information on how to use filter criteria on plural resources refer to [FilterTable usage](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md). Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi-embedded/capacities/list) for other properties available.
 
 ## Examples
 
@@ -72,7 +67,7 @@ azure_power_bi_embedded_capacities.names.each do |name|
 end
 ```
 
-### Test to ensure Power BI Embedded Capacities where sku_capacities greater than 1 
+### Test to ensure Power BI Embedded Capacities where sku_capacities greater than 1
 
 ```ruby
 describe azure_power_bi_embedded_capacities.where(sku_capacity > 1 ) do
