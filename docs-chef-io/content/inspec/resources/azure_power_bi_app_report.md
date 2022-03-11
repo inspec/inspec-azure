@@ -22,8 +22,6 @@ Use the `azure_power_bi_app_report` InSpec audit resource to test the properties
 
 ## Syntax
 
-`app_id` and `report_id` is a required parameter.
-
 ```ruby
 describe azure_power_bi_app_report(app_id: 'APP_ID', report_id: 'REPORT_ID') do
   it  { should exist }
@@ -77,7 +75,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 
