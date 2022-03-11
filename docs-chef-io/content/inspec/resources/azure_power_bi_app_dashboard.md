@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_power_bi_app_dashboard Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_power_bi_app_dashboard` InSpec audit resource to test the properties related to Azure Power BI Apps.
+Use the `azure_power_bi_app_dashboard` InSpec audit resource to test the properties of an Azure Power BI app dashboard.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,8 +22,6 @@ Use the `azure_power_bi_app_dashboard` InSpec audit resource to test the propert
 
 ## Syntax
 
-`app_id` is a required parameter.
-
 ```ruby
 describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID') do
   it  { should exist }
@@ -32,15 +30,11 @@ end
 
 ## Parameters
 
-`app_id`
+`app_id` _(required)_
 : The app ID.
 
-`dashboard_id`
-: The App Dashboard ID.
-
-The parameter set should be provided for a valid query:
-
-- `app_id` & `dashboard_id`
+`dashboard_id` _(required)_
+: The app dashboard ID.
 
 ## Properties
 
@@ -62,7 +56,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Test that the Power BI App Dashboard is read only.**
+**Test that the Power BI app dashboard is read only.**
 
 ```ruby
 describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
@@ -77,11 +71,11 @@ end
 ### exists
 
 ```ruby
-# If the Azure Power BI App Dashboard is found, it will exist
+# If the Azure Power BI app dashboard is found, it will exist
 describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
   it { should exist }
 end
-# if the Azure Power BI App Dashboard is not found, it will not exist
+# if the Azure Power BI app dashboard is not found, it will not exist
 describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
   it { should_not exist }
 end
@@ -89,5 +83,5 @@ end
 
 ## Azure Permissions
 
-Currently this API does not support Service Principal Authentication. Hence one should use the AD account access tokens to access this resource.
-Your AD account must be set up with a `Dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
+This API does not support service principal authentication. Instead, use the Active Directory (AD) account access token to access this resource.
+Your AD account must be set up with a `Dashboard.Read.All` role on the Azure Power BI workspace you wish to test.
