@@ -4,6 +4,10 @@ dns_location = input('dns_location', value: nil)
 
 control 'azure_dns_zones_resource' do
 
+  impact 1.0
+  title 'Testing the singular resource of azure_dns_zones_resource.'
+  desc 'Testing the singular resource of azure_dns_zones_resource.'
+
   describe azure_dns_zones_resource(resource_group: resource_group, name: dns_zones) do
     it { should exist }
     its('name') { should eq dns_zones }

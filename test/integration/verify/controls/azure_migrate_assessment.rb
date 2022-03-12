@@ -5,6 +5,11 @@ group_name = 'inspec-migrate-test-assement-group'
 name = 'inspec-migrate-test-assement'
 
 control 'verify a azure migrate assessment' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_migrate_assessment.'
+  desc 'Testing the singular resource of azure_migrate_assessment.'
+
   describe azure_migrate_assessment(resource_group: resource_group, project_name: project_name, group_name: group_name, name: name) do
     it { should exist }
     its('name') { should eq name }

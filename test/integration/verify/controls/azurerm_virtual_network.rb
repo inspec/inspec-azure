@@ -11,6 +11,11 @@ enable_ddos          = input('vnet_enable_ddos_protection', value: false)
 enable_vm_protection = input('vnet_enable_vm_protection',   value: false)
 
 control 'azurerm_virtual_network' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_virtual_network.'
+  desc 'Testing the singular resource of azurerm_virtual_network.'
+
   describe azurerm_virtual_network(resource_group: resource_group, name: vnet) do
     it                                { should exist }
     its('id')                         { should eq vnet_id }
@@ -36,8 +41,10 @@ control 'azurerm_virtual_network' do
 end
 
 control 'azure_virtual_network' do
+
   impact 1.0
   title 'Ensure that azure_virtual_network supports `resource_id` as a parameter.'
+  desc 'Testing the singular resource of azure_virtual_network.'
 
   describe azure_virtual_network(resource_id: vnet_id) do
     its('name') { should cmp vnet }

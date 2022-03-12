@@ -1,9 +1,13 @@
-resource_group = attribute('resource_group', default: nil)
-iothub_resource_name = attribute('iothub_resource_name', default: nil)
-iothub_event_hub_endpoint = attribute('iothub_event_hub_endpoint', default: nil)
-consumer_groups = attribute('consumer_groups', default: nil)
+resource_group = attribute('resource_group', value: nil)
+iothub_resource_name = attribute('iothub_resource_name', value: nil)
+iothub_event_hub_endpoint = attribute('iothub_event_hub_endpoint', value: nil)
+consumer_groups = attribute('consumer_groups', value: nil)
 
 control 'azurerm_iothub_event_hub_consumer_groups' do
+
+  impact 1.0
+  title 'Testing the plural resource of azurerm_iothub_event_hub_consumer_groups.'
+  desc 'Testing the plural resource of azurerm_iothub_event_hub_consumer_groups.'
 
   azurerm_iothub_event_hub_consumer_groups(resource_group: resource_group,
                                            resource_name: iothub_resource_name,
