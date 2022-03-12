@@ -145,6 +145,10 @@ class AzureStorageAccount < AzureGenericResource
 
   private
 
+  def get_resource(opts = {})
+    opts[:resource_data].presence || super
+  end
+
   # @see AzureKeyVault#diagnostic_settings for how to use #additional_resource_properties method.
   #
   def activity_log_alert_filter(filter)

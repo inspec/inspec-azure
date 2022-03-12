@@ -6,6 +6,11 @@ address_prefix  = input('subnet_address_prefix', value: nil)
 nsg             = input('subnet_nsg',            value: nil)
 
 control 'azurerm_subnet' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_subnet.'
+  desc 'Testing the singular resource of azurerm_subnet.'
+
   describe azurerm_subnet(resource_group: resource_group, vnet: vnet, name: name) do
     it                    { should exist }
     its('id')             { should eq id }
@@ -25,8 +30,10 @@ control 'azurerm_subnet' do
 end
 
 control 'azure_subnet' do
+
   impact 1.0
   title 'Ensure that azure_subnet supports `resource_id` as a parameter.'
+  desc 'Testing the singular resource of azurerm_subnet.'
 
   describe azure_virtual_network(resource_id: id) do
     its('name') { should cmp name }

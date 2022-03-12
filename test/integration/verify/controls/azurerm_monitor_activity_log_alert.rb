@@ -15,6 +15,11 @@ alerts_and_operations = {
 }
 
 control 'azurerm_monitor_activity_log_alert' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_monitor_activity_log_alert.'
+  desc 'Testing the singular resource of azurerm_monitor_activity_log_alert.'
+
   alerts_and_operations.each do |alert, operation|
     describe azurerm_monitor_activity_log_alert(resource_group: resource_group, name: "#{log_alert_name}_#{alert}") do
       it                { should exist }
