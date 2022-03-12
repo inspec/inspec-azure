@@ -560,3 +560,13 @@ output "service_bus_topic_name" {
   description = "The name of the Azure Service Bus Topic"
   value = azurerm_servicebus_topic.inspec_sb_topic.name
 }
+
+output "service_bus_subscription_name" {
+  description = "The name of the Azure Service Bus Subscription"
+  value = azurerm_servicebus_subscription.inspec-sub.name
+}
+
+output "service_bus_subscription_rule_name" {
+  description = "The name of the Azure Service Bus Subscription Rule"
+  value = azurerm_servicebus_subscription_rule.inspec-sub-rule.name
+}

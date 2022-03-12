@@ -1,10 +1,20 @@
 # Changelog
-<!-- latest_release 1.104.0 -->
+<!-- latest_release 1.106.0 -->
+## [v1.106.0](https://github.com/inspec/inspec-azure/tree/v1.106.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-122 Support service bus subscriptions [#568](https://github.com/inspec/inspec-azure/pull/568) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.105.0](https://github.com/inspec/inspec-azure/tree/v1.105.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-123 Support servicebus subscription rules [#567](https://github.com/inspec/inspec-azure/pull/567) ([sathish-progress](https://github.com/sathish-progress))
+
 ## [v1.104.0](https://github.com/inspec/inspec-azure/tree/v1.104.0) (2022-03-12)
 
 #### Merged Pull Requests
 - RESOURCE-121 Support azure service bus topics [#565](https://github.com/inspec/inspec-azure/pull/565) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.103.0](https://github.com/inspec/inspec-azure/tree/v1.103.0) (2022-03-12)
 

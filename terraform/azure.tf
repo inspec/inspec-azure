@@ -1637,3 +1637,21 @@ resource "azurerm_servicebus_topic" "inspec_sb_topic" {
 
   enable_partitioning = true
 }
+
+resource "azurerm_servicebus_subscription" "inspec-sub" {
+  name                = "inspec-sb-subs"
+  resource_group_name = azurerm_resource_group.rg.name
+  namespace_name      = azurerm_servicebus_namespace.sb.name
+  topic_name          = azurerm_servicebus_topic.inspec_sb_topic.name
+  max_delivery_count  = 1
+}
+
+resource "azurerm_servicebus_subscription_rule" "inspec-sub-rule" {
+  name                = "inspec_subs_rule"
+  resource_group_name = azurerm_resource_group.rg.name
+  namespace_name      = azurerm_servicebus_namespace.sb.name
+  topic_name          = azurerm_servicebus_topic.inspec_sb_topic.name
+  subscription_name   = azurerm_servicebus_subscription.inspec-sub.name
+  filter_type         = "SqlFilter"
+  sql_filter          = "colour = 'red'"
+}
