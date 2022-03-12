@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.99.0 -->
+<!-- latest_release 1.100.0 -->
+## [v1.100.0](https://github.com/inspec/inspec-azure/tree/v1.100.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-152 Support azure power bi app reports [#529](https://github.com/inspec/inspec-azure/pull/529) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.99.0](https://github.com/inspec/inspec-azure/tree/v1.99.0) (2022-03-12)
 
 #### Merged Pull Requests
 - RESOURCE-153 Support azure power bi app dashboards [#521](https://github.com/inspec/inspec-azure/pull/521) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.98.0](https://github.com/inspec/inspec-azure/tree/v1.98.0) (2022-03-12)
 
