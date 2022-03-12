@@ -17,6 +17,11 @@ sku_tier = input('sku_tier', value: nil)
 sku_family = input('sku_family', value: nil)
 
 control 'azure_express_route_circuit' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_express_route_circuit.'
+  desc 'Testing the singular resource of azure_express_route_circuit.'
+
   describe azure_express_route_circuit(resource_group: resource_group, circuit_name: circuit_name) do
     it { should exist }
     its('name') { should eq circuit_name }

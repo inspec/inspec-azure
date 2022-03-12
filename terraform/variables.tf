@@ -167,6 +167,10 @@ variable "inspec_container_group_name" {
   default = "inspec_container_trial"
 }
 
+variable "inspec_migrate_project_name" {
+  default = "inspec-migrate-integ117eproject"
+}
+
 variable "sample_directory_object" {
   default = "adc07321-ef2b-44d5-a210-559aa5f10f2d"
 }
@@ -181,4 +185,16 @@ variable "inspec_wan_name" {
 
 variable "power_bi_embedded_name" {
   default = "inspecdevbi"
+}
+
+variable "dataset_type" {
+  default = "CosmosDbSqlApiCollection"
+}
+
+variable "inspec_adls_file_system_name" {
+  default = "inspec-adls-fs"
+}
+
+variable "inspec_adls_path_name" {
+  default = "inspec-adls-fs-path"
 }
