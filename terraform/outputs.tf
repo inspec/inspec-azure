@@ -575,3 +575,8 @@ output "inspec_managed_app" {
   description = "The Managed Application Name"
   value = azurerm_managed_application.mng_app.name
 }
+
+output "synapse_inspec_ws_name" {
+  description = "Synapse Workspace Name"
+  value = azurerm_synapse_workspace.synapse_inspec_ws.name
+}

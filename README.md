@@ -448,6 +448,8 @@ The following is a list of static resources.
 - [azure_subscriptions](docs/resources/azure_subscriptions.md)
 - [azure_synapse_notebook](docs/resources/azure_synapse_notebook.md)
 - [azure_synapse_notebooks](docs/resources/azure_synapse_notebooks.md)
+- [azure_synapse_workspace](docs/resources/azure_synapse_workspace.md)
+- [azure_synapse_workspaces](docs/resources/azure_synapse_workspaces.md)
 - [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
 - [azure_virtual_machines](docs/resources/azure_virtual_machines.md)
 - [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)

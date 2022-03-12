@@ -191,9 +191,7 @@ resource "azurerm_key_vault_key" "vk" {
 resource "azurerm_managed_disk" "disk" {
   name                = var.encrypted_disk_name
   resource_group_name = azurerm_resource_group.rg.name
-
   location = var.location
-
   storage_account_type = var.managed_disk_type
   create_option        = "Empty"
   disk_size_gb         = 1
@@ -895,7 +893,6 @@ resource "azurerm_iothub" "iothub" {
     capacity = 1
   }
 
-
   endpoint {
     type                       = "AzureIotHub.EventHub"
     connection_string          = azurerm_eventhub_authorization_rule.auth_rule_inspectesteh.primary_connection_string
@@ -903,7 +900,6 @@ resource "azurerm_iothub" "iothub" {
     batch_frequency_in_seconds = 300
     max_chunk_size_in_bytes    = 314572800
   }
-
 
   route {
     name      = "ExampleRoute"
@@ -1115,7 +1111,6 @@ resource "azurerm_api_management" "apim01" {
       <on-error />
     </policies>
 XML
-
   }
 }
 resource "azurerm_stream_analytics_job" "streaming_job" {
@@ -1139,7 +1134,6 @@ resource "azurerm_stream_analytics_job" "streaming_job" {
     INTO [YourOutputAlias]
     FROM [YourInputAlias]
 QUERY
-
 }
 
 resource "azurer_stream_analytics_function_javascript_udf" "streaming_job_function" {
@@ -1335,7 +1329,6 @@ resource "azurerm_policy_definition" "inspec_policy_definition" {
     }
   }
   PARAMETERS
-
 }
 
 resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
@@ -1557,7 +1550,6 @@ resource "azurerm_subnet_route_table_association" "route_table_assoc_inspec" {
   route_table_id = azurerm_route_table.route_table_sql_instance_inspec.id
 }
 
-
 resource "azurerm_sql_managed_instance" "sql_instance_for_inspec" {
   name                         = "sql-instance-for-inspec"
   resource_group_name          = azurerm_resource_group.rg.name
@@ -1634,7 +1626,6 @@ resource "azurerm_servicebus_topic" "inspec_sb_topic" {
   name                = "inspec-servicebus-topic"
   resource_group_name = azurerm_resource_group.rg.name
   namespace_name      = azurerm_servicebus_namespace.sb.name
-
   enable_partitioning = true
 }
 
@@ -1683,5 +1674,24 @@ resource "azurerm_managed_application" "mng_app" {
     location                 = azurerm_resource_group.rg.location
     storageAccountNamePrefix = "storeNamePrefix"
     storageAccountType       = "Standard_LRS"
+  }
+}
+
+resource "azurerm_synapse_workspace" "synapse_inspec_ws" {
+  name                                 = "synapse-inspec-ws"
+  resource_group_name                  = azurerm_resource_group.rg.name
+  location                             = azurerm_resource_group.rg.location
+  storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.id
+  sql_administrator_login              = "sqladminuser"
+  sql_administrator_login_password     = "H@Sh1CoR3!"
+
+  aad_admin {
+    login     = "AzureAD Admin"
+    object_id = "00000000-0000-0000-0000-000000000000"
+    tenant_id = "00000000-0000-0000-0000-000000000000"
+  }
+
+  tags = {
+    Env = "inspec"
   }
 }
