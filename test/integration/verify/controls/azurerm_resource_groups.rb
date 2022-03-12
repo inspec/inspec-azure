@@ -4,6 +4,11 @@ resource_group = input('resource_group', value: nil)
 resource_group_names = azure_resource_groups.names
 
 control 'azurerm_resource_groups' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_resource_groups.'
+  desc 'Testing the plural resource of azure_resource_groups.'
+
   describe azurerm_resource_groups do
     it { should exist }
     its('names') { should include(resource_group) }
@@ -16,14 +21,24 @@ control 'azurerm_resource_groups' do
 end
 
 control 'azure_resource_groups_loop' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_resource_groups.'
+  desc 'Testing the plural resource of azure_resource_groups.'
+
   azure_resource_groups.ids.each do |id|
     describe azure_resource_group(resource_id: id) do
       it { should exist }
     end
   end
+
   azure_resource_groups.names.each do |name|
     describe azure_resource_group(name: name) do
       it { should exist }
     end
+  end
+
+  describe azurerm_resource_groups do
+    it { should_not exist }
   end
 end

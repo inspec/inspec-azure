@@ -13,6 +13,11 @@ windows_data_disks = data_disks.select { |disk| disk.match(/windows/i) }
 linux_data_disks   = data_disks.select { |disk| disk.match(/linux/i) }
 
 control 'azurerm_virtual_machines' do
+
+  impact 1.0
+  title 'Testing the plural resource of azurerm_virtual_machines.'
+  desc 'Testing the plural resource of azurerm_virtual_machines.'
+
   describe azurerm_virtual_machines(resource_group: resource_group) do
     it                             { should exist }
     its('vm_names.sort')           { should eq vm_names.sort }
@@ -42,8 +47,10 @@ control 'azurerm_virtual_machines' do
 end
 
 control 'azure_virtual_machines' do
+
   impact 1.0
   title 'Ensure azure_virtual_machines works without providing resource_group.'
+  desc 'Testing the plural resource of azurerm_virtual_machines.'
 
   describe azure_virtual_machines do
     it { should exist }
@@ -54,5 +61,9 @@ control 'azure_virtual_machines' do
     describe azure_virtual_machine(resource_id: id) do
       it { should exist }
     end
+  end
+
+  describe azure_virtual_machines do
+    it { should_not exist }
   end
 end
