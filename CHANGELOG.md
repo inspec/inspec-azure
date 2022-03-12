@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.102.0 -->
+<!-- latest_release 1.103.0 -->
+## [v1.103.0](https://github.com/inspec/inspec-azure/tree/v1.103.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-129 Support service bus namespaces [#562](https://github.com/inspec/inspec-azure/pull/562) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.102.0](https://github.com/inspec/inspec-azure/tree/v1.102.0) (2022-03-12)
 
 #### Merged Pull Requests
 - RESOURCE-145 Support azure power bi dataflow storage accounts [#549](https://github.com/inspec/inspec-azure/pull/549) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.101.0](https://github.com/inspec/inspec-azure/tree/v1.101.0) (2022-03-12)
 
