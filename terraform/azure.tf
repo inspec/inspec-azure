@@ -1,14 +1,29 @@
 terraform {
   required_version = "~> 0.12.0"
+  required_providers {
+    powerbi = {
+      source = "codecutout/powerbi"
+      version = "~>1.3"
+    }
+  }
 }
 
 provider "azurerm" {
-  version         = "~> 2.1.0"
+  version         = "~> 2.76.0"
   subscription_id = var.subscription_id
   client_id       = var.client_id
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
   features {}
+}
+
+# this will work automatically when we upgrade to 0.13 ,
+# until than install provider as described here https://github.com/codecutout/terraform-provider-powerbi#local
+provider "powerbi" {
+  version         = "~> 1.3.1"
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 provider "random" {
@@ -948,8 +963,6 @@ resource "azurerm_virtual_network_peering" "network_peering" {
   remote_virtual_network_id = azurerm_virtual_network.app-gw.id
 }
 
-
-
 resource "azurerm_subnet" "frontend" {
   name                 = "frontend"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -1433,7 +1446,6 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   resource_group_name = azurerm_resource_group.rg.name
 }
 
-
 resource "azurerm_virtual_network" "inspec-gw-vnw" {
   name                = "inspec-gw-vnw"
   location            = azurerm_resource_group.rg.location
@@ -1495,7 +1507,6 @@ uGLOhRJOFprPdoDIUBB+tmCl3oDcBy3vnUeOEioz8zAkprcb3GHwHAK+vHmmfgcn
 WsfMLH4JCLa/tRYL+Rw/N3ybCkDp00s0WUZ+AoDywSl0Q/ZEnNY0MsFiw6LyIdbq
 M/s/1JRtO3bDSzD9TazRVzn2oBqzSa8VgIo5C1nOnoAKJTlsClJKvIhnRlaLQqk=
 EOF
-
     }
 
     revoked_certificate {
@@ -1509,11 +1520,9 @@ resource "azurerm_virtual_network_gateway_connection" "nw-gateway-connection" {
   name                = "inspec-nw-gateway-connection"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-
   type                            = "Vnet2Vnet"
   virtual_network_gateway_id      = azurerm_virtual_network_gateway.inspec-nw-gateway.id
   peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.inspec-nw-gateway.id
-
   shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
 }
 
@@ -1524,6 +1533,90 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
   properties = {
     inspec = "aGVsbG8="
   }
+}
+
+resource "azurerm_storage_data_lake_gen2_path" "inspec_adls_gen2_path" {
+  path               = var.inspec_adls_path_name
+  filesystem_name    = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
+  storage_account_id = azurerm_storage_account.sa.id
+  resource           = "directory"
+}
+
+resource "azurerm_route_table" "route_table_sql_instance_inspec" {
+  name                          = "routetable-inspec"
+  location                      = azurerm_resource_group.rg.location
+  resource_group_name           = azurerm_resource_group.rg.name
+  disable_bgp_route_propagation = false
+  depends_on = [
+    azurerm_subnet.subnet,
+  ]
+}
+
+resource "azurerm_subnet_route_table_association" "route_table_assoc_inspec" {
+  subnet_id      = azurerm_subnet.subnet.id
+  route_table_id = azurerm_route_table.route_table_sql_instance_inspec.id
+}
+
+
+resource "azurerm_sql_managed_instance" "sql_instance_for_inspec" {
+  name                         = "sql-instance-for-inspec"
+  resource_group_name          = azurerm_resource_group.rg.name
+  location                     = azurerm_resource_group.rg.location
+  administrator_login          = "inspec-admin"
+  administrator_login_password = "Qwertyuiopasdfghjkl1"
+  license_type                 = "BasePrice"
+  subnet_id                    = azurerm_subnet.subnet.id
+  sku_name                     = "GP_Gen5"
+  vcores                       = 4
+  storage_size_in_gb           = 32
+
+  depends_on = [
+    azurerm_subnet_network_security_group_association.subnet_nsg,
+    azurerm_subnet_route_table_association.route_table_assoc_inspec,
+  ]
+}
+
+resource "azurerm_mssql_virtual_machine" "inspec_sql_vm" {
+  virtual_machine_id               = azurerm_virtual_machine.vm_windows_internal.id
+  sql_license_type                 = "PAYG"
+  r_services_enabled               = true
+  sql_connectivity_port            = 1433
+  sql_connectivity_type            = "PRIVATE"
+  sql_connectivity_update_password = "Password1234!"
+  sql_connectivity_update_username = "sqllogin"
+
+  auto_patching {
+    day_of_week                            = "Sunday"
+    maintenance_window_duration_in_minutes = 60
+    maintenance_window_starting_hour       = 2
+  }
+}
+
+resource "powerbi_workspace" "inspec_powerbi_workspace" {
+  name = "Inspec Workspace"
+}
+
+resource "powerbi_workspace_access" "allow_access_to_user" {
+  workspace_id = powerbi_workspace.inspec_powerbi_workspace.id
+  group_user_access_right = "Member"
+  email_address           = "sbabu@progress.com"
+  principal_type          = "User"
+}
+
+resource "azurerm_data_factory_dataset_cosmosdb_sqlapi" "cosmosdb_dataset" {
+  name                = "cosmosdb_dataset_sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  linked_service_name = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+  collection_name = "bar"
+}
+
+resource "azurerm_powerbi_embedded" "power_bi_embedded" {
+  name                = var.power_bi_embedded_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name            = "A1"
+  administrators      = ["sbabu@progress.com"]
 }
 
 resource "azurerm_servicebus_namespace" "sb" {

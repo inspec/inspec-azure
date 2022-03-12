@@ -3,6 +3,11 @@ incident_name = input('incident_name', value: nil)
 workspace_name = input('workspace_name', value: nil)
 
 control 'azure_sentinel_incidents_resources' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_sentinel_incidents_resources.'
+  desc 'Testing the plural resource of azure_sentinel_incidents_resources.'
+
   describe azure_sentinel_incidents_resources(resource_group: resource_group, workspace_name: workspace_name) do
     it { should exist }
     its('names') { should include incident_name }

@@ -1,4 +1,7 @@
 control 'azurerm_security_center_policy' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_role_definition.'
   desc <<-DESC
     This control is asserting state on global settings outside the control of
     Terraform. I will only be asserting on the expectation that things will be

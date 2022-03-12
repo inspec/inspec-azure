@@ -5,6 +5,11 @@ child2_mg = input('child2_mg', value: nil)
 parent_dn = input('parent_dn', value: nil)
 
 control 'azurerm_management_groups' do
+
+  impact 1.0
+  title 'Testing the plural resource of azurerm_management_groups.'
+  desc 'Testing the plural resource of azurerm_management_groups.'
+
   only_if { !parent_mg.nil? }
   describe azurerm_management_groups do
     its('ids')           { should include "/providers/Microsoft.Management/managementGroups/#{parent_mg}" }
