@@ -2,6 +2,11 @@ resource_group  = input('resource_group', value: nil)
 sql_server_name = input('sql_server_name', value: nil)
 
 control 'azurerm_sql_server' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_sql_server.'
+  desc 'Testing the singular resource of azurerm_sql_server.'
+
   only_if { !sql_server_name.nil? }
 
   describe azurerm_sql_server(resource_group: resource_group, server_name: sql_server_name) do

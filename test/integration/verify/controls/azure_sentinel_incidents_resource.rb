@@ -1,7 +1,12 @@
 resource_group = input('resource_group', value: nil)
 incident_id = input('incident_id', value: nil)
 workspace_name = input('workspace_name', value: nil)
+
 control 'azure_sentinel_incidents_resource' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_sentinel_incidents_resource.'
+  desc 'Testing the singular resource of azure_sentinel_incidents_resource.'
 
   describe azure_sentinel_incidents_resource(resource_group: resource_group, workspace_name: workspace_name, incident_id: incident_id) do
     it { should exist }

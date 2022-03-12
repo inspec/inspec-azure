@@ -2,6 +2,11 @@ resource_group = input('resource_group',  value: nil)
 vnet           = input('vnet_name',       value: nil)
 
 control 'azurerm_virtual_networks' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_virtual_networks.'
+  desc 'Testing the plural resource of azure_virtual_networks.'
+
   describe azurerm_virtual_networks(resource_group: resource_group) do
     it                              { should exist }
     its('names')                    { should be_an(Array) }
@@ -20,8 +25,10 @@ control 'azurerm_virtual_networks' do
 end
 
 control 'azure_virtual_networks' do
+
   impact 1.0
   title 'Ensure that the resource tests all virtual networks in a subscription.'
+  desc 'Testing the plural resource of azure_virtual_networks.'
 
   describe azure_virtual_networks do
     it { should exist }

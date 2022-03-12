@@ -16,3 +16,4 @@ dev/
 .ruby-version
 .rakeTasks
 .DS_Store
+coverage

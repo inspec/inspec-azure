@@ -3,6 +3,11 @@ postgresql_server_name = input('postgresql_server_name', value: nil)
 postgresql_database_name = input('postgresql_database_name', value: nil)
 
 control 'azurerm_postgresql_database' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_postgresql_database.'
+  desc 'Testing the singular resource of azurerm_postgresql_database.'
+
   only_if { !postgresql_database_name.nil? }
 
   describe azurerm_postgresql_database(resource_group: resource_group,

@@ -2,6 +2,11 @@ resource_group = input(:resource_group, value: '')
 container_group_name = input(:inspec_container_group_name, value: '')
 
 control 'check container group properties' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_container_group.'
+  desc 'Testing the singular resource of azure_container_group.'
+
   describe azure_container_group(resource_group: resource_group, name: container_group_name) do
     it { should exist }
     its('location') { should eq 'eastus' }
