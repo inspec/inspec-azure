@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.111.0 -->
+<!-- latest_release 1.112.0 -->
+## [v1.112.0](https://github.com/inspec/inspec-azure/tree/v1.112.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-117 Support azure service fabric mesh service [#579](https://github.com/inspec/inspec-azure/pull/579) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.111.0](https://github.com/inspec/inspec-azure/tree/v1.111.0) (2022-03-12)
 
 #### Merged Pull Requests
 - RESOURCE-116 Support azure service fabric mesh service replicas [#580](https://github.com/inspec/inspec-azure/pull/580) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.110.0](https://github.com/inspec/inspec-azure/tree/v1.110.0) (2022-03-12)
 
