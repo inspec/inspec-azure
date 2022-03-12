@@ -546,6 +546,36 @@ output "inspec_powerbi_workspace_id" {
   value = powerbi_workspace.inspec_powerbi_workspace.id
 }
 
+output "power_bi_embedded_name" {
+  description = "The name of the Power BI Embedded"
+  value = azurerm_powerbi_embedded.power_bi_embedded.name
+}
+
+output "service_bus_namespace_name" {
+  description = "The name of the Azure Service Bus Namespace"
+  value = azurerm_servicebus_namespace.sb.name
+}
+
+output "service_bus_topic_name" {
+  description = "The name of the Azure Service Bus Topic"
+  value = azurerm_servicebus_topic.inspec_sb_topic.name
+}
+
+output "service_bus_subscription_name" {
+  description = "The name of the Azure Service Bus Subscription"
+  value = azurerm_servicebus_subscription.inspec-sub.name
+}
+
+output "service_bus_subscription_rule_name" {
+  description = "The name of the Azure Service Bus Subscription Rule"
+  value = azurerm_servicebus_subscription_rule.inspec-sub-rule.name
+}
+
+output "inspec_managed_app" {
+  description = "The Managed Application Name"
+  value = azurerm_managed_application.mng_app.name
+}
+
 output "synapse_inspec_ws_name" {
   description = "Synapse Workspace Name"
   value = azurerm_synapse_workspace.synapse_inspec_ws.name
