@@ -1613,3 +1613,11 @@ resource "azurerm_data_factory_dataset_cosmosdb_sqlapi" "cosmosdb_dataset" {
   linked_service_name = azurerm_data_factory_linked_service_mysql.dflsmsql.name
   collection_name = "bar"
 }
+
+resource "azurerm_powerbi_embedded" "power_bi_embedded" {
+  name                = var.power_bi_embedded_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name            = "A1"
+  administrators      = ["sbabu@progress.com"]
+}

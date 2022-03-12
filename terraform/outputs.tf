@@ -545,3 +545,8 @@ output "inspec_powerbi_workspace_id" {
   description = "The name of the Azure Power BI Workspace"
   value = powerbi_workspace.inspec_powerbi_workspace.id
 }
+
+output "power_bi_embedded_name" {
+  description = "The name of the Power BI Embedded"
+  value = azurerm_powerbi_embedded.power_bi_embedded.name
+}
