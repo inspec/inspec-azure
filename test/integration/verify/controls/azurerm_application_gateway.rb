@@ -1,7 +1,11 @@
-resource_group = attribute('resource_group', default: nil)
-application_gateway_name = attribute('application_gateway_name', default: nil)
+resource_group = attribute('resource_group', value: nil)
+application_gateway_name = attribute('application_gateway_name', value: nil)
 
 control 'azurerm_application_gateway' do
+
+  impact 1.0
+  title 'Testing the singular resource of azure_streaming_analytics_function.'
+  desc 'Testing the singular resource of azure_streaming_analytics_function.'
 
   describe azurerm_application_gateway(resource_group: resource_group, application_gateway_name: application_gateway_name) do
     it                { should exist }
