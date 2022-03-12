@@ -550,3 +550,8 @@ output "power_bi_embedded_name" {
   description = "The name of the Power BI Embedded"
   value = azurerm_powerbi_embedded.power_bi_embedded.name
 }
+
+output "service_bus_namespace_name" {
+  description = "The name of the Azure Service Bus Namespace"
+  value = azurerm_servicebus_namespace.sb.name
+}

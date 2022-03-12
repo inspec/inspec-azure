@@ -1507,7 +1507,6 @@ uGLOhRJOFprPdoDIUBB+tmCl3oDcBy3vnUeOEioz8zAkprcb3GHwHAK+vHmmfgcn
 WsfMLH4JCLa/tRYL+Rw/N3ybCkDp00s0WUZ+AoDywSl0Q/ZEnNY0MsFiw6LyIdbq
 M/s/1JRtO3bDSzD9TazRVzn2oBqzSa8VgIo5C1nOnoAKJTlsClJKvIhnRlaLQqk=
 EOF
-
     }
 
     revoked_certificate {
@@ -1521,11 +1520,9 @@ resource "azurerm_virtual_network_gateway_connection" "nw-gateway-connection" {
   name                = "inspec-nw-gateway-connection"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-
   type                            = "Vnet2Vnet"
   virtual_network_gateway_id      = azurerm_virtual_network_gateway.inspec-nw-gateway.id
   peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.inspec-nw-gateway.id
-
   shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
 }
 
@@ -1620,4 +1617,15 @@ resource "azurerm_powerbi_embedded" "power_bi_embedded" {
   resource_group_name = azurerm_resource_group.rg.name
   sku_name            = "A1"
   administrators      = ["sbabu@progress.com"]
+}
+
+resource "azurerm_servicebus_namespace" "sb" {
+  name                = "inspec-servicebus-namespace"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+
+  tags = {
+    source = "inspec"
+  }
 }
