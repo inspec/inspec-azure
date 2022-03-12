@@ -555,3 +555,8 @@ output "service_bus_namespace_name" {
   description = "The name of the Azure Service Bus Namespace"
   value = azurerm_servicebus_namespace.sb.name
 }
+
+output "service_bus_topic_name" {
+  description = "The name of the Azure Service Bus Topic"
+  value = azurerm_servicebus_topic.inspec_sb_topic.name
+}
