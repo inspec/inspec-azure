@@ -183,6 +183,10 @@ variable "inspec_wan_name" {
   default = "inspec-nw-wan"
 }
 
+variable "power_bi_embedded_name" {
+  default = "inspecdevbi"
+}
+
 variable "dataset_type" {
   default = "CosmosDbSqlApiCollection"
 }
