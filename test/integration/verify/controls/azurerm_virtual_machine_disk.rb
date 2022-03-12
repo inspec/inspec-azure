@@ -5,6 +5,11 @@ encrypted_disk_name   = input('encrypted_disk_name',     value: nil)
 unmanaged_disk_name   = input('unamaged_disk_name',      value: nil)
 
 control 'azurerm_virtual_machine_disk' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_virtual_machine_disk.'
+  desc 'Testing the singular resource of azurerm_virtual_machine_disk.'
+
   describe azurerm_virtual_machine_disk(resource_group: resource_group, name: encrypted_disk_name) do
     it                        { should exist }
     its('id')                 { should eq "/subscriptions/#{ENV['AZURE_SUBSCRIPTION_ID']}/resourceGroups/#{resource_group}/providers/Microsoft.Compute/disks/#{encrypted_disk_name}" }

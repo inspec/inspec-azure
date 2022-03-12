@@ -4,6 +4,10 @@ df_location = input('df_location', value: nil)
 
 control 'azure_data_factory' do
 
+  impact 1.0
+  title 'Testing the singular resource of azure_data_factory.'
+  desc 'Testing the singular resource of azure_data_factory.'
+
   describe azure_data_factory(resource_group: resource_group, name: factory_name) do
     it { should exist }
     its('name') { should eq factory_name }
