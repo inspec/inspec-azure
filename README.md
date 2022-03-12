@@ -407,6 +407,8 @@ The following is a list of static resources.
 - [azure_service_bus_namespace](docs/resources/azure_service_bus_namespace.md)
 - [azure_service_bus_namespaces](docs/resources/azure_service_bus_namespaces.md)
 - [azure_service_bus_regions](docs/resources/azure_service_bus_regions.md)
+- [azure_service_bus_subscription](docs/resources/azure_service_bus_subscription.md)
+- [azure_service_bus_subscriptions](docs/resources/azure_service_bus_subscriptions.md)
 - [azure_service_bus_subscription_rule](docs/resources/azure_service_bus_subscription_rule.md)
 - [azure_service_bus_subscription_rules](docs/resources/azure_service_bus_subscription_rules.md)
 - [azure_service_bus_topic](docs/resources/azure_service_bus_topic.md)
