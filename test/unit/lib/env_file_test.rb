@@ -41,13 +41,13 @@ describe EnvironmentFile do
 
   describe 'current configuration' do
     it 'gives the current options in file' do
-      @env_file.current_options.must_equal %w{graph network_watcher}
+      @env_file.current_options.eql? %w{graph network_watcher}
     end
 
     it 'gives empty list if not options in file' do
       @env_file.synchronize([])
 
-      @env_file.current_options.must_equal []
+      @env_file.current_options.eql? []
     end
   end
 
@@ -56,7 +56,7 @@ describe EnvironmentFile do
       @env_file.synchronize(['network_watcher'])
 
       @tmp_file.open
-      @tmp_file.read.must_equal <<~CONTENT
+      @tmp_file.read.eql? <<~CONTENT
         unrelated content
 
 
@@ -68,7 +68,7 @@ describe EnvironmentFile do
       CONTENT
     end
 
-    it 'raises an error when unkown keys are given' do
+    it 'raises an error when unknown keys are given' do
       assert_raises RuntimeError do
         @env_file.synchronize(%w{network_watcher graph unknown})
       end
