@@ -52,19 +52,7 @@ class AzureNetworkSecurityGroups < AzureGenericResources
     # It is recommended to check that after every usage of inherited methods or making API calls.
     return if failed_resource?
 
-    # Define the column and field names for FilterTable.
-    # In most cases, the `column` should be the pluralized form of the `field`.
-    # @see https://github.com/inspec/inspec/blob/master/docs/dev/filtertable-usage.md
-    table_schema = [
-      { column: :names, field: :name },
-      { column: :etags, field: :etag },
-      { column: :tags, field: :tags },
-      { column: :ids, field: :id },
-      { column: :locations, field: :location },
-    ]
-
-    # FilterTable is populated at the very end due to being an expensive operation.
-    AzureGenericResources.populate_filter_table(:table, table_schema)
+    populate_filter_table_from_response
   end
 
   def to_s

@@ -3,6 +3,11 @@ vnet           = input('vnet_name',      value: nil)
 subnet         = input('subnet_name',    value: nil)
 
 control 'azurerm_subnets' do
+
+  impact 1.0
+  title 'Testing the plural resource of azurerm_subnets.'
+  desc 'Testing the plural resource of azurerm_subnets.'
+
   describe azurerm_subnets(resource_group: resource_group, vnet: vnet) do
     it           { should exist }
     its('names') { should be_an(Array) }
@@ -23,5 +28,4 @@ control 'azurerm_subnets' do
     .where(name: subnet) do
     it { should exist }
   end
-
 end
