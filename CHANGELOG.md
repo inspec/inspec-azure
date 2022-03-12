@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.113.0 -->
+<!-- latest_release 1.114.0 -->
+## [v1.114.0](https://github.com/inspec/inspec-azure/tree/v1.114.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-103 Support azure synapse workspaces [#601](https://github.com/inspec/inspec-azure/pull/601) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.113.0](https://github.com/inspec/inspec-azure/tree/v1.113.0) (2022-03-12)
 
 #### Merged Pull Requests
 - RESOURCE-115 Support azure service fabric mesh network [#582](https://github.com/inspec/inspec-azure/pull/582) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.112.0](https://github.com/inspec/inspec-azure/tree/v1.112.0) (2022-03-12)
 
