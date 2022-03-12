@@ -570,3 +570,8 @@ output "service_bus_subscription_rule_name" {
   description = "The name of the Azure Service Bus Subscription Rule"
   value = azurerm_servicebus_subscription_rule.inspec-sub-rule.name
 }
+
+output "inspec_managed_app" {
+  description = "The Managed Application Name"
+  value = azurerm_managed_application.mng_app.name
+}
