@@ -16,6 +16,11 @@ sku_tier = input('sku_tier', value: nil)
 sku_family = input('sku_family', value: nil)
 
 control 'azure_express_route_circuits' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_express_route_circuits.'
+  desc 'Testing the plural resource of azure_express_route_circuits.'
+
   describe azure_express_route_circuits(resource_group: erc_resource_group) do
     it { should exist }
     its('names') { should include erc_circuit_name }
