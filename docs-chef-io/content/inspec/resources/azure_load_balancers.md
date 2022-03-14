@@ -90,6 +90,7 @@ describe azure_load_balancers do
     its('names')  { should include 'my-lb' }
 end
 ````
+
 **Filter the Results to Include Only those with Names Match the Given String Value.**
 
 ```ruby
@@ -97,6 +98,7 @@ describe azure_load_balancers.where{ name.eql?('production-lb') } do
   it { should exist }
 end
 ```
+
 **Filter the Results to Include Only those with Location Match the Given String Value.**
 
 ```ruby
@@ -107,7 +109,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

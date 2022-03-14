@@ -84,6 +84,7 @@ describe azure_storage_account_blob_container(resource_group: 'rg', storage_acco
   its('properties.deleted') { should be true }
 end
 ```
+
 **Ensure that the Blob Container is private.**
 
 ```ruby
@@ -91,6 +92,7 @@ describe azure_storage_account_blob_container(resource_group: 'rg', storage_acco
   its('properties') { should have_attributes(publicAccess: 'None') }
 end
 ```
+
 **Loop through Resources via `resource_id`.**
 
 ```ruby

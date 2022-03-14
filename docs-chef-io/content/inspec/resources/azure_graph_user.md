@@ -123,6 +123,7 @@ describe azure_graph_user(id: 'someValidId')
   it { should exist }
 end
 ```
+
 **Test If an Active Directory User Account is Referenced with an Invalid ID.**
 
 ```ruby
@@ -133,7 +134,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

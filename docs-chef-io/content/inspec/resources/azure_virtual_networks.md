@@ -79,6 +79,7 @@ describe azure_virtual_networks(resource_group: 'MyResourceGroup') do
   it { should exist }
 end
 ```
+
 **Filters the Results to Only Those that Match the Given Name (Client Side).**
 
 ```ruby
@@ -95,6 +96,7 @@ describe azure_virtual_networks(resource_group: 'MyResourceGroup').where { name.
   it { should exist }
 end
 ```
+
 **Filters the Networks at Azure API to Only Those that Match the Given Name via Generic Resource (Recommended).**
 
 ```ruby
@@ -114,7 +116,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

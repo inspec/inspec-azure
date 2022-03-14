@@ -89,6 +89,7 @@ describe azure_network_interface(resource_group: 'my-rg', name: 'networkInterfac
   its('properties.enableIPForwarding') { should be_true }
 end
 ```
+
 **Test if the Primary IP Configuration is Set to Correct Private IP Address.**
 
 ```ruby

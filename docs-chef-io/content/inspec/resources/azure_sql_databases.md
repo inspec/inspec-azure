@@ -86,6 +86,7 @@ describe azure_sql_databases(resource_group: 'my-rg', server_name: 'my-server') 
     its('names') { should include 'my-db' }
 end
 ````
+
 **Filter the Results to Include Only those with Names Match the Given String Value.**
 
 ```ruby
@@ -93,6 +94,7 @@ describe azure_sql_databases.(resource_group: 'my-rg', server_name: 'my-server')
   it { should exist }
 end
 ```
+
 **Filter the Results to Include Only those with `GRS` Storage Account Type.**
 
 ```ruby
@@ -103,7 +105,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

@@ -23,12 +23,15 @@ Use the `azure_aks_clusters` InSpec audit resource to test properties and config
 ## Syntax
 
 An `azure_aks_clusters` resource block returns all AKS Clusters, either within a Resource Group (if provided), or within an entire Subscription.
+
 ```ruby
 describe azure_aks_clusters do
   #...
 end
 ```
+
 or
+
 ```ruby
 describe azure_aks_clusters(resource_group: 'my-rg') do
   #...
@@ -82,11 +85,12 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 # If we expect 'ExampleGroup' Resource Group to have AKS Clusters
 describe azure_aks_clusters(resource_group: 'ExampleGroup') do
