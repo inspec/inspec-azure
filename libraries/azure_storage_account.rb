@@ -15,7 +15,7 @@ class AzureStorageAccount < AzureGenericResource
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.Storage/storageAccounts', opts)
-    opts[:allowed_parameters] = %i(activity_log_alert_api_version storage_service_endpoint_api_version)
+    opts[:allowed_parameters] = %i(activity_log_alert_api_version storage_service_endpoint_api_version diagnostic_settings_api_version)
     # fall-back `api_version` is fixed for now.
     # TODO: Implement getting the latest Azure Storage services api version
     opts[:storage_service_endpoint_api_version] ||= '2019-12-12'
@@ -23,6 +23,8 @@ class AzureStorageAccount < AzureGenericResource
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+
+    @opts[:diagnostic_settings_api_version] ||= '2017-05-01-preview'
   end
 
   def to_s
@@ -141,6 +143,144 @@ class AzureStorageAccount < AzureGenericResource
       create_resource_methods({ table_properties: properties })
       public_send(:table_properties) if respond_to?(:table_properties)
     end
+  end
+
+  def blobs_diagnostic_settings
+    return unless exists?
+    # `additional_resource_properties` method will create a singleton method with the `property_name`
+    # and make api response available through this property.
+    additional_resource_properties(
+      {
+        property_name: 'diagnostic_settings',
+        property_endpoint: "#{id}/blobServices/default/providers/microsoft.insights/diagnosticSettings",
+        api_version: @opts[:diagnostic_settings_api_version],
+      },
+    )
+  end
+
+  def tables_diagnostic_settings
+    return unless exists?
+    # `additional_resource_properties` method will create a singleton method with the `property_name`
+    # and make api response available through this property.
+    additional_resource_properties(
+      {
+        property_name: 'diagnostic_settings',
+        property_endpoint: "#{id}/tableServices/default/providers/microsoft.insights/diagnosticSettings",
+        api_version: @opts[:diagnostic_settings_api_version],
+      },
+    )
+  end
+
+  def queues_diagnostic_settings
+    return unless exists?
+    # `additional_resource_properties` method will create a singleton method with the `property_name`
+    # and make api response available through this property.
+    additional_resource_properties(
+      {
+        property_name: 'diagnostic_settings',
+        property_endpoint: "#{id}/queueServices/default/providers/microsoft.insights/diagnosticSettings",
+        api_version: @opts[:diagnostic_settings_api_version],
+      },
+    )
+  end
+
+  def has_blobs_read_log_enabled?
+    return false if blobs_diagnostic_settings.nil? || blobs_diagnostic_settings.empty?
+    result = []
+    blobs_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageRead' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_blobs_write_log_enabled?
+    return false if blobs_diagnostic_settings.nil? || blobs_diagnostic_settings.empty?
+    result = []
+    blobs_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageWrite' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_blobs_delete_log_enabled?
+    return false if blobs_diagnostic_settings.nil? || blobs_diagnostic_settings.empty?
+    result = []
+    blobs_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageDelete' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_tables_read_log_enabled?
+    return false if tables_diagnostic_settings.nil? || tables_diagnostic_settings.empty?
+    result = []
+    tables_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageRead' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_tables_write_log_enabled?
+    return false if tables_diagnostic_settings.nil? || tables_diagnostic_settings.empty?
+    result = []
+    tables_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageWrite' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_tables_delete_log_enabled?
+    return false if tables_diagnostic_settings.nil? || tables_diagnostic_settings.empty?
+    result = []
+    tables_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageDelete' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_queues_read_log_enabled?
+    return false if queues_diagnostic_settings.nil? || queues_diagnostic_settings.empty?
+    result = []
+    queues_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageRead' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_queues_write_log_enabled?
+    return false if queues_diagnostic_settings.nil? || queues_diagnostic_settings.empty?
+    result = []
+    queues_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageWrite' }.compact
+    end
+    result.include?(true)
+  end
+
+  def has_queues_delete_log_enabled?
+    return false if queues_diagnostic_settings.nil? || queues_diagnostic_settings.empty?
+    result = []
+    queues_diagnostic_settings.each do |setting|
+      logs = setting.properties&.logs
+      next unless logs
+      result += logs.map { |log| log.enabled if log.category == 'StorageDelete' }.compact
+    end
+    result.include?(true)
   end
 
   private
