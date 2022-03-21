@@ -88,6 +88,7 @@ describe azure_key_vault_key(vault_name: 'example_vault', key_name: 'example_key
   its('key.kid') { should cmp 'https://example_vault.vault.azure.net/keys/key/7df9bf2c3b4347bab213ebe233f0e350' }
 end
 ```
+
 **Test if the Key is Enabled.**
 
 ```ruby

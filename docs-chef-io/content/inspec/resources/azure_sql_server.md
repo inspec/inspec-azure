@@ -102,6 +102,7 @@ describe azure_sql_server(resource_group: 'my-rg', name: 'sql-server-1') do
   it { should exist }
 end
 ```
+
 **Test If a SQL Server is Referenced with an Invalid Name.**
 
 ```ruby
@@ -124,6 +125,7 @@ describe azure_sql_server(resource_id: '/subscriptions/.../my-server') do
   its('location') { should cmp 'westeurope' }
 end
 ```
+
 **Test a SQL Server's Auditing Settings.**
 
 ```ruby
@@ -137,7 +139,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

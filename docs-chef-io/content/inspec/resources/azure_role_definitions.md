@@ -71,6 +71,7 @@ describe azure_role_definitions do
   its('names')  { should include 'my-role' }
 end
 ```
+
 **Filter the Results to Include Only Those Role Definitions which Include the Given Name.**
 
 ```ruby
@@ -78,6 +79,7 @@ describe azure_role_definitions.where{ name.include?('my-role') } do
   it { should exist }
 end
 ```
+
 **Filter the Results to Include Only The Built-in Role Definitions.**
 
 ```ruby
@@ -97,7 +99,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

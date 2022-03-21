@@ -90,6 +90,7 @@ azure_aks_clusters.ids.each do |resource_id|
   end
 end 
 ```
+
 **Test that a Specified AKS Cluster has the Correct Number of Nodes in Pool.**
 
 ```ruby
@@ -97,6 +98,7 @@ describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
   its('properties.agentPoolProfiles.first.count') { should cmp 5 }
 end
 ```
+
 **Test that a Specified AKS Cluster has kube-audit logging enabled.**
 
 ```ruby
@@ -104,6 +106,7 @@ describe azure_aks_cluster(resource_group: 'example', name: 'ClusterName') do
   its('enabled_logging_types') { should include "kube-audit" }
 end
 ```
+
 **Test that a Specified AKS Cluster has logging enabled on it and no forms of logging disabled.**
 
 ```ruby

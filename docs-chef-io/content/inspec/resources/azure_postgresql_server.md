@@ -78,6 +78,7 @@ describe azure_postgresql_server(resource_group: 'my-rg', name: 'sql-server-1') 
   its('properties.administratorLogin') { should cmp 'admin' }
 end
 ```
+
 **Test the Fully Qualified Domain Name of a PostgreSql Server.**
 
 ```ruby
@@ -110,7 +111,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

@@ -84,6 +84,7 @@ describe azure_network_watcher(resource_group: 'resourceGroupName', name: 'netwo
   its('location') { should cmp 'eastus' }
 end
 ```
+
 **Test the Flow Log Status of a Network Security Group.**
 
 ```ruby
@@ -92,6 +93,7 @@ describe azure_network_watcher(resource_group: 'resourceGroupName', name: 'netwo
   its('flow_logs.properties.retentionPolicy.days') { should be >= 90 }
 end
 ```
+
 **Loop through Network Security Groups with the Resource ID.**
 
 ```ruby

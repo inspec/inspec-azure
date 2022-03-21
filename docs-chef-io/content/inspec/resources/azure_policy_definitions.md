@@ -101,6 +101,7 @@ describe azure_policy_definitions do
   its('names')  { should include 'my-policy' }
 end
 ```
+
 **Filters the Results to Include Only Those Policy Definitions which Include the Given Name.**
 
 ```ruby
@@ -108,6 +109,7 @@ describe azure_policy_definitions.where{ name.include?('my-policy') } do
   it { should exist }
 end
 ```
+
 **Filters the Results to Include Only The Custom Policy Definitions.**
 
 ```ruby
@@ -119,7 +121,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

@@ -85,6 +85,7 @@ describe azure_application_gateways do
   its('names')  { should include 'my-appgw' }
 end
 ```
+
 **Filter the Results to Include Only those with Names Match the Given String Value.**
 
 ```ruby
@@ -95,7 +96,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

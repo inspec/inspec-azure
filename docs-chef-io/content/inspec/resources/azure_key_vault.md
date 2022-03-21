@@ -79,6 +79,7 @@ describe azure_key_vault(resource_group: 'MyResourceGroup', name: 'MyVaultName')
   its('properties.sku.family') { should eq 'A' }
 end
 ```
+
 **Test If Key Vault is Enabled for Disk Encryption.**
 
 ```ruby
@@ -86,6 +87,7 @@ describe azure_key_vault(resource_group: 'MyResourceGroup', name: 'MyVaultName')
   its('properties.enabledForDiskEncryption') { should be_true }
 end
 ```
+
 **Test If Azure Key Vault audit logging is enabled.**
 
 ```ruby

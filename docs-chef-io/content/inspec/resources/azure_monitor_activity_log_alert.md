@@ -77,6 +77,7 @@ describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'Aler
   its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
 end
 ```
+
 **Test the Scope of an Activity Log Alert.**
 
 ```ruby

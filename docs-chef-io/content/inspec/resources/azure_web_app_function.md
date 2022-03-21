@@ -88,6 +88,7 @@ describe azure_web_app_function(resource_group: 'MyResourceGroup', site_name: 'f
   its('properties.language') { should eq 'Javascript' }
 end
 ```
+
 **Test <>.**
 
 ```ruby
