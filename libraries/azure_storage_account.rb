@@ -185,7 +185,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_blobs_read_log_enabled?
-    return false if blobs_diagnostic_settings.nil? || blobs_diagnostic_settings.empty?
+    return false if blobs_diagnostic_settings.blank?
     result = []
     blobs_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -196,7 +196,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_blobs_write_log_enabled?
-    return false if blobs_diagnostic_settings.nil? || blobs_diagnostic_settings.empty?
+    return false if blobs_diagnostic_settings.blank?
     result = []
     blobs_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -207,7 +207,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_blobs_delete_log_enabled?
-    return false if blobs_diagnostic_settings.nil? || blobs_diagnostic_settings.empty?
+    return false if blobs_diagnostic_settings.blank?
     result = []
     blobs_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -218,7 +218,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_tables_read_log_enabled?
-    return false if tables_diagnostic_settings.nil? || tables_diagnostic_settings.empty?
+    return false if tables_diagnostic_settings.blank?
     result = []
     tables_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -229,7 +229,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_tables_write_log_enabled?
-    return false if tables_diagnostic_settings.nil? || tables_diagnostic_settings.empty?
+    return false if tables_diagnostic_settings.blank?
     result = []
     tables_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -240,7 +240,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_tables_delete_log_enabled?
-    return false if tables_diagnostic_settings.nil? || tables_diagnostic_settings.empty?
+    return false if tables_diagnostic_settings.blank?
     result = []
     tables_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -251,7 +251,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_queues_read_log_enabled?
-    return false if queues_diagnostic_settings.nil? || queues_diagnostic_settings.empty?
+    return false if queues_diagnostic_settings.blank?
     result = []
     queues_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -262,7 +262,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_queues_write_log_enabled?
-    return false if queues_diagnostic_settings.nil? || queues_diagnostic_settings.empty?
+    return false if queues_diagnostic_settings.blank?
     result = []
     queues_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
@@ -273,7 +273,7 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_queues_delete_log_enabled?
-    return false if queues_diagnostic_settings.nil? || queues_diagnostic_settings.empty?
+    return false if queues_diagnostic_settings.blank?
     result = []
     queues_diagnostic_settings.each do |setting|
       logs = setting.properties&.logs
