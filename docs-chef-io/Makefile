@@ -3,9 +3,13 @@
 SHELL=bash
 
 preview_netlify: chef_web_docs
-	cp -R content/inspec/resources/* chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/content/inspec/resources/
-	cp -R config.toml chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/
-	pushd chef-web-docs && make bundle; hugo --gc --minify --buildFuture && popd
+	rm -rf chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/content/inspec/resources/*
+	rm -rf chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/layouts/*
+	cp -R ./content/inspec/resources/* ./chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/content/inspec/resources/
+	cp -R layouts/* chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/layouts/
+	cp -R ./config.toml ./chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/
+	cp -R assets/release-notes/inspec-azure/release-dates.json chef-web-docs/_vendor/github.com/inspec/inspec-azure/docs-chef-io/assets/release-notes/inspec-azure
+	pushd chef-web-docs && make bundle; hugo --gc --minify --buildFuture --environment preview && popd
 
 
 replace = "replacements = \'github.com/inspec/inspec-azure/docs-chef-io -\> ../../\'\\n\\n"
