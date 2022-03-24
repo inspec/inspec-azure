@@ -1,10 +1,145 @@
 # Changelog
-<!-- latest_release 1.93.0 -->
+<!-- latest_release 1.114.2 -->
+## [v1.114.2](https://github.com/inspec/inspec-azure/tree/v1.114.2) (2022-03-21)
+
+#### Merged Pull Requests
+- Adding Logging Enabled Check to Azure Key Vault [#644](https://github.com/inspec/inspec-azure/pull/644) ([jnikles1](https://github.com/jnikles1))
+<!-- latest_release -->
+
+## [v1.114.1](https://github.com/inspec/inspec-azure/tree/v1.114.1) (2022-03-14)
+
+#### Merged Pull Requests
+- Add readme content and configs for documentation [#645](https://github.com/inspec/inspec-azure/pull/645) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.114.0](https://github.com/inspec/inspec-azure/tree/v1.114.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-103 Support azure synapse workspaces [#601](https://github.com/inspec/inspec-azure/pull/601) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.113.0](https://github.com/inspec/inspec-azure/tree/v1.113.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-115 Support azure service fabric mesh network [#582](https://github.com/inspec/inspec-azure/pull/582) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.112.0](https://github.com/inspec/inspec-azure/tree/v1.112.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-117 Support azure service fabric mesh service [#579](https://github.com/inspec/inspec-azure/pull/579) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.111.0](https://github.com/inspec/inspec-azure/tree/v1.111.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-116 Support azure service fabric mesh service replicas [#580](https://github.com/inspec/inspec-azure/pull/580) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.110.0](https://github.com/inspec/inspec-azure/tree/v1.110.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-114 Support azure service fabric mesh volumes [#581](https://github.com/inspec/inspec-azure/pull/581) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.109.0](https://github.com/inspec/inspec-azure/tree/v1.109.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-118 Support azure service fabric mesh apps [#578](https://github.com/inspec/inspec-azure/pull/578) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.108.0](https://github.com/inspec/inspec-azure/tree/v1.108.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-132 Support managed applications [#575](https://github.com/inspec/inspec-azure/pull/575) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.107.0](https://github.com/inspec/inspec-azure/tree/v1.107.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-124 Support service bus regions [#566](https://github.com/inspec/inspec-azure/pull/566) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.106.0](https://github.com/inspec/inspec-azure/tree/v1.106.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-122 Support service bus subscriptions [#568](https://github.com/inspec/inspec-azure/pull/568) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.105.0](https://github.com/inspec/inspec-azure/tree/v1.105.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-123 Support servicebus subscription rules [#567](https://github.com/inspec/inspec-azure/pull/567) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.104.0](https://github.com/inspec/inspec-azure/tree/v1.104.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-121 Support azure service bus topics [#565](https://github.com/inspec/inspec-azure/pull/565) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.103.0](https://github.com/inspec/inspec-azure/tree/v1.103.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-129 Support service bus namespaces [#562](https://github.com/inspec/inspec-azure/pull/562) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.102.0](https://github.com/inspec/inspec-azure/tree/v1.102.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-145 Support azure power bi dataflow storage accounts [#549](https://github.com/inspec/inspec-azure/pull/549) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.101.0](https://github.com/inspec/inspec-azure/tree/v1.101.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-148 Support azure power bi capacity workloads [#534](https://github.com/inspec/inspec-azure/pull/534) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.100.0](https://github.com/inspec/inspec-azure/tree/v1.100.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-152 Support azure power bi app reports [#529](https://github.com/inspec/inspec-azure/pull/529) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.99.0](https://github.com/inspec/inspec-azure/tree/v1.99.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-153 Support azure power bi app dashboards [#521](https://github.com/inspec/inspec-azure/pull/521) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.98.0](https://github.com/inspec/inspec-azure/tree/v1.98.0) (2022-03-12)
+
+#### Merged Pull Requests
+- RESOURCE-157 Support power bi embedded capacities [#487](https://github.com/inspec/inspec-azure/pull/487) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.97.1](https://github.com/inspec/inspec-azure/tree/v1.97.1) (2022-03-02)
+
+#### Merged Pull Requests
+- Removes the unwanted warnings from the integration tests [#643](https://github.com/inspec/inspec-azure/pull/643) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.97.0](https://github.com/inspec/inspec-azure/tree/v1.97.0) (2022-02-28)
+
+#### Merged Pull Requests
+- RESOURCE-139 Support adls paths [#485](https://github.com/inspec/inspec-azure/pull/485) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.96.1](https://github.com/inspec/inspec-azure/tree/v1.96.1) (2022-02-25)
+
+#### Merged Pull Requests
+- Update resource docs for Hugo [#642](https://github.com/inspec/inspec-azure/pull/642) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.96.0](https://github.com/inspec/inspec-azure/tree/v1.96.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-140 Support Azure Power BI dataset datasources [#538](https://github.com/inspec/inspec-azure/pull/538) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.95.0](https://github.com/inspec/inspec-azure/tree/v1.95.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-143 Support power bi dashboard tiles [#516](https://github.com/inspec/inspec-azure/pull/516) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.94.1](https://github.com/inspec/inspec-azure/tree/v1.94.1) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-136 F/df ds [#506](https://github.com/inspec/inspec-azure/pull/506) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.94.0](https://github.com/inspec/inspec-azure/tree/v1.94.0) (2022-02-25)
+
+#### Merged Pull Requests
+- RESOURCE-144 Support power bi dashboards [#507](https://github.com/inspec/inspec-azure/pull/507) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.93.1](https://github.com/inspec/inspec-azure/tree/v1.93.1) (2022-02-23)
+
+#### Merged Pull Requests
+- Resource-202 update azure tests to use ruby versions 2.7 and 3.0 only  [#641](https://github.com/inspec/inspec-azure/pull/641) ([soumyo13](https://github.com/soumyo13))
+
 ## [v1.93.0](https://github.com/inspec/inspec-azure/tree/v1.93.0) (2022-02-22)
 
 #### Merged Pull Requests
 - Support azure migrate db instances [#440](https://github.com/inspec/inspec-azure/pull/440) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.92.5](https://github.com/inspec/inspec-azure/tree/v1.92.5) (2022-02-21)
 

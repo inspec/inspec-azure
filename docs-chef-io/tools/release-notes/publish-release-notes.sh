@@ -4,14 +4,12 @@ set -eou pipefail
 
 PRODUCT=inspec-azure
 CURRENTDATE=$(date +"%Y-%m-%d")
-DOCS_ASSETS_DIR="docs-chef-io/assets/release-notes/inspec-azure"
-BRANCH="expeditor/update_release_notes_${CURRENTDATE}"
+DOCS_ASSETS_DIR="assets/release-notes/inspec-azure"
 
-git checkout -b "$BRANCH"
 
-git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/inspec/inspec-azure.wiki.git"
+git clone "https://github.com/inspec/inspec-azure.wiki.git"
 
-# Append the date to the array of dates in docs-chef-io/assets/release-notes/inspec-azure/release-dates.json
+# Append the date to the array of dates in assets/release-notes/inspec-azure/release-dates.json
 DATES_FILE="${DOCS_ASSETS_DIR}/release-dates.json"
 DATES=$( cat "$DATES_FILE" | jq --arg DATE "$CURRENTDATE" '. |= .+ [$DATE]' )
 echo $DATES | jq . > "$DATES_FILE"
@@ -38,7 +36,7 @@ popd
 
 rm -rf inspec-azure.wiki
 
-# Commit changes to inspec-aws/docs-chef-io/static/release-notes/inspec-aws
+# Commit changes to inspec-azure/docs-chef-io/static/release-notes/inspec-azure
 
 git add .
 
@@ -47,11 +45,4 @@ git add .
 # audit of our codebase that no DCO sign-off is needed for this sort of PR since
 # it contains no intellectual property
 
-dco_safe_git_commit "Update release notes ${CURRENTDATE}."
-
-open_pull_request
-
-# Get back to main and cleanup the leftovers - any changed files left over at
-# the end of this script will get committed to main.
-git checkout -
-git branch -D "$BRANCH"
+git commit -sm "Update release notes ${CURRENTDATE}."

@@ -139,6 +139,7 @@ describe azure_security_center_policy(resource_group: 'my-rg', name: 'my_policy'
   its('log_collection') { should cmp 'On' }
 end
 ```
+
 **Test If Notifications are Enabled.**
 
 ```ruby
@@ -150,7 +151,7 @@ See [integration tests](../../test/integration/verify/controls/azurerm_security_
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### have_auto_provisioning_enabled
 

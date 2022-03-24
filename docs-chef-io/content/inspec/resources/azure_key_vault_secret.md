@@ -100,6 +100,7 @@ describe azure_key_vault_secret(vault_name: 'example_vault', secret_name: 'examp
   its('id') { should cmp 'https://example_vault.vault.azure.net/secrets/example_secret' }
 end
 ```
+
 **Test if the Secret is Enabled.**
 
 ```ruby

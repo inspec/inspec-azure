@@ -95,6 +95,7 @@ describe azure_locks(resource_group: 'rg-1', resource_name: 'my-VM', resource_ty
   its('names')  { should include 'production_agents' }
 end
 ```
+
 **Filters the Results to Include Only Those Management Locks which Include the Given Name.**
 
 ```ruby
@@ -102,6 +103,7 @@ describe azure_locks.where{ name.include?('production') } do
   it { should exist }
 end
 ```
+
 **Loop through All Virtual Machines to Test If They have Management Locks Defined on.**
 
 ```ruby
@@ -114,7 +116,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

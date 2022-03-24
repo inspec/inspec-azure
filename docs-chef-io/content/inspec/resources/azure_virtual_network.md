@@ -84,6 +84,7 @@ describe azure_virtual_network(resource_group: 'resource_group', name: 'MyVnetNa
   its('location')  { should eq 'eastus' }
 end
 ```
+
 **Ensure that the Virtual Network's DNS Servers are Configured as Expected.**
 
 ```ruby
@@ -91,6 +92,7 @@ describe azure_virtual_network(resource_group: 'resource_group', name: 'MyVnetNa
     its('dns_servers') { should eq ["192.168.0.6"] }
 end
 ```
+
 **Ensure that the Virtual Network's Address Space is Configured as Expected.**
 
 ```ruby
@@ -101,7 +103,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

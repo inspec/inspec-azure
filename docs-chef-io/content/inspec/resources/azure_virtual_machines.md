@@ -84,6 +84,7 @@ describe azure_virtual_machines(resource_group: 'MyResourceGroup') do
   it { should exist }
 end
 ```
+
 **Filters Based on Platform.**
 
 ```ruby
@@ -124,7 +125,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

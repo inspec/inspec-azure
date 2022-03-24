@@ -61,6 +61,7 @@ describe azure_security_center_policies do
   its('names')  { should include 'my-policy' }
 end
 ```
+
 **Filter the Results to Include Only Those Policies which Include a Given String in Their Names.**
 
 ```ruby
@@ -68,6 +69,7 @@ describe azure_security_center_policies.where{ name.include?('production') } do
   it { should exist }
 end
 ```
+
 **Filter the Results to Include Only Those Policies that the Log Collection is Enabled.**
 
 ```ruby
@@ -79,7 +81,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### exists
 

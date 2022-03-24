@@ -99,6 +99,15 @@ class AzureKeyVault < AzureGenericResource
     end
     result
   end
+
+  def has_logging_enabled?
+    return false if diagnostic_settings.nil? || diagnostic_settings.empty?
+    log = diagnostic_settings.each do |setting|
+      log = setting.properties&.logs&.detect { |l| l.category == 'AuditEvent' }
+      break log if log.present?
+    end
+    log&.enabled
+  end
 end
 
 # Provide the same functionality under the old resource name.

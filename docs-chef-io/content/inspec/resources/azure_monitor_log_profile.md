@@ -67,6 +67,7 @@ describe azure_monitor_log_profile(name: 'my_log_profile') do
   it { should exist }
 end
 ```
+
 **Test If a Log Profile is Referenced with an Invalid Name.**
 
 ```ruby
@@ -91,7 +92,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### have_log_retention_enabled
 

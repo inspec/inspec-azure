@@ -79,6 +79,7 @@ describe azure_policy_definition(name: 'my_policy') do
   its('properties.displayName') { should cmp "Enforce 'owner' tag on resource groups" }
 end
 ```
+
 **Test a Policy Definition Rule.**
 
 ```ruby
@@ -89,7 +90,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://www.inspec.io/docs/reference/matchers/).
+{{% inspec_matchers_link %}}
 
 ### custom
 

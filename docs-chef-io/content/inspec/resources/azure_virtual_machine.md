@@ -95,6 +95,7 @@ describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmNam
   its('data_disk_names') { should include('DataDisk1') }
 end
 ```
+
 **Ensure that the Virtual Machine has the Expected Monitoring Agent Installed.**
 
 ```ruby

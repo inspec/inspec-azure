@@ -73,6 +73,7 @@ describe azure_hdinsight_cluster(resource_id: '/subscriptions/{subscriptionId}/r
   its('properties.provisioningState') { should cmp 'Succeeded' }
 end
 ```
+
 **Test the Version of a HDInsight Cluster.**
 
 ```ruby

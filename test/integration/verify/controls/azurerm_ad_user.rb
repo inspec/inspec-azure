@@ -1,5 +1,9 @@
 control 'azurerm_ad_user' do
 
+  impact 1.0
+  title 'Testing the singular resource of azurerm_ad_user.'
+  desc 'Testing the singular resource of azurerm_ad_user.'
+
   user_id = azurerm_ad_users.object_ids.first
   describe azurerm_ad_user(user_id: user_id) do
     it                    { should exist }
