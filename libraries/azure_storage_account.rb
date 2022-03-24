@@ -185,105 +185,51 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_blobs_read_log_enabled?
-    return false if blobs_diagnostic_settings.blank?
-    result = []
-    blobs_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageRead' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: blobs_diagnostic_settings, category: 'StorageRead')
   end
 
   def has_blobs_write_log_enabled?
-    return false if blobs_diagnostic_settings.blank?
-    result = []
-    blobs_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageWrite' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: blobs_diagnostic_settings, category: 'StorageWrite')
   end
 
   def has_blobs_delete_log_enabled?
-    return false if blobs_diagnostic_settings.blank?
-    result = []
-    blobs_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageDelete' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: blobs_diagnostic_settings, category: 'StorageDelete')
   end
 
   def has_tables_read_log_enabled?
-    return false if tables_diagnostic_settings.blank?
-    result = []
-    tables_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageRead' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: tables_diagnostic_settings, category: 'StorageRead')
   end
 
   def has_tables_write_log_enabled?
-    return false if tables_diagnostic_settings.blank?
-    result = []
-    tables_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageWrite' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: tables_diagnostic_settings, category: 'StorageWrite')
   end
 
   def has_tables_delete_log_enabled?
-    return false if tables_diagnostic_settings.blank?
-    result = []
-    tables_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageDelete' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: tables_diagnostic_settings, category: 'StorageDelete')
   end
 
   def has_queues_read_log_enabled?
-    return false if queues_diagnostic_settings.blank?
-    result = []
-    queues_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageRead' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: queues_diagnostic_settings, category: 'StorageRead')
   end
 
   def has_queues_write_log_enabled?
-    return false if queues_diagnostic_settings.blank?
-    result = []
-    queues_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageWrite' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: queues_diagnostic_settings, category: 'StorageWrite')
   end
 
   def has_queues_delete_log_enabled?
-    return false if queues_diagnostic_settings.blank?
-    result = []
-    queues_diagnostic_settings.each do |setting|
-      logs = setting.properties&.logs
-      next unless logs
-      result += logs.map { |log| log.enabled if log.category == 'StorageDelete' }.compact
-    end
-    result.include?(true)
+    check_enablement_from(settings: queues_diagnostic_settings, category: 'StorageDelete')
   end
 
   private
+
+  def check_enablement_from(settings:, category:)
+    return false if settings.blank?
+
+    settings.any? do |setting|
+      logs = setting.properties&.logs
+      logs&.any? { |log| (log.category == category) && log.enabled }
+    end
+  end
 
   def get_resource(opts = {})
     opts[:resource_data].presence || super
