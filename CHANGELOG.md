@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.114.1 -->
+<!-- latest_release 1.114.2 -->
+## [v1.114.2](https://github.com/inspec/inspec-azure/tree/v1.114.2) (2022-03-21)
+
+#### Merged Pull Requests
+- Adding Logging Enabled Check to Azure Key Vault [#644](https://github.com/inspec/inspec-azure/pull/644) ([jnikles1](https://github.com/jnikles1))
+<!-- latest_release -->
+
 ## [v1.114.1](https://github.com/inspec/inspec-azure/tree/v1.114.1) (2022-03-14)
 
 #### Merged Pull Requests
 - Add readme content and configs for documentation [#645](https://github.com/inspec/inspec-azure/pull/645) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.114.0](https://github.com/inspec/inspec-azure/tree/v1.114.0) (2022-03-12)
 
