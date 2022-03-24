@@ -1,9 +1,13 @@
-resource_group = attribute('resource_group', default: nil)
-iothub_resource_name = attribute('iothub_resource_name', default: nil)
-iothub_event_hub_endpoint = attribute('iothub_event_hub_endpoint', default: nil)
-consumer_group = attribute('consumer_group', default: nil)
+resource_group = attribute('resource_group', value: nil)
+iothub_resource_name = attribute('iothub_resource_name', value: nil)
+iothub_event_hub_endpoint = attribute('iothub_event_hub_endpoint', value: nil)
+consumer_group = attribute('consumer_group', value: nil)
 
 control 'azurerm_iothub_event_hub_consumer_group' do
+
+  impact 1.0
+  title 'Testing the singular resource of azurerm_iothub_event_hub_consumer_group.'
+  desc 'Testing the singular resource of azurerm_iothub_event_hub_consumer_group.'
 
   describe azurerm_iothub_event_hub_consumer_group(resource_group: resource_group, resource_name: iothub_resource_name, event_hub_endpoint: iothub_event_hub_endpoint, consumer_group: consumer_group) do
     it          { should exist }
