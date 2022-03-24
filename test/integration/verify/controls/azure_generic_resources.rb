@@ -4,6 +4,11 @@ win_location = input('windows_vm_location', value: nil)
 win_tags = input('windows_vm_tags', value: nil)
 
 control 'azure_generic_resources' do
+
+  impact 1.0
+  title 'Testing the plural resource of azure_generic_resources.'
+  desc 'Testing the plural resource of azure_generic_resources.'
+
   describe azure_generic_resources do
     it { should exist }
   end

@@ -1,12 +1,15 @@
 log_profile = input('log_profile_name', value: nil)
 
 control 'azurerm_monitor_log_profiles' do
+
+  impact 1.0
+  title 'Testing the plural resource of azurerm_monitor_log_profiles.'
+  desc 'Testing the plural resource of azurerm_monitor_log_profiles.'
+
   describe azurerm_monitor_log_profiles do
     its('names') { should include(log_profile) }
   end
-end
 
-control 'azure_monitor_log_profiles' do
   azure_monitor_log_profiles.ids.each do |id|
     describe azure_monitor_log_profile(resource_id: id) do
       it { should exist }
