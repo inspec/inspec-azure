@@ -4,7 +4,7 @@ class AzureHPCStorageTarget < AzureGenericResource
   name 'azure_hpc_storage_target'
   desc 'Retrieves and verifies the settings of an Azure HPC Storage Target'
   example <<-EXAMPLE
-    describe azure_hpc_storage_target(resource_group: 'inspec-def-rg', cache_name: 'sql-machine', name: '') do
+    describe azure_hpc_storage_target(resource_group: 'inspec-rg', cache_name: 'sc1', name: 'st1') do
       it { should exist }
     end
   EXAMPLE
