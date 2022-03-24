@@ -1,10 +1,85 @@
 # Changelog
-<!-- latest_release 1.86.4 -->
+<!-- latest_release 1.93.0 -->
+## [v1.93.0](https://github.com/inspec/inspec-azure/tree/v1.93.0) (2022-02-22)
+
+#### Merged Pull Requests
+- Support azure migrate db instances [#440](https://github.com/inspec/inspec-azure/pull/440) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.92.5](https://github.com/inspec/inspec-azure/tree/v1.92.5) (2022-02-21)
+
+#### Merged Pull Requests
+- Munge docs content so we can deploy it on docs.chef.io  [#640](https://github.com/inspec/inspec-azure/pull/640) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.92.4](https://github.com/inspec/inspec-azure/tree/v1.92.4) (2022-02-20)
+
+#### Merged Pull Requests
+- RESOURCE-33 Fetch sonar token as early as possible [#638](https://github.com/inspec/inspec-azure/pull/638) ([clintoncwolfe](https://github.com/clintoncwolfe))
+
+## [v1.92.3](https://github.com/inspec/inspec-azure/tree/v1.92.3) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-109 Support sql vm groups [#595](https://github.com/inspec/inspec-azure/pull/595) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.92.2](https://github.com/inspec/inspec-azure/tree/v1.92.2) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-110 Support availability group listeners sql vm [#596](https://github.com/inspec/inspec-azure/pull/596) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.92.1](https://github.com/inspec/inspec-azure/tree/v1.92.1) (2022-02-19)
+
+#### Merged Pull Requests
+- RESOURCE-111 Support sql vms [#594](https://github.com/inspec/inspec-azure/pull/594) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.92.0](https://github.com/inspec/inspec-azure/tree/v1.92.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-141 Support azure power bi datasets [#536](https://github.com/inspec/inspec-azure/pull/536) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.91.0](https://github.com/inspec/inspec-azure/tree/v1.91.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-142 Support power bi dataflows [#535](https://github.com/inspec/inspec-azure/pull/535) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.90.0](https://github.com/inspec/inspec-azure/tree/v1.90.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-149 Support azure power bi capacity refreshables [#533](https://github.com/inspec/inspec-azure/pull/533) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.89.0](https://github.com/inspec/inspec-azure/tree/v1.89.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-150 Support power bi capacities [#532](https://github.com/inspec/inspec-azure/pull/532) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.88.0](https://github.com/inspec/inspec-azure/tree/v1.88.0) (2022-02-18)
+
+#### Merged Pull Requests
+- RESOURCE-151 Support azure power bi app dashboard tiles [#528](https://github.com/inspec/inspec-azure/pull/528) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.87.2](https://github.com/inspec/inspec-azure/tree/v1.87.2) (2022-02-18)
+
+#### Merged Pull Requests
+-  Munge docs content so we can deploy it on docs.chef.io [#639](https://github.com/inspec/inspec-azure/pull/639) ([IanMadd](https://github.com/IanMadd))
+
+## [v1.87.1](https://github.com/inspec/inspec-azure/tree/v1.87.1) (2022-02-17)
+
+#### Merged Pull Requests
+- RESOURCE-134 F/pipeline runs [#514](https://github.com/inspec/inspec-azure/pull/514) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.87.0](https://github.com/inspec/inspec-azure/tree/v1.87.0) (2022-02-17)
+
+#### Merged Pull Requests
+- RESOURCE-154 Support azure power bi apps [#519](https://github.com/inspec/inspec-azure/pull/519) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.86.5](https://github.com/inspec/inspec-azure/tree/v1.86.5) (2022-02-16)
+
+#### Merged Pull Requests
+- Add code to run SonarScanner on test unit runs [#634](https://github.com/inspec/inspec-azure/pull/634) ([clintoncwolfe](https://github.com/clintoncwolfe))
+
 ## [v1.86.4](https://github.com/inspec/inspec-azure/tree/v1.86.4) (2022-02-15)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.24.0 to ~&gt; 1.25.1 [#635](https://github.com/inspec/inspec-azure/pull/635) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.86.3](https://github.com/inspec/inspec-azure/tree/v1.86.3) (2022-02-10)
 

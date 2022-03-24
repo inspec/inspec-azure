@@ -528,3 +528,8 @@ output "inspec_sql_managed_instance_name" {
   description = "The SQL managed instance name"
   value = azurerm_sql_managed_instance.sql_instance_for_inspec.name
 }
+
+output "inspec_sql_virtual_machine" {
+  description = "SQL VM"
+  value = azurerm_mssql_virtual_machine.inspec_sql_vm.id
+}

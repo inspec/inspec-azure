@@ -47,7 +47,7 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ### Service Principal
 
-Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against. 
+Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against.
 
 You should have the following pieces of information:
 
@@ -106,163 +106,184 @@ supports:
 
 The following is a list of generic resources.
 
-- [azure_generic_resource](docs/resources/azure_generic_resource.md)
-- [azure_generic_resources](docs/resources/azure_generic_resources.md)
-- [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
-- [azure_graph_generic_resources](docs/resources/azure_graph_generic_resources.md)
- 
+- [azure_generic_resource](https://docs.chef.io/inspec/resources/azure_generic_resource/)
+- [azure_generic_resources](https://docs.chef.io/inspec/resources/azure_generic_resources/)
+- [azure_graph_generic_resource](https://docs.chef.io/inspec/resources/azure_graph_generic_resource/)
+- [azure_graph_generic_resources](https://docs.chef.io/inspec/resources/azure_graph_generic_resources/)
+
 With the generic resources:
 
 - Azure cloud resources that this resource pack does not include a static InSpec resource for can be tested.
 - Azure resources from different resource providers and resource groups can be tested at the same time.
 - Server side filtering can be used for more efficient tests.
- 
-The following is a list of static resources. 
 
-- [azure_active_directory_domain_service](docs/resources/azure_active_directory_domain_service.md)
-- [azure_active_directory_domain_services](docs/resources/azure_active_directory_domain_services.md)
-- [azure_aks_cluster](docs/resources/azure_aks_cluster.md)
-- [azure_aks_clusters](docs/resources/azure_aks_clusters.md)
-- [azure_api_management](docs/resources/azure_api_management.md)
-- [azure_api_managements](docs/resources/azure_api_managements.md)
-- [azure_application_gateway](docs/resources/azure_application_gateway.md)
-- [azure_application_gateways](docs/resources/azure_application_gateways.md)
-- [azure_bastion_hosts_resource](docs/resources/azure_bastion_hosts_resource.md)
-- [azure_bastion_hosts_resources](docs/resources/azure_bastion_hosts_resources.md)
-- [azure_container_group](docs/resources/azure_container_group.md)
-- [azure_container_groups](docs/resources/azure_container_groups.md)
-- [azure_container_registries](docs/resources/azure_container_registries.md)
-- [azure_container_registry](docs/resources/azure_container_registry.md)
-- [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md)
-- [azure_data_factories](docs/resources/azure_data_factories.md)
-- [azure_data_factory](docs/resources/azure_data_factory.md)
-- [azure_data_factory_linked_service](docs/resources/azure_data_factory_linked_service.md)
-- [azure_data_factory_linked_services](docs/resources/azure_data_factory_linked_services.md)
-- [azure_db_migration_service](docs/resources/azure_db_migration_service.md)
-- [azure_db_migration_services](docs/resources/azure_db_migration_services.md)
-- [azure_ddos_protection_resource](docs/resources/azure_ddos_protection_resource.md)
-- [azure_ddos_protection_resources](docs/resources/azure_ddos_protection_resources.md)
-- [azure_dns_zones_resource](docs/resources/azure_dns_zones_resource.md)
-- [azure_dns_zones_resources](docs/resources/azure_dns_zones_resources.md)
-- [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md)
-- [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md)
-- [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md)
-- [azure_express_route_providers](docs/resources/azure_express_route_providers.md)
-- [azure_express_route_circuit](docs/resources/azure_express_route_circuit.md)
-- [azure_express_route_circuits](docs/resources/azure_express_route_circuits.md)
-- [azure_generic_resource](docs/resources/azure_generic_resource.md)
-- [azure_generic_resources](docs/resources/azure_generic_resources.md)
-- [azure_graph_generic_resource](docs/resources/azure_graph_generic_resource.md)
-- [azure_graph_generic_resources](docs/resources/azure_graph_generic_resources.md)
-- [azure_graph_user](docs/resources/azure_graph_user.md)
-- [azure_graph_users](docs/resources/azure_graph_users.md)
-- [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md)
-- [azure_iothub](docs/resources/azure_iothub.md)
-- [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md)
-- [azure_iothub_event_hub_consumer_groups](docs/resources/azure_iothub_event_hub_consumer_groups.md)
-- [azure_key_vault](docs/resources/azure_key_vault.md)
-- [azure_key_vaults](docs/resources/azure_key_vaults.md)
-- [azure_key_vault_key](docs/resources/azure_key_vault_key.md)
-- [azure_key_vault_keys](docs/resources/azure_key_vault_keys.md)
-- [azure_key_vault_secret](docs/resources/azure_key_vault_secret.md)
-- [azure_key_vault_secrets](docs/resources/azure_key_vault_secrets.md)
-- [azure_load_balancer](docs/resources/azure_load_balancer.md)
-- [azure_load_balancers](docs/resources/azure_load_balancers.md)
-- [azure_lock](docs/resources/azure_lock.md)
-- [azure_locks](docs/resources/azure_locks.md)
-- [azure_management_group](docs/resources/azure_management_group.md)
-- [azure_management_groups](docs/resources/azure_management_groups.md)
-- [azure_mariadb_server](docs/resources/azure_mariadb_server.md)
-- [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md)
-- [azure_migrate_assessment](docs/resources/azure_migrate_assessment.md)
-- [azure_migrate_assessments](docs/resources/azure_migrate_assessments.md)
-- [azure_migrate_assessment_project](docs/resources/azure_migrate_assessment_project.md)
-- [azure_migrate_assessment_projects](docs/resources/azure_migrate_assessment_projects.md)
-- [azure_migrate_assessment_group](docs/resources/azure_migrate_assessment_group.md)
-- [azure_migrate_assessment_groups](docs/resources/azure_migrate_assessment_groups.md)
-- [azure_migrate_project_database](docs/resources/azure_migrate_project_database.md)
-- [azure_migrate_project_databases](docs/resources/azure_migrate_project_databases.md)
-- [azure_migrate_project_event](docs/resources/azure_migrate_project_event.md)
-- [azure_migrate_project_events](docs/resources/azure_migrate_project_events.md)
-- [azure_migrate_project_machine](docs/resources/azure_migrate_project_machine.md)
-- [azure_migrate_project_machines](docs/resources/azure_migrate_project_machines.md)
-- [azure_migrate_project_solution](docs/resources/azure_migrate_project_solution.md)
-- [azure_migrate_project_solutions](docs/resources/azure_migrate_project_solutions.md)
-- [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md)
-- [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md)
-- [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md)
-- [azure_monitor_log_profiles](docs/resources/azure_monitor_log_profiles.md)
-- [azure_mysql_database](docs/resources/azure_mysql_database.md)
-- [azure_mysql_databases](docs/resources/azure_mysql_databases.md)
-- [azure_mysql_server](docs/resources/azure_mysql_server.md)
-- [azure_mysql_servers](docs/resources/azure_mysql_servers.md)
-- [azure_network_interface](docs/resources/azure_network_interface.md)
-- [azure_network_interfaces](docs/resources/azure_network_interfaces.md)
-- [azure_network_security_group](docs/resources/azure_network_security_group.md)
-- [azure_network_security_groups](docs/resources/azure_network_security_groups.md)
-- [azure_network_watcher](docs/resources/azure_network_watcher.md)
-- [azure_network_watchers](docs/resources/azure_network_watchers.md)
-- [azure_policy_assignments](docs/resources/azure_policy_assignments.md)
-- [azure_policy_definition](docs/resources/azure_policy_definition.md)
-- [azure_policy_definitions](docs/resources/azure_policy_definitions.md)
-- [azure_policy_exemption](docs/resources/azure_policy_exemption.md)
-- [azure_policy_exemptions](docs/resources/azure_policy_exemptions.md)
-- [azure_policy_insights_query_result](docs/resources/azure_policy_insights_query_result.md)
-- [azure_policy_insights_query_results](docs/resources/azure_policy_insights_query_results.md)
-- [azure_postgresql_database](docs/resources/azure_postgresql_database.md)
-- [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md)
-- [azure_postgresql_server](docs/resources/azure_postgresql_server.md)
-- [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md)
-- [azure_public_ip](docs/resources/azure_public_ip.md)
-- [azure_redis_cache](docs/resources/azure_redis_cache.md)
-- [azure_redis_caches](docs/resources/azure_redis_caches.md)
-- [azure_resource_group](docs/resources/azure_resource_group.md)
-- [azure_resource_groups](docs/resources/azure_resource_groups.md)
-- [azure_resource_health_availability_status](docs/resources/azure_resource_health_availability_status.md)
-- [azure_resource_health_availability_statuses](docs/resources/azure_resource_health_availability_statuses.md)
-- [azure_resource_health_emerging_issue](docs/resources/azure_resource_health_emerging_issue.md)
-- [azure_resource_health_emerging_issues](docs/resources/azure_resource_health_emerging_issues.md)
-- [azure_resource_health_events](docs/resources/azure_resource_health_events.md)
-- [azure_role_definition](docs/resources/azure_role_definition.md)
-- [azure_role_definitions](docs/resources/azure_role_definitions.md)
-- [azure_security_center_policy](docs/resources/azure_security_center_policy.md)
-- [azure_security_center_policies](docs/resources/azure_security_center_policies.md)
-- [azure_sentinel_alert_rule_template](docs/resources/azure_sentinel_alert_rule_template.md)
-- [azure_sentinel_alert_rule_templates](docs/resources/azure_sentinel_alert_rule_templates.md)
-- [azure_sql_database](docs/resources/azure_sql_database.md)
-- [azure_sql_databases](docs/resources/azure_sql_databases.md)
-- [azure_sql_server](docs/resources/azure_sql_server.md)
-- [azure_sql_servers](docs/resources/azure_sql_servers.md)
-- [azure_storage_account](docs/resources/azure_storage_account.md)
-- [azure_storage_accounts](docs/resources/azure_storage_accounts.md)
-- [azure_storage_account_blob_container](docs/resources/azure_storage_account_blob_container.md)
-- [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md)
-- [azure_streaming_analytics_function](docs/resources/azure_streaming_analytics_function.md)
-- [azure_streaming_analytics_functions](docs/resources/azure_streaming_analytics_functions.md)
-- [azure_subnet](docs/resources/azure_subnet.md)
-- [azure_subnets](docs/resources/azure_subnets.md)
-- [azure_subscription](docs/resources/azure_subscription.md)
-- [azure_subscriptions](docs/resources/azure_subscriptions.md)
-- [azure_synapse_notebook](docs/resources/azure_synapse_notebook.md)
-- [azure_synapse_notebooks](docs/resources/azure_synapse_notebooks.md)
-- [azure_virtual_machine](docs/resources/azure_virtual_machine.md)
-- [azure_virtual_machines](docs/resources/azure_virtual_machines.md)
-- [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md)
-- [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md)
-- [azure_virtual_network](docs/resources/azure_virtual_network.md)
-- [azure_virtual_network_gateway](docs/resources/azure_virtual_network_gateway.md)
-- [azure_virtual_network_gateways](docs/resources/azure_virtual_network_gateways.md)
-- [azure_virtual_network_gateway_connection](docs/resources/azure_virtual_network_gateway_connection.md)
-- [azure_virtual_network_gateway_connections](docs/resources/azure_virtual_network_gateway_connections.md)
-- [azure_virtual_network_peering](docs/resources/azure_virtual_network_peering.md)
-- [azure_virtual_network_peerings](docs/resources/azure_virtual_network_peerings.md)
-- [azure_virtual_networks](docs/resources/azure_virtual_networks.md)
-- [azure_virtual_wan](docs/resources/azure_virtual_wan.md)
-- [azure_virtual_wans](docs/resources/azure_virtual_wans.md)
-- [azure_web_app_function](docs/resources/azure_web_app_function.md)
-- [azure_web_app_functions](docs/resources/azure_web_app_functions.md)
-- [azure_webapp](docs/resources/azure_webapp.md)
-- [azure_webapps](docs/resources/azure_webapps.md)
+The following is a list of static resources.
+
+- [azure_active_directory_domain_service](https://docs.chef.io/inspec/resources/azure_active_directory_domain_service/)
+- [azure_active_directory_domain_services](https://docs.chef.io/inspec/resources/azure_active_directory_domain_services/)
+- [azure_aks_cluster](https://docs.chef.io/inspec/resources/azure_aks_cluster/)
+- [azure_aks_clusters](https://docs.chef.io/inspec/resources/azure_aks_clusters/)
+- [azure_api_management](https://docs.chef.io/inspec/resources/azure_api_management/)
+- [azure_api_managements](https://docs.chef.io/inspec/resources/azure_api_managements/)
+- [azure_application_gateway](https://docs.chef.io/inspec/resources/azure_application_gateway/)
+- [azure_application_gateways](https://docs.chef.io/inspec/resources/azure_application_gateways/)
+- [azure_bastion_hosts_resource](https://docs.chef.io/inspec/resources/azure_bastion_hosts_resource/)
+- [azure_bastion_hosts_resources](https://docs.chef.io/inspec/resources/azure_bastion_hosts_resources/)
+- [azure_container_group](https://docs.chef.io/inspec/resources/azure_container_group/)
+- [azure_container_groups](https://docs.chef.io/inspec/resources/azure_container_groups/)
+- [azure_container_registries](https://docs.chef.io/inspec/resources/azure_container_registries/)
+- [azure_container_registry](https://docs.chef.io/inspec/resources/azure_container_registry/)
+- [azure_cosmosdb_database_account](https://docs.chef.io/inspec/resources/azure_cosmosdb_database_account/)
+- [azure_data_factories](https://docs.chef.io/inspec/resources/azure_data_factories/)
+- [azure_data_factory](https://docs.chef.io/inspec/resources/azure_data_factory/)
+- [azure_data_factory_linked_service](https://docs.chef.io/inspec/resources/azure_data_factory_linked_service/)
+- [azure_data_factory_linked_services](https://docs.chef.io/inspec/resources/azure_data_factory_linked_services/)
+- [azure_data_factory_pipeline_run_resource](https://docs.chef.io/inspec/resources/azure_data_factory_pipeline_run_resource/)
+- [azure_data_factory_pipeline_run_resources](https://docs.chef.io/inspec/resources/azure_data_factory_pipeline_run_resources/)
+- [azure_db_migration_service](https://docs.chef.io/inspec/resources/azure_db_migration_service/)
+- [azure_db_migration_services](https://docs.chef.io/inspec/resources/azure_db_migration_services/)
+- [azure_ddos_protection_resource](https://docs.chef.io/inspec/resources/azure_ddos_protection_resource/)
+- [azure_ddos_protection_resources](https://docs.chef.io/inspec/resources/azure_ddos_protection_resources/)
+- [azure_dns_zones_resource](https://docs.chef.io/inspec/resources/azure_dns_zones_resource/)
+- [azure_dns_zones_resources](https://docs.chef.io/inspec/resources/azure_dns_zones_resources/)
+- [azure_event_hub_authorization_rule](https://docs.chef.io/inspec/resources/azure_event_hub_authorization_rule/)
+- [azure_event_hub_event_hub](https://docs.chef.io/inspec/resources/azure_event_hub_event_hub/)
+- [azure_event_hub_namespace](https://docs.chef.io/inspec/resources/azure_event_hub_namespace/)
+- [azure_express_route_providers](https://docs.chef.io/inspec/resources/azure_express_route_providers/)
+- [azure_express_route_circuit](https://docs.chef.io/inspec/resources/azure_express_route_circuit/)
+- [azure_express_route_circuits](https://docs.chef.io/inspec/resources/azure_express_route_circuits/)
+- [azure_generic_resource](https://docs.chef.io/inspec/resources/azure_generic_resource/)
+- [azure_generic_resources](https://docs.chef.io/inspec/resources/azure_generic_resources/)
+- [azure_graph_generic_resource](https://docs.chef.io/inspec/resources/azure_graph_generic_resource/)
+- [azure_graph_generic_resources](https://docs.chef.io/inspec/resources/azure_graph_generic_resources/)
+- [azure_graph_user](https://docs.chef.io/inspec/resources/azure_graph_user/)
+- [azure_graph_users](https://docs.chef.io/inspec/resources/azure_graph_users/)
+- [azure_hdinsight_cluster](https://docs.chef.io/inspec/resources/azure_hdinsight_cluster/)
+- [azure_iothub](https://docs.chef.io/inspec/resources/azure_iothub/)
+- [azure_iothub_event_hub_consumer_group](https://docs.chef.io/inspec/resources/azure_iothub_event_hub_consumer_group/)
+- [azure_iothub_event_hub_consumer_groups](https://docs.chef.io/inspec/resources/azure_iothub_event_hub_consumer_groups/)
+- [azure_key_vault](https://docs.chef.io/inspec/resources/azure_key_vault/)
+- [azure_key_vaults](https://docs.chef.io/inspec/resources/azure_key_vaults/)
+- [azure_key_vault_key](https://docs.chef.io/inspec/resources/azure_key_vault_key/)
+- [azure_key_vault_keys](https://docs.chef.io/inspec/resources/azure_key_vault_keys/)
+- [azure_key_vault_secret](https://docs.chef.io/inspec/resources/azure_key_vault_secret/)
+- [azure_key_vault_secrets](https://docs.chef.io/inspec/resources/azure_key_vault_secrets/)
+- [azure_load_balancer](https://docs.chef.io/inspec/resources/azure_load_balancer/)
+- [azure_load_balancers](https://docs.chef.io/inspec/resources/azure_load_balancers/)
+- [azure_lock](https://docs.chef.io/inspec/resources/azure_lock/)
+- [azure_locks](https://docs.chef.io/inspec/resources/azure_locks/)
+- [azure_management_group](https://docs.chef.io/inspec/resources/azure_management_group/)
+- [azure_management_groups](https://docs.chef.io/inspec/resources/azure_management_groups/)
+- [azure_mariadb_server](https://docs.chef.io/inspec/resources/azure_mariadb_server/)
+- [azure_mariadb_servers](https://docs.chef.io/inspec/resources/azure_mariadb_servers/)
+- [azure_migrate_assessment](https://docs.chef.io/inspec/resources/azure_migrate_assessment/)
+- [azure_migrate_assessments](https://docs.chef.io/inspec/resources/azure_migrate_assessments/)
+- [azure_migrate_assessment_project](https://docs.chef.io/inspec/resources/azure_migrate_assessment_project/)
+- [azure_migrate_assessment_projects](https://docs.chef.io/inspec/resources/azure_migrate_assessment_projects/)
+- [azure_migrate_assessment_group](https://docs.chef.io/inspec/resources/azure_migrate_assessment_group/)
+- [azure_migrate_assessment_groups](https://docs.chef.io/inspec/resources/azure_migrate_assessment_groups/)
+- [azure_migrate_project_database](https://docs.chef.io/inspec/resources/azure_migrate_project_database/)
+- [azure_migrate_project_databases](https://docs.chef.io/inspec/resources/azure_migrate_project_databases/)
+- [azure_migrate_project_database_instance](docs/resources/azure_migrate_project_database_instance.md)
+- [azure_migrate_project_database_instances](docs/resources/azure_migrate_project_database_instances.md)
+- [azure_migrate_project_event](https://docs.chef.io/inspec/resources/azure_migrate_project_event/)
+- [azure_migrate_project_events](https://docs.chef.io/inspec/resources/azure_migrate_project_events/)
+- [azure_migrate_project_machine](https://docs.chef.io/inspec/resources/azure_migrate_project_machine/)
+- [azure_migrate_project_machines](https://docs.chef.io/inspec/resources/azure_migrate_project_machines/)
+- [azure_migrate_project_solution](https://docs.chef.io/inspec/resources/azure_migrate_project_solution/)
+- [azure_migrate_project_solutions](https://docs.chef.io/inspec/resources/azure_migrate_project_solutions/)
+- [azure_monitor_activity_log_alert](https://docs.chef.io/inspec/resources/azure_monitor_activity_log_alert/)
+- [azure_monitor_activity_log_alerts](https://docs.chef.io/inspec/resources/azure_monitor_activity_log_alerts/)
+- [azure_monitor_log_profile](https://docs.chef.io/inspec/resources/azure_monitor_log_profile/)
+- [azure_monitor_log_profiles](https://docs.chef.io/inspec/resources/azure_monitor_log_profiles/)
+- [azure_mysql_database](https://docs.chef.io/inspec/resources/azure_mysql_database/)
+- [azure_mysql_databases](https://docs.chef.io/inspec/resources/azure_mysql_databases/)
+- [azure_mysql_server](https://docs.chef.io/inspec/resources/azure_mysql_server/)
+- [azure_mysql_servers](https://docs.chef.io/inspec/resources/azure_mysql_servers/)
+- [azure_network_interface](https://docs.chef.io/inspec/resources/azure_network_interface/)
+- [azure_network_interfaces](https://docs.chef.io/inspec/resources/azure_network_interfaces/)
+- [azure_network_security_group](https://docs.chef.io/inspec/resources/azure_network_security_group/)
+- [azure_network_security_groups](https://docs.chef.io/inspec/resources/azure_network_security_groups/)
+- [azure_network_watcher](https://docs.chef.io/inspec/resources/azure_network_watcher/)
+- [azure_network_watchers](https://docs.chef.io/inspec/resources/azure_network_watchers/)
+- [azure_policy_assignments](https://docs.chef.io/inspec/resources/azure_policy_assignments/)
+- [azure_policy_definition](https://docs.chef.io/inspec/resources/azure_policy_definition/)
+- [azure_policy_definitions](https://docs.chef.io/inspec/resources/azure_policy_definitions/)
+- [azure_policy_exemption](https://docs.chef.io/inspec/resources/azure_policy_exemption/)
+- [azure_policy_exemptions](https://docs.chef.io/inspec/resources/azure_policy_exemptions/)
+- [azure_policy_insights_query_result](https://docs.chef.io/inspec/resources/azure_policy_insights_query_result/)
+- [azure_policy_insights_query_results](https://docs.chef.io/inspec/resources/azure_policy_insights_query_results/)
+- [azure_postgresql_database](https://docs.chef.io/inspec/resources/azure_postgresql_database/)
+- [azure_postgresql_databases](https://docs.chef.io/inspec/resources/azure_postgresql_databases/)
+- [azure_postgresql_server](https://docs.chef.io/inspec/resources/azure_postgresql_server/)
+- [azure_postgresql_servers](https://docs.chef.io/inspec/resources/azure_postgresql_servers/)
+- [azure_power_bi_app](https://docs.chef.io/inspec/resources/azure_power_bi_app/)
+- [azure_power_bi_apps](https://docs.chef.io/inspec/resources/azure_power_bi_apps/)
+- [azure_power_bi_app_dashboard_tile](https://docs.chef.io/inspec/resources/azure_power_bi_app_dashboard_tile.md)
+- [azure_power_bi_app_dashboard_tiles](https://docs.chef.io/inspec/resources/azure_power_bi_app_dashboard_tiles.md)
+- [azure_power_bi_capacities](https://docs.chef.io/inspec/resources/azure_power_bi_capacities.md)
+- [azure_power_bi_capacity_refreshable](https://docs.chef.io/inspec/resources/azure_power_bi_capacity_refreshable.md)
+- [azure_power_bi_capacity_refreshables](https://docs.chef.io/inspec/resources/azure_power_bi_capacity_refreshables.md)
+- [azure_power_bi_dataflow](https://docs.chef.io/inspec/resources/azure_power_bi_dataflow.md)
+- [azure_power_bi_dataflows](https://docs.chef.io/inspec/resources/azure_power_bi_dataflows.md)
+- [azure_power_bi_dataset](https://docs.chef.io/inspec/resources/azure_power_bi_dataset.md)
+- [azure_power_bi_datasets](https://docs.chef.io/inspec/resources/azure_power_bi_datasets.md)
+- [azure_public_ip](https://docs.chef.io/inspec/resources/azure_public_ip/)
+- [azure_redis_cache](https://docs.chef.io/inspec/resources/azure_redis_cache/)
+- [azure_redis_caches](https://docs.chef.io/inspec/resources/azure_redis_caches/)
+- [azure_resource_group](https://docs.chef.io/inspec/resources/azure_resource_group/)
+- [azure_resource_groups](https://docs.chef.io/inspec/resources/azure_resource_groups/)
+- [azure_resource_health_availability_status](https://docs.chef.io/inspec/resources/azure_resource_health_availability_status/)
+- [azure_resource_health_availability_statuses](https://docs.chef.io/inspec/resources/azure_resource_health_availability_statuses/)
+- [azure_resource_health_emerging_issue](https://docs.chef.io/inspec/resources/azure_resource_health_emerging_issue/)
+- [azure_resource_health_emerging_issues](https://docs.chef.io/inspec/resources/azure_resource_health_emerging_issues/)
+- [azure_resource_health_events](https://docs.chef.io/inspec/resources/azure_resource_health_events/)
+- [azure_role_definition](https://docs.chef.io/inspec/resources/azure_role_definition/)
+- [azure_role_definitions](https://docs.chef.io/inspec/resources/azure_role_definitions/)
+- [azure_security_center_policy](https://docs.chef.io/inspec/resources/azure_security_center_policy/)
+- [azure_security_center_policies](https://docs.chef.io/inspec/resources/azure_security_center_policies/)
+- [azure_sentinel_alert_rule_template](https://docs.chef.io/inspec/resources/azure_sentinel_alert_rule_template/)
+- [azure_sentinel_alert_rule_templates](https://docs.chef.io/inspec/resources/azure_sentinel_alert_rule_templates/)
+- [azure_sql_database](https://docs.chef.io/inspec/resources/azure_sql_database/)
+- [azure_sql_databases](https://docs.chef.io/inspec/resources/azure_sql_databases/)
+- [azure_sql_server](https://docs.chef.io/inspec/resources/azure_sql_server/)
+- [azure_sql_servers](https://docs.chef.io/inspec/resources/azure_sql_servers/)
+- [azure_sql_virtual_machine](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine.md)
+- [azure_sql_virtual_machines](https://docs.chef.io/inspec/resources/azure_sql_virtual_machines.md)
+- [azure_sql_virtual_machine_group](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_group.md)
+- [azure_sql_virtual_machine_groups](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_groups.md)
+- [azure_sql_virtual_machine_group_availability_listener](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_group_availability_listener.md)
+- [azure_sql_virtual_machine_group_availability_listeners](https://docs.chef.io/inspec/resources/azure_sql_virtual_machine_group_availability_listeners.md)
+- [azure_storage_account](https://docs.chef.io/inspec/resources/azure_storage_account/)
+- [azure_storage_accounts](https://docs.chef.io/inspec/resources/azure_storage_accounts/)
+- [azure_storage_account_blob_container](https://docs.chef.io/inspec/resources/azure_storage_account_blob_container/)
+- [azure_storage_account_blob_containers](https://docs.chef.io/inspec/resources/azure_storage_account_blob_containers/)
+- [azure_streaming_analytics_function](https://docs.chef.io/inspec/resources/azure_streaming_analytics_function/)
+- [azure_streaming_analytics_functions](https://docs.chef.io/inspec/resources/azure_streaming_analytics_functions/)
+- [azure_subnet](https://docs.chef.io/inspec/resources/azure_subnet/)
+- [azure_subnets](https://docs.chef.io/inspec/resources/azure_subnets/)
+- [azure_subscription](https://docs.chef.io/inspec/resources/azure_subscription/)
+- [azure_subscriptions](https://docs.chef.io/inspec/resources/azure_subscriptions/)
+- [azure_synapse_notebook](https://docs.chef.io/inspec/resources/azure_synapse_notebook/)
+- [azure_synapse_notebooks](https://docs.chef.io/inspec/resources/azure_synapse_notebooks/)
+- [azure_virtual_machine](https://docs.chef.io/inspec/resources/azure_virtual_machine/)
+- [azure_virtual_machines](https://docs.chef.io/inspec/resources/azure_virtual_machines/)
+- [azure_virtual_machine_disk](https://docs.chef.io/inspec/resources/azure_virtual_machine_disk/)
+- [azure_virtual_machine_disks](https://docs.chef.io/inspec/resources/azure_virtual_machine_disks/)
+- [azure_virtual_network](https://docs.chef.io/inspec/resources/azure_virtual_network/)
+- [azure_virtual_network_gateway](https://docs.chef.io/inspec/resources/azure_virtual_network_gateway/)
+- [azure_virtual_network_gateways](https://docs.chef.io/inspec/resources/azure_virtual_network_gateways/)
+- [azure_virtual_network_gateway_connection](https://docs.chef.io/inspec/resources/azure_virtual_network_gateway_connection/)
+- [azure_virtual_network_gateway_connections](https://docs.chef.io/inspec/resources/azure_virtual_network_gateway_connections/)
+- [azure_virtual_network_peering](https://docs.chef.io/inspec/resources/azure_virtual_network_peering/)
+- [azure_virtual_network_peerings](https://docs.chef.io/inspec/resources/azure_virtual_network_peerings/)
+- [azure_virtual_networks](https://docs.chef.io/inspec/resources/azure_virtual_networks/)
+- [azure_virtual_wan](https://docs.chef.io/inspec/resources/azure_virtual_wan/)
+- [azure_virtual_wans](https://docs.chef.io/inspec/resources/azure_virtual_wans/)
+- [azure_web_app_function](https://docs.chef.io/inspec/resources/azure_web_app_function/)
+- [azure_web_app_functions](https://docs.chef.io/inspec/resources/azure_web_app_functions/)
+- [azure_webapp](https://docs.chef.io/inspec/resources/azure_webapp/)
+- [azure_webapps](https://docs.chef.io/inspec/resources/azure_webapps/)
 
 For more details and different use cases, please refer to the specific resource pages.
 
@@ -276,7 +297,7 @@ azure_generic_resources(substring_of_name: 'project_A').ids.each do |id|
     its('location') { should eq 'eastus' }
   end
 end
-``` 
+```
 
 ### Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value
 
@@ -286,7 +307,7 @@ azure_generic_resources(tag_name: 'project_A').ids.each do |id|
     its('location') { should eq 'eastus' }
   end
 end
-``` 
+```
 
 ### Verify Properties of an Azure Virtual Machine
 
@@ -313,11 +334,11 @@ describe azure_network_security_group(resource_group: 'ProductionResourceGroup',
   it { should_not allow_rdp_from_internet }
   it { should_not allow_ssh_from_internet }
   it { should allow(source_ip_range: '0.0.0.0', destination_port: '22', direction: 'inbound') }
-  it { should allow_in(service_tag: 'Internet', port: %w{1433-1434 1521 4300-4350 5000-6000}) } 
+  it { should allow_in(service_tag: 'Internet', port: %w{1433-1434 1521 4300-4350 5000-6000}) }
 end
 ```
 
-## Parameters Applicable To All Resources 
+## Parameters Applicable To All Resources
 
 The generic resources and their derivations support following parameters unless stated otherwise in their specific resource page.
 
@@ -408,51 +429,51 @@ They can be defined as environment variables or resource parameters (has priorit
 
 | Legacy Resource Name              | Fixed [api version](#api_version) | Replaced by                   |
 |------------------------------------------|----------------------------|-------------------------------|
-| azurerm_ad_user, azurerm_ad_users | `v1.0` | [azure_graph_user](docs/resources/azure_graph_user.md), [azure_graph_users](docs/resources/azure_graph_users.md) |
-| azurerm_aks_cluster, azurerm_aks_clusters | `2018-03-31` | [azure_aks_cluster](docs/resources/azure_aks_cluster.md), [azure_aks_cluster](docs/resources/azure_aks_cluster.md) |
-| azurerm_api_management, azurerm_api_managements | `2019-12-01` | [azure_api_management](docs/resources/azure_api_management.md), [azure_api_managements](docs/resources/azure_api_managements.md) |
-| azurerm_application_gateway, azurerm_application_gateways | `2019-12-01` | [azure_application_gateway](docs/resources/azure_application_gateway.md), [azure_application_gateways](docs/resources/azure_application_gateways.md) |
-| azurerm_cosmosdb_database_account | `2015-04-08` | [azure_cosmosdb_database_account](docs/resources/azure_cosmosdb_database_account.md) |
-| azurerm_event_hub_authorization_rule | `2017-04-01` | [azure_event_hub_authorization_rule](docs/resources/azure_event_hub_authorization_rule.md) |
-| azurerm_event_hub_event_hub | `2017-04-01` | [azure_event_hub_event_hub](docs/resources/azure_event_hub_event_hub.md) |
-| azurerm_event_hub_namespace | `2017-04-01` | [azure_event_hub_namespace](docs/resources/azure_event_hub_namespace.md) |
-| azurerm_hdinsight_cluster | `2015-03-01-preview` | [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md) |
-| azurerm_iothub | `2018-04-01` | [azure_iothub](docs/resources/azure_iothub.md) |
-| azurerm_iothub_event_hub_consumer_group, azurerm_iothub_event_hub_consumer_groups |`2018-04-01` | [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md), [azure_iothub_event_hub_consumer_groups](docs/resources/azure_iothub_event_hub_consumer_groups.md) |
-| azurerm_key_vault, azurerm_key_vaults | `2016-10-01` | [azure_key_vault](docs/resources/azure_key_vault.md), [azure_key_vaults](docs/resources/azure_key_vaults.md) |
-| azurerm_key_vault_key, azurerm_key_vault_keys | `2016-10-01` | [azure_key_vault_key](docs/resources/azure_key_vault_key.md), [azure_key_vault_keys](docs/resources/azure_key_vault_keys.md) |
-| azurerm_key_vault_secret, azurerm_key_vault_secrets | `2016-10-01` | [azure_key_vault_secret](docs/resources/azure_key_vault_secret.md), [azure_key_vault_secrets](docs/resources/azure_key_vault_secrets.md) |
-| azurerm_load_balancer, azurerm_load_balancers | `2018-11-01` | [azure_load_balancer](docs/resources/azure_load_balancer.md), [azure_load_balancers](docs/resources/azure_load_balancers.md) |
-| azurerm_locks | `2016-09-01` | [azure_locks](docs/resources/azure_locks.md) |
-| azurerm_management_group, azurerm_management_groups | `2018-03-01-preview` | [azure_management_group](docs/resources/azure_management_group.md), [azure_management_groups](docs/resources/azure_management_groups.md) |
-| azurerm_mariadb_server, azurerm_mariadb_servers | `2018-06-01-preview` | [azure_mariadb_server](docs/resources/azure_mariadb_server.md), [azure_mariadb_servers](docs/resources/azure_mariadb_servers.md) |
-| azurerm_monitor_activity_log_alert, azurerm_monitor_activity_log_alerts | `2017-04-01` | [azure_monitor_activity_log_alert](docs/resources/azure_monitor_activity_log_alert.md), [azure_monitor_activity_log_alerts](docs/resources/azure_monitor_activity_log_alerts.md) |
-| azurerm_monitor_log_profile, azurerm_monitor_log_profiles | `2016-03-01` | [azure_monitor_log_profile](docs/resources/azure_monitor_log_profile.md), [azure_monitor_log_profiles](docs/resources/azure_monitor_log_profiles.md) |
-| azurerm_mysql_database, azurerm_mysql_databases | `2017-12-01` | [azure_mysql_database](docs/resources/azure_mysql_database.md), [azure_mysql_databases](docs/resources/azure_mysql_databases.md) |
-| azurerm_mysql_server, azurerm_mysql_servers | `2017-12-01` | [azure_mysql_server](docs/resources/azure_mysql_server.md), [azure_mysql_servers](docs/resources/azure_mysql_servers.md) |
-| azurerm_network_interface, azurerm_network_interfaces | `2018-11-01` | [azure_network_interface](docs/resources/azure_network_interface.md), [azure_network_interfaces](docs/resources/azure_network_interfaces.md) |
-| azurerm_network_security_group, azurerm_network_security_groups | `2018-02-01` | [azure_network_security_group](docs/resources/azure_network_security_group.md), [azure_network_security_groups](docs/resources/azure_network_security_groups.md) |
-| azurerm_network_watcher, azurerm_network_watchers | `2018-02-01` | [azure_network_watcher](docs/resources/azure_network_watcher.md), [azure_network_watchers](docs/resources/azure_network_watchers.md) |
-| azurerm_postgresql_database, azurerm_postgresql_databases | `2017-12-01` | [azure_postgresql_database](docs/resources/azure_postgresql_database.md), [azure_postgresql_databases](docs/resources/azure_postgresql_databases.md) |
-| azurerm_postgresql_server, azurerm_postgresql_servers | `2017-12-01` | [azure_postgresql_server](docs/resources/azure_postgresql_server.md), [azure_postgresql_servers](docs/resources/azure_postgresql_servers.md) |
-| azurerm_public_ip | `2020-05-01` | [azure_public_ip](docs/resources/azure_public_ip.md) |
-| azurerm_resource_groups | `2018-02-01` | [azure_resource_groups](docs/resources/azure_resource_groups.md) |
-| azurerm_role_definition, azurerm_role_definitions | `2015-07-01` | [azure_role_definition](docs/resources/azure_role_definition.md), [azure_role_definitions](docs/resources/azure_role_definitions.md) |
-| azurerm_security_center_policy, azurerm_security_center_policies | `2015-06-01-Preview` | [azure_security_center_policy](docs/resources/azure_security_center_policy.md), [azure_security_center_policies](docs/resources/azure_security_center_policies.md) |
-| azurerm_sql_database, azurerm_sql_databases | `2017-10-01-preview` | [azure_sql_database](docs/resources/azure_sql_database.md), [azure_sql_databases](docs/resources/azure_sql_databases.md) |
-| azurerm_sql_server, azurerm_sql_servers | `2018-06-01-preview` | [azure_sql_server](docs/resources/azure_sql_server.md), [azure_sql_servers](docs/resources/azure_sql_servers.md) |
-| azurerm_storage_account, azurerm_storage_accounts  | `2017-06-01` | [azure_storage_account](docs/resources/azure_storage_account.md), [azure_storage_accounts](docs/resources/azure_storage_accounts.md) | 
-| azurerm_storage_account_blob_container, azurerm_storage_account_blob_containers  | `2018-07-01` | [azure_storage_account_blob_container](docs/resources/azure_storage_account_blob_container.md), [azure_storage_account_blob_containers](docs/resources/azure_storage_account_blob_containers.md) | 
-| azurerm_subnet, azurerm_subnets | `2018-02-01` | [azure_subnet](docs/resources/azure_subnet.md), [azure_subnets](docs/resources/azure_subnets.md) |
-| azurerm_subscription | `2019-10-01` | [azure_subscription](docs/resources/azure_subscription.md) |
-| azurerm_virtual_machine, azurerm_virtual_machines | `2017-12-01` | [azure_virtual_machine](docs/resources/azure_virtual_machine.md), [azure_virtual_machines](docs/resources/azure_virtual_machines.md) |
-| azurerm_virtual_machine_disk, azurerm_virtual_machine_disks | `2017-03-30` | [azure_virtual_machine_disk](docs/resources/azure_virtual_machine_disk.md), [azure_virtual_machine_disks](docs/resources/azure_virtual_machine_disks.md) |
-| azurerm_virtual_network, azurerm_virtual_networks | `2018-02-01` | [azure_virtual_network](docs/resources/azure_virtual_network.md), [azure_virtual_networks](docs/resources/azure_virtual_networks.md) |
-| azurerm_webapp, azurerm_webapps | `2016-08-01` | [azure_webapp](docs/resources/azure_webapp.md), [azure_webapps](docs/resources/azure_webapps.md) |
+| azurerm_ad_user, azurerm_ad_users | `v1.0` | [azure_graph_user](https://docs.chef.io/inspec/resources/azure_graph_user/), [azure_graph_users](https://docs.chef.io/inspec/resources/azure_graph_users/) |
+| azurerm_aks_cluster, azurerm_aks_clusters | `2018-03-31` | [azure_aks_cluster](https://docs.chef.io/inspec/resources/azure_aks_cluster/), [azure_aks_cluster](https://docs.chef.io/inspec/resources/azure_aks_cluster/) |
+| azurerm_api_management, azurerm_api_managements | `2019-12-01` | [azure_api_management](https://docs.chef.io/inspec/resources/azure_api_management/), [azure_api_managements](https://docs.chef.io/inspec/resources/azure_api_managements/) |
+| azurerm_application_gateway, azurerm_application_gateways | `2019-12-01` | [azure_application_gateway](https://docs.chef.io/inspec/resources/azure_application_gateway/), [azure_application_gateways](https://docs.chef.io/inspec/resources/azure_application_gateways/) |
+| azurerm_cosmosdb_database_account | `2015-04-08` | [azure_cosmosdb_database_account](https://docs.chef.io/inspec/resources/azure_cosmosdb_database_account/) |
+| azurerm_event_hub_authorization_rule | `2017-04-01` | [azure_event_hub_authorization_rule](https://docs.chef.io/inspec/resources/azure_event_hub_authorization_rule/) |
+| azurerm_event_hub_event_hub | `2017-04-01` | [azure_event_hub_event_hub](https://docs.chef.io/inspec/resources/azure_event_hub_event_hub/) |
+| azurerm_event_hub_namespace | `2017-04-01` | [azure_event_hub_namespace](https://docs.chef.io/inspec/resources/azure_event_hub_namespace/) |
+| azurerm_hdinsight_cluster | `2015-03-01-preview` | [azure_hdinsight_cluster](https://docs.chef.io/inspec/resources/azure_hdinsight_cluster/) |
+| azurerm_iothub | `2018-04-01` | [azure_iothub](https://docs.chef.io/inspec/resources/azure_iothub/) |
+| azurerm_iothub_event_hub_consumer_group, azurerm_iothub_event_hub_consumer_groups |`2018-04-01` | [azure_iothub_event_hub_consumer_group](https://docs.chef.io/inspec/resources/azure_iothub_event_hub_consumer_group/), [azure_iothub_event_hub_consumer_groups](https://docs.chef.io/inspec/resources/azure_iothub_event_hub_consumer_groups/) |
+| azurerm_key_vault, azurerm_key_vaults | `2016-10-01` | [azure_key_vault](https://docs.chef.io/inspec/resources/azure_key_vault/), [azure_key_vaults](https://docs.chef.io/inspec/resources/azure_key_vaults/) |
+| azurerm_key_vault_key, azurerm_key_vault_keys | `2016-10-01` | [azure_key_vault_key](https://docs.chef.io/inspec/resources/azure_key_vault_key/), [azure_key_vault_keys](https://docs.chef.io/inspec/resources/azure_key_vault_keys/) |
+| azurerm_key_vault_secret, azurerm_key_vault_secrets | `2016-10-01` | [azure_key_vault_secret](https://docs.chef.io/inspec/resources/azure_key_vault_secret/), [azure_key_vault_secrets](https://docs.chef.io/inspec/resources/azure_key_vault_secrets/) |
+| azurerm_load_balancer, azurerm_load_balancers | `2018-11-01` | [azure_load_balancer](https://docs.chef.io/inspec/resources/azure_load_balancer/), [azure_load_balancers](https://docs.chef.io/inspec/resources/azure_load_balancers/) |
+| azurerm_locks | `2016-09-01` | [azure_locks](https://docs.chef.io/inspec/resources/azure_locks/) |
+| azurerm_management_group, azurerm_management_groups | `2018-03-01-preview` | [azure_management_group](https://docs.chef.io/inspec/resources/azure_management_group/), [azure_management_groups](https://docs.chef.io/inspec/resources/azure_management_groups/) |
+| azurerm_mariadb_server, azurerm_mariadb_servers | `2018-06-01-preview` | [azure_mariadb_server](https://docs.chef.io/inspec/resources/azure_mariadb_server/), [azure_mariadb_servers](https://docs.chef.io/inspec/resources/azure_mariadb_servers/) |
+| azurerm_monitor_activity_log_alert, azurerm_monitor_activity_log_alerts | `2017-04-01` | [azure_monitor_activity_log_alert](https://docs.chef.io/inspec/resources/azure_monitor_activity_log_alert/), [azure_monitor_activity_log_alerts](https://docs.chef.io/inspec/resources/azure_monitor_activity_log_alerts/) |
+| azurerm_monitor_log_profile, azurerm_monitor_log_profiles | `2016-03-01` | [azure_monitor_log_profile](https://docs.chef.io/inspec/resources/azure_monitor_log_profile/), [azure_monitor_log_profiles](https://docs.chef.io/inspec/resources/azure_monitor_log_profiles/) |
+| azurerm_mysql_database, azurerm_mysql_databases | `2017-12-01` | [azure_mysql_database](https://docs.chef.io/inspec/resources/azure_mysql_database/), [azure_mysql_databases](https://docs.chef.io/inspec/resources/azure_mysql_databases/) |
+| azurerm_mysql_server, azurerm_mysql_servers | `2017-12-01` | [azure_mysql_server](https://docs.chef.io/inspec/resources/azure_mysql_server/), [azure_mysql_servers](https://docs.chef.io/inspec/resources/azure_mysql_servers/) |
+| azurerm_network_interface, azurerm_network_interfaces | `2018-11-01` | [azure_network_interface](https://docs.chef.io/inspec/resources/azure_network_interface/), [azure_network_interfaces](https://docs.chef.io/inspec/resources/azure_network_interfaces/) |
+| azurerm_network_security_group, azurerm_network_security_groups | `2018-02-01` | [azure_network_security_group](https://docs.chef.io/inspec/resources/azure_network_security_group/), [azure_network_security_groups](https://docs.chef.io/inspec/resources/azure_network_security_groups/) |
+| azurerm_network_watcher, azurerm_network_watchers | `2018-02-01` | [azure_network_watcher](https://docs.chef.io/inspec/resources/azure_network_watcher/), [azure_network_watchers](https://docs.chef.io/inspec/resources/azure_network_watchers/) |
+| azurerm_postgresql_database, azurerm_postgresql_databases | `2017-12-01` | [azure_postgresql_database](https://docs.chef.io/inspec/resources/azure_postgresql_database/), [azure_postgresql_databases](https://docs.chef.io/inspec/resources/azure_postgresql_databases/) |
+| azurerm_postgresql_server, azurerm_postgresql_servers | `2017-12-01` | [azure_postgresql_server](https://docs.chef.io/inspec/resources/azure_postgresql_server/), [azure_postgresql_servers](https://docs.chef.io/inspec/resources/azure_postgresql_servers/) |
+| azurerm_public_ip | `2020-05-01` | [azure_public_ip](https://docs.chef.io/inspec/resources/azure_public_ip/) |
+| azurerm_resource_groups | `2018-02-01` | [azure_resource_groups](https://docs.chef.io/inspec/resources/azure_resource_groups/) |
+| azurerm_role_definition, azurerm_role_definitions | `2015-07-01` | [azure_role_definition](https://docs.chef.io/inspec/resources/azure_role_definition/), [azure_role_definitions](https://docs.chef.io/inspec/resources/azure_role_definitions/) |
+| azurerm_security_center_policy, azurerm_security_center_policies | `2015-06-01-Preview` | [azure_security_center_policy](https://docs.chef.io/inspec/resources/azure_security_center_policy/), [azure_security_center_policies](https://docs.chef.io/inspec/resources/azure_security_center_policies/) |
+| azurerm_sql_database, azurerm_sql_databases | `2017-10-01-preview` | [azure_sql_database](https://docs.chef.io/inspec/resources/azure_sql_database/), [azure_sql_databases](https://docs.chef.io/inspec/resources/azure_sql_databases/) |
+| azurerm_sql_server, azurerm_sql_servers | `2018-06-01-preview` | [azure_sql_server](https://docs.chef.io/inspec/resources/azure_sql_server/), [azure_sql_servers](https://docs.chef.io/inspec/resources/azure_sql_servers/) |
+| azurerm_storage_account, azurerm_storage_accounts  | `2017-06-01` | [azure_storage_account](https://docs.chef.io/inspec/resources/azure_storage_account/), [azure_storage_accounts](https://docs.chef.io/inspec/resources/azure_storage_accounts/) |
+| azurerm_storage_account_blob_container, azurerm_storage_account_blob_containers  | `2018-07-01` | [azure_storage_account_blob_container](https://docs.chef.io/inspec/resources/azure_storage_account_blob_container/), [azure_storage_account_blob_containers](https://docs.chef.io/inspec/resources/azure_storage_account_blob_containers/) |
+| azurerm_subnet, azurerm_subnets | `2018-02-01` | [azure_subnet](https://docs.chef.io/inspec/resources/azure_subnet/), [azure_subnets](https://docs.chef.io/inspec/resources/azure_subnets/) |
+| azurerm_subscription | `2019-10-01` | [azure_subscription](https://docs.chef.io/inspec/resources/azure_subscription/) |
+| azurerm_virtual_machine, azurerm_virtual_machines | `2017-12-01` | [azure_virtual_machine](https://docs.chef.io/inspec/resources/azure_virtual_machine/), [azure_virtual_machines](https://docs.chef.io/inspec/resources/azure_virtual_machines/) |
+| azurerm_virtual_machine_disk, azurerm_virtual_machine_disks | `2017-03-30` | [azure_virtual_machine_disk](https://docs.chef.io/inspec/resources/azure_virtual_machine_disk/), [azure_virtual_machine_disks](https://docs.chef.io/inspec/resources/azure_virtual_machine_disks/) |
+| azurerm_virtual_network, azurerm_virtual_networks | `2018-02-01` | [azure_virtual_network](https://docs.chef.io/inspec/resources/azure_virtual_network/), [azure_virtual_networks](https://docs.chef.io/inspec/resources/azure_virtual_networks/) |
+| azurerm_webapp, azurerm_webapps | `2016-08-01` | [azure_webapp](https://docs.chef.io/inspec/resources/azure_webapp/), [azure_webapps](https://docs.chef.io/inspec/resources/azure_webapps/) |
 
 ## Development
 
-If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md). 
+If you'd like to contribute to this project please see [Contributing Rules](CONTRIBUTING.md).
 
 For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
@@ -464,10 +485,10 @@ The easiest way to start is checking the existing static resources. They have de
 
 The common parameters are:
 
-- `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author via the `specific_resource_constraint` method, and it should be the first parameter defined in the resource. This method includes user-supplied input validation.  
+- `resource_provider`: Such as `Microsoft.Compute/virtualMachines`. It has to be hardcoded in the code by the resource author via the `specific_resource_constraint` method, and it should be the first parameter defined in the resource. This method includes user-supplied input validation.
 - `display_name`: A generic one will be created unless defined.
 - `required_parameters`: Define mandatory parameters. The `resource_group` and resource `name` in the singular resources are default mandatory in the base class.
-- `allowed_parameters`: Define optional parameters. The `resource_group` is optional in plural resources, but this can be made mandatory in the static resource. 
+- `allowed_parameters`: Define optional parameters. The `resource_group` is optional in plural resources, but this can be made mandatory in the static resource.
 - `resource_uri`: Azure REST API URI of a resource. This parameter should be used when a resource does not reside in a resource group. It requires `add_subscription_id` to be set to either `true` or `false`. See [azure_policy_definition](libraries/azure_policy_definition.rb) and [azure_policy_definitions](libraries/azure_policy_definitions.rb).
 - `add_subscription_id`: It indicates whether the subscription ID should be included in the `resource_uri` or not.
 
@@ -478,7 +499,7 @@ The singular resource is used to test a specific resource of a specific type and
 - In most cases `resource_group` and resource `name` should be required from the users and a single API call would be enough for creating methods on the resource. See [azure_virtual_machine](libraries/azure_virtual_machine.rb) for a standard singular resource and how to create static methods from resource properties.
 - If it is beneficial to accept the resource name with a more specific keyword, such as `server_name`, see [azure_mysql_server](libraries/azure_mysql_server.rb).
 - If a resource exists in another resource, such as a subnet on a virtual network, see [azure_subnet](libraries/azure_subnet.rb).
-- If it is necessary to make an additional API call within a static method, the `create_additional_properties` should be used. See [azure_key_vault](libraries/azure_key_vault.rb). 
+- If it is necessary to make an additional API call within a static method, the `create_additional_properties` should be used. See [azure_key_vault](libraries/azure_key_vault.rb).
 
 #### Plural Resources
 
