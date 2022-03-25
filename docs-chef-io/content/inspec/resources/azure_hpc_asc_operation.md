@@ -1,0 +1,99 @@
++++
+title = "azure_hpc_asc_operation Resource"
+platform = "azure"
+draft = false
+gh_repo = "inspec-azure"
+
+[menu.inspec]
+title = "azure_hpc_asc_operation"
+identifier = "inspec/resources/azure/azure_hpc_asc_operation Resource"
+parent = "inspec/resources/azure"
++++
+
+Use the `azure_hpc_asc_operation` InSpec audit resource to test properties related to an Azure HPC ASC Operation.
+
+## Azure REST API Version, Endpoint, and HTTP Client Parameters
+
+{{% inspec_azure_common_parameters %}}
+
+## Installation
+
+{{% inspec_azure_install %}}
+
+## Syntax
+
+`name`, `cache_name`, `resource_group` is a required parameter.
+
+```ruby
+describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
+  it                                      { should exist }
+  its('type')                             { should eq 'Microsoft.StorageCache/Cache/StorageTarget' }
+  its('location')                         { should eq 'East US' }
+end
+```
+
+```ruby
+describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
+  it  { should exist }
+end
+```
+
+## Parameters
+
+`location` _(required)_
+: The name of the region used to look up the operation.
+
+`operation_id` _(required)_
+: The operation id which uniquely identifies the asynchronous operation.
+
+## Properties
+
+`id`
+: The operation Id.
+
+`name`
+: The operation name.
+
+`startTime`
+: The start time of the operation.
+
+`status`
+: The status of the operation.
+
+`endTime`
+: The end time of the operation.
+
+For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storagecache/asc-operations/get#ascoperation) for other properties available.
+
+## Examples
+
+**Test that the HPC ASC Operation is Succeeded.**
+
+```ruby
+describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
+  its('status') { should eq 'Succeeded' }
+end
+```
+
+## Matchers
+
+{{% inspec_matchers_link %}}
+
+### exists
+
+```ruby
+# If a HPC ASC Operation is found it will exist
+describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
+  it { should exist }
+end
+# if HPC ASC Operation is not found it will not exist
+describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
+  it { should_not exist }
+end
+```
+
+## Azure Permissions
+
+{{% azure_permissions_service_principal role="reader" %}}
