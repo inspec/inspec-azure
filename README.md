@@ -159,6 +159,8 @@ The following is a list of static resources.
 - [azure_graph_user](https://docs.chef.io/inspec/resources/azure_graph_user/)
 - [azure_graph_users](https://docs.chef.io/inspec/resources/azure_graph_users/)
 - [azure_hdinsight_cluster](https://docs.chef.io/inspec/resources/azure_hdinsight_cluster/)
+- [azure_hpc_cache](https://docs.chef.io/inspec/resources/azure_hpc_cache/)
+- [azure_hpc_cache](https://docs.chef.io/inspec/resources/azure_hpc_caches/)
 - [azure_iothub](https://docs.chef.io/inspec/resources/azure_iothub/)
 - [azure_iothub_event_hub_consumer_group](https://docs.chef.io/inspec/resources/azure_iothub_event_hub_consumer_group/)
 - [azure_iothub_event_hub_consumer_groups](https://docs.chef.io/inspec/resources/azure_iothub_event_hub_consumer_groups/)
