@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.114.4 -->
+<!-- latest_release 1.115.0 -->
+## [v1.115.0](https://github.com/inspec/inspec-azure/tree/v1.115.0) (2022-03-31)
+
+#### Merged Pull Requests
+- Adding storage account logging features [#648](https://github.com/inspec/inspec-azure/pull/648) ([Rohit1509](https://github.com/Rohit1509))
+<!-- latest_release -->
+
 ## [v1.114.4](https://github.com/inspec/inspec-azure/tree/v1.114.4) (2022-03-31)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.25.1 to ~&gt; 1.26.0 [#646](https://github.com/inspec/inspec-azure/pull/646) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.114.3](https://github.com/inspec/inspec-azure/tree/v1.114.3) (2022-03-29)
 
