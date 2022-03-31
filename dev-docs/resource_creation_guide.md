@@ -8,39 +8,42 @@ The singular resource is used to test a specific resource of that type and shoul
 
 In this tutorial `azure_key_vault` and `azure_key_vaults` resources will be created.
 
-InSpec Azure backend classes constitute a simple interface between the InSpec and the desired Azure REST API endpoint. 
+InSpec Azure backend classes constitute a simple interface between the InSpec and the desired Azure REST API endpoint.
 
 For the Azure Key Vault resource, the inheritance order is:
+
 - `AzureKeyVault`: Resource specific input validation.
 - `AzureGenericResource`: Construct the resource URI/ID, talk to the API, validate the returned data, create dynamic methods(properties), define the `exists?` method.
-- `AzureResourceBase`: Initiate an HTTP client, provide tools for validation and decision making. 
+- `AzureResourceBase`: Initiate an HTTP client, provide tools for validation and decision making.
 - `Inspec.resource(1)`: InSpec base class for resources.
 
 ## Table of Contents
 
-- [Singular Resource](#singular-resource)
-  - [Singular Resource Initiation Logic](#singular-resource-initiation-logic)
-  - [Singular Resource Creation](#singular-resource-creation)
-  - [Resource Identifier](#resource-identifier)
-  - [Additional Resource Properties](#additional-resource-properties)
-    - [Processing Additional Resource Properties](#processing-additional-resource-properties)
-  - [Allowed Parameters](#allowed-parameters)
-- [Plural Resource](#plural-resource)
-  - [Plural Resource Initiation Logic](#plural-resource-initiation-logic)
-  - [Plural Resource Creation](#plural-resource-creation)
-  - [Manipulating Data in FilterTable](#manipulating-data-in-filtertable)
-- [Resources Living in/on Another Resources](#resources-living-inon-another-resources)
-  - [Required Parameters](#required-parameters)
-  - [Resource Path](#resource-path)
-- [Resources without a Resource Group](#resources-without-a-resource-group)
-  - [Resource URI](#resource-uri)
-- [Common Parameters](#common-parameters)
-  - [Display Name](#display-name)
-- [Update Terraform Outputs](#update-terraform-outputs)
-  - [Apply the Terraform Plan](#apply-the-terraform-plan)
-- [Create Controls](#create-controls)
-- [Create Documentation](#create-documentation)
-- [Create a Pull Request](#create-a-pull-request)
+- [Resource Creation Guide](#resource-creation-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Singular Resource](#singular-resource)
+    - [Singular Resource Initiation Logic](#singular-resource-initiation-logic)
+    - [Singular Resource Creation](#singular-resource-creation)
+    - [Resource Identifier](#resource-identifier)
+    - [Additional Resource Properties](#additional-resource-properties)
+      - [Processing Additional Resource Properties](#processing-additional-resource-properties)
+    - [Allowed Parameters](#allowed-parameters)
+  - [Plural Resource](#plural-resource)
+    - [Plural Resource Initiation Logic](#plural-resource-initiation-logic)
+    - [Plural Resource Creation](#plural-resource-creation)
+    - [Manipulating Data in FilterTable](#manipulating-data-in-filtertable)
+  - [Resources Living in/on Another Resources](#resources-living-inon-another-resources)
+    - [Required Parameters](#required-parameters)
+    - [Resource Path](#resource-path)
+  - [Resources without a Resource Group](#resources-without-a-resource-group)
+    - [Resource URI](#resource-uri)
+  - [Common Parameters](#common-parameters)
+    - [Display Name](#display-name)
+  - [Update Terraform Outputs](#update-terraform-outputs)
+    - [Apply the Terraform Plan](#apply-the-terraform-plan)
+  - [Create Controls](#create-controls)
+  - [Create Documentation](#create-documentation)
+  - [Create a Pull Request](#create-a-pull-request)
 
 ## Singular Resource
 
@@ -67,23 +70,27 @@ Find the Azure REST API documentation for the resource being developed, [Azure k
 
 ### Singular Resource Creation
 
-- Create the library file: All of the InSpec resource extensions are located in the `libraries` directory. Copy a similar resource as a starting point. 
+- Create the library file: All of the InSpec resource extensions are located in the `libraries` directory. Copy a similar resource as a starting point.
 - Change the name to match the resource you are creating.
   - i.e. `libraries/azure_key_vault.rb`
 - Rename the class match the resource. The `name` will be used as the resource name in InSpec profiles. It has to be unique.
+
 ```ruby
 class AzureKeyVault < AzureGenericResource
   name 'azure_key_vault'
 ```
+
 - Update the `desc` and `example`
 - Remove any definitions that don't apply to this resource.
 - Update the `initialize` method with the following order:
+
 ```ruby
+
 def initialize(opts = {})    # Accept parameters as key: value pairs.
 
   # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
   raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-  
+
   # Ensure that the resource will talk to the intended Azure Rest API endpoint and validate user input.
   opts[:resource_provider] = specific_resource_constraint('Microsoft.KeyVault/vaults', opts)
 
@@ -91,14 +98,19 @@ def initialize(opts = {})    # Accept parameters as key: value pairs.
   super(opts, true)
 end
 ```
+
 - Update the `to_s` method.
+
 This can be any string relevant to the resource. However, the following is advised for a standard naming convention across the resources.
+
 ```ruby
 def to_s
   super(AzureKeyVault)
 end
 ```
+
 At this point, the `libraries/azure_key_vault` should look like:
+
 ```ruby
 require 'azure_generic_resource'
 
@@ -127,31 +139,40 @@ class AzureKeyVault < AzureGenericResource
   end
 end
 ```
+
 ### Resource Identifier
+
 Even though using the `name` keyword as a resource identifier is advised, a more specific keyword can be defined with the `resource_identifiers` parameter.
+
 ```ruby
 opts[:resource_identifiers] = %i(vault_name)
 ```
+
 Adding this line to the `initialize` method will enable `vault_name` to be used as a keyword along with `name`.
 
-Both are valid in an InSpec profile. 
+Both are valid in an InSpec profile.
+
 ```ruby
 describe azure_key_vault(resource_group: 'rg-1', vault_name: 'vault-1') do
   its('name') { should eq('vault-1') }
 end
 ```
+
 ```ruby
 describe azure_key_vault(resource_group: 'rg-1', name: 'vault-1') do
   its('name') { should eq('vault-1') }
 end
 ```
+
 ### Additional Resource Properties
-A single API call will be made in the backend for creating the InSpec resource with the data provided in the `initialize` method. 
+
+A single API call will be made in the backend for creating the InSpec resource with the data provided in the `initialize` method.
 It is preferred not to make additional calls in the static methods for easy maintenance and more readable controls in InSpec profiles.
 However, in some cases, it might be necessary to aggregate the relevant data and make them available through a single resource.
 `additional_resource_properties` method should be used to accomplish this.
 
 The below method can be used to list the `diagnostic settings` of an Azure key vault.
+
 ```ruby
 def diagnostic_settings
   return unless exists?
@@ -166,7 +187,8 @@ def diagnostic_settings
   )
 end
 ```
-- `return unless exists?` should be the first check in every static method. If the resource is failed, then we can not add a property to it. 
+
+- `return unless exists?` should be the first check in every static method. If the resource is failed, then we can not add a property to it.
 - `property_name`: A singleton method will be created with the provided `property_name`. The diagnostic settings and its content will be accessible via dot notation, e.g., `azure_key_vault.diagnostic_settings`, `azure_key_vault.diagnostic_settings.first.name`.
 
    Note that the method name (`def diagnostic_settings`) and the `property_name` (`property_name: 'diagnostic_settings'`) in `additional_resource_properties` are identical.
@@ -182,10 +204,12 @@ end
 #### Processing Additional Resource Properties
 
 If we want to create a property returning only the names of the diagnostic settings, we need to create 2 methods for that.
-1) For fetching the diagnostic settings,
-2) For extracting the names from the diagnostic settings.
+
+1. For fetching the diagnostic settings,
+1. For extracting the names from the diagnostic settings.
 
 Fetching the diagnostic settings.
+
 ```ruby
 def diagnostic_settings
   return unless exists?
@@ -200,7 +224,9 @@ def diagnostic_settings
   )
 end
 ```
+
 Extracting the names of diagnostic settings. Please pay attention to the comments.
+
 ```ruby
 def diagnostic_settings_names
   # Ensure that the resource is created.
@@ -211,12 +237,14 @@ def diagnostic_settings_names
   diagnostic_settings.map { |setting| setting.name }    # [`my_setting_1`, `my_setting_2`, ..]
 end
 ```
+
 - The `diagnostic_settings` in the line `diagnostic_settings unless respond_to?(:diagnostic_settings)` is the actual method created on the resource for fetching the diagnostic settings, `def diagnostic_settings`.
-  - It might be more convenient to name this method to prevent confusion, such as `fetch_diagnostic_settings`. 
+  - It might be more convenient to name this method to prevent confusion, such as `fetch_diagnostic_settings`.
     In that case `azure_key_vault.diagnostic_settings` won't be available unless the `fetch_diagnostic_settings` method is called up front, such as in the `initialize` method.
 - The `diagnostic_settings` in the line `diagnostic_settings.map { |setting| setting.name}` is the singleton method created by the `additional_resource_properties` method via `property_name: 'diagnostic_settings'` at the diagnostic settings fetching stage.
 
 There might be a tendency to chain the after processing to the `additional_resource_properties`, such as:
+
 ```ruby
 def diagnostic_settings_names
   return unless exists?
@@ -231,24 +259,32 @@ def diagnostic_settings_names
   ).map { |setting| setting.name }
 end
 ```
+
 However, this is not an advised pattern, because:
+
 - Every test using the `azure_key_vault.diagnostic_settings_names` will make a new API call to fetch the diagnostic settings. This might not be the intended action and it will increase the test completion time.
 - It will make it difficult to reuse the diagnostic settings in another method, such as `diagnostic_settings_types`, `diagnostic_settings_enabled`.
 
 ### Allowed Parameters
-`allowed_parameters` can be used to enable the resource to accept specific parameters beyond the common ones, such as `resource_group`, `name`, and `api_version`. 
+
+`allowed_parameters` can be used to enable the resource to accept specific parameters beyond the common ones, such as `resource_group`, `name`, and `api_version`.
 
 API version of the diagnostic settings for the Azure key vault can be defined by the user after adding the following code to the `initialize` method.
+
 ```ruby
 opts[:allowed_parameters] = %i(diagnostic_settings_api_version)
 ```
+
 A default value has to be assigned to prevent using `nil` value.
+
 ```ruby
 opts[:allowed_parameters] = %i(diagnostic_settings_api_version)
 # Assign a default value.
 opts[:diagnostic_settings_api_version] ||= 'latest'
 ```
+
 At this point the resource should look like:
+
 ```ruby
 require 'azure_generic_resource'
 
@@ -274,7 +310,7 @@ class AzureKeyVault < AzureGenericResource
     opts[:diagnostic_settings_api_version] ||= 'latest'
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
-    super(opts, true)    
+    super(opts, true)
   end
 
   def to_s
@@ -308,8 +344,9 @@ Find the Azure REST API documentation for the resource being developed, [Azure k
   - or in a resource group only: `https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults?api-version=2019-09-01`
     - The dynamic part that has to be created for this resource: `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults?api-version=2019-09-01`
 - Parameters acquired from environment variables:
-    - `{subscriptionId}` => Required parameter. It will be acquired by the backend from environment variables.
-- User supplied parameters:
+
+- `{subscriptionId}` => Required parameter. It will be acquired by the backend from environment variables.
+  - User supplied parameters:
   - `resource_group` => Optional parameter. If not provided all key vaults within the subscription will be listed.
   - `api_version` => Optional parameter. The latest version will be used unless provided.
 - `resource_provider` has to be defined/created with the help of `specific_resource_constraint` method for input validation.
@@ -317,23 +354,26 @@ Find the Azure REST API documentation for the resource being developed, [Azure k
 
 ### Plural Resource Creation
 
-- Create the library file: All of the InSpec resource extensions are located in the `libraries` directory. Copy a similar resource as a starting point. 
+- Create the library file: All of the InSpec resource extensions are located in the `libraries` directory. Copy a similar resource as a starting point.
 - Change the name to match the resource you are creating.
   - i.e. `libraries/azure_key_vaults.rb`
 - Rename the class match the resource. The `name` will be used as the resource name in InSpec profiles. It has to be unique.
+
 ```ruby
 class AzureKeyVaults < AzureGenericResource
   name 'azure_key_vaults'
 ```
+
 - Update the `desc` and `example`
 - Remove any definitions that don't apply to this resource.
 - Update the `initialize` method with the following order:
+
 ```ruby
 def initialize(opts = {})    # Accept parameters as key: value pairs.
 
   # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
   raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-  
+
   # Ensure that the resource will talk to the intended Azure Rest API endpoint and validate user input.
   opts[:resource_provider] = specific_resource_constraint('Microsoft.KeyVault/vaults', opts)
 
@@ -343,7 +383,7 @@ def initialize(opts = {})    # Accept parameters as key: value pairs.
   # Check if the resource is failed.
   # It is recommended to check that after every usage of inherited methods or making an API call.
   return if failed_resource?
-    
+
   # Define the column and field names for FilterTable.
   table_schema = [
     { column: :ids, field: :id },
@@ -353,26 +393,31 @@ def initialize(opts = {})    # Accept parameters as key: value pairs.
     { column: :tags, field: :tags },
     { column: :properties, field: :properties },
   ]
-    
+
   # FilterTable is populated at the very end due to being an expensive operation.
   AzureGenericResources.populate_filter_table(:table, table_schema)
 end
 ```
-- `table_schema`: A list of hashes with standard keys, `column`, and `field`. 
-  The plural resources utilize the [FilterTable](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md) and the `table_schema` list is a template for it. 
+
+- `table_schema`: A list of hashes with standard keys, `column`, and `field`.
+  The plural resources utilize the [FilterTable](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md) and the `table_schema` list is a template for it.
   The columns will become properties of the plural resources which can be filtered by the fields. They are defined by the resource author and usually the plural form of the corresponding field.
   The fields must be valid properties of the interrogated cloud resource. For the Azure key vault, they must be chosen from the listed properties in [here](https://docs.microsoft.com/en-us/rest/api/keyvault/vaults/get#vault).
   - `azure_key_vaults.names` => A list of all Azure vault names.
   - `azure_key_vaults.where { name.include?('production') }` => A subset of Azure key vault resources with the `production` string in their names.
 - Populate the FilterTable with `AzureGenericResources.populate_filter_table(:table, table_schema)`. See [here](https://github.com/inspec/inspec/blob/master/dev-docs/filtertable-usage.md) for more on FilterTable.
 - Update the `to_s` method.
+
 This can be any string relevant to the resource. However, the following is advised for a standard naming convention across the resources.
+
 ```ruby
 def to_s
   super(AzureKeyVaults)
 end
 ```
+
 At this point, the resource should look like:
+
 ```ruby
 require 'azure_generic_resources'
 
@@ -421,23 +466,30 @@ class AzureKeyVaults < AzureGenericResources
   end
 end
 ```
+
 ### Manipulating Data in FilterTable
+
 The `populate_table` must be defined in the resource to override the generic behavior.
 
 Let's assume:
- - We want to create 2 columns, `ids` and `enabled_for_deployment`.
-   - List the resource ids in the `ids` column.
-   - Return the value of the `enabledForDeployment` status (presented in the `properties` hash) of each Azure key vault. See [here](https://docs.microsoft.com/en-us/rest/api/keyvault/vaults/get#vaultproperties).
+
+- We want to create 2 columns, `ids` and `enabled_for_deployment`.
+  - List the resource ids in the `ids` column.
+  - Return the value of the `enabledForDeployment` status (presented in the `properties` hash) of each Azure key vault. See [here](https://docs.microsoft.com/en-us/rest/api/keyvault/vaults/get#vaultproperties).
 
 Required steps:
- - Create the `table_schema` in the `initialize` method.
+
+- Create the `table_schema` in the `initialize` method.
+
 ```ruby
    table_schema = [
      { column: :ids, field: :id },
      { column: :enabled_for_deployment, field: :enabled_for_deployment },
    ]
 ```
- - Create a new method `populate_table`.
+
+- Create a new method `populate_table`.
+
 ```ruby
   def populate_table
     # If @resources empty than @table should stay as an empty array as declared in superclass.
@@ -450,20 +502,25 @@ Required steps:
       }
     end
   end
-``` 
+```
+
 This will allow:
+
 ```ruby
 describe azure_key_vaults.where(enabled_for_deployment: false) do
   it { should exist }
 end
 ```
+
 Background:
+
 - `@resources`: Instance variable. A list containing the all resources.
 - `return [] if @resources.empty?`: Ensure constructing the resource and passing `should_not exist` test.
-- `@table`: Instance variable. A list of hashes containing the field keys defined in the `table_schema` and their values. 
+- `@table`: Instance variable. A list of hashes containing the field keys defined in the `table_schema` and their values.
   The keys used in `@table` must be the same in `field` values defined in `table_schema`.
-  
+
 With the custom `populate_table` method added, the resource should look like:
+
 ```ruby
 require 'azure_generic_resources'
 
@@ -524,10 +581,12 @@ end
 ## Resources Living in/on Another Resources
 
 ### Required Parameters
+
 `required_parameters` should be used to make some parameters mandatory at resource creation.
 
 ### Resource Path
-`resource_path` should be used to construct the URL path between the resource provider and the actual resource name. 
+
+`resource_path` should be used to construct the URL path between the resource provider and the actual resource name.
 
 Let's use these new parameters in an example resource, [`azure_sql_database`](resources/azure_sql_database.md).
 
@@ -539,12 +598,15 @@ Here is the the API endpoint for the Azure SQL database:
 In that scenario, the resource identifiers for the SQL server must be provided by the user.
 
 If we want the test look like this:
+
 ```ruby
 describe azure_sql_database(resource_group: 'rg-1', server_name: 'sql-server-1', database_name: 'customer-db') do
   it { should exist }
 end
 ```
+
 The `initialize` method should be:
+
 ```ruby
 def initialize(opts = {})
   # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
@@ -559,35 +621,38 @@ def initialize(opts = {})
   super(opts, true)
 end
 ```
+
 - `opts[:required_parameters]`: Makes `server_name` parameter mandatory.`{serverName}`
-- `opts[:resource_path]`: The URL path, `{serverName}/databases` to the SQL database name from the resource provider, `Microsoft.Sql/servers`. 
+- `opts[:resource_path]`: The URL path, `{serverName}/databases` to the SQL database name from the resource provider, `Microsoft.Sql/servers`.
 - `opts[:resource_identifiers]`: Makes `database_name` a resource identifier along with the `name` keyword.
 
 ## Resources without a Resource Group
 
 ### Resource URI
+
 Azure REST API URI of a resource. It requires `add_subscription_id` to be set to either `true` or `false`.
 
 Some Azure resources are not tied to a resource group and do not follow the common pattern explained above.
 
 Let's take a look at the [`azure_policy_definiton`](../libraries/azure_policy_definition.rb).
 
-- The URL endpoint: 
+- The URL endpoint:
   - for a policy in a subscription: `https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2019-09-01`
   - for a built-in policy: `https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2019-09-01`
-- The dynamic part that has to be created: 
-   - for a policy in a subscription: `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2019-09-01`
-     - `{subscriptionId}`: It will be acquired by the backend from environment variables.
-   - for a built-in policy: `/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2019-09-01`
+- The dynamic part that has to be created:
+  - for a policy in a subscription: `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2019-09-01`
+    - `{subscriptionId}`: It will be acquired by the backend from environment variables.
+  - for a built-in policy: `/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2019-09-01`
 - The resource URI:
   - for a policy in a subscription: `/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/`
   - for a built-in policy: `/providers/Microsoft.Authorization/policyDefinitions/`
-  
+
   The only difference between these resource URIs is the subscription ID. Since it is available in the backend, we only need to inform backend when to add the subscription ID to the resource URI.
- 
+
 - The policy name should be provided via `name` parameter and it will be validated in the backend.
 
 The `initialize` method should look like:
+
 ```ruby
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
@@ -607,25 +672,30 @@ The `initialize` method should look like:
     super(opts, true)
   end
 ```
+
 - The resource URI is defined with `opts[:resource_uri]`.
 - Subscription ID will be added to the resource URI in the backend if the `opts[:add_subscription_id]` is `true`.
   - A new parameter, `built_in`, is declared to hide the technical complexity of making a decision whether or not to add the subscription ID in the resource URI.
-  
+
 ## Common Parameters
 
 The following optional parameters can be used both in singular and plural resources:
+
 - [`allowed_parameters`](###allowed-parameters)
 - [`required_parameters`](###required-parameters)
-- [`display_name`](###display-name) 
+- [`display_name`](###display-name)
 
 ### Display Name
+
 In InSpec tests, the display name is used while presenting the test results.
 Unless it is defined in the static resource, a generic one will be created. E.g., `Azure Sql Databases - api_version: 2020-08-01-preview latest {resourceGroup} {serverName}/databases Microsoft.Sql/servers`
 
 It can be partially customised via `display_name` parameter in the `initialize` method as:
+
 ```ruby
 opts[:display_name] = "Databases on #{opts[:server_name]} SQL Server"
 ```
+
 The display name will be: `Azure Sql Databases - api_version: 2020-08-01-preview latest Databases on {serverName} SQL Server`
 
 ## Update Terraform Outputs
@@ -647,6 +717,7 @@ The display name will be: `Azure Sql Databases - api_version: 2020-08-01-preview
 
 Azure controls are located in `test/integration/verify/controls/`. Copy two of the files (singular and plural) for a similar resource as a starting point. This is where InSpec tests are defined to ensure the resources that are being developed are working correctly.
 Consider the following:
+
 - The names should match the corresponding library files (i.e. `azure_key_vault.rb` and `azure_key_vaults.rb`)
 - These files are basically broken into two sections, the attributes, and the control.
   - At the top attributes are defined for each property that will be tested.
@@ -663,6 +734,7 @@ Consider the following:
   - Other `describe` statements as needed.
 - Run `rake test:integration` to verify that the check is included and the definition tests appropriately.
 - Pry can be used to debug code. Add `require 'pry'; binding.pry` to create a breakpoint. When `rake test` is run, InSpec will stop at the breakpoint so that Pry can be used to debug the code.
+
 ```ruby
 resource_group = input('resource_group', value: nil)
 vault_name     = input('key_vault_name', value: nil)
@@ -685,10 +757,12 @@ control 'azure_key_vault' do
 
 end
 ```
+
 ## Create Documentation
 
 Once everything is working, documentation must be added for the resources that have been added. Copy similar resource documents in `docs/resources/` and edit them as appropriate. Include enough examples to give a good idea of how the resource works. Make sure to include any special case examples that might exist.
 After writing the documentation:
+
 - Run `bundle exec rake docs:resource_links`
 - Copy/Paste all display links in the Readme.md
 
