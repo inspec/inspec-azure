@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_hpc_storage_targets Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_hpc_storage_targets` InSpec audit resource to test properties related to all Azure HPC Storage Targets.
+Use the `azure_hpc_storage_targets` InSpec audit resource to test the properties related to all Azure HPC Storage Targets.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 

@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_hpc_storage_target Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_hpc_storage_target` InSpec audit resource to test properties related to an Azure HPC Storage Target.
+Use the `azure_hpc_storage_target` InSpec audit resource to test the properties related to an Azure HPC Storage Target.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_hpc_storage_target` InSpec audit resource to test properties rela
 
 ## Syntax
 
-`name`, `cache_name`, `resource_group` is a required parameter.
+`name`, `cache_name`, and `resource_group` are required parameters.
 
 ```ruby
 describe azure_hpc_storage_target(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME', name: 'HPC_STORAGE_TARGET_NAME') do
@@ -74,7 +74,6 @@ end
 
 `properties.nfs3`
 : Properties when targetType is nfs3.
-
 
 For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
