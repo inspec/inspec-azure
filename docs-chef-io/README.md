@@ -1,7 +1,6 @@
 # Chef InSpec Azure Resource Documentation
 
-This is the home of the InSpec Azure resource documentation found on
-<https://docs.chef.io/inspec/resources/#azure>.
+Home page of the InSpec Azure resource documentation is at <https://docs.chef.io/inspec/resources/#azure>.
 
 We use [Hugo](https://gohugo.io/) to incorporate documentation from this repository into `chef/chef-web-docs` and deploy it on <https://docs.chef.io>.
 
@@ -70,7 +69,11 @@ which will render the following text:
 
 > Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with at least a `contributor` role on the subscription you wish to test.
 
-**Note:** You can add shortcodes from other repositories. For example, the `inspec_filter_table.md` and the `inspec_matchers_link.md` shortcodes are both located in the chef/chef-web-docs repository, but they can be added to this documentation set using the same method described above.
+{{< note >}}
+
+You can add shortcodes from other repositories. For example, the `inspec_filter_table.md` and the `inspec_matchers_link.md` shortcodes are both located in the chef/chef-web-docs repository, but they can be added to this documentation set using the same method described above.
+
+{{< /note >}}
 
 ### Release Dates
 
@@ -78,18 +81,15 @@ The chef/chef-web-docs repository uses the `release-dates.json` file in `docs-ch
 
 ## Update the InSpec Repository Module In `chef/chef-web-docs`
 
-We use [Hugo modules](https://gohugo.io/hugo-modules/) to build Chef's documentation
-from multiple repositories.
+We use [Hugo modules](https://gohugo.io/hugo-modules/) to build Chef's documentation from multiple repositories.
 
 When release notes are announced for inspec-azure, the documentation for inspec-azure is updated at the same time. See the section below on release notes.
 
-A member of the Docs Team can also update the inspec-azure resource documentation at any time when new resources are ready to be added to <docs.chef.io>.
+A member from the Documentation Team can also update the inspec-azure resource documentation at any time when new resources are ready to be added to <docs.chef.io>.
 
 ## Local Development Environment
 
-We use [Hugo](https://gohugo.io/), [Go](https://golang.org/), and[NPM](https://www.npmjs.com/)
-to build the Chef Documentation website. You will need Hugo 0.93.1 or higher
-installed and running to build and view our documentation.
+We use [Hugo](https://gohugo.io/), [Go](https://golang.org/), and[NPM](https://www.npmjs.com/) to build the Chef Documentation website. You will need Hugo 0.93.1 or higher installed and running to build and view our documentation.
 
 To install Hugo, NPM, and Go on Windows and macOS:
 
@@ -106,10 +106,7 @@ To install Hugo on Linux, run:
 
 ### make serve
 
-Run `make serve` to build a local preview of the InSpec Azure resource documentation.
-This will clone a copy of `chef/chef-web-docs` into the `docs-chef-io` directory.
-That copy will be configured to build the InSpec Azure resource documentation from the `docs-chef-io` directory
-and live reload if any changes are made while the Hugo server is running.
+Run `make serve` to build a local preview of the InSpec Azure resource documentation. This clones a copy of `chef/chef-web-docs` into the `docs-chef-io` directory and configures to build the InSpec Azure resource documentation. Then the live reload happens if any changes made while the Hugo server is running.
 
 - Run `make serve`
 - go to <http://localhost:1313/inspec/resources/#azure>
@@ -136,13 +133,13 @@ Have a member of the documentation team review the Pending Release Notes file be
 
 2. Run the `publish-release-notes.sh` script in `tools/release-notes`. You can run this from the Makefile with `make publish_release_notes`
 
-   This will push the pending release notes to the S3 chef-cd bucket, reset the Pending Release Notes file, and update the `release-dates.json` file in `assets/release-notes/inspec-azure`.
+   This command pushes the pending release notes to the S3 chef-cd bucket, reset the Pending Release Notes file, and update the `release-dates.json` file in `assets/release-notes/inspec-azure`.
 
 3. Push up and merge a branch to `inspec/inspec-azure` with the changes made to the `release-dates.json` file.
 
 ### chef-web-docs
 
-chef-web-docs is configured to open a PR that will update the inspec-azure content on <doc.chef.io> when a change is committed to the `release-dates.json` file in the inspec-azure repository. This will update the InSpec Azure resource documentation and update release notes for InSpec Azure resources.
+chef-web-docs is configured to open a PR that updates the inspec-azure content on <doc.chef.io> when a change is committed to the `release-dates.json` file in the inspec-azure repository. This updates the InSpec Azure resource documentation and update release notes for InSpec Azure resources.
 
 A member fo the documentation team can merge that PR for you as soon as it's made.
 
@@ -156,11 +153,8 @@ You can find the proper release notes in the Pending Release Notes file history 
 
 If you need support, contact [Chef Support](https://www.chef.io/support/).
 
-**GitHub issues**
+### GitHub issues
 
-Submit an issue to the [inspec-azure repo](https://github.com/inspec/inspec-azure/issues)
-for "important" documentation bugs that may need visibility among a larger group,
-especially in situations where a documentation bug may also surface a product bug.
+Submit an issue to the [inspec-azure repo](https://github.com/inspec/inspec-azure/issues) for **important** documentation bugs that may need visibility among a larger group, especially in situations where a documentation bug may also surface a product bug.
 
-Submit an issue to [chef-web-docs](https://github.com/chef/chef-web-docs/issues) for
-documentation feature requests and minor documentation issues.
+Submit an issue to [chef-web-docs](https://github.com/chef/chef-web-docs/issues) for documentation feature requests and minor documentation issues.
