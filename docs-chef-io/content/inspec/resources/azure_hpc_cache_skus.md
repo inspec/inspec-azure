@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_hpc_cache_skus Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_hpc_cache_skus` InSpec audit resource to test properties related to all Azure HPC Cache SKUs.
+Use the `azure_hpc_cache_skus` InSpec audit resource to test the properties related to all Azure HPC Cache SKUs.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -35,39 +35,28 @@ end
 ## Properties
 
 `resourceTypes`
-: A list of the type of resource the SKU applies to.
-
-: **Field**: `resourceType`
+: A resource types list of the SKU applies to. **Field**: `resourceType`
 
 `names`
-: A list of SKU names.
-
-: **Field**: `name`
+: A list of SKU names. **Field**: `name`
 
 `sizes`
-: A list of the SKU sizes.
-
-: **Field**: `size`
+: A list of the SKU sizes. **Field**: `size`
 
 `tiers`
-: A list of tiers of VM in a scale set.
-
-: **Field**: `tier`
+: A tiers list of VM in a scale set. **Field**: `tier`
 
 `kind`
-: A list of kind of resources that are supported.
-
-: **Field**: `kind`
+: The supported kind list of resources. **Field**: `kind`
 
 {{% inspec_filter_table %}}
 
 ## Examples
 
-
-**Test that there are Standard tier HPC Cache SKUs.**
+### Ensure that there are Standard tier HPC Cache SKUs
 
 ```ruby
-describe azure_hpc_cache_skus.where(tier: 'Standard') do
+describe azure_hpc_cache_skus.where(tier: 'STANDARD') do
   it { should exist }
 end
 ```

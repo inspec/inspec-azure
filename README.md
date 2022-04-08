@@ -1,6 +1,6 @@
 # InSpec for Azure
 
-* **Project State: Maintained**
+- **Project State: Maintained**
 
 For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
 
@@ -18,14 +18,14 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
       - [Create a new profile](#create-a-new-profile)
   - [Resource Documentation](#resource-documentation)
   - [Examples](#examples)
-    - [Interrogate All Resources that Have `project_A` in Their Names within Your Subscription Regardless of Their Type and Resource Group](#interrogate-all-resources-that-have-project_a-in-their-names-within-your-subscription-regardless-of-their-type-and-resource-group)
-    - [Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value](#interrogate-all-resources-that-have-a-tag-defined-with-the-name-project_a-regardless-of-its-value)
+    - [Ensure all Resources have names within the Subscription regardless of the type and resource group](#ensure-all-resources-have-names-within-the-subscription-regardless-of-the-type-and-resource-group)
+    - [Ensure all resources have a defined tag regardless of its value](#ensure-all-resources-have-a-defined-tag-regardless-of-its-value)
     - [Verify Properties of an Azure Virtual Machine](#verify-properties-of-an-azure-virtual-machine)
     - [Verify Properties of a Network Security Group](#verify-properties-of-a-network-security-group)
   - [Parameters Applicable To All Resources](#parameters-applicable-to-all-resources)
     - [`api_version`](#api_version)
-    - [User Provided Api Version](#user-provided-api-version)
-    - [Pre-defined Default Api Version](#pre-defined-default-api-version)
+    - [User Provided API Version](#user-provided-api-version)
+    - [Pre-defined Default API Version](#pre-defined-default-api-version)
     - [Latest Api Version](#latest-api-version)
     - [`endpoint`](#endpoint)
     - [http_client parameters](#http_client-parameters)
@@ -34,6 +34,7 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
       - [Singular Resources](#singular-resources)
       - [Plural Resources](#plural-resources)
     - [Setting the Environment Variables](#setting-the-environment-variables)
+    - [Setup Azure CLI](#setup-azure-cli)
     - [Starting an Environment](#starting-an-environment)
     - [Direnv](#direnv)
     - [Rake Commands](#rake-commands)
@@ -41,48 +42,49 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ## Prerequisites
 
-* Ruby
-* Bundler installed
-* Azure Service Principal Account
+- Ruby
+- Bundler installed
+- Azure Service Principal Account
 
 ### Service Principal
 
-Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack against.
+Your Azure Service Principal Account must have a minimum of `reader` role of the [Azure roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles#azure-roles) to any subscription that you'd like to use this resource pack.
 
 You should have the following pieces of information:
 
-* TENANT_ID
-* CLIENT_ID
-* CLIENT_SECRET
-* SUBSCRIPTION_ID
+- TENANT_ID
+- CLIENT_ID
+- CLIENT_SECRET
+- SUBSCRIPTION_ID
 
 To create your account Service Principal Account:
 
 1. Login to the Azure portal.
-2. Click on `Azure Active Directory`.
-3. Click on `APP registrations`.
-4. Click on `New application registration`.
-5. Fill in a name and select `Web` from the `Application Type` drop down. Save your application.
-6. Note your Application ID. This is your `client_id` above.
-7. Click on `Certificates & secrets`.
-8. Click on `New client secret`.
-9. Create a new password. This value is your `client_secret` above.
-10. Go to your subscription (click on `All Services` then subscriptions). Choose your subscription from that list.
-11. Note your Subscription ID can be found here.
-12. Click `Access control (IAM)`.
-13. Click **Add**.
-14. Select the `reader` role.
-15. Select the application you just created and save.
+1. Click on **Azure Active Directory**.
+1. Click on **APP registrations**.
+1. Click on **New application registration**.
+1. Enter a name and select **Web** from the **Application Type** drop-down.
+1. Save your application.
+1. Note your Application ID. This is your **Client_id** above.
+1. Click on **Certificates & secrets**.
+1. Click on **New client secret**.
+1. Create a new password. This value is your **client_secret** above.
+1. Go to your subscription, click on **All Services** and then subscriptions. Choose your subscription from that list.
+1. Note your Subscription ID can be found here.
+1. Click **Access control (IAM)`.
+1. Click **Add**.
+1. Select the **reader** role.
+1. Select the application you created and save.
 
-These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv, then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use Dotenv, then you may just create environment variables in the way that your prefer.
+These must be stored in a environment variables prefaced with `AZURE_`.  If you use Dotenv, then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use `Dotenv`, then you may create environment variables in the way that you prefer.
 
 ### Use the Resources
 
-Since this is an InSpec resource pack, it only defines InSpec resources. To use these resources in your own controls you should create your own profile:
+Since this is an InSpec resource pack, it only defines InSpec resources. To use these resources in your controls, you should create your profile:
 
 #### Create a new profile
 
-```
+```ruby
 $ inspec init profile --platform azure my-profile
 ```
 
@@ -474,21 +476,21 @@ For more details and different use cases, please refer to the specific resource 
 
 ## Examples
 
-### Interrogate All Resources that Have `project_A` in Their Names within Your Subscription Regardless of Their Type and Resource Group
+### Ensure all Resources have names within the Subscription regardless of the type and resource group
 
 ```ruby
-azure_generic_resources(substring_of_name: 'project_A').ids.each do |id|
-  describe azure_generic_resource(resource_id: id) do
+azure_generic_resources(substring_of_name: 'NAME').ids.each do |id|
+  describe azure_generic_resource(resource_id: 'ID') do
     its('location') { should eq 'eastus' }
   end
 end
 ```
 
-### Interrogate All Resources that Have a Tag Defined with the Name `project_A` Regardless of its Value
+### Ensure all resources have a defined tag regardless of its value
 
 ```ruby
-azure_generic_resources(tag_name: 'project_A').ids.each do |id|
-  describe azure_generic_resource(resource_id: id) do
+azure_generic_resources(tag_name: 'NAME').ids.each do |id|
+  describe azure_generic_resource(resource_id: 'ID') do
     its('location') { should eq 'eastus' }
   end
 end
@@ -497,7 +499,7 @@ end
 ### Verify Properties of an Azure Virtual Machine
 
 ```ruby
-describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'prod-web-01') do
+describe azure_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
   it { should exist }
   it { should have_monitoring_agent_installed }
   it { should_not have_endpoint_protection_installed([]) }
@@ -511,7 +513,7 @@ end
 ### Verify Properties of a Network Security Group
 
 ```ruby
-describe azure_network_security_group(resource_group: 'ProductionResourceGroup', name: 'ProdServers') do
+describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'NAME) do
   it { should exist }
   its('type') { should eq 'Microsoft.Network/networkSecurityGroups' }
   its('security_rules') { should_not be_empty }
@@ -532,26 +534,27 @@ The generic resources and their derivations support following parameters unless 
 As an Azure resource provider enables new features, it releases a new version of the REST API. They are generally in the format of `2020-01-01`.
 InSpec Azure resources can be forced to use a specific version of the API to eliminate the behavioural changes between the tests using different API versions. The latest version will be used unless a specific version is provided.
 
-### User Provided Api Version
+### User Provided API Version
 
 ```ruby
-describe azure_virtual_machine(resource_group: 'my_group', name: 'my_VM', api_version: '2020-01-01') do
+describe azure_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'VM_NAME, api_version: '2020-01-01') do
   its('api_version_used_for_query_state') { should eq 'user_provided' }
   its('api_version_used_for_query') { should eq '2020-01-01' }
 end
 ```
 
-### Pre-defined Default Api Version
+### Pre-defined Default API Version
 
-`default` api version can be used if it is supported by the resource provider.
+`default` API version can be used if it is supported by the resource provider.
 
 ```ruby
-describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', name: 'my_VM', api_version: 'default') do
+describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', name: 'VM_NAME', api_version: 'default') do
   its('api_version_used_for_query_state') { should eq 'default' }
 end
 ```
 
 ### Latest Api Version
+
 `latest` version will be determined by this resource pack within the supported api versions. If the latest version is a `preview` than an older but a stable version might be used. Explicitly forcing to use the `latest` version.
 
 ```ruby
@@ -571,7 +574,7 @@ end
 `latest` version will be used if the provided is invalid.
 
 ```ruby
-describe azure_network_security_groups(resource_group: 'my_group', api_version: 'invalid_api_version') do
+describe azure_network_security_groups(resource_group: 'RESOURCE_GROUP', api_version: 'invalid_api_version') do
   its('api_version_used_for_query_state') { should eq 'latest' }
 end
 ```
@@ -609,7 +612,7 @@ They can be defined as environment variables or resource parameters (has priorit
 <hr>
 
 > <b>WARNING</b> The following resources are using their `azure_` counterparts under the hood and they will be deprecated in the InSpec Azure version **2**.
-> Their api versions are fixed (see below) for full backward compatibility.
+> Their API versions are fixed (see below) for full backward compatibility.
 > It is strongly advised to start using the resources with `azure_` prefix for an up-to-date testing experience.
 
 | Legacy Resource Name              | Fixed [api version](#api_version) | Replaced by                   |
@@ -717,14 +720,14 @@ $env:AZURE_CLIENT_SECRET="<client secret>"
 $env:AZURE_TENANT_ID="<tenant id>"
 ```
 
-**Setup Azure CLI**
+### Setup Azure CLI
 
 - Follow the instructions for your platform [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-  * macOS: `brew update && brew install azure-cli`
+  - macOS: `brew update && brew install azure-cli`
 - Login with the azure-cli
-  * `rake azure:login`
+  - `rake azure:login`
 - Verify azure-cli is logged in:
-  * `az account show`
+  - `az account show`
 
 ### Starting an Environment
 
