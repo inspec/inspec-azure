@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_hpc_asc_operation Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_hpc_asc_operation` InSpec audit resource to test properties related to an Azure HPC ASC Operation.
+Use the `azure_hpc_asc_operation` InSpec audit resource to test the properties related to an Azure HPC ASC Operation.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_hpc_asc_operation` InSpec audit resource to test properties relat
 
 ## Syntax
 
-`name`, `cache_name`, `resource_group` is a required parameter.
+`name`, `cache_name`, and `resource_group` are required parameters.
 
 ```ruby
 describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
@@ -44,7 +44,7 @@ end
 : The name of the region used to look up the operation.
 
 `operation_id` _(required)_
-: The operation id which uniquely identifies the asynchronous operation.
+: The operation ID that uniquely identifies the asynchronous operation.
 
 ## Properties
 
