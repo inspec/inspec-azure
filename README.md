@@ -331,6 +331,7 @@ The following is a list of static resources.
 - [azure_graph_user](docs/resources/azure_graph_user.md)
 - [azure_graph_users](docs/resources/azure_graph_users.md)
 - [azure_hdinsight_cluster](docs/resources/azure_hdinsight_cluster.md)
+- [azure_hpc_cache_skus](https://docs.chef.io/inspec/resources/azure_hpc_cache_skus/)
 - [azure_iothub](docs/resources/azure_iothub.md)
 - [azure_iothub_event_hub_consumer_group](docs/resources/azure_iothub_event_hub_consumer_group.md)
 - [azure_iothub_event_hub_consumer_groups](docs/resources/azure_iothub_event_hub_consumer_groups.md)
@@ -542,9 +543,9 @@ describe azure_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'NAME', a
 end
 ```
 
-### Pre-defined Default API Version
+### Pre-defined Default Api Version
 
-`default` API version can be used if it is supported by the resource provider.
+`default` api version can be used if it is supported by the resource provider.
 
 ```ruby
 describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', name: 'NAME', api_version: 'DEFAULT') do
@@ -783,7 +784,8 @@ To run integration tests:
 rake test:integration
 ```
 
-Please note that Graph API resource requires specific privileges granted to your service principal. Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
+Please note that Graph API resource requires specific privileges granted to your service principal.
+Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
 
 To run a control called `azure_virtual_machine` only:
 
