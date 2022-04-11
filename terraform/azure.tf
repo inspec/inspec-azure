@@ -1695,3 +1695,12 @@ resource "azurerm_synapse_workspace" "synapse_inspec_ws" {
     Env = "inspec"
   }
 }
+
+resource "azurerm_hpc_cache" "inspec_hpc_cache" {
+  name                = "inspec_hpc_cache_name"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  cache_size_in_gb    = 3072
+  subnet_id           = azurerm_subnet.subnet.id
+  sku_name            = "Standard_2G"
+}

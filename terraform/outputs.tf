@@ -580,3 +580,8 @@ output "synapse_inspec_ws_name" {
   description = "Synapse Workspace Name"
   value = azurerm_synapse_workspace.synapse_inspec_ws.name
 }
+
+output "inspec_hpc_cache_name" {
+  description = "Synapse Workspace Name"
+  value = azurerm_hpc_cache.inspec_hpc_cache.name
+}
