@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.115.1 -->
+<!-- latest_release 1.116.0 -->
+## [v1.116.0](https://github.com/inspec/inspec-azure/tree/v1.116.0) (2022-04-11)
+
+#### Merged Pull Requests
+- RESOURCE-104 Support azure cache skus [#637](https://github.com/inspec/inspec-azure/pull/637) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.115.1](https://github.com/inspec/inspec-azure/tree/v1.115.1) (2022-04-08)
 
 #### Merged Pull Requests
 - Resource 106 hpc asc operations [#649](https://github.com/inspec/inspec-azure/pull/649) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.115.0](https://github.com/inspec/inspec-azure/tree/v1.115.0) (2022-03-31)
 
