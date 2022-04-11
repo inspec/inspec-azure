@@ -1,10 +1,30 @@
 # Changelog
-<!-- latest_release 1.114.3 -->
+<!-- latest_release 1.116.0 -->
+## [v1.116.0](https://github.com/inspec/inspec-azure/tree/v1.116.0) (2022-04-11)
+
+#### Merged Pull Requests
+- RESOURCE-104 Support azure cache skus [#637](https://github.com/inspec/inspec-azure/pull/637) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.115.1](https://github.com/inspec/inspec-azure/tree/v1.115.1) (2022-04-08)
+
+#### Merged Pull Requests
+- Resource 106 hpc asc operations [#649](https://github.com/inspec/inspec-azure/pull/649) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.115.0](https://github.com/inspec/inspec-azure/tree/v1.115.0) (2022-03-31)
+
+#### Merged Pull Requests
+- Adding storage account logging features [#648](https://github.com/inspec/inspec-azure/pull/648) ([Rohit1509](https://github.com/Rohit1509))
+
+## [v1.114.4](https://github.com/inspec/inspec-azure/tree/v1.114.4) (2022-03-31)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.25.1 to ~&gt; 1.26.0 [#646](https://github.com/inspec/inspec-azure/pull/646) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
 ## [v1.114.3](https://github.com/inspec/inspec-azure/tree/v1.114.3) (2022-03-29)
 
 #### Merged Pull Requests
 - Update docs makefile [#647](https://github.com/inspec/inspec-azure/pull/647) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.114.2](https://github.com/inspec/inspec-azure/tree/v1.114.2) (2022-03-21)
 
