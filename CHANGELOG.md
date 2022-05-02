@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.0 -->
+<!-- latest_release 1.118.1 -->
+## [v1.118.1](https://github.com/inspec/inspec-azure/tree/v1.118.1) (2022-05-02)
+
+#### Merged Pull Requests
+- Bugfix for Azure NSG Internet Ingress RegEx [#652](https://github.com/inspec/inspec-azure/pull/652) ([jnikles1](https://github.com/jnikles1))
+<!-- latest_release -->
+
 ## [v1.118.0](https://github.com/inspec/inspec-azure/tree/v1.118.0) (2022-04-11)
 
 #### Merged Pull Requests
 - RESOURCE-13 Support azure hpc storage targets [#636](https://github.com/inspec/inspec-azure/pull/636) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.117.0](https://github.com/inspec/inspec-azure/tree/v1.117.0) (2022-04-11)
 
