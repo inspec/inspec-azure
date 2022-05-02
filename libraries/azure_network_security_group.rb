@@ -197,7 +197,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   def source_open?(properties)
     properties_hash = properties.to_h
     if properties_hash.include?(:sourceAddressPrefix)
-      return properties.sourceAddressPrefix =~ %r{\*|0\.0\.0\.0|<nw>/0|/0|Internet|any}
+      return properties.sourceAddressPrefix =~ %r{\*|^0\.0\.0\.0|<nw>/0|/0|Internet|any}
     end
     if properties_hash.include?(:sourceAddressPrefixes)
       properties.sourceAddressPrefixes.include?('0.0.0.0')
