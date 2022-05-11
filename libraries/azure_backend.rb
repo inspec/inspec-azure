@@ -16,7 +16,6 @@ ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h
 # @author omerdemirok
 #
 class AzureResourceBase < Inspec.resource(1)
-
   def initialize(opts = {})
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
     @opts = opts
