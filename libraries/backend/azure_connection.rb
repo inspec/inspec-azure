@@ -81,6 +81,18 @@ class AzureConnection
     end
   end
 
+  # azure://<client_id>:<secret>@<tenant_id>/<subscription_id>
+  # @return [Hash] tenant_id, client_id, client_secret, subscription_id
+  def credentials
+    # azure://<user>:<password>@<host>/<path>
+    @credentials ||= {
+      tenant_id: creds_from_uri[:host] || ENV['AZURE_TENANT_ID'],
+      client_id: creds_from_uri[:user] || ENV['AZURE_CLIENT_ID'],
+      client_secret: creds_from_uri[:password] || ENV['AZURE_CLIENT_SECRET'],
+      subscription_id: creds_from_uri[:path]&.gsub('/', '') || ENV['AZURE_SUBSCRIPTION_ID'],
+    }
+  end
+
   def provider_details
     @@provider_details
   end
