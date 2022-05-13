@@ -248,4 +248,10 @@ class AzureConnection
       raise StandardError, "This method is not supported: #{opts[:method]}"
     end
   end
+
+  private
+
+  def creds_from_uri
+    Inspec::Config.cached.unpack_train_credentials
+  end
 end
