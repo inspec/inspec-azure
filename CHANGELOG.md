@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.2 -->
+<!-- latest_release 1.118.3 -->
+## [v1.118.3](https://github.com/inspec/inspec-azure/tree/v1.118.3) (2022-05-18)
+
+#### Merged Pull Requests
+- RESOURCE-354 Accept credentials from URI [#655](https://github.com/inspec/inspec-azure/pull/655) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.118.2](https://github.com/inspec/inspec-azure/tree/v1.118.2) (2022-05-18)
 
 #### Merged Pull Requests
 - alias resource ID [#653](https://github.com/inspec/inspec-azure/pull/653) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.118.1](https://github.com/inspec/inspec-azure/tree/v1.118.1) (2022-05-02)
 
