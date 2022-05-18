@@ -88,6 +88,12 @@ class AzureGenericResource < AzureResourceBase
     end
   end
 
+  def resource_id
+    return NullResponse.new if failed_resource?
+
+    id
+  end
+
   def resource_group
     return unless exists?
     res_group, _provider, _res_type = Helpers.res_group_provider_type_from_uri(id)
