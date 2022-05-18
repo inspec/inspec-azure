@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.1 -->
+<!-- latest_release 1.118.2 -->
+## [v1.118.2](https://github.com/inspec/inspec-azure/tree/v1.118.2) (2022-05-18)
+
+#### Merged Pull Requests
+- alias resource ID [#653](https://github.com/inspec/inspec-azure/pull/653) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.118.1](https://github.com/inspec/inspec-azure/tree/v1.118.1) (2022-05-02)
 
 #### Merged Pull Requests
 - Bugfix for Azure NSG Internet Ingress RegEx [#652](https://github.com/inspec/inspec-azure/pull/652) ([jnikles1](https://github.com/jnikles1))
-<!-- latest_release -->
 
 ## [v1.118.0](https://github.com/inspec/inspec-azure/tree/v1.118.0) (2022-04-11)
 
