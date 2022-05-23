@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.3 -->
+<!-- latest_release 1.118.4 -->
+## [v1.118.4](https://github.com/inspec/inspec-azure/tree/v1.118.4) (2022-05-23)
+
+#### Merged Pull Requests
+- Remove hugo and go versions from netlify config [#657](https://github.com/inspec/inspec-azure/pull/657) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.118.3](https://github.com/inspec/inspec-azure/tree/v1.118.3) (2022-05-18)
 
 #### Merged Pull Requests
 - RESOURCE-354 Accept credentials from URI [#655](https://github.com/inspec/inspec-azure/pull/655) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.118.2](https://github.com/inspec/inspec-azure/tree/v1.118.2) (2022-05-18)
 
