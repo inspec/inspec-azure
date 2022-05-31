@@ -36,9 +36,6 @@ class AzureConnection
   # @return [String] the graph api endpoint api version, e.g. v1.0
   attr_reader :graph_api_endpoint_api_version
 
-  # @return [Hash] tenant_id, client_id, client_secret, subscription_id
-  attr_reader :credentials
-
   # Creates a HTTP client.
   def initialize(client_args)
     # Validate parameter's type.
@@ -62,13 +59,6 @@ class AzureConnection
     @key_vault_dns_suffix = @client_args[:endpoint].key_vault_dns_suffix
     @graph_api_endpoint_api_version = @client_args[:endpoint].graph_api_endpoint_api_version
 
-    @credentials = {
-      tenant_id: ENV['AZURE_TENANT_ID'],
-      client_id: ENV['AZURE_CLIENT_ID'],
-      client_secret: ENV['AZURE_CLIENT_SECRET'],
-      subscription_id: ENV['AZURE_SUBSCRIPTION_ID'],
-    }
-
     @connection ||= Faraday.new do |conn|
       # Implement user provided HTTP client params for handling TimeOut exceptions.
       # https://www.rubydoc.info/gems/faraday/Faraday/Request/Retry
@@ -79,6 +69,18 @@ class AzureConnection
       conn.response :json, content_type: /\bjson$/, parser_options: { symbolize_names: true }
       conn.adapter Faraday.default_adapter
     end
+  end
+
+  # azure://<client_id>:<secret>@<tenant_id>/<subscription_id>
+  # @return [Hash] tenant_id, client_id, client_secret, subscription_id
+  def credentials
+    # azure://<user>:<password>@<host>/<path>
+    @credentials ||= {
+      tenant_id: creds_from_uri[:host] || ENV['AZURE_TENANT_ID'],
+      client_id: creds_from_uri[:user] || ENV['AZURE_CLIENT_ID'],
+      client_secret: creds_from_uri[:password] || ENV['AZURE_CLIENT_SECRET'],
+      subscription_id: creds_from_uri[:path]&.gsub('/', '') || ENV['AZURE_SUBSCRIPTION_ID'],
+    }
   end
 
   def provider_details
@@ -149,17 +151,17 @@ class AzureConnection
   #
   def authenticate(resource)
     # Validate the presence of credentials.
-    unless @credentials.values.compact.delete_if(&:empty?).size == 4
+    unless credentials.values.compact.delete_if(&:empty?).size == 4
       raise HTTPClientError::MissingCredentials, 'The following must be set in the Environment:'\
-        " #{@credentials.keys}.\n"\
-        "Missing: #{@credentials.keys.select { |key| @credentials[key].nil? }}"
+        " #{credentials.keys}.\n"\
+        "Missing: #{credentials.keys.select { |key| credentials[key].nil? }}"
     end
     # Build up the url that is required to authenticate with Azure REST API
-    auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{@credentials[:tenant_id]}/oauth2/token"
+    auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{credentials[:tenant_id]}/oauth2/token"
     body = {
       grant_type: 'client_credentials',
-      client_id: @credentials[:client_id],
-      client_secret: @credentials[:client_secret],
+      client_id: credentials[:client_id],
+      client_secret: credentials[:client_secret],
       resource: resource,
     }
     headers = {
@@ -247,5 +249,11 @@ class AzureConnection
     else
       raise StandardError, "This method is not supported: #{opts[:method]}"
     end
+  end
+
+  private
+
+  def creds_from_uri
+    Inspec::Config.cached.unpack_train_credentials
   end
 end

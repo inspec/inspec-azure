@@ -1,14 +1,29 @@
 terraform {
   required_version = "~> 0.12.0"
+  required_providers {
+    powerbi = {
+      source = "codecutout/powerbi"
+      version = "~>1.3"
+    }
+  }
 }
 
 provider "azurerm" {
-  version         = "~> 2.1.0"
+  version         = "~> 2.76.0"
   subscription_id = var.subscription_id
   client_id       = var.client_id
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
   features {}
+}
+
+# this will work automatically when we upgrade to 0.13 ,
+# until than install provider as described here https://github.com/codecutout/terraform-provider-powerbi#local
+provider "powerbi" {
+  version         = "~> 1.3.1"
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 provider "random" {
@@ -176,9 +191,7 @@ resource "azurerm_key_vault_key" "vk" {
 resource "azurerm_managed_disk" "disk" {
   name                = var.encrypted_disk_name
   resource_group_name = azurerm_resource_group.rg.name
-
   location = var.location
-
   storage_account_type = var.managed_disk_type
   create_option        = "Empty"
   disk_size_gb         = 1
@@ -880,7 +893,6 @@ resource "azurerm_iothub" "iothub" {
     capacity = 1
   }
 
-
   endpoint {
     type                       = "AzureIotHub.EventHub"
     connection_string          = azurerm_eventhub_authorization_rule.auth_rule_inspectesteh.primary_connection_string
@@ -888,7 +900,6 @@ resource "azurerm_iothub" "iothub" {
     batch_frequency_in_seconds = 300
     max_chunk_size_in_bytes    = 314572800
   }
-
 
   route {
     name      = "ExampleRoute"
@@ -1100,7 +1111,6 @@ resource "azurerm_api_management" "apim01" {
       <on-error />
     </policies>
 XML
-
   }
 }
 resource "azurerm_stream_analytics_job" "streaming_job" {
@@ -1124,7 +1134,6 @@ resource "azurerm_stream_analytics_job" "streaming_job" {
     INTO [YourOutputAlias]
     FROM [YourInputAlias]
 QUERY
-
 }
 
 resource "azurer_stream_analytics_function_javascript_udf" "streaming_job_function" {
@@ -1320,7 +1329,6 @@ resource "azurerm_policy_definition" "inspec_policy_definition" {
     }
   }
   PARAMETERS
-
 }
 
 resource "azurerm_policy_assignment" "inspec_compliance_policy_assignment" {
@@ -1369,6 +1377,12 @@ resource "azurerm_data_factory" "adf" {
   name                = "adf-eaxmple"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_data_factory_pipeline" "df_pipeline" {
+  name                = "example-pipeline"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
 }
 
 resource "azurerm_data_factory_linked_service_mysql" "dflsmsql" {
@@ -1423,6 +1437,272 @@ resource "azurerm_virtual_wan" "inspec-nw-wan" {
   location = var.location
   name = var.inspec_wan_name
   resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_virtual_network" "inspec-gw-vnw" {
+  name                = "inspec-gw-vnw"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  address_space       = ["10.0.0.0/16"]
+}
+
+resource "azurerm_subnet" "inspec-gw-subnet" {
+  name                 = "GatewaySubnet"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.inspec-gw-vnw.name
+  address_prefix     = "10.0.1.0/24"
+}
+
+resource "azurerm_virtual_network_gateway" "inspec-nw-gateway" {
+  name                = "inspec-dev-vnw-gateway"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  type     = "Vpn"
+  vpn_type = "RouteBased"
+
+  active_active = false
+  enable_bgp    = false
+  sku           = "Basic"
+
+  ip_configuration {
+    name                          = "vnetGatewayConfig"
+    public_ip_address_id          = azurerm_public_ip.test.id
+    private_ip_address_allocation = "Dynamic"
+    subnet_id                     = azurerm_subnet.inspec-gw-subnet.id
+  }
+
+  vpn_client_configuration {
+    address_space = ["10.2.0.0/24"]
+
+    root_certificate {
+      name = "DigiCert-Federated-ID-Root-CA"
+
+      public_cert_data = <<EOF
+MIIDuzCCAqOgAwIBAgIQCHTZWCM+IlfFIRXIvyKSrjANBgkqhkiG9w0BAQsFADBn
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMSYwJAYDVQQDEx1EaWdpQ2VydCBGZWRlcmF0ZWQgSUQg
+Um9vdCBDQTAeFw0xMzAxMTUxMjAwMDBaFw0zMzAxMTUxMjAwMDBaMGcxCzAJBgNV
+BAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdp
+Y2VydC5jb20xJjAkBgNVBAMTHURpZ2lDZXJ0IEZlZGVyYXRlZCBJRCBSb290IENB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvAEB4pcCqnNNOWE6Ur5j
+QPUH+1y1F9KdHTRSza6k5iDlXq1kGS1qAkuKtw9JsiNRrjltmFnzMZRBbX8Tlfl8
+zAhBmb6dDduDGED01kBsTkgywYPxXVTKec0WxYEEF0oMn4wSYNl0lt2eJAKHXjNf
+GTwiibdP8CUR2ghSM2sUTI8Nt1Omfc4SMHhGhYD64uJMbX98THQ/4LMGuYegou+d
+GTiahfHtjn7AboSEknwAMJHCh5RlYZZ6B1O4QbKJ+34Q0eKgnI3X6Vc9u0zf6DH8
+Dk+4zQDYRRTqTnVO3VT8jzqDlCRuNtq6YvryOWN74/dq8LQhUnXHvFyrsdMaE1X2
+DwIDAQABo2MwYTAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAdBgNV
+HQ4EFgQUGRdkFnbGt1EWjKwbUne+5OaZvRYwHwYDVR0jBBgwFoAUGRdkFnbGt1EW
+jKwbUne+5OaZvRYwDQYJKoZIhvcNAQELBQADggEBAHcqsHkrjpESqfuVTRiptJfP
+9JbdtWqRTmOf6uJi2c8YVqI6XlKXsD8C1dUUaaHKLUJzvKiazibVuBwMIT84AyqR
+QELn3e0BtgEymEygMU569b01ZPxoFSnNXc7qDZBDef8WfqAV/sxkTi8L9BkmFYfL
+uGLOhRJOFprPdoDIUBB+tmCl3oDcBy3vnUeOEioz8zAkprcb3GHwHAK+vHmmfgcn
+WsfMLH4JCLa/tRYL+Rw/N3ybCkDp00s0WUZ+AoDywSl0Q/ZEnNY0MsFiw6LyIdbq
+M/s/1JRtO3bDSzD9TazRVzn2oBqzSa8VgIo5C1nOnoAKJTlsClJKvIhnRlaLQqk=
+EOF
+    }
+
+    revoked_certificate {
+      name       = "Verizon-Global-Root-CA"
+      thumbprint = "912198EEF23DCAC40939312FEE97DD560BAE49B1"
+    }
+  }
+}
+
+resource "azurerm_virtual_network_gateway_connection" "nw-gateway-connection" {
+  name                = "inspec-nw-gateway-connection"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  type                            = "Vnet2Vnet"
+  virtual_network_gateway_id      = azurerm_virtual_network_gateway.inspec-nw-gateway.id
+  peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.inspec-nw-gateway.id
+  shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
+}
+
+resource "azurerm_storage_data_lake_gen2_filesystem" "inspec_adls_gen2" {
+  name               = var.inspec_adls_file_system_name
+  storage_account_id = azurerm_storage_account.sa.id
+
+  properties = {
+    inspec = "aGVsbG8="
+  }
+}
+
+resource "azurerm_storage_data_lake_gen2_path" "inspec_adls_gen2_path" {
+  path               = var.inspec_adls_path_name
+  filesystem_name    = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
+  storage_account_id = azurerm_storage_account.sa.id
+  resource           = "directory"
+}
+
+resource "azurerm_route_table" "route_table_sql_instance_inspec" {
+  name                          = "routetable-inspec"
+  location                      = azurerm_resource_group.rg.location
+  resource_group_name           = azurerm_resource_group.rg.name
+  disable_bgp_route_propagation = false
+  depends_on = [
+    azurerm_subnet.subnet,
+  ]
+}
+
+resource "azurerm_subnet_route_table_association" "route_table_assoc_inspec" {
+  subnet_id      = azurerm_subnet.subnet.id
+  route_table_id = azurerm_route_table.route_table_sql_instance_inspec.id
+}
+
+resource "azurerm_sql_managed_instance" "sql_instance_for_inspec" {
+  name                         = "sql-instance-for-inspec"
+  resource_group_name          = azurerm_resource_group.rg.name
+  location                     = azurerm_resource_group.rg.location
+  administrator_login          = "inspec-admin"
+  administrator_login_password = "Qwertyuiopasdfghjkl1"
+  license_type                 = "BasePrice"
+  subnet_id                    = azurerm_subnet.subnet.id
+  sku_name                     = "GP_Gen5"
+  vcores                       = 4
+  storage_size_in_gb           = 32
+
+  depends_on = [
+    azurerm_subnet_network_security_group_association.subnet_nsg,
+    azurerm_subnet_route_table_association.route_table_assoc_inspec,
+  ]
+}
+
+resource "azurerm_mssql_virtual_machine" "inspec_sql_vm" {
+  virtual_machine_id               = azurerm_virtual_machine.vm_windows_internal.id
+  sql_license_type                 = "PAYG"
+  r_services_enabled               = true
+  sql_connectivity_port            = 1433
+  sql_connectivity_type            = "PRIVATE"
+  sql_connectivity_update_password = "Password1234!"
+  sql_connectivity_update_username = "sqllogin"
+
+  auto_patching {
+    day_of_week                            = "Sunday"
+    maintenance_window_duration_in_minutes = 60
+    maintenance_window_starting_hour       = 2
+  }
+}
+
+resource "powerbi_workspace" "inspec_powerbi_workspace" {
+  name = "Inspec Workspace"
+}
+
+resource "powerbi_workspace_access" "allow_access_to_user" {
+  workspace_id = powerbi_workspace.inspec_powerbi_workspace.id
+  group_user_access_right = "Member"
+  email_address           = "sbabu@progress.com"
+  principal_type          = "User"
+}
+
+resource "azurerm_data_factory_dataset_cosmosdb_sqlapi" "cosmosdb_dataset" {
+  name                = "cosmosdb_dataset_sql"
+  resource_group_name = azurerm_resource_group.rg.name
+  data_factory_name   = azurerm_data_factory.adf.name
+  linked_service_name = azurerm_data_factory_linked_service_mysql.dflsmsql.name
+  collection_name = "bar"
+}
+
+resource "azurerm_powerbi_embedded" "power_bi_embedded" {
+  name                = var.power_bi_embedded_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku_name            = "A1"
+  administrators      = ["sbabu@progress.com"]
+}
+
+resource "azurerm_servicebus_namespace" "sb" {
+  name                = "inspec-servicebus-namespace"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard"
+
+  tags = {
+    source = "inspec"
+  }
+}
+
+resource "azurerm_servicebus_topic" "inspec_sb_topic" {
+  name                = "inspec-servicebus-topic"
+  resource_group_name = azurerm_resource_group.rg.name
+  namespace_name      = azurerm_servicebus_namespace.sb.name
+  enable_partitioning = true
+}
+
+resource "azurerm_servicebus_subscription" "inspec-sub" {
+  name                = "inspec-sb-subs"
+  resource_group_name = azurerm_resource_group.rg.name
+  namespace_name      = azurerm_servicebus_namespace.sb.name
+  topic_name          = azurerm_servicebus_topic.inspec_sb_topic.name
+  max_delivery_count  = 1
+}
+
+resource "azurerm_servicebus_subscription_rule" "inspec-sub-rule" {
+  name                = "inspec_subs_rule"
+  resource_group_name = azurerm_resource_group.rg.name
+  namespace_name      = azurerm_servicebus_namespace.sb.name
+  topic_name          = azurerm_servicebus_topic.inspec_sb_topic.name
+  subscription_name   = azurerm_servicebus_subscription.inspec-sub.name
+  filter_type         = "SqlFilter"
+  sql_filter          = "colour = 'red'"
+}
+
+resource "azurerm_managed_application_definition" "mng_app_def" {
+  name                = "inspecmngappdef"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  lock_level          = "ReadOnly"
+  package_file_uri    = "https://github.com/Azure/azure-managedapp-samples/raw/master/Managed Application Sample Packages/201-managed-storage-account/managedstorage.zip"
+  display_name        = "InspecManagedAppDefinition"
+  description         = "Test Managed App Definition for Inspec"
+
+  authorization {
+    service_principal_id = data.azurerm_client_config.current.object_id
+    role_definition_id   = split("/", data.azurerm_role_definition.contributor.id)[length(split("/", data.azurerm_role_definition.contributor.id)) - 1]
+  }
+}
+
+resource "azurerm_managed_application" "mng_app" {
+  name                        = "inspectestmngapp"
+  location                    = azurerm_resource_group.rg.location
+  resource_group_name         = azurerm_resource_group.rg.name
+  kind                        = "ServiceCatalog"
+  managed_resource_group_name = "InspecGroup"
+  application_definition_id   = azurerm_managed_application_definition.mng_app_def.id
+
+  parameters = {
+    location                 = azurerm_resource_group.rg.location
+    storageAccountNamePrefix = "storeNamePrefix"
+    storageAccountType       = "Standard_LRS"
+  }
+}
+
+resource "azurerm_synapse_workspace" "synapse_inspec_ws" {
+  name                                 = "synapse-inspec-ws"
+  resource_group_name                  = azurerm_resource_group.rg.name
+  location                             = azurerm_resource_group.rg.location
+  storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.id
+  sql_administrator_login              = "sqladminuser"
+  sql_administrator_login_password     = "H@Sh1CoR3!"
+
+  aad_admin {
+    login     = "AzureAD Admin"
+    object_id = "00000000-0000-0000-0000-000000000000"
+    tenant_id = "00000000-0000-0000-0000-000000000000"
+  }
+
+  tags = {
+    Env = "inspec"
+  }
+}
+
+resource "azurerm_hpc_cache" "inspec_hpc_cache" {
+  name                = "inspec_hpc_cache_name"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  cache_size_in_gb    = 3072
+  subnet_id           = azurerm_subnet.subnet.id
+  sku_name            = "Standard_2G"
 }
 
 resource "azurerm_sentinel_alert_rule_scheduled" "alert_rule_scheduled" {

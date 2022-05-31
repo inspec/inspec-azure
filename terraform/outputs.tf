@@ -156,8 +156,7 @@ output "windows_vm_os_disk" {
 }
 
 output "windows_vm_data_disks" {
-  value = [
-    var.windows_internal_data_disk]
+  value = [var.windows_internal_data_disk]
 }
 
 output "windows_vm_nic_name" {
@@ -337,10 +336,12 @@ output "api_management_name" {
   description = "the name for the azurerm_api_management resource"
   value       = var.api_management_count > 0 ? azurerm_api_management.apim01[0].name : ""
 }
+
 output "azure_streaming_job_function_name" {
   description = "the name for the azure_streaming_service_job"
   value       = azurer_stream_analytics_function_javascript_udf.streaming_job_function.name
 }
+
 output "azure_streaming_job_name" {
   description = "the name for the azure_streaming_service_resource_job_function"
   value       = azurer_stream_analytics_job.streaming_job.name
@@ -370,6 +371,7 @@ output "policy_definition_id" {
   description = "The ID of the policy Definition"
   value = azurerm_policy_definition.inspec_policy_definition.id
 }
+
 output "policy_definition_associated_cosmodb_id" {
   description = "The Resource ID for which a policy definition is run against"
   value = azurerm_cosmosdb_account.inspectest_cosmosdb.id
@@ -414,6 +416,11 @@ output "df_name" {
 output "df_location" {
   value = azurerm_data_factory.adf.location
 }
+
+output "df_pipeline_name" {
+  value = azurerm_data_factory_pipeline.df_pipeline.name
+}
+
 output "inspec_db_migration_service_name" {
   value = var.inspec_db_migration_service.name
 }
@@ -497,6 +504,86 @@ output "inspec_virtual_wan" {
 output "inspec_migrate_project_name" {
   description = "The name of the Azure Migrate Project that was setup manually since there is no tf resource"
   value = var.inspec_migrate_project_name
+}
+
+output "inspec_vnw_gateway_name" {
+  description = "The name of the Azure Virtual Network Gateway"
+  value = azurerm_virtual_network_gateway.inspec-nw-gateway.name
+}
+
+output "inspec_adls_account_name" {
+  description = "The storage account for the ADLS"
+  value = azurerm_storage_account.sa.name
+}
+
+output "inspec_adls_fs_name" {
+  description = "The ADLS File System name"
+  value = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.name
+}
+
+output "inspec_adls_dns_suffix" {
+  description = "The default DNS suffix for ADLS"
+  value = "dfs.core.windows.net"
+}
+
+output "inspec_adls_fs_path" {
+  description = "The ADLS File System Path name"
+  value = azurerm_storage_data_lake_gen2_path.inspec_adls_gen2_path.path
+}
+
+output "inspec_sql_managed_instance_name" {
+  description = "The SQL managed instance name"
+  value = azurerm_sql_managed_instance.sql_instance_for_inspec.name
+}
+
+output "inspec_sql_virtual_machine" {
+  description = "SQL VM"
+  value = azurerm_mssql_virtual_machine.inspec_sql_vm.id
+}
+
+output "inspec_powerbi_workspace_id" {
+  description = "The name of the Azure Power BI Workspace"
+  value = powerbi_workspace.inspec_powerbi_workspace.id
+}
+
+output "power_bi_embedded_name" {
+  description = "The name of the Power BI Embedded"
+  value = azurerm_powerbi_embedded.power_bi_embedded.name
+}
+
+output "service_bus_namespace_name" {
+  description = "The name of the Azure Service Bus Namespace"
+  value = azurerm_servicebus_namespace.sb.name
+}
+
+output "service_bus_topic_name" {
+  description = "The name of the Azure Service Bus Topic"
+  value = azurerm_servicebus_topic.inspec_sb_topic.name
+}
+
+output "service_bus_subscription_name" {
+  description = "The name of the Azure Service Bus Subscription"
+  value = azurerm_servicebus_subscription.inspec-sub.name
+}
+
+output "service_bus_subscription_rule_name" {
+  description = "The name of the Azure Service Bus Subscription Rule"
+  value = azurerm_servicebus_subscription_rule.inspec-sub-rule.name
+}
+
+output "inspec_managed_app" {
+  description = "The Managed Application Name"
+  value = azurerm_managed_application.mng_app.name
+}
+
+output "synapse_inspec_ws_name" {
+  description = "Synapse Workspace Name"
+  value = azurerm_synapse_workspace.synapse_inspec_ws.name
+}
+
+output "inspec_hpc_cache_name" {
+  description = "Synapse Workspace Name"
+  value = azurerm_hpc_cache.inspec_hpc_cache.name
 }
 
 output "workspace_name" {

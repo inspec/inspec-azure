@@ -1,23 +1,24 @@
 # Documentation available at https://expeditor.chef.io/docs/getting-started/
 ---
+project:
+  alias: inspec-azure
+
+slack:
+ notify_channel: inspec-notify
 
 pipelines:
  - verify:
     description: Pull Request validation tests
-    public: true
-
-slack:
- notify_channel: inspec-notify
 
 github:
  delete_branch_on_merge: true
  minor_bump_labels:
   - "Version: Bump Minor"
  version_tag_format: v{{version}}
- 
+
 release_branches:
   - main
- 
+
 changelog:
  categories:
   - "Type: New Resource": "New Resources"
@@ -38,4 +39,3 @@ subscriptions:
          ignore_labels:
           - "Changelog: Skip Update"
           - "Expeditor: Skip All"
-

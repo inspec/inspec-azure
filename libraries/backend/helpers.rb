@@ -243,7 +243,7 @@ module Validators
   # @return [Array] Allowed parameters
   # @param allow [Array]
   def self.validate_params_allow(allow, opts, skip_length = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix this.
-    unless skip_length
+    if !opts[:resource_data] && !skip_length
       raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 } # rubocop:disable Style/SoleNestedConditional TODO: Fix this.
     end
     raise ArgumentError, 'Scalar arguments not supported.' unless defined?(opts.keys)
