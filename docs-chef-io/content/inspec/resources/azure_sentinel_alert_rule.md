@@ -40,12 +40,11 @@ end
 
 `workspace_name` _(required)_
 
-: Azure workspace Name for which alert rule are being retrieved.
+: Azure workspace Name for which alert rule is retrieved.
 
 `rule_id` _(required)_
 
 : Alert rule ID.
-
 
 ## Properties
 
@@ -56,7 +55,7 @@ end
 : The name of the alert rule.
 
 `type`
-: The type of the alert rule.
+: The alert rule type.
 
 `kind`
 : The kind of the alert rule.
@@ -69,23 +68,23 @@ end
 
 ## Examples
 
-**Test if the rule ID exists.**
+Tests if the rule ID exists.
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
-  its('id') { should eq 'ALERRT_RULE_ID' }
+  its('id') { should eq 'ALERT_RULE_ID' }
 end
 ```
 
-**Test if the rule name exists.**
+Tests if the rule name exists.
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
-  its('name') { should eq 'ALERRT_RULE_NAME' }
+  its('name') { should eq 'ALERT_RULE_NAME' }
 end
 ```
 
-**Test if the rule kind is `Scheduled`.**
+Tests if the rule kind is `Scheduled`.
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -93,7 +92,7 @@ describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_n
 end
 ```
 
-**Test if the rule type is `Microsoft.SecurityInsights/alertRules`.**
+Test if the rule type is `Microsoft.SecurityInsights/alertRules`.
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -101,7 +100,7 @@ describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_n
 end
 ```
 
-**Test if the display name is present or not.**
+Test if the display name is present or not.
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
