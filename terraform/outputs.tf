@@ -585,3 +585,17 @@ output "inspec_hpc_cache_name" {
   description = "Synapse Workspace Name"
   value = azurerm_hpc_cache.inspec_hpc_cache.name
 }
+
+output "workspace_name" {
+  value = azurerm_log_analytics_workspace.workspace.name
+}
+output "alert_rule_id" {
+  value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.name
+}
+output "alert_rule_name" {
+  value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.name
+}
+
+output "alert_rule_display_name" {
+  value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.display_name
+}

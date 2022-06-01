@@ -25,7 +25,7 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
   - [Parameters Applicable To All Resources](#parameters-applicable-to-all-resources)
     - [`api_version`](#api_version)
     - [User-Provided API Version](#user-provided-api-version)
-    - [Pre-defined Default API Version](#pre-defined-default-api-version)
+    - [Pre-defined Default Api Version](#pre-defined-default-api-version)
     - [Latest API Version](#latest-api-version)
     - [endpoint](#endpoint)
     - [http_client parameters](#http_client-parameters)
@@ -59,23 +59,25 @@ You must have the following pieces of information:
 
 To create your account Service Principal Account:
 
-1. Log in to the Azure portal.
+1. Log in to the **Azure portal**.
 1. Click **Azure Active Directory**.
 1. Click **APP registrations**.
 1. Click **New application registration**.
-1. Enter name and select **Web** from the **Application Type** drop-down. Save your application.
-1. Note your Application ID. This is your **client_id** above.
+1. Enter name and select **Web** from the **Application Type** drop-down.
+1. Save your application.
+1. Note your Application ID. This is your **client_id**.
 1. Click **Certificates & secrets**.
 1. Click **New client secret**.
 1. Create a new password. This value is your **client_secret** above.
-1. Go to your subscription (click on **All Services** then subscriptions). Choose your subscription from that list.
-1. Note your Subscription ID can be found here.
+1. Go to your subscription (click **All Services** then subscriptions).
+1. Choose your subscription from that list.
+1. Note your **Subscription ID**.
 1. Click **Access control (IAM)**.
 1. Click **Add**.
 1. Select the **reader** role.
-1. Select the application you created and save.
+1. Select the application you created and click **save**.
 
-These must be stored in an environment variables prefaced with `AZURE_`.  If you use Dotenv, then you may save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you don't use `Dotenv`, then you may just create environment variables in the way that you prefer.
+These must be stored in an environment variables prefaced with `AZURE_`.  If you use Dotenv, then you can save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you do not use `Dotenv`, then you can create environment variables in the way that you prefer.
 
 ### Use the Resources
 
@@ -114,7 +116,7 @@ The following is a list of generic resources.
 
 With the generic resources:
 
-- Azure cloud resources that this resource pack does not include a static InSpec resource for can be tested.
+- Azure cloud resources pack, which does not include a static InSpec resource and can be tested.
 - Azure resources from different resource providers and resource groups can be tested at the same time.
 - Server-side filtering can be used for more efficient tests.
 
@@ -437,6 +439,8 @@ The following is a list of static resources.
 - [azure_service_bus_topic](docs/resources/azure_service_bus_topic.md)
 - [azure_service_bus_topics](docs/resources/azure_service_bus_topics.md)
 - [azure_service_bus_regions](docs/resources/azure_service_bus_regions.md)
+- [azure_sentinel_alert_rule](docs/resources/azure_sentinel_alert_rule.md)
+- [azure_sentinel_alert_rules](docs/resources/azure_sentinel_alert_rules.md)
 - [azure_sql_database](docs/resources/azure_sql_database.md)
 - [azure_sql_databases](docs/resources/azure_sql_databases.md)
 - [azure_sql_server](docs/resources/azure_sql_server.md)
@@ -533,8 +537,7 @@ The generic resources and their derivations support the following parameters unl
 
 ### `api_version`
 
-As an Azure resource provider enables new features, it releases a new version of the REST API. They are generally in the format of `2020-01-01`.
-InSpec Azure resources can be forced to use a specific version of the API to eliminate the behavioral changes between the tests using different API versions. The latest version will be used unless a specific version is provided.
+As an Azure resource provider enables new features, it releases a new version of the REST API. They are generally in the format of `2020-01-01`. InSpec Azure resources can be forced to use a specific version of the API to eliminate the behavioral changes between the tests using different API versions. The latest version is used unless a specific version is provided.
 
 ### User-Provided API Version
 
@@ -547,43 +550,43 @@ end
 
 ### Pre-defined Default Api Version
 
-`default` api version can be used if it is supported by the resource provider.
+`DEFAULT` api version can be used, if it is supported by the resource provider.
 
 ```ruby
 describe azure_generic_resource(resource_provider: 'Microsoft.Compute/virtualMachines', name: 'NAME', api_version: 'DEFAULT') do
-  its('api_version_used_for_query_state') { should eq 'default' }
+  its('api_version_used_for_query_state') { should eq 'DEFAULT' }
 end
 ```
 
 ### Latest API Version
 
-`latest` version will be determined by this resource pack within the supported API versions. If the latest version is a `preview`, than an older, but a stable version might be used. Explicitly forcing to use the `latest` version.
+`LATEST` version is determined by this resource pack within the supported API versions. If the latest version is a `preview`, than an older, but a stable version might be used. Explicitly forcing to use the `LATEST` version.
 
 ```ruby
-describe azure_virtual_networks(api_version: 'latest') do
-  its('api_version_used_for_query_state') { should eq 'latest' }
+describe azure_virtual_networks(api_version: 'LATEST') do
+  its('api_version_used_for_query_state') { should eq 'LATEST' }
 end
 ```
 
-`latest` version will be used unless provided (Implicit).
+`LATEST` version is used unless provided (Implicit).
 
 ```ruby
 describe azure_network_security_groups(resource_group: 'RESOURCE_GROUP') do
-  its('api_version_used_for_query_state') { should eq 'latest' }
+  its('api_version_used_for_query_state') { should eq 'LATEST' }
 end
 ```
 
-`latest` version will be used if the provided is invalid.
+`LATEST` version is used if the provided is invalid.
 
 ```ruby
-describe azure_network_security_groups(resource_group: 'my_group', api_version: 'invalid_api_version') do
-  its('api_version_used_for_query_state') { should eq 'latest' }
+describe azure_network_security_groups(resource_group: 'RESOURCE_GROUP', api_version: 'invalid_api_version') do
+  its('api_version_used_for_query_state') { should eq 'LATEST' }
 end
 ```
 
 ### endpoint
 
-Microsoft Azure cloud services are available through a global and three national networks of the datacenter as described [here](https://docs.microsoft.com/en-us/graph/deployments). The preferred data center can be defined via `endpoint` parameter. Azure Global Cloud will be used if not provided.
+Microsoft Azure cloud services are available through a global and three national networks of the datacenter as described [here](https://docs.microsoft.com/en-us/graph/deployments). The preferred data center can be defined via `endpoint` parameter. Azure Global Cloud is used if not provided.
 
 - `azure_cloud` (default)
 - `azure_china_cloud`
@@ -663,7 +666,7 @@ They can be defined as environment variables or resource parameters (has priorit
 
 ## Development
 
-If you'd like to contribute to this project, please see [Contributing Rules](CONTRIBUTING.md).
+If you would like to contribute to this project, please see [Contributing Rules](CONTRIBUTING.md).
 
 For a detailed walk-through of resource creation, see the [Resource Creation Guide](dev-docs/resource_creation_guide.md).
 
@@ -702,7 +705,7 @@ A plural resource is used to test the collection of resources of a specific type
 
 ### Setting the Environment Variables
 
-The following instructions will help you get your development environment set up to run integration tests.
+The following instructions helps you get your development environment setup to run integration tests.
 
 Copy `.envrc-example` to `.envrc` and fill in the fields with the values from your account.
 
@@ -787,6 +790,7 @@ rake test:integration
 ```
 
 Please note that Graph API resource requires specific privileges granted to your service principal.
+
 Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
 
 To run a control called `azure_virtual_machine` only:
