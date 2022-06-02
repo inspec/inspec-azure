@@ -17,4 +17,5 @@ group :development, :test do
   gem 'rubocop',  '~> 1.26.0'
   gem 'simplecov', '~> 0.21'
   gem 'simplecov_json_formatter'
+  gem 'license_scout', '~> 2.6', '>= 2.6.2'
 end
