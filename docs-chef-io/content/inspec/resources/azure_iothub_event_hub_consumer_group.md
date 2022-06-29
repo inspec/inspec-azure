@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_iothub_event_hub_consumer_group Resou
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_iothub_event_hub_consumer_group` InSpec audit resource to test properties and configuration of an Azure IoT Hub Event Hub Consumer Group within a Resource Group.
+Use the `azure_iothub_event_hub_consumer_group` InSpec audit resource to test the properties and configuration of an Azure IoT Hub Event Hub Consumer Group within a resource group.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,12 +22,14 @@ Use the `azure_iothub_event_hub_consumer_group` InSpec audit resource to test pr
 
 ## Syntax
 
-`resource_group`, `resource_name`, `event_hub_endpoint` and `name` or the `resource_id` must be given as a parameter.
+`resource_group`, `resource_name`, `event_hub_endpoint`, and `name` or the `resource_id` are required parameters.
+
 ```ruby
-describe azure_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub', name: 'my-consumer-group') do
+describe azure_iothub_event_hub_consumer_group(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME', name: 'CONSUMER_GROUP_NAME') do
   it { should exist }
 end
 ```
+
 ```ruby
 describe azure_iothub_event_hub_consumer_group(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/eventHubEndpoints/{eventHubEndpointName}/ConsumerGroups/{name}') do
   it { should exist }
@@ -37,16 +39,16 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in. `MyResourceGroup`.
+: Azure resource group where the targeted resource resides.
 
 `resource_name`
-: The name of the IoT hub. `my-iot-hub`.
+: The name of the IoT hub.
 
 `event_hub_endpoint`
-: The name of the Event Hub-compatible endpoint in the IoT hub. `eventHubEndpointName`.
+: The name of the Event Hub-compatible endpoint in the IoT hub.
 
 `name`
-: The name of the consumer group to retrieve. `my-consumer-group`.
+: The name of the consumer group to retrieve.
 
 `consumer_group`
 : Alias for the `name` parameter.
@@ -55,29 +57,30 @@ end
 : The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/eventHubEndpoints/{eventHubEndpointName}/ConsumerGroups/{name}`.
 
 Either one of the parameter sets can be provided for a valid query:
+
 - `resource_id`
-- `resource_group`, `resource_name`, `event_hub_endpoint` and `name`
-- `resource_group`, `resource_name`, `event_hub_endpoint` and `consumer_group`
+- `resource_group`, `resource_name`, `event_hub_endpoint`, and `name`
+- `resource_group`, `resource_name`, `event_hub_endpoint`, and `consumer_group`.
 
 ## Properties
 
 `name`
 : The Event Hub-compatible consumer group name.
 
-For properties applicable to all resources, such as `type`, `tags`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `tags`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/iothub/iothubresource/geteventhubconsumergroup#eventhubconsumergroupinfo) for other properties available. 
-Any attribute in the response may be accessed with the key names separated by dots (`.`).
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/iothub/iothubresource/geteventhubconsumergroup#eventhubconsumergroupinfo) for other properties available. You can access any attribute in the response with the key names separated by dots (`.`).
 
 ## Examples
 
-**Test the Name of a Resource.**
+### Test to ensure the resource name
 
 ```ruby
-describe azure_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub', name: 'my-consumer-group') do
+describe azure_iothub_event_hub_consumer_group(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME', name: 'CONSUMER_GROUP_NAME') do
   its('name') { should cmp 'my-consumer-group' }
 end
 ```
+
 ```ruby
 describe azure_iothub_event_hub_consumer_group(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/eventHubEndpoints/{eventHubEndpointName}/ConsumerGroups/{name}') do
   its('name') { should cmp 'my-consumer-group' }
@@ -88,18 +91,22 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
 
-### exists
+### Exists
 
 ```ruby
 # If we expect the resource to always exist
 
-describe azure_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub', name: 'my-consumer-group') do
+describe azure_iothub_event_hub_consumer_group(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME', name: 'CONSUMER_GROUP_NAME') do
   it { should exist }
 end
+```
 
+### Not Exists
+
+```ruby
 # If we expect the resource to never exist
 
-describe azure_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub', name: 'my-consumer-group') do
+describe azure_iothub_event_hub_consumer_group(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME', name: 'CONSUMER_GROUP_NAME') do
   it { should_not exist }
 end
 ```

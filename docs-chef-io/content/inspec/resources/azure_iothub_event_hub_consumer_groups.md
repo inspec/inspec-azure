@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_iothub_event_hub_consumer_groups Reso
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_iothub_event_hub_consumer_groups` InSpec audit resource to test properties and configuration of an Azure IoT Hub Event Hub Consumer Groups within a Resource Group.
+Use the `azure_iothub_event_hub_consumer_groups` InSpec audit resource to test the properties and configurations of an Azure IoT Hub Event Hub Consumer Groups within a resource group.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,9 +22,10 @@ Use the `azure_iothub_event_hub_consumer_groups` InSpec audit resource to test p
 
 ## Syntax
 
-The `resource_group`, `resource_name` and `event_hub_endpoint` must be given as a parameter.
+The `resource_group`, `resource_name`, and `event_hub_endpoint` are required parameters.
+
 ```ruby
-describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME') do
   its('names') { should include 'my-consumer-group'}
   its('types') { should include 'Microsoft.Devices/IotHubs/EventHubEndpoints/ConsumerGroups' }
 end
@@ -33,18 +34,18 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in. `MyResourceGroup`.
+: Azure resource group where the targeted resource resides.
 
 `resource_name`
-: The name of the IoT hub. `my-iot-hub`.
+: The name of the IoT hub.
 
 `event_hub_endpoint`
-: The name of the Event Hub-compatible endpoint in the IoT hub. `eventHubEndpointName`.
+: The name of the Event Hub-compatible endpoint in the IoT hub.
 
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -82,27 +83,34 @@ end
 
 ## Examples
 
-**Check If a Specific Consumer Group Exists.**
+### Test to ensure if a specific consumer group exists
 
 ```ruby
-describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME') do
   its('names') { should include('my_consumer_group') }
 end
 ```
 
-**exists.**
+## Matchers
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+### Exists
+
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
-**If we expect at least one resource to exists on a specified endpoint.**
+#If we expect at least one resource to exists on a specified endpoint.**
 
-describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME') do
   it { should exist }
 end
+```
 
-**If we expect not to exist any consumer groups on a specified endpoint.**
+### Not Exists
 
-describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
+```ruby
+# If we expect not to exist any consumer groups on a specified endpoint.**
+
+describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_NAME') do
   it { should_not exist }
 end
 ```
