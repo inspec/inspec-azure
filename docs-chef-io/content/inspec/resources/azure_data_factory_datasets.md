@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_data_factory_datasets Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_data_factory_datasets` InSpec audit resource to test properties of multiple Azure Data Factory datasets for a resource group or the entire subscription.
+Use the `azure_data_factory_datasets` InSpec audit resource to test the properties of multiple Azure Data Factory datasets for a resource group or the entire subscription.
 
 See the [`Azure Data Factories Dataset documentation`](https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/get) for additional information.
 
@@ -24,7 +24,7 @@ See the [`Azure Data Factories Dataset documentation`](https://docs.microsoft.co
 
 ## Syntax
 
-An `azure_data_factory_datasets` resource block returns all Azure dataset, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_data_factory_datasets` resource block returns all Azure datasets, either within a resource group (if provided) or within an entire Subscription.
 
 ```ruby
 describe azure_data_factory_datasets(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME') do
@@ -35,7 +35,7 @@ end
 ## Parameters
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `factory_name` _(required)_
 : The Azure Data factory name.
@@ -68,12 +68,12 @@ end
 : **Field**: `description`
 
 `linkedServiceName_referenceNames`
-: The list of LinkedService names.
+: The list of linked service names.
 
 : **Field**: `linkedServiceName_referenceName`
 
 `linkedServiceName_types`
-: The list of LinkedService types.
+: The list of linked service types.
 
 : **Field**: `linkedServiceName_type`
 
@@ -81,7 +81,7 @@ end
 
 ## Examples
 
-**Test if Properties Match.**
+### Test to ensure if properties match
 
 ```ruby
 describe azure_data_factory_datasetsazure_data_factory_datasets(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME') do
@@ -95,7 +95,7 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
 
-### Test if Any Dataset Exists in the Data Factory
+### Test to ensure if any dataset exists in the data factory
 
 ```ruby
 describe azure_data_factory_datasetsazure_data_factory_datasets(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME') do
@@ -103,10 +103,10 @@ describe azure_data_factory_datasetsazure_data_factory_datasets(resource_group: 
 end
 ```
 
-### Test That There Aren’t Any Datasets in a Data Factory
+### Test to ensure there are not any datasets in a data factory
 
 ```ruby
-# Should not exist if no dataset are in the data factory
+# Should not exist if no datasets are in the data factory
 
 describe azure_data_factory_datasetsazure_data_factory_datasets(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME') do
   it { should_not exist }

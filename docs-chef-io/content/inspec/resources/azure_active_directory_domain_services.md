@@ -35,7 +35,7 @@ end
 The following parameters can be passed for targeting specific domains.
 
 `filter`
-: A hash containing the filtering options and their values. The `starts_with_` operator can be used for fuzzy string matching. Parameter names are in snake case.
+: A hash containing the filtering options and their values. The `starts_with_` operator can be used for fuzzy string matching. Parameter names are in the snake case.
 
 : **Example**: `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}`
 
@@ -44,7 +44,7 @@ The following parameters can be passed for targeting specific domains.
 
 : **Example**: `"startswith(displayName,'J') and surname eq 'Doe'"` or `"userType eq 'Guest'"`
 
-It is advised to use these parameters to narrow down the targeted resources at the server side, Azure Graph API, for a more efficient test.
+It is advised to use these parameters to narrow down the targeted resources at the server-side, Azure Graph API, for a more efficient test.
 
 ## Properties
 
@@ -64,7 +64,7 @@ It is advised to use these parameters to narrow down the targeted resources at t
 : **Field**: `availabilityStatus`
 
 `is_admin_manageds`
-: A list of admin managed configuration.
+: A list of admin-managed configuration.
 
 : **Field**: `isAdminManaged`
 
@@ -114,7 +114,7 @@ It is advised to use these parameters to narrow down the targeted resources at t
 
 The following examples show how to use this InSpec audit resource.
 
-**Check domains with some filtering parameters applied at server side using `filter`.**
+### Test to ensure domains with some filtering parameters are applied at server side using `filter`
 
 ```ruby
 describe azure_active_directory_domain_services(filter: {authenticationType: "authenticationType-value"}) do
@@ -122,7 +122,7 @@ describe azure_active_directory_domain_services(filter: {authenticationType: "au
 end
 ```
 
-**Check domains with some filtering parameters applied at server side using `filter_free_text`.**
+### Test to ensure domains with some filtering parameters are applied at the server side using `filter_free_text`
 
 ```ruby
 describe azure_active_directory_domain_services(filter_free_text: "startswith(authenticationType,'authenticationType-value')") do
@@ -130,7 +130,7 @@ describe azure_active_directory_domain_services(filter_free_text: "startswith(au
 end
 ```
 
-**Ensure there are supported services using client-side filtering.**
+### Test to ensure there are supported services using client-side filtering
 
 ```ruby
 describe azure_active_directory_domain_services.supportedServices do
@@ -142,9 +142,9 @@ end
 
 {{% inspec_matchers_link %}}
 
-### exists
+### Exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
 ```ruby
 describe azure_active_directory_domain_services do
@@ -154,5 +154,4 @@ end
 
 ## Azure Permissions
 
-Graph resources require specific privileges granted to your service principal.
-Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
+Graph resources require specific privileges granted to your service principal. Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.

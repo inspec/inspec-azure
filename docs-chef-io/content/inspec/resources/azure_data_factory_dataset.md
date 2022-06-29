@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_data_factory_dataset Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_data_factory_dataset` InSpec audit resource to test properties related to an Azure Data Factory dataset.
+Use the `azure_data_factory_dataset` InSpec audit resource to test the properties related to an Azure Data Factory dataset.
 
 See the [`Azure Data Factories Dataset documentation`](https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/get) for additional information.
 
@@ -33,13 +33,13 @@ end
 ## Parameters
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `dataset_name` _(required)_
 : Name of the Azure resource to test.
 
 `factory_name` _(required)_
-: The factory name.
+: The data factory name.
 
 ## Properties
 
@@ -47,7 +47,7 @@ end
 : Name of the Azure resource to test.
 
 `id`
-: The azure_sentinel_alert_rule type.
+: The azure sentinel alert rule type.
 
 `properties`
 : The properties of the resource.
@@ -59,17 +59,17 @@ end
 : The description of dataset type.
 
 `properties.linkedServiceName.referenceName`
-: Reference LinkedService name.
+: Reference linked service name.
 
 `properties.linkedServiceName.type`
 : Linked service reference type.
 
 `properties.type`
-: The dataset type.`AmazonMWSObjectDataset`, `AvroDataset`.
+: The dataset type. Valid values are `AmazonMWSObjectDataset` and `AvroDataset`.
 
 ## Examples
 
-**Test if Properties Match.**
+### Test to ensure if properties match
 
 ```ruby
 describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do
@@ -86,7 +86,7 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
 
-### exists
+### Exists
 
 ```ruby
 # If a dataset should exist
@@ -94,7 +94,11 @@ This InSpec audit resource has the following special matchers. For a full list o
 describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do
   it { should exist }
 end
+```
 
+### Not Exists
+
+```ruby
 # If a dataset should not exist
 
 describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do

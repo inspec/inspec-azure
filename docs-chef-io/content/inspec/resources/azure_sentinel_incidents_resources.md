@@ -10,17 +10,16 @@ identifier = "inspec/resources/azure/azure_sentinel_incidents_resources Resource
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sentinel_incidents_resources` InSpec audit resource to test properties of Azure Sentinel incidents for a resource group or the entire subscription.
+Use the `azure_sentinel_incidents_resources` InSpec audit resource to test the properties of Azure Sentinel incidents for a resource group or the entire subscription.
 
-## Azure Rest API Version, Endpoint, And HTTP Client Parameters
+## Azure Rest API Version, Endpoint, and HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider.
-The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used.
+This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
+If not provided, the latest version is used.
+
 For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
-For more information, refer to the resource pack [README](https://github.com/inspec/inspec-azure/blob/main/README.md).
+Unless defined, the `azure_cloud` global endpoint and default values for the HTTP client are used. For more information, refer to the resource pack [README](https://github.com/inspec/inspec-azure/blob/main/README.md).
 
 ## Installation
 
@@ -28,7 +27,7 @@ For more information, refer to the resource pack [README](https://github.com/ins
 
 ## Syntax
 
-An `azure_sentinel_incidents_resources` resource block returns all Azure sentinel incident, either within a resource group (if provided), or within an entire Subscription.
+An `azure_sentinel_incidents_resources` resource block returns all Azure sentinel incidents, either within a resource group (if provided) or an entire Subscription.
 
 ```ruby
 describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
@@ -36,16 +35,15 @@ describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', wo
 end
 ```
 
-`resource_group` and `workspace_name` are required parameters.
-
+The `resource_group` and `workspace_name` are required parameters.
 
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `workspace_name`
-: Azure Workspace Name for which Azure Sentinel incident are being retrieved.
+: Azure Workspace Name for which Azure Sentinel incidents are being retrieved.
 
 ## Properties
 
@@ -55,7 +53,7 @@ end
 : **Field**: `name`
 
 `ids`
-: A list of Azure Sentinel incident IDs .
+: A list of Azure Sentinel incident IDs.
 
 : **Field**: `id`
 
@@ -80,17 +78,17 @@ end
 : **Field**: `status`
 
 `owner_emails`
-: The email of the user the incident is assigned to.
+: The email of the user the incident is assigned.
 
 : **Field**: `owner_email`
 
 `owner_userPrincipalNames`
-: The user principal name of the user the incident is assigned to.
+: The user principal name of the user the incident is assigned.
 
 : **Field**: `owner_userPrincipalName`
 
 `owner_assignedTos`
-: The name of the user the incident is assigned to.
+: The name of the user the incident is assigned.
 
 : **Field**: `owner_assignedTo`
 
@@ -98,7 +96,7 @@ end
 
 ## Examples
 
-**Test Properties of Incidents in a Resource Group.**
+### Tests properties of incidents in a resource group
 
 ```ruby
 describe azure_sentinel_incidents_resource(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
@@ -115,7 +113,7 @@ describe azure_sentinel_incidents_resource(resource_group: 'RESOURCE_GROUP', wor
 end
 ```
 
-**Test If Any Azure Sentinel Incident Exists in a Resource Group.**
+### Tests if any Azure Sentinel Incident exists in a resource group
 
 ```ruby
 describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
@@ -123,10 +121,10 @@ describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', wo
 end
 ```
 
-**Test That There Aren't Any Azure Sentinel Incident in a Resource Group.**
+### Tests there are not any Azure Sentinel incidents in a resource group
 
 ```ruby
-**Should not exist if no Azure Sentinel incident are in the resource group.**
+#Should not exist if no Azure Sentinel incidents are in the resource group.**
 
 describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
   it { should_not exist }

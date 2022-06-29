@@ -22,7 +22,7 @@ Use the `azure_aks_clusters` InSpec audit resource to test properties and config
 
 ## Syntax
 
-An `azure_aks_clusters` resource block returns all AKS Clusters, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_aks_clusters` resource block returns all AKS Clusters, either within a resource group (if provided) or an entire subscription.
 
 ```ruby
 describe azure_aks_clusters do
@@ -33,7 +33,7 @@ end
 or
 
 ```ruby
-describe azure_aks_clusters(resource_group: 'my-rg') do
+describe azure_aks_clusters(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -47,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -78,8 +78,8 @@ end
 **Test that an Example Resource Group has the Named AKS Cluster.**
 
 ```ruby
-describe azure_aks_clusters(resource_group: 'ExampleGroup') do
-  its('names') { should include('ClusterName') }
+describe azure_aks_clusters(resource_group: 'RESOURCE_GROUP') do
+  its('names') { should include('CLUSTER_NAME') }
 end
 ```
 
@@ -87,18 +87,22 @@ end
 
 {{% inspec_matchers_link %}}
 
-### exists
+### Exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
 ```ruby
 # If we expect 'ExampleGroup' Resource Group to have AKS Clusters
-describe azure_aks_clusters(resource_group: 'ExampleGroup') do
+describe azure_aks_clusters(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
+```
 
+### Not Exists
+
+```ruby
 # If we expect 'EmptyExampleGroup' Resource Group to not have AKS Clusters
-describe azure_aks_clusters(resource_group: 'EmptyExampleGroup') do
+describe azure_aks_clusters(resource_group: 'EMPTY_RESOURCE_GROUP') do
   it { should_not exist }
 end
 ```
