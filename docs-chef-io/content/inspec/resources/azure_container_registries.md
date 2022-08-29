@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_container_registries Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_container_registries` InSpec audit resource to test properties and configuration of Azure Container Registries.
+Use the `azure_container_registries` InSpec audit resource to test the properties and configuration of Azure Container Registries.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_container_registries` InSpec audit resource to test properties an
 
 ## Syntax
 
-An `azure_container_registries` resource block returns all Azure Container Registries, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_container_registries` resource block returns all Azure Container Registries, within a Resource Group (if provided) or an entire Subscription.
 
 ```ruby
 describe azure_container_registries do
@@ -33,7 +33,7 @@ end
 or
 
 ```ruby
-describe azure_container_registries(resource_group: 'my-rg') do
+describe azure_container_registries(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-**Check container registries are present.**
+### Check container registries are present
 
 ```ruby
 describe azure_container_registries do
@@ -89,7 +89,7 @@ describe azure_container_registries do
 end
 ```
 
-**Filter the results to include only those with names match the given string value.**
+### Filter the results to include only those with names match the given string value
 
 ```ruby
 describe azure_container_registries.where{ name.eql?('production-cr-01') } do
@@ -103,20 +103,24 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result.
+The control passes if the filter returns at least one result.
 
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have Container Registries
-describe azure_container_registries(resource_group: 'ExampleGroup') do
+# If we expect 'EXAMPLEGROUP' resource group to have Container Registries.
+
+describe azure_container_registries(resource_group: 'EXAMPLEGROUP') do
   it { should exist }
 end
 ```
 
+### not_exists
+
 Use `should_not` if you expect zero matches.
 
 ```ruby
-# If we expect 'EmptyExampleGroup' Resource Group to not have Container Registries
-describe azure_container_registries(resource_group: 'EmptyExampleGroup') do
+# If we expect 'EMPTYEXAMPLEGROUP' resource group to not have Container Registries.
+
+describe azure_container_registries(resource_group: 'EMPTYEXAMPLEGROUP') do
   it { should_not exist }
 end
 ```

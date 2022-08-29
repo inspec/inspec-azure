@@ -35,19 +35,29 @@ end
 ## Properties
 
 `resourceTypes`
-: A resource types list of the SKU applies to. **Field**: `resourceType`
+: A resource types list where the SKU applies.
+
+**Field**: `resourceType`
 
 `names`
-: A list of SKU names. **Field**: `name`
+: A list of SKU names.
+
+**Field**: `name`
 
 `sizes`
-: A list of the SKU sizes. **Field**: `size`
+: A list of the SKU sizes.
+
+**Field**: `size`
 
 `tiers`
-: A tiers list of VM in a scale set. **Field**: `tier`
+: A tiers list of VM in a scale set.
+
+**Field**: `tier`
 
 `kind`
-: The supported kind list of resources. **Field**: `kind`
+: The supported kind list of resources.
+
+**Field**: `kind`
 
 {{% inspec_filter_table %}}
 
@@ -68,12 +78,12 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# Should not exist if no HPC Cache SKUs are present
+# Should not exist if no HPC Cache SKUs are present.
 
 describe azure_hpc_cache_skus do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one HPC Cache SKUs
+# Should exist if the filter returns at least one HPC Cache SKUs.
 
 describe azure_hpc_cache_skus do
   it { should exist }

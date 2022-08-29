@@ -38,25 +38,39 @@ end
 ## Properties
 
 `ids`
-: A list of resource IDs. **Field**: `id`
+: A list of resource IDs. 
+
+**Field**: `id`
 
 `names`
-: A list of Cache Names. **Field**: `name`
+: A list of HPC Cache names. 
+
+**Field**: `name`
 
 `types`
-: A list of the Cache types. **Field**: `type`
+: A list of the HPC Cache types. 
+
+**Field**: `type`
 
 `properties`
-: A list of Properties for all the HPC Caches. **Field**: `properties`
+: A list of Properties for all the HPC Caches. 
+
+**Field**: `properties`
 
 `locations`
-: A list of the resource locations. **Field**: `location`
+: A list of the resource locations. 
+
+**Field**: `location`
 
 `cacheSizeGBs`
-: A list of the sizes of the HPC Cache. **Field**: `cacheSizeGB`
+: A list of the sizes of the HPC Cache. 
+
+**Field**: `cacheSizeGB`
 
 `subnets`
-: A list of subnets used for the HPC Cache.  **Field**: `subnet`
+: A list of subnets used for the HPC Cache.
+
+**Field**: `subnet`
 
 {{% inspec_filter_table %}}
 
@@ -72,7 +86,7 @@ azure_hpc_caches.names.each do |name|
 end
 ```
 
-### Test that there are provisioned HPC Caches
+### Test to ensure that there are provisioned HPC Caches
 
 ```ruby
 describe azure_hpc_caches.where(provisioningState: 'SUCCEEDED') do
@@ -87,14 +101,17 @@ end
 ### exists
 
 ```ruby
-
-# Should not exist if no HPC Caches are present
+# Should not exist if no HPC Caches are present.
 
 describe azure_hpc_caches do
   it { should_not exist }
 end
+```
 
-# Should exist if the filter returns at least one HPC Caches
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one HPC Caches.
 
 describe azure_hpc_caches do
   it { should exist }

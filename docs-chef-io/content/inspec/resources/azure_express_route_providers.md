@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_express_route_providers Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_express_route_providers` InSpec audit resource to test properties related to azure_express_route for a resource group or the entire subscription.
+Use the `azure_express_route_providers` InSpec audit resource to test the properties related to azure_express_route for a resource group or the entire subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,17 @@ Use the `azure_express_route_providers` InSpec audit resource to test properties
 
 ## Syntax
 
-An `azure_express_route_providers` resource block returns all Azure azure_express_route, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_express_route_providers` resource block returns all Azure azure_express_route, either within a resource group (if provided) or an entire Subscription.
+
 ```ruby
 describe azure_express_route_providers do
   #...
 end
 ```
-or
+
+Or
 ```ruby
-describe azure_express_route_providers(resource_group: 'my-rg') do
+describe azure_express_route_providers(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -44,7 +46,7 @@ end
 ## Properties
 
 `names`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `name`
 
@@ -64,7 +66,7 @@ end
 : **Field**: `tag`
 
 `provisioning_states`
-: A list of status of request.
+: A list of the status of the request.
 
 : **Field**: `provisioning_state`
 
@@ -82,20 +84,21 @@ end
 
 ## Examples
 
-**Test If Any azure_express_route Exist in the Resource Group.**
+### Test if any azure_express_route exists in the resource group
 
 ```ruby
-describe azure_express_route_providers(resource_group: 'MyResourceGroup') do
+describe azure_express_route_providers(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
 describe azure_express_route_providers do
   it { should exist }
 end
-``` 
-**Test that There are express_route that Includes a Certain String in their Names (Server Side Filtering via Generic Resource - Recommended)   .**
+```
+
+### Test that there are express_route that includes a string in names (Server Side Filtering via Generic Resource - Recommended)
 
 ```ruby
-describe azure_generic_resources(resource_group: 'MyResourceGroup') do
+describe azure_generic_resources(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
 ```
@@ -104,11 +107,10 @@ end
 
 {{% inspec_matchers_link %}}
 
-
 ```ruby
-# Should not exist if no azure_express_route are in the resource group
+# Should not exist if no azure_express_route is in the resource group.
 
-describe azure_express_route_providers(resource_group: 'MyResourceGroup') do
+describe azure_express_route_providers(resource_group: 'RESOURCE_GROUP') do
   its('provisioning_states') { should include('Succeeded') }
   its('peering_locations_list') { should include(["Melbourne", "Sydney"]) }
   its('bandwidths_offered_list') { should include('bandwidths_offered') }

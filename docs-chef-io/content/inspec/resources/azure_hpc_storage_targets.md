@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `cache_name` _(required)_
 : Azure HPC Cache name.
@@ -66,12 +66,12 @@ end
 : **Field**: `location`
 
 `targetTypes`
-: A list of the types of the storage target.
+: A list of the types of storage target.
 
 : **Field**: `targetType`
 
 `states`
-: A list of operational state of the storage target.
+: A list of the operational state of the storage target.
 
 : **Field**: `provisioningState`
 
@@ -79,7 +79,7 @@ end
 
 ## Examples
 
-**Loop through HPC Storage Targets by their names.**
+### Loop through HPC Storage Targets by their names
 
 ```ruby
 azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME').names.each do |name|
@@ -89,7 +89,7 @@ azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CAC
 end
 ```
 
-**Test that there are HPC Storage Targets that are ready.**
+### Test that there are HPC Storage Targets that are ready
 
 ```ruby
 describe azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME').where(state: 'Ready') do
@@ -104,12 +104,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no HPC Storage Targets are present
+# Should not exist if no HPC Storage Targets are present.
 
 describe azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one HPC Storage Targets
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one HPC Storage Targets.
 
 describe azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME') do
   it { should exist }

@@ -10,17 +10,14 @@ identifier = "inspec/resources/azure/azure_express_route_circuits Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_express_route_circuits` InSpec audit resource to test properties of Azure ExpressRoute circuits for a resource group.
+Use the `azure_express_route_circuits` InSpec audit resource to test the properties of Azure ExpressRoute circuits for a resource group.
 
 ## Azure Rest API Version, Endpoint, And HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider.
-The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used.
-For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
+This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
+If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
-For more information, refer to the resource pack [README](https://github.com/inspec/inspec-azure/blob/main/README.md).
+Unless defined, `azure_cloud` global endpoint and default values for the HTTP client is used. For more information, refer to the resource pack [README](https://github.com/inspec/inspec-azure/blob/main/README.md).
 
 ## Installation
 
@@ -39,7 +36,7 @@ end
 ## Parameters
 
 `resource_group`
-: The Azure resource group that the targeted resources reside in.
+: The Azure resource group where the targeted resources resides.
 
 ## Properties
 
@@ -74,7 +71,7 @@ end
 : **Field**: `location`
 
 `service_provider_bandwidth_in_mbps`
-: A list of the bandwidths in Mbps of the circuits when a circuit is provisioned on an ExpressRoutePort resource.
+: A list of the bandwidths in Mbps of the circuits when a circuit is provisioned on an `ExpressRoutePort` resource.
 
 : **Field**: `service_provider_bandwidth_in_mbps`
 
@@ -94,27 +91,27 @@ end
 : **Field**: `service_key`
 
 `stags`
-: The identifiers of the circuit traffic. Outer tag for QinQ encapsulation.
+: The identifiers of the circuit traffic. Outer tag for `QinQ` encapsulation.
 
 : **Field**: `stag`
 
 `global_reach_enabled`
-: A list of The ExpressRoute circuit allowGlobalReachEnable.
+: A list of the ExpressRoute circuit that denotes global reach enable status.
 
 : **Field**: `global_reach_enabled`
 
 `gateway_manager_etags`
-: A list of The GatewayManager Etags in the ExpressRoute circuit resources.
+: A list of the `GatewayManager` Etags in the ExpressRoute circuit resources.
 
 : **Field**: `gateway_manager_etag`
 
 `allow_classic_operations`
-: A list of indicating whether "Allow Classic Operations" in the ExpressRoute circuit resources is set to `true` or `false`.
+: A list of indicating whether `Allow Classic Operations` in the ExpressRoute circuit resources is set to `true` or `false`.
 
 : **Field**: `allow_classic_operation`
 
 `circuit_provisioning_states`
-: A list of State of express circuitHostName creation. Valid values are: `Enabled` or `Disabled`.
+: A list of State of express `circuitHostName` creation. Valid values are `Enabled` or `Disabled`.
 
 : **Field**: `circuit_provisioning_state`
 
@@ -135,9 +132,11 @@ end
 
 {{% inspec_filter_table %}}
 
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/expressroute/express-route-circuits/list?tabs=HTTP) for other properties available.
+
 ## Examples
 
-**Ensure that an ExpressRoute circuit has a `Succeeded` provisioning state.**
+### Ensure that an ExpressRoute circuit has a 'Succeeded' provisioning state
 
 ```ruby
 describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
@@ -145,7 +144,7 @@ describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-**Test than an ExpressRoute circuit has a specific location.**
+### Test than an ExpressRoute circuit has a specific location
 
 ```ruby
 describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
@@ -160,11 +159,16 @@ end
 ### exists
 
 ```ruby
-# Should  exist if express_route_circuits are in the resource group
+# Should  exist if express_route_circuits are in the resource group.
 
 describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
+```
+
+### not_exists
+
+```ruby
 # Should not exist if no express_route_circuits are in the resource group
 
 describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do

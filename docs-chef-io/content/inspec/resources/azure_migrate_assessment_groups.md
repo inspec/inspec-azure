@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_migrate_assessment_groups Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_migrate_assessment_groups` InSpec audit resource to test properties related to all Azure Migrate assessment groups within a project.
+Use the `azure_migrate_assessment_groups` InSpec audit resource to test the properties related to all Azure Migrate assessment groups within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -33,13 +33,12 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `project_name`
 : Azure Migrate assessment project.
 
-The parameter set should be provided for a valid query:
-- `resource_group` and `project_name`.
+The parameter set that should be provided for a valid query is `resource_group` and `project_name`.
 
 ## Properties
 
@@ -107,7 +106,7 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-**Loop through migrate assessment groups by their names.**
+### Loop through migrate assessment groups by their names
 
 ```ruby
 azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -117,7 +116,7 @@ azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 
 end
 ```
 
-**Test that the assessments are running for migrate assessment groups.**
+### Test that the assessments are running for migrating assessment groups
 
 ```ruby
 describe azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(areAssessmentsRunning: true) do
@@ -132,12 +131,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Migrate Assessment Groups are present in the project
+# Should not exist if no Migrate Assessment groups are present in the project.
 
 describe azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Migrate Assessment Groups in the project
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Migrate Assessment groups in the project.
 
 describe azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should exist }
