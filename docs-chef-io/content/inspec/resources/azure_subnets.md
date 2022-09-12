@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_subnets Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_subnets` InSpec audit resource to test properties related to subnets of a virtual network.
+Use the `azure_subnets` InSpec audit resource to test the properties related to subnets of a virtual network.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,9 +22,10 @@ Use the `azure_subnets` InSpec audit resource to test properties related to subn
 
 ## Syntax
 
-The `resource_group` and `vnet` must be given as a parameter.
+The `resource_group` and `vnet` are required parameters.
+
 ```ruby
-describe azure_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName') do
+describe azure_subnets(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME') do
   #...
 end
 ```
@@ -32,15 +33,15 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in. `MyResourceGroup`.
+: Azure resource group where the targeted resource resides.
 
 `vnet`
-: The virtual network that the subnet that you wish to test is a part of.
+: The virtual network where the subnet you wish to test is a part of.
 
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -58,18 +59,18 @@ end
 
 ## Examples
 
-**Exists if Any Subnets Exist for a Given Virtual Network in the Resource Group.**
+### Exists if any subnets exist for a specified virtual network in the resource group
 
 ```ruby
-describe azure_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName') do
+describe azure_subnets(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME') do
   it { should exist }
 end
 ```
 
-**Filters the Results to Only Those that Match the Given Name.**
+### Filters the results to only those that match the specified name
 
 ```ruby
-describe azure_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName')
+describe azure_subnets(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME')
   .where(name: 'MySubnet') do
   it { should exist }
 end
@@ -82,9 +83,9 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no subnets are in the virtual network
+# Should not exist if no subnets are in the virtual network.
 
-describe azure_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName') do
+describe azure_subnets(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME') do
   it { should_not exist }
 end
 ```

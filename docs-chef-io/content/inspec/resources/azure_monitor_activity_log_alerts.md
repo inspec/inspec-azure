@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_monitor_activity_log_alerts Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_monitor_activity_log_alerts` InSpec audit resource to test properties and configuration of multiple Azure Monitor activity log alerts.
+Use the `azure_monitor_activity_log_alerts` InSpec audit resource to test the properties and configuration of multiple Azure Monitor Activity Log Alerts.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_monitor_activity_log_alerts` InSpec audit resource to test proper
 
 ## Syntax
 
-An `azure_monitor_activity_log_alerts` resource block returns all activity log alerts, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_monitor_activity_log_alerts` resource block returns all activity log alerts within a resource group (if provided) or an entire subscription.
 
 ```ruby
 describe azure_monitor_activity_log_alerts do
@@ -30,10 +30,10 @@ describe azure_monitor_activity_log_alerts do
 end
 ```
 
-or
+Or
 
 ```ruby
-describe azure_monitor_activity_log_alerts(resource_group: 'my-rg') do
+describe azure_monitor_activity_log_alerts(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
 ```
@@ -47,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -72,7 +72,7 @@ end
 : **Field**: `operations`
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 : **Field**: `resource_group`
 
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-**Test that a subscription has the named activity log alert.**
+### Test that a subscription has the named activity log alert
 
 ```ruby
 describe azure_monitor_activity_log_alerts do
@@ -104,16 +104,22 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have activity log alerts
-describe azure_monitor_activity_log_alerts(resource_group: 'ExampleGroup') do
+# If we expect 'EXAMPLEGROUP' resource group to have activity log alerts.
+
+describe azure_monitor_activity_log_alerts(resource_group: 'EXAMPLEGROUP') do
   it { should exist }
 end
+```
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have activity log alerts
-describe azure_monitor_activity_log_alerts(resource_group: 'ExampleGroup') do
+### not_exists
+
+```ruby
+# If we expect 'EMPTYEXAMPLEGROUP' resource group not to have activity log alerts.
+
+describe azure_monitor_activity_log_alerts(resource_group: 'EMPTYEXAMPLEGROUP') do
   it { should_not exist }
 end
 ```

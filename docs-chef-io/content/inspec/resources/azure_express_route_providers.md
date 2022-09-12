@@ -31,7 +31,9 @@ end
 ```
 
 Or
+
 ```ruby
+
 describe azure_express_route_providers(resource_group: 'RESOURCE_GROUP') do
   #...
 end

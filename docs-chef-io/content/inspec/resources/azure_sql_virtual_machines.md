@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_sql_virtual_machines Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sql_virtual_machines` InSpec audit resource to test properties of all Azure SQL virtual machines.
+Use the `azure_sql_virtual_machines` InSpec audit resource to test the properties of all Azure SQL virtual machines.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -34,7 +34,7 @@ end
 
 `resource_group` _(optional)_
 
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -44,7 +44,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -72,7 +72,7 @@ end
 
 ## Examples
 
-**Loop through SQL virtual machines by their names.**
+### Loop through SQL virtual machines by their names
 
 ```ruby
 azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -82,7 +82,7 @@ azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP').names.each do |name
 end
 ```
 
-**Test that there are SQL virtual machines that are successfully provisioned.**
+### Test that there are SQL virtual machines that are successfully provisioned
 
 ```ruby
 describe azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do
@@ -97,12 +97,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no SQL virtual machines are present
+# Should not exist if no SQL virtual machines are present.
 
 describe azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one SQL virtual machines
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one SQL virtual machine.
 
 describe azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

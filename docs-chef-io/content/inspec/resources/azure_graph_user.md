@@ -46,6 +46,7 @@ Either one of the following parameters is mandatory.
 : Globally unique identifier (For backward compatibility).
 
 : **Example**: `abcd-1234-efabc-5678`
+
 ## Properties
 
 `id`

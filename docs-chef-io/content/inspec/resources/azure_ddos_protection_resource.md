@@ -68,7 +68,7 @@ describe azure_ddos_protection_resource(resource_group: 'RESOURCE_GROUP', name: 
 end
 ```
 
-### Test to ensure that the DDoS protection plan resource is in acsuccessful state
+### Test to ensure that the DDoS protection plan resource is in a successful state
 
 ```ruby
 describe azure_ddos_protection_resource(resource_group: 'RESOURCE_GROUP', name: 'DDOS_PROTECTION_PLAN_NAME') do

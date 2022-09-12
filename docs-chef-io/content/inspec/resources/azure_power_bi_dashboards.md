@@ -54,15 +54,14 @@ end
 : **Field**: `displayName`
 
 `embedUrls`
-: List of all dashboard embed urls.
+: List of all dashboard embed URLs.
 
 : **Field**: `embedUrl`
 
 `isReadOnly`
-: List of all ReadOnly dashboards.
+: List of all read-only dashboards.
 
 : **Field**: `isReadOnlies`
-
 
 {{% inspec_filter_table %}}
 
@@ -70,7 +69,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Loop throughPower BI Dashboards by their IDs.**
+### Loop throughPower BI Dashboards by their IDs
 
 ```ruby
 azure_power_bi_dashboards.ids.each do |id|
@@ -80,7 +79,7 @@ azure_power_bi_dashboards.ids.each do |id|
 end
 ```
 
-**Test to ensure all Power BI dashboards are ready only.**
+### Test to ensure all Power BI dashboards are ready-only
 
 ```ruby
 describe azure_power_bi_dashboards.where(isReadOnly: true) do
@@ -95,13 +94,13 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI dashboards are present in the group
+# Should not exist if no Power BI dashboards are present in the group.
 
 describe azure_power_bi_dashboards do
   it { should_not exist }
 end
 
-# Should exist if the filter returns at least one Power BI dashboard in the group
+# Should exist if the filter returns at least one Power BI dashboard in the group.
 
 describe azure_power_bi_dashboards do
   it { should exist }

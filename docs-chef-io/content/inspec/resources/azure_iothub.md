@@ -48,7 +48,7 @@ end
 : Alias for the `name` parameter.
 
 `resource_id`
-: The unique resource ID. 
+: The unique resource ID.
 
 Either one of the parameter sets can be provided for a valid query:
 

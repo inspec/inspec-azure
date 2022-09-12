@@ -92,7 +92,7 @@ The parameter set should be provided for a valid query:
 : **Field**: `datacenterManagementServerName`
 
 `ipsecPolicies`
-: A list of all The IPSec Policies to be considered by this connection.
+: A list of all the IPSec policies to be considered by this connection.
 
 : **Field**: `ipsecPolicies`
 
@@ -100,7 +100,7 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-**Loop through Virtual Network Gateway connection by their names.**
+### Loop through Virtual Network Gateway connection by their names
 
 ```ruby
 azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -110,7 +110,7 @@ azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').name
 end
 ```
 
-**Test that there are Virtual Network Gateway connection with IPsec type .**
+### Test that there are Virtual Network Gateway connections with IPsec type
 
 ```ruby
 describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').where(connectionType: 'VPN_CONNECTION_TYPE') do
@@ -125,13 +125,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Virtual Network Gateway Connection are present in the project and in the resource group
+# Should not exist if no Virtual Network Gateway connection is present in the project and the resource group.
 
 describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
+```
 
-# Should exist if the filter returns at least one Virtual Network Gateway Connection in the project and in the resource group
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Virtual Network Gateway connection in the project and the resource group.
 
 describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

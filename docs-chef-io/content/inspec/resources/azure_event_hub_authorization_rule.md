@@ -23,6 +23,7 @@ Use the `azure_event_hub_authorization_rule` InSpec audit resource to test the p
 ## Syntax
 
 `resource_group`, `namespace_name`, `event_hub_endpoint` and `name`, or the `resource_id` are required parameters.
+
 ```ruby
 describe azure_event_hub_authorization_rule(resource_group: 'RESOURCE_GROUP', namespace_name: 'EVENT_NAME', event_hub_endpoint: 'HUB_NAME', name: 'AUTH_RULE') do
   it { should exist }

@@ -51,7 +51,7 @@ end
 ## Properties
 
 `last_modified`
-: Last Modified Timestamp of the resource.
+: Last modified timestamp of the resource.
 
 `etag`
 : HTTP strong entity tag value.
@@ -63,25 +63,25 @@ end
 : Request ID.
 
 `x_ms_version`
-: Version of the API.
+: API version.
 
 `date`
-: Date String of the request.
+: Date string of the request.
 
 `content_length`
 : Content-Length of the file.
 
 `content_type`
-: Content Type.
+: Content type.
 
 `content_md5`
-: MD5 of the Content uploaded.
+: MD5 of the content uploaded.
 
 `accept_ranges`
 : File size described measurement. `bytes`.
 
 `x_ms_resource_type`
-: Resource Type of the uploaded. `file`.
+: Resource type of the uploaded. `file`.
 
 `x_ms_lease_state`
 : If the file is available or not.
@@ -132,4 +132,4 @@ end
 
 ## Azure Permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription and `Storage Blob Data Contributor` role on the ADLS Gen2 Storage Account you wish to test.
+Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `contributor` role on the subscription and `Storage Blob Data Contributor` role on the **ADLS Gen2 Storage Account** you wish to test.

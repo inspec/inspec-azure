@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_sql_virtual_machine_group_availabilit
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sql_virtual_machine_group_availability_listeners` InSpec audit resource to test properties related to all Azure SQL virtual machine group availability listeners.
+Use the `azure_sql_virtual_machine_group_availability_listeners` InSpec audit resource to test the properties related to all Azure SQL virtual machine group availability listeners.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -34,11 +34,11 @@ end
 
 `resource_group` _(required)_
 
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `sql_virtual_machine_group_name` _(required)_
 
-: Azure SQL virtual machine group name
+: Azure SQL virtual machine group name.
 
 ## Properties
 
@@ -71,7 +71,7 @@ end
 
 ## Examples
 
-**Loop through SQL virtual machine group availability listeners by their names.**
+### Loop through SQL virtual machine group availability listeners by their names
 
 ```ruby
 azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME').names.each do |name|
@@ -81,7 +81,7 @@ azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE
 end
 ```
 
-**Test that there are SQL virtual machine group availability listeners that are successfully provisioned.**
+### Test that there are SQL virtual machine group availability listeners that are successfully provisioned
 
 ```ruby
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME').where(provisioningState: 'Succeeded') do
@@ -96,12 +96,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no SQL virtual machine group availability listeners are present
+# Should not exist if no SQL virtual machine group availability listeners are present.
 
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one SQL virtual machine group availability listeners
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one SQL virtual machine group availability listener.
 
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME') do
   it { should exist }

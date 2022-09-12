@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_sentinel_alert_rule Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sentinel_alert_rule` InSpec audit resource to test properties of an Azure Sentinel alert rule for a resource group or the entire subscription.
+Use the `azure_sentinel_alert_rule` InSpec audit resource to test the properties of an Azure Sentinel alert rule for a resource group or the entire subscription.
 
 For additional information, see the [`Azure Sentinel Alert Rules API documentation`](https://docs.microsoft.com/en-us/rest/api/datafactory/pipeline-runs/query-by-factory).
 
@@ -24,7 +24,7 @@ For additional information, see the [`Azure Sentinel Alert Rules API documentati
 
 ## Syntax
 
-An `azure_sentinel_alert_rule` resource block returns all Azure alert_rule, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_sentinel_alert_rule` resource block returns all Azure alert_rule, either within a resource group (if provided) or an entire Subscription.
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -36,7 +36,7 @@ end
 
 `resource_group` _(required)_
 
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `workspace_name` _(required)_
 
@@ -68,7 +68,7 @@ end
 
 ## Examples
 
-Tests if the rule ID exists.
+### Tests if the rule ID exists
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -76,7 +76,7 @@ describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_n
 end
 ```
 
-Tests if the rule name exists.
+### Tests if the rule name exists
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -84,7 +84,7 @@ describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_n
 end
 ```
 
-Tests if the rule kind is `Scheduled`.
+### Tests if the rule kind is 'Scheduled'
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -92,7 +92,7 @@ describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_n
 end
 ```
 
-Test if the rule type is `Microsoft.SecurityInsights/alertRules`.
+### Test if the rule type is 'Microsoft.SecurityInsights/alertRules'
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -100,7 +100,7 @@ describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_n
 end
 ```
 
-Test if the display name is present or not.
+### Test if the display name is present or not
 
 ```ruby
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
@@ -115,13 +115,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If we expect a resource to always exist
+# If we expect a resource to always exist.
 
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
   it { should exist }
 end
+```
 
-# If we expect a resource to never exist
+### not_exists
+
+```ruby
+# If we expect a resource to never exist.
 
 describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
   it { should_not exist }

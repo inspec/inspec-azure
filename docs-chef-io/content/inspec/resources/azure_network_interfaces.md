@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_network_interfaces Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_network_interfaces` InSpec audit resource to test properties and configuration of Azure Network Interfaces.
+Use the `azure_network_interfaces` InSpec audit resource to test the properties and configuration of Azure Network interfaces.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,18 @@ Use the `azure_network_interfaces` InSpec audit resource to test properties and 
 
 ## Syntax
 
-An `azure_network_interfaces` resource block returns all Azure Network Interfaces, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_network_interfaces` resource block returns all Azure Network interfaces within a resource group (if provided) or an entire subscription.
+
 ```ruby
 describe azure_network_interfaces do
   #...
 end
 ```
-or
+
+Or
+
 ```ruby
-describe azure_network_interfaces(resource_group: 'my-rg') do
+describe azure_network_interfaces(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -44,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -77,7 +80,7 @@ end
 
 ## Examples
 
-**Check Network Interfaces are Present.**
+### Check network interfaces are present
 
 ```ruby
 describe azure_network_interfaces do
@@ -86,7 +89,7 @@ describe azure_network_interfaces do
 end
 ```
 
-**Filter the Results to Include Only those with Names Match the Given String Value.**
+### Filter the results to include only those with names that match the specified string value
 
 ```ruby
 describe azure_network_interfaces.where{ name.include?('my-network') } do
@@ -100,15 +103,22 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have Network Interfaces
-describe azure_network_interfaces(resource_group: 'ExampleGroup') do
+# If we expect 'EXAMPLEGROUP' resource group to have network interfaces.
+
+describe azure_network_interfaces(resource_group: 'EXAMPLEGROUP') do
   it { should exist }
 end
+```
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have Network Interfaces
-describe azure_network_interfaces(resource_group: 'EmptyExampleGroup') do
+### not_exists
+
+```ruby
+# If we expect 'EMPTYEXAMPLEGROUP' resource group to not have network interfaces.
+
+describe azure_network_interfaces(resource_group: 'EMPTYEXAMPLEGROUP') do
   it { should_not exist }
 end
 ```
@@ -116,4 +126,3 @@ end
 ## Azure Permissions
 
 {{% azure_permissions_service_principal role="contributor" %}}
-

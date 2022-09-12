@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_bus_namespace Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_bus_namespace` InSpec audit resource to test properties related to an Azure Service Bus namespace.
+Use the `azure_service_bus_namespace` InSpec audit resource to test the properties related to an Azure Service Bus Namespace.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_service_bus_namespace` InSpec audit resource to test properties r
 
 ## Syntax
 
-`name`, `resource_group` is a required parameter.
+`name` and `resource_group` are required parameters.
 
 ```ruby
 describe azure_service_bus_namespace(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_BUS_NAMESPACE') do
@@ -44,12 +44,12 @@ end
 : Name of the Azure Service Bus namespaces to test.
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
 `id`
-: Resource Id.
+: Resource ID.
 
 `name`
 : Resource name.
@@ -61,7 +61,7 @@ end
 : The Geo-location where the resource lives.
 
 `properties`
-: The properties of the Service Bus namespace.
+: The properties of the Service Bus Namespace.
 
 `properties.serviceBusEndpoint`
 : Endpoint you can use to perform Service Bus operations.
@@ -70,19 +70,18 @@ end
 : Identifier for Azure Insights metrics.
 
 `properties.provisioningState`
-: Provisioning state of the namespace.
+: Provisioning state of the Namespace.
 
 `sku.name`
 : Name of this SKU.
 
-
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/servicebus/stable/namespaces/get) for other properties available.
 
 ## Examples
 
-**Test that the Service Bus namespaces is provisioned successfully.**
+### Test that the Service Bus Namespaces are provisioned successfully
 
 ```ruby
 describe azure_service_bus_namespace(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_BUS_NAMESPACE') do
@@ -97,12 +96,17 @@ end
 ### exists
 
 ```ruby
-# If a Service Bus namespace is found it will exist
+# If a Service Bus Namespace is found, it will exist.
 
 describe azure_service_bus_namespace(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_BUS_NAMESPACE') do
   it { should exist }
 end
-# if Service Bus namespace is not found it will not exist
+```
+
+### not_exists
+
+```ruby
+# If Service Bus Namespace is not found, it will not exist.
 
 describe azure_service_bus_namespace(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_BUS_NAMESPACE') do
   it { should_not exist }

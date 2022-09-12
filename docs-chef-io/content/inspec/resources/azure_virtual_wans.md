@@ -37,17 +37,17 @@ This resource does not require any parameters.
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
 `names`
-: A list of names for all the Resources.
+: A list of names for all the resources.
 
 : **Field**: `name`
 
 `etags`
-: A list of etag for all the Resources.
+: A list of etag for all the resources.
 
 : **Field**: `etag`
 
@@ -62,7 +62,7 @@ This resource does not require any parameters.
 : **Field**: `location`
 
 `properties`
-: A list of Properties all the resources.
+: A list of properties for all the resources.
 
 : **Field**: `properties`
 
@@ -70,7 +70,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-**Test that the Virtual WAN type is Standard.**
+### Test that the Virtual WAN type is standard
 
 ```ruby
 describe azure_virtual_wans.where{ properties.select{|prop| prop.type == 'Standard' } } do
@@ -85,13 +85,13 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no virtual WANs are present
+# Should not exist if no virtual WANs are present.
 
 describe azure_virtual_wans do
   it { should_not exist }
 end
 
-# Should exist if the filter returns at least one virtual WAN
+# Should exist if the filter returns at least one virtual WAN.
 
 describe azure_virtual_wans do
   it { should exist }

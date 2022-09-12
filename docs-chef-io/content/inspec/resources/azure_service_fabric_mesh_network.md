@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_fabric_mesh_network Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_fabric_mesh_network` InSpec audit resource to test properties of an Azure Service Fabric Mesh network.
+Use the `azure_service_fabric_mesh_network` InSpec audit resource to test the properties of an Azure Service Fabric Mesh network.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_service_fabric_mesh_network` InSpec audit resource to test proper
 
 ## Syntax
 
-`name`, `resource_group` is a required parameter.
+`name` and `resource_group` are required parameters.
 
 ```ruby
 describe azure_service_fabric_mesh_network(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_FABRIC_MESH_NETWORK_NAME') do
@@ -44,15 +44,14 @@ end
 : Name of the Azure Service Fabric Mesh networks to test.
 
 `resource_group`
-: Azure resource group that the targeted resource resides in. `MyResourceGroup`.
+: Azure resource group where the targeted resource resides.
 
-The parameter set should be provided for a valid query:
-- `resource_group` and `name`
+The parameter set that should be provided for a valid query is `resource_group` and `name`.
 
 ## Properties
 
 `id`
-: Resource Id.
+: Resource ID.
 
 `name`
 : Resource name.
@@ -75,14 +74,13 @@ The parameter set should be provided for a valid query:
 `properties.ingressConfig.qosLevel`
 : The QoS tier for ingress.
 
-
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/servicefabric/sfmeshrp-api-network_get) for other properties available.
 
 ## Examples
 
-**Test that the Service Fabric Mesh network is provisioned successfully.**
+### Test that the Service Fabric Mesh network is provisioned successfully
 
 ```ruby
 describe azure_service_fabric_mesh_network(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_FABRIC_MESH_NETWORK_NAME') do
@@ -97,12 +95,17 @@ end
 ### exists
 
 ```ruby
-# If a Service Fabric Mesh network is found it will exist
+# If a Service Fabric Mesh network is found, it will exist.
 
 describe azure_service_fabric_mesh_network(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_FABRIC_MESH_NETWORK_NAME') do
   it { should exist }
 end
-# if Service Fabric Mesh network is not found it will not exist
+```
+
+### not_exists
+
+```ruby
+# If a Service Fabric Mesh network is not found, it will not exist.
 
 describe azure_service_fabric_mesh_network(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_FABRIC_MESH_NETWORK_NAME') do
   it { should_not exist }

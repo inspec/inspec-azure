@@ -52,13 +52,12 @@ end
 
 : **Field**: `maxMemoryPercentageSetByUser`
 
-
 {{% inspec_filter_table %}}
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-Workloads) for other properties available.
 
 ## Examples
 
-**Test to ensure Power BI Capacity Workload is enabled.**
+### Test to ensure Power BI Capacity Workload is enabled
 
 ```ruby
 describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID').where(state: 'Enabled') do
@@ -73,12 +72,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Capacity Workloads are present
+# Should not exist if no Power BI Capacity Workloads are present.
 
 describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI Capacity Workloads
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Power BI Capacity Workloads.
 
 describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID') do
   it { should exist }

@@ -40,7 +40,7 @@ The following parameters can be passed for targeting specific domains.
 : **Example**: `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}`
 
 `filter_free_text`
-: [OData](https://www.odata.org/getting-started/basic-tutorial/) query string in double quotes, `"`. 
+: [OData](https://www.odata.org/getting-started/basic-tutorial/) query string in double quotes, `"`.
 
 Property names are in camel case. For more information, refer to [Microsoft's query parameters documentation](https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter).
 

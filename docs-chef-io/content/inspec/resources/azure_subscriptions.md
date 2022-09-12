@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_subscriptions Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_subscriptions` InSpec audit resource to test properties and configuration of all Azure subscriptions for a tenant.
+Use the `azure_subscriptions` InSpec audit resource to test the properties and configuration of all Azure subscriptions for a tenant.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,8 @@ Use the `azure_subscriptions` InSpec audit resource to test properties and confi
 
 ## Syntax
 
-An `azure_subscriptions` resource block returns all subscription for a tenant.
+An `azure_subscriptions` resource block returns all subscriptions for a tenant.
+
 ```ruby
 describe azure_subscriptions do
   it { should exist }
@@ -36,7 +37,7 @@ This resource does not require any parameters.
 ## Properties
 
 `ids`
-: A list of the subscription ids.
+: A list of the subscription IDs.
 
 : **Field**: `id`
 
@@ -51,7 +52,7 @@ This resource does not require any parameters.
 : **Field**: `tags`
 
 `tenant_ids`
-: A list of tenant ids of all the subscriptions.
+: A list of tenant IDs of all the subscriptions.
 
 : **Field**: `tenant_id`
 
@@ -59,13 +60,13 @@ This resource does not require any parameters.
 
 ## Examples
 
-**Check a Specific Subscription is Present.**
+### Check a specific subscription is present
 
 ```ruby
 describe azure_subscriptions do
   its('names')  { should include 'my-subscription' }
 end
-``` 
+```
 
 ## Matchers
 
@@ -73,7 +74,8 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 describe azure_subscriptions do
   it { should exist }

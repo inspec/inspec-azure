@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_virtual_networks Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_virtual_networks` InSpec audit resource to test properties related to virtual networks within your subscription.
+Use the `azure_virtual_networks` InSpec audit resource to test the properties related to virtual networks within your subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,18 @@ Use the `azure_virtual_networks` InSpec audit resource to test properties relate
 
 ## Syntax
 
-An `azure_virtual_networks` resource block returns all Azure virtual networks, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_virtual_networks` resource block returns all Azure virtual networks within a resource group (if provided) or an entire subscription.
+
 ```ruby
 describe azure_virtual_networks do
   #...
 end
 ```
-or
+
+Or
+
 ```ruby
-describe azure_virtual_networks(resource_group: 'my-rg') do
+describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -44,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -72,47 +75,49 @@ end
 
 ## Examples
 
-**Exists If Any Virtual Networks Exist in the Resource Group.**
+### Exists if any virtual networks exist in the resource group
 
 ```ruby
-describe azure_virtual_networks(resource_group: 'MyResourceGroup') do
+describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
 ```
 
-**Filters the Results to Only Those that Match the Given Name (Client Side).**
+### Filters the results to only those that match the given name (Client Side)
 
 ```ruby
 **Insist that MyVnetName exists.**
 
-describe azure_virtual_networks(resource_group: 'MyResourceGroup').where(name: 'MyVnetName') do
+describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP').where(name: 'VNET_NAME') do
   it { should exist }
 end
 ```
+
 ```ruby
 **Insist that you have at least one virtual network that starts with 'prefix'.**
 
-describe azure_virtual_networks(resource_group: 'MyResourceGroup').where { name.include?('project_A') } do
+describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP').where { name.include?('project_A') } do
   it { should exist }
 end
 ```
 
-**Filters the Networks at Azure API to Only Those that Match the Given Name via Generic Resource (Recommended).**
+### Filters the networks at Azure API to only those that match the given name via a generic resource (Recommended)
 
 ```ruby
 **Fuzzy string matching.**
 
-describe azure_generic_resources(resource_group: 'MyResourceGroup', resource_provider: 'Microsoft.Network/virtualNetworks', substring_of_name: 'project_A') do
+describe azure_generic_resources(resource_group: 'RESOURCE_GROUP', resource_provider: 'Microsoft.Network/virtualNetworks', substring_of_name: 'project_A') do
   it { should exist }
 end
 ```
+
 ```ruby
 **Exact name matching.**
 
-describe azure_generic_resources(resource_group: 'MyResourceGroup', resource_provider: 'Microsoft.Network/virtualNetworks', name: 'MyVnetName') do
+describe azure_generic_resources(resource_group: 'RESOURCE_GROUP', resource_provider: 'Microsoft.Network/virtualNetworks', name: 'MyVnetName') do
   it { should exist }
 end
-```    
+```
 
 ## Matchers
 
@@ -121,9 +126,9 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no virtual networks are in the resource group
+# Should not exist if no virtual networks are in the resource group.
 
-describe azure_virtual_networks(resource_group: 'MyResourceGroup') do
+describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
 ```

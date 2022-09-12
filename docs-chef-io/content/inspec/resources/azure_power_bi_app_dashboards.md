@@ -43,27 +43,26 @@ end
 : **Field**: `id`
 
 `displayNames`
-: List of all the dashboard display name.
+: List of all the dashboard display names.
 
 : **Field**: `displayName`
 
 `embedUrls`
-: List of all the dashboard embed url.
+: List of all the dashboard embed URLs.
 
 : **Field**: `embedUrl`
 
 `isReadOnlies`
-: List of all the boolean ReadOnly dashboard flags.
+: List of all the boolean read-only dashboard flags.
 
 : **Field**: `isReadOnly`
-
 
 {{% inspec_filter_table %}}
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/apps/get-dashboards) for other properties available.
 
 ## Examples
 
-**Loop through Power BI app dashboards by their IDs.**
+### Loop through Power BI app dashboards by their IDs
 
 ```ruby
 azure_power_bi_app_dashboards(app_id: 'APP_ID').ids.each do |id|
@@ -73,7 +72,7 @@ azure_power_bi_app_dashboards(app_id: 'APP_ID').ids.each do |id|
 end
 ```
 
-**Test to filter out Power BI app dashboards that are read only.**
+### Test to filter out Power BI app dashboards that are read-only
 
 ```ruby
 describe azure_power_bi_app_dashboards(app_id: 'APP_ID').where(isReadOnly: true) do
@@ -88,12 +87,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI apps are present
+# Should not exist if no Power BI apps are present.
 
 describe azure_power_bi_app_dashboards(app_id: 'APP_ID') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI apps
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Power BI app.
 
 describe azure_power_bi_app_dashboards(app_id: 'APP_ID') do
   it { should exist }

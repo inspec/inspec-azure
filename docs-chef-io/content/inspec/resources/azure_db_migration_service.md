@@ -23,6 +23,7 @@ Use the `azure_db_migration_service` InSpec audit resource to test the propertie
 ## Syntax
 
 `resource_group` and `service_name` are required parameter.
+
 ```ruby
 describe azure_db_migration_service(resource_group: 'RESOURCE_GROUP', service_name: 'SERVICE_NAME') do
   it                                      { should exist }

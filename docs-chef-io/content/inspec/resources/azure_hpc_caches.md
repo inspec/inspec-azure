@@ -38,32 +38,32 @@ end
 ## Properties
 
 `ids`
-: A list of resource IDs. 
+: A list of resource IDs.
 
 **Field**: `id`
 
 `names`
-: A list of HPC Cache names. 
+: A list of HPC Cache names.
 
 **Field**: `name`
 
 `types`
-: A list of the HPC Cache types. 
+: A list of the HPC Cache types.
 
 **Field**: `type`
 
 `properties`
-: A list of Properties for all the HPC Caches. 
+: A list of Properties for all the HPC Caches.
 
 **Field**: `properties`
 
 `locations`
-: A list of the resource locations. 
+: A list of the resource locations.
 
 **Field**: `location`
 
 `cacheSizeGBs`
-: A list of the sizes of the HPC Cache. 
+: A list of the sizes of the HPC Cache.
 
 **Field**: `cacheSizeGB`
 

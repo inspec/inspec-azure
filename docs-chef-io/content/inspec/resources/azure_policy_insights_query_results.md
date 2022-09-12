@@ -22,7 +22,7 @@ Use the `azure_policy_insights_query_results` InSpec audit resource to test prop
 
 ## Syntax
 
-An `azure_policy_insights_query_results` resource block returns all policy insights query results, either compliant, or not within a subscription.
+An `azure_policy_insights_query_results` resource block returns all policy insights query results, compliant or not, within a subscription.
 
 ```ruby
 describe azure_policy_insights_query_results do
@@ -30,7 +30,7 @@ describe azure_policy_insights_query_results do
 end
 ```
 
-or
+Or
 
 ```ruby
 describe azure_policy_insights_query_results do
@@ -50,37 +50,37 @@ This resource does not require any parameters.
 : **Field**: `resource_id`
 
 `policy_assignment_ids`
-: A list of all Policy assignment IDs.
+: A list of all policy assignment IDs.
 
 : **Field**: `policyAssignment_id`
 
 `policy_definition_ids`
-: A list of all Policy definition IDs.
+: A list of all policy definition IDs.
 
 : **Field**: `policyDefinition_id`
 
 `is_compliant`
-: A list of boolean flags which states whether the resource is compliant or not.
+: A list of boolean flags indicating whether the resource is compliant or not.
 
 : **Field**: `is_compliant`
 
 `subscription_ids`
-: A list of Subscription IDs.
+: A list of subscription IDs.
 
 : **Field**: `subscription_id`
 
 `resource_types`
-: A list of Resource types.
+: A list of resource types.
 
 : **Field**: `resource_type`
 
 `resource_locations`
-: A list of Resource locations.
+: A list of resource locations.
 
 : **Field**: `resource_location`
 
 `resource_groups`
-: A list of Resource group names.
+: A list of resource group names.
 
 : **Field**: `resource_group`
 
@@ -90,32 +90,32 @@ This resource does not require any parameters.
 : **Field**: `resource_tags`
 
 `policy_assignment_names`
-: A list of Policy assignment names.
+: A list of policy assignment names.
 
 : **Field**: `policy_assignment_name`
 
 `policy_definition_names`
-: A list of Policy definition names.
+: A list of policy definition names.
 
 : **Field**: `policy_definition_name`
 
 `policy_assignment_scopes`
-: A list of Policy assignment scopes.
+: A list of policy assignment scopes.
 
 : **Field**: `policy_assignment_scope`
 
 `policy_assignment_parameters`
-: A list of policy assignment parameter.
+: A list of policy assignment parameters.
 
 : **Field**: `policy_assignment_parameters`
 
 `policy_definition_actions`
-: A list of Policy definition actions.
+: A list of policy definition actions.
 
 : **Field**: `policy_definition_action`
 
 `policy_definition_categories`
-: A list of Policy definition categories.
+: A list of policy definition categories.
 
 : **Field**: `policy_definition_category`
 
@@ -138,7 +138,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-**Check if a specific resource type is present.**
+### Check if a specific resource type is present
 
 ```ruby
 describe azure_policy_insights_query_results do
@@ -146,7 +146,7 @@ describe azure_policy_insights_query_results do
 end
 ```
 
-**Filters the results to include only those Policy Insights query results which include the given resource location.**
+### Filters the results to include only those Policy Insights query results that have specified location
 
 ```ruby
 describe azure_policy_insights_query_results.where(resource_location: 'RESOURCE_LOCATION') do
@@ -154,7 +154,7 @@ describe azure_policy_insights_query_results.where(resource_location: 'RESOURCE_
 end
 ```
 
-**Filters the results to include only the compliant Policy Insights query results.**
+### Filters the results to include only the compliant Policy Insights query results
 
 ```ruby
 describe azure_policy_insights_query_results.where(is_compliant: true) do
@@ -169,7 +169,7 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect **zero** matches.
 
 ```ruby
 describe azure_policy_insights_query_results do

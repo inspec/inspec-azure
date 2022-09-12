@@ -23,6 +23,7 @@ Use the `azure_event_hub_namespace` InSpec audit resource to test the properties
 ## Syntax
 
 `resource_group` and `name`, or the `resource_id` are required parameters.
+
 ```ruby
 describe azure_event_hub_namespace(resource_group: 'RESOURCE_GROUP', name: 'EVENT_HUB_NAME') do
   it { should exist }

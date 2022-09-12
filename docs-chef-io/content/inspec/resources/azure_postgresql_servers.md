@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_postgresql_servers Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_postgresql_servers` InSpec audit resource to test properties and configuration of multiple Azure PostgreSQL Servers.
+Use the `azure_postgresql_servers` InSpec audit resource to test the properties and configuration of multiple Azure PostgreSQL servers.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,18 @@ Use the `azure_postgresql_servers` InSpec audit resource to test properties and 
 
 ## Syntax
 
-An `azure_postgresql_servers` resource block returns all Azure PostgreSQL Servers, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_postgresql_servers` resource block returns all Azure PostgreSQL servers within a resource group (if provided) or an entire subscription.
+
 ```ruby
 describe azure_postgresql_servers do
   it { should exist }
 end
 ```
-or
+
+Or
+
 ```ruby
-describe azure_postgresql_servers(resource_group: 'my-rg') do
+describe azure_postgresql_servers(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
 ```
@@ -44,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -82,7 +85,7 @@ end
 
 ## Examples
 
-**Check a Specific PostgreSQL Server is Present.**
+### Check a specific PostgreSQL server is present
 
 ```ruby
 describe azure_postgresql_servers do
@@ -90,7 +93,7 @@ describe azure_postgresql_servers do
 end
 ```
 
-**Filters the Results to Include Only Those Servers which Include the Given Name (Client Side Filtering).**
+### Filters the results to include only those servers having specified names (Client Side Filtering)
 
 ```ruby
 describe azure_postgresql_servers.where{ name.include?('production') } do
@@ -98,18 +101,19 @@ describe azure_postgresql_servers.where{ name.include?('production') } do
 end
 ```
 
-**Filters the Results to Include Only Those Servers which Reside in a Given Location (Client Side Filtering).**
+### Filters the results to include only those servers residing in a specified location (Client Side Filtering)
 
 ```ruby
 describe azure_postgresql_servers.where{ location.eql?('westeurope') } do
   it { should exist }
 end
-```    
-**Filters the Results to Include Only Those Servers which Reside in a Given Location and Include the Given Name (Server Side Filtering - Recommended).**
+```
+
+### Filters the results to include only those servers residing in a specified location and has the specified name (Server Side Filtering - Recommended)
 
 ```ruby
 describe azure_generic_resources(resource_provider: 'Microsoft.DBforPostgreSQL/servers', substring_of_name: 'production', location: 'westeurope') do
-  it {should exist}  
+  it {should exist}
 end
 ```
 
@@ -119,7 +123,8 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect **zero** matches.
+
 ```ruby
 describe azure_postgresql_servers do
   it { should exist }

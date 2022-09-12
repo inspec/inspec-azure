@@ -33,11 +33,9 @@ end
 ## Parameters
 
 `dataset_id` _(required)_
-
 : The dataset ID.
 
 `group_id` _(optional)_
-
 : The workspace ID.
 
 ## Properties
@@ -68,7 +66,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Verify that a Power BI dataset data source for a server exists.**
+### Verify that a Power BI dataset data source for a server exists
 
 ```ruby
 describe azure_power_bi_dataset_datasources(dataset_id: 'DATASET_ID').where{ connectionDetails[:server] == 'CONNECTION_SERVER' } do
@@ -82,7 +80,7 @@ This Chef InSpec audit resource has the following special matchers. For a full l
 
 ### exists
 
-**Verify that a Power BI dataset data source is not present.**
+Verify that a Power BI dataset data source is not present.
 
 ```ruby
 describe azure_power_bi_dataset_datasources(dataset_id: 'DATASET_ID') do
@@ -90,9 +88,11 @@ describe azure_power_bi_dataset_datasources(dataset_id: 'DATASET_ID') do
 end
 ```
 
-**Verify that at least one Power BI dataset data source exists.**
+### not_exists
 
-```
+Verify that at least one Power BI dataset data source exists.
+
+``` ruby
 describe azure_power_bi_dataset_datasources(dataset_id: 'DATASET_ID') do
   it { should exist }
 end
