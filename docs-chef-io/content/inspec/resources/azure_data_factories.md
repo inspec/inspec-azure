@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_data_factories Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_data_factories` InSpec audit resource to test properties related to data factories for a resource group or the entire subscription.
+Use the `azure_data_factories` InSpec audit resource to test the properties related to data factories for a resource group or the entire subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_data_factories` InSpec audit resource to test properties related 
 
 ## Syntax
 
-An `azure_data_factories` resource block returns all Azure data factories, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_data_factories` resource block returns all Azure data factories, either within a resource group (if provided) or within an entire Subscription.
 
 ```ruby
 describe azure_data_factories do
@@ -33,7 +33,7 @@ end
 or
 
 ```ruby
-describe azure_data_factories(resource_group: 'my-rg') do
+describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -41,7 +41,7 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in. `MyResourceGroup`.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -51,7 +51,7 @@ end
 : **Field**: `name`
 
 `ids`
-: A list of data factory IDs .
+: A list of data factory IDs.
 
 : **Field**: `id`
 
@@ -109,7 +109,7 @@ end
 
 ## Examples
 
-**Test if any Data Factories exist in the resource group.**
+### Test if any Data Factories exist in the resource group
 
 ```ruby
 describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
@@ -118,17 +118,17 @@ describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-**Test that there aren't any Data Factories in a resource group.**
+### Test that there are not any Data Factories in a resource group
 
 ```ruby
-**Should not exist if no Data Factory are in the resource group.**
+# Should not exist if no Data Factory is in the resource group.
 
 describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
 ```
 
-**Filter Data Factories in a resource group by properties.**
+### Filter Data Factories in a resource group by properties
 
 ```ruby
 describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do

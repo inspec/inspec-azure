@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_resource_health_emerging_issues Resou
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_resource_health_emerging_issues` InSpec audit resource to test properties related to all Azure Resource Health Emerging Issues.
+Use the `azure_resource_health_emerging_issues` InSpec audit resource to test the properties related to all Azure Resource Health Emerging issues.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_resource_health_emerging_issues` InSpec audit resource to test pr
 
 ## Syntax
 
-An `azure_resource_health_emerging_issues` resource block returns all Azure Resource Health Emerging Issues.
+An `azure_resource_health_emerging_issues` resource block returns all Azure Resource Health Emerging issues.
 
 ```ruby
 describe azure_resource_health_emerging_issues do
@@ -52,10 +52,9 @@ This resource does not require any parameters.
 : **Field**: `type`
 
 `properties`
-: A list of Properties all the resources.
+: A list of Properties for all the resources.
 
 : **Field**: `properties`
-
 
 {{% inspec_filter_table %}}
 
@@ -63,7 +62,7 @@ See [Azure's documentation](https://docs.microsoft.com/en-us/rest/api/resourcehe
 
 ## Examples
 
-**Test that there are emerging health issues that are of lower severity.**
+### Test that there are emerging health issues that are of lower severity
 
 ```ruby
 describe azure_resource_health_emerging_issues.where{ properties.select{|prop| prop.statusActiveEvents.select{ |event| event.severity == 'Warning' } } } do
@@ -78,12 +77,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no service health emerging issues are present
+# Should not exist if no service health emerging issues are present.
 
 describe azure_resource_health_emerging_issues do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one service health emerging issues
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one service health emerging issue.
 
 describe azure_resource_health_emerging_issues do
   it { should exist }

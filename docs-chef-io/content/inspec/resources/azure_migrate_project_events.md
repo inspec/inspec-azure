@@ -33,14 +33,12 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `project_name`
 : Azure Migrate Project.
 
-The parameter set should be provided for a valid query:
-
-- `resource_group` and `project_name`.
+The parameter set that should be provided for a valid query is `resource_group` and `project_name`.
 
 ## Properties
 
@@ -100,7 +98,7 @@ The parameter set should be provided for a valid query:
 : **Field**: `solution`
 
 `clientRequestIds`
-: The client request Ids of the payload for which the event is reported.
+: The client request IDs of the payload for which the event is reported.
 
 : **Field**: `clientRequestId`
 
@@ -110,7 +108,7 @@ For more details on the available properties, refer to [Azure documentation](htt
 
 ## Examples
 
-**Loop through migrate project events by their names.**
+### Loop through Migrate Project events by their names
 
 ```ruby
 azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -120,7 +118,7 @@ azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PR
 end
 ```
 
-**Test that there are migrate project events for databases.**
+### Test that there are Migrate Project events for databases
 
 ```ruby
 describe azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(instanceType: 'Databases') do
@@ -132,14 +130,21 @@ end
 
 {{% inspec_matchers_link %}}
 
-### exists
+### not_exists
 
 ```ruby
-# Should not exist, if no migrate project events are present in the project and in the resource group
+# Should not exist if no migrate project events are present in the project and the resource group.
+
 describe azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should_not exist }
 end
-# Should exist, if the filter returns at least one migrate project events in the project and in the resource group
+```
+
+### exists
+
+```ruby
+# Should exist if the filter returns at least one migrate project event in the project and the resource group.
+
 describe azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should exist }
 end

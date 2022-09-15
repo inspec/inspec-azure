@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_bus_regions Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_bus_regions` InSpec audit resource to test properties related to all Azure Service Bus regions.
+Use the `azure_service_bus_regions` InSpec audit resource to test the properties related to all Azure Service Bus regions.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -43,7 +43,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -53,22 +53,22 @@ end
 : **Field**: `type`
 
 `properties`
-: A list of Properties for all the Service Bus regions.
+: A list of properties for all the Service Bus regions.
 
 : **Field**: `properties`
 
 `locations`
-: A list of the Resource locations.
+: A list of the resource locations.
 
 : **Field**: `location`
 
 `codes`
-: A list of Region codes.
+: A list of region codes.
 
 : **Field**: `code`
 
 `fullNames`
-: A list of Full name of the regions.
+: A list of full names of the regions.
 
 : **Field**: `fullName`
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-**Test that there are Service Bus regions that are successfully provisioned.**
+### Test that there are Service Bus regions that are successfully provisioned
 
 ```ruby
 describe azure_service_bus_regions(sku: 'SKU_NAME').where(code: 'Central US') do
@@ -91,12 +91,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Bus regions are present
+# Should not exist if no Service Bus regions are present.
 
 describe azure_service_bus_regions(sku: 'SKU_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Bus regions
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Bus region.
 
 describe azure_service_bus_regions(sku: 'SKU_NAME') do
   it { should exist }

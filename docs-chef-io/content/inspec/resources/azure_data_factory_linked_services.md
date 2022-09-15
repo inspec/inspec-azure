@@ -22,7 +22,7 @@ Use the `azure_data_factory_linked_services` InSpec audit resource to test the p
 
 ## Syntax
 
-An `azure_data_factory_linked_services` resource block returns all Azure Linked Services, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_data_factory_linked_services` resource block returns all Azure Linked Services, either within a resource group (if provided) or an entire Subscription.
 
 ```ruby
 describe (resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
@@ -35,10 +35,10 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `factory_name`
-: Azure factory name for which linked services are retrived.
+: Azure factory name for which linked services are retrieved.
 
 ## Properties
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-**Test if any linked services exist in the resource group.**
+### Test if any linked services exist in the resource group
 
 ```ruby
 describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
@@ -85,17 +85,17 @@ describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, fa
 end
 ```
 
-**Test that there aren't any Linked Services in a resource group.**
+### Test that there are not any linked services in a resource group
 
 ```ruby
-**Should not exist if no Linked Services are in the resource group.**
+# Should not exist if no Linked Services are in the resource group.
 
 describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
   it { should_not exist }
 end
 ```
 
-**Filter Linked Services in a resource group by properties.**
+### Filter linked services in a resource group by properties
 
 ```ruby
 describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do

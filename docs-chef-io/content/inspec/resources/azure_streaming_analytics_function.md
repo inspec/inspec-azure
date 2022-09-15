@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_streaming_analytics_function Resource
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_streaming_analytics_function` InSpec audit resource to test properties and configuration of an Azure streaming analytics function.
+Use the `azure_streaming_analytics_function` InSpec audit resource to test the properties and configuration of an Azure Streaming Analytics function.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_streaming_analytics_function` InSpec audit resource to test prope
 
 ## Syntax
 
-`resource_group`,`job_name/name` and `function_name`  are required parameters.
+`resource_group`,`job_name/name`, and `function_name`  are required parameters.
 
 ```ruby
 describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `job_name`
 : Name of the job.
@@ -57,16 +57,14 @@ All three parameters are required for a valid query.
 `etag`
 : The current entity tag for the function.
 
-
-
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/streamanalytics/) for other properties available.
-Any attribute in the response may be accessed with the key names separated by dots (`.`), eg. `properties.<attribute>`.
+Any attribute in the response may be accessed with the key names separated by dots (`.`). For example, `properties.<attribute>`.
 
 ## Examples
 
-**Test that a Resource Group has the Specified type.**
+### Test that a resource group has the specified type
 
 ```ruby
 describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
@@ -80,7 +78,7 @@ end
 
 {{% inspec_matchers_link %}}
 
-### Test Streaming function to ensure it's using Javascript UDF
+### Test streaming function to ensure it's using Javascript UDF
 
 ```ruby
 describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
@@ -90,7 +88,7 @@ end
 
 ### exists
 
-If we expect a resource to always exist:
+If we expect a resource to always exist.
 
 ```ruby
 describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
@@ -98,7 +96,9 @@ describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', jo
 end
 ```
 
-If we expect a resource to never exist:
+### not_exists
+
+If we expect a resource to never exist.
 
 ```ruby
 describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do

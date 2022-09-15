@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_fabric_mesh_replicas Resource
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_fabric_mesh_replicas` InSpec audit resource to test properties of all Azure Service Fabric Mesh replicas.
+Use the `azure_service_fabric_mesh_replicas` InSpec audit resource to test the properties of all Azure Service Fabric Mesh replicas.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in. `MyResourceGroup`.
+: Azure resource group where the targeted resource resides.
 
 `application_name` _(required)_
 : The identity of the application.
@@ -54,12 +54,12 @@ end
 : **Field**: `codePackages`
 
 `networkRefs`
-: A list of the network Refs.
+: A list of the network refs.
 
 : **Field**: `networkRefs`
 
 `replicaNames`
-: A list of the replica Names.
+: A list of the replica names.
 
 : **Field**: `replicaName`
 
@@ -67,8 +67,7 @@ end
 
 ## Examples
 
-
-**Test that there are Service Fabric Mesh replicas with at least one replica.**
+### Test that there are Service Fabric Mesh replicas with at least one replica
 
 ```ruby
 describe azure_service_fabric_mesh_replicas(resource_group: 'RESOURCE_GROUP', application_name: 'SERVICE_FABRIC_MESH_APPLICATION_NAME', service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME').where{ replicaName > 1 } do
@@ -83,12 +82,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Fabric Mesh replicas are present
+# Should not exist if no Service Fabric Mesh replicas are present.
 
 describe azure_service_fabric_mesh_replicas(resource_group: 'RESOURCE_GROUP', application_name: 'SERVICE_FABRIC_MESH_APPLICATION_NAME', service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Fabric Mesh replicas
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Fabric Mesh replica.
 
 describe azure_service_fabric_mesh_replicas(resource_group: 'RESOURCE_GROUP', application_name: 'SERVICE_FABRIC_MESH_APPLICATION_NAME', service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME') do
   it { should exist }

@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_data_lake_storage_gen2_paths Resource
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_data_lake_storage_gen2_paths` InSpec audit resource to test the properties related to all Azure Data Lake Storage Gen2 Filesystem Paths within a project.
+Use the `azure_data_lake_storage_gen2_paths` InSpec audit resource to test the properties related to all Azure Data Lake Storage Gen2 Filesystem paths within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_data_lake_storage_gen2_paths` InSpec audit resource to test the p
 
 ## Syntax
 
-An `azure_data_lake_storage_gen2_paths` resource block returns all Azure Data Lake Storage Gen2 Filesystem Paths within a project.
+An `azure_data_lake_storage_gen2_paths` resource block returns all Azure Data Lake Storage Gen2 Filesystem paths within a project.
 
 ```ruby
 describe azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'ADLS FILESYSTEM') do
@@ -44,32 +44,31 @@ end
 ## Properties
 
 `names`
-: Unique names for all the paths in the filesystem.
+: Unique names for all the paths in the Filesystem.
 
 : **Field**: `name`
 
 `lastModifieds`
-: Last modified timestamps of all the paths in the filesystem.
+: Last modified timestamps of all the paths in the Filesystem.
 
 : **Field**: `lastModified`
 
 `eTags`
-: A list of eTags for all the paths in the filesystem.
+: A list of eTags for all the paths in the Filesystem.
 
 : **Field**: `eTag`
 
 `contentLengths`
-: A list of Content Length of all the paths in the filesystem .
+: A list of Content-Length of all the paths in the Filesystem.
 
 : **Field**: `contentLength`
-
 
 {{% inspec_filter_table %}}
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/list) for other properties available.
 
 ## Examples
 
-**Loop through Data Lake Storage Gen2 Filesystem Paths by their names.**
+### Loop through Data Lake Storage Gen2 Filesystem paths by their names
 
 ```ruby
 azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'ADLS FILESYSTEM').names.each do |name|
@@ -79,7 +78,7 @@ azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'AD
 end
 ```
 
-**Test to ensure Data Lake Storage Gen2 Filesystem Paths with file size greater than 2 MB.**
+### Test to ensure Data Lake Storage Gen2 Filesystem paths with file size greater than 2 MB
 
 ```ruby
 describe azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'ADLS FILESYSTEM').where{ contentLength > 2097152 } do
@@ -94,13 +93,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Data Lake Storage Gen2 Filesystems are present in the project and in the resource group
+# Should not exist if no Data Lake Storage Gen2 Filesystems are present in the project and in the resource group.
 
 describe azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'ADLS FILESYSTEM') do
   it { should_not exist }
 end
+```
 
-# Should exist if the filter returns at least one Migrate Assessment in the project and in the resource group
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Migrate Assessment in the project and in the resource group.
 
 describe azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'ADLS FILESYSTEM') do
   it { should exist }

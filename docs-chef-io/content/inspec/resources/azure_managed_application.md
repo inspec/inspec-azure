@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_managed_application Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_managed_application` InSpec audit resource to test properties related to an Azure managed application.
+Use the `azure_managed_application` InSpec audit resource to test the properties related to an Azure Managed application.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_managed_application` InSpec audit resource to test properties rel
 
 ## Syntax
 
-`name`, `resource_group` is a required parameter.
+`name` and `resource_group` are required parameters.
 
 ```ruby
 describe azure_managed_application(resource_group: 'RESOURCE_GROUP', name: 'MANAGED_APPLICATION_NAME') do
@@ -44,12 +44,12 @@ end
 : Name of the Azure managed applications to test.
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
 `id`
-: Resource Id.
+: Resource ID.
 
 `name`
 : Resource name.
@@ -72,14 +72,13 @@ end
 `properties.provisioningState`
 : Provisioning state of the namespace.
 
-
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/managedapplications/applications/get) for other properties available.
 
 ## Examples
 
-**Test that the managed applications is provisioned successfully.**
+### Test that the managed applications are provisioned successfully
 
 ```ruby
 describe azure_managed_application(resource_group: 'RESOURCE_GROUP', name: 'MANAGED_APPLICATION_NAME') do
@@ -94,12 +93,17 @@ end
 ### exists
 
 ```ruby
-# If a managed application is found it will exist
+# If a Managed application is found, it will exist.
 
 describe azure_managed_application(resource_group: 'RESOURCE_GROUP', name: 'MANAGED_APPLICATION_NAME') do
   it { should exist }
 end
-# if managed application is not found it will not exist
+```
+
+### not_exists
+
+```ruby
+# If a Managed application is not found, it will not exist.
 
 describe azure_managed_application(resource_group: 'RESOURCE_GROUP', name: 'MANAGED_APPLICATION_NAME') do
   it { should_not exist }

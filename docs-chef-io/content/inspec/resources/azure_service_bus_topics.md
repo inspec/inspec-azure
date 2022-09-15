@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_bus_topics Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_bus_topics` InSpec audit resource to test properties related to all Azure Service Bus topics within a project.
+Use the `azure_service_bus_topics` InSpec audit resource to test the properties related to all Azure Service Bus topics within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -35,10 +35,10 @@ end
 ## Parameters
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in. `MyResourceGroup`.
+: Azure resource group where the targeted resource resides. `MyResourceGroup`.
 
 `namespace_name` _(required)_
-: Name of the namespace where the topic resides in.
+: Name of the namespace where the topic resides.
 
 ## Properties
 
@@ -48,7 +48,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -86,7 +86,7 @@ end
 
 ## Examples
 
-**Loop through Service Bus topics by their names.**
+### Loop through Service Bus topics by their names
 
 ```ruby
 azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERVICE_BUS_NAMESPACE_NAME').names.each do |name|
@@ -96,7 +96,7 @@ azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERV
 end
 ```
 
-**Test that there are Service Bus topics that are successfully provisioned.**
+### Test that there are Service Bus topics that are successfully provisioned
 
 ```ruby
 describe azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERVICE_BUS_NAMESPACE_NAME').where(status: 'Active') do
@@ -111,12 +111,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Bus topics are present
+# Should not exist if no Service Bus topics are present.
 
 describe azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERVICE_BUS_NAMESPACE_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Bus topics
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Bus topic.
 
 describe azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERVICE_BUS_NAMESPACE_NAME') do
   it { should exist }

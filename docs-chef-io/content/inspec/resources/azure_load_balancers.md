@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_load_balancers Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_load_balancers` InSpec audit resource to test properties and configuration of Azure Load Balancers.
+Use the `azure_load_balancers` InSpec audit resource to test the properties and configuration of Azure Load Balancers.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,18 @@ Use the `azure_load_balancers` InSpec audit resource to test properties and conf
 
 ## Syntax
 
-An `azure_load_balancers` resource block returns all Azure Load Balancers, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_load_balancers` resource block returns all Azure Load Balancers, either within a resource group (if provided) or the entire subscription.
+
 ```ruby
 describe azure_load_balancers do
   #...
 end
 ```
-or
+
+Or
+
 ```ruby
-describe azure_load_balancers(resource_group: 'my-rg') do
+describe azure_load_balancers(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -44,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -82,27 +85,27 @@ end
 
 ## Examples
 
-**Check Load balancers are Present.**
+### Check Load balancers are present
 
 ````ruby
 describe azure_load_balancers do
     it            { should exist }
-    its('names')  { should include 'my-lb' }
+    its('names')  { should include 'EXAMPLE_LB' }
 end
 ````
 
-**Filter the Results to Include Only those with Names Match the Given String Value.**
+### Filter the results to include only those with names match the specified string value
 
 ```ruby
-describe azure_load_balancers.where{ name.eql?('production-lb') } do
+describe azure_load_balancers.where{ name.eql?('PRODUCTION-LB') } do
   it { should exist }
 end
 ```
 
-**Filter the Results to Include Only those with Location Match the Given String Value.**
+### Filter the results to include only those with location match the specified string value
 
 ```ruby
-describe azure_load_balancers.where{ location.eql?('eastus-2') } do
+describe azure_load_balancers.where{ location.eql?('EASTUS-2') } do
   it { should exist }
 end
 ```
@@ -113,15 +116,22 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result.
+
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have Load Balancers
-describe azure_load_balancers(resource_group: 'ExampleGroup') do
+# If we expect 'EXAMPLEGROUP' resource group to have Load Balancers.
+describe azure_load_balancers(resource_group: 'EXAMPLEGROUP') do
   it { should exist }
 end
+```
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have Load Balancers
-describe azure_load_balancers(resource_group: 'ExampleGroup') do
+### not_exists
+
+Use `should_not` if you expect zero matches.
+
+```ruby
+# If we expect 'EMPTYEXAMPLEGROUP' resource group to not have Load Balancers.
+describe azure_load_balancers(resource_group: 'EMPTYEXAMPLEGROUP') do
   it { should_not exist }
 end
 ```

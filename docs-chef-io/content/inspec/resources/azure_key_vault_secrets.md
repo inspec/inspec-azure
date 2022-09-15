@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_key_vault_secrets Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_key_vault_secrets` InSpec audit resource to test properties and configuration of multiple of Azure secrets within vaults.
+Use the `azure_key_vault_secrets` InSpec audit resource to test the properties and configuration of multiple Azure secrets within vaults.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -25,7 +25,7 @@ Use the `azure_key_vault_secrets` InSpec audit resource to test properties and c
 An `azure_key_vault_secrets` resource block returns all secrets within a vault.
 
 ```ruby
-describe azure_key_vault_secrets(vault_name: 'example_vault') do
+describe azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT') do
   #...
 end
 ```
@@ -39,12 +39,12 @@ end
 ## Properties
 
 `attributes`
-: A list of the secret management attributes in [this](https://docs.microsoft.com/en-us/rest/api/keyvault/getsecret/getsecret#secretattributes) format.
+: A list of the secret management attributes in [this](https://docs.microsoft.com/en-us/rest/api/keyvault/secrets/get-secrets/get-secrets?tabs=HTTP#secretattributes) format.
 
 : **Field**: `attributes`
 
 `ids`
-: A list of secret ids.
+: A list of secret IDs.
 
 : **Field**: `id`
 
@@ -54,7 +54,7 @@ end
 : **Field**: `managed`
 
 `contentTypes`
-: A list of content type of the secrets being interrogated.
+: A list of secrets content type being interrogated.
 
 : **Field**: `contentType`
 
@@ -67,19 +67,19 @@ end
 
 ## Examples
 
-**Test that a Vault has the Named Secret.**
+### Test that a vault has the named secret
 
 ```ruby
-describe azure_key_vault_secrets(vault_name: 'example_vault').where { id.include?('my_secret')} do
+describe azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT').where { id.include?('SECRET')} do
   it { should exist }
   its('count') { should be 1 }
 end
 ```
 
-**Loop through Secrets by their IDs.**
+### Loop through secrets by their IDs
 
 ```ruby
-azure_key_vault_secrets(vault_name: 'example_vault').ids.each do |id|
+azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT').ids.each do |id|
   describe azure_key_vault_secret(secret_id: id) do
     it { should exist }
   end 
@@ -92,17 +92,20 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
-```ruby
-# If we expect to have at least one secret in a vault
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
-describe azure_key_vault_secrets(vault_name: 'example_vault') do
+```ruby
+# If we expect to have at least one secret in a vault.
+describe azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT') do
   it { should exist }
 end
+```
 
-# If we expect not have any secrets in a vault
+### not_exists
 
-describe azure_key_vault_secrets(vault_name: 'example_vault') do
+```ruby
+# If we expect not have any secrets in a vault.
+describe azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT') do
   it { should_not exist }
 end
 ```

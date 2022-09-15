@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_application_gateways Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_application_gateways` InSpec audit resource to test properties and configuration of Azure Application Gateways.
+Use the `azure_application_gateways` InSpec audit resource to test the properties and configuration of Azure Application Gateways.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,18 @@ Use the `azure_application_gateways` InSpec audit resource to test properties an
 
 ## Syntax
 
-An `azure_application_gateways` resource block returns all Azure Application Gateways, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_application_gateways` resource block returns all Azure Application Gateways, either within a Resource Group (if provided) or an entire Subscription.
+
 ```ruby
 describe azure_application_gateways do
   #...
 end
 ```
-or
+
+Or
+
 ```ruby
-describe azure_application_gateways(resource_group: 'my-rg') do
+describe azure_application_gateways(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -44,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -77,7 +80,7 @@ end
 
 ## Examples
 
-**Check Application Gateways are Present.**
+### Check Application Gateways are present
 
 ```ruby
 describe azure_application_gateways do
@@ -86,7 +89,7 @@ describe azure_application_gateways do
 end
 ```
 
-**Filter the Results to Include Only those with Names Match the Given String Value.**
+### Filter the results to include only those with names that match the specified string value
 
 ```ruby
 describe azure_application_gateways.where{ name.eql?('production-appgw-01') } do
@@ -100,15 +103,23 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have Application Gateways
-describe azure_application_gateways(resource_group: 'ExampleGroup') do
+# If we expect 'EXAMPLEGROUP' Resource Group to have Application Gateways.
+
+describe azure_application_gateways(resource_group: 'EXAMPLEGROUP') do
   it { should exist }
 end
+```
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have Application Gateways
-describe azure_application_gateways(resource_group: 'EmptyExampleGroup') do
+### not_exists
+
+```ruby
+
+# If we expect 'EMPTYEXAMPLEGROUP' Resource Group not to have Application Gateways.
+
+describe azure_application_gateways(resource_group: 'EMPTYEXAMPLEGROUP') do
   it { should_not exist }
 end
 ```

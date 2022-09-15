@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_dns_zones_resources Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_dns_zones_resources` InSpec audit resource to test properties related to all Azure DNS zones for a resource group or an entire subscription.
+Use the `azure_dns_zones_resources` InSpec audit resource to test the properties related to all Azure DNS zones for a resource group or an entire subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_dns_zones_resources` InSpec audit resource to test properties rel
 
 ## Syntax
 
-An `azure_dns_zones_resources` resource block returns all Azure DNS Zones within within a resource group.
+An `azure_dns_zones_resources` resource block returns all Azure DNS Zones within a resource group.
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -80,7 +80,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-**Test that a DNS zone has has the correct type.**
+### Test that a DNS zone has the correct type
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -88,7 +88,7 @@ describe azure_dns_zones_resources do
 end
 ```
 
-**Test that a DNS zone resource has a `Succeeded` provisioning state.**
+### Test that a DNS zone resource has a 'Succeeded' provisioning state
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -96,7 +96,7 @@ describe azure_dns_zones_resources do
 end
 ```
 
-**Test that a DNS zone has the `global` location.**
+### Test that a DNS zone has the 'global' location
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -104,7 +104,7 @@ describe azure_dns_zones_resources do
 end
 ```
 
-**Test if any Azure DNS zone exists in the resource group.**
+### Test if any Azure DNS zone exists in the resource group
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -118,7 +118,7 @@ end
 
 ### exists
 
-Test that there aren't any Azure DNS zones in the resource group.
+Test that there are not any Azure DNS zones in the resource group.
 
 ```ruby
 describe azure_dns_zones_resources do

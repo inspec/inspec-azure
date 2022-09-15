@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_bus_subscription_rules Resour
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_bus_subscription_rules` InSpec audit resource to test properties related to all Azure Service Bus subscription rules.
+Use the `azure_service_bus_subscription_rules` InSpec audit resource to test the properties related to all Azure Service Bus subscription rules.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -42,7 +42,7 @@ end
 : The topic name.
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -52,7 +52,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -62,12 +62,12 @@ end
 : **Field**: `type`
 
 `properties`
-: A list of Properties for all the Service Bus subscription rules.
+: A list of properties for all the Service Bus subscription rules.
 
 : **Field**: `properties`
 
 `filterTypes`
-: A list of the Filter types.
+: A list of the filter types.
 
 : **Field**: `filterType`
 
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-**Test that there are Service Bus subscription rules that are of SQL Filter type.**
+### Test that there are Service Bus subscription rules that are of SQL Filter type
 
 ```ruby
 describe azure_service_bus_subscription_rules(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', subscription_name: 'SUBSCRIPTION_NAME', topic_name: 'TOPIC_NAME').where(filterType: 'SqlFilter') do
@@ -95,12 +95,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Bus subscription rules are present
+# Should not exist if no Service Bus subscription rules are present.
 
 describe azure_service_bus_subscription_rules(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', subscription_name: 'SUBSCRIPTION_NAME', topic_name: 'TOPIC_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Bus subscription rules
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Bus subscription rule.
 
 describe azure_service_bus_subscription_rules(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', subscription_name: 'SUBSCRIPTION_NAME', topic_name: 'TOPIC_NAME') do
   it { should exist }

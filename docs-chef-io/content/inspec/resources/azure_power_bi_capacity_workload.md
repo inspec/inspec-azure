@@ -22,7 +22,7 @@ Use the `azure_power_bi_capacity_workload` InSpec audit resource to test the pro
 
 ## Syntax
 
-`name` and `capacity_id` is a required parameter.
+`name` and `capacity_id` are required parameters.
 
 ```ruby
 describe azure_power_bi_capacity_workload(capacity_id: 'CAPACITY_ID', name: 'WORKLOAD_NAME') do
@@ -61,7 +61,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Test that the Power BI Capacity workload is enabled.**
+### Test that the Power BI Capacity workload is enabled
 
 ```ruby
 describe azure_power_bi_capacity_workload(capacity_id: 'CAPACITY_ID', name: 'WORKLOAD_NAME')  do
@@ -76,11 +76,18 @@ end
 ### exists
 
 ```ruby
-# If the Power BI Capacity workload is found, it will exist
+# If the Power BI Capacity workload is found, it will exist.
+
 describe azure_power_bi_capacity_workload(capacity_id: 'CAPACITY_ID', name: 'WORKLOAD_NAME')  do
   it { should exist }
 end
-# if the Power BI Capacity workload is not found, it will not exist
+```
+
+### not_exists
+
+```ruby
+# if the Power BI Capacity workload is not found, it will not exist.
+
 describe azure_power_bi_capacity_workload(capacity_id: 'CAPACITY_ID', name: 'WORKLOAD_NAME')  do
   it { should_not exist }
 end
