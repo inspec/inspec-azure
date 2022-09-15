@@ -119,7 +119,7 @@ describe azure_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'VM_NAME'
   it { should exist }
 end
 
-# virtual machines that aren't found, will not exist.
+# virtual machines that are not found, will not exist.
 
 describe azure_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'VM_NAME') do
   it { should_not exist }

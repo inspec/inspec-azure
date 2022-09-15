@@ -97,7 +97,7 @@ end
 ### not_exists
 
 ```ruby
-# If we expect 'EMPTYEXAMPLEGROUP' resource =group to not have any web applications.
+# If we expect 'EMPTYEXAMPLEGROUP' resource group to not have any web applications.
 
 describe azure_webapps(resource_group: 'EMPTYEXAMPLEGROUP') do
   it { should_not exist }

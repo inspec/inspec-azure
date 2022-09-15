@@ -116,7 +116,7 @@ end
 ### not_exists
 
 ```ruby
-# Key vaults that aren't found, will not exist.
+# Key vaults that are not found, will not exist.
 
 describe azure_web_app_function(resource_group: 'RESOURCE_GROUP', site_name: 'functions-http', function_name: 'HttpTrigger1') do
   it { should_not exist }
