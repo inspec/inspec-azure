@@ -124,7 +124,7 @@ describe azure_active_directory_domain_services(filter: {authenticationType: "au
 end
 ```
 
-### Check domains with some filtering parameters applied at the server side using filter_free_text'
+### Check domains with some filtering parameters applied at the server side using 'filter_free_text'
 
 ```ruby
 describe azure_active_directory_domain_services(filter_free_text: "startswith(authenticationType,'authenticationType-value')") do
