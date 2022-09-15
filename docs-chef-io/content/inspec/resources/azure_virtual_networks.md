@@ -112,6 +112,7 @@ end
 ```
 
 ```ruby
+
 **Exact name matching.**
 
 describe azure_generic_resources(resource_group: 'RESOURCE_GROUP', resource_provider: 'Microsoft.Network/virtualNetworks', name: 'MyVnetName') do

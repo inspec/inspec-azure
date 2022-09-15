@@ -109,6 +109,7 @@ end
 
 ```ruby
 # If no Virtual WAN's are found, it will not exist.
+
 describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do
   it { should_not exist }
 end

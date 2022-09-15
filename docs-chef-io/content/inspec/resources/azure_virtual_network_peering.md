@@ -91,7 +91,7 @@ end
 ### not_exists
 
 ```ruby
-# Virtual Network Peerings that aren't found, will not exist.
+# Virtual Network Peerings that are not found, will not exist.
 
 describe azure_virtual_network_peering(resource_group: 'RESOURCE_GROUP',vnet: 'VIRTUAL-NETWORK-NAME' name: 'VIRTUAL-NETWORK-PEERING-NAME') do
   it { should_not exist }

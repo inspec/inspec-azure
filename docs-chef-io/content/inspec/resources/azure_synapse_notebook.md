@@ -96,9 +96,9 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 
-If a Synapse Notebook is found, it will exist.
-
 ```ruby
+# If a Synapse Notebook is found, it will exist.
+
 describe azure_synapse_notebook(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT', name: 'NOTEBOOK_NAME') do
   it { should exist }
 end
@@ -106,9 +106,9 @@ end
 
 ### not_exists
 
-Synapse Notebooks that aren't found, will not exist.
-
 ```ruby
+# Synapse Notebooks that aren't found, will not exist.
+
 describe azure_synapse_notebook(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT', name: 'NOTEBOOK_NAME') do
   it { should_not exist }
 end

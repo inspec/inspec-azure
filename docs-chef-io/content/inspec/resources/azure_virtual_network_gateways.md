@@ -22,7 +22,7 @@ Use the `azure_virtual_network_gateways` InSpec audit resource to test the prope
 
 ## Syntax
 
-An `azure_virtual_network_gateways` resource block returns all VPN gateways within a resource group (if provided) or within an entire subscription.
+An `azure_virtual_network_gateways` resource block returns all VPN gateways within a resource group (if provided) or an entire subscription.
 
 ```ruby
 describe azure_virtual_network_gateways do

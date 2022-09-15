@@ -120,7 +120,7 @@ end
 ### not_exists
 
 ```ruby
-# Virtual networks that aren't found, will not exist.
+# Virtual networks that are not found, will not exist.
 
 describe azure_virtual_network(resource_group: 'RESOURCE_GROUP', name: 'DOESNOTEXIST') do
   it { should_not exist }
