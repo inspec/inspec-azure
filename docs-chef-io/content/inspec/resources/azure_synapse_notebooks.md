@@ -92,9 +92,9 @@ end
 
 ### exists
 
-Should not exist if there aren't any Synapse notebooks in the resource group.
-
 ```ruby
+# Should not exist if there aren't any Synapse notebooks in the resource group.
+
 describe azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT') do
   it { should_not exist }
 end
@@ -102,9 +102,9 @@ end
 
 ### not_exists
 
-Should exist if the filter returns at least one Synapse notebook.
-
 ```ruby
+# Should exist if the filter returns at least one Synapse notebook.
+
 describe azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT') do
   it { should exist }
 end
