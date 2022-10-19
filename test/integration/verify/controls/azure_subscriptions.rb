@@ -1,5 +1,4 @@
 control 'azure_subscriptions' do
-
   impact 1.0
   title 'Testing the plural resource of azure_subscriptions.'
   desc 'Testing the plural resource of azure_subscriptions.'

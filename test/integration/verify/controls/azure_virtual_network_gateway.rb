@@ -16,3 +16,24 @@ control 'Verify settings of an Azure Virtual Network Gateway' do
     its('gatewayType') { should eq 'Vpn' }
   end
 end
+
+control 'azure_virtual_network_gateway' do
+  impact 1.0
+  title 'Testing the singular resource of azure_virtual_network_gateway.'
+  desc 'Testing the singular resource of azure_virtual_network_gateway.'
+  
+  describe azure_virtual_network_gateway(resource_group: 'omnibus-buildkite-chef-canary', name: 'vnsoumyo') do
+    it{ should exist }
+  end
+  
+  describe azure_virtual_network_gateway(resource_group: 'omnibus-buildkite-chef-canary', name: 'vnsoumyo') do
+    its('id') { should eq '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourceGroups/omnibus-buildkite-chef-canary/providers/Microsoft.Network/virtualNetworkGateways/vnsoumyo' }
+    its('name') { should eq 'vnsoumyo' }
+    its('location') { should eq 'westus2' }
+    its('type') { should eq 'Microsoft.Network/virtualNetworkGateways' }
+    its('properties.provisioningState') { should eq 'Created' }
+    its('properties.packetCaptureDiagnosticState') { should eq 'None' }
+    its('properties.enablePrivateIpAddress') { should eq false }
+    its('properties.isMigrateToCSES') { should eq false }
+  end
+end
