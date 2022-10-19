@@ -1,8 +1,8 @@
-resource_group = input('resource_group', value: 'samirdev', description: '')
-storage_account_blob_service_id = input('storage_account_blob_service_id', value: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourceGroups/samirdev/providers/Microsoft.Storage/storageAccounts/samirstorage1/blobServices/default', description: '')
-storage_account_blob_service_name = input('storage_account_blob_service_name', value: 'default', description: '')
-storage_account_blob_type = input('storage_account_blob_type', value: 'Microsoft.Storage/storageAccounts/blobServices', description: '')
-storage_account = input('storage_account', value: 'samirstorage1', description: '')
+resource_group = input('resource_group', value: '', description: '')
+storage_account_blob_service_id = input('storage_account_blob_service_id', value: '', description: '')
+storage_account_blob_service_name = input('storage_account_blob_service_name', value: '', description: '')
+storage_account_blob_type = input('storage_account_blob_type', value: '', description: '')
+storage_account = input('storage_account', value: '', description: '')
 
 control 'azure_blob_service' do
   impact 1.0
