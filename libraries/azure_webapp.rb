@@ -5,7 +5,7 @@ class AzureWebapp < AzureGenericResource
   desc 'Verifies the settings for Azure Webapps'
   example <<-EXAMPLE
     describe azure_webapp(resource_group: 'example', name: 'webapp-name') do
-    it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

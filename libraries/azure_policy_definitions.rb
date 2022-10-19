@@ -4,7 +4,7 @@ class AzurePolicyDefinitions < AzureGenericResources
   name 'azure_policy_definitions'
   desc 'Verifies settings for multiple policy definitions'
   example <<-EXAMPLE
-    azure_policy_definitions(built_in_only: true) do
+    describe azure_policy_definitions(built_in_only: true) do
       it{ should exist }
     end
   EXAMPLE

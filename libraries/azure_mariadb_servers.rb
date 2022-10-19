@@ -5,7 +5,7 @@ class AzureMariaDBServers < AzureGenericResources
   desc 'Verifies settings for a collection of Azure MariaDB Servers'
   example <<-EXAMPLE
     describe azure_mariadb_servers do
-        its('names')  { should include 'mariadb-server' }
+      its('names')  { should include 'mariadb-server' }
     end
   EXAMPLE
 

@@ -5,7 +5,7 @@ class AzureMigrateAssessmentProjects < AzureGenericResources
   desc 'Verifies settings for a collection of Azure Migrate Assessment Projects in a subscription'
   example <<-EXAMPLE
     describe azure_migrate_assessment_projects do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

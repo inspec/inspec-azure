@@ -4,7 +4,7 @@ class AzureSubnets < AzureGenericResources
   name 'azure_subnets'
   desc 'Verifies settings for Azure Virtual Network Subnets'
   example <<-EXAMPLE
-    azure_subnets(resource_group: 'example', vnet: 'virtual-network-name') do
+    describe azure_subnets(resource_group: 'example', vnet: 'virtual-network-name') do
       it{ should exist }
     end
   EXAMPLE

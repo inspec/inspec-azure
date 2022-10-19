@@ -4,7 +4,7 @@ class AzurePostgreSQLDatabase < AzureGenericResource
   name 'azure_postgresql_database'
   desc 'Verifies settings for an Azure PostgreSQL Database'
   example <<-EXAMPLE
-    describe azure_postgresql_database(resource_group: 'rg-1', server_name: 'psql-server-1' name: 'customer-db') do
+    describe azure_postgresql_database(resource_group: 'rg-1', server_name: 'psql-server-1', name: 'customer-db') do
       it { should exist }
     end
   EXAMPLE

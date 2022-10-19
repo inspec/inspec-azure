@@ -4,7 +4,7 @@ class AzureNetworkSecurityGroups < AzureGenericResources
   name 'azure_network_security_groups'
   desc 'Verifies settings for Network Security Groups'
   example <<-EXAMPLE
-    azure_network_security_groups(resource_group: 'example') do
+    describe azure_network_security_groups(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE

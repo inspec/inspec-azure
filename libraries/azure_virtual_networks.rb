@@ -4,7 +4,7 @@ class AzureVirtualNetworks < AzureGenericResources
   name 'azure_virtual_networks'
   desc 'Verifies settings for Azure Virtual Networks'
   example <<-EXAMPLE
-    azure_virtual_networks(resource_group: 'example') do
+    describe azure_virtual_networks(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE

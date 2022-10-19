@@ -4,7 +4,7 @@ class AzureSentinelAlertRules < AzureGenericResources
   name 'azure_sentinel_alert_rules'
   desc 'Verifies settings for Azure Alert Rule'
   example <<-EXAMPLE
-     azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'workspaceName') do
+    describe azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'workspaceName') do
        it{ should exist }
      end
   EXAMPLE

@@ -4,7 +4,7 @@ class AzureResourceHealthEmergingIssue < AzureGenericResource
   name 'azure_resource_health_emerging_issue'
   desc 'Verifies a specific Azure service emerging issue'
   example <<-EXAMPLE
-    describe azure_resource_health_emerging_issue(name: 'default') do#{' '}
+    describe azure_resource_health_emerging_issue(name: 'default') do
       it { should exist }
     end
   EXAMPLE

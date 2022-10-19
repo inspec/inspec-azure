@@ -4,7 +4,7 @@ class AzureNetworkWatchers < AzureGenericResources
   name 'azure_network_watchers'
   desc 'Verifies settings for Network Watchers'
   example <<-EXAMPLE
-    azure_network_watchers(resource_group: 'example') do
+    describe azure_network_watchers(resource_group: 'example') do
       it{ should exist }
     end
   EXAMPLE
