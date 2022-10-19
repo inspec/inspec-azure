@@ -2,7 +2,7 @@ require 'azure_generic_resource'
 
 class AzureSecurityCenterPolicy < AzureGenericResource
   name 'azure_security_center_policy'
-  desc 'Verifies settings for Security Center'
+  desc 'Verifies settings for Security Center.'
   example <<-EXAMPLE
     describe azure_security_center_policy(name: 'default') do
       its('log_collection') { should eq('On') }

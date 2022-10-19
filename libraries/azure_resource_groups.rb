@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureResourceGroups < AzureGenericResources
   name 'azure_resource_groups'
-  desc 'Fetches all available resource groups'
+  desc 'Fetches all available resource groups.'
   example <<-EXAMPLE
     describe azure_resource_groups do
-      its('names') { should include('example-group') }
+      its('names') { should include('RESOURCE_GROUP_NAME') }
     end
   EXAMPLE
 

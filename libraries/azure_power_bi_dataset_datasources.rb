@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzurePowerBIDatasetDatasources < AzureGenericResources
   name 'azure_power_bi_dataset_datasources'
-  desc 'Retrieves and verifies the settings of all Azure Power BI Dataset Datasources'
+  desc 'Retrieves and verifies the settings of all Azure Power BI Dataset Datasources.'
   example <<-EXAMPLE
-    describe azure_power_bi_dataset_datasources(dataset_id: 'cfafbeb1-8037-4d0c-896e-a46fb27ff229') do
+    describe azure_power_bi_dataset_datasources(dataset_id: 'POWERBI_DATASET_ID') do
       it { should exist }
     end
   EXAMPLE

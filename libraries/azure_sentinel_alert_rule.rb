@@ -2,12 +2,13 @@ require 'azure_generic_resource'
 
 class AzureSentinelAlertRule < AzureGenericResource
   name 'azure_sentinel_alert_rule'
-  desc 'Verifies settings for an Sentinel Alert Rule'
+  desc 'Verifies settings for an Sentinel Alert Rule.'
   example <<-EXAMPLE
-     describe azure_sentinel_alert_rule(resource_group: 'example', workspace_name: 'workspaceName', rule_id: 'rule_id') do
-       it { should exit }
-     end
+    describe azure_sentinel_alert_rule(resource_group: 'RESOURCE_GROUP_NAME', workspace_name: 'WORKSPACE_NAME', rule_id: 'RULE_ID') do
+      it { should exit }
+    end
   EXAMPLE
+ 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)

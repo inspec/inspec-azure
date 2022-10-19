@@ -4,7 +4,7 @@ class AzurePowerBiEmbeddedCapacity < AzureGenericResource
   name 'azure_power_bi_embedded_capacity'
   desc 'Retrieves and verifies the settings of an Azure Power BI Embedded Capacity.'
   example <<-EXAMPLE
-    describe azure_power_bi_embedded_capacity(resource_group: 'inspec-azure-rg', name: 'power-bi-inspec') do
+    describe azure_power_bi_embedded_capacity(resource_group: 'RESOURCE_GROUP_NAME', name: 'POWERBI_GATEWAY_NAME') do
       it { should exist }
     end
   EXAMPLE

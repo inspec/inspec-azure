@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzurePowerBIGenericResources < AzureGenericResources
   name 'azure_power_bi_generic_resources'
-  desc 'Retrieves and verifies the settings of all Azure Power BI Resources'
+  desc 'Retrieves and verifies the settings of all Azure Power BI Resources.'
   example <<-EXAMPLE
     describe azure_power_bi_generic_resources do
       it { should exist }

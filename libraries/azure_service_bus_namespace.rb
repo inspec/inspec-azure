@@ -4,7 +4,7 @@ class AzureServiceBusNamespace < AzureGenericResource
   name 'azure_service_bus_namespace'
   desc 'Retrieves and verifies the settings of an Azure Service Bus Namespace.'
   example <<-EXAMPLE
-    describe azure_service_bus_namespace(resource_group: 'migrated_vms', name: 'inspec_ns') do
+    describe azure_service_bus_namespace(resource_group: 'RESOURCE_GROUP_NAME', name: 'NAMESPACE_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureResourceHealthEmergingIssues < AzureGenericResources
   name 'azure_resource_health_emerging_issues'
-  desc "Lists and verifies Azure services' emerging issues"
+  desc "Lists and verifies Azure services' emerging issues."
   example <<-EXAMPLE
     describe azure_resource_health_emerging_issues do
       it { should exist }

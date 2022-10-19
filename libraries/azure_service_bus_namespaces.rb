@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureServiceBusNamespaces < AzureGenericResources
   name 'azure_service_bus_namespaces'
-  desc 'Verifies settings for a collection of Azure Service Bus Namespaces in a Resource Group'
+  desc 'Verifies settings for a collection of Azure Service Bus Namespaces in a Resource Group.'
   example <<-EXAMPLE
-    describe azure_service_bus_namespaces(resource_group: 'migrated_vms') do
-        it { should exist }
+    describe azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

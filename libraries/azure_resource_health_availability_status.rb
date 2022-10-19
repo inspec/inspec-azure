@@ -4,7 +4,7 @@ class AzureResourceHealthAvailabilityStatus < AzureGenericResource
   name 'azure_resource_health_availability_status'
   desc 'Retrieves and verifies availability status for a resource.'
   example <<-EXAMPLE
-    describe azure_resource_health_availability_status(resource_group: 'large_vms', resource_type: '',name: 'DemoExpensiveVM') do
+    describe azure_resource_health_availability_status(resource_group: 'RESOURCE_GROUP_NAME', resource_type: 'RESOURCE_TYPE', name: 'DEMO_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureSentinelIncidentsResources < AzureGenericResources
   name 'azure_sentinel_incidents_resources'
-  desc 'List azure pipelines by  data factory.'
+  desc 'Lists all azure pipelines by data factory.'
   example <<-EXAMPLE
-    describe azure_sentinel_incidents_resources(resource_group: 'resource_group', workspace_name: 'workspace_name') do
+    describe azure_sentinel_incidents_resources(resource_group: 'RESOURCE_GROUP_NAME', workspace_name: 'WORKSPACE_NAME') do
       it { should exist }
     end
   EXAMPLE

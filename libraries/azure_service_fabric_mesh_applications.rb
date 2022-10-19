@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureServiceFabricMeshApplications < AzureGenericResources
   name 'azure_service_fabric_mesh_applications'
-  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Applications'
+  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Applications.'
   example <<-EXAMPLE
     describe azure_service_fabric_mesh_applications do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

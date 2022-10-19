@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureResourceHealthAvailabilityStatuses < AzureGenericResources
   name 'azure_resource_health_availability_statuses'
-  desc 'Retrieves and verifies all availability statuses for a resource group'
+  desc 'Retrieves and verifies all availability statuses for a resource group.'
   example <<-EXAMPLE
     describe azure_resource_health_availability_statuses do
       it { should exist }

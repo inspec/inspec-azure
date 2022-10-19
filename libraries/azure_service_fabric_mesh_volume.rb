@@ -4,7 +4,7 @@ class AzureServiceFabricMeshVolume < AzureGenericResource
   name 'azure_service_fabric_mesh_volume'
   desc 'Retrieves and verifies the settings of an Azure Service Fabric Mesh Application.'
   example <<-EXAMPLE
-    describe azure_service_fabric_mesh_volume(name: 'fabric-vol') do
+    describe azure_service_fabric_mesh_volume(name: 'SERVICE_FABRIC_MESH_VOLUME_NAME') do
       it { should exist }
     end
   EXAMPLE

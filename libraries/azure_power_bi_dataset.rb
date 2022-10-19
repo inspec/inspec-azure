@@ -4,7 +4,7 @@ class AzurePowerBIDataset < AzureGenericResource
   name 'azure_power_bi_dataset'
   desc 'Retrieves and verifies the settings of an Azure Power BI Dataset.'
   example <<-EXAMPLE
-    describe azure_power_bi_dataset(group_id: '0f084df7-c13d-451b-af5f-ed0c466403b2', name: 'cfafbeb1-8037-4d0c-896e-a46fb27ff229') do
+    describe azure_power_bi_dataset(group_id: 'POWERBI_DATASET_GROUP_ID', name: 'POWERBI_DATASET_NAME') do
       it { should exist }
     end
   EXAMPLE

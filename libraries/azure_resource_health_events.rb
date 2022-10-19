@@ -2,14 +2,14 @@ require 'azure_generic_resources'
 
 class AzureResourceHealthEvents < AzureGenericResources
   name 'azure_resource_health_events'
-  desc 'Verifies settings for a collection of Azure Resource Health Events'
+  desc 'Verifies settings for a collection of Azure Resource Health Events.'
   example <<-EXAMPLE
     describe azure_resource_health_events do
       its('names') { should include('role') }
     end
 
-    describe azure_resource_health_events(resource_group: 'rhctestenv', resource_type: 'Microsoft.Compute/virtualMachines', resource_id: 'rhctestenvV1PI') do
-      its('names') { should include('role') }
+    describe azure_resource_health_events(resource_group: 'RESOURCE_GROUP_NAME', resource_type: 'Microsoft.Compute/virtualMachines', resource_id: 'RESOURCE_ID') do
+      its('names') { should include('ROLE_NAME') }
     end
   EXAMPLE
 

@@ -4,7 +4,7 @@ class AzurePowerBIDataflows < AzureGenericResources
   name 'azure_power_bi_dataflows'
   desc 'Retrieves and verifies the settings of all Azure Power BI Dataflows.'
   example <<-EXAMPLE
-    describe azure_power_bi_dataflows(group_id: 'f089354e-8366-4e18-aea3-4cb4a3a50b48') do
+    describe azure_power_bi_dataflows(group_id: 'POWERBI_DATASET_GROUP_ID') do
       it { should exist }
     end
   EXAMPLE

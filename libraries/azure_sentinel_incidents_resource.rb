@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureSentinelIncidentsResource < AzureGenericResource
   name 'azure_sentinel_incidents_resource'
-  desc 'get azure gateway unr ta factory.'
+  desc 'Retrieves and verifies the settings of an Azure Sentinel Incidents.'
   example <<-EXAMPLE
-       describe azure_sentinel_incidents_resource(resource_group: resource_group, workspace_name: workspace_name, incident_id: incident_id)  do
+       describe azure_sentinel_incidents_resource(resource_group: 'RESOURCE_GROUP_NAME', workspace_name: 'WORKSPACE_NAME', incident_id: 'INCIDENT_ID')  do
          it { should exist }
        end
   EXAMPLE

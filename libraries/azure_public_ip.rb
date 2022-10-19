@@ -2,10 +2,10 @@ require 'azure_generic_resource'
 
 class AzurePublicIp < AzureGenericResource
   name 'azure_public_ip'
-  desc 'Verifies settings for public IP address'
+  desc 'Verifies settings for public IP address.'
   example <<-EXAMPLE
-    describe azure_public_ip(resource_group: 'example', name: 'name') do
-      its(name) { should eq 'name'}
+    describe azure_public_ip(resource_group: 'RESOURCE_GROUP_NAME', name: 'PUBLIC_IP_NAME') do
+      its('name') { should eq 'PUBLIC_IP_NAME'}
     end
   EXAMPLE
 

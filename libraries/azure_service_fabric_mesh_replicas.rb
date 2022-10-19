@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureServiceFabricMeshReplicas < AzureGenericResources
   name 'azure_service_fabric_mesh_replicas'
-  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Service Replicas'
+  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Service Replicas.'
   example <<-EXAMPLE
-    describe azure_service_fabric_mesh_replicas(resource_group: 'inspec-def-rg', application_name: 'inspec-fabric-app-name', service_name: 'inspec-fabric-svc') do
-        it { should exist }
+    describe azure_service_fabric_mesh_replicas(resource_group: 'RESOURCE_GROUP_NAME', application_name: 'APP_NAME', service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

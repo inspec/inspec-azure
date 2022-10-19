@@ -2,12 +2,12 @@ require 'azure_generic_resource'
 
 class AzureRoleDefinition < AzureGenericResource
   name 'azure_role_definition'
-  desc 'Verifies settings for an Azure Role'
+  desc 'Verifies settings for an Azure Role.'
   example <<-EXAMPLE
     describe azure_role_definition(name: 'Mail-Account') do
-      it                { should exist }
-      its ('role_name') { should be 'Mail-Account' }
-      its ('role_type') { should be 'CustomRole' }
+      it { should exist }
+      its('role_name') { should be 'Mail-Account' }
+      its('role_type') { should be 'CustomRole' }
     end
   EXAMPLE
 

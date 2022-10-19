@@ -4,7 +4,7 @@ class AzureServiceBusTopic < AzureGenericResource
   name 'azure_service_bus_topic'
   desc 'Retrieves and verifies the settings of an Azure Service Bus Topic.'
   example <<-EXAMPLE
-    describe azure_service_bus_topic(resource_group: 'inspec-group', namespace_name: 'inspec-ns', name: 'inspec-topic') do
+    describe azure_service_bus_topic(resource_group: 'RESOURCE_GROUP_NAME', namespace_name: 'NAMESPACE_NAME', name: 'TOPIC_NAME') do
       it { should exist }
     end
   EXAMPLE

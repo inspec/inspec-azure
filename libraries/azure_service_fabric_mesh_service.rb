@@ -4,7 +4,7 @@ class AzureServiceFabricMeshService < AzureGenericResource
   name 'azure_service_fabric_mesh_service'
   desc 'Retrieves and verifies the settings of an Azure Service Fabric Mesh Service.'
   example <<-EXAMPLE
-    describe azure_service_fabric_mesh_service(application_name: 'fabric-svc', name: 'svc') do
+    describe azure_service_fabric_mesh_service(application_name: 'APP_NAME', name: 'SERVICE_FABRIC_MESH_SERVICE_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -4,7 +4,7 @@ class AzureServiceFabricMeshApplication < AzureGenericResource
   name 'azure_service_fabric_mesh_application'
   desc 'Retrieves and verifies the settings of an Azure Service Fabric Mesh Application.'
   example <<-EXAMPLE
-    describe azure_service_fabric_mesh_application(resource_group: 'inspec-def-rg', name: 'fabric-app') do
+    describe azure_service_fabric_mesh_application(resource_group: 'RESOURCE_GROUP_NAME', name: 'SERVICE_FABRIC_MESH_APP_NAME') do
       it { should exist }
     end
   EXAMPLE

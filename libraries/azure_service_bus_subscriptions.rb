@@ -4,8 +4,8 @@ class AzureServiceBusSubscriptions < AzureGenericResources
   name 'azure_service_bus_subscriptions'
   desc 'Verifies settings for a collection of Azure Service Bus Subscriptions in a Resource Group.'
   example <<-EXAMPLE
-    describe azure_service_bus_subscriptions(resource_group: 'inspec-rg', namespace_name: 'inspec-ns', topic_name: 'inspec-topic') do
-        it { should exist }
+    describe azure_service_bus_subscriptions(resource_group: 'RESOURCE_GROUP_NAME', namespace_name: 'NAMESPACE_NAME', topic_name: 'TOPIC_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

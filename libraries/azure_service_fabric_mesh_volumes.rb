@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureServiceFabricMeshVolumes < AzureGenericResources
   name 'azure_service_fabric_mesh_volumes'
-  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Volumes'
+  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Volumes.'
   example <<-EXAMPLE
     describe azure_service_fabric_mesh_volumes do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

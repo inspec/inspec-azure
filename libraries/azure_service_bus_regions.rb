@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureServiceBusRegions < AzureGenericResources
   name 'azure_service_bus_regions'
-  desc 'Verifies settings for a collection of Azure Service Bus regions in a Resource Group'
+  desc 'Verifies settings for a collection of Azure Service Bus regions in a Resource Group.'
   example <<-EXAMPLE
     describe azure_service_bus_regions(sku: 'Standard') do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

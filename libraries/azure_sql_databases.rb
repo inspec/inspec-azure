@@ -2,11 +2,11 @@ require 'azure_generic_resources'
 
 class AzureSqlDatabases < AzureGenericResources
   name 'azure_sql_databases'
-  desc 'Verifies settings for a collection of Azure SQL Databases on a SQL Server'
+  desc 'Verifies settings for a collection of Azure SQL Databases on a SQL Server.'
   example <<-EXAMPLE
-    describe azure_sql_databases(resource_group: 'my-rg', server_name: 'server-1') do
-        it            { should exist }
-        its('names')  { should_not be_empty }
+    describe azure_sql_databases(resource_group: 'RESOURCE_GROUP_NAME', server_name: 'SERVER_NAME') do
+      it { should exist }
+      its('names') { should_not be_empty }
     end
   EXAMPLE
 

@@ -4,8 +4,8 @@ class AzureServiceBusTopics < AzureGenericResources
   name 'azure_service_bus_topics'
   desc 'Verifies settings for a collection of Azure Service Bus Topics.'
   example <<-EXAMPLE
-    describe azure_service_bus_topics(resource_group: 'inspec-group', namespace_name: 'inspec-ns') do
-        it { should exist }
+    describe azure_service_bus_topics(resource_group: 'RESOURCE_GROUP_NAME', namespace_name: 'NAMESPACE_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

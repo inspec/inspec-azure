@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureSecurityCenterPolicies < AzureGenericResources
   name 'azure_security_center_policies'
-  desc 'Verifies settings for Security Center'
+  desc 'Verifies settings for Security Center.'
   example <<-EXAMPLE
     describe azure_security_center_policies do
       its('policy_names') { should include('default') }

@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureSentinelAlertRuleTemplates < AzureGenericResources
   name 'azure_sentinel_alert_rule_templates'
-  desc 'Verifies settings for Azure Alert Rule Templates'
+  desc 'Verifies settings for Azure Alert Rule Templates.'
   example <<-EXAMPLE
-    azure_sentinel_alert_rule_templates(resource_group: 'example', workspace_name: 'workspaceName') do
-      it{ should exist }
+    describe azure_sentinel_alert_rule_templates(resource_group: 'RESOURCE_GROUP_NAME', workspace_name: 'WORKSPACE_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

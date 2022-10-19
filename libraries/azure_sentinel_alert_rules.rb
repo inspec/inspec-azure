@@ -2,11 +2,11 @@ require 'azure_generic_resources'
 
 class AzureSentinelAlertRules < AzureGenericResources
   name 'azure_sentinel_alert_rules'
-  desc 'Verifies settings for Azure Alert Rule'
+  desc 'Verifies settings for Azure Alert Rule.'
   example <<-EXAMPLE
-    describe azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'workspaceName') do
-       it{ should exist }
-     end
+    describe azure_sentinel_alert_rules(resource_group: 'RESOURCE_GROUP_NAME', workspace_name: 'WORKSPACE_NAME') do
+      it{ should exist }
+    end
   EXAMPLE
 
   attr_reader :table

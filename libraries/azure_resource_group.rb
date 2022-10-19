@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureResourceGroup < AzureGenericResource
   name 'azure_resource_group'
-  desc 'Verifies settings for an Azure resource group'
+  desc 'Verifies settings for an Azure resource group.'
   example <<-EXAMPLE
-    describe azure_resource_group(name: 'my_resource_group_name') do
+    describe azure_resource_group(name: 'RESOURCE_GROUP_NAME') do
       it { should exist }
     end
   EXAMPLE

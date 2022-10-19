@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureRoleDefinitions < AzureGenericResources
   name 'azure_role_definitions'
-  desc 'Verifies settings for a collection of Azure Roles'
+  desc 'Verifies settings for a collection of Azure Roles.'
   example <<-EXAMPLE
     describe azure_role_definitions do
       its('names') { should include('role') }

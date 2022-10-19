@@ -4,7 +4,7 @@ class AzureSQLManagedInstance < AzureGenericResource
   name 'azure_sql_managed_instance'
   desc 'Retrieves and verifies the settings of an Azure SQL Managed Instance.'
   example <<-EXAMPLE
-    describe azure_sql_managed_instance(resource_group: 'RESOURCE_GROUP_NAME', name: 'inspec-sql-instance') do
+    describe azure_sql_managed_instance(resource_group: 'RESOURCE_GROUP_NAME', name: 'SQL_MANAGED_INSTANCE_NAME') do
       it { should exist }
     end
   EXAMPLE

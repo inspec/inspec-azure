@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureServiceFabricMeshNetworks < AzureGenericResources
   name 'azure_service_fabric_mesh_networks'
-  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Networks'
+  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Networks.'
   example <<-EXAMPLE
     describe azure_service_fabric_mesh_networks do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

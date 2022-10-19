@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureRedisCaches < AzureGenericResources
   name 'azure_redis_caches'
-  desc 'Verifies settings for a list of redis cache resources in a resource group'
+  desc 'Verifies settings for a list of redis cache resources in a resource group.'
   example <<-EXAMPLE
-    describe azure_redis_caches(resource_group: 'rg-1') do
+    describe azure_redis_caches(resource_group: 'RESOURCE_GROUP_NAME') do
       it { should exist }
     end
   EXAMPLE
