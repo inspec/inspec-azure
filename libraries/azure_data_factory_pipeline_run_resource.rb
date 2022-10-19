@@ -2,11 +2,11 @@ require 'azure_generic_resource'
 
 class AzureDataFactoryPipelineRunResource < AzureGenericResource
   name 'azure_data_factory_pipeline_run_resource'
-  desc 'Verifies settings for an Azure DataSet'
+  desc 'Verifies settings for an Azure DataSet.'
   example <<-EXAMPLE
-      describe azure_data_factory_pipeline_run_resource(resource_group: 'example',factory_name: 'factory_name', run_id: 'run_id') do
-        it { should exists }
-      end
+    describe azure_data_factory_pipeline_run_resource(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'FACTORY_NAME', run_id: 'RUN_ID') do
+      it { should exists }
+    end
   EXAMPLE
 
   def initialize(opts = {})

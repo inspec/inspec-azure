@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureApplicationGateways < AzureGenericResources
   name 'azure_application_gateways'
-  desc 'Verifies settings for a collection of Azure Application Gateways'
+  desc 'Verifies settings for a collection of Azure Application Gateways.'
   example <<-EXAMPLE
     describe azure_application_gateways do
-        it  { should exist }
+      it  { should exist }
     end
   EXAMPLE
 

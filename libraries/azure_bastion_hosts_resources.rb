@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureBastionHostsResources < AzureGenericResources
   name 'azure_bastion_hosts_resources'
-  desc 'Lists all Bastion Hosts in a subscription'
+  desc 'Lists all Bastion Hosts in a subscription.'
   example <<-EXAMPLE
-    azure_bastion_hosts_resources(resource_group: 'example') do
+    describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP_NAME') do
       it{ should exist }
     end
   EXAMPLE

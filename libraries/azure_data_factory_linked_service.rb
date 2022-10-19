@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureDataFactoryLinkedService < AzureGenericResource
   name 'azure_data_factory_linked_service'
-  desc 'Checking azure data factory linked service'
+  desc 'Checking azure data factory linked service.'
   example <<-EXAMPLE
-    describe azure_data_factory_linked_service(resource_group: resource_group, factory_name: factory_name, linked_service_name: linked_service_name)  do
+    describe azure_data_factory_linked_service(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'FACTORY_NAME', linked_service_name: 'LINKED_SERVICE_NAME')  do
       it { should exist }
     end
   EXAMPLE

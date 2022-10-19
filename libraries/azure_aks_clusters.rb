@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureAksClusters < AzureGenericResources
   name 'azure_aks_clusters'
-  desc 'Verifies settings for AKS Clusters'
+  desc 'Verifies settings for AKS Clusters.'
   example <<-EXAMPLE
-    azure_aks_clusters(resource_group: 'example') do
+    describe azure_aks_clusters(resource_group: 'RESOURCE_GROUP_NAME') do
       it{ should exist }
     end
   EXAMPLE

@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureContainerGroups < AzureGenericResources
   name 'azure_container_groups'
-  desc 'Verifies settings for a list of azure container groups in a subscription'
+  desc 'Verifies settings for a list of azure container groups in a subscription.'
   example <<-EXAMPLE
     describe azure_container_groups do
       it { should exist }

@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureBastionHostsResource < AzureGenericResource
   name 'azure_bastion_hosts_resource'
-  desc 'Azure Bastion to connect to a data lake hosts'
+  desc 'Azure Bastion to connect to a data lake hosts.'
   example <<-EXAMPLE
-    describe azure_bastion_hosts_resource(resource_group: 'example', name: 'host-name') do
+    describe azure_bastion_hosts_resource(resource_group: 'RESOURCE_GROUP_NAME', name: 'HOST_NAME') do
       it { should exist }
     end
   EXAMPLE

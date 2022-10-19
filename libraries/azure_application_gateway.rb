@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureApplicationGateway < AzureGenericResource
   name 'azure_application_gateway'
-  desc 'Verifies settings for an Azure Application Gateway'
+  desc 'Verifies settings for an Azure Application Gatewa.y'
   example <<-EXAMPLE
-    describe azure_application_gateway(resource_group: 'rg-1', name: 'lb-1') do
+    describe azure_application_gateway(resource_group: 'RESOURCE_GROUP_NAME', name: 'APPLICATION_GATEWAY_NAME') do
       it { should exist }
     end
   EXAMPLE

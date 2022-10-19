@@ -5,7 +5,7 @@ class AzureContainerRegistries < AzureGenericResources
   desc 'Verifies settings for a collection of Azure Container Registries'
   example <<-EXAMPLE
     describe azure_container_registries do
-        it  { should exist }
+      it  { should exist }
     end
   EXAMPLE
 

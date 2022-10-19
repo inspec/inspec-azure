@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureActiveDirectoryObjects < AzureGraphGenericResources
   name 'azure_active_directory_objects'
-  desc 'Retrieves and verifies all policy exemptions that apply to a subscription'
+  desc 'Retrieves and verifies all policy exemptions that apply to a subscription.'
   example <<-EXAMPLE
     describe azure_active_directory_objects do
       it { should exist }

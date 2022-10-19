@@ -2,10 +2,10 @@ require 'azure_generic_resource'
 
 class AzureCosmosDbDatabaseAccount < AzureGenericResource
   name 'azure_cosmosdb_database_account'
-  desc 'Verifies settings for CosmosDb Database Account'
+  desc 'Verifies settings for CosmosDb Database Account.'
   example <<-EXAMPLE
-    describe azure_cosmosdb_database_account(resource_group: 'example', name: 'my-cosmos-db-account')  do
-      its('name') { should eq 'my-cosmos-db-account'}
+    describe azure_cosmosdb_database_account(resource_group: 'RESOURCE_GROUP_NAME', name: 'COSMOSDB_DATABASE_ACCOUNT_NAME')  do
+      its('name') { should eq 'COSMOSDB_DATABASE_ACCOUNT_NAME'}
     end
   EXAMPLE
 

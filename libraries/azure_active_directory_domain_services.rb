@@ -2,7 +2,7 @@ require 'azure_graph_generic_resources'
 
 class AzureActiveDirectoryDomainServices < AzureGraphGenericResources
   name 'azure_active_directory_domain_services'
-  desc 'Verifies settings for all Azure Active Directory Domain Services'
+  desc 'Verifies settings for all Azure Active Directory Domain Services.'
   example <<-EXAMPLE
     describe azure_active_directory_domain_services do
       it { should exist }

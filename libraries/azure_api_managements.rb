@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureApiManagements < AzureGenericResources
   name 'azure_api_managements'
-  desc 'Verifies settings for a collection of Azure Api Management Services'
+  desc 'Verifies settings for a collection of Azure Api Management Services.'
   example <<-EXAMPLE
     describe azure_api_managements do
-        it  { should exist }
+        t  { should exist }
     end
   EXAMPLE
 

@@ -2,9 +2,9 @@ require 'azure_graph_generic_resource'
 
 class AzureActiveDirectoryObject < AzureGraphGenericResource
   name 'azure_active_directory_object'
-  desc 'Verifies settings for an Azure Active Directory Object'
+  desc 'Verifies settings for an Azure Active Directory Object.'
   example <<-EXAMPLE
-    describe azure_active_directory_object(id: '0bf29229-50d7-433c-b08e-2a5d8b293cb5') do
+    describe azure_active_directory_object(id: 'ACTIVE_DIRECTORY_OBJECT_ID') do
       it { should exist }
     end
   EXAMPLE
