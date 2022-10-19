@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_microsoft_defender_pricings Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_microsoft_defender_pricings` InSpec audit resource to test the properties of some or all Azure Microsoft Defender Pricing.
+Use the `azure_microsoft_defender_pricings` InSpec audit resource to test the properties of some or all Azure Microsoft Defender Pricings.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
