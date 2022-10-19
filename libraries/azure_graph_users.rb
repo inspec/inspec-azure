@@ -2,7 +2,7 @@ require 'azure_graph_generic_resources'
 
 class AzureGraphUsers < AzureGraphGenericResources
   name 'azure_graph_users'
-  desc 'Verifies settings for an Azure Active Directory User'
+  desc 'Verifies settings for an Azure Active Directory User.'
   example <<-EXAMPLE
     describe azure_graph_users do
       it { should exist }

@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzurePowerBIDashboard < AzureGenericResource
   name 'azure_power_bi_dashboard'
-  desc 'Retrieves and verifies the settings of a Data Lake Storage Gen2 file system'
+  desc 'Retrieves and verifies the settings of a Azure Power BI Dashboard.'
   example <<-EXAMPLE
-    describe azure_power_bi_dashboard(dashboard_id: '95a4871a-33a4-4f35', group_id: '95a4871a-33a4-4f35-9eea-8ff006b4840b') do
+    describe azure_power_bi_dashboard(dashboard_id: 'POWERBI_DASHBOARD_GROUP_ID', group_id: 'POWERBI_DASHBOARD_GROUP_ID') do
       it { should exist }
     end
   EXAMPLE

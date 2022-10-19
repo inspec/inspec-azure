@@ -4,7 +4,7 @@ class AzurePowerBIAppDashboardTiles < AzureGenericResources
   name 'azure_power_bi_app_dashboard_tiles'
   desc 'Retrieves and verifies the settings of all Azure Power BI App Dashboard Tiles.'
   example <<-EXAMPLE
-    describe azure_power_bi_app_dashboard_tiles(app_id: 'f089354e-8366-4e18-aea3-4cb4a3a50b48', dashboard_id: '335aee4b-7b38-48fd-9e2f-306c3fd67482') do
+    describe azure_power_bi_app_dashboard_tiles(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID') do
       it { should exist }
     end
   EXAMPLE

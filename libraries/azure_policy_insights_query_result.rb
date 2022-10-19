@@ -2,9 +2,9 @@ require 'azure_backend'
 
 class AzurePolicyInsightsQueryResult < AzureResourceBase
   name 'azure_policy_insights_query_result'
-  desc 'Lists a collection of Azure Policy Insights Query Results'
+  desc 'Lists a collection of Azure Policy Insights Query Results.'
   example <<-EXAMPLE
-    describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
+    describe azure_policy_insights_query_result(policy_definition: 'POLICY_DEFINITION', resource_id: 'RESOURCE_ID') do
       it { should exist }
     end
   EXAMPLE

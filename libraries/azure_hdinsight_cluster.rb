@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureHdinsightCluster < AzureGenericResource
   name 'azure_hdinsight_cluster'
-  desc 'Verifies settings for HDInsight Clusters'
+  desc 'Verifies settings for HDInsight Clusters.'
   example <<-EXAMPLE
-    describe azure_hdinsight_cluster(resource_group: 'example', name: 'name') do
+    describe azure_hdinsight_cluster(resource_group: 'RESOURCE_GROUP_NAME', name: 'HDINSIGHT_CLUSTER_NAME') do
       its(name) { should eq 'name'}
     end
   EXAMPLE

@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureMariaDBServer < AzureGenericResource
   name 'azure_mariadb_server'
-  desc 'Verifies settings for an Azure MariaDB Server'
+  desc 'Verifies settings for an Azure MariaDB Server.'
   example <<-EXAMPLE
-    describe azure_mariadb_server(resource_group: 'rg-1', name: 'my-server-name') do
+    describe azure_mariadb_server(resource_group: 'RESOURCE_GROUP_NAME', name: 'MARIADB_SERVER_NAME') do
       it { should exist }
     end
   EXAMPLE

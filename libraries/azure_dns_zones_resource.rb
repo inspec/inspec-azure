@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureDNSZonesResource < AzureGenericResource
   name 'azure_dns_zones_resource'
-  desc 'Verifies settings for an Azure DNS Zones'
+  desc 'Verifies settings for an Azure DNS Zones.'
   example <<-EXAMPLE
-    describe azure_dns_zones_resource(resource_group: 'example', name: 'dns-zones-name') do
+    describe azure_dns_zones_resource(resource_group: 'RESOURCE_GROUP_NAME', name: 'DNS_ZONE_NAME') do
       it { should exist }
     end
   EXAMPLE

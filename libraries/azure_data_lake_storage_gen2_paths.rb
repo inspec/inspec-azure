@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureDataLakeStorageGen2Paths < AzureGenericResources
   name 'azure_data_lake_storage_gen2_paths'
-  desc 'Verifies settings for a list of Data Lake Storage Gen2 Paths'
+  desc 'Verifies settings for a list of Data Lake Storage Gen2 Paths.'
   example <<-EXAMPLE
-    describe azure_data_lake_storage_gen2_paths(account_name: 'adls', filesystem: 'adls-filesystem') do
+    describe azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'FILE_SYSTEM_NAME') do
       it { should exist }
     end
   EXAMPLE

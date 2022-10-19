@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureKeyVaultKeys < AzureGenericResources
   name 'azure_key_vault_keys'
-  desc 'Verifies settings for a collection of Azure Keys belonging to a Vault'
+  desc 'Verifies settings for a collection of Azure Keys belonging to a Vault.'
   example <<-EXAMPLE
-    describe azure_key_vault_keys(vault_name: 'vault-101') do
+    describe azure_key_vault_keys(vault_name: 'KEY_VAULT_NAME') do
         it { should exist }
     end
   EXAMPLE

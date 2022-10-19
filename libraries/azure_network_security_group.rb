@@ -4,10 +4,10 @@ require 'rspec/expectations'
 
 class AzureNetworkSecurityGroup < AzureGenericResource
   name 'azure_network_security_group'
-  desc 'Verifies settings for Network Security Groups'
+  desc 'Verifies settings for Network Security Groups.'
   example <<-EXAMPLE
-    describe azure_network_security_group(resource_group: 'example', name: 'name') do
-      its(name) { should eq 'name'}
+    describe azure_network_security_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'NETWORK_SECURITY_GROUP_NAME') do
+      its('name') { should eq 'name'}
     end
   EXAMPLE
 

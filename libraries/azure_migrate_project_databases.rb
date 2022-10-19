@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureMigrateProjectDatabases < AzureGenericResources
   name 'azure_migrate_project_databases'
-  desc 'Verifies settings for a collection of Azure Migrate Project Databases for a Azure Migrate Project in a Resource Group'
+  desc 'Verifies settings for a collection of Azure Migrate Project Databases for a Azure Migrate Project in a Resource Group.'
   example <<-EXAMPLE
-    describe azure_migrate_project_databases(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project') do
-        it { should exist }
+    describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP_NAME', project_name: 'MIGRATE_PROJ_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

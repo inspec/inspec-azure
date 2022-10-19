@@ -1,11 +1,10 @@
 require 'azure_generic_resources'
 require 'time'
+
 class AzurePolicyAssignments < AzureGenericResources
   name 'azure_policy_assignments'
-  desc 'Verifies settings for a collection of policy assignments'
+  desc 'Verifies settings for a collection of policy assignments.'
   example <<-EXAMPLE
-    # For property names see https://docs.microsoft.com/en-us/rest/api/policy/policyassignments/list#policyassignment
-
     describe azure_policy_assignments.where{ enforcementMode != 'Default' } do
         it {should_not exist}
         its('displayNames') {should eq []}

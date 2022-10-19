@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureEventHubNamespace < AzureGenericResource
   name 'azure_event_hub_namespace'
-  desc 'Verifies settings for Event Hub Namespace'
+  desc 'Verifies settings for Event Hub Namespace.'
   example <<-EXAMPLE
-    describe azure_event_hub_namespace(resource_group: 'example', name: 'namespace-ns') do
+    describe azure_event_hub_namespace(resource_group: 'RESOURCE_GROUP_NAME', name: 'namespace-ns') do
       its(name) { should eq 'name'}
     end
   EXAMPLE

@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureMySqlDatabase < AzureGenericResource
   name 'azure_mysql_database'
-  desc 'Verifies settings for an Azure MySQL Database'
+  desc 'Verifies settings for an Azure MySQL Database.'
   example <<-EXAMPLE
-    describe azure_mysql_database(resource_group: 'rg-1', server_name: 'mysql-server-1', name: 'customer-db') do
+    describe azure_mysql_database(resource_group: 'RESOURCE_GROUP_NAME', server_name: 'MYSQL_SERVER_NAME', name: 'MYSQL_DB_NAME') do
       it { should exist }
     end
   EXAMPLE

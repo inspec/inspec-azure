@@ -4,7 +4,7 @@ class AzureHPCCache < AzureGenericResource
   name 'azure_hpc_cache'
   desc 'Retrieves and verifies the settings of an Azure HPC Cache.'
   example <<-EXAMPLE
-    describe azure_hpc_cache(resource_group: 'inspec-rg', name: 'sc1') do
+    describe azure_hpc_cache(resource_group: 'RESOURCE_GROUP_NAME', name: 'CACHE_NAME') do
       it { should exist }
     end
   EXAMPLE

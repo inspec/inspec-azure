@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureMonitorActivityLogAlerts < AzureGenericResources
   name 'azure_monitor_activity_log_alerts'
-  desc 'Verifies settings for Azure Monitor Activity Log Alerts'
+  desc 'Verifies settings for Azure Monitor Activity Log Alerts.'
   example <<-EXAMPLE
     describe azure_monitor_activity_log_alerts do
-      its('names') { should include('example-log-alert') }
+      its('names') { should include('MONITOR_ACTIVITY_LOG_ALERT_NAME') }
     end
   EXAMPLE
 

@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureExpressRouteServiceProviders < AzureGenericResources
   name 'azure_express_route_providers'
-  desc 'Verifies settings for Azure Virtual Machines'
+  desc 'Verifies settings for Azure Virtual Machines.'
   example <<-EXAMPLE
-    describe azure_express_route_providers(resource_group: 'example') do
-      it{ should exist }
+    describe azure_express_route_providers(resource_group: 'RESOURCE_GROUP_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

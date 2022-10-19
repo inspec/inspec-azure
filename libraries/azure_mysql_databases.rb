@@ -2,11 +2,11 @@ require 'azure_generic_resources'
 
 class AzureMySqlDatabases < AzureGenericResources
   name 'azure_mysql_databases'
-  desc 'Verifies settings for a collection of Azure MySQL Databases on a MySQL Server'
+  desc 'Verifies settings for a collection of Azure MySQL Databases on a MySQL Server.'
   example <<-EXAMPLE
-    describe azure_mysql_databases(resource_group: 'my-rg', server_name: 'server-1') do
-        it            { should exist }
-        its('names')  { should_not be_empty }
+    describe azure_mysql_databases(resource_group: 'RESOURCE_GROUP_NAME', server_name: 'MYSQL_SERVER_NAME') do
+      it { should exist }
+      its('names') { should_not be_empty }
     end
   EXAMPLE
 

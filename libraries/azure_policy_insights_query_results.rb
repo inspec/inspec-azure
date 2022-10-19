@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzurePolicyInsightsQueryResults < AzureGenericResources
   name 'azure_policy_insights_query_results'
-  desc 'Lists a collection of Azure Policy Insights Query Results'
+  desc 'Lists a collection of Azure Policy Insights Query Results.'
   example <<-EXAMPLE
     describe azure_policy_insights_query_results do
       it { should exist }

@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureLock < AzureGenericResource
   name 'azure_lock'
-  desc 'Verifies settings for an Azure Lock'
+  desc 'Verifies settings for an Azure Lock.'
   example <<-EXAMPLE
-    describe azure_lock(resource_group: 'rg-1', name: 'my-lock-name') do
+    describe azure_lock(resource_group: 'RESOURCE_GROUP_NAME', name: 'RESOURCE_NAME') do
       it { should exist }
     end
   EXAMPLE

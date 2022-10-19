@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureIotHubEventHubConsumerGroups < AzureGenericResources
   name 'azure_iothub_event_hub_consumer_groups'
-  desc 'Verifies settings for Iot Hub Event Hub Consumer Groups'
+  desc 'Verifies settings for Iot Hub Event Hub Consumer Groups.'
   example <<-EXAMPLE
-    describe azure_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub') do
+    describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP_NAME', resource_name: 'RESOURCE_NAME', event_hub_endpoint: 'EVENT_HUB_ENDPOINT') do
       it { should exist }
     end
   EXAMPLE

@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureLoadBalancers < AzureGenericResources
   name 'azure_load_balancers'
-  desc 'Verifies settings for a collection of Azure Load Balancers'
+  desc 'Verifies settings for a collection of Azure Load Balancers.'
   example <<-EXAMPLE
     describe azure_load_balancers do
-        it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 

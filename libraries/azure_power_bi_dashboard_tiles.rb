@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzurePowerBIDashboardTiles < AzureGenericResources
   name 'azure_power_bi_dashboard_tiles'
-  desc 'Retrieves and verifies the settings of all Azure Power BI Dashboard Tiles'
+  desc 'Retrieves and verifies the settings of all Azure Power BI Dashboard Tiles.'
   example <<-EXAMPLE
-    describe azure_power_bi_dashboard_tiles(dashboard_id: 'b84b01c6-3262-4671-bdc8-ff99becf2a0b', group_id: '95a4871a-33a4-4f35-9eea-8ff006b4840b') do
+    describe azure_power_bi_dashboard_tiles(dashboard_id: 'POWERBI_DASHBOARD_ID', group_id: 'POWERBI_DASHBOARD_TILE_GROUP_ID') do
       it { should exist }
     end
   EXAMPLE

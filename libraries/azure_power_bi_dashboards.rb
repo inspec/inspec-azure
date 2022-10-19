@@ -4,7 +4,7 @@ class AzurePowerBIDashboards < AzureGenericResources
   name 'azure_power_bi_dashboards'
   desc 'Retrieves and verifies the settings of all Azure Power BI Dashboards.'
   example <<-EXAMPLE
-    describe azure_power_bi_dashboards(group_id: '95a4871a-33a4-4f35-9eea-8ff006b4840b') do
+    describe azure_power_bi_dashboards(group_id: 'POWERBI_DASHBOARD_GROUP_ID') do
       it { should exist }
     end
   EXAMPLE

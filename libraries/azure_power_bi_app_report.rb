@@ -4,7 +4,7 @@ class AzurePowerBIAppReport < AzureGenericResource
   name 'azure_power_bi_app_report'
   desc 'Retrieves and verifies the settings of a Azure Power BI App Report'
   example <<-EXAMPLE
-    describe azure_power_bi_app_report(app_id: 'f089354e-8366-4e18-aea3-4cb4a3a50b48', report_id: '335aee4b-7b38-48fd-9e2f-306c3fd67482') do
+    describe azure_power_bi_app_report(app_id: 'APP_ID', report_id: 'REPORT_ID') do
       it { should exist }
     end
   EXAMPLE

@@ -4,7 +4,7 @@ class AzureMigrateProjectDatabase < AzureGenericResource
   name 'azure_migrate_project_database'
   desc 'Retrieves and verifies the settings of an Azure Migrate Project Database.'
   example <<-EXAMPLE
-    describe azure_migrate_project_database(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'sql_db') do
+    describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP_NAME', project_name: 'MIGRATE_PROJ_NAME', name: 'MIGRATE_PROJ_DB_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureMigrateProjectMachines < AzureGenericResources
   name 'azure_migrate_project_machines'
-  desc 'Verifies settings for a collection of Azure Migrate Project Machines for a Azure Migrate Project in a Resource Group'
+  desc 'Verifies settings for a collection of Azure Migrate Project Machines for a Azure Migrate Project in a Resource Group.'
   example <<-EXAMPLE
-    describe azure_migrate_project_machines(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project') do
+    describe azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP_NAME', project_name: 'MIGRATE_PROJ_NAME') do
         it { should exist }
     end
   EXAMPLE

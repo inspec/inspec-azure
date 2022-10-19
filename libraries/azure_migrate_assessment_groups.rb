@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureMigrateAssessmentGroups < AzureGenericResources
   name 'azure_migrate_assessment_groups'
-  desc 'Verifies settings for a collection of Azure Migrate Assessment Groups in an Assessment Project'
+  desc 'Verifies settings for a collection of Azure Migrate Assessment Groups in an Assessment Project.'
   example <<-EXAMPLE
-    describe azure_migrate_assessment_groups(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project') do
-        it { should exist }
+    describe azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP_NAME', project_name: 'MIGRATE_PROJ_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureNetworkInterface < AzureGenericResource
   name 'azure_network_interface'
-  desc 'Verifies settings for an Azure Network Interface'
+  desc 'Verifies settings for an Azure Network Interface.'
   example <<-EXAMPLE
-    describe azure_network_interface(resource_group: 'rg-1', name: 'my-nic-name') do
+    describe azure_network_interface(resource_group: 'RESOURCE_GROUP_NAME', name: 'NETOWORK_INTERFACE_NAME') do
       it { should exist }
     end
   EXAMPLE

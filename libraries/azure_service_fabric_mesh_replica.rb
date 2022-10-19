@@ -4,9 +4,9 @@ class AzureServiceFabricMeshReplica < AzureGenericResource
   name 'azure_service_fabric_mesh_replica'
   desc 'Retrieves and verifies the settings of an Azure Service Fabric Mesh Service Replicas.'
   example <<-EXAMPLE
-    describe azure_service_fabric_mesh_replica(resource_group: 'RESOURCE_GROUP_NAME', 
-                                                application_name: 'APP_NAME', 
-                                                service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME', 
+    describe azure_service_fabric_mesh_replica(resource_group: 'RESOURCE_GROUP_NAME',#{' '}
+                                                application_name: 'APP_NAME',#{' '}
+                                                service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME',#{' '}
                                                 name: 'SERVICE_FABRIC_MESH_SERVICE_REPLICA_NAME') do
       it { should exist }
     end

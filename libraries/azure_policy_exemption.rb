@@ -4,7 +4,7 @@ class AzurePolicyExemption < AzureGenericResource
   name 'azure_policy_exemption'
   desc 'Retrieves and verifies policy exemption.'
   example <<-EXAMPLE
-    describe azure_policy_exemption(name: 'DemoExpensiveVM') do
+    describe azure_policy_exemption(name: 'POLICY_EXEMPTION_NAME') do
       it { should exist }
     end
 

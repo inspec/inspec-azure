@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureContainerRegistries < AzureGenericResources
   name 'azure_container_registries'
-  desc 'Verifies settings for a collection of Azure Container Registries'
+  desc 'Verifies settings for a collection of Azure Container Registries.'
   example <<-EXAMPLE
     describe azure_container_registries do
       it  { should exist }

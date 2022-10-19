@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzurePowerBIApp < AzureGenericResource
   name 'azure_power_bi_app'
-  desc 'Retrieves and verifies the settings of a Azure Power BI Gateway'
+  desc 'Retrieves and verifies the settings of a Azure Power BI Gateway.'
   example <<-EXAMPLE
-    describe azure_power_bi_app(app_id: 'f089354e-8366-4e18-aea3-4cb4a3a50b48') do
+    describe azure_power_bi_app(app_id: 'APP_ID') do
       it { should exist }
     end
   EXAMPLE

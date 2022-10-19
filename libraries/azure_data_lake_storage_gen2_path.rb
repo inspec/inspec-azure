@@ -4,7 +4,7 @@ class AzureDataLakeStorageGen2Path < AzureGenericResource
   name 'azure_data_lake_storage_gen2_path'
   desc 'Retrieves and verifies the settings of a Data Lake Storage Gen2 file system'
   example <<-EXAMPLE
-    describe azure_data_lake_storage_gen2_filesystem(account_name: 'adls', filesystem: 'filename1', name: 'pathname') do
+    describe azure_data_lake_storage_gen2_filesystem(account_name: 'ACCOUNT_NAME', filesystem: 'FILE_SYSTEM_NAME', name: 'FILE_SYSTEM_PATH_NAME') do
       it { should exist }
     end
   EXAMPLE

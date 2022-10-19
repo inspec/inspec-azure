@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzurePolicyDefinition < AzureGenericResource
   name 'azure_policy_definition'
-  desc 'Verifies settings for a policy definition'
+  desc 'Verifies settings for a policy definition.'
   example <<-EXAMPLE
-    describe azure_policy_definition(name: 'policy_name') do
+    describe azure_policy_definition(name: 'POLICY_DEFINITION_NAME') do
       it { should exist }
     end
   EXAMPLE

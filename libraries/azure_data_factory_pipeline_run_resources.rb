@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureDataFactoryPipelineRunResources < AzureGenericResources
   name 'azure_data_factory_pipeline_run_resources'
-  desc 'Lists all Data Factory Pipeline Runs'
+  desc 'Lists all Data Factory Pipeline Runs.'
   example <<-EXAMPLE
     describe azure_data_factory_pipeline_run_resources(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'FACTORY_NAME') do
       it { should exist }

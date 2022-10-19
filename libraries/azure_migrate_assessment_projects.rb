@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureMigrateAssessmentProjects < AzureGenericResources
   name 'azure_migrate_assessment_projects'
-  desc 'Verifies settings for a collection of Azure Migrate Assessment Projects in a subscription'
+  desc 'Verifies settings for a collection of Azure Migrate Assessment Projects in a subscription.'
   example <<-EXAMPLE
     describe azure_migrate_assessment_projects do
       it { should exist }

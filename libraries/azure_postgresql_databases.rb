@@ -2,11 +2,11 @@ require 'azure_generic_resources'
 
 class AzurePostgreSQLDatabases < AzureGenericResources
   name 'azure_postgresql_databases'
-  desc 'Verifies settings for a collection of Azure PostgreSQL Databases on a PostgreSQL Server'
+  desc 'Verifies settings for a collection of Azure PostgreSQL Databases on a PostgreSQL Server.'
   example <<-EXAMPLE
-    describe azure_postgresql_databases(resource_group: 'my-rg', server_name: 'server-1') do
-        it            { should exist }
-        its('names')  { should_not be_empty }
+    describe azure_postgresql_databases(resource_group: 'RESOURCE_GROUP_NAME', server_name: 'POSTGRESQL_SERVER_NAME') do
+      it { should exist }
+      its('names') { should_not be_empty }
     end
   EXAMPLE
 

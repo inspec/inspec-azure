@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzurePolicyExemptions < AzureGenericResources
   name 'azure_policy_exemptions'
-  desc 'Retrieves and verifies all policy exemptions that apply to a subscription'
+  desc 'Retrieves and verifies all policy exemptions that apply to a subscription.'
   example <<-EXAMPLE
     describe azure_policy_exemptions do
       it { should exist }

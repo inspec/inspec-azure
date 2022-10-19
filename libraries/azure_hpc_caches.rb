@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureHPCCaches < AzureGenericResources
   name 'azure_hpc_caches'
-  desc 'Verifies settings for a collection of Azure HPC Caches'
+  desc 'Verifies settings for a collection of Azure HPC Caches.'
   example <<-EXAMPLE
     describe azure_hpc_caches do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

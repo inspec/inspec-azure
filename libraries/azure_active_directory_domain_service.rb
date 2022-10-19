@@ -4,7 +4,7 @@ class AzureActiveDirectoryDomainService < AzureGraphGenericResource
   name 'azure_active_directory_domain_service'
   desc 'Verifies settings for an Azure AD Domain Service.'
   example <<-EXAMPLE
-    describe azure_active_directory_domain_service(id: 'test.onmicrosoft.com') do
+    describe azure_active_directory_domain_service(id: 'ACTIVE_DIRECTORY_DOMAIN_SERVICE_ID') do
       it { should exist }
     end
   EXAMPLE

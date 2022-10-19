@@ -4,7 +4,7 @@ class AzurePowerBICapacityRefreshables < AzureGenericResources
   name 'azure_power_bi_capacity_refreshables'
   desc 'Retrieves and verifies the settings of all Azure Power BI Capacities Refreshables.'
   example <<-EXAMPLE
-    describe azure_power_bi_capacity_refreshables(capacity_id: '0f084df7-c13d-451b-af5f-ed0c466403b2') do
+    describe azure_power_bi_capacity_refreshables(capacity_id: 'CAPACITY_ID') do
       it { should exist }
     end
   EXAMPLE

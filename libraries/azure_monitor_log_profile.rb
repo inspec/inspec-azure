@@ -2,12 +2,12 @@ require 'azure_generic_resource'
 
 class AzureMonitorLogProfile < AzureGenericResource
   name 'azure_monitor_log_profile'
-  desc 'Verifies settings for a Azure Monitor Log Profile'
+  desc 'Verifies settings for a Azure Monitor Log Profile.'
   example <<-EXAMPLE
     describe azure_monitor_log_profile(name: 'default') do
       it { should exist }
       its('retention_enabled') { should be true }
-      its('retention_days')    { should eq(365) }
+      its('retention_days') { should eq(365) }
     end
   EXAMPLE
 

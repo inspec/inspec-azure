@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureKeyVaultKey < AzureGenericResource
   name 'azure_key_vault_key'
-  desc 'Verifies configuration for an Azure Key within a Vault'
+  desc 'Verifies configuration for an Azure Key within a Vault.'
   example <<-EXAMPLE
-    describe azure_key_vault_key(vault_name: 'vault-101', key_name: 'key') do
+    describe azure_key_vault_key(vault_name: 'KEY_VAULT_NAME', key_name: 'KEY_VAULT_KEY_NAME') do
       it { should exist }
       its('attributes.enabled') { should eq true }
     end

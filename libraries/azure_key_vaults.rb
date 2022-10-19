@@ -2,11 +2,11 @@ require 'azure_generic_resources'
 
 class AzureKeyVaults < AzureGenericResources
   name 'azure_key_vaults'
-  desc 'Verifies settings for a collection of Azure Key Vaults'
+  desc 'Verifies settings for a collection of Azure Key Vaults.'
   example <<-EXAMPLE
-    describe azurerm_key_vaults(resource_group: 'rg-1') do
-        it              { should exist }
-        its('names')    { should include 'vault-1'}
+    describe azurerm_key_vaults(resource_group: 'RESOURCE_GROUP_NAME') do
+        it { should exist }
+        its('names') { should include 'KEY_VAULT_NAME'}
     end
   EXAMPLE
 

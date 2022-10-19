@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzurePostgreSQLServer < AzureGenericResource
   name 'azure_postgresql_server'
-  desc 'Verifies settings for an Azure PostgreSQL Server'
+  desc 'Verifies settings for an Azure PostgreSQL Server.'
   example <<-EXAMPLE
-    describe azure_postgresql_server(resource_group: 'rg-1', server_name: 'psql-srv') do
+    describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP_NAME', server_name: 'POSTGRESQL_SERVER_NAME') do
       it { should exist }
     end
   EXAMPLE

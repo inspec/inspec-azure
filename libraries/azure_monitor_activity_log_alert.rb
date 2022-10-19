@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureMonitorActivityLogAlert < AzureGenericResource
   name 'azure_monitor_activity_log_alert'
-  desc 'Verifies settings for a Azure Monitor Activity Log Alert'
+  desc 'Verifies settings for a Azure Monitor Activity Log Alert.'
   example <<-EXAMPLE
-    describe azure_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do
+    describe azure_monitor_activity_log_alert(resource_group: 'RESOURCE_GROUP_NAME', name: 'MONITOR_ACTIVITY_LOG_ALERT_NAME') do
       it { should exist }
       its('operations') { should include 'Microsoft.Authorization/policyAssignments/write' }
     end

@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureHPCStorageTargets < AzureGenericResources
   name 'azure_hpc_storage_targets'
-  desc 'Verifies settings for a collection of Azure HPC Storage Targets'
+  desc 'Verifies settings for a collection of Azure HPC Storage Targets.'
   example <<-EXAMPLE
-    describe azure_hpc_storage_targets(resource_group: 'inspec-rg', cache_name: 'sc1') do
+    describe azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP_NAME', cache_name: 'CACHE_NAME') do
         it { should exist }
     end
   EXAMPLE

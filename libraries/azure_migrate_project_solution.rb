@@ -4,7 +4,7 @@ class AzureMigrateProjectSolution < AzureGenericResource
   name 'azure_migrate_project_solution'
   desc 'Retrieves and verifies the settings of an Azure Migrate Project Solution'
   example <<-EXAMPLE
-    describe azure_migrate_project_solution(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project', name: 'zoneA_machines_migrate_solution') do
+    describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP_NAME', project_name: 'MIGRATE_PROJ_NAME', name: 'MIGRATE_PROJ_SOLUTION_NAME') do
       it { should exist }
     end
   EXAMPLE

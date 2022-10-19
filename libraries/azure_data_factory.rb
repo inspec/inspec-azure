@@ -2,7 +2,7 @@ require 'azure_generic_resource'
 
 class AzureDataFactory < AzureGenericResource
   name 'azure_data_factory'
-  desc 'Creates azure data factory'
+  desc 'Creates azure data factory.'
   example <<-EXAMPLE
     describe azure_data_factory(resource_group: 'RESOURCE_GROUP_NAME', name: 'FACTORY_NAME') do
       it { should exist }

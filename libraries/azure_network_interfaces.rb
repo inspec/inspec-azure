@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureNetworkInterfaces < AzureGenericResources
   name 'azure_network_interfaces'
-  desc 'Verifies settings for a collection of Azure Network Interfaces'
+  desc 'Verifies settings for a collection of Azure Network Interfaces.'
   example <<-EXAMPLE
     describe azure_network_interfaces do
-        it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 

@@ -4,7 +4,7 @@ class AzureMigrateAssessmentGroup < AzureGenericResource
   name 'azure_migrate_assessment_group'
   desc 'Retrieves and verifies the settings of a container group instance.'
   example <<-EXAMPLE
-    describe azure_migrate_assessment_groups(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_assessment_project', name: 'zoneA_machines_group') do
+    describe azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP_NAME', project_name: 'MIGRATE_PROJ_NAME', name: 'MIGRATE_ASSESSMENT_GROUP_NAME') do
       it { should exist }
     end
   EXAMPLE

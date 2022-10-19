@@ -4,7 +4,7 @@ class AzureManagedApplication < AzureGenericResource
   name 'azure_managed_application'
   desc 'Retrieves and verifies the settings of an Azure Managed Application.'
   example <<-EXAMPLE
-    describe azure_managed_application(resource_group: 'inspec-rg', name: 'app_name') do
+    describe azure_managed_application(resource_group: 'RESOURCE_GROUP_NAME', name: 'APP_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -2,10 +2,11 @@ require 'azure_generic_resource'
 
 class AzureMysqlServer < AzureGenericResource
   name 'azure_mysql_server'
-  desc 'Verifies settings for an Azure My SQL Server'
+  desc 'Verifies settings for an Azure MySQL Server.'
   example <<-EXAMPLE
-    describe azurerm_mysql_server(resource_group: 'example', server_name: 'vm-name') do
-      it { should have_monitoring_agent_installed }
+    describe azurerm_mysql_server(resource_group: 'RESOURCE_GROUP_NAME', server_name: 'MYSQL_SERVER_NAME') do
+      it { should exist }
+      its('name') { should eq 'MYSQL_SERVER_NAME' }
     end
   EXAMPLE
 

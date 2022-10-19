@@ -4,10 +4,10 @@ class AzureServiceBusSubscriptionRule < AzureGenericResource
   name 'azure_service_bus_subscription_rule'
   desc 'Retrieves and verifies the settings of an Azure Service Bus Subscription Rule.'
   example <<-EXAMPLE
-    describe azure_service_bus_subscription_rule(resource_group: 'RESOURCE_GROUP_NAME', 
-                                                  namespace_name: 'NAMESPACE_NAME', 
-                                                  topic_name: 'TOPIC_NAME', 
-                                                  subscription_name: 'SUBSCRIPTION_NAME', 
+    describe azure_service_bus_subscription_rule(resource_group: 'RESOURCE_GROUP_NAME',#{' '}
+                                                  namespace_name: 'NAMESPACE_NAME',#{' '}
+                                                  topic_name: 'TOPIC_NAME',#{' '}
+                                                  subscription_name: 'SUBSCRIPTION_NAME',#{' '}
                                                   name: 'RULE_NAME') do
       it { should exist }
     end

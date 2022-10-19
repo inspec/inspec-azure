@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzurePostgreSQLServers < AzureGenericResources
   name 'azure_postgresql_servers'
-  desc 'Verifies settings for a collection of Azure PostgreSQL Servers'
+  desc 'Verifies settings for a collection of Azure PostgreSQL Servers.'
   example <<-EXAMPLE
     describe azure_postgresql_servers do
-        its('names')  { should include 'my-sql-server' }
+      its('names') { should include 'my-sql-server' }
     end
   EXAMPLE
 
