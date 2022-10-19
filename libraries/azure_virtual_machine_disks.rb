@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureVirtualMachineDisks < AzureGenericResources
   name 'azure_virtual_machine_disks'
-  desc 'Verifies settings for a collection of Azure VM Disks'
+  desc 'Verifies settings for a collection of Azure VM Disks.'
   example <<-EXAMPLE
     describe azure_virtual_machine_disks do
-        it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 

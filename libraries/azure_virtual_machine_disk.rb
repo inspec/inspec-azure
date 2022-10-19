@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureVirtualMachineDisk < AzureGenericResource
   name 'azure_virtual_machine_disk'
-  desc 'Verifies settings for Azure Virtual Machine Disks'
+  desc 'Verifies settings for Azure Virtual Machine Disks.'
   example <<-EXAMPLE
-    describe azure_virtual_machine_disk(resource_group: 'example', name: 'disk-name') do
+    describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP_NAME', name: 'VIRTUAL_MACHINE_DISK_NAME') do
       it{ should exist }
     end
   EXAMPLE

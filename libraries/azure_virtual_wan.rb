@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureVirtualWan < AzureGenericResource
   name 'azure_virtual_wan'
-  desc 'Retrieves and verifies a Azure Virtual WAN in a Resource Group'
+  desc 'Retrieves and verifies a Azure Virtual WAN in a Resource Group.'
   example <<-EXAMPLE
-    describe azure_virtual_wan(resource_group: 'inspec-default', name: 'webservice-wan') do
+    describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP_NAME', name: 'VIRTUAL_WAN_NAME') do
       it { should exist }
     end
   EXAMPLE

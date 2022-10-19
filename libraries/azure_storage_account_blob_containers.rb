@@ -2,9 +2,10 @@ require 'azure_generic_resources'
 
 class AzureStorageAccountBlobContainers < AzureGenericResources
   name 'azure_storage_account_blob_containers'
-  desc 'Fetches all Blob Containers for an Azure Storage Account'
+  desc 'Fetches all Blob Containers for an Azure Storage Account.'
   example <<-EXAMPLE
-    describe azure_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'sa') do
+    describe azure_storage_account_blob_containers(resource_group: 'RESOURCE_GROUP_NAME', storage_account_name: 'STORAGE_ACCOUNT_NAME') do
+      it { should exist }
       its('names') { should include('my_blob_container') }
     end
   EXAMPLE

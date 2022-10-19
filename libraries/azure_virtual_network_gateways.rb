@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureVirtualNetworkGateways < AzureGenericResources
   name 'azure_virtual_network_gateways'
-  desc 'Verifies settings for Azure Virtual Network Gateways'
+  desc 'Verifies settings for Azure Virtual Network Gateways.'
   example <<-EXAMPLE
-    azure_virtual_network_gateways(resource_group: 'example') do
+    describe azure_virtual_network_gateways(resource_group: 'RESOURCE_GROUP_NAME') do
       it{ should exist }
     end
   EXAMPLE

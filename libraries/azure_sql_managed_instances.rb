@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureSQLManagedInstances < AzureGenericResources
   name 'azure_sql_managed_instances'
-  desc 'Verifies settings for a collection of Azure SQL Managed Instances'
+  desc 'Verifies settings for a collection of Azure SQL Managed Instances.'
   example <<-EXAMPLE
-    describe azure_sql_managed_instances(resource_group: 'migrated_vms') do
-        it { should exist }
+    describe azure_sql_managed_instances(resource_group: 'RESOURCE_GROUP_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

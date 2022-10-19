@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureSynapseWorkspaces < AzureGenericResources
   name 'azure_synapse_workspaces'
-  desc 'Verifies settings for a collection of Azure Synapse Workspaces'
+  desc 'Verifies settings for a collection of Azure Synapse Workspaces.'
   example <<-EXAMPLE
     describe azure_synapse_workspaces do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

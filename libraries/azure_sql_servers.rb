@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureSqlServers < AzureGenericResources
   name 'azure_sql_servers'
-  desc 'Verifies settings for a collection of Azure SQL Servers'
+  desc 'Verifies settings for a collection of Azure SQL Servers.'
   example <<-EXAMPLE
     describe azure_sql_servers do
-        it  { should exist }
+      it  { should exist }
     end
   EXAMPLE
 

@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureDataLakeStorageGen2Filesystem < AzureGenericResource
   name 'azure_data_lake_storage_gen2_filesystem'
-  desc 'Retrieves and verifies the settings of a Data Lake Storage Gen2 file system'
+  desc 'Retrieves and verifies the settings of a Data Lake Storage Gen2 file system.'
   example <<-EXAMPLE
-    describe azure_data_lake_storage_gen2_filesystem(account_name: 'adls', name: 'filename1') do
+    describe azure_data_lake_storage_gen2_filesystem(account_name: 'ACCOUNT_NAME', name: 'FILESYSTEM_NAME') do
       it { should exist }
     end
   EXAMPLE

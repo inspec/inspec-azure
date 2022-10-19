@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureSQLVirtualMachineGroupAvailabilityListeners < AzureGenericResources
   name 'azure_sql_virtual_machine_group_availability_listeners'
-  desc 'Verifies settings for a collection of Azure SQL Virtual Machine Group Availability Listeners'
+  desc 'Verifies settings for a collection of Azure SQL Virtual Machine Group Availability Listeners.'
   example <<-EXAMPLE
-    describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'inspec-def-rg', sql_virtual_machine_group_name: 'inspec-sql-vm-group') do
-        it { should exist }
+    describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP_NAME', sql_virtual_machine_group_name: 'SQL_VM_GROUP_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

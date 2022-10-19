@@ -2,7 +2,7 @@ require 'azure_generic_resources'
 
 class AzureVirtualWans < AzureGenericResources
   name 'azure_virtual_wans'
-  desc 'Lists and verifies all Azure Virtual WANs'
+  desc 'Lists and verifies all Azure Virtual WANs.'
   example <<-EXAMPLE
     describe azure_virtual_wans do
       it { should exist }

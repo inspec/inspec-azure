@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureWebapp < AzureGenericResource
   name 'azure_webapp'
-  desc 'Verifies the settings for Azure Webapps'
+  desc 'Verifies the settings for Azure Webapps.'
   example <<-EXAMPLE
-    describe azure_webapp(resource_group: 'example', name: 'webapp-name') do
+    describe azure_webapp(resource_group: 'RESOURCE_GROUP_NAME', name: 'WEBAPP_NAME') do
       it { should exist }
     end
   EXAMPLE

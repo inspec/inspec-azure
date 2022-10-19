@@ -4,7 +4,7 @@ class AzureSQLVirtualMachineGroupAvailabilityListener < AzureGenericResource
   name 'azure_sql_virtual_machine_group_availability_listener'
   desc 'Retrieves and verifies the settings of an Azure SQL Virtual Machine Group Availability Listener.'
   example <<-EXAMPLE
-    describe azure_sql_virtual_machine_group_availability_listener(resource_group: 'inspec-def-rg', sql_virtual_machine_group_name: 'inspec-sql-vm-group', name: 'inspec-avl') do
+    describe azure_sql_virtual_machine_group_availability_listener(resource_group: 'RESOURCE_GROUP_NAME', sql_virtual_machine_group_name: 'SQL_VM_GROUP_NAME', name: 'LISTENER_NAME') do
       it { should exist }
     end
   EXAMPLE

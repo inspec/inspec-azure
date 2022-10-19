@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureVirtualMachines < AzureGenericResources
   name 'azure_virtual_machines'
-  desc 'Verifies settings for Azure Virtual Machines'
+  desc 'Verifies settings for Azure Virtual Machines.'
   example <<-EXAMPLE
-    describe azure_virtual_machines(resource_group: 'example') do
+    describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP_NAME') do
       it{ should exist }
     end
   EXAMPLE

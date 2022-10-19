@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureSubnets < AzureGenericResources
   name 'azure_subnets'
-  desc 'Verifies settings for Azure Virtual Network Subnets'
+  desc 'Verifies settings for Azure Virtual Network Subnets.'
   example <<-EXAMPLE
-    describe azure_subnets(resource_group: 'example', vnet: 'virtual-network-name') do
+    describe azure_subnets(resource_group: 'RESOURCE_GROUP_NAME', vnet: 'VIRTUAL_NETWORK_NAME') do
       it{ should exist }
     end
   EXAMPLE

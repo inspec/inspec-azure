@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureSubscriptions < AzureGenericResources
   name 'azure_subscriptions'
-  desc 'Verifies settings for the Azure Subscription within a tenant'
+  desc 'Verifies settings for the Azure Subscription within a tenant.'
   example <<-EXAMPLE
     describe azure_subscriptions do
-      its('display_names') { should include 'Demo Resources' }
+      its('display_names') { should include 'SUBSCRIPTION_NAME' }
     end
   EXAMPLE
 

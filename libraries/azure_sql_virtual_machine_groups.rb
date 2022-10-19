@@ -2,10 +2,10 @@ require 'azure_generic_resources'
 
 class AzureSQLVirtualMachineGroups < AzureGenericResources
   name 'azure_sql_virtual_machine_groups'
-  desc 'Verifies settings for a collection of Azure SQL Virtual Machine Groups'
+  desc 'Verifies settings for a collection of Azure SQL Virtual Machine Groups.'
   example <<-EXAMPLE
     describe azure_sql_virtual_machine_groups do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

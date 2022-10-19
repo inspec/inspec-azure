@@ -2,9 +2,9 @@ require 'azure_generic_resource'
 
 class AzureSqlServer < AzureGenericResource
   name 'azure_sql_server'
-  desc 'Verifies settings for an Azure SQL Server'
+  desc 'Verifies settings for an Azure SQL Server.'
   example <<-EXAMPLE
-    describe azure_sql_server(resource_group: 'rg-1', name: 'my-server-name') do
+    describe azure_sql_server(resource_group: 'RESOURCE_GROUP_NAME', name: 'SERVER_NAME') do
       it { should exist }
     end
   EXAMPLE

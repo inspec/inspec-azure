@@ -3,9 +3,9 @@ require 'active_support/core_ext/hash'
 
 class AzureStorageAccount < AzureGenericResource
   name 'azure_storage_account'
-  desc 'Verifies settings for a Azure Storage Account'
+  desc 'Verifies settings for a Azure Storage Account.'
   example <<-EXAMPLE
-    describe azure_storage_account(resource_group: 'r-group', name: 'default') do
+    describe azure_storage_account(resource_group: 'RESOURCE_GROUP_NAME', name: 'STORAGE_ACCOUNT_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -2,12 +2,10 @@ require 'azure_generic_resource'
 
 class AzureStorageAccountBlobContainer < AzureGenericResource
   name 'azure_storage_account_blob_container'
-  desc 'Verifies settings for a Azure Storage Account Blob Container'
+  desc 'Verifies settings for a Azure Storage Account Blob Container.'
   example <<-EXAMPLE
-    describe azure_storage_account_blob_container(resource_group: 'rg',
-                                                    storage_account_name: 'default',
-                                                    name: 'logs') do
-      it          { should exist }
+    describe azure_storage_account_blob_container(resource_group: 'RESOURCE_GROUP_NAME', storage_account_name: 'STORAGE_ACCOUNT_NAME', name: 'BLOB_CONTAINER_NAME') do
+      it { should exist }
       its('name') { should eq('logs') }
     end
   EXAMPLE

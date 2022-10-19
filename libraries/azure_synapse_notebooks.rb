@@ -2,9 +2,9 @@ require 'azure_generic_resources'
 
 class AzureSynapseNotebooks < AzureGenericResources
   name 'azure_synapse_notebooks'
-  desc 'Verifies settings for the Azure Synapse Notebooks within a tenant'
+  desc 'Verifies settings for the Azure Synapse Notebooks within a tenant.'
   example <<-EXAMPLE
-    describe azure_synapse_notebooks(endpoint: 'https://analytics.dev.azuresynapse.net') do
+    describe azure_synapse_notebooks(endpoint: 'ENDPOINT_NAME') do
       it { should exist }
     end
   EXAMPLE
