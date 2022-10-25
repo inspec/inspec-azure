@@ -10,19 +10,16 @@ identifier = "inspec/resources/azure/azure_sentinel_alert_rule_templates Resourc
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sentinel_alert_rule_templates` InSpec audit resource to test properties related to alert rule templates for a resource group or the entire subscription.
+Use the `azure_sentinel_alert_rule_templates` InSpec audit resource to test the properties related to alert rule templates for a resource group or the entire subscription.
 
-See the [`Azure alert rule templates documentation`](https://docs.microsoft.com/en-us/rest/api/securityinsights/alert-rule-templates/list) for additional information.
+See the [`Azure alert rule templates documentation`](https://docs.microsoft.com/en-us/rest/api/securityinsights/preview/alert-rule-templates/list) for additional information.
 
 ## Azure Rest API Version, Endpoint, And HTTP Client Parameters
 
-This resource interacts with API versions supported by the resource provider.
-The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used.
-For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
+This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
+If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
 
-Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used.
-For more information, refer to the resource pack [README](https://github.com/inspec/inspec-azure/blob/main/README.md).
+Unless defined, `azure_cloud` global endpoint, and default values for the HTTP client will be used. For more information, refer to the resource pack [README](https://github.com/inspec/inspec-azure/blob/main/README.md).
 
 ## Installation
 
@@ -30,7 +27,7 @@ For more information, refer to the resource pack [README](https://github.com/ins
 
 ## Syntax
 
-An `azure_sentinel_alert_rule_templates` resource block returns all Azure alert rule templates, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_sentinel_alert_rule_templates` resource block returns all Azure alert rule templates, either within a resource group (if provided) or an entire Subscription.
 
 ```ruby
 describe azure_sentinel_alert_rule_templates(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
@@ -40,11 +37,10 @@ end
 
 `resource_group` and `workspace_name` are required parameters.
 
-
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `workspace_name`
 : Azure workspace Name for which alert rule templates are being retrieved.
@@ -57,7 +53,7 @@ end
 : **Field**: `name`
 
 `ids`
-: A list of alert rule templates IDs .
+: A list of alert rule templates IDs.
 
 : **Field**: `id`
 
@@ -82,22 +78,22 @@ end
 : **Field**: `status`
 
 `triggerThresholds`
-: The email of the user the incident is assigned to.
+: The user's email the incident is assigned to.
 
 : **Field**: `triggerThreshold`
 
 `displayNames`
-: The user principal name of the user the incident is assigned to.
+: The user's principal name the incident is assigned to.
 
 : **Field**: `displayName`
 
 `triggerOperators`
-: The name of the user the incident is assigned to.
+: The user's name the incident is assigned to.
 
 : **Field**: `triggerOperator`
 
 `queryPeriods`
-: The List of period (in ISO 8601 duration format) that this alert rule looks at.
+: The list of period (in ISO 8601 duration format) that this alert rule looks at.
 
 : **Field**: `queryPeriod`
 
@@ -127,7 +123,7 @@ describe azure_sentinel_alert_rule_templates(resource_group: 'RESOURCE_GROUP', w
 end
 ```
 
-**Test if any alert rule templates exist in the resource group.**
+### Test if any alert rule templates exist in the resource group
 
 ```ruby
 describe azure_sentinel_alert_rule_templates(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
@@ -135,7 +131,7 @@ describe azure_sentinel_alert_rule_templates(resource_group: 'RESOURCE_GROUP', w
 end
 ```
 
-**Test that there aren't any alert rule templates in a resource group.**
+### Test that there aren't any alert rule templates in a resource group
 
 ```ruby
 **Should not exist if no alert rule templates are in the resource group.**

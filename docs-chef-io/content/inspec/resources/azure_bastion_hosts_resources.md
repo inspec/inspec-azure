@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_bastion_hosts_resources Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_bastion_hosts_resources` InSpec audit resource to test properties of Azure Bastion hosts for a resource group or the entire subscription.
+Use the `azure_bastion_hosts_resources` InSpec audit resource to test the properties of Azure Bastion hosts for a resource group or the entire subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,10 +22,10 @@ Use the `azure_bastion_hosts_resources` InSpec audit resource to test properties
 
 ## Syntax
 
-An `azure_bastion_hosts_resource` resource block returns all Azure Bastion hots, either within a Resource Group (if provided)
+An `azure_bastion_hosts_resource` resource block returns all Azure Bastion hosts within a resource group (if provided).
 
 ```ruby
-describe azure_bastion_hosts_resources(resource_group: 'my-rg') do
+describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
   ..
 end
 ```
@@ -72,7 +72,7 @@ end
 
 ## Examples
 
-**Ensure that the Bastion hosts resource has is from same type.**
+### Test to ensure that the Bastion hosts resource is from the same type
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
@@ -80,7 +80,7 @@ describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-**Ensure that the Bastion hosts resource is in successful state.**
+### Test to ensure that the Bastion hosts resource is in a successful state
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
@@ -88,7 +88,7 @@ describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-**Ensure that the Bastion hosts resource is from same location.**
+### Test to ensure that the Bastion hosts resource is from the same location
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
@@ -96,7 +96,7 @@ describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-**Test if any Bastion hosts exist in the resource group.**
+### Test if any Bastion hosts exist in the resource group
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
@@ -111,7 +111,7 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Bastion hots are in the resource group
+# Should not exist if no Bastion hots are in the resource group.
 
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }

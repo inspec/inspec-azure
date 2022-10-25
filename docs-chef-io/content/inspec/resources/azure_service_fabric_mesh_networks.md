@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_fabric_mesh_networks Resource
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_fabric_mesh_networks` InSpec audit resource to test properties of all Azure Service Fabric Mesh networks.
+Use the `azure_service_fabric_mesh_networks` InSpec audit resource to test the properties of all Azure Service Fabric Mesh networks.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group` _(optional)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -43,7 +43,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-**Loop through Service Fabric Mesh networks by their names.**
+### Loop through Service Fabric Mesh networks by their names
 
 ```ruby
 azure_service_fabric_mesh_networks(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -86,7 +86,7 @@ azure_service_fabric_mesh_networks(resource_group: 'RESOURCE_GROUP').names.each 
 end
 ```
 
-**Test that there are Service Fabric Mesh networks that are successfully provisioned.**
+### Test that there are Service Fabric Mesh networks that are successfully provisioned
 
 ```ruby
 describe azure_service_fabric_mesh_networks(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do
@@ -101,12 +101,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Fabric Mesh networks are present
+# Should not exist if no Service Fabric Mesh networks are present.
 
 describe azure_service_fabric_mesh_networks(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Fabric Mesh networks
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Fabric Mesh networks.
 
 describe azure_service_fabric_mesh_networks(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

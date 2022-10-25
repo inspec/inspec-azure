@@ -10,8 +10,6 @@ identifier = "inspec/resources/azure/azure_power_bi_embedded_capacities Resource
 parent = "inspec/resources/azure"
 +++
 
-### azure_power_bi_embedded_capacities
-
 Use the `azure_power_bi_embedded_capacities` InSpec audit resource to test the properties related to all Azure Power BI Embedded Capacities within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
@@ -45,17 +43,17 @@ The following parameters are optional,`account_name` and `dns_suffix`.
 ## Properties
 
 `ids`
-: A list of PowerBI Dedicated resources.
+: A list of Power BI dedicated resources.
 
 : **Field**: `id`
 
 `names`
-: The names of all the PowerBI Dedicated resource.
+: The names of all the Power BI dedicated resources.
 
 : **Field**: `name`
 
 `locations`
-: A location list of all the PowerBI Dedicated resource.
+: A location list of all the Power BI dedicated resources.
 
 : **Field**: `location`
 
@@ -70,22 +68,22 @@ The following parameters are optional,`account_name` and `dns_suffix`.
 : **Field**: `provisioningState`
 
 `states`
-: The current state of all PowerBI Dedicated resources.
+: The current state of all Power BI dedicated resources.
 
 : **Field**: `state`
 
 `sku_names`
-: The SKU name of the PowerBI Dedicated resource.
+: The SKU name of the Power BI dedicated resource.
 
 : **Field**: `sku_name`
 
 `sku_tiers`
-: The SKU tier of the PowerBI Dedicated resource.
+: The SKU tier of the Power BI dedicated resource.
 
 : **Field**: `sku_tier`
 
 `sku_capacities`
-: The SKU capacities of the PowerBI Dedicated resource.
+: The SKU capacities of the Power BI dedicated resource.
 
 : **Field**: `sku_capacity`
 
@@ -98,7 +96,7 @@ The following parameters are optional,`account_name` and `dns_suffix`.
 
 ## Examples
 
-**Loop through Power BI Embedded Capacities by their names.**
+### Loop through Power BI Embedded Capacities by their names
 
 ```ruby
 azure_power_bi_embedded_capacities.names.each do |name|
@@ -108,7 +106,7 @@ azure_power_bi_embedded_capacities.names.each do |name|
 end
 ```
 
-**Test to ensure Power BI Embedded Capacities where sku_capacities greater than 1.**
+### Test to ensure Power BI Embedded Capacities where `sku_capacities` greater than 1
 
 ```ruby
 describe azure_power_bi_embedded_capacities.where(sku_capacity > 1 ) do
@@ -123,13 +121,17 @@ end
 ### exists
 
 ```ruby
-# Should exist if the filter returns at least one Migrate Assessment in the project and in the resource group
+# Should exist if the filter returns at least one Migrate Assessment in the project and the resource group.
 
 describe azure_power_bi_embedded_capacities do
   it { should exist }
 end
+```
 
-# Should not exist if no Power BI Embedded Capacities are present in the project and in the resource group
+### not_exists
+
+```ruby
+# Should not exist if no Power BI Embedded Capacities are present in the project and the resource group.
 
 describe azure_power_bi_embedded_capacities do
   it { should_not exist }

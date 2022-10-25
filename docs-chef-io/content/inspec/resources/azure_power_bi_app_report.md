@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_power_bi_app_report Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_power_bi_app_report` InSpec audit resource to test the properties related to Azure Power BI App report.
+Use the `azure_power_bi_app_report` InSpec audit resource to test the properties related to an Azure Power BI app report.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -32,11 +32,11 @@ end
 
 `app_id` _(required)_
 
-: The App ID.
+: The app ID.
 
 `report_id` _(required)_
 
-: The App report ID.
+: The app report ID.
 
 ## Properties
 
@@ -44,10 +44,10 @@ end
 : The report ID.
 
 `appId`
-: The App ID.
+: The app ID.
 
 `embedUrl`
-: The report embed url.
+: The report embed URL.
 
 `datasetId`
 : The dataset ID.
@@ -56,7 +56,7 @@ end
 : The report name.
 
 `webUrl`
-: The report web url.
+: The report web URL.
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
@@ -64,7 +64,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Test that the Power BI App report is paginated and embed URL is present.**
+### Test that the Power BI app report is paginated and embed URL is present
 
 ```ruby
 describe azure_power_bi_app_report(app_id: 'APP_ID', report_id: 'REPORT_ID')  do
@@ -87,6 +87,8 @@ describe azure_power_bi_app_report(app_id: 'APP_ID', report_id: 'REPORT_ID')  do
 end
 ```
 
+### not_exists
+
 Use `should_not` to test that the entity does not exist.
 
 ```ruby
@@ -98,4 +100,4 @@ end
 ## Azure Permissions
 
 This API does not support service principal authentication. Instead, use an Active Directory account access token to access this resource.
-Your Active Directory account must be set up with a `Report.Read.All` role on the Azure Power BI workspace that you wish to test.
+Your Active Directory account must be set up with a `Report.Read.All` role on the Azure Power BI workspace you wish to test.

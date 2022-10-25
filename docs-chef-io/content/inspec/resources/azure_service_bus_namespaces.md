@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_bus_namespaces Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_bus_namespaces` InSpec audit resource to test properties related to all Azure Service Bus namespaces within a project.
+Use the `azure_service_bus_namespaces` InSpec audit resource to test the properties related to all Azure Service Bus Namespaces within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_service_bus_namespaces` InSpec audit resource to test properties 
 
 ## Syntax
 
-An `azure_service_bus_namespaces` resource block returns all Azure Service Bus namespaces within a project.
+An `azure_service_bus_namespaces` resource block returns all Azure Service Bus Namespaces within a project.
 
 ```ruby
 describe azure_service_bus_namespaces do
@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group` _(optional)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -43,7 +43,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -53,7 +53,7 @@ end
 : **Field**: `type`
 
 `properties`
-: A list of Properties for all the Service Bus namespaces.
+: A list of properties for all the Service Bus Namespaces.
 
 : **Field**: `properties`
 
@@ -73,7 +73,7 @@ end
 : **Field**: `metricId`
 
 `provisioningStates`
-: A list of provisioning states of the namespace..
+: A list of provisioning states of the namespace.
 
 : **Field**: `provisioningState`
 
@@ -91,7 +91,7 @@ end
 
 ## Examples
 
-**Loop through Service Bus namespaces by their names.**
+### Loop through Service Bus Namespaces by their names
 
 ```ruby
 azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -101,7 +101,7 @@ azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP').names.each do |na
 end
 ```
 
-**Test that there are Service Bus namespaces that are successfully provisioned.**
+### Test that there are Service Bus Namespaces that are successfully provisioned
 
 ```ruby
 describe azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do
@@ -116,12 +116,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Bus namespaces are present
+# Should not exist if no Service Bus Namespaces are present.
 
 describe azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Bus namespaces
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Bus Namespaces.
 
 describe azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

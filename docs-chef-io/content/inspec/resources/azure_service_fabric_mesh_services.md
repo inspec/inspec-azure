@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_fabric_mesh_services Resource
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_fabric_mesh_services` InSpec audit resource to test properties of all Azure service Fabric Mesh services within a project.
+Use the `azure_service_fabric_mesh_services` InSpec audit resource to test the properties of all Azure Service Fabric Mesh services within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group` _(optional)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -43,7 +43,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -68,7 +68,7 @@ end
 : **Field**: `metricId`
 
 `healthStates`
-: health state of an services resource.
+: The health state of a services resource.
 
 : **Field**: `healthState`
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-**Loop through service Fabric Mesh services by their names.**
+### Loop through service Fabric Mesh services by their names
 
 ```ruby
 azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -86,7 +86,7 @@ azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP').names.each 
 end
 ```
 
-**Test that there are service Fabric Mesh services that are healthy.**
+### Test that there are service Fabric Mesh services that are healthy
 
 ```ruby
 describe azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP').where(replicaCounts: 2) do
@@ -101,12 +101,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no service Fabric Mesh services are present
+# Should not exist if no service Fabric Mesh services are present.
 
 describe azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one service Fabric Mesh services
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one service Fabric Mesh services.
 
 describe azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

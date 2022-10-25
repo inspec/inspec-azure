@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_resource_groups Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_resource_groups` InSpec audit resource to test properties and configuration of multiple Azure resource groups.
+Use the `azure_resource_groups` InSpec audit resource to test the properties and configuration of multiple Azure resource groups.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -37,7 +37,7 @@ This resource does not require any parameters.
 ## Properties
 
 `ids`
-: A list of the unique resource group ids.
+: A list of the unique resource group IDs.
 
 : **Field**: `id`
 
@@ -60,7 +60,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-**Check if a specific resource group is present.**
+### Check if a specific resource group is present
 
 ```ruby
 describe azure_resource_groups do
@@ -68,7 +68,7 @@ describe azure_resource_groups do
 end
 ```
 
-**Filters the Results to Include Only Those Resource Groups which Include the Given Name.**
+### Filters the results to include only those resource groups that have the specified name
 
 ```ruby
 describe azure_resource_groups.where{ name.include?('my-resource-group') } do
@@ -76,7 +76,7 @@ describe azure_resource_groups.where{ name.include?('my-resource-group') } do
 end
 ```
 
-**Filters the Results to Include Only The Resource Groups that Have Certain Tag.**
+### Filters the results to include only the resource groups that have specified tag
 
 ```ruby
 describe azure_resource_groups.where{ tags.has_key?('owner') && tags['owner'] == "InSpec" } do
@@ -91,7 +91,7 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
 ```ruby
 describe azure_resource_groups do

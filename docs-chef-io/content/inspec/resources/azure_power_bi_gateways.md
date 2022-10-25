@@ -30,8 +30,6 @@ describe azure_power_bi_gateways do
 end
 ```
 
-## Parameters
-
 ## Properties
 
 `ids`
@@ -59,13 +57,12 @@ end
 
 : **Field**: `modulus`
 
-
 {{% inspec_filter_table %}}
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/Gateways/get-Gateways) for other  available properties.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/Gateways/get-Gateways) for other available properties.
 
 ## Examples
 
-**Loop through Power BI gateways by their IDs.**
+### Loop through Power BI gateways by their IDs
 
 ```ruby
 azure_power_bi_gateways.ids.each do |id|
@@ -75,7 +72,7 @@ azure_power_bi_gateways.ids.each do |id|
 end
 ```
 
-**Test to ensure all Power BI gateways exponent is `AQAB`.**
+### Test to ensure all Power BI gateways exponent is 'AQAB'
 
 ```ruby
 describe azure_power_bi_gateways.where(exponent: 'AQAB') do
@@ -90,12 +87,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI gateways are present
+# Should not exist if no Power BI gateways are present.
 
 describe azure_power_bi_gateways do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI gateways
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Power BI gateway.
 
 describe azure_power_bi_gateways do
   it { should exist }

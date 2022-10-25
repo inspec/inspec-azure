@@ -49,7 +49,7 @@ end
 ## Properties
 
 `id`
-: The operation Id.
+: The operation ID.
 
 `name`
 : The operation name.
@@ -63,13 +63,13 @@ end
 `endTime`
 : The end time of the operation.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storagecache/asc-operations/get#ascoperation) for other properties available.
 
 ## Examples
 
-**Test that the HPC ASC Operation is Succeeded.**
+### Test that the HPC ASC operation is succeeded
 
 ```ruby
 describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
@@ -84,11 +84,18 @@ end
 ### exists
 
 ```ruby
-# If a HPC ASC Operation is found it will exist
+# If an HPC ASC Operation is found, it will exist.
+
 describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
   it { should exist }
 end
-# if HPC ASC Operation is not found it will not exist
+```
+
+### not_exists
+
+```ruby
+# If an HPC ASC Operation is not found, it will not exist.
+
 describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do
   it { should_not exist }
 end

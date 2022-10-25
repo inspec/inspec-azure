@@ -22,7 +22,7 @@ Use the `azure_hpc_cache` InSpec audit resource to test the properties related t
 
 ## Syntax
 
-`name`, `cache_name`, `resource_group` are required parameters.
+`name`, `cache_name`, and `resource_group` are required parameters.
 
 ```ruby
 describe azure_hpc_cache(resource_group: 'RESOURCE_GROUP', name: 'HPC_CACHE_NAME') do
@@ -55,7 +55,7 @@ end
 : Name of the HPC Cache.
 
 `type`
-: Type of the Cache, `Microsoft.StorageCache/Cache`.
+: Type of the HPC Cache, `Microsoft.StorageCache/Cache`.
 
 `location`
 : Region name string.
@@ -64,21 +64,21 @@ end
 : The properties of the HPC Cache.
 
 `properties.cacheSizeGB`
-: The size of this Cache, in GB.
+: The size of this HPC Cache (in GB).
 
 `properties.subnet`
-: The Subnet used for the Cache.
+: The subnet used for the HPC Cache.
 
 `properties.health`
-: Health of the Cache.
+: Health of the HPC Cache.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, ane `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storagecache/caches/get#cache) for other properties available.
 
 ## Examples
 
-**Test that the HPC Cache is provisioned.**
+### Test that the HPC Cache is provisioned
 
 ```ruby
 describe azure_hpc_cache(resource_group: 'RESOURCE_GROUP', name: 'HPC_CACHE_NAME') do
@@ -93,14 +93,17 @@ end
 ### exists
 
 ```ruby
-
-# If an HPC Cache is found, it will exist
+# If an HPC Cache is found, it will exist.
 
 describe azure_hpc_cache(resource_group: 'RESOURCE_GROUP', name: 'HPC_CACHE_NAME') do
   it { should exist }
 end
+```
 
-# If an HPC Cache is not found, it will not exist
+### not_exists
+
+```ruby
+# If an HPC Cache is not found, it will not exist.
 
 describe azure_hpc_cache(resource_group: 'RESOURCE_GROUP', name: 'HPC_CACHE_NAME') do
   it { should_not exist }

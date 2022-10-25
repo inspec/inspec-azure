@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_sql_virtual_machine Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sql_virtual_machine` Chef InSpec audit resource to test properties of an Azure SQL virtual machine.
+Use the `azure_sql_virtual_machine` Chef InSpec audit resource to test the properties of an Azure SQL virtual machine.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -44,7 +44,7 @@ end
 
 `resource_group` _(required)_
 
-: Azure resource group that the targeted resource resides in.  |
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -66,14 +66,13 @@ end
 `properties.provisioningState`
 : State of the resource.
 
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
-
-Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/sqlvm/sql-virtual-machines/get) for other properties available.
+Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/compute/virtual-machines/get) for other properties available.
 
 ## Examples
 
-**Test that the SQL virtual machine is provisioned successfully.**
+### Test that the SQL virtual machine is provisioned successfully
 
 ```ruby
 describe azure_sql_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'SQL_VM_NAME') do
@@ -88,12 +87,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If a SQL Virtual Machine is found it will exist
+# If a SQL Virtual Machine is found, it will exist.
 
 describe azure_sql_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'SQL_VM_NAME') do
   it { should exist }
 end
-# if SQL Virtual Machine is not found it will not exist
+```
+
+### not_exists
+
+```ruby
+# If SQL Virtual Machine is not found, it will not exist.
 
 describe azure_sql_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'SQL_VM_NAME') do
   it { should_not exist }

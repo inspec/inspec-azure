@@ -22,7 +22,7 @@ Use the `azure_power_bi_dataflow_storage_accounts` InSpec audit resource to test
 
 ## Syntax
 
-An `azure_power_bi_dataflow_storage_accounts` resource block returns all Azure Power BI dataflow storage account.
+An `azure_power_bi_dataflow_storage_accounts` resource block returns all Azure Power BI dataflow storage accounts.
 
 ```ruby
 describe azure_power_bi_dataflow_storage_accounts do
@@ -52,11 +52,12 @@ This resource does not require any parameters.
 : **Field**: `isEnabled`
 
 {{% inspec_filter_table %}}
+
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/dataflow-storage-accounts/get-dataflow-storage-accounts) for other properties available.
 
 ## Examples
 
-**Test that Power BI dataflow storage account is enabled .**
+### Test that the Power BI dataflow storage account is enabled
 
 ```ruby
 describe azure_power_bi_dataflow_storage_accounts.where(isEnabled: true) do
@@ -71,12 +72,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI dataflow storage account are present
+# Should not exist if no Power BI dataflow storage account is present.
 
 describe azure_power_bi_dataflow_storage_accounts do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI dataflow storage account
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Power BI dataflow storage account.
 
 describe azure_power_bi_dataflow_storage_accounts do
   it { should exist }

@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_migrate_project_databases Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_migrate_project_databases` InSpec audit resource to test the properties of all Azure Migrate project databases within a project.
+Use the `azure_migrate_project_databases` InSpec audit resource to test the properties of all Azure Migrate Project databases within a project.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_migrate_project_databases` InSpec audit resource to test the prop
 
 ## Syntax
 
-An `azure_migrate_project_databases` resource block returns all Azure Migrate project databases within a project.
+An `azure_migrate_project_databases` resource block returns all Azure Migrate Project databases within a project.
 
 ```ruby
 describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
@@ -33,14 +33,12 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `project_name`
 : Azure Migrate Project.
 
-The parameter set should be provided for a valid query:
-
-- `resource_group` and `project_name`.
+The parameter set should be provided for a valid query is`resource_group` and `project_name`.
 
 ## Properties
 
@@ -70,7 +68,7 @@ The parameter set should be provided for a valid query:
 : **Field**: `assessmentData`
 
 `assessmentIds`
-: The database assessment scopes/Ids.
+: The database assessment scopes/IDs.
 
 : **Field**: `assessmentId`
 
@@ -110,7 +108,7 @@ The parameter set should be provided for a valid query:
 : **Field**: `extendedInfo`
 
 `instanceIds`
-: The database server instance Ids.
+: The database server instance IDs.
 
 : **Field**: `instanceId`
 
@@ -143,7 +141,7 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-**Loop through Migrate project databases by their names.**
+### Loop through Migrate Project databases by their names
 
 ```ruby
 azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -153,7 +151,7 @@ azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 
 end
 ```
 
-**Test there are Migrate project databases are ready for migration.**
+### Test there are Migrate Project databases are ready for migration
 
 ```ruby
 describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ isReadyForMigration.include?(true) } do
@@ -168,13 +166,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Migrate project databases are present in the project and in the resource group
+# Should not exist if no Migrate Project databases are present in the project and the resource group.
 
 describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should_not exist }
 end
+```
 
-# Should exist if the filter returns at least one Migrate project databases in the project and in the resource group
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Migrate project databases in the project and the resource group.
 
 describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME') do
   it { should exist }

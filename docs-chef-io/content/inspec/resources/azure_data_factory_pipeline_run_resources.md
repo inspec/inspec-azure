@@ -10,9 +10,9 @@ identifier = "inspec/resources/azure/azure_data_factory_pipeline_run_resources R
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_data_factory_pipeline_run_resources` InSpec audit resource to test the properties multiple Azure Data Factory pipeline runs for a resource group or the entire subscription.
+Use the `azure_data_factory_pipeline_run_resources` InSpec audit resource to test the properties of multiple Azure Data Factory pipeline runs for a resource group or the entire subscription.
 
-For additional information, see the [`Azure Data Factory pipeline runs API documentation`](https://docs.microsoft.com/en-us/rest/api/datafactory/pipeline-runs/query-by-factory).
+For additional information, see the [`API documentation on Azure Data Factory pipeline runs`](https://docs.microsoft.com/en-us/rest/api/datafactory/pipeline-runs/query-by-factory).
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -36,12 +36,11 @@ end
 
 `resource_group` _(required)_
 
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `factory_name` _(required)_
 
 : Azure factory name for which pipeline runs are retrieved.
-
 
 ## Properties
 
@@ -79,7 +78,7 @@ end
 
 ## Examples
 
-**Filter pipeline runs in a resource group by properties.**
+### Filter pipeline runs in a resource group by properties
 
 ```ruby
 describe azure_data_factory_pipeline_run_resources(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
@@ -102,7 +101,7 @@ end
 ### Test that there aren't any pipeline runs in a resource group
 
 ```ruby
-# Should not exist if no pipeline runs are in the resource group
+# Should not exist if no pipeline runs are in the resource group.
 
 describe azure_data_factory_pipeline_run_resources(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
   it { should_not exist }

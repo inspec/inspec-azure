@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_subnet Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_subnet` InSpec audit resource to test properties related to a subnet for a given virtual network.
+Use the `azure_subnet` InSpec audit resource to test the properties related to a subnet for a given virtual network.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,10 +22,10 @@ Use the `azure_subnet` InSpec audit resource to test properties related to a sub
 
 ## Syntax
 
-`resource_group`, `vnet` and `name` or the `resource_id` must be given as a parameter.
+`resource_group`, `vnet`, and `name`, or the `resource_id` are required parameters.
 
 ```ruby
-describe azure_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
+describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name: 'SUBNET_NAME') do
   it { should exist }
 end
 ```
@@ -39,16 +39,16 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `vnet`
-: Name of the Azure virtual network that the subnet is created in.
+: Name of the Azure virtual network where the subnet is created.
 
 `name`
 : Name of the Azure subnet to test.
 
 `resource_id`
-: The unique resource ID. `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/virtualNetworks/{vnName}/subnets/{subnetName}`.
+: The unique resource ID.
 
 Provide one of the following parameter sets for a valid query:
 
@@ -65,25 +65,25 @@ Provide one of the following parameter sets for a valid query:
 
 : The network security group attached to the subnet.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/subnets/get#subnet) for other properties available.
 Any property in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-**Ensure that the Subnets Address Prefix is Configured As Expected.**
+### Ensure that the subnets address prefix is configured as expected
 
 ```ruby
-describe azure_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
+describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name: 'SUBNET_NAME') do
     its('address_prefix') { should eq '192.168.0.0/24' }
 end
 ```
 
-**Ensure that the Subnet is Attached to the Right Network Security Group.**
+### Ensure that the subnet is attached to the right network security group
 
 ```ruby
-describe azure_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
+describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name: 'SUBNET_NAME') do
     its('nsg') { should eq 'NetworkSecurityGroupName'}
 end
 ```
@@ -95,14 +95,19 @@ end
 ### exists
 
 ```ruby
-# If a subnet is found it will exist
+# If a subnet is found, it will exist.
 
-describe azure_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do
+describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name: 'SUBNET_NAME') do
   it { should exist }
 end
+```
 
-# subnets that aren't found will not exist
-describe azure_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'DoesNotExist') do
+### not_exists
+
+```ruby
+# subnets that aren't found, will not exist.
+
+describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name: 'SUBNET_NAME') do
   it { should_not exist }
 end
 ```

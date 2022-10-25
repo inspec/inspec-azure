@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_bus_subscriptions Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_bus_subscriptions` InSpec audit resource to test properties related to all Azure Service Bus subscriptions.
+Use the `azure_service_bus_subscriptions` InSpec audit resource to test the properties related to all Azure Service Bus subscriptions.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -39,8 +39,7 @@ end
 : The topic name.
 
 `resource_group` _(required)_
-: Azure resource group that the targeted resource resides in.
-
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -50,7 +49,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -60,7 +59,7 @@ end
 : **Field**: `type`
 
 `properties`
-: A list of Properties for all the Service Bus subscriptions.
+: A list of properties for all the Service Bus subscriptions.
 
 : **Field**: `properties`
 
@@ -78,7 +77,7 @@ end
 
 ## Examples
 
-**Test that there are Service Bus subscriptions that are Active.**
+### Test that there are Service Bus subscriptions that are active
 
 ```ruby
 describe azure_service_bus_subscriptions(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', topic_name: 'TOPIC_NAME').where(status: 'Active') do
@@ -93,12 +92,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Bus subscriptions are present
+# Should not exist if no Service Bus subscriptions are present.
 
 describe azure_service_bus_subscriptions(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', topic_name: 'TOPIC_NAME') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Bus subscriptions
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Bus subscription.
 
 describe azure_service_bus_subscriptions(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', topic_name: 'TOPIC_NAME') do
   it { should exist }
