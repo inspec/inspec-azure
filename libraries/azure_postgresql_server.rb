@@ -1,4 +1,4 @@
-require 'azure_generic_resource'
+:require 'azure_generic_resource'
 
 class AzurePostgreSQLServer < AzureGenericResource
   name 'azure_postgresql_server'
