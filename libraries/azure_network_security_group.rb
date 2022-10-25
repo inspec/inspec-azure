@@ -148,6 +148,12 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   end
   RSpec::Matchers.alias_matcher :allow_rdp_from_internet, :be_allow_rdp_from_internet
 
+  def allow_udp_from_internet?
+    return unless exists?
+    allow_port_from_internet?('53')
+  end
+  RSpec::Matchers.alias_matcher :allow_udp_from_internet, :be_allow_udp_from_internet
+
   SPECIFIC_CRITERIA = %i(specific_port access_allow direction_inbound source_open not_icmp).freeze
   def allow_port_from_internet?(specific_port)
     return unless exists?
