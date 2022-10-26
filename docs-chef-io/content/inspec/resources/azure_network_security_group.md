@@ -194,16 +194,13 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
 end
 ```
 
-### not_exists
+### Test that a Network Security group should not allows UDB from the internet
 
 ```ruby
-# If we expect 'EMPTYGROUPNAME' to never exist.
-
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
-  it { should_not exist }
+  it { should allow_udp_from_internet }
 end
 ```
-
 ## Azure Permissions
 
 {{% azure_permissions_service_principal role="reader" %}}
