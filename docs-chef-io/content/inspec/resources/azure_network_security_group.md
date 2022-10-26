@@ -194,6 +194,16 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
 end
 ```
 
+### not_exists
+
+```ruby
+# If we expect 'EMPTYGROUPNAME' to never exist.
+
+describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
+  it { should_not allow_udp_from_internet }
+end
+```
+
 ### Test that a Network Security group should not allows UDB from the internet
 
 ```ruby
