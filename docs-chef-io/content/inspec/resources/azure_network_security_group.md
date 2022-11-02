@@ -210,7 +210,13 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
   it { should_not allow_udp_from_internet }
 end
 ```
+### Validating Number of days to retain flow log records.
 
+```ruby
+describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
+  its('flow_log_retention_period') { should eq 0 }
+end
+```
 ## Azure Permissions
 
 {{% azure_permissions_service_principal role="reader" %}}
