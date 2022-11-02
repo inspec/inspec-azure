@@ -203,7 +203,7 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
   it { should_not exist }
 end
 ```
-### Test that a Network Security group should not allows UDB from the internet
+### Test that a Network Security group should not allow UDP from the internet
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
