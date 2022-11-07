@@ -49,6 +49,17 @@ class AzureKeyVaultKey < AzureGenericResource
     super(AzureKeyVaultKey)
   end
 
+  def rotation_policy
+    return unless exists?
+    resource_uri = "#{id}/rotationpolicy"
+    query = {
+      resource_uri: resource_uri,
+      query_parameters: { api_version: @opts[:key_version] },
+    }
+    rules = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
+    create_resource_methods({ firewall_rules: rules })
+  end
+
   private
 
   VALID_VERSION_REGEX = Regexp.new('^([0-9a-f]{32})$')
