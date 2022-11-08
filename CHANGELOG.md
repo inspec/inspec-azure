@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.6 -->
+<!-- latest_release 1.118.7 -->
+## [v1.118.7](https://github.com/inspec/inspec-azure/tree/v1.118.7) (2022-11-08)
+
+#### Merged Pull Requests
+- RESOURCE-507 Attribute Enhancement in Azure Network Security Group Resource [#680](https://github.com/inspec/inspec-azure/pull/680) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.118.6](https://github.com/inspec/inspec-azure/tree/v1.118.6) (2022-11-08)
 
 #### Merged Pull Requests
 - RESOURCE-500 starting and ending ip address in the properties in azure postgre sql server resource [#679](https://github.com/inspec/inspec-azure/pull/679) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.5](https://github.com/inspec/inspec-azure/tree/v1.118.5) (2022-06-01)
 
