@@ -15,9 +15,10 @@ class AzurePostgreSQLServer < AzureGenericResource
 
     opts[:resource_provider] = specific_resource_constraint('Microsoft.DBforPostgreSQL/servers', opts)
     opts[:resource_identifiers] = %i(server_name)
-    opts[:allowed_parameters] = %i(configurations_api_version)
+    opts[:allowed_parameters] = %i(configurations_api_version firewall_rules_api_version auditing_settings_api_version
+                                   threat_detection_settings_api_version administrators_api_version
+                                   encryption_protector_api_version)
     opts[:configurations_api_version] ||= 'latest'
-
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
@@ -25,6 +26,7 @@ class AzurePostgreSQLServer < AzureGenericResource
 
     # Convenient access e.g. configurations.{config_name}.properties.value.eql?("on")
     collect_configurations
+    firewall_rules
   end
 
   def to_s
@@ -47,6 +49,17 @@ class AzurePostgreSQLServer < AzureGenericResource
     }
     confs = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
     create_resource_methods({ configurations: confs })
+  end
+
+  def firewall_rules
+    return unless exists?
+    resource_uri = "#{id}/firewallRules"
+    query = {
+      resource_uri: resource_uri,
+      query_parameters: { api_version: @opts[:firewall_rules_api_version] },
+    }
+    rules = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
+    create_resource_methods({ firewall_rules: rules })
   end
 end
 

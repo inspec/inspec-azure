@@ -67,6 +67,9 @@ Either one of the parameter sets can be provided for a valid query:
 `sku`
 : The SKU (pricing tier) of the server.
 
+`firewall_rules`
+: An object of firewall rules applied on postgresql server.
+
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/postgresql/flexibleserver(preview)/servers/get) for other properties available. Any attribute in the response may be accessed with the key names separated by dots (`.`). For example, `properties.<attribute>`.
@@ -113,7 +116,13 @@ describe azure_postgresql_server(resource_id: '/subscriptions/.../my-server') do
   its('location') { should cmp 'westeurope' }
 end
 ```
+### Test a PostgreSql server's firewall rules
 
+```ruby
+describe azure_postgresql_server(resource_id: '/subscriptions/.../my-server') do
+  its('firewall_rules') { should eq {} }
+end
+```
 ## Matchers
 
 {{% inspec_matchers_link %}}
