@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_snapshots Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_snapshots` InSpec audit resource to test the properties and configurations of an Azure Snapshots.
+Use the `azure_snapshots` InSpec audit resource to test the properties and configurations of multiple Azure snapshots.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -66,27 +66,11 @@ No required parameters.
 
 {{% inspec_filter_table %}}
 
-Also, refer to [Azure documentation](https://learn.microsoft.com/en-us/rest/api/compute/snapshots/list-by-resource-group?tabs=HTTP) for other properties available.
+See the [Azure documentation](https://learn.microsoft.com/en-us/rest/api/compute/snapshots/list-by-resource-group?tabs=HTTP) for other available properties.
 
 ## Examples
 
-### Test if a Snapshot is referenced with a valid name
-
-```ruby
-describe azure_snapshots do
-  it { should exist }
-end
-```
-
-### Test if a Snapshot is referenced with an invalid name
-
-```ruby
-describe azure_snapshots do
-  it { should_not exist }
-end
-```
-
-### Test if a Snapshot has a valid type
+### Test if a snapshot has a valid type
 
 ```ruby
 describe azure_snapshots do
@@ -102,17 +86,17 @@ end
 
 The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
-```ruby
-# If we expect resources to exist.
+Use `should exist` to test that a resource exists.
 
+```ruby
 describe azure_snapshots do
   it { should exist }
 end
 ```
 
-```ruby
-# If we expect resources not to exist.
+Use `should_not exist` to test that resources do not exist.
 
+```ruby
 describe azure_snapshots do
   it { should_not exist }
 end

@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_snapshot Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_snapshot` InSpec audit resource to test the properties and configuration of an Azure Snapshot.
+Use the `azure_snapshot` InSpec audit resource to test the properties and configuration of an Azure snapshot.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_snapshot` InSpec audit resource to test the properties and config
 
 ## Syntax
 
-`resource_group`, and `name` are required parameters.
+`resource_group` and `name` are required parameters.
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -32,12 +32,10 @@ end
 
 ## Parameters
 
-The below parameters are required.
-
-`resource_group`
+`resource_group` _(required)_
 : Azure resource group where the targeted resource resides.
 
-`name`
+`name` _(required)_
 : The name of the snapshot that is being created.
 
 ## Properties
@@ -62,12 +60,12 @@ The below parameters are required.
 
 For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
-Also, refer to [Azure documentation](https://learn.microsoft.com/en-us/rest/api/compute/snapshots/get?tabs=HTTP) for other properties available.
+See the [Azure documentation](https://learn.microsoft.com/en-us/rest/api/compute/snapshots/get?tabs=HTTP) for other available properties.
 Any attribute in the response may be accessed with the key names separated by dots (`.`). For example, `properties.<attribute>`.
 
 ## Examples
 
-### Test if a Snapshot is referenced with a valid name
+### Test if a snapshot is referenced with a valid name
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -75,7 +73,7 @@ describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME')
 end
 ```
 
-### Test if a Snapshot is referenced with an invalid name
+### Test if a snapshot is referenced with an invalid name
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -83,7 +81,7 @@ describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME')
 end
 ```
 
-### Test if a Snapshot has OS `Windows'
+### Test if a snapshot has the `Windows' operating system type
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -91,7 +89,7 @@ describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME')
 end
 ```
 
-### Test if the Snapshot has a valid disksize 
+### Test if the snapshot has a valid disk size
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -105,17 +103,17 @@ end
 
 ### exists
 
-```ruby
-# If we expect a resource to always exist.
+Use `should exist` to test for a resource that should exist.
 
+```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
   it { should exist }
 end
 ```
 
-```ruby
-# If we expect a resource to never exist.
+Use `should_not exist` to test for a resource that should not exist.
 
+```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
   it { should_not exist }
 end
