@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_blob_service Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_blob_service` InSpec audit resource to test the properties of an Azure Blob Service.
+Use the `azure_blob_service` Chef InSpec audit resource to test the properties of an Azure Storage account’s Blob service.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -82,7 +82,7 @@ end
 `type`
 : The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts"
 
-Also, refer to [Azure documentation](https://learn.microsoft.com/en-us/rest/api/storagerp/blob-services/get-service-properties?tabs=HTTP) for other properties available. Any attribute in the response may be accessed with the key names separated by dots (`.`).
+See [Azure's documentation on Blob service](https://learn.microsoft.com/en-us/rest/api/storagerp/blob-services/get-service-properties?tabs=HTTP) for a full list of available properties. Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
@@ -110,13 +110,14 @@ This InSpec audit resource has the following special matchers. For a full list o
 
 ### exists
 
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 describe azure_blob_service(resource_group: 'RESOURCE_GROUP', storage_account_name: 'STORAGE_ACCOUNT_NAME') do
   it { should exist }
 end
 ```
 
-### not_exists
 
 ```ruby
 describe azure_blob_service(resource_group: 'RESOURCE_GROUP', storage_account_name: 'STORAGE_ACCOUNT_NAME') do

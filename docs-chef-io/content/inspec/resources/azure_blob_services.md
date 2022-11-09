@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_blob_services Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_blob_services` InSpec audit resource to test the properties and configuration of multiple Azure Blob Service.
+Use the `azure_blob_services` Chef InSpec audit resource to test the properties and configuration of multiple Azure storage accounts' Blob services.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -46,7 +46,7 @@ end
 : **Field**: `id`
 
 `names`
-: The name of the resource
+: The name of the resource.
 
 : **Field**: `name`
 
@@ -66,6 +66,8 @@ end
 : **Field**: `type`
 
 {{% inspec_filter_table %}}
+
+See [Azure's documentation on Blob services](https://learn.microsoft.com/en-us/rest/api/storagerp/blob-services/list?tabs=HTTP) for a full list of available properties.
 
 ## Examples
 
