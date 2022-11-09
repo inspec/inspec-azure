@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_microsoft_defender_pricings Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_microsoft_defender_pricings` InSpec audit resource to test the properties of some or all Azure Microsoft Defender Pricings.
+Use the `azure_microsoft_defender_pricings` Chef InSpec audit resource to test the properties of multiple Microsoft Defender for Cloud pricing configurations.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -35,7 +35,7 @@ No required parameters.
 ## Properties
 
 `ids`
-: The id of the resource.
+: The ID of the resource.
 
 : **Field**: `id`
 
@@ -66,25 +66,11 @@ No required parameters.
 
 {{% inspec_filter_table %}}
 
+See the [Azure documentation on Defender for Cloud pricing configuration](https://learn.microsoft.com/en-us/rest/api/defenderforcloud/pricings/list) for additional information. You may access any attribute in the response with the key names separated by dots (`.`).
+
 ## Examples
 
-The following examples show how to use this InSpec audit resource.
-
-### Test if a name exists
-
-```ruby
-describe azure_microsoft_defender_pricings do
-  it { should exist }
-end
-```
-
-### Test if a name do not exists
-
-```ruby
-describe azure_microsoft_defender_pricings do
-  it { should_not exist }
-end
-```
+This resource does not have any examples.
 
 ## Matchers
 
@@ -92,7 +78,15 @@ end
 
 ### exist
 
-The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result.
+
+```ruby
+describe azure_microsoft_defender_pricings do
+  it { should exist }
+end
+```
+
+Use `should_not` if you expect zero matches.
 
 ```ruby
 describe azure_microsoft_defender_pricings do
