@@ -23,7 +23,8 @@ class AzureKeyVaultKey < AzureGenericResource
     endpoint = AzureEnvironments.get_endpoint(opts[:endpoint])
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
     opts[:resource_provider] = specific_resource_constraint(key_vault_dns_suffix, opts)
-
+    require 'pry'
+    binding.pry
     if opts[:key_id]
       opts[:resource_uri] = opts[:key_id]
     else
@@ -51,11 +52,13 @@ class AzureKeyVaultKey < AzureGenericResource
 
   def rotation_policy
     return unless exists?
-    resource_uri = "#{id}/rotationpolicy"
+    resource_uri = "#{@opts[:resource_uri]}/rotationpolicy"
     query = {
       resource_uri: resource_uri,
       query_parameters: { api_version: @opts[:key_version] },
     }
+    require 'pry'
+    binding.pry
     rules = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
     create_resource_methods({ firewall_rules: rules })
   end
