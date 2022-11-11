@@ -21,14 +21,13 @@ class AzureKeyVaultKey < AzureGenericResource
         " Expected one of the following options: #{AzureEnvironments::ENDPOINTS.keys}."
     end
     endpoint = AzureEnvironments.get_endpoint(opts[:endpoint])
+    opts[:api_version] ||= "7.3"
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
     opts[:resource_provider] = specific_resource_constraint(key_vault_dns_suffix, opts)
-    require 'pry'
-    binding.pry
     if opts[:key_id]
       opts[:resource_uri] = opts[:key_id]
     else
-      opts[:allowed_parameters] = %i(key_version)
+      opts[:allowed_parameters] = %i(key_version api_version)
       opts[:required_parameters] = %i(vault_name)
       opts[:resource_identifiers] = %i(key_name)
       if opts[:key_version]
@@ -44,6 +43,7 @@ class AzureKeyVaultKey < AzureGenericResource
     opts[:audience] = "https://#{key_vault_dns_suffix.delete_prefix('.')}"
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+    rotation_policy
   end
 
   def to_s
@@ -55,13 +55,26 @@ class AzureKeyVaultKey < AzureGenericResource
     resource_uri = "#{@opts[:resource_uri]}/rotationpolicy"
     query = {
       resource_uri: resource_uri,
-      query_parameters: { api_version: @opts[:key_version] },
+      query_parameters: { api_version: @opts[:api_version] },
+      is_uri_a_url: true,
     }
-    require 'pry'
-    binding.pry
-    rules = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
-    create_resource_methods({ firewall_rules: rules })
+    require 'pry';binding.pry
+    policy = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
+    create_resource_methods({ rotation_policy: policy })
   end
+
+  # def rotation_policy
+  #   return unless exists?
+  #   # `additional_resource_properties` method will create a singleton method with the `property_name`
+  #   # and make api response available through this property.
+  #   additional_resource_properties(
+  #     {
+  #       property_name: 'rotation_policy',
+  #       property_endpoint: "#{id}/rotationpolicy",
+  #       api_version: @opts[:api_version],
+  #     },
+  #     )
+  # end
 
   private
 
