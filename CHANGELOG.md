@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.7 -->
+<!-- latest_release 1.118.8 -->
+## [v1.118.8](https://github.com/inspec/inspec-azure/tree/v1.118.8) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-529 azure Microsoft Defender for Cloud Resource Settings and Security Contact [#685](https://github.com/inspec/inspec-azure/pull/685) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.7](https://github.com/inspec/inspec-azure/tree/v1.118.7) (2022-11-08)
 
 #### Merged Pull Requests
 - RESOURCE-507 Attribute Enhancement in Azure Network Security Group Resource [#680](https://github.com/inspec/inspec-azure/pull/680) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.6](https://github.com/inspec/inspec-azure/tree/v1.118.6) (2022-11-08)
 
