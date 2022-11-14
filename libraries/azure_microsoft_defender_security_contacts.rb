@@ -1,6 +1,6 @@
 require 'azure_generic_resources'
 
-class AzureMicrosoftDefenderPricings < AzureGenericResources
+class AzureMicrosoftDefenderSecurityContacts < AzureGenericResources
   name 'azure_microsoft_defender_security_contacts'
   desc 'Verifies settings for microsoft defender security contacts.'
   example <<-EXAMPLE
@@ -59,6 +59,6 @@ class AzureMicrosoftDefenderPricings < AzureGenericResources
   end
   
   def to_s
-    super(AzureMicrosoftDefenderPricings)
+    super(AzureMicrosoftDefenderSecurityContacts)
   end
 end
