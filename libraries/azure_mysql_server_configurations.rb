@@ -1,12 +1,12 @@
 require 'azure_generic_resources'
 
-class AzureMySqlServerConfigurations < AzureGenericResources
-  name 'azure_mysql_server_configurations'
-  desc 'Verifies settings for an Azure MySQL Server Configurations.'
+class AzureMySqlDatabaseConfigurations < AzureGenericResources
+  name 'azure_mysql_database_configurations'
+  desc 'Verifies settings for an Azure MySQL Database Configurations.'
   example <<-EXAMPLE
-    describe azure_mysql_server_configuration(resource_group: 'my-rg', server_name: 'server-1') do
-        it            { should exist }
-        its('names')  { should_not be_empty }
+    describe azure_mysql_database_configurations(resource_group: 'my-rg', server_name: 'server-1') do
+        it { should exist }
+        its('names') { should_not be_empty }
     end
   EXAMPLE
   
@@ -44,6 +44,6 @@ class AzureMySqlServerConfigurations < AzureGenericResources
   end
   
   def to_s
-    super(AzureMySqlServerConfigurations)
+    super(AzureMySqlDatabaseConfigurations)
   end
 end
