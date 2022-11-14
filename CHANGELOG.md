@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.11 -->
+<!-- latest_release 1.118.12 -->
+## [v1.118.12](https://github.com/inspec/inspec-azure/tree/v1.118.12) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-501 servervulnerabilityassessment in azure sql database resource [#677](https://github.com/inspec/inspec-azure/pull/677) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.11](https://github.com/inspec/inspec-azure/tree/v1.118.11) (2022-11-14)
 
 #### Merged Pull Requests
 - RESOURCE-505 Soumyo/azure blob service [#674](https://github.com/inspec/inspec-azure/pull/674) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.10](https://github.com/inspec/inspec-azure/tree/v1.118.10) (2022-11-14)
 
