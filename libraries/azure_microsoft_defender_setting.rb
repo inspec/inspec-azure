@@ -4,7 +4,7 @@ class AzureMicrosoftDefenderSetting < AzureGenericResource
   name 'azure_microsoft_defender_setting'
   desc 'Retrieves and verifies the settings of an Azure Microsoft Defender Setting.'
   example <<-EXAMPLE
-    describe azure_microsoft_defender_setting(name: 'SECURITY_CONTACT_NAME') do
+    describe azure_microsoft_defender_setting(name: 'SETTING_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -4,7 +4,7 @@ class AzureMicrosoftDefenderSettings < AzureGenericResources
   name 'azure_microsoft_defender_settings'
   desc 'Verifies settings for microsoft defender settings.'
   example <<-EXAMPLE
-    describe azure_microsoft_defender_settings(built_in_only: true) do
+    describe azure_microsoft_defender_settings do
       it { should exist }
     end
   EXAMPLE
