@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_cdn_profiles Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_cdn_profiles` InSpec audit resource to test properties and configuration of Azure CDN Profiles.
+Use the `azure_cdn_profiles` Chef InSpec audit resource to test properties and configuration of Azure CDN profiles.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,13 +22,16 @@ Use the `azure_cdn_profiles` InSpec audit resource to test properties and config
 
 ## Syntax
 
-An `azure_cdn_profiles` resource block returns all Azure CDN Profiles, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_cdn_profiles` resource block returns all Azure CDN profiles, either within a resource group (if provided), or within an entire subscription.
+
 ```ruby
 describe azure_cdn_profiles do
   #...
 end
 ```
+
 or
+
 ```ruby
 describe azure_cdn_profiles(resource_group: 'RESOURCE_GROUP') do
   #...
@@ -82,24 +85,24 @@ end
 
 ## Examples
 
-**Check CDN Profiles are Present.**
+**Check that a CDN profile is present.**
 
 ````ruby
 describe azure_cdn_profiles do
     it            { should exist }
-    its('names')  { should include 'my-cdn-profile' }
+    its('names')  { should include 'CDN_PROFILE' }
 end
 ````
 
-**Filter the Results to Include Only those with Names Match the Given String Value.**
+**Filter the CDN profiles by name and verify that it exists.**
 
 ```ruby
-describe azure_cdn_profiles.where{ name.eql?('cdn-prod') } do
+describe azure_cdn_profiles.where{ name.eql?('CDN_PROFILE_NAME') } do
   it { should exist }
 end
 ```
 
-**Filter the Results to Include Only those with Location Match the Given String Value.**
+**Filter the CDN profiles by location and verify that at least one exists.**
 
 ```ruby
 describe azure_cdn_profiles.where{ location.eql?('eastus-2') } do
@@ -113,14 +116,17 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control will pass if the filter returns at least one result.
+
 ```ruby
-# If we expect Resource Group to have CDN Profiles
 describe azure_cdn_profiles(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
+```
 
-# If we expect Resource Group to not have CDN Profiles
+Use `should_not` if you expect zero matches.
+
+```ruby
 describe azure_cdn_profiles(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
