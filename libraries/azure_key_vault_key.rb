@@ -58,7 +58,6 @@ class AzureKeyVaultKey < AzureGenericResource
       query_parameters: { api_version: @opts[:api_version] },
       is_uri_a_url: true,
     }
-    require 'pry';binding.pry
     policy = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
     create_resource_methods({ rotation_policy: policy })
   end
