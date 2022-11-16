@@ -161,7 +161,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
 
   def allow_http_from_internet?
     return unless exists?
-    allow_port_from_internet?('80') || allow_port_from_internet?('443')
+    allow_port_from_internet?('80')
   end
   RSpec::Matchers.alias_matcher :allow_http_from_internet, :be_allow_http_from_internet
 
