@@ -82,7 +82,7 @@ class AzureWebapp < AzureGenericResource
     using.to_i >= latest.to_i
   end
 
-  private
+  # private
 
   # Returns the version of the given stack being used by the Webapp.
   # nil if stack not used. raises if stack invalid.
@@ -91,13 +91,16 @@ class AzureWebapp < AzureGenericResource
     stack_key = "#{stack}Version"
     raise ArgumentError, "#{stack} is not a supported stack." unless configuration.properties.respond_to?(stack_key)
     linux_fx_version = configuration.properties.public_send('linuxFxVersion')
+
     if !linux_fx_version.empty?
-      version = linux_fx_version.split('|')[-1]
+      existing_stack = linux_fx_version.split('|')[0]
+      existing_stack = existing_stack.downcase
+      new_stack = stack.downcase
+      version = linux_fx_version.split('|')[1] if existing_stack.eql?(new_stack)
     else
       version = configuration.properties.public_send(stack_key.to_s)
     end
     version.nil? || version.empty? ? nil : version
-    require 'pry';binding.pry
   end
 
   def latest(stack)
