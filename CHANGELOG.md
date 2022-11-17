@@ -1,10 +1,35 @@
 # Changelog
-<!-- latest_release 1.118.7 -->
+<!-- latest_release 1.118.12 -->
+## [v1.118.12](https://github.com/inspec/inspec-azure/tree/v1.118.12) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-501 servervulnerabilityassessment in azure sql database resource [#677](https://github.com/inspec/inspec-azure/pull/677) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
+## [v1.118.11](https://github.com/inspec/inspec-azure/tree/v1.118.11) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-505 Soumyo/azure blob service [#674](https://github.com/inspec/inspec-azure/pull/674) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.10](https://github.com/inspec/inspec-azure/tree/v1.118.10) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-504 azure Microsoft Defender for Cloud Resource [#676](https://github.com/inspec/inspec-azure/pull/676) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.9](https://github.com/inspec/inspec-azure/tree/v1.118.9) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-502 audit_log_enabled and audit_log_events server in Azure MySQL Database Server Resource [#686](https://github.com/inspec/inspec-azure/pull/686) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.8](https://github.com/inspec/inspec-azure/tree/v1.118.8) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-529 azure Microsoft Defender for Cloud Resource Settings and Security Contact [#685](https://github.com/inspec/inspec-azure/pull/685) ([soumyo13](https://github.com/soumyo13))
+
 ## [v1.118.7](https://github.com/inspec/inspec-azure/tree/v1.118.7) (2022-11-08)
 
 #### Merged Pull Requests
 - RESOURCE-507 Attribute Enhancement in Azure Network Security Group Resource [#680](https://github.com/inspec/inspec-azure/pull/680) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.6](https://github.com/inspec/inspec-azure/tree/v1.118.6) (2022-11-08)
 
