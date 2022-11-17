@@ -36,6 +36,15 @@ class AzureStorageAccount < AzureGenericResource
   # Following methods are created to provide the same functionality with the current resource pack >>>>
   # @see https://github.com/inspec/inspec-azure
 
+  def has_infrastructure_encryption_enabled?
+    return unless exists?
+    infrastructure_encryption = false
+    if !properties.encryption.nil?
+      infrastructure_encryption = properties.encryption.requireInfrastructureEncryption
+    end
+    infrastructure_encryption
+  end
+
   def has_recently_generated_access_key?
     return unless exists?
     now = Time.now
