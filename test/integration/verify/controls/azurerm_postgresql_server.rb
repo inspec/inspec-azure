@@ -29,6 +29,6 @@ control 'azure_postgresql_server' do
   only_if { !postgresql_server_name.nil? }
 
   describe azure_postgresql_server(resource_group: resource_group, server_name: postgresql_server_name) do
-    its('firewall_rules') { should eq {} }
+    its('firewall_rules') { should be_empty }
   end
 end
