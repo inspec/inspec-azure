@@ -195,6 +195,10 @@ output "sql_server_name" {
   value = azurerm_sql_server.sql_server.name
 }
 
+output "sql_server_id" {
+  value = azurerm_sql_server.sql_server.id
+}
+
 output "sql_database_name" {
   value = azurerm_sql_database.sql_database.name
 }
@@ -266,7 +270,6 @@ output "contributor_role_name" {
 output "log_profile_name" {
   value = azurerm_monitor_log_profile.log_profile.name
 }
-
 
 output "postgresql_server_name" {
   value = azurerm_postgresql_server.postgresql.name
@@ -589,13 +592,27 @@ output "inspec_hpc_cache_name" {
 output "workspace_name" {
   value = azurerm_log_analytics_workspace.workspace.name
 }
+
 output "alert_rule_id" {
   value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.name
 }
+
 output "alert_rule_name" {
   value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.name
 }
 
 output "alert_rule_display_name" {
   value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.display_name
+}
+
+output "storage_account_blob_service_id" {
+  value = azurerm_storage_blob.functioncode.id
+}
+
+output "storage_account_blob_service_name" {
+  value = azurerm_storage_blob.functioncode.name
+}
+
+output "storage_account_blob_type" {
+  value = azurerm_storage_blob.functioncode.type
 }
