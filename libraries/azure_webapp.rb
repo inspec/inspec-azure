@@ -89,20 +89,27 @@ class AzureWebapp < AzureGenericResource
   def stack_version(stack)
     stack = 'netFramework' if stack.eql?('aspnet')
     stack_key = "#{stack}Version"
-    raise ArgumentError, "#{stack} is not a supported stack." unless configuration.properties.respond_to?(stack_key)
+    raise ArgumentError, "#{stack} is not a supported stack." unless configuration.properties.respond_to?(stack_key) || stack_supported(stack)
     linux_fx_version = configuration.properties.public_send('linuxFxVersion')
 
     if !linux_fx_version.empty?
       existing_stack = linux_fx_version.split('|')[0]
-      existing_stack = existing_stack.downcase
-      new_stack = stack.downcase
-      version = linux_fx_version.split('|')[1] if existing_stack.eql?(new_stack)
+      version = linux_fx_version.split('|')[1] if existing_stack.casecmp(stack) == 0
     else
       version = configuration.properties.public_send(stack_key.to_s)
     end
     version.nil? || version.empty? ? nil : version
   end
 
+  private
+
+  def stack_supported(stack)
+    linux_fx_version = configuration.properties.respond_to?('linuxFxVersion')
+    if !linux_fx_version.empty?
+      existing_stack = linux_fx_version.split('|')[0]
+      existing_stack.casecmp(stack) == 0
+    end
+  end
   def latest(stack)
     return unless exists?
     supported_stacks unless respond_to?(:supported_stacks)
