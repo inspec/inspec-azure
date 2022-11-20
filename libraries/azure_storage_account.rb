@@ -38,6 +38,7 @@ class AzureStorageAccount < AzureGenericResource
 
   def has_infrastructure_encryption_enabled?
     return unless exists?
+
     infrastructure_encryption = false
     if !properties.encryption.requireInfrastructureEncryption.nil?
       infrastructure_encryption = properties.encryption.requireInfrastructureEncryption
