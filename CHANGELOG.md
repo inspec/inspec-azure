@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.19 -->
+<!-- latest_release 1.118.20 -->
+## [v1.118.20](https://github.com/inspec/inspec-azure/tree/v1.118.20) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-528 Fixing the lint errors [#684](https://github.com/inspec/inspec-azure/pull/684) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.19](https://github.com/inspec/inspec-azure/tree/v1.118.19) (2022-11-22)
 
 #### Merged Pull Requests
 - RESOURCE-531-verify-that-the-inbound-port-rules-does-not-have-a-rule-for-http [#689](https://github.com/inspec/inspec-azure/pull/689) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.18](https://github.com/inspec/inspec-azure/tree/v1.118.18) (2022-11-22)
 
