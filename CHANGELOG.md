@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.20 -->
+<!-- latest_release 1.118.21 -->
+## [v1.118.21](https://github.com/inspec/inspec-azure/tree/v1.118.21) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-514 create the required files of the azure snapshot resource [#682](https://github.com/inspec/inspec-azure/pull/682) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.20](https://github.com/inspec/inspec-azure/tree/v1.118.20) (2022-11-22)
 
 #### Merged Pull Requests
 - RESOURCE-528 Fixing the lint errors [#684](https://github.com/inspec/inspec-azure/pull/684) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.19](https://github.com/inspec/inspec-azure/tree/v1.118.19) (2022-11-22)
 
