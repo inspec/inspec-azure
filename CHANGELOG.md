@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.23 -->
+<!-- latest_release 1.118.24 -->
+## [v1.118.24](https://github.com/inspec/inspec-azure/tree/v1.118.24) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-503 Parameter to check if Rotation policy is enabled for a key inside a keyvault in Azure Key Vault Resource [#681](https://github.com/inspec/inspec-azure/pull/681) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.23](https://github.com/inspec/inspec-azure/tree/v1.118.23) (2022-11-22)
 
 #### Merged Pull Requests
 - Update rubocop requirement from ~&gt; 1.26.0 to ~&gt; 1.39.0 [#687](https://github.com/inspec/inspec-azure/pull/687) ([dependabot[bot]](https://github.com/dependabot[bot]))
-<!-- latest_release -->
 
 ## [v1.118.22](https://github.com/inspec/inspec-azure/tree/v1.118.22) (2022-11-22)
 
