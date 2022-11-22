@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.22 -->
+<!-- latest_release 1.118.23 -->
+## [v1.118.23](https://github.com/inspec/inspec-azure/tree/v1.118.23) (2022-11-22)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.26.0 to ~&gt; 1.39.0 [#687](https://github.com/inspec/inspec-azure/pull/687) ([dependabot[bot]](https://github.com/dependabot[bot]))
+<!-- latest_release -->
+
 ## [v1.118.22](https://github.com/inspec/inspec-azure/tree/v1.118.22) (2022-11-22)
 
 #### Merged Pull Requests
 - Resource 308 support CDN Profiles [#661](https://github.com/inspec/inspec-azure/pull/661) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.118.21](https://github.com/inspec/inspec-azure/tree/v1.118.21) (2022-11-22)
 
