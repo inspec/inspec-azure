@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.15 -->
+<!-- latest_release 1.118.16 -->
+## [v1.118.16](https://github.com/inspec/inspec-azure/tree/v1.118.16) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-533 create the unit tests and docs for azure microsoft defender for cloud resource for settings [#691](https://github.com/inspec/inspec-azure/pull/691) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.15](https://github.com/inspec/inspec-azure/tree/v1.118.15) (2022-11-22)
 
 #### Merged Pull Requests
 - RESOURCE-534 create the unit tests and docs for azure microsoft defender for cloud resource for security contact [#692](https://github.com/inspec/inspec-azure/pull/692) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.14](https://github.com/inspec/inspec-azure/tree/v1.118.14) (2022-11-22)
 
