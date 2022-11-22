@@ -31,4 +31,3 @@ class AzureCDNProfiles < AzureGenericResources
     end
   end
 end
-

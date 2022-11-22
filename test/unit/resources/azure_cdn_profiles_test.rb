@@ -10,4 +10,3 @@ class AzureCDNProfilesConstructorTest < Minitest::Test
     assert_raises(ArgumentError) { AzureCDNProfiles.new(resource_id: 'some_id') }
   end
 end
-

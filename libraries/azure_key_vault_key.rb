@@ -55,22 +55,21 @@ class AzureKeyVaultKey < AzureGenericResource
     resource_uri = "#{@opts[:resource_uri]}/rotationpolicy"
     query = {
       resource_uri: resource_uri,
-      query_parameters: { },
+      query_parameters: {},
       is_uri_a_url: true,
-      audience: @opts[:audience]
+      audience: @opts[:audience],
     }
-    query[:query_parameters]["api-version"] = @opts[:api_version]
+    query[:query_parameters]['api-version'] = @opts[:api_version]
     policy = get_resource(query)
     rotation_policy_enabled = false
 
     if !policy.nil?
-      policy[:lifetimeActions].each do | value |
-        rotation_policy_enabled = true if value[:action][:type] == "Rotate"
+      policy[:lifetimeActions].each do |value|
+        rotation_policy_enabled = true if value[:action][:type] == 'Rotate'
       end
     end
     rotation_policy_enabled
   end
-
 
   private
 

@@ -8,20 +8,20 @@ control 'azure_snapshot' do
   impact 1.0
   title 'Testing the singular resource of azure_snapshot.'
   desc 'Testing the singular resource of azure_snapshot.'
-  
+
   describe azure_snapshot(resource_group: 'jfm-Dhaka-Bangladesh-RG', name: 'jfm-vm-8-snapshot') do
     it { should exist }
   end
-  
+
   describe azure_snapshot(resource_group: 'jfm-Dhaka-Bangladesh-RG', name: 'jfm-vm-8-snapshot') do
     its('id') { should eq snapshot_id }
     its('name') { should eq snapshot_name }
     its('type') { should eq 'Microsoft.Compute/snapshots' }
     its('location') { should eq snapshot_location }
-    
+
     its('sku.name') { should eq 'Standard_LRS' }
     its('sku.tier') { should eq 'Standard' }
-    
+
     its('properties.osType') { should eq 'Windows' }
     its('properties.creationData.createOption') { should eq 'Copy' }
     its('properties.creationData.sourceResourceId') { should eq snapshot_source_resource_id }
