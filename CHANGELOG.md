@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.17 -->
+<!-- latest_release 1.118.18 -->
+## [v1.118.18](https://github.com/inspec/inspec-azure/tree/v1.118.18) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-530 stack-version-provide-ambiguous-information-on-installed-php-app [#688](https://github.com/inspec/inspec-azure/pull/688) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.118.17](https://github.com/inspec/inspec-azure/tree/v1.118.17) (2022-11-22)
 
 #### Merged Pull Requests
 - adding resource for azure snapshots [#671](https://github.com/inspec/inspec-azure/pull/671) ([Jiaming1826](https://github.com/Jiaming1826))
-<!-- latest_release -->
 
 ## [v1.118.16](https://github.com/inspec/inspec-azure/tree/v1.118.16) (2022-11-22)
 
