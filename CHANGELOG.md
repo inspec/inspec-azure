@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.18 -->
+<!-- latest_release 1.118.19 -->
+## [v1.118.19](https://github.com/inspec/inspec-azure/tree/v1.118.19) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-531-verify-that-the-inbound-port-rules-does-not-have-a-rule-for-http [#689](https://github.com/inspec/inspec-azure/pull/689) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.118.18](https://github.com/inspec/inspec-azure/tree/v1.118.18) (2022-11-22)
 
 #### Merged Pull Requests
 - RESOURCE-530 stack-version-provide-ambiguous-information-on-installed-php-app [#688](https://github.com/inspec/inspec-azure/pull/688) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.17](https://github.com/inspec/inspec-azure/tree/v1.118.17) (2022-11-22)
 
