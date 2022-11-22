@@ -23,11 +23,10 @@ class AzureKeyVaultKey < AzureGenericResource
     endpoint = AzureEnvironments.get_endpoint(opts[:endpoint])
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
     opts[:resource_provider] = specific_resource_constraint(key_vault_dns_suffix, opts)
-
     if opts[:key_id]
       opts[:resource_uri] = opts[:key_id]
     else
-      opts[:allowed_parameters] = %i(key_version)
+      opts[:allowed_parameters] = %i(key_version api_version)
       opts[:required_parameters] = %i(vault_name)
       opts[:resource_identifiers] = %i(key_name)
       if opts[:key_version]
@@ -43,11 +42,35 @@ class AzureKeyVaultKey < AzureGenericResource
     opts[:audience] = "https://#{key_vault_dns_suffix.delete_prefix('.')}"
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
+    rotation_policy
   end
 
   def to_s
     super(AzureKeyVaultKey)
   end
+
+  def has_rotation_policy_enabled?
+    return unless exists?
+
+    resource_uri = "#{@opts[:resource_uri]}/rotationpolicy"
+    query = {
+      resource_uri: resource_uri,
+      query_parameters: { },
+      is_uri_a_url: true,
+      audience: @opts[:audience]
+    }
+    query[:query_parameters]["api-version"] = @opts[:api_version]
+    policy = get_resource(query)
+    rotation_policy_enabled = false
+
+    if !policy.nil?
+      policy[:lifetimeActions].each do | value |
+        rotation_policy_enabled = true if value[:action][:type] == "Rotate"
+      end
+    end
+    rotation_policy_enabled
+  end
+
 
   private
 
