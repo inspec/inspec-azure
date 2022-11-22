@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.24 -->
+<!-- latest_release 1.118.25 -->
+## [v1.118.25](https://github.com/inspec/inspec-azure/tree/v1.118.25) (2022-11-22)
+
+#### Merged Pull Requests
+- Linting fix [#698](https://github.com/inspec/inspec-azure/pull/698) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.118.24](https://github.com/inspec/inspec-azure/tree/v1.118.24) (2022-11-22)
 
 #### Merged Pull Requests
 - RESOURCE-503 Parameter to check if Rotation policy is enabled for a key inside a keyvault in Azure Key Vault Resource [#681](https://github.com/inspec/inspec-azure/pull/681) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.23](https://github.com/inspec/inspec-azure/tree/v1.118.23) (2022-11-22)
 
