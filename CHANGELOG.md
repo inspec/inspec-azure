@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.21 -->
+<!-- latest_release 1.118.22 -->
+## [v1.118.22](https://github.com/inspec/inspec-azure/tree/v1.118.22) (2022-11-22)
+
+#### Merged Pull Requests
+- Resource 308 support CDN Profiles [#661](https://github.com/inspec/inspec-azure/pull/661) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.118.21](https://github.com/inspec/inspec-azure/tree/v1.118.21) (2022-11-22)
 
 #### Merged Pull Requests
 - RESOURCE-514 create the required files of the azure snapshot resource [#682](https://github.com/inspec/inspec-azure/pull/682) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.20](https://github.com/inspec/inspec-azure/tree/v1.118.20) (2022-11-22)
 
