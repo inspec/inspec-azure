@@ -20,8 +20,7 @@ control 'azurerm_postgresql_server' do
   end
 end
 
-control 'azure_postgresql_server' do
-
+control 'azure_postgresql_server-firewall_rules-checking' do
   impact 1.0
   title 'Checking the firewall rules for singular resource of azure_postgresql_server.'
   desc 'Checking the firewall rules for singular resource of azure_postgresql_server.'
@@ -29,6 +28,6 @@ control 'azure_postgresql_server' do
   only_if { !postgresql_server_name.nil? }
 
   describe azure_postgresql_server(resource_group: resource_group, server_name: postgresql_server_name) do
-    its('firewall_rules') { should eq {} }
+    its('firewall_rules') { should be_empty } # We can also use its('firewall_rules') { should eq {} }
   end
 end
