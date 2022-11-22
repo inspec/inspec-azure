@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_virtual_machines Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_virtual_machines` InSpec audit resource to test properties related to virtual machines for a resource group or the entire subscription.
+Use the `azure_virtual_machines` InSpec audit resource to test the properties related to virtual machines for a resource group or the entire subscription.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,18 @@ Use the `azure_virtual_machines` InSpec audit resource to test properties relate
 
 ## Syntax
 
-An `azure_virtual_machines` resource block returns all Azure virtual machines, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_virtual_machines` resource block returns all Azure virtual machines within a resource group (if provided) or an entire subscription.
+
 ```ruby
 describe azure_virtual_machines do
   #...
 end
 ```
-or
+
+Or
+
 ```ruby
-describe azure_virtual_machines(resource_group: 'my-rg') do
+describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -44,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -77,10 +80,10 @@ end
 
 ## Examples
 
-**Test If Any Virtual Machines Exist in the Resource Group.**
+### Test if any virtual machines exist in the resource group
 
 ```ruby
-describe azure_virtual_machines(resource_group: 'MyResourceGroup') do
+describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
 ```
@@ -88,37 +91,41 @@ end
 **Filters Based on Platform.**
 
 ```ruby
-describe azure_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
+describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform: 'windows') do
   it { should exist }
 end
-```   
-**Loop through Virtual Machines by Their Ids  .**
+```
+
+### Loop through virtual machines by their IDs
 
 ```ruby
 azure_virtual_machines.ids.each do |id|
   describe azure_virtual_machine(resource_id: id) do
     it { should exist }
   end
-end  
-``` 
-**Test If There are Windows Virtual Machines     .**
+end
+```
+
+### Test if there are Windows virtual machines
 
 ```ruby
-describe azure_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
+describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform: 'windows') do
   it { should exist }
 end
-```    
-**Test that There are Virtual Machines that Includes a Certain String in their Names (Client Side Filtering)   .**
+```
+
+### Test that there are virtual machines that includes a certain string in their names (Client Side Filtering)
 
 ```ruby
 describe azure_virtual_machines(resource_group: 'MyResourceGroup').where { name.include?('WindowsVm') } do
   it { should exist }
 end
-```    
-**Test that There are Virtual Machine that Includes a Certain String in their Names (Server Side Filtering via Generic Resource - Recommended)   .**
+```
+
+### Test that there are virtual machine that includes a certain string in their names (Server Side Filtering via Generic Resource - Recommended)
 
 ```ruby
-describe azure_generic_resources(resource_group: 'MyResourceGroup', resource_provider: 'Microsoft.Compute/virtualMachine', substring_of_name: 'WindowsVm') do
+describe azure_generic_resources(resource_group: 'RESOURCE_GROUP', resource_provider: 'Microsoft.Compute/virtualMachine', substring_of_name: 'WindowsVm') do
   it { should exist }
 end
 ```
@@ -130,15 +137,19 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no virtual machines are in the resource group
+# Should not exist if no virtual machines are in the resource group.
 
-describe azure_virtual_machines(resource_group: 'MyResourceGroup') do
+describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
+```
 
-# Should exist if the filter returns a single virtual machine
+### not_exists
 
-describe azure_virtual_machines(resource_group: 'MyResourceGroup').where(platform: 'windows') do
+```ruby
+# Should exist if the filter returns a single virtual machine.
+
+describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform: 'windows') do
   it { should exist }
 end
 ```

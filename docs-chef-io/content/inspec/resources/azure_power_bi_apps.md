@@ -56,13 +56,12 @@ This resource does not require any parameters.
 
 : **Field**: `lastUpdate`
 
-
 {{% inspec_filter_table %}}
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/apps/get-apps) for other properties available.
 
 ## Examples
 
-**Loop through Power BI apps by their IDs.**
+### Loop through Power BI apps by their IDs
 
 ```ruby
 azure_power_bi_apps.ids.each do |id|
@@ -72,7 +71,7 @@ azure_power_bi_apps.ids.each do |id|
 end
 ```
 
-**Test that a Power BI app named "Finance" exists.**
+### Test that a Power BI app named 'Finance' exists
 
 ```ruby
 describe azure_power_bi_apps.where(name: 'Finance') do
@@ -87,12 +86,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI apps are present
+# Should not exist if no Power BI apps are present.
 
 describe azure_power_bi_apps do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI apps
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Power BI apps.
 
 describe azure_power_bi_apps do
   it { should exist }

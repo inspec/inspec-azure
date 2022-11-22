@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_active_directory_object Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_active_directory_object` InSpec audit resource to test properties of an Azure Active Directory object.
+Use the `azure_active_directory_object` InSpec audit resource to test the properties of an Azure Active Directory object.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -30,7 +30,7 @@ end
 
 ## Parameters
 
-parameter `id` is mandatory.
+Parameter `id` is mandatory.
 
 `id`
 : The Active Directory object ID.
@@ -67,16 +67,16 @@ parameter `id` is mandatory.
 : The group types of the AD object group.
 
 `isAssignableToRole`
-: The roles assignable to AD object.
+: The roles assignable to the AD object.
 
 `mail`
-: The configured mail for AD object.
+: The configured mail for the AD object.
 
 `mailEnabled`
-: The mail enabled configuration parameter.
+: The mail-enabled configuration parameter.
 
 `mailNickname`
-: The mail nick name configuration.
+: The mail nickname configuration.
 
 `membershipRule`
 : The membership rule for the AD object.
@@ -85,16 +85,16 @@ parameter `id` is mandatory.
 : The processing state of the membership rule.
 
 `onPremisesDomainName`
-: The domain name for the given on premises.
+: The specified domain name for the on-premises domain.
 
 `onPremisesLastSyncDateTime`
-: The on-premises latest sync datetime.
+: The on-premises latest sync date time.
 
 `onPremisesNetBiosName`
 : The on-premises net bios name.
 
 `onPremisesSamAccountName`
-: The on-premises sam account name.
+: The on-premises SAM account name.
 
 `onPremisesSecurityIdentifier`
 : The on-premises security identifier.
@@ -124,7 +124,7 @@ parameter `id` is mandatory.
 : The resource provisioning options set.
 
 `securityEnabled`
-: The security enabled configured.
+: The security-enabled configured.
 
 `securityIdentifier`
 : The security identifier configured.
@@ -137,7 +137,7 @@ parameter `id` is mandatory.
 
 ## Examples
 
-**Test if an Active Directory object is referenced with a valid ID.**
+### Test if an Active Directory object is referenced with a valid ID
 
 ```ruby
 describe azure_active_directory_object(id: 'ACTIVE_DIRECTORY_OBJECT_ID') do
@@ -145,7 +145,7 @@ describe azure_active_directory_object(id: 'ACTIVE_DIRECTORY_OBJECT_ID') do
 end
 ```
 
-**Test if an Active Directory object is referenced with an invalid ID.**
+### Test if an Active Directory object is referenced with an invalid ID
 
 ```ruby
 describe azure_active_directory_object(id: 'ACTIVE_DIRECTORY_OBJECT_ID') do
@@ -167,5 +167,4 @@ end
 
 ## Azure Permissions
 
-Graph resources require specific privileges granted to your service principal.
-Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.
+Graph resources require specific privileges granted to your service principal. Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.

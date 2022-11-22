@@ -45,7 +45,7 @@ end
 : The dashboard display name.
 
 `embedUrl`
-: The dashboard embed url.
+: The dashboard embed URL.
 
 `isReadOnly`
 : Is ReadOnly dashboard.
@@ -56,7 +56,7 @@ Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/p
 
 ## Examples
 
-**Test that the Power BI app dashboard is read only.**
+### Test that the Power BI app dashboard is read-only
 
 ```ruby
 describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
@@ -71,11 +71,17 @@ end
 ### exists
 
 ```ruby
-# If the Azure Power BI app dashboard is found, it will exist
+# If the Azure Power BI app dashboard is found, it will exist.
 describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
   it { should exist }
 end
-# if the Azure Power BI app dashboard is not found, it will not exist
+```
+
+### not_exists
+
+```ruby
+# if the Azure Power BI app dashboard is not found, it will not exist.
+
 describe azure_power_bi_app_dashboard(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID')  do
   it { should_not exist }
 end

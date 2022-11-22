@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_migrate_assessment_machine Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_migrate_assessment_machine` InSpec audit resource to test properties related to an Azure Migrate assessment machine.
+Use the `azure_migrate_assessment_machine` InSpec audit resource to test the properties related to an Azure Migrate assessment machine.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_migrate_assessment_machine` InSpec audit resource to test propert
 
 ## Syntax
 
-`name`, `project_name` and `resource_group`  are required parameters.
+`name`, `project_name`, and `resource_group` are required parameters.
 
 ```ruby
 describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME' name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
@@ -46,11 +46,11 @@ end
 
 `resource_group` _(required)_
 
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `project_name` _(required)_
 
-: The Azure Migrate Assessment Project.
+: The Azure Migrate Assessment project.
 
 ## Properties
 
@@ -70,7 +70,7 @@ end
 : Properties of the assessment.
 
 `properties.bootType`
-: Boot type of the machine.
+: Boot type of machine.
 
 `properties.megabytesOfMemory`
 : Memory in Megabytes.
@@ -79,17 +79,16 @@ end
 : Processor count.
 
 `properties.operatingSystemType`
-: Operating System type of the machine.
+: Operating system type of the machine.
 
-
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/machines/get) for other properties available.
 Any attribute in the response may be accessed with the key names separated by dots (`.`).
 
 ## Examples
 
-**Test the Boot Type of Migrate assessment machine.**
+### Test the boot migrate assessment machine
 
 ```ruby
 describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME', name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
@@ -104,13 +103,17 @@ This InSpec audit resource has the following special matchers. For a full list o
 ### exists
 
 ```ruby
-# If a Migrate assessment machine is found it exists
+# If a migrate assessment machine is found, it exists.
 
 describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME' name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
   it { should exist }
 end
+```
 
-# if Migrate assessment machine is not found it does not exist
+### not_exists
+
+```ruby
+# If migrate assessment machine is not found, it does not exist.
 
 describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME' name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do
   it { should_not exist }

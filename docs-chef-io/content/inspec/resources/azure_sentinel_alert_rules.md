@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_sentinel_alert_rules Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sentinel_alert_rules` Chef InSpec audit resource to test properties of an Azure Sentinel alert rule for a resource group or the entire subscription.
+Use the `azure_sentinel_alert_rules` Chef InSpec audit resource to test the properties of an Azure Sentinel alert rule for a resource group or the entire subscription.
 
 For additional information, see the [`Azure Sentinel Alert Rules API documentation`](https://docs.microsoft.com/en-us/rest/api/datafactory/pipeline-runs/query-by-factory).
 
@@ -24,7 +24,7 @@ For additional information, see the [`Azure Sentinel Alert Rules API documentati
 
 ## Syntax
 
-An `azure_sentinel_alert_rules` resource block returns all Azure Sentinel alerts rules, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_sentinel_alert_rules` resource block returns all Azure Sentinel alerts rules, either within a Resource Group (if provided) or an entire subscription.
 
 ```ruby
 describe azure_sentinel_alert_rules(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
@@ -50,7 +50,7 @@ end
 : **Field**: `name`
 
 `ids`
-: A list of alert_rule IDs .
+: A list of alert_rule IDs.
 
 : **Field**: `id`
 
@@ -70,12 +70,12 @@ end
 : **Field**: `severity`
 
 `displayNames`
-: The List of display name for alerts created by this alert rule.
+: The List of display names for alerts created by this alert rule.
 
 : **Field**: `displayName`
 
 `enableds`
-: The list of flags which Determines whether this alert rule is enabled or disabled.
+: The list of flags that determines whether this alert rule is enabled or disabled.
 
 : **Field**: `enabled`
 
@@ -107,7 +107,7 @@ describe azure_sentinel_alert_rules(resource_group: resource_group, workspace_na
 end
 ```
 
-**Test if any alert rules exist in the resource group.**
+### Test if any alert rules exist in the resource group
 
 ```ruby
 describe azure_sentinel_alert_rules(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do
@@ -115,7 +115,7 @@ describe azure_sentinel_alert_rules(resource_group: 'RESOURCE_GROUP', workspace_
 end
 ```
 
-**Test that there aren't any alert rules in a resource group.**
+### Test that there aren't any alert rules in a resource group
 
 ```ruby
 describe azure_sentinel_alert_rules(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME') do

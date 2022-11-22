@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_synapse_workspaces Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_synapse_workspaces` InSpec audit resource to test properties related to all Azure Synapse workspaces.
+Use the `azure_synapse_workspaces` InSpec audit resource to test the properties related to all Azure Synapse workspaces.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group` _(optional)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -43,7 +43,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -53,7 +53,7 @@ end
 : **Field**: `type`
 
 `properties`
-: A list of Properties for all the Synapse workspaces.
+: A list of properties for all the Synapse workspaces.
 
 : **Field**: `properties`
 
@@ -71,7 +71,7 @@ end
 
 ## Examples
 
-**Loop through Synapse workspaces by their names.**
+### Loop through Synapse workspaces by their names
 
 ```ruby
 azure_synapse_workspaces.names.each do |name|
@@ -81,7 +81,7 @@ azure_synapse_workspaces.names.each do |name|
 end
 ```
 
-**Test that there are Synapse workspaces that are successfully provisioned.**
+### Test that there are Synapse workspaces that are successfully provisioned
 
 ```ruby
 describe azure_synapse_workspaces(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do
@@ -96,12 +96,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Synapse workspaces are present
+# Should not exist if no Synapse workspaces are present.
 
 describe azure_synapse_workspaces(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Synapse workspaces
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Synapse workspace.
 
 describe azure_synapse_workspaces(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

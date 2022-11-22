@@ -209,6 +209,14 @@ resource "azurerm_managed_disk" "disk" {
   }
 }
 
+resource "azurerm_snapshot" "snapshot" {
+  name                = "snapshot"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.id
+  create_option       = "Copy"
+  source_uri          = azurerm_managed_disk.disk.id
+}
+
 resource "azurerm_network_security_group" "nsg" {
   name                = "Inspec-NSG"
   location            = var.location

@@ -53,7 +53,7 @@ end
 
 : List of all the Power BI dataflow descriptions.
 
-: **Field**: `descriptio
+: **Field**: `descriptions`
 
 `modelUrls`
 
@@ -61,12 +61,11 @@ end
 
 : **Field**: `modelUrl`
 
-
 {{% inspec_filter_table %}}
 
 ## Examples
 
-**Test to ensure Power BI Dataflow for Finance exists.**
+### Test to ensure Power BI Dataflow for Finance exists
 
 ```ruby
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID').where(name: 'DATAFLOW_NAME') do
@@ -81,12 +80,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI dataflows are present
+# Should not exist if no Power BI dataflows are present.
 
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Power BI dataflows
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Power BI dataflows.
 
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID') do
   it { should exist }

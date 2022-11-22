@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_generic_resources Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_generic_resources` Inspec audit resource to test any valid Azure resources. 
+Use the `azure_generic_resources` Inspec audit resource to test any valid Azure resources.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Use the `azure_generic_resources` Inspec audit resource to test any valid Azure 
 
 ## Syntax
 
-This resource will interrogate all resource in your subscription available through Azure Resource Manager when initiated without a parameter.
+This resource will interrogate all resources in your subscription available through Azure Resource Manager when initiated without a parameter.
 
 ```ruby
 describe azure_generic_resources do
@@ -28,28 +28,27 @@ end
 
 ## Parameters
 
-The following parameters can be passed for targeting Azure resources. 
-All of them are optional. 
+The following parameters can be passed for targeting Azure resources. All of them are optional.
 
 `resource_group`
-: Azure resource group that the targeted resources have been created in.
+: Azure resource group where the targeted resources have been created.
 
 : **Example**: `MyResourceGroup`
 
 `substring_of_resource_group`
-: Substring of an Azure resource group name that the targeted resources have been created in.
+: Substring of an Azure resource group name where the targeted resources have been created.
 
-: **Example**: `My`
+: **Example**: `RESOURCE_GROUP`
 
 `name`
 : Name of the Azure resources to test.
 
-: **Example**: `MyVM`
+: **Example**: `VM_NAME`
 
 `substring_of_name`
-: Substring of a name of the Azure resources to test.
+: Substring a name of the Azure resources to test.
 
-: **Example**: `My  `
+: **Example**: `NAME`
 
 `resource_provider`
 : Azure resource provider of the resources to be tested.
@@ -72,17 +71,18 @@ All of them are optional.
 : **Example**: `/providers/Microsoft.Authorization/policyDefinitions/`
 
 `add_subscription_id`
-: Indicates whether the `resource_uri` contains the subscription id.
+: Indicates whether the `resource_uri` contains the subscription ID.
 
 : **Example**: `true` or `false`
 
 `filter_free_text`
-: Filter expression for the endpoints supporting `$filter` parameter, eg. [Azure role assignments](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-list-rest). This can only be used with the `resource_uri` parameter.
+: Filter expression for the endpoints supporting `$filter` parameter. For example, [Azure role assignments](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-list-rest). This can only be used with the `resource_uri` parameter.
 
 : **Example**: `"atScope()"`
 <superscript>*</superscript> When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
 
 Either one of the parameter sets can be provided for a valid query:
+
 - `resource_group`
 - `substring_of_resource_group`
 - `name`
@@ -96,19 +96,19 @@ Either one of the parameter sets can be provided for a valid query:
 - `add_subscription_id` and `resource_uri`
 - `add_subscription_id`, `resource_uri` and `filter_free_text`
 
-Different parameter combinations can be tried. If it is not supported either the InSpec resource or the Azure Rest API will raise an error.
+Different parameter combinations can be tried. If it is not supported, the InSpec resource or the Azure Rest API will raise an error.
 
-It is advised to use these parameter sets to narrow down the targeted resources at the server side, Azure Rest API, for a more computing resource efficient test.
+It is advised to use these parameter sets to narrow down the targeted resources at the server side, Azure Rest API, for a more computing resource-efficient test.
 
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
 `names`
-: A list of the resource names that are unique within a resource group.
+: A list of the unique resource names within a resource group.
 
 : **Field**: `name`
 
@@ -123,7 +123,7 @@ It is advised to use these parameter sets to narrow down the targeted resources 
 : **Field**: `type`
 
 `locations`
-: A list of locations where resources are created in.
+: A list of locations where resources are created.
 
 : **Field**: `location`
 
@@ -133,7 +133,7 @@ It is advised to use these parameter sets to narrow down the targeted resources 
 : **Field**: `created_time`
 
 `changed_times<superscript>**</superscript>`
-: A list of changed times of the resources.
+: A list of changing times of the resources.
 
 : **Field**: `changed_time`
 
@@ -148,7 +148,7 @@ It is advised to use these parameter sets to narrow down the targeted resources 
 
 ## Examples
 
-**Test All Virtual Machines in Your Subscription.**
+### Test all virtual machines in your subscription
 
 ```ruby
 describe azure_generic_resources(resource_provider: 'Microsoft.Compute/virtualMachines') do
@@ -157,7 +157,7 @@ describe azure_generic_resources(resource_provider: 'Microsoft.Compute/virtualMa
 end
 ```
 
-**Test All Resources Regardless of Their Type and Resource Group with a Common String in Their Names (Server Side Filtering).**
+### Test all resources regardless of their type and resource group with a common string in names (Server Side Filtering)
 
 ```ruby
 azure_generic_resources(substring_of_name: 'project_a').ids.each do |id|
@@ -166,18 +166,20 @@ azure_generic_resources(substring_of_name: 'project_a').ids.each do |id|
     its('location') { should eq 'eastus' }
   end
 end
-```    
-**Test All Resources Regardless of Their Type and Resource Group with a Common Tag `name:value` Pair (Server Side Filtering).**
+```
+
+### Test all resources regardless of their type and resource group with a common tag 'name:value' pair (Server Side Filtering)
 
 ```ruby
-azure_generic_resources(tag_name: 'demo', tag_value: 'shutdown_at_10_pm').ids.each do |id| 
+azure_generic_resources(tag_name: 'demo', tag_value: 'shutdown_at_10_pm').ids.each do |id|
   describe azure_generic_resource(resource_id: id) do
     it { should exist }
     its('location') { should eq 'eastus' }
   end
 end
-```    
-**Filters the Results to Only Include Those that Match the Given Location (Client Side Filtering).**
+```
+
+### Filters the results to only include those that match the given location (Client Side Filtering)
 
 ```ruby
 describe azure_generic_resources.where(location: 'eastus') do
@@ -185,7 +187,7 @@ describe azure_generic_resources.where(location: 'eastus') do
 end
 ```
 
-**Filters the Results to Only Include Those that Created within Last 24 Hours (Client Side Filtering).**
+### Filters the results to only include those that created within last 24 hours (Client Side Filtering)
 
 ```ruby
 describe azure_generic_resources.where{ created_time > Time.now - 86400 } do
@@ -193,7 +195,7 @@ describe azure_generic_resources.where{ created_time > Time.now - 86400 } do
 end
 ```
 
-**Test Policy Definitions.**
+### Test policy definitions
 
 ```ruby
 describe azure_generic_resources(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions') do
@@ -201,7 +203,7 @@ describe azure_generic_resources(add_subscription_id: true, resource_uri: 'provi
 end
 ```
 
-**Filter Role Assignments via `filter_free_text`.**
+### Filter role assignments via 'filter_free_text'
 
 ```ruby
 describe azure_generic_resources(add_subscription_id: true, resource_uri: "providers/Microsoft.Authorization/roleAssignments", filter_free_text: "atScope()+and+assignedTo('{abcd1234-abcd-1234}')") do
@@ -220,16 +222,19 @@ For more examples, please see the [integration tests](/test/integration/verify/c
 ### exist
 
 ```ruby
-# Should not exist if there is no resource with a given resource group
+# Should not exist if there is no resource with a given resource group.
 
 describe azure_generic_resources(resource_group: 'fake_group') do
   it { should_not exist }
 end
 ```
-```ruby
-# Should exist if there is at least one resource
 
-describe azure_generic_resources(resource_group: 'MyResourceGroup') do
+### not_exists
+
+```ruby
+# Should exist if there is at least one resource.
+
+describe azure_generic_resources(resource_group: 'RESOURCE_GROUP') do
   it { should exist }
 end
 ```
@@ -237,4 +242,3 @@ end
 ## Azure Permissions
 
 {{% azure_permissions_service_principal role="contributor" %}}
-

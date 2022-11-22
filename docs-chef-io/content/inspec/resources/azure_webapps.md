@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_webapps Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_webapps` InSpec audit resource to test properties and configuration of multiple Azure web applications.
+Use the `azure_webapps` InSpec audit resource to test the properties and configuration of multiple Azure web applications.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,15 +22,18 @@ Use the `azure_webapps` InSpec audit resource to test properties and configurati
 
 ## Syntax
 
-An `azure_webapps` resource block returns all webapps, either within a Resource Group (if provided), or within an entire Subscription.
+An `azure_webapps` resource block returns all webapps within a resource group (if provided) or an entire subscription.
+
 ```ruby
 describe azure_webapps do
   #...
 end
 ```
-or
+
+Or
+
 ```ruby
-describe azure_webapps(resource_group: 'my-rg') do
+describe azure_webapps(resource_group: 'RESOURCE_GROUP') do
   #...
 end
 ```
@@ -44,7 +47,7 @@ end
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -67,10 +70,10 @@ end
 
 ## Examples
 
-**Test that an Example Resource Group has the Named Web Application.**
+### Test that an example resource group has the named web application
 
 ```ruby
-describe azure_webapps(resource_group: 'ExampleGroup') do
+describe azure_webapps(resource_group: 'EXAMPLEGROUP') do
   its('names') { should include('my_web_app') }
 end
 ```
@@ -81,15 +84,22 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
-# If we expect 'ExampleGroup' Resource Group to have at least one web application
-describe azure_webapps(resource_group: 'ExampleGroup') do
+# If we expect 'EXAMPLEGROUP' resource group to have at least one web application.
+
+describe azure_webapps(resource_group: 'EXAMPLEGROUP') do
   it { should exist }
 end
+```
 
-# If we expect 'EmptyExampleGroup' Resource Group to not have any web applications
-describe azure_webapps(resource_group: 'EmptyExampleGroup') do
+### not_exists
+
+```ruby
+# If we expect 'EMPTYEXAMPLEGROUP' resource group to not have any web applications.
+
+describe azure_webapps(resource_group: 'EMPTYEXAMPLEGROUP') do
   it { should_not exist }
 end
 ```

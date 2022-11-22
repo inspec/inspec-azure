@@ -33,24 +33,22 @@ end
 ## Parameters
 
 `capacity_id` _(optional)_
-
 : The capacity ID.
-
 
 ## Properties
 
 `ids`
-: List of all Power Bi Capacity refreshable IDs.
+: List of all Power BI Capacity refreshable IDs.
 
 : **Field**: `id`
 
 `names`
-: List of all the Power Bi Capacity refreshable names.
+: List of all the Power BI Capacity refreshable names.
 
 : **Field**: `name`
 
 `kinds`
-: List of all the Power Bi Capacity refreshable kinds.
+: List of all the Power BI Capacity refreshable kinds.
 
 : **Field**: `kind`
 
@@ -85,7 +83,7 @@ For additional information, refer to the [Azure documentation](https://docs.micr
 
 ## Examples
 
-**Test to ensure Power BI Capacity refreshable schedules are enabled.**
+### Test to ensure Power BI Capacity refreshable schedules are enabled
 
 ```ruby
 describe azure_power_bi_capacity_refreshables do
@@ -100,11 +98,16 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Power BI Capacity refreshables are present
+# Should not exist if no Power BI Capacity refreshables are present.
 
 describe azure_power_bi_capacity_refreshables do
   it { should_not exist }
 end
+```
+
+### not_exists
+
+```ruby
 # Should exist if the filter returns at least one Power BI Capacity refreshables
 
 describe azure_power_bi_capacity_refreshables do

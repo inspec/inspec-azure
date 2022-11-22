@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_service_fabric_mesh_applications Reso
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_service_fabric_mesh_applications` InSpec audit resource to test properties of all Azure Service Fabric Mesh applications.
+Use the `azure_service_fabric_mesh_applications` InSpec audit resource to test the properties of all Azure Service Fabric Mesh applications.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -33,8 +33,7 @@ end
 ## Parameters
 
 `resource_group` _(optional)_
-: Azure resource group that the targeted resource resides in.
-
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -44,7 +43,7 @@ end
 : **Field**: `id`
 
 `names`
-: A list of resource Names.
+: A list of resource names.
 
 : **Field**: `name`
 
@@ -82,7 +81,7 @@ end
 
 ## Examples
 
-**Loop through Service Fabric Mesh applications by their names.**
+### Loop through Service Fabric Mesh applications by their names
 
 ```ruby
 azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -92,7 +91,7 @@ azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP').names.e
 end
 ```
 
-**Test that there are Service Fabric Mesh applications that are successfully provisioned.**
+### Test that there are Service Fabric Mesh applications that are successfully provisioned
 
 ```ruby
 describe azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do
@@ -107,12 +106,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no Service Fabric Mesh applications are present
+# Should not exist if no Service Fabric Mesh applications are present.
 
 describe azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one Service Fabric Mesh applications
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Service Fabric Mesh application.
 
 describe azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

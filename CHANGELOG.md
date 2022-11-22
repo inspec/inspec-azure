@@ -1,10 +1,90 @@
 # Changelog
-<!-- latest_release 1.118.5 -->
+<!-- latest_release 1.118.21 -->
+## [v1.118.21](https://github.com/inspec/inspec-azure/tree/v1.118.21) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-514 create the required files of the azure snapshot resource [#682](https://github.com/inspec/inspec-azure/pull/682) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
+## [v1.118.20](https://github.com/inspec/inspec-azure/tree/v1.118.20) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-528 Fixing the lint errors [#684](https://github.com/inspec/inspec-azure/pull/684) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.19](https://github.com/inspec/inspec-azure/tree/v1.118.19) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-531-verify-that-the-inbound-port-rules-does-not-have-a-rule-for-http [#689](https://github.com/inspec/inspec-azure/pull/689) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.18](https://github.com/inspec/inspec-azure/tree/v1.118.18) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-530 stack-version-provide-ambiguous-information-on-installed-php-app [#688](https://github.com/inspec/inspec-azure/pull/688) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.17](https://github.com/inspec/inspec-azure/tree/v1.118.17) (2022-11-22)
+
+#### Merged Pull Requests
+- adding resource for azure snapshots [#671](https://github.com/inspec/inspec-azure/pull/671) ([Jiaming1826](https://github.com/Jiaming1826))
+
+## [v1.118.16](https://github.com/inspec/inspec-azure/tree/v1.118.16) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-533 create the unit tests and docs for azure microsoft defender for cloud resource for settings [#691](https://github.com/inspec/inspec-azure/pull/691) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.15](https://github.com/inspec/inspec-azure/tree/v1.118.15) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-534 create the unit tests and docs for azure microsoft defender for cloud resource for security contact [#692](https://github.com/inspec/inspec-azure/pull/692) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.14](https://github.com/inspec/inspec-azure/tree/v1.118.14) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-536 azure-storage-account-resource-attribute-has-infrastructure-encryption-enabled-attribute [#697](https://github.com/inspec/inspec-azure/pull/697) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.13](https://github.com/inspec/inspec-azure/tree/v1.118.13) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-532 create the unit tests and docs for azure my sql database server configuration [#690](https://github.com/inspec/inspec-azure/pull/690) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.12](https://github.com/inspec/inspec-azure/tree/v1.118.12) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-501 servervulnerabilityassessment in azure sql database resource [#677](https://github.com/inspec/inspec-azure/pull/677) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.11](https://github.com/inspec/inspec-azure/tree/v1.118.11) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-505 Soumyo/azure blob service [#674](https://github.com/inspec/inspec-azure/pull/674) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.10](https://github.com/inspec/inspec-azure/tree/v1.118.10) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-504 azure Microsoft Defender for Cloud Resource [#676](https://github.com/inspec/inspec-azure/pull/676) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.9](https://github.com/inspec/inspec-azure/tree/v1.118.9) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-502 audit_log_enabled and audit_log_events server in Azure MySQL Database Server Resource [#686](https://github.com/inspec/inspec-azure/pull/686) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.8](https://github.com/inspec/inspec-azure/tree/v1.118.8) (2022-11-14)
+
+#### Merged Pull Requests
+- RESOURCE-529 azure Microsoft Defender for Cloud Resource Settings and Security Contact [#685](https://github.com/inspec/inspec-azure/pull/685) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.7](https://github.com/inspec/inspec-azure/tree/v1.118.7) (2022-11-08)
+
+#### Merged Pull Requests
+- RESOURCE-507 Attribute Enhancement in Azure Network Security Group Resource [#680](https://github.com/inspec/inspec-azure/pull/680) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.6](https://github.com/inspec/inspec-azure/tree/v1.118.6) (2022-11-08)
+
+#### Merged Pull Requests
+- RESOURCE-500 starting and ending ip address in the properties in azure postgre sql server resource [#679](https://github.com/inspec/inspec-azure/pull/679) ([sa-progress](https://github.com/sa-progress))
+
 ## [v1.118.5](https://github.com/inspec/inspec-azure/tree/v1.118.5) (2022-06-01)
 
 #### Merged Pull Requests
 - RESOURCE-135 F/alert rule [#477](https://github.com/inspec/inspec-azure/pull/477) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.4](https://github.com/inspec/inspec-azure/tree/v1.118.4) (2022-05-23)
 

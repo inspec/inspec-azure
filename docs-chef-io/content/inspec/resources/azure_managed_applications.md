@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_managed_applications Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_managed_applications` InSpec audit resource to test properties related to all Azure managed applications.
+Use the `azure_managed_applications` InSpec audit resource to test the properties related to all Azure Managed applications.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -22,7 +22,7 @@ Use the `azure_managed_applications` InSpec audit resource to test properties re
 
 ## Syntax
 
-An `azure_managed_applications` resource block returns all Azure managed applications.
+An `azure_managed_applications` resource block returns all Azure Managed applications.
 
 ```ruby
 describe azure_managed_applications do
@@ -33,7 +33,7 @@ end
 ## Parameters
 
 `resource_group`  _(optional)_
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 ## Properties
 
@@ -53,7 +53,7 @@ end
 : **Field**: `type`
 
 `properties`
-: A list of Properties for all the managed applications.
+: A list of properties for all the Managed applications.
 
 : **Field**: `properties`
 
@@ -68,7 +68,7 @@ end
 : **Field**: `identity`
 
 `plans`
-: A list of the plan informations.
+: A list of the plan information.
 
 : **Field**: `plan`
 
@@ -78,7 +78,7 @@ end
 : **Field**: `provisioningState`
 
 `publisherTenantIds`
-: A list of the publisher tenant Id.
+: A list of the publisher tenant ID.
 
 : **Field**: `publisherTenantId`
 
@@ -86,7 +86,7 @@ end
 
 ## Examples
 
-**Loop through managed applications by their names.**
+### Loop through Managed applications by their names
 
 ```ruby
 azure_managed_applications(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -96,7 +96,7 @@ azure_managed_applications(resource_group: 'RESOURCE_GROUP').names.each do |name
 end
 ```
 
-**Test that there are managed applications that are successfully provisioned.**
+### Test that there are Managed applications that are successfully provisioned
 
 ```ruby
 describe azure_managed_applications(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do
@@ -111,12 +111,17 @@ end
 ### exists
 
 ```ruby
-# Should not exist if no managed applications are present
+# Should not exist if no Managed applications are present.
 
 describe azure_managed_applications(resource_group: 'RESOURCE_GROUP') do
   it { should_not exist }
 end
-# Should exist if the filter returns at least one managed applications
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Managed application.
 
 describe azure_managed_applications(resource_group: 'RESOURCE_GROUP') do
   it { should exist }

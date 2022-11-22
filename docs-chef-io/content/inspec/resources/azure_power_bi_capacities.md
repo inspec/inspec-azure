@@ -72,11 +72,12 @@ This resource does not require any parameters.
 : **Field**: `capacityUserAccessRight`
 
 {{% inspec_filter_table %}}
+
 Also, refer to [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-capacities) for other properties available.
 
 ## Examples
 
-**Test to ensure Power BI capacities are active.**
+### Test to ensure Power BI capacities are active
 
 ```ruby
 describe azure_power_bi_app_capacities.where(state: 'Active') do
@@ -98,6 +99,8 @@ describe azure_power_bi_app_capacities do
 end
 ```
 
+### not_exists
+
 Use `should_not` to test that the entity does not exist.
 
 ```ruby
@@ -109,4 +112,4 @@ end
 ## Azure Permissions
 
 This API does not support service principal authentication. Instead, use an Active Directory account access token to access this resource.
-Your Active Directory account must be set up with a `Capacity.Read.All` role on the Azure Power BI workspace that you wish to test.
+Your Active Directory account must be set up with a `Capacity.Read.All` role on the Azure Power BI workspace you wish to test.

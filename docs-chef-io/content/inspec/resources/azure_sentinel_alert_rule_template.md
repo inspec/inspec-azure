@@ -10,9 +10,9 @@ identifier = "inspec/resources/azure/azure_sentinel_alert_rule_template Resource
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_sentinel_alert_rule_template` InSpec audit resource to test properties of an Azure Sentinel alert rule template.
+Use the `azure_sentinel_alert_rule_template` InSpec audit resource to test the properties of an Azure Sentinel alert rule template.
 
-See the [`Azure alert rule templates documentation`](https://docs.microsoft.com/en-us/rest/api/securityinsights/alert-rule-templates/list) for additional information.
+See the [`Azure alert rule templates documentation`](https://docs.microsoft.com/en-us/rest/api/securityinsights/preview/alert-rule-templates/list) for additional information.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -35,13 +35,13 @@ end
 ## Parameters
 
 `resource_group`
-: Azure resource group that the targeted resource resides in.
+: Azure resource group where the targeted resource resides.
 
 `workspace_name`
-: Name for the workspace_name that you want to create your Sentinel alert rule template in.
+: Name for the `workspace_name` where you want to create your sentinel alert rule template.
 
 `alert_rule_template_id`
-: The Sentinel alert rule template name.
+: The sentinel alert rule template name.
 
 All the parameter sets needs be provided for a valid query:
 
@@ -55,10 +55,10 @@ All the parameter sets needs be provided for a valid query:
 : Name of the Azure resource to test.
 
 `id`
-: The Sentinel alert rule template type.
+: The sentinel alert rule template type.
 
 `properties`
-: The Properties of the Resource.
+: The properties of the resource.
 
 `type`
 : Azure resource type.
@@ -89,7 +89,7 @@ All the parameter sets needs be provided for a valid query:
 
 ## Examples
 
-**Test if properties match.**
+### Test if properties match
 
  ```ruby
 describe azure_sentinel_alert_rule_template(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', alert_rule_template_id: 'ALERT_RULE_TEMPLATE_ID') do
@@ -106,8 +106,7 @@ describe azure_sentinel_alert_rule_template(resource_group: 'RESOURCE_GROUP', wo
 end
  ```
 
-
-**Test that a Sentinel alert rule template exists.**
+### Test that a sentinel alert rule template exists
 
 ```ruby
 describe azure_sentinel_alert_rule_template(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', alert_rule_template_id: 'ALERT_RULE_TEMPLATE_ID') do
@@ -115,7 +114,7 @@ describe azure_sentinel_alert_rule_template(resource_group: 'RESOURCE_GROUP', wo
 end
 ```
 
-**Test that a Sentinel alert rule template does not exist.**
+### Test that a sentinel alert rule template does not exist
 
 ```ruby
 describe azure_sentinel_alert_rule_template(resource_group: 'RESOURCE_GROUP', workspace_name: 'WORKSPACE_NAME', alert_rule_template_id: 'ALERT_RULE_TEMPLATE_ID') do

@@ -10,7 +10,7 @@ identifier = "inspec/resources/azure/azure_security_center_policies Resource"
 parent = "inspec/resources/azure"
 +++
 
-Use the `azure_security_center_policies` InSpec audit resource to test properties and configuration of multiple Azure Polices.
+Use the `azure_security_center_policies` InSpec audit resource to test the properties and configuration of multiple Azure Policies.
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
@@ -23,6 +23,7 @@ Use the `azure_security_center_policies` InSpec audit resource to test propertie
 ## Syntax
 
 An `azure_subscriptions` resource block returns all security policies for a subscription.
+
 ```ruby
 describe azure_security_center_policies do
   it { should exist }
@@ -36,7 +37,7 @@ This resource does not require any parameters.
 ## Properties
 
 `ids`
-: A list of the unique resource ids.
+: A list of the unique resource IDs.
 
 : **Field**: `id`
 
@@ -54,7 +55,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-**Check If a Specific Policy is Present.**
+### Check if a specific policy is present
 
 ```ruby
 describe azure_security_center_policies do
@@ -62,7 +63,7 @@ describe azure_security_center_policies do
 end
 ```
 
-**Filter the Results to Include Only Those Policies which Include a Given String in Their Names.**
+### Filter the results to include only those policies that have a specified string in their names
 
 ```ruby
 describe azure_security_center_policies.where{ name.include?('production') } do
@@ -70,14 +71,14 @@ describe azure_security_center_policies.where{ name.include?('production') } do
 end
 ```
 
-**Filter the Results to Include Only Those Policies that the Log Collection is Enabled.**
+### Filter the results to include only those policies that the log collection is enabled
 
 ```ruby
 describe azure_security_center_policies.where{ properties[:logCollection] == 'On' } do
   it { should exist }
   its('count') { should eq 4 }
 end
-```    
+```
 
 ## Matchers
 
@@ -85,7 +86,8 @@ end
 
 ### exists
 
-The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 describe azure_security_center_policies do
   it { should exist }
