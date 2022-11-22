@@ -120,6 +120,26 @@ output "encrypted_disk_location" {
   value = azurerm_managed_disk.disk.location
 }
 
+output "snapshot_id" {
+  value = azurerm_snapshot.snapshot.id
+}
+
+output "snapshot_name" {
+  value = azurerm_snapshot.snapshot.name
+}
+
+output "snapshot_disk_size_gb" {
+  value = azurerm_snapshot.snapshot.disk_size_gb
+}
+
+output "snapshot_location" {
+  value = azurerm_snapshot.snapshot.location
+}
+
+output "snapshot_source_resource_id" {
+  value = azurerm_snapshot.snapshot.source_resource_id
+}
+
 output "managed_disk_name" {
   value = var.windows_internal_data_disk
 }
