@@ -55,6 +55,16 @@ class AzureStorageAccount < AzureGenericResource
     activity_log_alert_filtered.any?
   end
 
+  def has_infrastructure_encryption_enabled?
+    return unless exists?
+
+    infrastructure_encryption = false
+    if !properties.encryption.requireInfrastructureEncryption.nil?
+      infrastructure_encryption = properties.encryption.requireInfrastructureEncryption
+    end
+    infrastructure_encryption
+  end
+
   def has_encryption_enabled?
     return unless exists?
     properties.encryption.services.blob.enabled || false
