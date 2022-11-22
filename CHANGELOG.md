@@ -1,10 +1,35 @@
 # Changelog
-<!-- latest_release 1.118.12 -->
+<!-- latest_release 1.118.17 -->
+## [v1.118.17](https://github.com/inspec/inspec-azure/tree/v1.118.17) (2022-11-22)
+
+#### Merged Pull Requests
+- adding resource for azure snapshots [#671](https://github.com/inspec/inspec-azure/pull/671) ([Jiaming1826](https://github.com/Jiaming1826))
+<!-- latest_release -->
+
+## [v1.118.16](https://github.com/inspec/inspec-azure/tree/v1.118.16) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-533 create the unit tests and docs for azure microsoft defender for cloud resource for settings [#691](https://github.com/inspec/inspec-azure/pull/691) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.15](https://github.com/inspec/inspec-azure/tree/v1.118.15) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-534 create the unit tests and docs for azure microsoft defender for cloud resource for security contact [#692](https://github.com/inspec/inspec-azure/pull/692) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.14](https://github.com/inspec/inspec-azure/tree/v1.118.14) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-536 azure-storage-account-resource-attribute-has-infrastructure-encryption-enabled-attribute [#697](https://github.com/inspec/inspec-azure/pull/697) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.13](https://github.com/inspec/inspec-azure/tree/v1.118.13) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-532 create the unit tests and docs for azure my sql database server configuration [#690](https://github.com/inspec/inspec-azure/pull/690) ([soumyo13](https://github.com/soumyo13))
+
 ## [v1.118.12](https://github.com/inspec/inspec-azure/tree/v1.118.12) (2022-11-14)
 
 #### Merged Pull Requests
 - RESOURCE-501 servervulnerabilityassessment in azure sql database resource [#677](https://github.com/inspec/inspec-azure/pull/677) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.11](https://github.com/inspec/inspec-azure/tree/v1.118.11) (2022-11-14)
 

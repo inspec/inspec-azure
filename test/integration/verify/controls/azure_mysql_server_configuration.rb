@@ -5,17 +5,17 @@ control 'azure_mysql_database_configuration' do
   impact 1.0
   title 'Testing the singular resource of azure_mysql_database_configuration.'
   desc 'Testing the singular resource of azure_mysql_database_configuration.'
-  
+
   describe azure_mysql_database_configuration(resource_group: resource_group, server_name: mysql_server_name, name: 'audit_log_enabled') do
     it { should exist }
   end
-  
+
   describe azure_mysql_database_configuration(resource_group: resource_group, server_name: mysql_server_name, name: 'audit_log_enabled') do
     its('id') { should_not be_empty }
     its('name') { should eq 'audit_log_enabled' }
     its('type') { should eq 'Microsoft.DBforMySQL/servers/configurations' }
   end
-  
+
   describe azure_mysql_server_configuration(resource_group: resource_group, server_name: mysql_server_name, name: 'audit_log_enabled') do
     its('properties.value') { should eq 'ON' }
     its('properties.description') { should eq 'Allow to audit the log.' }
