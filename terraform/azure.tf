@@ -1725,3 +1725,15 @@ AzureActivity |
   make-series dcount(ResourceId) default=0 on EventSubmissionTimestamp in range(ago(7d), now(), 1d) by Caller
 QUERY
 }
+
+resource "azurerm_cdn_profile" "inspec_cdn_profile" {
+  name                = "inspec_cdn_profile"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard_Verizon"
+
+  tags = {
+    environment = "inspec"
+    cost_center = "inspec"
+  }
+}

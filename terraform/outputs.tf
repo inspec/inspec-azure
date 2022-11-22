@@ -625,6 +625,10 @@ output "alert_rule_display_name" {
   value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.display_name
 }
 
+output "cdn_profile_name" {
+  value = azurerm_cdn_profile.inspec_cdn_profile.name
+}
+
 output "storage_account_blob_service_id" {
   value = azurerm_storage_blob.functioncode.id
 }
