@@ -120,6 +120,26 @@ output "encrypted_disk_location" {
   value = azurerm_managed_disk.disk.location
 }
 
+output "snapshot_id" {
+  value = azurerm_snapshot.snapshot.id
+}
+
+output "snapshot_name" {
+  value = azurerm_snapshot.snapshot.name
+}
+
+output "snapshot_disk_size_gb" {
+  value = azurerm_snapshot.snapshot.disk_size_gb
+}
+
+output "snapshot_location" {
+  value = azurerm_snapshot.snapshot.location
+}
+
+output "snapshot_source_resource_id" {
+  value = azurerm_snapshot.snapshot.source_resource_id
+}
+
 output "managed_disk_name" {
   value = var.windows_internal_data_disk
 }
@@ -603,6 +623,10 @@ output "alert_rule_name" {
 
 output "alert_rule_display_name" {
   value = azurerm_sentinel_alert_rule_scheduled.alert_rule_scheduled.display_name
+}
+
+output "cdn_profile_name" {
+  value = azurerm_cdn_profile.inspec_cdn_profile.name
 }
 
 output "storage_account_blob_service_id" {

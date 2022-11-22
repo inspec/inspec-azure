@@ -134,6 +134,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   def flow_log_retention_period
     !properties.include?(:retentionPolicy) ? 0 : properties.retentionPolicy
   end
+
   def default_security_rules
     return unless exists?
     @default_security_rules ||= properties.defaultSecurityRules
@@ -161,7 +162,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
 
   def allow_http_from_internet?
     return unless exists?
-    allow_port_from_internet?('80') || allow_port_from_internet?('443')
+    allow_port_from_internet?('80')
   end
   RSpec::Matchers.alias_matcher :allow_http_from_internet, :be_allow_http_from_internet
 
@@ -172,8 +173,6 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     matches_criteria?(SPECIFIC_CRITERIA, security_rules_properties)
   end
   RSpec::Matchers.alias_matcher :allow_port_from_internet, :be_allow_port_from_internet
-
-
 
   private
 
