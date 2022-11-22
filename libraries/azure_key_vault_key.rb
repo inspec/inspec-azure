@@ -21,7 +21,6 @@ class AzureKeyVaultKey < AzureGenericResource
         " Expected one of the following options: #{AzureEnvironments::ENDPOINTS.keys}."
     end
     endpoint = AzureEnvironments.get_endpoint(opts[:endpoint])
-    opts[:api_version] ||= "7.3"
     key_vault_dns_suffix = endpoint.key_vault_dns_suffix
     opts[:resource_provider] = specific_resource_constraint(key_vault_dns_suffix, opts)
     if opts[:key_id]
@@ -50,30 +49,28 @@ class AzureKeyVaultKey < AzureGenericResource
     super(AzureKeyVaultKey)
   end
 
-  def rotation_policy
+  def has_rotation_policy_enabled?
     return unless exists?
+
     resource_uri = "#{@opts[:resource_uri]}/rotationpolicy"
     query = {
       resource_uri: resource_uri,
-      query_parameters: { api_version: @opts[:api_version] },
+      query_parameters: { },
       is_uri_a_url: true,
+      audience: @opts[:audience]
     }
-    policy = get_resource(query)[:value]&.map { |c| [c[:name], c] }.to_h
-    create_resource_methods({ rotation_policy: policy })
+    query[:query_parameters]["api-version"] = @opts[:api_version]
+    policy = get_resource(query)
+    rotation_policy_enabled = false
+
+    if !policy.nil?
+      policy[:lifetimeActions].each do | value |
+        rotation_policy_enabled = true if value[:action][:type] == "Rotate"
+      end
+    end
+    rotation_policy_enabled
   end
 
-  # def rotation_policy
-  #   return unless exists?
-  #   # `additional_resource_properties` method will create a singleton method with the `property_name`
-  #   # and make api response available through this property.
-  #   additional_resource_properties(
-  #     {
-  #       property_name: 'rotation_policy',
-  #       property_endpoint: "#{id}/rotationpolicy",
-  #       api_version: @opts[:api_version],
-  #     },
-  #     )
-  # end
 
   private
 
