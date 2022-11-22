@@ -109,11 +109,7 @@ class AzureConnection
                                    opts: opts, skip_length: true)
     uri = URI(opts[:url])
     # If the authentication audience is provided, use it.
-    if opts[:audience]
-      resource = opts[:audience]
-    else
-      resource = "#{uri.scheme}://#{uri.host}"
-    end
+    resource = opts[:audience] || "#{uri.scheme}://#{uri.host}"
 
     # If it is a paged response than the provided nextLink will contain `skiptoken` in parameters.
     unless opts[:url].include?('skiptoken')

@@ -6,11 +6,11 @@ control 'azure_snapshots' do
   impact 1.0
   title 'Testing the plural resource of azure_snapshots.'
   desc 'Testing the plural resource of azure_snapshots.'
-  
+
   describe azure_snapshots do
     it { should exist }
   end
-  
+
   describe azure_snapshots do
     its('ids') { should include snapshot_id }
     its('names') { should include snapshot_name }
