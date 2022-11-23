@@ -250,6 +250,10 @@ class AzureConnection
   private
 
   def creds_from_uri
-    Inspec::Config.cached.unpack_train_credentials
+    if ENV['RAKE_ENV'] == 'test'
+      Inspec::Config.mock.unpack_train_credentials
+    else
+      Inspec::Config.cached.unpack_train_credentials
+    end
   end
 end
