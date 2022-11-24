@@ -10,8 +10,4 @@ class AzureMicrosoftDefenderPricingConstructorTest < Minitest::Test
   def test_resource_provider_not_ok
     assert_raises(ArgumentError) { AzureMicrosoftDefenderPricing.new(resource_group: 'some_type') }
   end
-
-  def test_resource_group_name_not_ok
-    assert_raises(ArgumentError) { AzureMicrosoftDefenderPricing.new(name: 'VirtualMachines', resource_group: 'test') }
-  end
 end
