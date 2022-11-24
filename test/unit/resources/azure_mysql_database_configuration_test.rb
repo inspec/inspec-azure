@@ -14,8 +14,4 @@ class AzureMySqlDatabaseConfigurationConstructorTest < Minitest::Test
   def test_resource_group
     assert_raises(ArgumentError) { AzureMySqlDatabaseConfiguration.new(server_name: 'my-server-name', name: 'my-name') }
   end
-
-  def test_server_name
-    assert_raises(ArgumentError) { AzureSqlDatabase.new(resource_group: 'my_group', server_name: 'my-server-name', name: 'my-name') }
-  end
 end

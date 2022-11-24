@@ -101,7 +101,7 @@ namespace :azure do
 end
 
 namespace :test do
-  #set env
+  # set env
   ENV['RAKE_ENV'] = 'test'
   # Minitest
   Rake::TestTask.new(:unit) do |t|

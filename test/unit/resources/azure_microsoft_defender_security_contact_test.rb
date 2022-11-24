@@ -10,8 +10,4 @@ class AzureMicrosoftDefenderSecurityContactConstructorTest < Minitest::Test
   def test_resource_provider_not_ok
     assert_raises(ArgumentError) { AzureMicrosoftDefenderSecurityContact.new(resource_group: 'some_type') }
   end
-
-  def test_resource_group_name_not_ok
-    assert_raises(ArgumentError) { AzureMicrosoftDefenderSecurityContact.new(name: 'security-contact-name', resource_group: 'test') }
-  end
 end
