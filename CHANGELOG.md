@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.25 -->
+<!-- latest_release 1.118.26 -->
+## [v1.118.26](https://github.com/inspec/inspec-azure/tree/v1.118.26) (2022-11-24)
+
+#### Merged Pull Requests
+- RESOURCE-538 Fix config cache and also fixed the lint errors [#699](https://github.com/inspec/inspec-azure/pull/699) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.118.25](https://github.com/inspec/inspec-azure/tree/v1.118.25) (2022-11-22)
 
 #### Merged Pull Requests
 - Linting fix [#698](https://github.com/inspec/inspec-azure/pull/698) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.24](https://github.com/inspec/inspec-azure/tree/v1.118.24) (2022-11-22)
 
