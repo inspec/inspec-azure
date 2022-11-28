@@ -123,13 +123,12 @@ class AzureWebapp < AzureGenericResource
   end
 
   def stack_supported(stack)
-    is_linux_fx_version = configuration.properties.respond_to?('linuxFxVersion')
+    linux_fx_version = configuration.properties.public_send('linuxFxVersion')
 
-    if is_linux_fx_version
-      linux_fx_version = configuration.properties.public_send('linuxFxVersion')
+    if !linux_fx_version.nil? && !linux_fx_version.empty?
       stack = get_language(stack.downcase)
       existing_stack = linux_fx_version.split('|')[0]
-      return existing_stack.casecmp(stack) == 0
+      return get_language(existing_stack).casecmp(stack) == 0
     end
     false
   end
