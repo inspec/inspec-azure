@@ -120,6 +120,7 @@ class AzureWebapp < AzureGenericResource
     return version unless is_java_version
     version.split('-')[1].gsub(/java|jre|/, '')
   end
+
   def get_language(stack)
     lang_hash = { python: 'python', php: 'php', tomcat: 'tomcat', java: 'tomcat' }
     lang_hash[:"#{stack}"]
