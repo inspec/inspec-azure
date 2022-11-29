@@ -101,7 +101,7 @@ class AzureWebapp < AzureGenericResource
       version = configuration.properties.public_send(stack_key.to_s)
     end
 
-    version.nil? || version.empty? ? nil : version
+    version.nil? || version.empty? ? nil : parse_version(version)
   end
 
   def latest(stack)
@@ -117,6 +117,11 @@ class AzureWebapp < AzureGenericResource
 
   private
 
+  def parse_version(version)
+    is_java_version = !(version =~ /java/ || version =~/jre/).nil?
+    return version unless is_java_version
+    version.split('-')[1].gsub(/java|jre|/, '')
+  end
   def get_language(stack)
     lang_hash = { python: 'python', php: 'php', tomcat: 'tomcat', java: 'tomcat' }
     lang_hash[:"#{stack}"]
@@ -124,11 +129,10 @@ class AzureWebapp < AzureGenericResource
 
   def stack_supported(stack)
     linux_fx_version = configuration.properties.public_send('linuxFxVersion')
-
     if !linux_fx_version.nil? && !linux_fx_version.empty?
       stack = get_language(stack.downcase)
       existing_stack = linux_fx_version.split('|')[0]
-      return get_language(existing_stack).casecmp(stack) == 0
+      return get_language(existing_stack.downcase).casecmp(stack) == 0
     end
     false
   end
