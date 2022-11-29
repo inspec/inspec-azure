@@ -1692,11 +1692,16 @@ resource "azurerm_synapse_workspace" "synapse_inspec_ws" {
   storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.id
   sql_administrator_login              = "sqladminuser"
   sql_administrator_login_password     = "H@Sh1CoR3!"
+  public_network_access_enabled = false
 
   aad_admin {
     login     = "AzureAD Admin"
     object_id = "00000000-0000-0000-0000-000000000000"
     tenant_id = "00000000-0000-0000-0000-000000000000"
+  }
+
+  identity {
+    type = "SystemAssigned"
   }
 
   tags = {
