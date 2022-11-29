@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'bundler'
 require 'bundler/gem_helper'
 require 'rake/testtask'
@@ -12,13 +10,13 @@ require_relative 'lib/environment_file'
 
 RuboCop::RakeTask.new
 
-FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures"
-TERRAFORM_DIR = 'terraform'
+FIXTURE_DIR   = "#{Dir.pwd}/test/fixtures".freeze
+TERRAFORM_DIR = 'terraform'.freeze
 REQUIRED_ENVS = %w{AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID AZURE_SUBSCRIPTION_ID}.freeze
-INTEGRATION_DIR = 'test/integration/verify'
-TF_PLAN_FILE_NAME = 'inspec-azure.plan'
+INTEGRATION_DIR = 'test/integration/verify'.freeze
+TF_PLAN_FILE_NAME = 'inspec-azure.plan'.freeze
 TF_PLAN_FILE = File.join(TERRAFORM_DIR, TF_PLAN_FILE_NAME)
-ATTRIBUTES_FILE_NAME = ''
+ATTRIBUTES_FILE_NAME = ''.freeze
 
 task default: :test
 desc 'Testing tasks'
