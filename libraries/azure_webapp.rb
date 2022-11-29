@@ -89,18 +89,16 @@ class AzureWebapp < AzureGenericResource
   def stack_version(stack)
     stack = 'netFramework' if stack.eql?('aspnet')
     stack_key = "#{stack}Version"
-    raise ArgumentError, "#{stack} is not a supported stack." unless configuration.properties.respond_to?(stack_key) || stack_supported(stack)
+    raise ArgumentError, "#{stack} is not a supported stack." unless stack_supported(stack)
     linux_fx_version = configuration.properties.public_send('linuxFxVersion')
     if !linux_fx_version.empty?
       existing_stack = linux_fx_version.split('|')[0]
       existing_stack = existing_stack.downcase
       new_stack = stack.downcase
-
       version = linux_fx_version.split('|')[1] if get_language(existing_stack).eql?(get_language(new_stack))
     else
       version = configuration.properties.public_send(stack_key.to_s)
     end
-
     version.nil? || version.empty? ? nil : parse_version(version)
   end
 
@@ -128,13 +126,15 @@ class AzureWebapp < AzureGenericResource
   end
 
   def stack_supported(stack)
-    linux_fx_version = configuration.properties.public_send('linuxFxVersion')
-    if !linux_fx_version.nil? && !linux_fx_version.empty?
-      stack = get_language(stack.downcase)
-      existing_stack = linux_fx_version.split('|')[0]
-      return get_language(existing_stack.downcase).casecmp(stack) == 0
-    end
-    false
+    return false unless configuration.properties.respond_to?("#{stack}Version") || configuration.properties.public_send("#{stack}Version").nil?
+    # Below commented code for custom stack identification for furture requirements.
+    # linux_fx_version = configuration.properties.public_send('linuxFxVersion')
+    # if !linux_fx_version.nil? && !linux_fx_version.empty?
+    #   stack = get_language(stack.downcase)
+    #   existing_stack = linux_fx_version.split('|')[0]
+    #   return get_language(existing_stack.downcase).casecmp(stack) == 0
+    # end
+    true
   end
 end
 
