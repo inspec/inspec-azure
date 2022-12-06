@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.27 -->
+<!-- latest_release 1.118.28 -->
+## [v1.118.28](https://github.com/inspec/inspec-azure/tree/v1.118.28) (2022-12-06)
+
+#### Merged Pull Requests
+- RESOURCE-540 remove frozen string literal from inspec azure [#702](https://github.com/inspec/inspec-azure/pull/702) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.27](https://github.com/inspec/inspec-azure/tree/v1.118.27) (2022-11-29)
 
 #### Merged Pull Requests
 - RESOURCE-537 add-attribute-for-stack-version-for-webapp [#701](https://github.com/inspec/inspec-azure/pull/701) ([sa-progress](https://github.com/sa-progress))
-<!-- latest_release -->
 
 ## [v1.118.26](https://github.com/inspec/inspec-azure/tree/v1.118.26) (2022-11-24)
 
