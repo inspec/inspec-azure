@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'backend/azure_environment'
 
 # TODO: This file should be updated at every release.

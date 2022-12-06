@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'backend/helpers'
 
 # Client class to manage the Azure REST API connection.
@@ -16,7 +15,7 @@ class AzureConnection
   @@provider_details = {}
 
   # This will be included in headers for statistical purposes.
-  INSPEC_USER_AGENT = 'pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'
+  INSPEC_USER_AGENT = 'pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'.freeze
 
   # @return [String] the resource management endpoint url
   attr_reader :resource_manager_endpoint_url

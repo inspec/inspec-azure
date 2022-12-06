@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 resource_group = input('resource_group', value: nil)
 resource_name = input('windows_vm_name', value: nil)
 resource_type = 'Microsoft.Compute/virtualMachines'
