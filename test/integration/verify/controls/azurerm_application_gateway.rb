@@ -3,7 +3,6 @@ application_gateway_name = attribute('application_gateway_name', value: nil)
 
 control 'azurerm_application_gateway' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_streaming_analytics_function.'
   desc 'Testing the singular resource of azure_streaming_analytics_function.'
 

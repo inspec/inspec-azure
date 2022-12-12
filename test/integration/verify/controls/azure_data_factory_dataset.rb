@@ -7,7 +7,6 @@ dataset_type = input('dataset_type', value: nil)
 
 control 'azure_data_factory_dataset' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_data_factory_dataset.'
   desc 'Testing the singular resource of azure_data_factory_dataset.'
 

@@ -4,7 +4,6 @@ tile_id = input(:tile_id, value: '')
 
 control 'Verify the settings of a Power BI App Dashboard Tile' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_power_bi_app_dashboard_tile.'
   desc 'Testing the singular resource of azure_power_bi_app_dashboard_tile.'
 

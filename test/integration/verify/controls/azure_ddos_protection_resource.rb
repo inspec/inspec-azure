@@ -4,7 +4,6 @@ df_location = input('ddos_protection_plan_location', value: nil)
 
 control 'azure_ddos_protection_resource' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_ddos_protection_resource.'
   desc 'Testing the singular resource of azure_ddos_protection_resource.'
 

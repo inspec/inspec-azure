@@ -4,7 +4,6 @@ location        = input('vnet_location',   value: nil)
 
 control 'azure_storage_accounts' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_storage_accounts.'
   desc 'Testing the plural resource of azure_storage_accounts.'
 

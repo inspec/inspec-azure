@@ -4,7 +4,6 @@ resource_id = input(:policy_definition_associated_cosmodb_id,
 
 control 'azure_policy_insights_query_result for a specified resource' do
 
-  impact 1.0
   title 'A simple example to check if a specified resource has policy setup and is compliant'
   desc 'A simple example to check if a specified resource has policy setup and is compliant'
 

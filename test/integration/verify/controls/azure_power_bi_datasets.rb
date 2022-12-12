@@ -1,6 +1,5 @@
 control 'verify the settings of all Azure Power BI Datasets' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_power_bi_dataset.'
   desc 'Testing the plural resource of azure_power_bi_dataset.'
 

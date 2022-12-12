@@ -7,7 +7,6 @@ dataset_type = input('dataset_type', value: nil)
 
 control 'azure_data_factory_datasets' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_data_factory_datasets.'
   desc 'Testing the plural resource of azure_data_factory_datasets.'
 

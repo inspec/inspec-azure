@@ -3,7 +3,6 @@ resource_group = input(:resource_group, value: '')
 
 control 'verify an exemption' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_policy_exemption.'
   desc 'Testing the singular resource of azure_policy_exemption.'
 
@@ -15,7 +14,6 @@ end
 
 control 'verify an exemption within a resource group' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_data_factory.'
   desc 'Testing the singular resource of azure_data_factory.'
 

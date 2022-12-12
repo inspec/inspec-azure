@@ -3,7 +3,6 @@ container_group_name = input(:inspec_container_group_name, value: '')
 
 control 'check container group properties' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_container_group.'
   desc 'Testing the singular resource of azure_container_group.'
 

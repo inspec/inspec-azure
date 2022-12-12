@@ -3,7 +3,6 @@ sql_server_name = input('sql_server_name', value: nil)
 
 control 'azurerm_sql_servers' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_sql_servers.'
   desc 'Testing the plural resource of azurerm_sql_servers.'
 

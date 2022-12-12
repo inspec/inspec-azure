@@ -1,6 +1,5 @@
 control 'check container groups' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_container_groups.'
   desc 'Testing the plural resource of azure_container_groups.'
 

@@ -4,7 +4,6 @@ subnet         = input('subnet_name',    value: nil)
 
 control 'azurerm_subnets' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_subnets.'
   desc 'Testing the plural resource of azurerm_subnets.'
 

@@ -1,6 +1,5 @@
 control 'azurerm_ad_users' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_ad_users.'
   desc 'Testing the plural resource of azurerm_ad_users.'
 

@@ -3,7 +3,6 @@
 control 'azure_policy_insights_query_results for non-compliant resources' do
   text = 'IsCompliant eq false'
 
-  impact 1.0
   title 'Testing the plural resource of azure_policy_insights_query_results.'
   desc 'Testing the plural resource of azure_policy_insights_query_results.'
 
@@ -16,7 +15,6 @@ end
 control 'azure_policy_insights_query_results for virtualMachines' do
   text = "IsCompliant eq false and resourceId eq resourceType eq 'Microsoft.Compute/virtualMachines'"
 
-  impact 1.0
   title 'Testing the plural resource of azure_policy_insights_query_results.'
   desc 'Testing the plural resource of azure_policy_insights_query_results.'
 

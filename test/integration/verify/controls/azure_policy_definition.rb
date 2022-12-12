@@ -1,6 +1,5 @@
 control 'azure_policy_definition' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_policy_definition.'
   desc 'Testing the singular resource of azure_policy_definition.'
 

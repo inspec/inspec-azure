@@ -3,7 +3,6 @@ mysql_server_name = input('mysql_server_name', value: nil)
 
 control 'azurerm_mysql_server' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_streaming_analytics_function.'
   desc 'Testing the singular resource of azure_streaming_analytics_function.'
 
@@ -21,7 +20,6 @@ end
 
 control 'azure_mysql_server' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_mysql_server.'
   desc 'Testing the singular resource of azure_mysql_server.'
 

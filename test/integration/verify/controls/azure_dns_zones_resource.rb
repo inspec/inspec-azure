@@ -4,7 +4,6 @@ dns_location = input('dns_location', value: nil)
 
 control 'azure_dns_zones_resource' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_dns_zones_resource.'
   desc 'Testing the singular resource of azure_dns_zones_resource.'
 

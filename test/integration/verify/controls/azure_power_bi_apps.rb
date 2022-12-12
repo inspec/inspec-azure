@@ -2,7 +2,6 @@ app_id = input(:app_id, value: '')
 
 control 'Verify the settings of all Power BI Apps' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_power_bi_apps.'
   desc 'Testing the plural resource of azure_power_bi_apps.'
 

@@ -1,6 +1,5 @@
 control 'verify the settings of an Azure Power BI Dataset' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_power_bi_dataset.'
   desc 'Testing the singular resource of azure_power_bi_dataset.'
 

@@ -4,7 +4,6 @@ resource_type = 'Microsoft.Compute/virtualMachines'
 
 control 'azurerm_locks' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_locks.'
   desc 'Testing the plural resource of azure_locks.'
 
@@ -15,7 +14,6 @@ end
 
 control 'azure_locks' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_locks.'
   desc 'Testing the plural resource of azure_locks.'
 

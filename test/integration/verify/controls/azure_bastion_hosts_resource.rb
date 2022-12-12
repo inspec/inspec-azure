@@ -4,7 +4,6 @@ df_location = input('bastionHostLocation', value: nil)
 
 control 'azure_bastion_hosts_resource' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_bastion_hosts_resource.'
   desc 'Testing the singular resource of azure_bastion_hosts_resource.'
 

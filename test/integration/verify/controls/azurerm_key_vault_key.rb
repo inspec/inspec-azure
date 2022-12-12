@@ -3,7 +3,6 @@ key_name   = input('key_vault_key_name', value: nil)
 
 control 'azure_key_vault_key' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_key_vault_key.'
   desc 'Testing the singular resource of azurerm_key_vault_key.'
 

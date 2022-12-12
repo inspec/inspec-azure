@@ -3,7 +3,6 @@ iothub_resource_name = attribute('iothub_resource_name', value: nil)
 
 control 'azurerm_iothub' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_iothub.'
   desc 'Testing the singular resource of azurerm_iothub.'
 

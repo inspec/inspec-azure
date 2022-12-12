@@ -3,7 +3,6 @@ address_name = input('ip_address_name', value: '')
 
 control 'azurerm_public_ip' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_public_ip.'
   desc 'Testing the singular resource of azurerm_public_ip.'
 

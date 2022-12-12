@@ -3,7 +3,6 @@ container_registry_name = attribute('container_registry_name', value: nil)
 
 control 'azure_container_registry' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_container_registry.'
   desc 'Testing the singular resource of azure_container_registry.'
 

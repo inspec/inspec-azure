@@ -3,7 +3,6 @@ dns_location = input('dns_location', value: nil)
 
 control 'azure_dns_zones_resources' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_dns_zones_resources.'
   desc 'Testing the plural resource of azure_dns_zones_resources.'
 

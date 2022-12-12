@@ -3,7 +3,6 @@ mariadb_server_name = input('mariadb_server_name', value: nil)
 
 control 'azurerm_mariadb_server' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_mariadb_server.'
   desc 'Testing the singular resource of azurerm_mariadb_server.'
 

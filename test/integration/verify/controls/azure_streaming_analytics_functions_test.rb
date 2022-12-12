@@ -3,7 +3,6 @@ azure_streaming_job_name = input('azure_streaming_job_name', value: nil)
 
 control 'azure_streaming_analytics_functions' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_streaming_analytics_functions.'
   desc 'Testing the plural resource of azure_streaming_analytics_functions.'
 

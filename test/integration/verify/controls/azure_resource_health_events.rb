@@ -3,7 +3,6 @@ resource_id = input(:windows_vm_id, value: '')
 
 control 'azure_resource_health_events' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_resource_health_events.'
   desc 'Testing the plural resource of azure_resource_health_events.'
 

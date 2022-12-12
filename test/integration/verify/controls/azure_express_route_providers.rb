@@ -2,7 +2,6 @@ express_route_name = input('express_route_name', value: nil)
 
 control 'azure_express_route_providers' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_express_route_providers.'
   desc 'Testing the plural resource of azure_express_route_providers.'
 

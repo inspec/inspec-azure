@@ -5,7 +5,6 @@ vnet            = input('vnet_name',                              value: nil)
 
 control 'azurerm_virtual_network_peering' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_virtual_network_peering.'
   desc 'Testing the singular resource of azurerm_virtual_network_peering.'
 

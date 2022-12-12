@@ -1,6 +1,5 @@
 control 'verify settings of Power BI Gateways' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_power_bi_gateways.'
   desc 'Testing the plural resource of azure_power_bi_gateways.'
 

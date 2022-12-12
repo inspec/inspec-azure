@@ -2,7 +2,6 @@ log_profile = input('log_profile_name', value: nil)
 
 control 'azurerm_monitor_log_profiles' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_monitor_log_profiles.'
   desc 'Testing the plural resource of azurerm_monitor_log_profiles.'
 

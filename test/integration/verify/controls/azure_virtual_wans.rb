@@ -3,7 +3,6 @@ location = input(:location, value: '')&.downcase&.gsub(' ', '')
 
 control 'verifies settings of azure virtual WANs' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_virtual_wans.'
   desc 'Testing the plural resource of azure_virtual_wans.'
 

@@ -4,7 +4,6 @@ function_name   = input('web_app_function_name', value: nil)
 
 control 'azure_web_app_functions' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_web_app_functions.'
   desc 'Testing the plural resource of azure_web_app_functions.'
 

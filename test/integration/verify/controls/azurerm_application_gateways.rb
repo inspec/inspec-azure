@@ -3,7 +3,6 @@ application_gateway_name = attribute('application_gateway_name', value: nil)
 
 control 'azurerm_application_gateways' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_application_gateways.'
   desc 'Testing the plural resource of azurerm_application_gateways.'
 

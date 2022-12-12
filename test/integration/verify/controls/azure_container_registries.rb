@@ -3,7 +3,6 @@ container_registry_name = attribute('container_registry_name', value: nil)
 
 control 'azure_container_registries' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_container_registries.'
   desc 'Testing the plural resource of azure_container_registries.'
 

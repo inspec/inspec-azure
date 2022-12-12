@@ -3,7 +3,6 @@ dashboard_id = input(:dashboard_id, value: '')
 
 control 'Verify the settings of all Power BI App Dashboard Tiles' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_power_bi_app_dashboard_tiles.'
   desc 'Testing the plural resource of azure_power_bi_app_dashboard_tiles.'
 

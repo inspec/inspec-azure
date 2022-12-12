@@ -1,6 +1,5 @@
 control 'azure_policy_assignments' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_policy_assignments.'
   desc 'Testing the plural resource of azure_policy_assignments.'
 

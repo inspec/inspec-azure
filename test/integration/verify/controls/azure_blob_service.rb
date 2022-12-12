@@ -5,7 +5,6 @@ storage_account_blob_type = input('storage_account_blob_type', value: '', descri
 storage_account = input('storage_account', value: '', description: '')
 
 control 'azure_blob_service' do
-  impact 1.0
   title 'Testing the singular resource of azure_blob_service.'
   desc 'Testing the singular resource of azure_blob_service.'
 

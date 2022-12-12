@@ -6,7 +6,6 @@ nsg_open       = input('network_security_group_open', value: nil)
 
 control 'azurerm_network_security_group' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_network_security_group.'
   desc 'Testing the singular resource of azure_network_security_group.'
 
@@ -64,7 +63,6 @@ end
 
 control 'azure_network_security_group' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_network_security_group.'
   desc 'Testing the singular resource of azure_network_security_group.'
 

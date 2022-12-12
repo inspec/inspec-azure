@@ -3,7 +3,6 @@ rg = input(:resource_group, value: '')
 
 control 'test the properties of an Azure SQL Virtual Machine Group' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_sql_virtual_machine_group.'
   desc 'Testing the singular resource of azure_sql_virtual_machine_group.'
 

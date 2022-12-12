@@ -1,6 +1,5 @@
 control 'verify the settings of all Azure Power BI Dataflows' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_power_bi_dataflow.'
   desc 'Testing the singular resource of azure_power_bi_dataflow.'
 

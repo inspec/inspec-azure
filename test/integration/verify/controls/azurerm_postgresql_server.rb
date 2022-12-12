@@ -3,7 +3,6 @@ postgresql_server_name = input('postgresql_server_name', value: nil)
 
 control 'azurerm_postgresql_server' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_postgresql_server.'
   desc 'Testing the singular resource of azurerm_postgresql_server.'
 
@@ -21,7 +20,6 @@ control 'azurerm_postgresql_server' do
 end
 
 control 'azure_postgresql_server-firewall_rules-checking' do
-  impact 1.0
   title 'Checking the firewall rules for singular resource of azure_postgresql_server.'
   desc 'Checking the firewall rules for singular resource of azure_postgresql_server.'
 

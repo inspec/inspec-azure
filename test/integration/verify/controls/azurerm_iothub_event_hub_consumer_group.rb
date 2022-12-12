@@ -5,7 +5,6 @@ consumer_group = attribute('consumer_group', value: nil)
 
 control 'azurerm_iothub_event_hub_consumer_group' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_iothub_event_hub_consumer_group.'
   desc 'Testing the singular resource of azurerm_iothub_event_hub_consumer_group.'
 

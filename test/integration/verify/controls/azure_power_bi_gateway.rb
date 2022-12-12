@@ -2,7 +2,6 @@ gateway_id = input(:gateway_id, value: '')
 
 control 'Verify settings of a Power BI Dashboard' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_power_bi_gateway.'
   desc 'Testing the singular resource of azure_power_bi_gateway.'
 

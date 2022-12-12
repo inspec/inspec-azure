@@ -3,7 +3,6 @@ cosmosdb_database_account = attribute('cosmosdb_database_account', value: nil)
 
 control 'azurerm_cosmosdb_database_account' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_cosmosdb_database_account.'
   desc 'Testing the singular resource of azurerm_cosmosdb_database_account.'
 

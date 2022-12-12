@@ -3,7 +3,6 @@ storage_account = input('storage_account', value: nil)
 
 control 'azure_storage_account' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_storage_account.'
   desc 'Testing the singular resource of azure_storage_account.'
 

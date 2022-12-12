@@ -17,7 +17,6 @@ sku_family = input('sku_family', value: nil)
 
 control 'azure_express_route_circuits' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_express_route_circuits.'
   desc 'Testing the plural resource of azure_express_route_circuits.'
 

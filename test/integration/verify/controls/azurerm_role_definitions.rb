@@ -2,7 +2,6 @@ contributor_name = input('contributor_role_name', value: nil)
 
 control 'azurerm_role_definitions' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_role_definitions.'
   desc 'Testing the plural resource of azurerm_role_definitions.'
 

@@ -3,7 +3,6 @@ name = input(:inspec_vnw_gateway_name, value: '')
 
 control 'Verify settings of an Azure Virtual Network Gateway' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_streaming_analytics_function.'
   desc 'Testing the singular resource of azure_streaming_analytics_function.'
 

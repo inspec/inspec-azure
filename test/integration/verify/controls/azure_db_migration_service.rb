@@ -5,7 +5,6 @@ location = attribute(:location, value: nil)
 
 control 'azure_db_migration_service' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_db_migration_service.'
   desc 'Testing the singular resource of azure_db_migration_service.'
 

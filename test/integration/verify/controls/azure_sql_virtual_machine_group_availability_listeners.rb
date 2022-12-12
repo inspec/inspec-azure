@@ -2,7 +2,6 @@ rg = input(:resource_group, value: '')
 
 control 'Verify the settings of a collection of all SQL VM Availability listeners' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_sql_virtual_machine_group_availability_listeners.'
   desc 'Testing the plural resource of azure_sql_virtual_machine_group_availability_listeners.'
 

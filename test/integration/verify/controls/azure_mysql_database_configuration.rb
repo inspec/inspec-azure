@@ -2,7 +2,6 @@ resource_group = input('resource_group', value: nil)
 mysql_server_name = input('mysql_server_name', value: nil)
 
 control 'azure_mysql_database_configuration' do
-  impact 1.0
   title 'Testing the singular resource of azure_mysql_database_configuration.'
   desc 'Testing the singular resource of azure_mysql_database_configuration.'
 

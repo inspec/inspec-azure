@@ -3,7 +3,6 @@ event_hub_namespace_name = attribute('event_hub_namespace_name', value: nil)
 
 control 'azurerm_event_hub_namespace' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_event_hub_namespace.'
   desc 'Testing the singular resource of azurerm_event_hub_namespace.'
 

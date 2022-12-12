@@ -3,7 +3,6 @@ api_management_name = attribute('api_management_name', value: '')
 
 control 'azurerm_api_managements' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_api_managements.'
   desc 'Testing the plural resource of azurerm_api_managements.'
 

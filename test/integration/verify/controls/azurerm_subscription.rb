@@ -1,6 +1,5 @@
 control 'azurerm_subscription' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_subscription.'
   desc 'Testing the singular resource of azure_subscription.'
 
@@ -12,7 +11,6 @@ end
 
 control 'azure_subscription' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_subscription.'
   desc 'Testing the singular resource of azure_subscription.'
 

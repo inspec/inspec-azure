@@ -4,7 +4,6 @@ project_name = input(:inspec_migrate_project_name, value: '')
 
 control 'Verifies the settings of a Azure Migrate Assessment Project' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_migrate_assessment_project.'
   desc 'Testing the singular resource of azure_migrate_assessment_project.'
 

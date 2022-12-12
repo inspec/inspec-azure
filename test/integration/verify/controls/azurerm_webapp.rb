@@ -3,7 +3,6 @@ webapp_name = input('webapp_name', value: nil)
 
 control 'azurerm_webapp' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_webapp.'
   desc 'Testing the singular resource of azurerm_webapp.'
 

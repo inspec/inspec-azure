@@ -3,7 +3,6 @@ nic_name = attribute('windows_vm_nic_name', value: nil)
 
 control 'azurerm_network_interface' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_network_interface.'
   desc 'Testing the singular resource of azurerm_network_interface.'
 
