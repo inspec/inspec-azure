@@ -12,7 +12,7 @@ end
 
 group :development, :test do
   gem 'minitest'
-  gem 'rubocop',  '~> 1.39.0'
+  gem 'rubocop',  '~> 1.40.0'
   gem 'simplecov', '~> 0.21'
   gem 'simplecov_json_formatter'
 end
