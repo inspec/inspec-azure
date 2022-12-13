@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.28 -->
+<!-- latest_release 1.118.29 -->
+## [v1.118.29](https://github.com/inspec/inspec-azure/tree/v1.118.29) (2022-12-13)
+
+#### Merged Pull Requests
+- RESOURCE-559 Remove the impact from the controls in inspec-azure [#703](https://github.com/inspec/inspec-azure/pull/703) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.28](https://github.com/inspec/inspec-azure/tree/v1.118.28) (2022-12-06)
 
 #### Merged Pull Requests
 - RESOURCE-540 remove frozen string literal from inspec azure [#702](https://github.com/inspec/inspec-azure/pull/702) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.27](https://github.com/inspec/inspec-azure/tree/v1.118.27) (2022-11-29)
 
