@@ -1,6 +1,5 @@
 control 'verify default emerging issue for services' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_resource_health_emerging_issue.'
   desc 'Testing the singular resource of azure_resource_health_emerging_issue.'
 

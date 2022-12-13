@@ -3,7 +3,6 @@ location = input(:location, value: '')
 
 control 'Verify settings of all Azure Virtual Network Gateway Connections' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_virtual_network_gateway_connections.'
   desc 'Testing the plural resource of azure_virtual_network_gateway_connections.'
 

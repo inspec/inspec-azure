@@ -3,7 +3,6 @@ inspec_redis_cache_name = attribute(:inspec_redis_cache_name, value: nil)
 
 control 'azure_redis_cache' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_redis_cache.'
   desc 'Testing the singular resource of azure_redis_cache.'
 

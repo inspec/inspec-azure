@@ -4,7 +4,6 @@ blob_container = input('storage_account_blob_container', value: nil)
 
 control 'azurerm_storage_account_blob_containers' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_storage_account_blob_containers.'
   desc 'Testing the plural resource of azurerm_storage_account_blob_containers.'
 

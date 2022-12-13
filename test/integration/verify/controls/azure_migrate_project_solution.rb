@@ -4,7 +4,6 @@ name = input(:name, value: 'Servers-Assessment-ServerAssessment')
 
 control 'Verify settings for Azure Migrate Project Solution' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_migrate_project_solution.'
   desc 'Testing the singular resource of azure_migrate_project_solution.'
 

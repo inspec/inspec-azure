@@ -3,7 +3,6 @@ location = input(:location, value: '')
 
 control 'Verify settings of all Azure SQL Virtual Machines' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_sql_virtual_machines.'
   desc 'Testing the plural resource of azure_sql_virtual_machines.'
 

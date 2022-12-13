@@ -3,7 +3,6 @@ webapp_name = input('webapp_name', value: nil)
 
 control 'azurerm_webapps' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_webapps.'
   desc 'Testing the plural resource of azurerm_webapps.'
 

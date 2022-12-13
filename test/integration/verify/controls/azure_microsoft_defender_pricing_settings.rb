@@ -1,5 +1,4 @@
 control 'azure_microsoft_defender_settings' do
-  impact 1.0
   title 'Testing the plural resource of azure_microsoft_defender_settings.'
   desc 'Testing the plural resource of azure_microsoft_defender_settings.'
 

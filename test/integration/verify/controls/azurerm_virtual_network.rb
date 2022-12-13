@@ -12,7 +12,6 @@ enable_vm_protection = input('vnet_enable_vm_protection',   value: false)
 
 control 'azurerm_virtual_network' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_virtual_network.'
   desc 'Testing the singular resource of azurerm_virtual_network.'
 
@@ -42,7 +41,6 @@ end
 
 control 'azure_virtual_network' do
 
-  impact 1.0
   title 'Ensure that azure_virtual_network supports `resource_id` as a parameter.'
   desc 'Testing the singular resource of azure_virtual_network.'
 

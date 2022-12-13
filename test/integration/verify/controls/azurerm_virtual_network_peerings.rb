@@ -4,7 +4,6 @@ vnet           = input('vnet_name',                         value: nil)
 
 control 'azurerm_virtual_network_peerings' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_virtual_network_peerings.'
   desc 'Testing the plural resource of azurerm_virtual_network_peerings.'
 

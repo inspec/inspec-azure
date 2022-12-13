@@ -4,7 +4,6 @@ function_name  = input('web_app_function_name', value: nil)
 
 control 'azure_web_app_function' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_streaming_analytics_function.'
   desc 'Testing the singular resource of azure_streaming_analytics_function.'
 

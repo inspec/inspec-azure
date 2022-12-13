@@ -2,7 +2,6 @@ directory_object = input(:sample_directory_object, value: '')
 
 control 'azure active directory objects' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_active_directory_objects.'
   desc 'Testing the plural resource of azure_active_directory_objects.'
 

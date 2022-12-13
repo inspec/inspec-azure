@@ -4,7 +4,6 @@ nw_id          = input('network_watcher_id',   value: []).first
 
 control 'azurerm_network_watcher' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_network_watcher.'
   desc 'Testing the singular resource of azurerm_network_watcher.'
 

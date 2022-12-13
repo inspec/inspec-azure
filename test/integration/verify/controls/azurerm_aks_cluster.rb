@@ -3,7 +3,6 @@ cluster_fqdn   = input('cluster_fqdn',   value: nil)
 
 control 'azurerm_aks_cluster' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_aks_cluster.'
   desc 'Testing the singular resource of azurerm_aks_cluster.'
 

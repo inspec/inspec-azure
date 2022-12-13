@@ -1,6 +1,5 @@
 control 'azurerm_ad_user' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_ad_user.'
   desc 'Testing the singular resource of azurerm_ad_user.'
 

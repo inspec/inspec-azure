@@ -4,7 +4,6 @@ machine_name = 'c042be9e-3d93-42cf-917f-b92c68318ded'
 
 control 'test the properties of an azure migrate project machine' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_migrate_project_machine.'
   desc 'Testing the singular resource of azure_migrate_project_machine.'
 

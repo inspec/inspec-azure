@@ -4,7 +4,6 @@ linked_service_name1 = input('linked_service_name', value: nil)
 
 control 'azure_data_factory_linked_service' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_data_factory_linked_service.'
   desc 'Testing the singular resource of azure_data_factory_linked_service.'
 

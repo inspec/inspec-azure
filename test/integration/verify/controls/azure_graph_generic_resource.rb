@@ -1,6 +1,5 @@
 control 'azure_graph_generic_resource' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_graph_generic_resource.'
   desc 'Testing the singular resource of azure_graph_generic_resource.'
 

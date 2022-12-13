@@ -3,7 +3,6 @@ project_name = input(:project_name, value: 'inspec-migrate-integ')
 
 control 'verify settings for Azure Migrate Project Solutions' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_migrate_project_solutions.'
   desc 'Testing the plural resource of azure_migrate_project_solutions.'
 

@@ -5,7 +5,6 @@ snapshot_source_resource_id = input('snapshot_source_resource_id', value: '', de
 snapshot_disk_size_gb = input('snapshot_disk_size_gb', value: '', desc: '')
 
 control 'azure_snapshot' do
-  impact 1.0
   title 'Testing the singular resource of azure_snapshot.'
   desc 'Testing the singular resource of azure_snapshot.'
 

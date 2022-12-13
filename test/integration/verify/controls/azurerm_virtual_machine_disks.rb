@@ -3,7 +3,6 @@ windows_vm_os_disk = input('windows_vm_os_disk', value: nil)
 
 control 'azurerm_virtual_machine_disks' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_virtual_machine_disks.'
   desc 'Testing the plural resource of azurerm_virtual_machine_disks.'
 

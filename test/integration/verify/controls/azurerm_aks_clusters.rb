@@ -2,7 +2,6 @@ resource_group = input('resource_group', value: nil)
 
 control 'azurerm_aks_clusters' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_aks_clusters.'
   desc 'Testing the plural resource of azurerm_aks_clusters.'
 

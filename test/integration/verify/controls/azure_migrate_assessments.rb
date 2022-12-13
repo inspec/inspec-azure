@@ -5,7 +5,6 @@ name = 'inspec-migrate-test-assement'
 
 control 'verify all azure migrate assessments in a project' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_migrate_assessments.'
   desc 'Testing the plural resource of azure_migrate_assessments.'
 

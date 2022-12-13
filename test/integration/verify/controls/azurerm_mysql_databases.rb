@@ -4,7 +4,6 @@ mysql_server_database = input('mysql_database_name', value: nil)
 
 control 'azurerm_mysql_databases' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_mysql_databases.'
   desc 'Testing the plural resource of azurerm_mysql_databases.'
 

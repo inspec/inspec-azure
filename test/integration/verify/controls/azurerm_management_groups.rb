@@ -6,7 +6,6 @@ parent_dn = input('parent_dn', value: nil)
 
 control 'azurerm_management_groups' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_management_groups.'
   desc 'Testing the plural resource of azurerm_management_groups.'
 

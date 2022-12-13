@@ -9,7 +9,6 @@ win_monitoring_agent_name = input('monitoring_agent_name', value: nil)
 
 control 'azurerm_virtual_machine' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_virtual_machine.'
   desc 'Testing the singular resource of azurerm_virtual_machine.'
 
@@ -45,7 +44,6 @@ end
 
 control 'azure_virtual_machine' do
 
-  impact 1.0
   title 'Ensure azure_virtual_machine accepts resource_id and tests resource_group as a property.'
   desc 'Testing the singular resource of azure_virtual_machine.'
 

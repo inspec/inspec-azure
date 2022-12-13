@@ -5,7 +5,6 @@ event_hub_authorization_rule = attribute('event_hub_authorization_rule', value: 
 
 control 'azurerm_event_hub_authorization_rule' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_event_hub_authorization_rule.'
   desc 'Testing the singular resource of azurerm_event_hub_authorization_rule.'
 

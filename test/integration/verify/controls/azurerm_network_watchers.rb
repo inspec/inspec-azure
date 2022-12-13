@@ -3,7 +3,6 @@ nw             = input('network_watcher_name', value: []).first
 
 control 'azurerm_network_watchers' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_network_watchers.'
   desc 'Testing the plural resource of azurerm_network_watchers.'
 
@@ -17,7 +16,6 @@ end
 
 control 'azure_network_watchers' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_network_watchers.'
   desc 'Testing the plural resource of azurerm_network_watchers.'
 

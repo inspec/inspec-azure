@@ -3,7 +3,6 @@ notebook = 'inspec-notebook'
 
 control 'verifies settings of the azure synapse notebooks' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_streaming_analytics_function.'
   desc 'Testing the singular resource of azure_streaming_analytics_function.'
 

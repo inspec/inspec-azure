@@ -16,7 +16,6 @@ alerts_and_operations = {
 
 control 'azurerm_monitor_activity_log_alert' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_monitor_activity_log_alert.'
   desc 'Testing the singular resource of azurerm_monitor_activity_log_alert.'
 

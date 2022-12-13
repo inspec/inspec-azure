@@ -4,7 +4,6 @@ sql_db_name     = input('sql_database_name', value: nil)
 
 control 'azurerm_sql_database' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_sql_database.'
   desc 'Testing the singular resource of azure_sql_database.'
 
@@ -24,7 +23,6 @@ end
 
 control 'azure_sql_database' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_sql_database.'
   desc 'Testing the singular resource of azure_sql_database.'
 

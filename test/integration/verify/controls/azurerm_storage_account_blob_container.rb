@@ -4,7 +4,6 @@ blob_container = input('storage_account_blob_container', value: nil)
 
 control 'azurerm_storage_account_blob_container' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_storage_account_blob_container.'
   desc 'Testing the singular resource of azurerm_storage_account_blob_container.'
 

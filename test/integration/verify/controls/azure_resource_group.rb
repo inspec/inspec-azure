@@ -2,7 +2,6 @@ resource_group = input('resource_group', value: nil)
 
 control 'azure_resource_group' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_resource_group.'
   desc 'Testing the singular resource of azure_resource_group.'
 

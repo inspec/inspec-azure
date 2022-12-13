@@ -2,7 +2,6 @@ resource_group_name = attribute(:resource_group, value: nil)
 
 control 'azure redis caches test' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_redis_caches.'
   desc 'Testing the plural resource of azure_redis_caches.'
 

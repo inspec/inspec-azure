@@ -18,7 +18,6 @@ sku_family = input('sku_family', value: nil)
 
 control 'azure_express_route_circuit' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_express_route_circuit.'
   desc 'Testing the singular resource of azure_express_route_circuit.'
 

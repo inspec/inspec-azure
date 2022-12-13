@@ -5,7 +5,6 @@ name = 'inspec-migrate-test-assement-group'
 
 control 'Verify a azure migrate assessment' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_migrate_assessment.'
   desc 'Testing the singular resource of azure_migrate_assessment.'
 

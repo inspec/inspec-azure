@@ -3,7 +3,6 @@ loadbalancer_name = attribute('lb_name', value: nil)
 
 control 'azurerm_load_balancers' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_load_balancers.'
   desc 'Testing the plural resource of azurerm_load_balancers.'
 

@@ -2,7 +2,6 @@ location = input(:location, value: '')
 
 control 'test the properties of all Azure SQL Virtual Machine Groups' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_sql_virtual_machine_groups.'
   desc 'Testing the plural resource of azure_sql_virtual_machine_groups.'
 

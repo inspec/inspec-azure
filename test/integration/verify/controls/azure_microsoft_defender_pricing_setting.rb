@@ -1,5 +1,4 @@
 control 'azure_microsoft_defender_setting' do
-  impact 1.0
   title 'Testing the singular resource of azure_microsoft_defender_setting.'
   desc 'Testing the singular resource of azure_microsoft_defender_setting.'
 

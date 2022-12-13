@@ -4,7 +4,6 @@ mysql_db_name = input('mysql_database_name', value: nil)
 
 control 'azurerm_mysql_database' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_mysql_database.'
   desc 'Testing the singular resource of azurerm_mysql_database.'
 

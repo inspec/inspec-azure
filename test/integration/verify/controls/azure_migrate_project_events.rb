@@ -3,7 +3,6 @@ project_name = input(:project_name, value: 'inspec-migrate-integ')
 
 control 'test the properties of all azure migrate project events' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_migrate_project_events.'
   desc 'Testing the plural resource of azure_migrate_project_events.'
 

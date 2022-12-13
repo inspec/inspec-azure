@@ -5,7 +5,6 @@ resource_group_names = azure_resource_groups.names
 
 control 'azurerm_resource_groups' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_resource_groups.'
   desc 'Testing the plural resource of azure_resource_groups.'
 
@@ -22,7 +21,6 @@ end
 
 control 'azure_resource_groups_loop' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_resource_groups.'
   desc 'Testing the plural resource of azure_resource_groups.'
 

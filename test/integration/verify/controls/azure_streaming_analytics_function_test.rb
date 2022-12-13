@@ -4,7 +4,6 @@ azure_streaming_job_function_name = input('azure_streaming_job_function_name', v
 
 control 'azure_streaming_analytics_function' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_streaming_analytics_function.'
   desc 'Testing the singular resource of azure_streaming_analytics_function.'
 

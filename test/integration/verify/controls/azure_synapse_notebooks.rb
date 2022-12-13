@@ -3,7 +3,6 @@ notebook = 'inspec-notebook'
 
 control 'verifies settings of all azure synapse notebooks' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_synapse_notebooks.'
   desc 'Testing the plural resource of azure_synapse_notebooks.'
 

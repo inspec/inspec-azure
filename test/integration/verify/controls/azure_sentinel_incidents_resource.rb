@@ -4,7 +4,6 @@ workspace_name = input('workspace_name', value: nil)
 
 control 'azure_sentinel_incidents_resource' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_sentinel_incidents_resource.'
   desc 'Testing the singular resource of azure_sentinel_incidents_resource.'
 

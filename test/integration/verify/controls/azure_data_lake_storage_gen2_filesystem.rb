@@ -3,7 +3,6 @@ filesystem = input(:inspec_adls_fs_name, value: '')
 
 control 'verify settings of Azure Data Lake Gen2 Filesystem' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_data_lake_storage_gen2_filesystem.'
   desc 'Testing the singular resource of azure_data_lake_storage_gen2_filesystem.'
 

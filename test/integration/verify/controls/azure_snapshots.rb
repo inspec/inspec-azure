@@ -3,7 +3,6 @@ snapshot_name = input('snapshot_name', value: '', desc: '')
 snapshot_location = input('snapshot_location', value: '', desc: '')
 
 control 'azure_snapshots' do
-  impact 1.0
   title 'Testing the plural resource of azure_snapshots.'
   desc 'Testing the plural resource of azure_snapshots.'
 

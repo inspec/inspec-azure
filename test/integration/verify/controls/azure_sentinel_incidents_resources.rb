@@ -4,7 +4,6 @@ workspace_name = input('workspace_name', value: nil)
 
 control 'azure_sentinel_incidents_resources' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_sentinel_incidents_resources.'
   desc 'Testing the plural resource of azure_sentinel_incidents_resources.'
 

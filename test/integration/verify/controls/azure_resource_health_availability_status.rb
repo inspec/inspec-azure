@@ -3,7 +3,6 @@ storage_account = input('storage_account', value: nil)
 
 control 'azure availability status' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_resource_health_availability_status.'
   desc 'Testing the singular resource of azure_resource_health_availability_status.'
 

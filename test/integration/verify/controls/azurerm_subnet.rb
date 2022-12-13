@@ -7,7 +7,6 @@ nsg             = input('subnet_nsg',            value: nil)
 
 control 'azurerm_subnet' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_subnet.'
   desc 'Testing the singular resource of azurerm_subnet.'
 
@@ -31,7 +30,6 @@ end
 
 control 'azure_subnet' do
 
-  impact 1.0
   title 'Ensure that azure_subnet supports `resource_id` as a parameter.'
   desc 'Testing the singular resource of azurerm_subnet.'
 

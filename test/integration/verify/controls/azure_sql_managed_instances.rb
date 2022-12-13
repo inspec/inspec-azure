@@ -4,7 +4,6 @@ location = input(:location, value: '')
 
 control 'test the properties of all Azure SQL Managed Instances in the resource group' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_sql_managed_instances.'
   desc 'Testing the plural resource of azure_sql_managed_instances.'
 

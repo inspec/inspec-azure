@@ -3,7 +3,6 @@ dashboard_id = 'b84b01c6-3262-4671-bdc8-ff99becf2a0b'
 
 control 'Verify settings of a Power BI Dashboard' do
 
-  impact 1.0
   title 'Testing the singular resource of azure_power_bi_dashboard.'
   desc 'Testing the singular resource of azure_power_bi_dashboard.'
 

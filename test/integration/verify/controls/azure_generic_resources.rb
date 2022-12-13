@@ -5,7 +5,6 @@ win_tags = input('windows_vm_tags', value: nil)
 
 control 'azure_generic_resources' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_generic_resources.'
   desc 'Testing the plural resource of azure_generic_resources.'
 

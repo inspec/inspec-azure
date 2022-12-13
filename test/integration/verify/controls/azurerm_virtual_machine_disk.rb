@@ -6,7 +6,6 @@ unmanaged_disk_name   = input('unamaged_disk_name',      value: nil)
 
 control 'azurerm_virtual_machine_disk' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_virtual_machine_disk.'
   desc 'Testing the singular resource of azurerm_virtual_machine_disk.'
 

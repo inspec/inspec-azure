@@ -7,7 +7,6 @@ mg_type   = 'Microsoft.Management/managementGroups'
 
 control 'azurerm_management_group' do
 
-  impact 1.0
   title 'Testing the singular resource of azurerm_management_group.'
   desc 'Testing the singular resource of azurerm_management_group.'
 

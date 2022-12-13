@@ -2,7 +2,6 @@ exemption_name = input(:policy_exemption_name, value: '')
 
 control 'check if azure policy exemptions has waiver category' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_policy_exemption.'
   desc 'Testing the plural resource of azure_policy_exemption.'
 
@@ -16,7 +15,6 @@ end
 
 control 'check exemptions using nested filtering' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_policy_exemption.'
   desc 'Testing the plural resource of azure_policy_exemption.'
 

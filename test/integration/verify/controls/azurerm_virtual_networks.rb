@@ -3,7 +3,6 @@ vnet           = input('vnet_name',       value: nil)
 
 control 'azurerm_virtual_networks' do
 
-  impact 1.0
   title 'Testing the plural resource of azure_virtual_networks.'
   desc 'Testing the plural resource of azure_virtual_networks.'
 
@@ -26,7 +25,6 @@ end
 
 control 'azure_virtual_networks' do
 
-  impact 1.0
   title 'Ensure that the resource tests all virtual networks in a subscription.'
   desc 'Testing the plural resource of azure_virtual_networks.'
 

@@ -3,7 +3,6 @@ vault_name     = input('key_vault_name', value: nil)
 
 control 'azurerm_key_vaults' do
 
-  impact 1.0
   title 'Testing the plural resource of azurerm_key_vaults.'
   desc 'Testing the plural resource of azurerm_key_vaults.'
 
@@ -15,7 +14,6 @@ end
 
 control 'azure_key_vaults' do
 
-  impact 1.0
   title 'Ensure that azure_key_vaults plural resource works without a parameter.'
   desc 'Testing the plural resource of azurerm_key_vaults.'
 
