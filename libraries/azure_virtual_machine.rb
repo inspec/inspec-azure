@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureVirtualMachine < AzureGenericResource
-  name 'azure_virtual_machine'
-  desc 'Verifies settings for an Azure Virtual Machine'
+  name "azure_virtual_machine"
+  desc "Verifies settings for an Azure Virtual Machine"
   example <<-EXAMPLE
     describe azure_virtual_machine(resource_group: 'example', name: 'vm-name') do
       it { should have_monitoring_agent_installed }
@@ -11,7 +11,7 @@ class AzureVirtualMachine < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
@@ -40,7 +40,7 @@ class AzureVirtualMachine < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Compute/virtualMachines', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Compute/virtualMachines", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -93,7 +93,7 @@ class AzureVirtualMachine < AzureGenericResource
     return unless exists?
     return false if resources.nil?
     resources&.select do |res|
-      res&.properties&.type == 'MicrosoftMonitoringAgent' && res&.properties&.provisioning_state == 'Succeeded'
+      res&.properties&.type == "MicrosoftMonitoringAgent" && res&.properties&.provisioning_state == "Succeeded"
     end
     resources.size == 1
   end
@@ -102,8 +102,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermVirtualMachine < AzureVirtualMachine
-  name 'azurerm_virtual_machine'
-  desc 'Verifies settings for an Azure Virtual Machine'
+  name "azurerm_virtual_machine"
+  desc "Verifies settings for an Azure Virtual Machine"
   example <<-EXAMPLE
     describe azurerm_virtual_machine(resource_group: 'example', name: 'vm-name') do
       it { should have_monitoring_agent_installed }
@@ -113,10 +113,10 @@ class AzurermVirtualMachine < AzureVirtualMachine
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureVirtualMachine.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2017-12-01'
+    opts[:api_version] ||= "2017-12-01"
     super
   end
 end

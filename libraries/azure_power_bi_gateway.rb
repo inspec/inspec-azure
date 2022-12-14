@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzurePowerBIGateway < AzureGenericResource
-  name 'azure_power_bi_gateway'
-  desc 'Retrieves and verifies the settings of a Azure Power BI Gateway'
+  name "azure_power_bi_gateway"
+  desc "Retrieves and verifies the settings of a Azure Power BI Gateway"
   example <<-EXAMPLE
     describe azure_power_bi_gateway(gateway_id: '95a4871a-33a4-4f35-9eea-8ff006b4840b') do
       it { should exist }
@@ -11,10 +11,10 @@ class AzurePowerBIGateway < AzureGenericResource
 
   attr_reader :table
 
-  AUDIENCE = 'https://analysis.windows.net/powerbi/api'.freeze
+  AUDIENCE = "https://analysis.windows.net/powerbi/api".freeze
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     Validators.validate_parameters(resource_name: @__resource_name__, required: %i(gateway_id),
                                    opts: opts)
@@ -24,7 +24,7 @@ class AzurePowerBIGateway < AzureGenericResource
     opts[:audience] = AUDIENCE
     opts[:add_subscription_id] = false
     opts[:is_uri_a_url] = true
-    opts[:api_version] = 'v1.0'
+    opts[:api_version] = "v1.0"
     super
   end
 

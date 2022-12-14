@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureBlobServices< AzureGenericResources
-  name 'azure_blob_services'
-  desc 'Verifies settings for an Azure API Blob Services resource'
+  name "azure_blob_services"
+  desc "Verifies settings for an Azure API Blob Services resource"
   example <<-EXAMPLE
     describe azure_blob_services(resource_group: 'resource-group-name', storage_account_name: "storage-account-name") do
       it { should exist }
@@ -10,11 +10,11 @@ class AzureBlobServices< AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Storage/storageAccounts', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Storage/storageAccounts", opts)
     opts[:required_parameters] = %i(storage_account_name)
-    opts[:resource_path] = [opts[:storage_account_name], 'blobServices'].join('/')
+    opts[:resource_path] = [opts[:storage_account_name], "blobServices"].join("/")
 
     super(opts, true)
 

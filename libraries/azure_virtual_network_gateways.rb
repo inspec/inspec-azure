@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureVirtualNetworkGateways < AzureGenericResources
-  name 'azure_virtual_network_gateways'
-  desc 'Verifies settings for Azure Virtual Network Gateways'
+  name "azure_virtual_network_gateways"
+  desc "Verifies settings for Azure Virtual Network Gateways"
   example <<-EXAMPLE
     azure_virtual_network_gateways(resource_group: 'example') do
       it{ should exist }
@@ -13,9 +13,9 @@ class AzureVirtualNetworkGateways < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworkGateways', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/virtualNetworkGateways", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

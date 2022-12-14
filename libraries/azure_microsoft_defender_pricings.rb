@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureMicrosoftDefenderPricings < AzureGenericResources
-  name 'azure_microsoft_defender_pricings'
-  desc 'Verifies settings for microsoft defender pricings.'
+  name "azure_microsoft_defender_pricings"
+  desc "Verifies settings for microsoft defender pricings."
   example <<-EXAMPLE
     describe azure_microsoft_defender_pricings(built_in_only: true) do
       it { should exist }
@@ -12,15 +12,15 @@ class AzureMicrosoftDefenderPricings < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-    raise ArgumentError, '`resource_group` is not allowed.' if opts.key(:resource_group)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
+    raise ArgumentError, "`resource_group` is not allowed." if opts.key(:resource_group)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Security/pricings', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Security/pricings", opts)
 
     # `built_in_only` is a resource specific parameter as oppose to the `api_version`.
     # That's why it should be put in allowed_parameters to be able to pass the parameter validation in the backend.
     opts[:allowed_parameters] = %i(built_in_only)
-    opts[:resource_uri] = '/providers/Microsoft.Security/pricings'
+    opts[:resource_uri] = "/providers/Microsoft.Security/pricings"
     opts[:add_subscription_id] = opts[:built_in_only] != true
 
     # static_resource parameter must be true for setting the resource_provider in the backend.

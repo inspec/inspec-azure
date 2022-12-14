@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureBastionHostsResource < AzureGenericResource
-  name 'azure_bastion_hosts_resource'
-  desc 'Azure Bastion to connect to a data lake hosts'
+  name "azure_bastion_hosts_resource"
+  desc "Azure Bastion to connect to a data lake hosts"
   example <<-EXAMPLE
     describe azure_bastion_hosts_resource(resource_group: 'example', name: 'host-name') do
       it { should exist }
@@ -11,7 +11,7 @@ class AzureBastionHostsResource < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/
     # providers/Microsoft.Network/bastionHosts/{bastionHostName}?api-version=2020-11-01
@@ -39,7 +39,7 @@ class AzureBastionHostsResource < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/bastionHosts', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/bastionHosts", opts)
     opts[:required_parameters] = %i(name)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.

@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureExpressRouteCircuit < AzureGenericResource
-  name 'azure_express_route_circuit'
-  desc 'ExpressRoute circuit connect your on-premises infrastructure to Microsoft through a connectivity provider'
+  name "azure_express_route_circuit"
+  desc "ExpressRoute circuit connect your on-premises infrastructure to Microsoft through a connectivity provider"
   example <<-EXAMPLE
     describe azure_express_route_circuit(resource_group: 'example', circuit_name: 'circuitName') do
       it { should exist }
@@ -11,7 +11,7 @@ class AzureExpressRouteCircuit < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/
@@ -40,7 +40,7 @@ class AzureExpressRouteCircuit < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/expressRouteCircuits', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/expressRouteCircuits", opts)
     opts[:resource_identifiers] = %i(circuit_name)
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

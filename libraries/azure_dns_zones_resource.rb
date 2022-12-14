@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureDNSZonesResource < AzureGenericResource
-  name 'azure_dns_zones_resource'
-  desc 'Verifies settings for an Azure DNS Zones'
+  name "azure_dns_zones_resource"
+  desc "Verifies settings for an Azure DNS Zones"
   example <<-EXAMPLE
     describe azure_dns_zones_resource(resource_group: 'example', name: 'dns-zones-name') do
       it { should exist }
@@ -11,7 +11,7 @@ class AzureDNSZonesResource < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}
@@ -40,7 +40,7 @@ class AzureDNSZonesResource < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/dnsZones', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/dnsZones", opts)
     opts[:required_parameters] = %i(name)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.

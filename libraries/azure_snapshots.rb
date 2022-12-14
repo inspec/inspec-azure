@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSnapshots < AzureGenericResources
-  name 'azure_snapshots'
-  desc 'List Azure Snapshots'
+  name "azure_snapshots"
+  desc "List Azure Snapshots"
   example <<-EXAMPLE
     describe azure_snapshots do
         it  { should exist }
@@ -13,9 +13,9 @@ class AzureSnapshots < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Compute/snapshots', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Compute/snapshots", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

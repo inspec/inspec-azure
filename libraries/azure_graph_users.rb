@@ -1,8 +1,8 @@
-require 'azure_graph_generic_resources'
+require "azure_graph_generic_resources"
 
 class AzureGraphUsers < AzureGraphGenericResources
-  name 'azure_graph_users'
-  desc 'Verifies settings for an Azure Active Directory User'
+  name "azure_graph_users"
+  desc "Verifies settings for an Azure Active Directory User"
   example <<-EXAMPLE
     describe azure_graph_users do
       it { should exist }
@@ -11,7 +11,7 @@ class AzureGraphUsers < AzureGraphGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby error will be raised.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # @see
     #   https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http#examples
@@ -38,10 +38,10 @@ class AzureGraphUsers < AzureGraphGenericResources
     #
 
     # Define the resource.
-    opts[:resource] = 'users'
+    opts[:resource] = "users"
 
     # Properties to expose.
-    opts[:select] = 'id,displayName,givenName,jobTitle,mail,userType,userPrincipalName'.split(',')
+    opts[:select] = "id,displayName,givenName,jobTitle,mail,userType,userPrincipalName".split(",")
 
     # At this point there is enough data to make the query.
     # super must be called with `static_resource => true` switch.
@@ -52,7 +52,7 @@ class AzureGraphUsers < AzureGraphGenericResources
   end
 
   def guest_accounts
-    @guest_accounts ||= where(userType: 'Guest').mails
+    @guest_accounts ||= where(userType: "Guest").mails
   rescue NoMethodError
     []
   end
@@ -72,8 +72,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermAdUsers < AzureGraphUsers
-  name 'azurerm_ad_users'
-  desc 'Verifies settings for an Azure Active Directory User'
+  name "azurerm_ad_users"
+  desc "Verifies settings for an Azure Active Directory User"
   example <<-EXAMPLE
     describe azurerm_ad_users do
       it { should exist }

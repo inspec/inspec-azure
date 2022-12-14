@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureWebapps < AzureGenericResources
-  name 'azure_webapps'
-  desc 'Verifies settings for Webapps'
+  name "azure_webapps"
+  desc "Verifies settings for Webapps"
   example <<-EXAMPLE
     azure_webapps(resource_group: 'example') do
       it{ should exist }
@@ -13,9 +13,9 @@ class AzureWebapps < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Web/sites', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Web/sites", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -45,8 +45,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermWebapps < AzureWebapps
-  name 'azurerm_webapps'
-  desc 'Verifies settings for Webapps'
+  name "azurerm_webapps"
+  desc "Verifies settings for Webapps"
   example <<-EXAMPLE
     azurerm_webapps(resource_group: 'example') do
       it{ should exist }
@@ -56,10 +56,10 @@ class AzurermWebapps < AzureWebapps
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureWebapps.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2016-08-01'
+    opts[:api_version] ||= "2016-08-01"
     super
   end
 end

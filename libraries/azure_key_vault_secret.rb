@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureKeyVaultSecret < AzureGenericResource
-  name 'azure_key_vault_secret'
-  desc 'Verifies configuration for a Secret within a Vault'
+  name "azure_key_vault_secret"
+  desc "Verifies configuration for a Secret within a Vault"
   example <<-EXAMPLE
     describe azure_key_vault_secret(vault_name: 'vault-name', secret_name: 'secret-name') do
       it { should exist }
@@ -12,10 +12,10 @@ class AzureKeyVaultSecret < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # This part is normally done in the backend; however, we need to get the `key_vault_dns_suffix` at the initiation.
-    opts[:endpoint] ||= ENV_HASH['endpoint'] || 'azure_cloud'
+    opts[:endpoint] ||= ENV_HASH["endpoint"] || "azure_cloud"
     unless AzureEnvironments::ENDPOINTS.key?(opts[:endpoint])
       raise ArgumentError, "Invalid endpoint: `#{opts[:endpoint]}`."\
         " Expected one of the following options: #{AzureEnvironments::ENDPOINTS.keys}."
@@ -40,7 +40,7 @@ class AzureKeyVaultSecret < AzureGenericResource
       end
     end
     opts[:is_uri_a_url] = true
-    opts[:audience] = "https://#{key_vault_dns_suffix.delete_prefix('.')}"
+    opts[:audience] = "https://#{key_vault_dns_suffix.delete_prefix(".")}"
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
   end
@@ -56,7 +56,7 @@ class AzureKeyVaultSecret < AzureGenericResource
 
   private
 
-  VALID_VERSION_REGEX = Regexp.new('^([0-9a-f]{32})$')
+  VALID_VERSION_REGEX = Regexp.new("^([0-9a-f]{32})$")
 
   def valid_version?(version)
     version.downcase.scan(VALID_VERSION_REGEX).any?
@@ -66,8 +66,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermKeyVaultSecret < AzureKeyVaultSecret
-  name 'azurerm_key_vault_secret'
-  desc 'Verifies configuration for a Secret within a Vault'
+  name "azurerm_key_vault_secret"
+  desc "Verifies configuration for a Secret within a Vault"
   example <<-EXAMPLE
     describe azurerm_key_vault_secret('vault-name', 'secret-name') do
       it { should exist }
@@ -81,7 +81,7 @@ class AzurermKeyVaultSecret < AzureKeyVaultSecret
     opts = {
       vault_name: vault_name,
       secret_name: secret_name,
-      api_version: '2016-10-01',
+      api_version: "2016-10-01",
     }
     opts[:secret_version] = secret_version unless secret_version.nil?
     super(opts)

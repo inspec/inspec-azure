@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureVirtualNetworkPeering < AzureGenericResource
-  name 'azure_virtual_network_peering'
-  desc 'Verifies settings for an Azure Virtual Network Peering'
+  name "azure_virtual_network_peering"
+  desc "Verifies settings for an Azure Virtual Network Peering"
   example <<-EXAMPLE
     describe azure_virtual_network_peering(resource_group: 'example',vnet: 'virtual-network-name' name: 'virtual-network-peering-name') do
       it { should exist }
@@ -12,7 +12,7 @@ class AzureVirtualNetworkPeering < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
@@ -48,9 +48,9 @@ class AzureVirtualNetworkPeering < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/virtualNetworks", opts)
     opts[:required_parameters] = %i(vnet)
-    opts[:resource_path] = [opts[:vnet], 'virtualNetworkPeerings'].join('/')
+    opts[:resource_path] = [opts[:vnet], "virtualNetworkPeerings"].join("/")
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

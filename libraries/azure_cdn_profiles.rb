@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureCDNProfiles < AzureGenericResources
-  name 'azure_cdn_profiles'
-  desc 'Verifies settings for a collection of Azure CDN Profiles.'
+  name "azure_cdn_profiles"
+  desc "Verifies settings for a collection of Azure CDN Profiles."
   example <<-EXAMPLE
     describe azure_cdn_profiles do
         it { should exist }
@@ -10,9 +10,9 @@ class AzureCDNProfiles < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Cdn/profiles', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Cdn/profiles", opts)
     super(opts, true)
     return if failed_resource?
 

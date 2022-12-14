@@ -1,11 +1,11 @@
-require 'backend/helpers'
+require "backend/helpers"
 
 # Normalise Azure security rules to make them comparable with criteria or other security rules.
 #
 class NormalizeSecurityRule
   CIDR_IPV4_REG = %r{^([0-9]{1,3}\.){3}[0-9]{1,3}(/([0-9]|[1-2][0-9]|3[0-2]))?$}i.freeze
   CIDR_IPV6_REG = %r{^s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:)))(%.+)?s*(/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8]))?$}i.freeze
-  PORT_RANGE = ('0'..'65535').freeze
+  PORT_RANGE = ("0".."65535").freeze
 
   attr_reader :name, :etag, :id, :access, :direction, :protocol, :priority
 
@@ -165,8 +165,8 @@ class NormalizeSecurityRule
     unless criteria[:protocol].nil?
       return nil unless criteria[:protocol].upcase == protocol
       compliant = access == criteria[:access]
-      compliant = true if protocol == '*' && access == 'allow'
-      compliant = false if protocol == '*' && access == 'deny'
+      compliant = true if protocol == "*" && access == "allow"
+      compliant = false if protocol == "*" && access == "deny"
       return compliant unless compliant
     end
 
@@ -199,7 +199,7 @@ class NormalizeSecurityRule
   #
   def ip_range_check(base_ip_ranges, criteria_ip_range)
     unless criteria_ip_range.match?(CIDR_IPV4_REG) || criteria_ip_range.match?(CIDR_IPV6_REG)
-      raise ArgumentError, 'IP range/address must be in CIDR format, e.g: `192.168.0.1/24, 2001:1234::/64`.'
+      raise ArgumentError, "IP range/address must be in CIDR format, e.g: `192.168.0.1/24, 2001:1234::/64`."
     end
     criteria_ip_range_cidr = IPAddr.new(criteria_ip_range)
     within_range = []
@@ -214,10 +214,10 @@ class NormalizeSecurityRule
   # @param sources [Array, Class<Array>] The list of ports.
   #
   def extract_ports(sources)
-    return PORT_RANGE if sources.any? { |s| s == '*' }
+    return PORT_RANGE if sources.any? { |s| s == "*" }
     sources.each_with_object([]) do |s, ports|
-      if s.include?('-')
-        from, to = s.split('-')
+      if s.include?("-")
+        from, to = s.split("-")
         ports << [*from..to]
       else
         ports << s
@@ -232,8 +232,8 @@ class NormalizeSecurityRule
     service_tags = []
     ip_addresses = sources.each_with_object([]) do |source, ip_adds|
       case source
-      when '*'
-        ip_adds << IPAddr.new('0.0.0.0/0')
+      when "*"
+        ip_adds << IPAddr.new("0.0.0.0/0")
       when CIDR_IPV4_REG, CIDR_IPV6_REG
         ip_adds << IPAddr.new(source)
       else

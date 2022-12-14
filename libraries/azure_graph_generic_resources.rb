@@ -1,12 +1,12 @@
-require 'azure_backend'
+require "azure_backend"
 
 # The backend class for the plural static resources from the GRAPH API.
 #
 # @author omerdemirok
 #
 class AzureGraphGenericResources < AzureResourceBase
-  name 'azure_graph_generic_resources'
-  desc 'Inspec plural resource to interrogate any resource type available through Azure Graph API'
+  name "azure_graph_generic_resources"
+  desc "Inspec plural resource to interrogate any resource type available through Azure Graph API"
   example <<-EXAMPLE
     describe azure_graph_generic_resources(resource_provider: 'users', filter: {given_name: 'John'}) do
       it { should exist }
@@ -42,7 +42,7 @@ class AzureGraphGenericResources < AzureResourceBase
       required: %i(resource),
       allow: %i(select filter filter_free_text),
     )
-    @display_name = @opts.slice(:resource, :filter, :filter_free_text).values.join(' ')
+    @display_name = @opts.slice(:resource, :filter, :filter_free_text).values.join(" ")
 
     query = {}
     query[:resource] = @opts[:resource]
@@ -50,17 +50,17 @@ class AzureGraphGenericResources < AzureResourceBase
 
     query_parameters = {}
     # Ensure that `id` of the resource is returned from the API.
-    query_parameters['$select'] = 'id,'
+    query_parameters["$select"] = "id,"
     if @opts[:select]
       # Remove `id` if it is duplicated in user supplied 'select' parameters.
-      @opts[:select].delete('id')
-      query_parameters['$select'] += Helpers.odata_query(@opts[:select])
+      @opts[:select].delete("id")
+      query_parameters["$select"] += Helpers.odata_query(@opts[:select])
     end
     if %i(filter filter_free_text).all? { |a| @opts.keys.include?(a) }
-      raise ArgumentError, 'Either `:filter` or `:filter_free_text` should be provided.'
+      raise ArgumentError, "Either `:filter` or `:filter_free_text` should be provided."
     end
     if @opts[:filter]
-      query_parameters['$filter'] = Helpers.odata_query(@opts[:filter])
+      query_parameters["$filter"] = Helpers.odata_query(@opts[:filter])
     end
 
     # This will allow passing:
@@ -69,7 +69,7 @@ class AzureGraphGenericResources < AzureResourceBase
     # @see
     #   https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter
     if @opts[:filter_free_text]
-      query_parameters['$filter'] = @opts[:filter_free_text]
+      query_parameters["$filter"] = @opts[:filter_free_text]
     end
     query[:query_parameters] = query_parameters unless query_parameters.empty?
 
@@ -113,9 +113,9 @@ class AzureGraphGenericResources < AzureResourceBase
     api_version = @opts[:api_version] || @azure.graph_api_endpoint_api_version
     api_info = "- api_version: #{api_version} "
     if class_name.nil?
-      "#{AzureGraphGenericResources.name.split('_').map(&:capitalize).join(' ')} #{api_info}: #{@display_name}"
+      "#{AzureGraphGenericResources.name.split("_").map(&:capitalize).join(" ")} #{api_info}: #{@display_name}"
     else
-      "#{class_name.name.split('_').map(&:capitalize).join(' ')} #{api_info}: #{@display_name}"
+      "#{class_name.name.split("_").map(&:capitalize).join(" ")} #{api_info}: #{@display_name}"
     end
   end
 

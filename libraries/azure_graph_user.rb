@@ -1,8 +1,8 @@
-require 'azure_graph_generic_resource'
+require "azure_graph_generic_resource"
 
 class AzureGraphUser < AzureGraphGenericResource
-  name 'azure_graph_user'
-  desc 'Verifies settings for an Azure Active Directory User'
+  name "azure_graph_user"
+  desc "Verifies settings for an Azure Active Directory User"
   example <<-EXAMPLE
     describe azure_graph_user(user_id: 'userId') do
       it { should exist }
@@ -11,7 +11,7 @@ class AzureGraphUser < AzureGraphGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby error will be raised.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # @see
     #   https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http#examples
@@ -37,12 +37,12 @@ class AzureGraphUser < AzureGraphGenericResource
     opts[:resource_identifiers] = %i(user_principal_name user_id id)
 
     # Define the resource.
-    opts[:resource] = 'users'
+    opts[:resource] = "users"
 
     # Properties to expose.
-    opts[:select] = 'objectId,accountEnabled,city,country,department,displayName,givenName,jobTitle,mail,'\
-      'mailNickname,mobilePhone,passwordPolicies,passwordProfile,postalCode,state,streetAddress,surname,'\
-      'businessPhones,usageLocation,userPrincipalName,userType,faxNumber,id'.split(',')
+    opts[:select] = "objectId,accountEnabled,city,country,department,displayName,givenName,jobTitle,mail,"\
+      "mailNickname,mobilePhone,passwordPolicies,passwordProfile,postalCode,state,streetAddress,surname,"\
+      "businessPhones,usageLocation,userPrincipalName,userType,faxNumber,id".split(",")
 
     # At this point there is enough data to make the query.
     # super must be called with `static_resource => true` switch.
@@ -84,7 +84,7 @@ class AzureGraphUser < AzureGraphGenericResource
   end
 
   def guest?
-    userType == 'Guest'
+    userType == "Guest"
   end
   # Methods for backward compatibility ends here <<<<
 end
@@ -92,8 +92,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermAdUser < AzureGraphUser
-  name 'azurerm_ad_user'
-  desc 'Verifies settings for an Azure Active Directory User'
+  name "azurerm_ad_user"
+  desc "Verifies settings for an Azure Active Directory User"
   example <<-EXAMPLE
     describe azurerm_ad_user(user_id: 'userId') do
       it { should exist }

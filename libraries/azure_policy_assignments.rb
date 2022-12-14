@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
-require 'time'
+require "azure_generic_resources"
+require "time"
 class AzurePolicyAssignments < AzureGenericResources
-  name 'azure_policy_assignments'
-  desc 'Verifies settings for a collection of policy assignments'
+  name "azure_policy_assignments"
+  desc "Verifies settings for a collection of policy assignments"
   example <<-EXAMPLE
     # For property names see https://docs.microsoft.com/en-us/rest/api/policy/policyassignments/list#policyassignment
 
@@ -16,12 +16,12 @@ class AzurePolicyAssignments < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/{resourceProvider}
     #   Our resourceProvider is Microsoft.Authorization/policyAssignments
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Authorization/policyAssignments', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Authorization/policyAssignments", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -86,6 +86,6 @@ class AzurePolicyAssignments < AzureGenericResources
   end
 
   def to_s
-    'AzurePolicyAssignments'
+    "AzurePolicyAssignments"
   end
 end

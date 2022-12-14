@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureResourceGroups < AzureGenericResources
-  name 'azure_resource_groups'
-  desc 'Fetches all available resource groups'
+  name "azure_resource_groups"
+  desc "Fetches all available resource groups"
   example <<-EXAMPLE
     describe azure_resource_groups do
       its('names') { should include('example-group') }
@@ -13,11 +13,11 @@ class AzureResourceGroups < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('/resourcegroups/', opts)
+    opts[:resource_provider] = specific_resource_constraint("/resourcegroups/", opts)
     # See azure_policy_definitions resource for how to use `resource_uri` and `add_subscription_id` parameters.
-    opts[:resource_uri] = '/resourcegroups/'
+    opts[:resource_uri] = "/resourcegroups/"
     opts[:add_subscription_id] = true
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
@@ -64,8 +64,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermResourceGroups < AzureResourceGroups
-  name 'azurerm_resource_groups'
-  desc 'Fetches all available resource groups'
+  name "azurerm_resource_groups"
+  desc "Fetches all available resource groups"
   example <<-EXAMPLE
     describe azurerm_resource_groups do
       its('names') { should include('example-group') }
@@ -75,10 +75,10 @@ class AzurermResourceGroups < AzureResourceGroups
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureResourceGroups.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
+    opts[:api_version] ||= "2018-02-01"
     super
   end
 end

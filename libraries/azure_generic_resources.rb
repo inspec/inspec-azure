@@ -1,12 +1,12 @@
-require 'azure_backend'
+require "azure_backend"
 
 # The backend class for the plural static resources.
 #
 # @author omerdemirok
 #
 class AzureGenericResources < AzureResourceBase
-  name 'azure_generic_resources'
-  desc 'Inspec Resource to interrogate any resource type in bulk available through Azure resource manager.'
+  name "azure_generic_resources"
+  desc "Inspec Resource to interrogate any resource type in bulk available through Azure resource manager."
   example <<-EXAMPLE
     describe azure_static_resources(resource_group: 'my_group') do
       it { should exist }
@@ -22,7 +22,7 @@ class AzureGenericResources < AzureResourceBase
                                 :tag_name,
                                 :tag_value,
                                 :resource_uri)
-                         .values.join(' ')
+      .values.join(" ")
     table_schema = [
       { column: :ids, field: :id },
       { column: :names, field: :name },
@@ -84,9 +84,9 @@ class AzureGenericResources < AzureResourceBase
       api_info = "- api_version: #{api_version_used_for_query} #{api_version_used_for_query_state}"
     end
     if class_name.nil?
-      "#{AzureGenericResources.name.split('_').map(&:capitalize).join(' ')} #{@display_name}"
+      "#{AzureGenericResources.name.split("_").map(&:capitalize).join(" ")} #{@display_name}"
     else
-      "#{class_name.name.split('_').map(&:capitalize).join(' ')} #{api_info} #{@display_name}"
+      "#{class_name.name.split("_").map(&:capitalize).join(" ")} #{api_info} #{@display_name}"
     end
   end
 
@@ -148,18 +148,18 @@ class AzureGenericResources < AzureResourceBase
     else
       resource_uri = ["/subscriptions/#{@azure.credentials[:subscription_id]}/providers",
                       @opts[:resource_provider],
-                      @opts[:resource_path]].compact.join('/').gsub('//', '/')
+                      @opts[:resource_path]].compact.join("/").gsub("//", "/")
       unless @opts[:resource_group].nil?
-        resource_uri = resource_uri.sub('/providers/', "/resourceGroups/#{@opts[:resource_group]}/providers/")
+        resource_uri = resource_uri.sub("/providers/", "/resourceGroups/#{@opts[:resource_group]}/providers/")
       end
       query_params = { resource_uri: resource_uri }
     end
     query_params[:query_parameters] = @opts[:query_parameters].presence || {}
     unless @opts[:filter_free_text].nil?
-      query_params[:query_parameters]['$filter'] = @opts[:filter_free_text]
+      query_params[:query_parameters]["$filter"] = @opts[:filter_free_text]
     end
     # Use the latest api_version unless provided.
-    query_params[:query_parameters]['api-version'] = @opts[:api_version] || 'latest'
+    query_params[:query_parameters]["api-version"] = @opts[:api_version] || "latest"
     %i(is_uri_a_url headers method req_body audience).each do |param|
       query_params[param] = @opts[param] unless @opts[param].nil?
     end
@@ -197,11 +197,11 @@ class AzureGenericResources < AzureResourceBase
   end
 
   def validate_static_resource
-    raise ArgumentError, 'Warning for the resource author: `resource_provider` must be defined.' \
+    raise ArgumentError, "Warning for the resource author: `resource_provider` must be defined." \
       unless @opts.key?(:resource_provider)
     @table = []
     @resources = {}
-    @opts[:api_version] = 'latest' unless @opts.key?(:api_version)
+    @opts[:api_version] = "latest" unless @opts.key?(:api_version)
     # These are the parameters created in the static resource code, NOT provided by the user.
     allowed_params = %i(resource_path resource_group resource_provider add_subscription_id resource_uri is_uri_a_url
                         audience)
