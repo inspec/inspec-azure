@@ -4,6 +4,7 @@ require 'rake/testtask'
 require 'rubocop/rake_task'
 require 'fileutils'
 require 'open3'
+require 'chefstyle'
 
 require_relative 'lib/attribute_file_writer'
 require_relative 'lib/environment_file'
@@ -23,7 +24,20 @@ desc 'Testing tasks'
 task test: %w{lint test:unit}
 
 desc 'Linting tasks'
-task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
+# task lint: [:rubocop, :'syntax:ruby', :'syntax:inspec']
+
+desc 'Run rubocop chefstyle linter + unit tests'
+task default: [:lint, :test]
+
+# lint the project
+# chefstyle
+begin
+  RuboCop::RakeTask.new(:lint) do |task|
+    task.options += ['--display-cop-names', '--no-color', '--parallel']
+  end
+rescue LoadError
+  puts 'rubocop is not available. Install the rubocop gem to run the lint tests.'
+end
 
 task :setup_env do
   puts '-> Loading Environment Variables'
