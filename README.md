@@ -725,6 +725,12 @@ $env:AZURE_CLIENT_SECRET="<client secret>"
 $env:AZURE_TENANT_ID="<tenant id>"
 ```
 
+in order to run tests along with mock train URI
+
+```bash
+export RAKE_ENV=test
+```
+
 ## Setup Azure CLI
 
 - Follow the instructions for your platform [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)

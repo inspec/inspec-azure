@@ -252,7 +252,10 @@ class AzureConnection
     if ENV["RAKE_ENV"] == "test"
       Inspec::Config.mock.unpack_train_credentials
     else
-      Inspec::Config.cached.unpack_train_credentials
+      config = Inspec::Config.cached
+      return {} unless config.present? # existing external platforms might not be aware of above environment variable
+
+      config.unpack_train_credentials
     end
   end
 end
