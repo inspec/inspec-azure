@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSqlDatabases < AzureGenericResources
-  name 'azure_sql_databases'
-  desc 'Verifies settings for a collection of Azure SQL Databases on a SQL Server'
+  name "azure_sql_databases"
+  desc "Verifies settings for a collection of Azure SQL Databases on a SQL Server"
   example <<-EXAMPLE
     describe azure_sql_databases(resource_group: 'my-rg', server_name: 'server-1') do
         it            { should exist }
@@ -14,12 +14,12 @@ class AzureSqlDatabases < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Sql/servers', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Sql/servers", opts)
     opts[:required_parameters] = %i(resource_group server_name)
     opts[:display_name] = "Databases on #{opts[:server_name]} SQL Server"
-    opts[:resource_path] = [opts[:server_name], 'databases'].join('/')
+    opts[:resource_path] = [opts[:server_name], "databases"].join("/")
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -53,8 +53,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermSqlDatabases < AzureSqlDatabases
-  name 'azurerm_sql_databases'
-  desc 'Verifies settings for a collection of Azure SQL Databases on a SQL Server'
+  name "azurerm_sql_databases"
+  desc "Verifies settings for a collection of Azure SQL Databases on a SQL Server"
   example <<-EXAMPLE
     describe azurerm_sql_databases(resource_group: 'my-rg', server_name: 'server-1') do
         it            { should exist }
@@ -65,10 +65,10 @@ class AzurermSqlDatabases < AzureSqlDatabases
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSqlDatabases.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2017-10-01-preview'
+    opts[:api_version] ||= "2017-10-01-preview"
     super
   end
 end

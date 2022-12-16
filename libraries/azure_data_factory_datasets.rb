@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureDataFactoryDataSets < AzureGenericResources
-  name 'azure_data_factory_datasets'
-  desc 'Lists  DataFactoryDataSets'
+  name "azure_data_factory_datasets"
+  desc "Lists  DataFactoryDataSets"
   example <<-EXAMPLE
     azure_data_factory_datasets(resource_group: 'example', factory_name: 'factory_name') do
       it{ should exist }
@@ -13,11 +13,11 @@ class AzureDataFactoryDataSets < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.DataFactory/factories', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.DataFactory/factories", opts)
     opts[:required_parameters] = %i(factory_name)
-    opts[:resource_path] = [opts[:factory_name], 'datasets'].join('/')
+    opts[:resource_path] = [opts[:factory_name], "datasets"].join("/")
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

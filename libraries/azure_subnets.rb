@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSubnets < AzureGenericResources
-  name 'azure_subnets'
-  desc 'Verifies settings for Azure Virtual Network Subnets'
+  name "azure_subnets"
+  desc "Verifies settings for Azure Virtual Network Subnets"
   example <<-EXAMPLE
     azure_subnets(resource_group: 'example', vnet: 'virtual-network-name') do
       it{ should exist }
@@ -13,7 +13,7 @@ class AzureSubnets < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing all subnets in a virtual network:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
@@ -45,11 +45,11 @@ class AzureSubnets < AzureGenericResources
     #       not to accept a different `resource_provider`.
     #
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/virtualNetworks", opts)
     opts[:required_parameters] = %i(resource_group vnet)
     # Unless provided here, a generic display name will be created in the backend.
     opts[:display_name] = "Subnets for #{opts[:vnet]} Virtual Network"
-    opts[:resource_path] = [opts[:vnet], 'subnets'].join('/')
+    opts[:resource_path] = [opts[:vnet], "subnets"].join("/")
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -79,8 +79,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermSubnets < AzureSubnets
-  name 'azurerm_subnets'
-  desc 'Verifies settings for Azure Virtual Network Subnets'
+  name "azurerm_subnets"
+  desc "Verifies settings for Azure Virtual Network Subnets"
   example <<-EXAMPLE
     azurerm_subnets(resource_group: 'example', vnet: 'virtual-network-name') do
       it{ should exist }
@@ -90,10 +90,10 @@ class AzurermSubnets < AzureSubnets
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSubnets.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
+    opts[:api_version] ||= "2018-02-01"
     super
   end
 end

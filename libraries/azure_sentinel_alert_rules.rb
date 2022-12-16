@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSentinelAlertRules < AzureGenericResources
-  name 'azure_sentinel_alert_rules'
-  desc 'Verifies settings for Azure Alert Rule'
+  name "azure_sentinel_alert_rules"
+  desc "Verifies settings for Azure Alert Rule"
   example <<-EXAMPLE
      azure_sentinel_alert_rules(resource_group: 'example', workspace_name: 'workspaceName') do
        it{ should exist }
@@ -13,11 +13,11 @@ class AzureSentinelAlertRules < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.OperationalInsights/workspaces', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.OperationalInsights/workspaces", opts)
     opts[:required_parameters] = %i(workspace_name)
-    opts[:resource_path] = [opts[:workspace_name], 'providers/Microsoft.SecurityInsights/alertRules/'].join('/')
+    opts[:resource_path] = [opts[:workspace_name], "providers/Microsoft.SecurityInsights/alertRules/"].join("/")
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
     # Check if the resource is failed.

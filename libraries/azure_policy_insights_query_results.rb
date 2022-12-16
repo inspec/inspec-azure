@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzurePolicyInsightsQueryResults < AzureGenericResources
-  name 'azure_policy_insights_query_results'
-  desc 'Lists a collection of Azure Policy Insights Query Results'
+  name "azure_policy_insights_query_results"
+  desc "Lists a collection of Azure Policy Insights Query Results"
   example <<-EXAMPLE
     describe azure_policy_insights_query_results do
       it { should exist }
@@ -11,13 +11,13 @@ class AzurePolicyInsightsQueryResults < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     Validators.validate_parameters(resource_name: @__resource_name__, allow: %i(filter_free_text), opts: opts)
-    resource_provider = specific_resource_constraint('Microsoft.PolicyInsights/policyStates/latest/queryResults', opts)
-    opts[:resource_uri] = ['providers', resource_provider].join('/')
+    resource_provider = specific_resource_constraint("Microsoft.PolicyInsights/policyStates/latest/queryResults", opts)
+    opts[:resource_uri] = ["providers", resource_provider].join("/")
     opts[:add_subscription_id] = true
-    opts[:method] = 'post'
+    opts[:method] = "post"
 
     super
 

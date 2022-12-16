@@ -1,12 +1,12 @@
-require 'azure_backend'
+require "azure_backend"
 
 # The backend class for the singular static resources.
 #
 # @author omerdemirok
 #
 class AzureGenericResource < AzureResourceBase
-  name 'azure_generic_resource'
-  desc 'Inspec Resource to interrogate any resource type available through Azure Resource Manager'
+  name "azure_generic_resource"
+  desc "Inspec Resource to interrogate any resource type available through Azure Resource Manager"
   example <<-EXAMPLE
     describe azure_generic_resource(resource_group: 'example', name: 'my_resource') do
       its('name') { should eq 'my_resource' }
@@ -15,7 +15,7 @@ class AzureGenericResource < AzureResourceBase
 
   def initialize(opts = {}, static_resource = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix disabled rubocop issue.
     super(opts)
-    @resource_id = ''
+    @resource_id = ""
     if @opts.key?(:resource_provider)
       validate_resource_provider
     end
@@ -27,7 +27,7 @@ class AzureGenericResource < AzureResourceBase
     end
     @display_name = if @opts[:display_name].nil?
                       @opts.slice(:resource_group, :resource_provider, :name, :tag_name, :tag_value, :resource_id,
-                                  :resource_uri).values.join(' ')
+                                  :resource_uri).values.join(" ")
                     else
                       @opts[:display_name]
                     end
@@ -37,14 +37,14 @@ class AzureGenericResource < AzureResourceBase
       @opts[:resource_data] = @opts[:resource_data].to_h
       query_params = { resource_uri: @resource_id, resource_data: @opts[:resource_data] }
     else
-      resource_fail('There is not enough input to create an Azure resource ID.') if @resource_id.empty?
+      resource_fail("There is not enough input to create an Azure resource ID.") if @resource_id.empty?
       # This is the last check on resource_id before talking to resource manager endpoint to get the detailed information.
       Validators.validate_resource_uri(@resource_id)
       query_params = { resource_uri: @resource_id }
     end
     query_params[:query_parameters] = {}
     # Use the latest api_version unless provided.
-    query_params[:query_parameters]['api-version'] = @opts[:api_version] || 'latest'
+    query_params[:query_parameters]["api-version"] = @opts[:api_version] || "latest"
     %i(is_uri_a_url headers method req_body audience).each do |param|
       query_params[param] = @opts[param] unless @opts[param].nil?
     end
@@ -82,9 +82,9 @@ class AzureGenericResource < AzureResourceBase
   def to_s(class_name = nil)
     api_info = "- api_version: #{api_version_used_for_query} #{api_version_used_for_query_state}" if defined?(api_version_used_for_query)
     if class_name.nil?
-      "#{AzureGenericResource.name.split('_').map(&:capitalize).join(' ')} #{api_info}: #{@display_name}"
+      "#{AzureGenericResource.name.split("_").map(&:capitalize).join(" ")} #{api_info}: #{@display_name}"
     else
-      "#{class_name.name.split('_').map(&:capitalize).join(' ')} #{api_info}: #{@display_name}"
+      "#{class_name.name.split("_").map(&:capitalize).join(" ")} #{api_info}: #{@display_name}"
     end
   end
 
@@ -130,9 +130,9 @@ class AzureGenericResource < AzureResourceBase
     query_params = { resource_uri: opts[:property_endpoint] }
     query_params[:query_parameters] = {}
     unless opts[:filter_free_text].nil?
-      query_params[:query_parameters]['$filter'] = opts[:filter_free_text]
+      query_params[:query_parameters]["$filter"] = opts[:filter_free_text]
     end
-    query_params[:query_parameters]['api-version'] = opts[:api_version] || 'latest'
+    query_params[:query_parameters]["api-version"] = opts[:api_version] || "latest"
 
     %i(is_uri_a_url headers method req_body audience).each do |param|
       query_params[param] = opts[param] unless opts[param].nil?
@@ -166,7 +166,7 @@ class AzureGenericResource < AzureResourceBase
     end
 
     if @opts[:resource_identifiers]
-      raise ArgumentError, '`:resource_identifiers` should be a list.' unless @opts[:resource_identifiers].is_a?(Array)
+      raise ArgumentError, "`:resource_identifiers` should be a list." unless @opts[:resource_identifiers].is_a?(Array)
       # The `name` parameter should have been required in the static resource.
       # Since it is a mandatory field, it is better to make sure that it is in the required list before validations.
       @opts[:resource_identifiers] << :name unless @opts[:resource_identifiers].include?(:name)
@@ -183,7 +183,7 @@ class AzureGenericResource < AzureResourceBase
       validate_resource_uri
       validate_parameters(required: %i(resource_uri name add_subscription_id),
                           allow: allowed_parameters + required_parameters)
-      @resource_id = [@opts[:resource_uri], @opts[:name]].join('/').gsub('//', '/')
+      @resource_id = [@opts[:resource_uri], @opts[:name]].join("/").gsub("//", "/")
       return
     end
 
@@ -199,7 +199,7 @@ class AzureGenericResource < AzureResourceBase
     if @opts.key?(:resource_uri)
       validate_parameters(required: %i(resource_uri add_subscription_id name), allow: %i(query_parameters is_uri_a_url audience headers transform_keys))
       validate_resource_uri
-      @resource_id = [@opts[:resource_uri], @opts[:name]].join('/').gsub('//', '/')
+      @resource_id = [@opts[:resource_uri], @opts[:name]].join("/").gsub("//", "/")
     elsif @opts.key?(:resource_id)
       validate_parameters(required: %i(resource_id), allow: %i(transform_keys))
       @resource_id = @opts[:resource_id]

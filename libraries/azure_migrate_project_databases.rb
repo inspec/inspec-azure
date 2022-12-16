@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureMigrateProjectDatabases < AzureGenericResources
-  name 'azure_migrate_project_databases'
-  desc 'Verifies settings for a collection of Azure Migrate Project Databases for a Azure Migrate Project in a Resource Group'
+  name "azure_migrate_project_databases"
+  desc "Verifies settings for a collection of Azure Migrate Project Databases for a Azure Migrate Project in a Resource Group"
   example <<-EXAMPLE
     describe azure_migrate_project_databases(resource_group: 'migrated_vms', project_name: 'zoneA_migrate_project') do
         it { should exist }
@@ -10,11 +10,11 @@ class AzureMigrateProjectDatabases < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Migrate/migrateProjects', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Migrate/migrateProjects", opts)
     opts[:required_parameters] = %i(project_name)
-    opts[:resource_path] = [opts[:project_name], 'databases'].join('/')
+    opts[:resource_path] = [opts[:project_name], "databases"].join("/")
     super(opts, true)
     return if failed_resource?
 

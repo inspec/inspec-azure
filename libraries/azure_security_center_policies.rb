@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSecurityCenterPolicies < AzureGenericResources
-  name 'azure_security_center_policies'
-  desc 'Verifies settings for Security Center'
+  name "azure_security_center_policies"
+  desc "Verifies settings for Security Center"
   example <<-EXAMPLE
     describe azure_security_center_policies do
       its('policy_names') { should include('default') }
@@ -12,7 +12,7 @@ class AzureSecurityCenterPolicies < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    opts[:resource_provider] = 'Microsoft.Security/policies'
+    opts[:resource_provider] = "Microsoft.Security/policies"
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -41,8 +41,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermSecurityCenterPolicies < AzureSecurityCenterPolicies
-  name 'azurerm_security_center_policies'
-  desc 'Verifies settings for Security Center'
+  name "azurerm_security_center_policies"
+  desc "Verifies settings for Security Center"
   example <<-EXAMPLE
     describe azurerm_security_center_policies do
       its('policy_names') { should include('default') }
@@ -52,10 +52,10 @@ class AzurermSecurityCenterPolicies < AzureSecurityCenterPolicies
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureSecurityCenterPolicies.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2015-06-01-Preview'
+    opts[:api_version] ||= "2015-06-01-Preview"
     super
   end
 end

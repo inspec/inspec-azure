@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureVirtualMachineDisk < AzureGenericResource
-  name 'azure_virtual_machine_disk'
-  desc 'Verifies settings for Azure Virtual Machine Disks'
+  name "azure_virtual_machine_disk"
+  desc "Verifies settings for Azure Virtual Machine Disks"
   example <<-EXAMPLE
     describe azure_virtual_machine_disk(resource_group: 'example', name: 'disk-name') do
       it{ should exist }
@@ -11,9 +11,9 @@ class AzureVirtualMachineDisk < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Compute/disks', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Compute/disks", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -34,7 +34,7 @@ class AzureVirtualMachineDisk < AzureGenericResource
 
   def attached?
     return unless exists?
-    properties&.diskState&.eql?('Attached')
+    properties&.diskState&.eql?("Attached")
   end
 
   def to_s
@@ -45,8 +45,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermVirtualMachineDisk < AzureVirtualMachineDisk
-  name 'azurerm_virtual_machine_disk'
-  desc 'Verifies settings for Azure Virtual Machine Disks'
+  name "azurerm_virtual_machine_disk"
+  desc "Verifies settings for Azure Virtual Machine Disks"
   example <<-EXAMPLE
     describe azurerm_virtual_machine_disk(resource_group: 'example', name: 'disk-name') do
       it{ should exist }
@@ -56,10 +56,10 @@ class AzurermVirtualMachineDisk < AzureVirtualMachineDisk
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureVirtualMachineDisk.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2017-03-30'
+    opts[:api_version] ||= "2017-03-30"
     super
   end
 end

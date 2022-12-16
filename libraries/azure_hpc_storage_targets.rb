@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureHPCStorageTargets < AzureGenericResources
-  name 'azure_hpc_storage_targets'
-  desc 'Verifies settings for a collection of Azure HPC Storage Targets'
+  name "azure_hpc_storage_targets"
+  desc "Verifies settings for a collection of Azure HPC Storage Targets"
   example <<-EXAMPLE
     describe azure_hpc_storage_targets(resource_group: 'inspec-rg', cache_name: 'sc1') do
         it { should exist }
@@ -10,11 +10,11 @@ class AzureHPCStorageTargets < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.StorageCache/caches', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.StorageCache/caches", opts)
     opts[:required_parameters] = %i(resource_group cache_name)
-    opts[:resource_path] = [opts[:cache_name], 'storageTargets'].join('/')
+    opts[:resource_path] = [opts[:cache_name], "storageTargets"].join("/")
     super(opts, true)
     return if failed_resource?
 

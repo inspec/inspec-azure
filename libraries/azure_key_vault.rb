@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureKeyVault < AzureGenericResource
-  name 'azure_key_vault'
-  desc 'Verifies settings and configuration for an Azure Key Vault'
+  name "azure_key_vault"
+  desc "Verifies settings and configuration for an Azure Key Vault"
   example <<-EXAMPLE
     describe azure_key_vault(resource_group: 'rg-1', vault_name: 'vault-1') do
       it            { should exist }
@@ -12,7 +12,7 @@ class AzureKeyVault < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
@@ -43,7 +43,7 @@ class AzureKeyVault < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.KeyVault/vaults', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.KeyVault/vaults", opts)
     # Key vault name can be accepted with a different keyword, `vault_name`. `name` is default accepted.
     opts[:resource_identifiers] = %i(vault_name)
     opts[:allowed_parameters] = %i(diagnostic_settings_api_version)
@@ -52,7 +52,7 @@ class AzureKeyVault < AzureGenericResource
     super(opts, true)
 
     # `api_version` is fixed for backward compatibility.
-    @opts[:diagnostic_settings_api_version] ||= '2017-05-01-preview'
+    @opts[:diagnostic_settings_api_version] ||= "2017-05-01-preview"
   end
 
   def to_s
@@ -82,7 +82,7 @@ class AzureKeyVault < AzureGenericResource
     # and make api response available through this property.
     additional_resource_properties(
       {
-        property_name: 'diagnostic_settings',
+        property_name: "diagnostic_settings",
         property_endpoint: "#{id}/providers/microsoft.insights/diagnosticSettings",
         api_version: @opts[:diagnostic_settings_api_version],
       },
@@ -103,7 +103,7 @@ class AzureKeyVault < AzureGenericResource
   def has_logging_enabled?
     return false if diagnostic_settings.nil? || diagnostic_settings.empty?
     log = diagnostic_settings.each do |setting|
-      log = setting.properties&.logs&.detect { |l| l.category == 'AuditEvent' }
+      log = setting.properties&.logs&.detect { |l| l.category == "AuditEvent" }
       break log if log.present?
     end
     log&.enabled
@@ -113,8 +113,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermKeyVault < AzureKeyVault
-  name 'azurerm_key_vault'
-  desc 'Verifies settings and configuration for an Azure Key Vault'
+  name "azurerm_key_vault"
+  desc "Verifies settings and configuration for an Azure Key Vault"
   example <<-EXAMPLE
     describe azurerm_key_vault(resource_group: 'rg-1', vault_name: 'vault-1') do
       it            { should exist }
@@ -125,10 +125,10 @@ class AzurermKeyVault < AzureKeyVault
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVault.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2016-10-01'
+    opts[:api_version] ||= "2016-10-01"
     super
   end
 end

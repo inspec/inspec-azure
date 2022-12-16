@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureMonitorLogProfile < AzureGenericResource
-  name 'azure_monitor_log_profile'
-  desc 'Verifies settings for a Azure Monitor Log Profile'
+  name "azure_monitor_log_profile"
+  desc "Verifies settings for a Azure Monitor Log Profile"
   example <<-EXAMPLE
     describe azure_monitor_log_profile(name: 'default') do
       it { should exist }
@@ -13,11 +13,11 @@ class AzureMonitorLogProfile < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Insights/logProfiles', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Insights/logProfiles", opts)
     # See azure_policy_definition for more info on the usage of `resource_uri` parameter.
-    opts[:resource_uri] = '/providers/microsoft.insights/logprofiles/'
+    opts[:resource_uri] = "/providers/microsoft.insights/logprofiles/"
     opts[:add_subscription_id] = true
     opts[:display_name] = "#{opts[:name]} Log Profile"
 
@@ -53,15 +53,15 @@ class AzureMonitorLogProfile < AzureGenericResource
     return unless exists?
     sa = properties.storageAccountId
     resource_group, _provider, _r_type = Helpers.res_group_provider_type_from_uri(sa)
-    { name: sa.split('/').last, resource_group: resource_group }
+    { name: sa.split("/").last, resource_group: resource_group }
   end
 end
 
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermMonitorLogProfile < AzureMonitorLogProfile
-  name 'azurerm_monitor_log_profile'
-  desc 'Verifies settings for a Azure Monitor Log Profile'
+  name "azurerm_monitor_log_profile"
+  desc "Verifies settings for a Azure Monitor Log Profile"
   example <<-EXAMPLE
     describe azurerm_monitor_log_profile(name: 'default') do
       it { should exist }
@@ -73,10 +73,10 @@ class AzurermMonitorLogProfile < AzureMonitorLogProfile
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMonitorLogProfile.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2016-03-01'
+    opts[:api_version] ||= "2016-03-01"
     super
   end
 end

@@ -1,11 +1,11 @@
-control 'verify settings of Power BI Gateways' do
+control "verify settings of Power BI Gateways" do
 
-  title 'Testing the plural resource of azure_power_bi_gateways.'
-  desc 'Testing the plural resource of azure_power_bi_gateways.'
+  title "Testing the plural resource of azure_power_bi_gateways."
+  desc "Testing the plural resource of azure_power_bi_gateways."
 
   describe azure_power_bi_gateways do
     it { should exist }
-    its('types') { should include 'Resource' }
-    its('exponents') { should include 'AQAB' }
+    its("types") { should include "Resource" }
+    its("exponents") { should include "AQAB" }
   end
 end

@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureRedisCache < AzureGenericResource
-  name 'azure_redis_cache'
-  desc 'Verifies settings for a redis cache resource in a resource group'
+  name "azure_redis_cache"
+  desc "Verifies settings for a redis cache resource in a resource group"
   example <<-EXAMPLE
     describe azure_redis_cache(resource_group: 'rg-1, name: 'cache1') do
       it { should exist }
@@ -10,9 +10,9 @@ class AzureRedisCache < AzureGenericResource
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Cache/redis', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Cache/redis", opts)
     opts[:resource_identifiers] = %i(name)
     super(opts, true)
   end

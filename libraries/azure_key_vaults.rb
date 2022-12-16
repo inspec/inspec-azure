@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureKeyVaults < AzureGenericResources
-  name 'azure_key_vaults'
-  desc 'Verifies settings for a collection of Azure Key Vaults'
+  name "azure_key_vaults"
+  desc "Verifies settings for a collection of Azure Key Vaults"
   example <<-EXAMPLE
     describe azurerm_key_vaults(resource_group: 'rg-1') do
         it              { should exist }
@@ -14,7 +14,7 @@ class AzureKeyVaults < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/
@@ -44,7 +44,7 @@ class AzureKeyVaults < AzureGenericResources
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.KeyVault/vaults', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.KeyVault/vaults", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -77,8 +77,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermKeyVaults < AzureKeyVaults
-  name 'azurerm_key_vaults'
-  desc 'Verifies settings for a collection of Azure Key Vaults'
+  name "azurerm_key_vaults"
+  desc "Verifies settings for a collection of Azure Key Vaults"
   example <<-EXAMPLE
     describe azurerm_key_vaults(resource_group: 'rg-1') do
         it              { should exist }
@@ -89,10 +89,10 @@ class AzurermKeyVaults < AzureKeyVaults
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureKeyVaults.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2016-10-01'
+    opts[:api_version] ||= "2016-10-01"
     super
   end
 end

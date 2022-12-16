@@ -1,4 +1,4 @@
-require 'backend/azure_require'
+require "backend/azure_require"
 
 ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h
 
@@ -17,7 +17,7 @@ ENV_HASH = ENV.map { |k, v| [k.downcase, v] }.to_h
 #
 class AzureResourceBase < Inspec.resource(1)
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
     @opts = opts
 
     # Populate client_args to specify AzureConnection
@@ -31,7 +31,7 @@ class AzureResourceBase < Inspec.resource(1)
     @client_args = {}
     # If not provided, the endpoint will be the Global Cloud portal.
     # https://azure.microsoft.com/en-gb/global-infrastructure/
-    @client_args[:endpoint] = @opts[:endpoint] || ENV_HASH['endpoint'] || 'azure_cloud'
+    @client_args[:endpoint] = @opts[:endpoint] || ENV_HASH["endpoint"] || "azure_cloud"
     unless AzureEnvironments::ENDPOINTS.key?(@client_args[:endpoint])
       raise ArgumentError, "Invalid endpoint: `#{@client_args[:endpoint]}`."\
         " Expected one of the following options: #{AzureEnvironments::ENDPOINTS.keys}."
@@ -41,9 +41,9 @@ class AzureResourceBase < Inspec.resource(1)
     endpoint = AzureEnvironments.get_endpoint(@client_args[:endpoint])
     @client_args[:endpoint] = endpoint
     # Set HTTP client retry parameters, defining the timeout exception behavior, if provided.
-    @client_args[:azure_retry_limit] = @opts[:azure_retry_limit] || ENV_HASH['azure_retry_limit']
-    @client_args[:azure_retry_backoff] = @opts[:azure_retry_backoff] || ENV_HASH['azure_retry_backoff']
-    @client_args[:azure_retry_backoff_factor] = @opts[:azure_retry_backoff_factor] || ENV_HASH['azure_retry_backoff_factor']
+    @client_args[:azure_retry_limit] = @opts[:azure_retry_limit] || ENV_HASH["azure_retry_limit"]
+    @client_args[:azure_retry_backoff] = @opts[:azure_retry_backoff] || ENV_HASH["azure_retry_backoff"]
+    @client_args[:azure_retry_backoff_factor] = @opts[:azure_retry_backoff_factor] || ENV_HASH["azure_retry_backoff_factor"]
 
     # Fail resource if the http client is not properly set up.
     begin
@@ -56,7 +56,7 @@ class AzureResourceBase < Inspec.resource(1)
 
     # We can't raise an error due to `InSpec check` builds up a dummy backend and any error at this stage fails it.
     unless @azure.credentials.values.compact.delete_if(&:empty?).size == 4
-      Inspec::Log.error 'The following must be set in the Environment:'\
+      Inspec::Log.error "The following must be set in the Environment:"\
         " #{@azure.credentials.keys}.\n"\
         "Missing: #{@azure.credentials.keys.select { |key| @azure.credentials[key].nil? }}"
     end
@@ -87,12 +87,12 @@ class AzureResourceBase < Inspec.resource(1)
     Validators.validate_parameters(resource_name: @__resource_name__, allow: %i(api_version query_parameters),
                                    required: %i(resource), opts: opts)
     api_version = opts[:api_version] || @azure.graph_api_endpoint_api_version
-    if api_version.size > 10 || api_version.include?('/')
-      raise ArgumentError, 'api version can not be longer than 10 characters and contain `/`.'
+    if api_version.size > 10 || api_version.include?("/")
+      raise ArgumentError, "api version can not be longer than 10 characters and contain `/`."
     end
-    resource_trimmed = opts[:resource].delete_suffix('/').delete_prefix('/')
+    resource_trimmed = opts[:resource].delete_suffix("/").delete_prefix("/")
     endpoint_url = @azure.graph_api_endpoint_url
-    url = [endpoint_url, api_version, resource_trimmed].join('/')
+    url = [endpoint_url, api_version, resource_trimmed].join("/")
     if opts[:query_parameters].nil?
       @azure.rest_api_call(url: url)
     else
@@ -123,24 +123,24 @@ class AzureResourceBase < Inspec.resource(1)
   #   - GET https://management.azure.com/subscriptions/{subscription_id}/resources?api-version=2019-10-01&
   #         $filter=resourceGroup eq '{resource_group}' and name eq '{resource_name}'
   def resource_short(opts)
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
     url = Helpers.construct_url([
                                   @azure.resource_manager_endpoint_url,
-                                  'subscriptions',
-                                  @azure.credentials[:subscription_id], 'resources'
+                                  "subscriptions",
+                                  @azure.credentials[:subscription_id], "resources"
                                 ])
     api_version = @azure.resource_manager_endpoint_api_version
     params = {
-      '$filter' => Helpers.odata_query(opts),
-      '$expand' => Helpers.odata_query(%w{createdTime changedTime provisioningState}),
-      'api-version' => api_version,
+      "$filter" => Helpers.odata_query(opts),
+      "$expand" => Helpers.odata_query(%w{createdTime changedTime provisioningState}),
+      "api-version" => api_version,
     }
     short_description, suggested_api_version = rescue_wrong_api_call(url: url, params: params)
     # If suggested_api_version is not nil, then the resource manager api version should be updated.
     unless suggested_api_version.nil?
       @resource_manager_endpoint_api = suggested_api_version
       Inspec::Log.warn "Resource manager endpoint api version should be updated with #{suggested_api_version} in"\
-        ' `libraries/backend/helpers.rb`'
+        " `libraries/backend/helpers.rb`"
     end
     short_description[:value] || []
   end
@@ -155,16 +155,16 @@ class AzureResourceBase < Inspec.resource(1)
     begin
       response = @azure.rest_api_call(opts)
     rescue UnsuccessfulAPIQuery::UnexpectedHTTPResponse::InvalidApiVersionParameter => e
-      api_version_suggested = e.suggested_api_version(opts[:params]['api-version'])
-      unless opts[:params]['api-version'] == 'failed_attempt'
+      api_version_suggested = e.suggested_api_version(opts[:params]["api-version"])
+      unless opts[:params]["api-version"] == "failed_attempt"
         Inspec::Log.warn "Incompatible api version provided for the `#{@__resource_name__}` resource:"\
-        " #{opts[:params]['api-version']}\n"\
+        " #{opts[:params]["api-version"]}\n"\
         "Trying with the latest api version suggested by the Azure Rest API: #{api_version_suggested}."
       end
       if api_version_suggested.nil?
-        Inspec::Log.warn 'Failed to acquire suggested api version from the Azure Rest API.'
+        Inspec::Log.warn "Failed to acquire suggested api version from the Azure Rest API."
       else
-        opts[:params].merge!({ 'api-version' => api_version_suggested })
+        opts[:params].merge!({ "api-version" => api_version_suggested })
         response = @azure.rest_api_call(opts)
       end
     end
@@ -187,11 +187,11 @@ class AzureResourceBase < Inspec.resource(1)
       unless required_arguments.all? { |resource_provider| @opts.keys.include?(resource_provider) }
     id_in_list = [
       "/subscriptions/#{@azure.credentials[:subscription_id]}",
-      'resourceGroups', @opts[:resource_group],
-      'providers', @opts[:resource_provider], @opts[:resource_path],
+      "resourceGroups", @opts[:resource_group],
+      "providers", @opts[:resource_provider], @opts[:resource_path],
       @opts[:name]
     ].compact
-    id_in_list.join('/').gsub('//', '/')
+    id_in_list.join("/").gsub("//", "/")
   end
 
   # Get the detailed information of an Azure cloud resource by its resource_id from resource manager endpoint.
@@ -247,8 +247,8 @@ class AzureResourceBase < Inspec.resource(1)
                                    allow: %i(query_parameters headers method req_body is_uri_a_url audience),
                                    opts: opts)
     params = opts[:query_parameters] || {}
-    api_version = params['api-version'] || 'latest'
-    if opts[:resource_uri].scan('providers').size == 1
+    api_version = params["api-version"] || "latest"
+    if opts[:resource_uri].scan("providers").size == 1
       # If the resource provider is unknown then this method can't find the api_version.
       # The latest api_version will de acquired from the error message via #rescue_wrong_api_call method.
       _resource_group, provider, r_type = Helpers.res_group_provider_type_from_uri(opts[:resource_uri])
@@ -261,22 +261,22 @@ class AzureResourceBase < Inspec.resource(1)
       api_version_info = get_api_version(provider, r_type, api_version) if provider
       # Something was wrong at get_api_version, and we will try to get a valid api_version via rescue_wrong_api_call
       # by providing an invalid api_version intentionally.
-      api_version_info[:api_version] = 'failed_attempt' if api_version_info[:api_version].nil?
+      api_version_info[:api_version] = "failed_attempt" if api_version_info[:api_version].nil?
     else
-      api_version_info = { api_version: api_version, api_version_status: 'user_provided' }
+      api_version_info = { api_version: api_version, api_version_status: "user_provided" }
     end
     # Some resource names can contain spaces. Decode them before parsing with URI.
     if opts[:is_uri_a_url]
-      url = opts[:resource_uri].gsub(' ', '%20')
+      url = opts[:resource_uri].gsub(" ", "%20")
     else
-      url = Helpers.construct_url([@azure.resource_manager_endpoint_url, opts[:resource_uri].gsub(' ', '%20')])
+      url = Helpers.construct_url([@azure.resource_manager_endpoint_url, opts[:resource_uri].gsub(" ", "%20")])
     end
-    opts_call = { url: url, params: params.merge!({ 'api-version' => api_version_info[:api_version] }) }
+    opts_call = { url: url, params: params.merge!({ "api-version" => api_version_info[:api_version] }) }
     %i(headers method req_body audience).each { |param| opts_call[param] = opts[param] unless opts[param].nil? }
     long_description, suggested_api_version = rescue_wrong_api_call(opts_call)
     if long_description.is_a?(Hash)
       long_description[:api_version_used_for_query] = suggested_api_version || api_version_info[:api_version]
-      long_description[:api_version_used_for_query_state] = suggested_api_version.nil? ? api_version_info[:api_version_status] : 'latest'
+      long_description[:api_version_used_for_query_state] = suggested_api_version.nil? ? api_version_info[:api_version_status] : "latest"
     else
       raise StandardError, "Expected a Hash object for querying #{opts}, but received #{long_description.class}."
     end
@@ -295,17 +295,17 @@ class AzureResourceBase < Inspec.resource(1)
   # @see https://docs.microsoft.com/en-us/rest/api/resources/providers/get
   #
   # TODO: Fix the disabled rubocop issues.
-  def get_api_version(provider, resource_type, api_version_status = 'latest') # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
+  def get_api_version(provider, resource_type, api_version_status = "latest") # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
     unless %w{latest default}.include?(api_version_status)
       raise ArgumentError, "The api version status should be either `latest` or `default`, given: #{api_version_status}."
     end
     response = { api_version: nil, api_version_status: nil }
-    resource_type_env = resource_type.gsub('/', '_')
+    resource_type_env = resource_type.gsub("/", "_")
     in_cache = ENV["#{provider}__#{resource_type_env}__#{api_version_status}"]
     unless in_cache.nil?
-      if in_cache == 'use_latest'
+      if in_cache == "use_latest"
         in_cache = ENV["#{provider}__#{resource_type}__latest"]
-        api_version_status = 'latest'
+        api_version_status = "latest"
       end
       response[:api_version] = in_cache
       response[:api_version_status] = api_version_status
@@ -316,10 +316,10 @@ class AzureResourceBase < Inspec.resource(1)
     if @azure.provider_details[provider.to_sym].nil?
       # If the resource manager api version is updated earlier, use that.
       api_version_mgm = @resource_manager_endpoint_api || @azure.resource_manager_endpoint_api_version
-      url = Helpers.construct_url([@azure.resource_manager_endpoint_url, 'subscriptions',
-                                   @azure.credentials[:subscription_id], 'providers',
+      url = Helpers.construct_url([@azure.resource_manager_endpoint_url, "subscriptions",
+                                   @azure.credentials[:subscription_id], "providers",
                                    provider])
-      provider_details, suggested_api_version = rescue_wrong_api_call(url: url, params: { 'api-version' => api_version_mgm })
+      provider_details, suggested_api_version = rescue_wrong_api_call(url: url, params: { "api-version" => api_version_mgm })
       # If suggested_api_version is not nil, then the resource manager api version should be updated.
       unless suggested_api_version.nil?
         @resource_manager_endpoint_api = suggested_api_version
@@ -331,28 +331,28 @@ class AzureResourceBase < Inspec.resource(1)
 
     resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].upcase == resource_type.upcase }&.first
     # For some resource types the api version might be available with their parent resource.
-    if resource_type_details.nil? && resource_type.include?('/')
-      parent_resource_type = resource_type.split('/').first
+    if resource_type_details.nil? && resource_type.include?("/")
+      parent_resource_type = resource_type.split("/").first
       resource_type_details = provider_details[:resourceTypes].select { |rt| rt[:resourceType].upcase == parent_resource_type&.upcase }&.first
     end
     if resource_type_details.nil? || !resource_type_details.is_a?(Hash)
       Inspec::Log.warn "#{@__resource_name__}: Couldn't get the #{api_version_status} API version for `#{provider}/#{resource_type}`. " \
-      'Please make sure that the provider/resourceType are in the correct format, e.g. `Microsoft.Compute/virtualMachines`.'
+      "Please make sure that the provider/resourceType are in the correct format, e.g. `Microsoft.Compute/virtualMachines`."
     else
       # Caching provider details.
       @azure.provider_details[provider.to_sym] = provider_details if @azure.provider_details[provider.to_sym].nil?
       api_versions = resource_type_details[:apiVersions]
-      api_versions_stable = api_versions.reject { |a| a.include?('preview') }
-      api_versions_preview = api_versions.select { |a| a.include?('preview') }
+      api_versions_stable = api_versions.reject { |a| a.include?("preview") }
+      api_versions_preview = api_versions.select { |a| a.include?("preview") }
       # If the latest stable version is older than 2 years then use preview versions.
       latest_api_version = Helpers.normalize_api_list(2, api_versions_stable, api_versions_preview).first
       ENV["#{provider}__#{resource_type_env}__latest"] = latest_api_version
       ENV["#{provider}__#{resource_type_env}__default"] = \
-        resource_type_details[:defaultApiVersion].nil? ? 'use_latest' : resource_type_details[:defaultApiVersion]
-      if api_version_status == 'default'
+        resource_type_details[:defaultApiVersion].nil? ? "use_latest" : resource_type_details[:defaultApiVersion]
+      if api_version_status == "default"
         if resource_type_details[:defaultApiVersion].nil?
           # This will be used to inform caller function about the actual status of the returned api version.
-          api_version_status = 'latest'
+          api_version_status = "latest"
           returned_api_version = latest_api_version
         else
           returned_api_version = resource_type_details[:defaultApiVersion]
@@ -393,11 +393,11 @@ class AzureResourceBase < Inspec.resource(1)
 
   def validate_resource_uri(opts = @opts)
     return true if opts[:is_uri_a_url]
-    opts[:resource_uri].prepend('/') unless opts[:resource_uri].start_with?('/')
+    opts[:resource_uri].prepend("/") unless opts[:resource_uri].start_with?("/")
     Validators.validate_params_required(%i(add_subscription_id), opts)
     if opts[:add_subscription_id] == true
       opts[:resource_uri] = "/subscriptions/#{@azure.credentials[:subscription_id]}/#{opts[:resource_uri]}"
-                            .gsub('//', '/')
+        .gsub("//", "/")
     end
     opts[:resource_uri]
   end
@@ -471,7 +471,7 @@ class AzureResourceBase < Inspec.resource(1)
     message = "Unable to get information from the REST API for #{@__resource_name__}: #{@display_name}.\n#{e.message}"
     resource_fail(message)
   rescue StandardError => e
-    message = "Resource is failed due to #{e}. Error backtrace:#{e.backtrace.join(' ')}"
+    message = "Resource is failed due to #{e}. Error backtrace:#{e.backtrace.join(" ")}"
     resource_fail(message)
   end
 
@@ -501,9 +501,9 @@ class AzureResourceBase < Inspec.resource(1)
   # @return [String] The reason of the failure.
   def resource_fail(message = nil)
     message ||= "#{@__resource_name__}: #{@display_name}. "\
-    'Multiple Azure resources were returned for the provided criteria. '\
-    'If you wish to test multiple entities, please use the plural resource. '\
-    'Otherwise, please provide more specific criteria to lookup the resource.'
+    "Multiple Azure resources were returned for the provided criteria. "\
+    "If you wish to test multiple entities, please use the plural resource. "\
+    "Otherwise, please provide more specific criteria to lookup the resource."
     # Fail resource in resource pack. `exists?` method will return `false`.
     @failed_resource = true
     # Fail resource in InSpec core. Tests in InSpec profile will return the message.
@@ -601,23 +601,23 @@ class AzureResourceDynamicMethods
     # Create the necessary method based on the var that has been passed
     # Test the value for its type so that the method can be setup correctly
     case value.class.to_s
-    when 'String', 'Integer', 'TrueClass', 'FalseClass', 'Fixnum', 'Time', 'Bignum', 'Float'
+    when "String", "Integer", "TrueClass", "FalseClass", "Fixnum", "Time", "Bignum", "Float"
       object.define_singleton_method name do
         value
       end
-    when 'Hash'
+    when "Hash"
       value.count.zero? ? return_value = value : return_value = AzureResourceProbe.new(value)
       object.define_singleton_method name do
         return_value
       end
-    when 'Array'
+    when "Array"
       # Some things are just string or integer arrays
       # Check this by seeing if the first element is a string / integer / boolean or
       # a hashtable
       # This may not be the best method, but short of testing all elements in the array, this is
       # the quickest test
       case value[0].class.to_s
-      when 'String', 'Integer', 'TrueClass', 'FalseClass', 'Fixnum'
+      when "String", "Integer", "TrueClass", "FalseClass", "Fixnum"
         probes = value
       else
         probes = []
@@ -682,10 +682,10 @@ class AzureResourceProbe
   # @param [String, Hash] opt Name (or Name=>Value) of the item to look for in the @item property
   def include?(opt)
     unless opt.is_a?(Symbol) || opt.is_a?(Hash) || opt.is_a?(String)
-      raise ArgumentError, 'Key or Key:Value pair should be provided.'
+      raise ArgumentError, "Key or Key:Value pair should be provided."
     end
     if opt.is_a?(Hash)
-      raise ArgumentError, 'Only one item can be provided' if opt.keys.size > 1
+      raise ArgumentError, "Only one item can be provided" if opt.keys.size > 1
       return @item[opt.keys.first&.to_sym] == opt.values.first
     end
     @item.key?(opt.to_sym)

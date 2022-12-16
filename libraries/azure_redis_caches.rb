@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureRedisCaches < AzureGenericResources
-  name 'azure_redis_caches'
-  desc 'Verifies settings for a list of redis cache resources in a resource group'
+  name "azure_redis_caches"
+  desc "Verifies settings for a list of redis cache resources in a resource group"
   example <<-EXAMPLE
     describe azure_redis_caches(resource_group: 'rg-1') do
       it { should exist }
@@ -12,13 +12,13 @@ class AzureRedisCaches < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     Validators.validate_parameters(resource_name: @__resource_name__,
                                    required: %i(resource_group),
                                    opts: opts)
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Cache/redis', opts)
-    opts[:resource_uri] = ['/resourceGroups', opts[:resource_group], 'providers', opts[:resource_provider]].join('/')
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Cache/redis", opts)
+    opts[:resource_uri] = ["/resourceGroups", opts[:resource_group], "providers", opts[:resource_provider]].join("/")
     opts[:add_subscription_id] = true
     super(opts, true)
     return if failed_resource?
