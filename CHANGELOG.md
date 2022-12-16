@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.30 -->
+<!-- latest_release 1.118.31 -->
+## [v1.118.31](https://github.com/inspec/inspec-azure/tree/v1.118.31) (2022-12-16)
+
+#### Merged Pull Requests
+- RESOURCE-562 Handle config cache [#706](https://github.com/inspec/inspec-azure/pull/706) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.118.30](https://github.com/inspec/inspec-azure/tree/v1.118.30) (2022-12-16)
 
 #### Merged Pull Requests
 - RESOURCE-547 Switch inspec-azure to chefstyle [#705](https://github.com/inspec/inspec-azure/pull/705) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.29](https://github.com/inspec/inspec-azure/tree/v1.118.29) (2022-12-13)
 
