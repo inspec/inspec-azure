@@ -253,7 +253,9 @@ class AzureConnection
       Inspec::Config.mock.unpack_train_credentials
     else
       config = Inspec::Config.cached
-      return {} unless config.present? # existing external platforms might not be aware of above environment variable
+      # existing external platforms might not be aware of above environment variable
+      # some backends don't respond to unpack_train_credentials method
+      return {} unless config.respond_to?(:unpack_train_credentials)
 
       config.unpack_train_credentials
     end
