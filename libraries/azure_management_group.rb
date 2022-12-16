@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureManagementGroup < AzureGenericResource
-  name 'azure_management_group'
-  desc 'Verifies settings for an Azure Management Group'
+  name "azure_management_group"
+  desc "Verifies settings for an Azure Management Group"
   example <<-EXAMPLE
     describe azure_management_group(group_id: 'example-group') do
       it { should exist }
@@ -11,23 +11,23 @@ class AzureManagementGroup < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Management/managementGroups', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Management/managementGroups", opts)
     opts[:resource_uri] = "providers/#{opts[:resource_provider]}"
     opts[:add_subscription_id] = false
     opts[:resource_identifiers] = %i(group_id)
     opts[:allowed_parameters] = %i(expand recurse filter)
     # For backward compatibility.
     opts[:query_parameters] = {
-      '$recurse' => opts[:recurse] || false,
+      "$recurse" => opts[:recurse] || false,
     }
-    opts[:query_parameters].merge!('$expand' => opts[:expand]) unless opts[:expand].nil?
+    opts[:query_parameters].merge!("$expand" => opts[:expand]) unless opts[:expand].nil?
     # Note that $expand=children must be passed up if $recurse is set to true.
-    if opts[:query_parameters]['$recurse']
-      opts[:query_parameters]['$expand'] = 'children'
+    if opts[:query_parameters]["$recurse"]
+      opts[:query_parameters]["$expand"] = "children"
     end
-    opts[:query_parameters].merge!('$filter' => opts[:filter]) unless opts[:filter].nil?
+    opts[:query_parameters].merge!("$filter" => opts[:filter]) unless opts[:filter].nil?
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -112,8 +112,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermManagementGroup < AzureManagementGroup
-  name 'azurerm_management_group'
-  desc 'Verifies settings for an Azure Management Group'
+  name "azurerm_management_group"
+  desc "Verifies settings for an Azure Management Group"
   example <<-EXAMPLE
     describe azurerm_management_group(group_id: 'example-group') do
       it { should exist }
@@ -122,11 +122,11 @@ class AzurermManagementGroup < AzureManagementGroup
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureManagementGroup.name)
     # For backward compatibility.
-    opts[:api_version] ||= '2018-03-01-preview'
+    opts[:api_version] ||= "2018-03-01-preview"
     super
   end
 end

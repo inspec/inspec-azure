@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureServiceFabricMeshServices < AzureGenericResources
-  name 'azure_service_fabric_mesh_services'
-  desc 'Verifies settings for a collection of Azure Service Fabric Mesh Services'
+  name "azure_service_fabric_mesh_services"
+  desc "Verifies settings for a collection of Azure Service Fabric Mesh Services"
   example <<-EXAMPLE
     describe azure_service_fabric_mesh_services(application_name: 'fabric-svc') do
         it { should exist }
@@ -10,10 +10,10 @@ class AzureServiceFabricMeshServices < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.ServiceFabricMesh/applications', opts)
-    opts[:resource_path] = [opts[:application_name], 'services'].join('/')
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.ServiceFabricMesh/applications", opts)
+    opts[:resource_path] = [opts[:application_name], "services"].join("/")
     super(opts, true)
     return if failed_resource?
 

@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureLoadBalancers < AzureGenericResources
-  name 'azure_load_balancers'
-  desc 'Verifies settings for a collection of Azure Load Balancers'
+  name "azure_load_balancers"
+  desc "Verifies settings for a collection of Azure Load Balancers"
   example <<-EXAMPLE
     describe azure_load_balancers do
         it  { should exist }
@@ -13,9 +13,9 @@ class AzureLoadBalancers < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/loadBalancers', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/loadBalancers", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -49,8 +49,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermLoadBalancers < AzureLoadBalancers
-  name 'azurerm_load_balancers'
-  desc 'Verifies settings for a collection of Azure Load Balancers'
+  name "azurerm_load_balancers"
+  desc "Verifies settings for a collection of Azure Load Balancers"
   example <<-EXAMPLE
     describe azurerm_load_balancers do
         it  { should exist }
@@ -60,10 +60,10 @@ class AzurermLoadBalancers < AzureLoadBalancers
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureLoadBalancers.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-11-01'
+    opts[:api_version] ||= "2018-11-01"
     super
   end
 end

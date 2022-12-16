@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureResourceHealthEvents < AzureGenericResources
-  name 'azure_resource_health_events'
-  desc 'Verifies settings for a collection of Azure Resource Health Events'
+  name "azure_resource_health_events"
+  desc "Verifies settings for a collection of Azure Resource Health Events"
   example <<-EXAMPLE
     describe azure_resource_health_events do
       its('names') { should include('role') }
@@ -16,15 +16,15 @@ class AzureResourceHealthEvents < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     resource_type = opts.delete(:resource_type)
     resource_id = opts.delete(:resource_id)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.ResourceHealth/events', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.ResourceHealth/events", opts)
     if opts.key?(:resource_group) && resource_type && resource_id
-      opts[:resource_uri] = ['resourcegroups', opts.delete(:resource_group), 'providers', resource_type, resource_id,
-                             'providers', opts[:resource_provider]].join('/')
+      opts[:resource_uri] = ["resourcegroups", opts.delete(:resource_group), "providers", resource_type, resource_id,
+                             "providers", opts[:resource_provider]].join("/")
       opts[:add_subscription_id] = true
     end
     super(opts, true)

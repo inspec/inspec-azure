@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureExpressRouteServiceProviders < AzureGenericResources
-  name 'azure_express_route_providers'
-  desc 'Verifies settings for Azure Virtual Machines'
+  name "azure_express_route_providers"
+  desc "Verifies settings for Azure Virtual Machines"
   example <<-EXAMPLE
     describe azure_express_route_providers(resource_group: 'example') do
       it{ should exist }
@@ -13,7 +13,7 @@ class AzureExpressRouteServiceProviders < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/
@@ -43,7 +43,7 @@ class AzureExpressRouteServiceProviders < AzureGenericResources
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/expressRouteServiceProviders', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/expressRouteServiceProviders", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSQLVirtualMachineGroupAvailabilityListeners < AzureGenericResources
-  name 'azure_sql_virtual_machine_group_availability_listeners'
-  desc 'Verifies settings for a collection of Azure SQL Virtual Machine Group Availability Listeners'
+  name "azure_sql_virtual_machine_group_availability_listeners"
+  desc "Verifies settings for a collection of Azure SQL Virtual Machine Group Availability Listeners"
   example <<-EXAMPLE
     describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'inspec-def-rg', sql_virtual_machine_group_name: 'inspec-sql-vm-group') do
         it { should exist }
@@ -10,9 +10,9 @@ class AzureSQLVirtualMachineGroupAvailabilityListeners < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups", opts)
     opts[:required_parameters] = %i(sql_virtual_machine_group_name)
     opts[:resource_path] = "#{opts[:sql_virtual_machine_group_name]}/availabilityGroupListeners"
     super(opts, true)

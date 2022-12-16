@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureStreamingAnalyticsFunctions< AzureGenericResources
-  name 'azure_streaming_analytics_functions'
-  desc 'Verifies settings for an Azure Function Streaming Analytics resource'
+  name "azure_streaming_analytics_functions"
+  desc "Verifies settings for an Azure Function Streaming Analytics resource"
   example <<-EXAMPLE
     describe azure_streaming_analytics_functions(resource_group: 'rg-1', job_name: "test-job") do
       it { should exist }
@@ -11,11 +11,11 @@ class AzureStreamingAnalyticsFunctions< AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.StreamAnalytics/streamingjobs', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.StreamAnalytics/streamingjobs", opts)
     opts[:required_parameters] = %i(job_name)
-    opts[:resource_path] = [opts[:job_name], 'functions'].join('/')
+    opts[:resource_path] = [opts[:job_name], "functions"].join("/")
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

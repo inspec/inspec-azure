@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSubscriptions < AzureGenericResources
-  name 'azure_subscriptions'
-  desc 'Verifies settings for the Azure Subscription within a tenant'
+  name "azure_subscriptions"
+  desc "Verifies settings for the Azure Subscription within a tenant"
   example <<-EXAMPLE
     describe azure_subscriptions do
       its('display_names') { should include 'Demo Resources' }
@@ -12,9 +12,9 @@ class AzureSubscriptions < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    opts[:resource_provider] = specific_resource_constraint('/subscriptions/', opts)
+    opts[:resource_provider] = specific_resource_constraint("/subscriptions/", opts)
     # See azure_policy_definitions resource for how to use `resource_uri` and `add_subscription_id` parameters.
-    opts[:resource_uri] = '/subscriptions/'
+    opts[:resource_uri] = "/subscriptions/"
     opts[:add_subscription_id] = false
 
     # static_resource parameter must be true for setting the resource_provider in the backend.

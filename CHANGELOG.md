@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.29 -->
+<!-- latest_release 1.118.30 -->
+## [v1.118.30](https://github.com/inspec/inspec-azure/tree/v1.118.30) (2022-12-16)
+
+#### Merged Pull Requests
+- RESOURCE-547 Switch inspec-azure to chefstyle [#705](https://github.com/inspec/inspec-azure/pull/705) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.29](https://github.com/inspec/inspec-azure/tree/v1.118.29) (2022-12-13)
 
 #### Merged Pull Requests
 - RESOURCE-559 Remove the impact from the controls in inspec-azure [#703](https://github.com/inspec/inspec-azure/pull/703) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.28](https://github.com/inspec/inspec-azure/tree/v1.118.28) (2022-12-06)
 

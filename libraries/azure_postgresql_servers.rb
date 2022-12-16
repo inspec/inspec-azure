@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzurePostgreSQLServers < AzureGenericResources
-  name 'azure_postgresql_servers'
-  desc 'Verifies settings for a collection of Azure PostgreSQL Servers'
+  name "azure_postgresql_servers"
+  desc "Verifies settings for a collection of Azure PostgreSQL Servers"
   example <<-EXAMPLE
     describe azure_postgresql_servers do
         its('names')  { should include 'my-sql-server' }
@@ -13,9 +13,9 @@ class AzurePostgreSQLServers < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.DBforPostgreSQL/servers', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.DBforPostgreSQL/servers", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -49,8 +49,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermPostgreSQLServers < AzurePostgreSQLServers
-  name 'azurerm_postgresql_servers'
-  desc 'Verifies settings for a collection of Azure PostgreSQL Servers'
+  name "azurerm_postgresql_servers"
+  desc "Verifies settings for a collection of Azure PostgreSQL Servers"
   example <<-EXAMPLE
     describe azurerm_postgresql_servers do
         its('names')  { should include 'my-sql-server' }
@@ -60,10 +60,10 @@ class AzurermPostgreSQLServers < AzurePostgreSQLServers
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzurePostgreSQLServers.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2017-12-01'
+    opts[:api_version] ||= "2017-12-01"
     super
   end
 end

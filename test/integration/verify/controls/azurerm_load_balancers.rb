@@ -1,18 +1,18 @@
-resource_group = attribute('resource_group', value: nil)
-loadbalancer_name = attribute('lb_name', value: nil)
+resource_group = attribute("resource_group", value: nil)
+loadbalancer_name = attribute("lb_name", value: nil)
 
-control 'azurerm_load_balancers' do
+control "azurerm_load_balancers" do
 
-  title 'Testing the plural resource of azurerm_load_balancers.'
-  desc 'Testing the plural resource of azurerm_load_balancers.'
+  title "Testing the plural resource of azurerm_load_balancers."
+  desc "Testing the plural resource of azurerm_load_balancers."
 
   describe azurerm_load_balancers(resource_group: resource_group) do
     it           { should exist }
-    its('names') { should include loadbalancer_name }
+    its("names") { should include loadbalancer_name }
   end
 
   describe azurerm_load_balancers do
     it            { should exist }
-    its('names')  { should include loadbalancer_name }
+    its("names")  { should include loadbalancer_name }
   end
 end

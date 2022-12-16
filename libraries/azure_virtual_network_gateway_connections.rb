@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureVirtualNetworkGatewayConnections < AzureGenericResources
-  name 'azure_virtual_network_gateway_connections'
-  desc 'Verifies settings for Azure Virtual Network Gateway Connections'
+  name "azure_virtual_network_gateway_connections"
+  desc "Verifies settings for Azure Virtual Network Gateway Connections"
   example <<-EXAMPLE
     describe azure_virtual_network_gateway_connections(resource_group: 'inspec-rg') do
       it { should exist }
@@ -12,9 +12,9 @@ class AzureVirtualNetworkGatewayConnections < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/connections', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/connections", opts)
     super(opts, true)
 
     return if failed_resource?

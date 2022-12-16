@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureRoleDefinition < AzureGenericResource
-  name 'azure_role_definition'
-  desc 'Verifies settings for an Azure Role'
+  name "azure_role_definition"
+  desc "Verifies settings for an Azure Role"
   example <<-EXAMPLE
     describe azure_role_definition(name: 'Mail-Account') do
       it                { should exist }
@@ -15,10 +15,10 @@ class AzureRoleDefinition < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-    raise ArgumentError, '`resource_group` is not allowed.' if opts.key(:resource_group)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
+    raise ArgumentError, "`resource_group` is not allowed." if opts.key(:resource_group)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Authorization/roleDefinitions', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Authorization/roleDefinitions", opts)
     # See azure_policy_definitions resource for how to use `resource_uri` and `add_subscription_id` parameters.
     opts[:resource_uri] = "providers/#{opts[:resource_provider]}"
     opts[:add_subscription_id] = true
@@ -43,8 +43,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermRoleDefinition < AzureRoleDefinition
-  name 'azurerm_role_definition'
-  desc 'Verifies settings for an Azure Role'
+  name "azurerm_role_definition"
+  desc "Verifies settings for an Azure Role"
   example <<-EXAMPLE
     describe azurerm_role_definition(name: 'Mail-Account') do
       it                { should exist }
@@ -56,10 +56,10 @@ class AzurermRoleDefinition < AzureRoleDefinition
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureRoleDefinition.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2015-07-01'
+    opts[:api_version] ||= "2015-07-01"
     super
   end
 end

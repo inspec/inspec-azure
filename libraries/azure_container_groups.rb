@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureContainerGroups < AzureGenericResources
-  name 'azure_container_groups'
-  desc 'Verifies settings for a list of azure container groups in a subscription'
+  name "azure_container_groups"
+  desc "Verifies settings for a list of azure container groups in a subscription"
   example <<-EXAMPLE
     describe azure_container_groups do
       it { should exist }
@@ -12,9 +12,9 @@ class AzureContainerGroups < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.ContainerInstance/containerGroups', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.ContainerInstance/containerGroups", opts)
     super(opts, true)
     return if failed_resource?
 

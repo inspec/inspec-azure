@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSentinelIncidentsResources < AzureGenericResources
-  name 'azure_sentinel_incidents_resources'
-  desc 'List azure pipelines by  data factory.'
+  name "azure_sentinel_incidents_resources"
+  desc "List azure pipelines by  data factory."
   example <<-EXAMPLE
        describe azure_sentinel_incidents_resources(resource_group: resource_group, workspace_name: workspace_name) do
          it { should exist }
@@ -11,14 +11,14 @@ class AzureSentinelIncidentsResources < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/
     #   providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/
     #   providers/Microsoft.SecurityInsights/incidents?api-version=2021-04-01
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.OperationalInsights/workspaces', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.OperationalInsights/workspaces", opts)
     opts[:required_parameters] = %i(workspace_name)
-    opts[:resource_path] = [opts[:workspace_name], 'providers/Microsoft.SecurityInsights/incidents'].join('/')
+    opts[:resource_path] = [opts[:workspace_name], "providers/Microsoft.SecurityInsights/incidents"].join("/")
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
     # Check if the resource is failed.
