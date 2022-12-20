@@ -249,15 +249,21 @@ class AzureConnection
   private
 
   def creds_from_uri
-    if ENV["RAKE_ENV"] == "test"
+    return @creds_from_uri if defined? @creds_from_uri
+
+    if ENV['RAKE_ENV'] == 'test'
       Inspec::Config.mock.unpack_train_credentials
     else
-      config = Inspec::Config.cached
-      # existing external platforms might not be aware of above environment variable
-      # some backends don't respond to unpack_train_credentials method
-      return {} unless config.respond_to?(:unpack_train_credentials)
+      begin
+        config = Inspec::Config.cached
+        # existing external platforms might not be aware of above environment variable
+        # some backends don't respond to unpack_train_credentials method
+        return {} unless config.respond_to?(:unpack_train_credentials)
 
-      config.unpack_train_credentials
+        config.unpack_train_credentials
+      rescue StandardError => e
+        {}
+      end
     end
   end
 end
