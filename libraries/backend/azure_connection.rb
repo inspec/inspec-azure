@@ -251,7 +251,7 @@ class AzureConnection
   def creds_from_uri
     return @creds_from_uri if defined? @creds_from_uri
 
-    if ENV['RAKE_ENV'] == 'test'
+    if ENV["RAKE_ENV"] == "test"
       Inspec::Config.mock.unpack_train_credentials
     else
       begin
@@ -261,7 +261,7 @@ class AzureConnection
         return {} unless config.respond_to?(:unpack_train_credentials)
 
         config.unpack_train_credentials
-      rescue StandardError => e
+      rescue StandardError => _e
         {}
       end
     end
