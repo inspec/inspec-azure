@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.31 -->
+<!-- latest_release 1.118.32 -->
+## [v1.118.32](https://github.com/inspec/inspec-azure/tree/v1.118.32) (2022-12-26)
+
+#### Merged Pull Requests
+- Handle unpack uri creds [#707](https://github.com/inspec/inspec-azure/pull/707) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
 ## [v1.118.31](https://github.com/inspec/inspec-azure/tree/v1.118.31) (2022-12-16)
 
 #### Merged Pull Requests
 - RESOURCE-562 Handle config cache [#706](https://github.com/inspec/inspec-azure/pull/706) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.118.30](https://github.com/inspec/inspec-azure/tree/v1.118.30) (2022-12-16)
 
