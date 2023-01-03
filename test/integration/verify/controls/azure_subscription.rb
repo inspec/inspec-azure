@@ -1,16 +1,14 @@
-control "azurerm_subscription" do
-
+control "azure_subscription_test_1" do
   title "Testing the singular resource of azure_subscription."
   desc "Testing the singular resource of azure_subscription."
 
-  describe azurerm_subscription do
+  describe azure_subscription do
     its("name") { should_not be_nil }
     its("locations") { should include "eastus" }
   end
 end
 
-control "azure_subscription" do
-
+control "azure_subscription_test_2" do
   title "Testing the singular resource of azure_subscription."
   desc "Testing the singular resource of azure_subscription."
 

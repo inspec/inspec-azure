@@ -2,8 +2,7 @@ resource_group = input("resource_group", value: nil)
 resource_name = input("windows_vm_name", value: nil)
 resource_type = "Microsoft.Compute/virtualMachines"
 
-control "azurerm_locks" do
-
+control "azure_locks_test_1" do
   title "Testing the plural resource of azure_locks."
   desc "Testing the plural resource of azure_locks."
 
@@ -12,8 +11,7 @@ control "azurerm_locks" do
   end
 end
 
-control "azure_locks" do
-
+control "azure_locks_test_2" do
   title "Testing the plural resource of azure_locks."
   desc "Testing the plural resource of azure_locks."
 

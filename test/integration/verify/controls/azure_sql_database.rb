@@ -2,14 +2,13 @@ resource_group  = input("resource_group", value: nil)
 sql_server_name = input("sql_server_name", value: nil)
 sql_db_name     = input("sql_database_name", value: nil)
 
-control "azurerm_sql_database" do
-
+control "azure_sql_database_test_1" do
   title "Testing the singular resource of azure_sql_database."
   desc "Testing the singular resource of azure_sql_database."
 
   only_if { !sql_db_name.nil? }
 
-  describe azurerm_sql_database(resource_group: resource_group,
+  describe azure_sql_database(resource_group: resource_group,
                                 server_name: sql_server_name,
                                 database_name: sql_db_name) do
                                   it { should exist }
@@ -21,7 +20,7 @@ control "azurerm_sql_database" do
                                 end
 end
 
-control "azure_sql_database" do
+control "azure_sql_database_test_2" do
 
   title "Testing the singular resource of azure_sql_database."
   desc "Testing the singular resource of azure_sql_database."

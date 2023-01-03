@@ -1,18 +1,18 @@
-resource_group            = input("resource_group",        value: nil)
-win_name                  = input("windows_vm_name",       value: nil)
-win_id                    = input("windows_vm_id",         value: nil)
-win_location              = input("windows_vm_location",   value: nil)
-win_tags                  = input("windows_vm_tags",       value: nil)
-win_os_disk_name          = input("windows_vm_os_disk",    value: nil)
-win_data_disk_names       = input("windows_vm_data_disks", value: nil)
+resource_group = input("resource_group", value: nil)
+win_name = input("windows_vm_name", value: nil)
+win_id = input("windows_vm_id", value: nil)
+win_location = input("windows_vm_location", value: nil)
+win_tags = input("windows_vm_tags", value: nil)
+win_os_disk_name = input("windows_vm_os_disk", value: nil)
+win_data_disk_names = input("windows_vm_data_disks", value: nil)
 win_monitoring_agent_name = input("monitoring_agent_name", value: nil)
 
-control "azurerm_virtual_machine" do
+control "azure_virtual_machine_test_1" do
 
-  title "Testing the singular resource of azurerm_virtual_machine."
-  desc "Testing the singular resource of azurerm_virtual_machine."
+  title "Testing the singular resource of azure_virtual_machine."
+  desc "Testing the singular resource of azure_virtual_machine."
 
-  describe azurerm_virtual_machine(resource_group: resource_group, name: win_name) do
+  describe azure_virtual_machine(resource_group: resource_group, name: win_name) do
     it                                { should exist }
     it                                { should have_monitoring_agent_installed }
     it                                { should_not have_endpoint_protection_installed([]) }
@@ -29,20 +29,20 @@ control "azurerm_virtual_machine" do
     its("installed_extensions_names") { should include(win_monitoring_agent_name) }
   end
 
-  describe azurerm_virtual_machine(resource_group: resource_group, name: "fake") do
+  describe azure_virtual_machine(resource_group: resource_group, name: "fake") do
     it { should_not exist }
   end
 
-  describe azurerm_virtual_machine(resource_group: "does-not-exist", name: win_name) do
+  describe azure_virtual_machine(resource_group: "does-not-exist", name: win_name) do
     it { should_not exist }
   end
 
-  describe azurerm_virtual_machine(resource_group: resource_group, name: win_name) do
+  describe azure_virtual_machine(resource_group: resource_group, name: win_name) do
     its("properties.osProfile.linuxConfiguration.ssh") { should be_nil }
   end
 end
 
-control "azure_virtual_machine" do
+control "azure_virtual_machine_test_2" do
 
   title "Ensure azure_virtual_machine accepts resource_id and tests resource_group as a property."
   desc "Testing the singular resource of azure_virtual_machine."

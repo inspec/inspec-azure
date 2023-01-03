@@ -3,12 +3,11 @@ resource_group = input("resource_group", value: nil)
 # Added to test `inspec check` command
 resource_group_names = azure_resource_groups.names
 
-control "azurerm_resource_groups" do
-
+control "azure_resource_groups" do
   title "Testing the plural resource of azure_resource_groups."
   desc "Testing the plural resource of azure_resource_groups."
 
-  describe azurerm_resource_groups do
+  describe azure_resource_groups do
     it { should exist }
     its("names") { should include(resource_group) }
     its("names.size") { should eq resource_group_names.size }
@@ -20,7 +19,6 @@ control "azurerm_resource_groups" do
 end
 
 control "azure_resource_groups_loop" do
-
   title "Testing the plural resource of azure_resource_groups."
   desc "Testing the plural resource of azure_resource_groups."
 
