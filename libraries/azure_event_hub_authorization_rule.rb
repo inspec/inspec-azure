@@ -4,8 +4,9 @@ class AzureEventHubAuthorizationRule < AzureGenericResource
   name "azure_event_hub_authorization_rule"
   desc "Verifies settings for Event Hub Authorization Rule"
   example <<-EXAMPLE
-    describe azure_event_hub_authorization_rule(resource_group: 'example', namespace_name: 'namespace-ns', event_hub_endpoint: 'eventhub', authorization_rule_name: 'auth-rule'") do
-      its(name) { should eq 'name'}
+    describe azure_event_hub_authorization_rule(resource_group: 'RESOURCE_GROUP_NAME', namespace_name: 'NAMESPACE_NAME',
+                                                event_hub_endpoint: 'EVENT_HUB_ENDPOINT', authorization_rule_name: 'AUTHORIZATION_RULE_NAME') do
+      its('name') { should eq 'AUTHORIZATION_RULE_NAME'}
     end
   EXAMPLE
 

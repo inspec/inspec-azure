@@ -4,7 +4,7 @@ class AzureSynapseWorkspace < AzureGenericResource
   name "azure_synapse_workspace"
   desc "Retrieves and verifies the settings of an Azure Synapse Workspace."
   example <<-EXAMPLE
-    describe azure_synapse_workspace(resource_group: 'inspec-def-rg', name: 'synapse-ws') do
+    describe azure_synapse_workspace(resource_group: 'RESOURCE_GROUP_NAME', name: 'SYNAPSE_WORKSPACE_NAME') do
       it { should exist }
     end
   EXAMPLE

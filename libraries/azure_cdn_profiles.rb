@@ -5,7 +5,7 @@ class AzureCDNProfiles < AzureGenericResources
   desc "Verifies settings for a collection of Azure CDN Profiles."
   example <<-EXAMPLE
     describe azure_cdn_profiles do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

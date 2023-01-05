@@ -5,7 +5,7 @@ class AzureStorageAccounts < AzureGenericResources
   desc "Verifies settings for a collection of Azure Storage Accounts"
   example <<-EXAMPLE
     describe azure_storage_accounts do
-        it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 

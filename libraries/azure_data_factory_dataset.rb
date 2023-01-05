@@ -4,9 +4,9 @@ class AzureDataFactoryDataSet < AzureGenericResource
   name "azure_data_factory_dataset"
   desc "Verifies settings for an Azure DataSet"
   example <<-EXAMPLE
-     describe azure_data_factory_dataset(resource_group: 'example',factory_name: 'factory_name', dataset_name: 'ds-name') do
-       it { should exists }
-     end
+    describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'DATA_FACTORY_NAME', dataset_name: 'DATASET_NAME') do
+      it { should exist }
+    end
   EXAMPLE
 
   def initialize(opts = {})

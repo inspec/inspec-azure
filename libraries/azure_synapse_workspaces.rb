@@ -5,7 +5,7 @@ class AzureSynapseWorkspaces < AzureGenericResources
   desc "Verifies settings for a collection of Azure Synapse Workspaces"
   example <<-EXAMPLE
     describe azure_synapse_workspaces do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

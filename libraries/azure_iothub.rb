@@ -2,10 +2,10 @@ require "azure_generic_resource"
 
 class AzureIotHub < AzureGenericResource
   name "azure_iothub"
-  desc "Verifies settings for Iot Hub"
+  desc "Verifies settings for IOT Hub"
   example <<-EXAMPLE
-    describe azure_iothub(resource_group: 'example', name: 'my-iot-hub') do
-      its(name) { should eq 'my-iot-hub'}
+    describe azure_iothub(resource_group: 'RESOURCE_GROUP_NAME', name: 'IOT_HUB_NAME') do
+      its('name') { should eq 'IOT_HUB_NAME'}
     end
   EXAMPLE
 

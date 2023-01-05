@@ -5,7 +5,7 @@ class AzureHPCCacheSKUs < AzureGenericResources
   desc "Verifies settings for a collection of Azure HPC Storage SKUs"
   example <<-EXAMPLE
     describe azure_hpc_cache_skus do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

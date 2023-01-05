@@ -4,8 +4,8 @@ class AzureStorageAccountBlobContainers < AzureGenericResources
   name "azure_storage_account_blob_containers"
   desc "Fetches all Blob Containers for an Azure Storage Account"
   example <<-EXAMPLE
-    describe azure_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'sa') do
-      its('names') { should include('my_blob_container') }
+    describe azure_storage_account_blob_containers(resource_group: 'RESOURCE_GROUP_NAME', storage_account_name: 'STORAGE_ACCOUNT_NAME') do
+      its('names') { should include('STORAGE_ACCOUNT_NAME') }
     end
   EXAMPLE
 

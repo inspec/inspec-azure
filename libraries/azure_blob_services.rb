@@ -4,7 +4,7 @@ class AzureBlobServices< AzureGenericResources
   name "azure_blob_services"
   desc "Verifies settings for an Azure API Blob Services resource"
   example <<-EXAMPLE
-    describe azure_blob_services(resource_group: 'resource-group-name', storage_account_name: "storage-account-name") do
+    describe azure_blob_services(resource_group: 'RESOURCE_GROUP_NAME', storage_account_name: 'STORAGE_ACCOUNT_NAME') do
       it { should exist }
     end
   EXAMPLE

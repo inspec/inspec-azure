@@ -4,7 +4,7 @@ class AzureVirtualNetworkGatewayConnections < AzureGenericResources
   name "azure_virtual_network_gateway_connections"
   desc "Verifies settings for Azure Virtual Network Gateway Connections"
   example <<-EXAMPLE
-    describe azure_virtual_network_gateway_connections(resource_group: 'inspec-rg') do
+    describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -4,8 +4,11 @@ class AzureIotHubEventHubConsumerGroup < AzureGenericResource
   name "azure_iothub_event_hub_consumer_group"
   desc "Verifies settings for Iot Hub Event HUb Consumer Group"
   example <<-EXAMPLE
-    describe azure_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name: 'my-iot-hub', event_hub_endpoint: 'myeventhub', consumer_group: 'my-consumer-group') do
-      its(name) { should eq 'my-consumer-group'}
+    describe azure_iothub_event_hub_consumer_group(resource_group: 'RESOURCE_GROUP_NAME',
+                                                  resource_name: 'RESOURCE_NAME',
+                                                  event_hub_endpoint: 'EVENT_HUB_ENDPOINT'
+                                                  consumer_group: 'CONTAINER_GROUP_NAME') do
+      its('name') { should eq 'CONTAINER_GROUP_NAME'}
     end
   EXAMPLE
 

@@ -5,7 +5,7 @@ class AzureLoadBalancers < AzureGenericResources
   desc "Verifies settings for a collection of Azure Load Balancers"
   example <<-EXAMPLE
     describe azure_load_balancers do
-        it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 

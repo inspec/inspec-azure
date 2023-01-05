@@ -5,7 +5,7 @@ class AzureApplicationGateways < AzureGenericResources
   desc "Verifies settings for a collection of Azure Application Gateways"
   example <<-EXAMPLE
     describe azure_application_gateways do
-        it  { should exist }
+      it { should exist }
     end
   EXAMPLE
 

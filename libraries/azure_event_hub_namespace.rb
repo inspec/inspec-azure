@@ -4,8 +4,8 @@ class AzureEventHubNamespace < AzureGenericResource
   name "azure_event_hub_namespace"
   desc "Verifies settings for Event Hub Namespace"
   example <<-EXAMPLE
-    describe azure_event_hub_namespace(resource_group: 'example', name: 'namespace-ns') do
-      its(name) { should eq 'name'}
+    describe azure_event_hub_namespace(resource_group: 'RESOURCE_GROUP_NAME', name: 'EVENT_HUB_NAMESPACE_NAME') do
+      its('name') { should eq 'EVENT_HUB_NAMESPACE_NAME'}
     end
   EXAMPLE
 
@@ -31,7 +31,7 @@ class AzurermEventHubNamespace < AzureEventHubNamespace
   name "azurerm_event_hub_namespace"
   desc "Verifies settings for Event Hub Namespace"
   example <<-EXAMPLE
-    describe azurerm_event_hub_namespace(resource_group: 'example', namespace_name: 'namespace-ns') do
+    describe azurerm_event_hub_namespace(resource_group: 'RESOURCE_GROUP_NAME', name: 'EVENT_HUB_NAMESPACE_NAME') do
       its(name) { should eq 'name'}
     end
   EXAMPLE

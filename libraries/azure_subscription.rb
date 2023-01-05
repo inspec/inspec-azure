@@ -5,8 +5,8 @@ class AzureSubscription < AzureGenericResource
   desc "Verifies settings for the current Azure Subscription"
   example <<-EXAMPLE
     describe azure_subscription do
-      its('name') { should eq 'subscription-name' }
-      its('locations')    { should include 'eastus' }
+      its('name') { should eq 'SUBSCRIPTION_NAME' }
+      its('locations') { should include 'eastus' }
     end
   EXAMPLE
 

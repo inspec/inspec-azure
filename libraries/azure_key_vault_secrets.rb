@@ -4,7 +4,7 @@ class AzureKeyVaultSecrets < AzureGenericResources
   name "azure_key_vault_secrets"
   desc "Verifies settings for a collection of Azure Secrets within to a Vault"
   example <<-EXAMPLE
-    describe azure_key_vault_secrets(vault_name: 'vault-101') do
+    describe azure_key_vault_secrets(vault_name: 'KEY_VAULT_NAME') do
         it { should exist }
     end
   EXAMPLE

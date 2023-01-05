@@ -4,7 +4,7 @@ class AzureSynapseNotebook < AzureGenericResource
   name "azure_synapse_notebook"
   desc "Verifies settings of a Azure Synapse Notebook"
   example <<-EXAMPLE
-    describe azure_synapse_notebook(endpoint: 'https://analytics.dev.azuresynapse.net', name: 'my-analytics-notebook') do
+    describe azure_synapse_notebook(endpoint: 'https://analytics.dev.azuresynapse.net', name: 'SYNAPSE_NETWORK_NAME') do
       it { should exist }
     end
   EXAMPLE

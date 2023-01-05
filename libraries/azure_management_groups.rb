@@ -5,7 +5,7 @@ class AzureManagementGroups < AzureGenericResources
   desc "Verifies settings for an Azure Management Groups"
   example <<-EXAMPLE
     describe azure_management_groups do
-      its('names') { should include 'example-group' }
+      its('names') { should include 'MANAGEMENT_GROUP_NAME' }
     end
   EXAMPLE
 

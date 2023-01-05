@@ -2,10 +2,10 @@ require "azure_generic_resources"
 
 class AzureDataFactoryDataSets < AzureGenericResources
   name "azure_data_factory_datasets"
-  desc "Lists  DataFactoryDataSets"
+  desc "Lists all Data Factory DataSets"
   example <<-EXAMPLE
-    azure_data_factory_datasets(resource_group: 'example', factory_name: 'factory_name') do
-      it{ should exist }
+    describe azure_data_factory_datasets(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'DATA_FACTORY_NAME') do
+      it { should exist }
     end
   EXAMPLE
 
