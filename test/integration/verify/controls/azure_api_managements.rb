@@ -1,5 +1,5 @@
-resource_group = attribute("resource_group", value: nil)
-api_management_name = attribute("api_management_name", value: "")
+resource_group = input("resource_group", value: nil)
+api_management_name = input("api_management_name", value: "")
 
 control "azure_api_managements" do
 

@@ -1,5 +1,5 @@
-resource_group = attribute("resource_group", value: nil)
-container_registry_name = attribute("container_registry_name", value: nil)
+resource_group = input("resource_group", value: nil)
+container_registry_name = input("container_registry_name", value: nil)
 
 control "azure_container_registries" do
 

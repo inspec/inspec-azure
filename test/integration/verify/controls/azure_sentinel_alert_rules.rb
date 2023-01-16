@@ -1,7 +1,7 @@
-resource_group = attribute("resource_group", value: nil)
-workspace_name = attribute("workspace_name", value: nil)
-display_name = attribute("alert_rule_display_name", value: nil)
-alert_rule_name = attribute("alert_rule_name", value: nil)
+resource_group = input("resource_group", value: nil)
+workspace_name = input("workspace_name", value: nil)
+display_name = input("alert_rule_display_name", value: nil)
+alert_rule_name = input("alert_rule_name", value: nil)
 
 control "azure_sentinel_alert_rules" do
   describe azure_sentinel_alert_rules(resource_group: resource_group, workspace_name: workspace_name) do
