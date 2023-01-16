@@ -1,9 +1,9 @@
-require 'azure_generic_resource'
-require 'active_support/core_ext/hash'
+require "azure_generic_resource"
+require "active_support/core_ext/hash"
 
 class AzureStorageAccount < AzureGenericResource
-  name 'azure_storage_account'
-  desc 'Verifies settings for a Azure Storage Account'
+  name "azure_storage_account"
+  desc "Verifies settings for a Azure Storage Account"
   example <<-EXAMPLE
     describe azure_storage_account(resource_group: 'r-group', name: 'default') do
       it { should exist }
@@ -12,19 +12,19 @@ class AzureStorageAccount < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Storage/storageAccounts', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Storage/storageAccounts", opts)
     opts[:allowed_parameters] = %i(activity_log_alert_api_version storage_service_endpoint_api_version diagnostic_settings_api_version)
     # fall-back `api_version` is fixed for now.
     # TODO: Implement getting the latest Azure Storage services api version
-    opts[:storage_service_endpoint_api_version] ||= '2019-12-12'
-    opts[:activity_log_alert_api_version] ||= 'latest'
+    opts[:storage_service_endpoint_api_version] ||= "2019-12-12"
+    opts[:activity_log_alert_api_version] ||= "latest"
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
-    @opts[:diagnostic_settings_api_version] ||= '2017-05-01-preview'
+    @opts[:diagnostic_settings_api_version] ||= "2017-05-01-preview"
   end
 
   def to_s
@@ -55,6 +55,16 @@ class AzureStorageAccount < AzureGenericResource
     activity_log_alert_filtered.any?
   end
 
+  def has_infrastructure_encryption_enabled?
+    return unless exists?
+
+    infrastructure_encryption = false
+    if !properties.encryption.requireInfrastructureEncryption.nil?
+      infrastructure_encryption = properties.encryption.requireInfrastructureEncryption
+    end
+    infrastructure_encryption
+  end
+
   def has_encryption_enabled?
     return unless exists?
     properties.encryption.services.blob.enabled || false
@@ -63,10 +73,10 @@ class AzureStorageAccount < AzureGenericResource
   def queues
     return unless exists?
     url = "https://#{name}.queue#{@azure.storage_endpoint_suffix}"
-    params = { comp: 'list' }
+    params = { comp: "list" }
     # Calls to Azure Storage resources requires a special header `x-ms-version`
     # https://docs.microsoft.com/en-us/rest/api/storageservices/versioning-for-the-azure-storage-services
-    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    headers = { "x-ms-version" => @opts[:storage_service_endpoint_api_version] }
     body = @azure.rest_api_call(url: url, params: params, headers: headers)
     return unless body
     body_hash = Hash.from_xml(body)
@@ -80,14 +90,14 @@ class AzureStorageAccount < AzureGenericResource
   def queue_properties
     return unless exists?
     url = "https://#{name}.queue#{@azure.storage_endpoint_suffix}"
-    params = { restype: 'service', comp: 'properties' }
+    params = { restype: "service", comp: "properties" }
     # @see #queues for the header `x-ms-version`
-    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    headers = { "x-ms-version" => @opts[:storage_service_endpoint_api_version] }
     body = @azure.rest_api_call(url: url, params: params, headers: headers)
     return unless body
     body_hash = Hash.from_xml(body)
     hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)
-    properties = hash_with_snakecase_keys['storage_service_properties']
+    properties = hash_with_snakecase_keys["storage_service_properties"]
     if properties
       create_resource_methods({ queue_properties: properties })
       public_send(:queue_properties) if respond_to?(:queue_properties)
@@ -97,10 +107,10 @@ class AzureStorageAccount < AzureGenericResource
   def blobs
     return unless exists?
     url = "https://#{name}.blob#{@azure.storage_endpoint_suffix}"
-    params = { comp: 'list' }
+    params = { comp: "list" }
     # Calls to Azure Storage resources requires a special header `x-ms-version`
     # https://docs.microsoft.com/en-us/rest/api/storageservices/versioning-for-the-azure-storage-services
-    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    headers = { "x-ms-version" => @opts[:storage_service_endpoint_api_version] }
     body = @azure.rest_api_call(url: url, params: params, headers: headers)
     return unless body
     body_hash = Hash.from_xml(body)
@@ -114,14 +124,14 @@ class AzureStorageAccount < AzureGenericResource
   def blob_properties
     return unless exists?
     url = "https://#{name}.blob#{@azure.storage_endpoint_suffix}"
-    params = { restype: 'service', comp: 'properties' }
+    params = { restype: "service", comp: "properties" }
     # @see #queues for the header `x-ms-version`
-    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    headers = { "x-ms-version" => @opts[:storage_service_endpoint_api_version] }
     body = @azure.rest_api_call(url: url, params: params, headers: headers)
     return unless body
     body_hash = Hash.from_xml(body)
     hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)
-    properties = hash_with_snakecase_keys['storage_service_properties']
+    properties = hash_with_snakecase_keys["storage_service_properties"]
     if properties
       create_resource_methods({ blob_properties: properties })
       public_send(:blob_properties) if respond_to?(:blob_properties)
@@ -131,14 +141,14 @@ class AzureStorageAccount < AzureGenericResource
   def table_properties
     return unless exists?
     url = "https://#{name}.table#{@azure.storage_endpoint_suffix}"
-    params = { restype: 'service', comp: 'properties' }
+    params = { restype: "service", comp: "properties" }
     # @see #queues for the header `x-ms-version`
-    headers = { 'x-ms-version' => @opts[:storage_service_endpoint_api_version] }
+    headers = { "x-ms-version" => @opts[:storage_service_endpoint_api_version] }
     body = @azure.rest_api_call(url: url, params: params, headers: headers)
     return unless body
     body_hash = Hash.from_xml(body)
     hash_with_snakecase_keys = RecursiveMethodHelper.method_recursive(body_hash, :snakecase)
-    properties = hash_with_snakecase_keys['storage_service_properties']
+    properties = hash_with_snakecase_keys["storage_service_properties"]
     if properties
       create_resource_methods({ table_properties: properties })
       public_send(:table_properties) if respond_to?(:table_properties)
@@ -151,7 +161,7 @@ class AzureStorageAccount < AzureGenericResource
     # and make api response available through this property.
     additional_resource_properties(
       {
-        property_name: 'diagnostic_settings',
+        property_name: "diagnostic_settings",
         property_endpoint: "#{id}/blobServices/default/providers/microsoft.insights/diagnosticSettings",
         api_version: @opts[:diagnostic_settings_api_version],
       },
@@ -164,7 +174,7 @@ class AzureStorageAccount < AzureGenericResource
     # and make api response available through this property.
     additional_resource_properties(
       {
-        property_name: 'diagnostic_settings',
+        property_name: "diagnostic_settings",
         property_endpoint: "#{id}/tableServices/default/providers/microsoft.insights/diagnosticSettings",
         api_version: @opts[:diagnostic_settings_api_version],
       },
@@ -177,7 +187,7 @@ class AzureStorageAccount < AzureGenericResource
     # and make api response available through this property.
     additional_resource_properties(
       {
-        property_name: 'diagnostic_settings',
+        property_name: "diagnostic_settings",
         property_endpoint: "#{id}/queueServices/default/providers/microsoft.insights/diagnosticSettings",
         api_version: @opts[:diagnostic_settings_api_version],
       },
@@ -185,39 +195,39 @@ class AzureStorageAccount < AzureGenericResource
   end
 
   def has_blobs_read_log_enabled?
-    check_enablement_from(settings: blobs_diagnostic_settings, category: 'StorageRead')
+    check_enablement_from(settings: blobs_diagnostic_settings, category: "StorageRead")
   end
 
   def has_blobs_write_log_enabled?
-    check_enablement_from(settings: blobs_diagnostic_settings, category: 'StorageWrite')
+    check_enablement_from(settings: blobs_diagnostic_settings, category: "StorageWrite")
   end
 
   def has_blobs_delete_log_enabled?
-    check_enablement_from(settings: blobs_diagnostic_settings, category: 'StorageDelete')
+    check_enablement_from(settings: blobs_diagnostic_settings, category: "StorageDelete")
   end
 
   def has_tables_read_log_enabled?
-    check_enablement_from(settings: tables_diagnostic_settings, category: 'StorageRead')
+    check_enablement_from(settings: tables_diagnostic_settings, category: "StorageRead")
   end
 
   def has_tables_write_log_enabled?
-    check_enablement_from(settings: tables_diagnostic_settings, category: 'StorageWrite')
+    check_enablement_from(settings: tables_diagnostic_settings, category: "StorageWrite")
   end
 
   def has_tables_delete_log_enabled?
-    check_enablement_from(settings: tables_diagnostic_settings, category: 'StorageDelete')
+    check_enablement_from(settings: tables_diagnostic_settings, category: "StorageDelete")
   end
 
   def has_queues_read_log_enabled?
-    check_enablement_from(settings: queues_diagnostic_settings, category: 'StorageRead')
+    check_enablement_from(settings: queues_diagnostic_settings, category: "StorageRead")
   end
 
   def has_queues_write_log_enabled?
-    check_enablement_from(settings: queues_diagnostic_settings, category: 'StorageWrite')
+    check_enablement_from(settings: queues_diagnostic_settings, category: "StorageWrite")
   end
 
   def has_queues_delete_log_enabled?
-    check_enablement_from(settings: queues_diagnostic_settings, category: 'StorageDelete')
+    check_enablement_from(settings: queues_diagnostic_settings, category: "StorageDelete")
   end
 
   private
@@ -243,8 +253,8 @@ class AzureStorageAccount < AzureGenericResource
     # and make api response available through this property.
     additional_resource_properties(
       {
-        property_name: 'activity_log_alert_filtered',
-        property_endpoint: '/providers/microsoft.insights/eventtypes/management/values',
+        property_name: "activity_log_alert_filtered",
+        property_endpoint: "/providers/microsoft.insights/eventtypes/management/values",
         add_subscription_id: true,
         api_version: @opts[:activity_log_alert_api_version],
         filter_free_text: filter,
@@ -261,8 +271,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermStorageAccount < AzureStorageAccount
-  name 'azurerm_storage_account'
-  desc 'Verifies settings for a Azure Storage Account'
+  name "azurerm_storage_account"
+  desc "Verifies settings for a Azure Storage Account"
   example <<-EXAMPLE
     describe azurerm_storage_account(resource_group: resource_name, name: 'default') do
       it { should exist }
@@ -272,10 +282,10 @@ class AzurermStorageAccount < AzureStorageAccount
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureStorageAccount.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2017-06-01'
+    opts[:api_version] ||= "2017-06-01"
     super
   end
 end

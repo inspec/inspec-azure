@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureStorageAccountBlobContainers < AzureGenericResources
-  name 'azure_storage_account_blob_containers'
-  desc 'Fetches all Blob Containers for an Azure Storage Account'
+  name "azure_storage_account_blob_containers"
+  desc "Fetches all Blob Containers for an Azure Storage Account"
   example <<-EXAMPLE
     describe azure_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'sa') do
       its('names') { should include('my_blob_container') }
@@ -13,11 +13,11 @@ class AzureStorageAccountBlobContainers < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Storage/storageAccounts', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Storage/storageAccounts", opts)
     opts[:required_parameters] = %i(resource_group storage_account_name)
-    opts[:resource_path] = [opts[:storage_account_name], 'blobServices/default/containers'].join('/')
+    opts[:resource_path] = [opts[:storage_account_name], "blobServices/default/containers"].join("/")
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -49,8 +49,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class StorageAccountBlobContainers < AzureStorageAccountBlobContainers
-  name 'azurerm_storage_account_blob_containers'
-  desc 'Fetches all Blob Containers for an Azure Storage Account'
+  name "azurerm_storage_account_blob_containers"
+  desc "Fetches all Blob Containers for an Azure Storage Account"
   example <<-EXAMPLE
     describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'sa') do
       its('names') { should include('my_blob_container') }
@@ -60,10 +60,10 @@ class StorageAccountBlobContainers < AzureStorageAccountBlobContainers
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureStorageAccountBlobContainers.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-07-01'
+    opts[:api_version] ||= "2018-07-01"
     super
   end
 end

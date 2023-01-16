@@ -1,8 +1,8 @@
-require 'azure_backend'
+require "azure_backend"
 
 class AzurePolicyInsightsQueryResult < AzureResourceBase
-  name 'azure_policy_insights_query_result'
-  desc 'Lists a collection of Azure Policy Insights Query Results'
+  name "azure_policy_insights_query_result"
+  desc "Lists a collection of Azure Policy Insights Query Results"
   example <<-EXAMPLE
     describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
       it { should exist }
@@ -10,9 +10,9 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
     super(opts)
-    @resource_provider = specific_resource_constraint('Microsoft.Authorization/policyDefinitions', @opts)
+    @resource_provider = specific_resource_constraint("Microsoft.Authorization/policyDefinitions", @opts)
     validate_parameters(required: %i(policy_definition resource_id))
     @azure_resource_id = @opts.delete(:resource_id)
     @policy_definition = @opts.delete(:policy_definition)
@@ -28,7 +28,7 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
   end
 
   def to_s
-    "#{AzurePolicyInsightsQueryResult.name.split('_').map(&:capitalize).join(' ')} : #{@display_name}"
+    "#{AzurePolicyInsightsQueryResult.name.split("_").map(&:capitalize).join(" ")} : #{@display_name}"
   end
 
   def exists?
@@ -37,7 +37,7 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
 
   #  Azure `isCompliant` is deprecated!
   def compliant?
-    compliance_state == 'Compliant'
+    compliance_state == "Compliant"
   end
 
   private
@@ -46,17 +46,17 @@ class AzurePolicyInsightsQueryResult < AzureResourceBase
 
   def build_query_params
     query_params = { resource_uri: @opts[:resource_uri] }
-    query_params[:query_parameters] = { '$filter' => "resourceId eq '#{azure_resource_id}'" }
+    query_params[:query_parameters] = { "$filter" => "resourceId eq '#{azure_resource_id}'" }
     # Use the latest api_version unless provided.
-    query_params[:query_parameters]['api-version'] = @opts[:api_version] || 'latest'
-    query_params[:method] = 'post'
+    query_params[:query_parameters]["api-version"] = @opts[:api_version] || "latest"
+    query_params[:method] = "post"
     query_params
   end
 
   def build_resource_uri
-    @opts[:resource_uri] = validate_resource_uri({ resource_uri: ['providers', resource_provider, policy_definition,
-                                                                  'providers/Microsoft.PolicyInsights/policyStates/latest/queryResults']
-                                                                   .join('/'),
+    @opts[:resource_uri] = validate_resource_uri({ resource_uri: ["providers", resource_provider, policy_definition,
+                                                                  "providers/Microsoft.PolicyInsights/policyStates/latest/queryResults"]
+                                                                   .join("/"),
                                                    add_subscription_id: true })
     Validators.validate_resource_uri(@opts[:resource_uri])
   end

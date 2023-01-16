@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureManagedApplications < AzureGenericResources
-  name 'azure_managed_applications'
-  desc 'Verifies settings for a collection of Azure Managed Applications.'
+  name "azure_managed_applications"
+  desc "Verifies settings for a collection of Azure Managed Applications."
   example <<-EXAMPLE
     describe azure_managed_applications do
         it { should exist }
@@ -10,9 +10,9 @@ class AzureManagedApplications < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Solutions/applications', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Solutions/applications", opts)
     super(opts, true)
     return if failed_resource?
 

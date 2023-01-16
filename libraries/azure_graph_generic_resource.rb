@@ -1,12 +1,12 @@
-require 'azure_backend'
+require "azure_backend"
 
 # The backend class for the singular static resources from the GRAPH API.
 #
 # @author omerdemirok
 #
 class AzureGraphGenericResource < AzureResourceBase
-  name 'azure_graph_generic_resource'
-  desc 'Inspec Resource to interrogate any resource type available through Azure Graph API'
+  name "azure_graph_generic_resource"
+  desc "Inspec Resource to interrogate any resource type available through Azure Graph API"
   example <<-EXAMPLE
     describe azure_graph_generic_resource(resource_provider: 'users', name: 'jdoe@contoso.com') do
       its('display_name') { should eq 'John Doe' }
@@ -31,7 +31,7 @@ class AzureGraphGenericResource < AzureResourceBase
     # If the queried entity does not exist, this resource will pass `it { should_not exist }` test.
     #
     if static_resource
-      raise ArgumentError, '`:resource_identifiers` have to be provided within a list' unless @opts[:resource_identifiers]
+      raise ArgumentError, "`:resource_identifiers` have to be provided within a list" unless @opts[:resource_identifiers]
       provided = Validators.validate_params_only_one_of(@__resource_name__, @opts[:resource_identifiers], @opts)
       # We should remove resource identifiers other than `:id`.
       unless provided == :id
@@ -44,15 +44,15 @@ class AzureGraphGenericResource < AzureResourceBase
       required: %i(resource id),
       allow: %i(select resource_identifiers),
     )
-    @display_name = @opts.slice(:resource, :id).values.join(' ')
+    @display_name = @opts.slice(:resource, :id).values.join(" ")
 
     query = {}
-    query[:resource] = [@opts[:resource], @opts[:id]].join('/')
+    query[:resource] = [@opts[:resource], @opts[:id]].join("/")
     query[:api_version] = @opts[:api_version] unless @opts[:api_version].nil?
 
     query_parameters = {}
     if @opts[:select]
-      query_parameters['$select'] = Helpers.odata_query(@opts[:select])
+      query_parameters["$select"] = Helpers.odata_query(@opts[:select])
     end
     query[:query_parameters] = query_parameters unless query_parameters.empty?
 
@@ -75,9 +75,9 @@ class AzureGraphGenericResource < AzureResourceBase
     api_version = @opts[:api_version] || @azure.graph_api_endpoint_api_version
     api_info = "- api_version: #{api_version} "
     if class_name.nil?
-      "#{AzureGraphGenericResource.name.split('_').map(&:capitalize).join(' ')} #{api_info}: #{@display_name}"
+      "#{AzureGraphGenericResource.name.split("_").map(&:capitalize).join(" ")} #{api_info}: #{@display_name}"
     else
-      "#{class_name.name.split('_').map(&:capitalize).join(' ')} #{api_info}: #{@display_name}"
+      "#{class_name.name.split("_").map(&:capitalize).join(" ")} #{api_info}: #{@display_name}"
     end
   end
 

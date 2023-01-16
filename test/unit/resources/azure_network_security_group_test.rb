@@ -1,5 +1,5 @@
-require_relative 'helper'
-require 'azure_network_security_group'
+require_relative "helper"
+require "azure_network_security_group"
 
 class AzureNetworkSecurityGroupConstructorTest < Minitest::Test
   def test_empty_param_not_ok
@@ -8,10 +8,10 @@ class AzureNetworkSecurityGroupConstructorTest < Minitest::Test
 
   # resource_provider should not be allowed.
   def test_resource_provider_not_ok
-    assert_raises(ArgumentError) { AzureNetworkSecurityGroup.new(resource_provider: 'some_type') }
+    assert_raises(ArgumentError) { AzureNetworkSecurityGroup.new(resource_provider: "some_type") }
   end
 
   def test_resource_group_should_exist
-    assert_raises(ArgumentError) { AzureNetworkSecurityGroup.new(name: 'my-name') }
+    assert_raises(ArgumentError) { AzureNetworkSecurityGroup.new(name: "my-name") }
   end
 end

@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureApplicationGateways < AzureGenericResources
-  name 'azure_application_gateways'
-  desc 'Verifies settings for a collection of Azure Application Gateways'
+  name "azure_application_gateways"
+  desc "Verifies settings for a collection of Azure Application Gateways"
   example <<-EXAMPLE
     describe azure_application_gateways do
         it  { should exist }
@@ -13,9 +13,9 @@ class AzureApplicationGateways < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/applicationGateways', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/applicationGateways", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -48,8 +48,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermApplicationGateways < AzureApplicationGateways
-  name 'azurerm_application_gateways'
-  desc 'Verifies settings for a collection of Azure Application Gateways'
+  name "azurerm_application_gateways"
+  desc "Verifies settings for a collection of Azure Application Gateways"
   example <<-EXAMPLE
     describe azurerm_application_gateways do
         it  { should exist }
@@ -59,10 +59,10 @@ class AzurermApplicationGateways < AzureApplicationGateways
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureApplicationGateways.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2019-12-01'
+    opts[:api_version] ||= "2019-12-01"
     super
   end
 end

@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureDdosProtectionResources < AzureGenericResources
-  name 'azure_ddos_protection_resources'
-  desc 'Verifies settings for Azure DDoS Protection Standard '
+  name "azure_ddos_protection_resources"
+  desc "Verifies settings for Azure DDoS Protection Standard "
   example <<-EXAMPLE
     azure_ddos_protection_resources(resource_group: 'rg') do
       it{ should exist }
@@ -12,13 +12,13 @@ class AzureDdosProtectionResources < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription and resource group:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/
     # Microsoft.Network/ddosProtectionPlans?api-version=2020-11-01
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/ddosProtectionPlans', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/ddosProtectionPlans", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

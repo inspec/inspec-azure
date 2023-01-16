@@ -1,10 +1,10 @@
-require 'azure_generic_resource'
-require 'backend/azure_security_rules_helpers'
-require 'rspec/expectations'
+require "azure_generic_resource"
+require "backend/azure_security_rules_helpers"
+require "rspec/expectations"
 
 class AzureNetworkSecurityGroup < AzureGenericResource
-  name 'azure_network_security_group'
-  desc 'Verifies settings for Network Security Groups'
+  name "azure_network_security_group"
+  desc "Verifies settings for Network Security Groups"
   example <<-EXAMPLE
     describe azure_network_security_group(resource_group: 'example', name: 'name') do
       its(name) { should eq 'name'}
@@ -13,7 +13,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby error will be raised.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
@@ -44,7 +44,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/networkSecurityGroups', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/networkSecurityGroups", opts)
     opts[:allowed_parameters] = %i(resource_data)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
@@ -59,19 +59,19 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   # `return unless exists?` is necessary to prevent any unforeseen Ruby error.
 
   def inbound_rules
-    @inbound_rules ||= normalized_security_rules.one_direction_rules('inbound')
+    @inbound_rules ||= normalized_security_rules.one_direction_rules("inbound")
   end
 
   def outbound_rules
-    @outbound_rules ||= normalized_security_rules.one_direction_rules('outbound')
+    @outbound_rules ||= normalized_security_rules.one_direction_rules("outbound")
   end
 
   def allow_rules
-    @allow_rules ||= normalized_security_rules.access_type_rules('allow')
+    @allow_rules ||= normalized_security_rules.access_type_rules("allow")
   end
 
   def deny_rules
-    @deny_rules ||= normalized_security_rules.access_type_rules('deny')
+    @deny_rules ||= normalized_security_rules.access_type_rules("deny")
   end
 
   # @example
@@ -82,8 +82,8 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   #   it { should allow(source_ip_range: '0:0:0:0:0:ffff:a05:0', direction: 'inbound') }
   def allow?(criteria = {})
     Validators.validate_params_required(@__resource_name__, %i(direction), criteria)
-    criteria[:access] = 'allow'
-    rules = criteria[:direction] == 'inbound' ? inbound_rules : outbound_rules
+    criteria[:access] = "allow"
+    rules = criteria[:direction] == "inbound" ? inbound_rules : outbound_rules
     normalized_security_rules.go_compare(rules, criteria)
   end
   RSpec::Matchers.alias_matcher :allow, :be_allow
@@ -99,7 +99,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     criteria[:source_service_tag] = criteria[:service_tag] if criteria.key?(:service_tag)
     criteria[:destination_port] = criteria[:port] if criteria.key?(:port)
     %i(ip_range port service_tag).each { |k| criteria.delete(k) }
-    criteria[:direction] = 'inbound'
+    criteria[:direction] = "inbound"
     allow?(criteria)
   end
   RSpec::Matchers.alias_matcher :allow_in, :be_allow_in
@@ -112,7 +112,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     criteria[:destination_service_tag] = criteria[:service_tag] if criteria.key?(:service_tag)
     criteria[:destination_port] = criteria[:port] if criteria.key?(port)
     %i(ip_range port service_tag).each { |k| criteria.delete(k) }
-    criteria[:direction] = 'outbound'
+    criteria[:direction] = "outbound"
     allow?(criteria)
   end
   RSpec::Matchers.alias_matcher :allow_out, :be_allow_out
@@ -134,6 +134,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   def flow_log_retention_period
     !properties.include?(:retentionPolicy) ? 0 : properties.retentionPolicy
   end
+
   def default_security_rules
     return unless exists?
     @default_security_rules ||= properties.defaultSecurityRules
@@ -141,19 +142,19 @@ class AzureNetworkSecurityGroup < AzureGenericResource
 
   def allow_ssh_from_internet?
     return unless exists?
-    allow_port_from_internet?('22')
+    allow_port_from_internet?("22")
   end
   RSpec::Matchers.alias_matcher :allow_ssh_from_internet, :be_allow_ssh_from_internet
 
   def allow_rdp_from_internet?
     return unless exists?
-    allow_port_from_internet?('3389')
+    allow_port_from_internet?("3389")
   end
   RSpec::Matchers.alias_matcher :allow_rdp_from_internet, :be_allow_rdp_from_internet
 
   def allow_udp_from_internet?
     return unless exists?
-    allow_port_from_internet?('53')
+    allow_port_from_internet?("53")
   end
   RSpec::Matchers.alias_matcher :allow_udp_from_internet, :be_allow_udp_from_internet
 
@@ -161,7 +162,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
 
   def allow_http_from_internet?
     return unless exists?
-    allow_port_from_internet?('80') || allow_port_from_internet?('443')
+    allow_port_from_internet?("80")
   end
   RSpec::Matchers.alias_matcher :allow_http_from_internet, :be_allow_http_from_internet
 
@@ -172,8 +173,6 @@ class AzureNetworkSecurityGroup < AzureGenericResource
     matches_criteria?(SPECIFIC_CRITERIA, security_rules_properties)
   end
   RSpec::Matchers.alias_matcher :allow_port_from_internet, :be_allow_port_from_internet
-
-
 
   private
 
@@ -200,9 +199,9 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   def matches_port?(ports, match_port)
     return true if ports.detect { |p| p =~ /^(#{match_port}|\*)$/ }
 
-    ports.select { |port| port.include?('-') }
-         .collect { |range| range.split('-') }
-         .any? { |range| (range.first.to_i..range.last.to_i).cover?(match_port.to_i) }
+    ports.select { |port| port.include?("-") }
+      .collect { |range| range.split("-") }
+      .any? { |range| (range.first.to_i..range.last.to_i).cover?(match_port.to_i) }
   end
 
   def tcp?(properties)
@@ -210,7 +209,7 @@ class AzureNetworkSecurityGroup < AzureGenericResource
   end
 
   def access_allow?(properties)
-    properties.access == 'Allow'
+    properties.access == "Allow"
   end
 
   def source_open?(properties)
@@ -219,12 +218,12 @@ class AzureNetworkSecurityGroup < AzureGenericResource
       return properties.sourceAddressPrefix =~ %r{\*|^0\.0\.0\.0|<nw>/0|/0|Internet|any}
     end
     if properties_hash.include?(:sourceAddressPrefixes)
-      properties.sourceAddressPrefixes.include?('0.0.0.0')
+      properties.sourceAddressPrefixes.include?("0.0.0.0")
     end
   end
 
   def direction_inbound?(properties)
-    properties.direction == 'Inbound'
+    properties.direction == "Inbound"
   end
 
   def not_icmp?(properties)
@@ -241,8 +240,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermNetworkSecurityGroup < AzureNetworkSecurityGroup
-  name 'azurerm_network_security_group'
-  desc 'Verifies settings for Network Security Groups'
+  name "azurerm_network_security_group"
+  desc "Verifies settings for Network Security Groups"
   example <<-EXAMPLE
     describe azurerm_network_security_group(resource_group: 'example', name: 'name') do
       its(name) { should eq 'name'}
@@ -252,10 +251,10 @@ class AzurermNetworkSecurityGroup < AzureNetworkSecurityGroup
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkSecurityGroup.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
+    opts[:api_version] ||= "2018-02-01"
     super
   end
 end

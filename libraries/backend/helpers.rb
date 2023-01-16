@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-require 'backend/azure_environment'
+require "backend/azure_environment"
 
 # TODO: This file should be updated at every release.
 # Source:
@@ -87,51 +86,51 @@ class AzureEnvironments
   # Following data can be modified if necessary.
   # TODO: Update API versions if there is a newer version available.
   ENDPOINTS = {
-    'azure_cloud' => {
+    "azure_cloud" => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureCloud.key_vault_dns_suffix,
-      resource_manager_endpoint_api_version: '2020-01-01',
-      graph_api_endpoint_url: 'https://graph.microsoft.com',
-      graph_api_endpoint_api_version: 'v1.0',
+      resource_manager_endpoint_api_version: "2020-01-01",
+      graph_api_endpoint_url: "https://graph.microsoft.com",
+      graph_api_endpoint_api_version: "v1.0",
     },
     # The latest version can be acquired from the error message if the current ones don't work.
-    'azure_china_cloud' => {
+    "azure_china_cloud" => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureChinaCloud.key_vault_dns_suffix,
-      resource_manager_endpoint_api_version: '2020-01-01',
-      graph_api_endpoint_url: 'https://microsoftgraph.chinacloudapi.cn',
-      graph_api_endpoint_url_api_version: 'v1.0',
+      resource_manager_endpoint_api_version: "2020-01-01",
+      graph_api_endpoint_url: "https://microsoftgraph.chinacloudapi.cn",
+      graph_api_endpoint_url_api_version: "v1.0",
     },
-    'azure_us_government_L4' => {
+    "azure_us_government_L4" => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.key_vault_dns_suffix,
-      resource_manager_endpoint_api_version: '2020-01-01',
-      graph_api_endpoint_url: 'https://graph.microsoft.us',
-      graph_api_endpoint_url_api_version: 'v1.0',
+      resource_manager_endpoint_api_version: "2020-01-01",
+      graph_api_endpoint_url: "https://graph.microsoft.us",
+      graph_api_endpoint_url_api_version: "v1.0",
     },
-    'azure_us_government_L5' => {
+    "azure_us_government_L5" => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureUSGovernment.key_vault_dns_suffix,
-      resource_manager_endpoint_api_version: '2020-01-01',
-      graph_api_endpoint_url: 'https://dod-graph.microsoft.us',
-      graph_api_endpoint_url_api_version: 'v1.0',
+      resource_manager_endpoint_api_version: "2020-01-01",
+      graph_api_endpoint_url: "https://dod-graph.microsoft.us",
+      graph_api_endpoint_url_api_version: "v1.0",
     },
-    'azure_german_cloud' => {
+    "azure_german_cloud" => {
       resource_manager_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.resource_manager_endpoint_url,
       active_directory_endpoint_url: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.active_directory_endpoint_url,
       storage_endpoint_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.storage_endpoint_suffix,
       key_vault_dns_suffix: MicrosoftRestAzure::AzureEnvironments::AzureGermanCloud.key_vault_dns_suffix,
-      resource_manager_endpoint_api_version: '2020-01-01',
-      graph_api_endpoint_url: 'https://graph.microsoft.de',
-      graph_api_endpoint_url_api_version: 'v1.0',
+      resource_manager_endpoint_api_version: "2020-01-01",
+      graph_api_endpoint_url: "https://graph.microsoft.de",
+      graph_api_endpoint_url_api_version: "v1.0",
     },
   }.freeze
 
@@ -229,14 +228,14 @@ module Validators
   # @return [Array] Required parameters
   # @param required [Array]
   def self.validate_params_required(resource_name = nil, required, opts)
-    raise ArgumentError, "#{resource_name}: `#{required.uniq - opts.keys.uniq}` must be provided" unless opts.is_a?(Hash) && required.all? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
+    raise ArgumentError, "#{resource_name}: `#{required.uniq - opts.keys.uniq}` must be provided" unless opts.is_a?(Hash) && required.all? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != "" }
     required
   end
 
   # @return [Array] Require any of parameters
   # @param require_any_of [Array]
   def self.validate_params_require_any_of(resource_name = nil, require_any_of, opts)
-    raise ArgumentError, "#{resource_name}: One of `#{require_any_of}` must be provided." unless opts.is_a?(Hash) && require_any_of.any? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != '' }
+    raise ArgumentError, "#{resource_name}: One of `#{require_any_of}` must be provided." unless opts.is_a?(Hash) && require_any_of.any? { |req| opts.key?(req) && !opts[req].nil? && opts[req] != "" }
     require_any_of
   end
 
@@ -244,11 +243,11 @@ module Validators
   # @param allow [Array]
   def self.validate_params_allow(allow, opts, skip_length = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Fix this.
     if !opts[:resource_data] && !skip_length
-      raise ArgumentError, 'Arguments or values can not be longer than 500 characters.' if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 } # rubocop:disable Style/SoleNestedConditional TODO: Fix this.
+      raise ArgumentError, "Arguments or values can not be longer than 500 characters." if opts.any? { |k, v| k.size > 100 || v.to_s.size > 500 } # rubocop:disable Style/SoleNestedConditional TODO: Fix this.
     end
-    raise ArgumentError, 'Scalar arguments not supported.' unless defined?(opts.keys)
+    raise ArgumentError, "Scalar arguments not supported." unless defined?(opts.keys)
     raise ArgumentError, "Unexpected arguments found: #{opts.keys.uniq - allow.uniq}" unless opts.keys.all? { |a| allow.include?(a) }
-    raise ArgumentError, 'Provided parameter should not be empty.' unless opts.values.all? do |a|
+    raise ArgumentError, "Provided parameter should not be empty." unless opts.values.all? do |a|
       return true if a.instance_of?(Integer)
       return true if [TrueClass, FalseClass].include?(a.class)
       !a.empty?
@@ -256,10 +255,10 @@ module Validators
   end
 
   def self.validate_resource_uri(resource_uri)
-    resource_uri_format = '/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/'\
-      'Microsoft.Compute/virtualMachines/{resource_name}'
+    resource_uri_format = "/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/"\
+      "Microsoft.Compute/virtualMachines/{resource_name}"
     raise ArgumentError, "Resource URI should be in the format of #{resource_uri_format}. Found: #{resource_uri}" \
-      unless resource_uri.start_with?('/subscriptions/') || resource_uri.include?('providers')
+      unless resource_uri.start_with?("/subscriptions/") || resource_uri.include?("providers")
   end
 end
 
@@ -287,19 +286,19 @@ module Helpers
     if data.is_a?(Hash)
       # TODO: implement 'ne' operator
       query = data.each_with_object([]) do |(k, v), acc|
-        v = v.delete_suffix('/').delete_prefix('/')
-        if k.to_s.start_with?('substring_of_')
+        v = v.delete_suffix("/").delete_prefix("/")
+        if k.to_s.start_with?("substring_of_")
           acc << "substringof('#{v}',#{k.to_s[13..-1].camelcase(:lower)})"
-        elsif k.to_s.start_with?('starts_with_')
+        elsif k.to_s.start_with?("starts_with_")
           acc << "startswith(#{k.to_s[12..-1].camelcase(:lower)},'#{v}')"
         else
           acc << "#{k.to_s.camelcase(:lower)} eq '#{v}'"
         end
-      end.join(' and ')
+      end.join(" and ")
     end
     # This works for `$select, $expand`.
     if data.is_a?(Array)
-      query = data.join(',')
+      query = data.join(",")
     end
     query
   end
@@ -322,9 +321,9 @@ module Helpers
   #   Microsoft.Compute/virtualMachines/{resource_name}
   def self.res_group_provider_type_from_uri(resource_uri)
     Validators.validate_resource_uri(resource_uri)
-    subscription_resource_group, provider_resource_type = resource_uri.split('/providers/')
-    resource_group = subscription_resource_group.split('/').last
-    interim_array = provider_resource_type.split('/')
+    subscription_resource_group, provider_resource_type = resource_uri.split("/providers/")
+    resource_group = subscription_resource_group.split("/").last
+    interim_array = provider_resource_type.split("/")
     provider = interim_array[0]
     # interim array can be one of two
     #   1- provider/resource_provider/resource/name
@@ -335,7 +334,7 @@ module Helpers
     #                   providers/Microsoft.Compute/virtualMachines/{vm_name}/extensions/{extension_name}"
     #   provider => "Microsoft.Compute"
     #   resource_provider => "virtualMachines/extensions"
-    resource_type = [interim_array[1], interim_array[3]].compact.join('/')
+    resource_type = [interim_array[1], interim_array[3]].compact.join("/")
     [resource_group, provider, resource_type]
   end
 
@@ -360,12 +359,12 @@ module Helpers
   def self.resource_deprecation_message(old_resource_name, new_resource_class)
     "DEPRECATION: `#{old_resource_name}` uses the new resource `#{new_resource_class}` under the hood. "\
   "#{old_resource_name} will be deprecated soon and it is advised to switch to the fully backward compatible new resource. "\
-  'Please see the documentation for the additional features available.'
+  "Please see the documentation for the additional features available."
   end
 
   def self.construct_url(input_list)
     raise ArgumentError, "An array has to be provided. Found: #{input_list.class}." unless input_list.is_a?(Array)
-    input_list.each_with_object([]) { |input, list| list << input.delete_suffix('/').delete_prefix('/') }.join('/')
+    input_list.each_with_object([]) { |input, list| list << input.delete_suffix("/").delete_prefix("/") }.join("/")
   end
 end
 

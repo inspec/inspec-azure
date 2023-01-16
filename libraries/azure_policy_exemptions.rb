@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzurePolicyExemptions < AzureGenericResources
-  name 'azure_policy_exemptions'
-  desc 'Retrieves and verifies all policy exemptions that apply to a subscription'
+  name "azure_policy_exemptions"
+  desc "Retrieves and verifies all policy exemptions that apply to a subscription"
   example <<-EXAMPLE
     describe azure_policy_exemptions do
       it { should exist }
@@ -10,9 +10,9 @@ class AzurePolicyExemptions < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Authorization/policyExemptions', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Authorization/policyExemptions", opts)
     super(opts, true)
 
     return if failed_resource?

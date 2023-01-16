@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSQLManagedInstances < AzureGenericResources
-  name 'azure_sql_managed_instances'
-  desc 'Verifies settings for a collection of Azure SQL Managed Instances'
+  name "azure_sql_managed_instances"
+  desc "Verifies settings for a collection of Azure SQL Managed Instances"
   example <<-EXAMPLE
     describe azure_sql_managed_instances(resource_group: 'migrated_vms') do
         it { should exist }
@@ -10,9 +10,9 @@ class AzureSQLManagedInstances < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Sql/managedInstances', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Sql/managedInstances", opts)
     super(opts, true)
     return if failed_resource?
 

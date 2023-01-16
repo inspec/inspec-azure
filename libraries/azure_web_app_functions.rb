@@ -1,6 +1,6 @@
 class AzureWebAppFunctions < AzureGenericResources
-  name 'azure_web_app_functions'
-  desc 'Verifies settings for a collection of Azure Web App Functions'
+  name "azure_web_app_functions"
+  desc "Verifies settings for a collection of Azure Web App Functions"
   example <<-EXAMPLE
     describe azure_web_app_functions(resource_group: 'my-rg', site_name: "my-site") do
         it            { should exist }
@@ -12,11 +12,11 @@ class AzureWebAppFunctions < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Web/sites', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Web/sites", opts)
     opts[:required_parameters] = %i(site_name)
-    opts[:resource_path] = [opts[:site_name], 'functions'].join('/')
+    opts[:resource_path] = [opts[:site_name], "functions"].join("/")
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)

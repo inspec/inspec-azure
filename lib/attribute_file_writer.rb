@@ -1,5 +1,5 @@
-require 'yaml'
-require 'json'
+require "yaml"
+require "json" unless defined?(JSON)
 
 class AttributeFileWriter
   def self.write_yaml(file, content)
@@ -20,12 +20,12 @@ class AttributeFileWriter
     json = JSON.parse(content)
     yaml = {}
     json.each_key do |key|
-      yaml[key] = json[key]['value']
+      yaml[key] = json[key]["value"]
     end
-    File.open(@file, 'w') { |file| file.puts(yaml.to_yaml) }
+    File.open(@file, "w") { |file| file.puts(yaml.to_yaml) }
   end
 
   def append(content)
-    File.open(@file, 'a') { |file| file.puts(content) }
+    File.open(@file, "a") { |file| file.puts(content) }
   end
 end

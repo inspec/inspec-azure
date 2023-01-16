@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzurePolicyDefinitions < AzureGenericResources
-  name 'azure_policy_definitions'
-  desc 'Verifies settings for multiple policy definitions'
+  name "azure_policy_definitions"
+  desc "Verifies settings for multiple policy definitions"
   example <<-EXAMPLE
     azure_policy_definitions(built_in_only: true) do
       it{ should exist }
@@ -13,7 +13,7 @@ class AzurePolicyDefinitions < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   for a policy in a subscription:
@@ -45,12 +45,12 @@ class AzurePolicyDefinitions < AzureGenericResources
     #     Default is `true`.
     #
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Authorization/policyDefinitions', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Authorization/policyDefinitions", opts)
 
     # `built_in_only` is a resource specific parameter as oppose to the `api_version`.
     # That's why it should be put in allowed_parameters to be able to pass the parameter validation in the backend.
     opts[:allowed_parameters] = %i(built_in_only)
-    opts[:resource_uri] = '/providers/Microsoft.Authorization/policyDefinitions'
+    opts[:resource_uri] = "/providers/Microsoft.Authorization/policyDefinitions"
     opts[:add_subscription_id] = opts[:built_in_only] != true
 
     # static_resource parameter must be true for setting the resource_provider in the backend.

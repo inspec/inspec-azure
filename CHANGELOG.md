@@ -1,10 +1,110 @@
 # Changelog
-<!-- latest_release 1.118.12 -->
+<!-- latest_release 1.118.32 -->
+## [v1.118.32](https://github.com/inspec/inspec-azure/tree/v1.118.32) (2022-12-26)
+
+#### Merged Pull Requests
+- Handle unpack uri creds [#707](https://github.com/inspec/inspec-azure/pull/707) ([sathish-progress](https://github.com/sathish-progress))
+<!-- latest_release -->
+
+## [v1.118.31](https://github.com/inspec/inspec-azure/tree/v1.118.31) (2022-12-16)
+
+#### Merged Pull Requests
+- RESOURCE-562 Handle config cache [#706](https://github.com/inspec/inspec-azure/pull/706) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.118.30](https://github.com/inspec/inspec-azure/tree/v1.118.30) (2022-12-16)
+
+#### Merged Pull Requests
+- RESOURCE-547 Switch inspec-azure to chefstyle [#705](https://github.com/inspec/inspec-azure/pull/705) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.29](https://github.com/inspec/inspec-azure/tree/v1.118.29) (2022-12-13)
+
+#### Merged Pull Requests
+- RESOURCE-559 Remove the impact from the controls in inspec-azure [#703](https://github.com/inspec/inspec-azure/pull/703) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.28](https://github.com/inspec/inspec-azure/tree/v1.118.28) (2022-12-06)
+
+#### Merged Pull Requests
+- RESOURCE-540 remove frozen string literal from inspec azure [#702](https://github.com/inspec/inspec-azure/pull/702) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.27](https://github.com/inspec/inspec-azure/tree/v1.118.27) (2022-11-29)
+
+#### Merged Pull Requests
+- RESOURCE-537 add-attribute-for-stack-version-for-webapp [#701](https://github.com/inspec/inspec-azure/pull/701) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.26](https://github.com/inspec/inspec-azure/tree/v1.118.26) (2022-11-24)
+
+#### Merged Pull Requests
+- RESOURCE-538 Fix config cache and also fixed the lint errors [#699](https://github.com/inspec/inspec-azure/pull/699) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.118.25](https://github.com/inspec/inspec-azure/tree/v1.118.25) (2022-11-22)
+
+#### Merged Pull Requests
+- Linting fix [#698](https://github.com/inspec/inspec-azure/pull/698) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.24](https://github.com/inspec/inspec-azure/tree/v1.118.24) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-503 Parameter to check if Rotation policy is enabled for a key inside a keyvault in Azure Key Vault Resource [#681](https://github.com/inspec/inspec-azure/pull/681) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.23](https://github.com/inspec/inspec-azure/tree/v1.118.23) (2022-11-22)
+
+#### Merged Pull Requests
+- Update rubocop requirement from ~&gt; 1.26.0 to ~&gt; 1.39.0 [#687](https://github.com/inspec/inspec-azure/pull/687) ([dependabot[bot]](https://github.com/dependabot[bot]))
+
+## [v1.118.22](https://github.com/inspec/inspec-azure/tree/v1.118.22) (2022-11-22)
+
+#### Merged Pull Requests
+- Resource 308 support CDN Profiles [#661](https://github.com/inspec/inspec-azure/pull/661) ([sathish-progress](https://github.com/sathish-progress))
+
+## [v1.118.21](https://github.com/inspec/inspec-azure/tree/v1.118.21) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-514 create the required files of the azure snapshot resource [#682](https://github.com/inspec/inspec-azure/pull/682) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.20](https://github.com/inspec/inspec-azure/tree/v1.118.20) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-528 Fixing the lint errors [#684](https://github.com/inspec/inspec-azure/pull/684) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.19](https://github.com/inspec/inspec-azure/tree/v1.118.19) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-531-verify-that-the-inbound-port-rules-does-not-have-a-rule-for-http [#689](https://github.com/inspec/inspec-azure/pull/689) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.18](https://github.com/inspec/inspec-azure/tree/v1.118.18) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-530 stack-version-provide-ambiguous-information-on-installed-php-app [#688](https://github.com/inspec/inspec-azure/pull/688) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.17](https://github.com/inspec/inspec-azure/tree/v1.118.17) (2022-11-22)
+
+#### Merged Pull Requests
+- adding resource for azure snapshots [#671](https://github.com/inspec/inspec-azure/pull/671) ([Jiaming1826](https://github.com/Jiaming1826))
+
+## [v1.118.16](https://github.com/inspec/inspec-azure/tree/v1.118.16) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-533 create the unit tests and docs for azure microsoft defender for cloud resource for settings [#691](https://github.com/inspec/inspec-azure/pull/691) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.15](https://github.com/inspec/inspec-azure/tree/v1.118.15) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-534 create the unit tests and docs for azure microsoft defender for cloud resource for security contact [#692](https://github.com/inspec/inspec-azure/pull/692) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.14](https://github.com/inspec/inspec-azure/tree/v1.118.14) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-536 azure-storage-account-resource-attribute-has-infrastructure-encryption-enabled-attribute [#697](https://github.com/inspec/inspec-azure/pull/697) ([sa-progress](https://github.com/sa-progress))
+
+## [v1.118.13](https://github.com/inspec/inspec-azure/tree/v1.118.13) (2022-11-22)
+
+#### Merged Pull Requests
+- RESOURCE-532 create the unit tests and docs for azure my sql database server configuration [#690](https://github.com/inspec/inspec-azure/pull/690) ([soumyo13](https://github.com/soumyo13))
+
 ## [v1.118.12](https://github.com/inspec/inspec-azure/tree/v1.118.12) (2022-11-14)
 
 #### Merged Pull Requests
 - RESOURCE-501 servervulnerabilityassessment in azure sql database resource [#677](https://github.com/inspec/inspec-azure/pull/677) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.11](https://github.com/inspec/inspec-azure/tree/v1.118.11) (2022-11-14)
 

@@ -1,5 +1,5 @@
-require_relative 'helper'
-require 'azure_generic_resource'
+require_relative "helper"
+require "azure_generic_resource"
 
 class AzureGenericResourceConstructorTest < Minitest::Test
   # Generic resource requires a parameter.
@@ -12,15 +12,15 @@ class AzureGenericResourceConstructorTest < Minitest::Test
   # They all exist in resource_id:
   # /subscriptions/{guid}/resourceGroups/{resource-group-name}/{resource-provider-namespace}/{resource-type}/{resource-name}
   def test_only_resource_id_ok
-    assert_raises(ArgumentError) { AzureGenericResource.new(resource_id: 'some_id', resource_provider: 'some_type') }
+    assert_raises(ArgumentError) { AzureGenericResource.new(resource_id: "some_id", resource_provider: "some_type") }
   end
 
   def test_invalid_endpoint
-    assert_raises(ArgumentError) { AzureGenericResource.new(endpoint: 'fake_endpoint') }
+    assert_raises(ArgumentError) { AzureGenericResource.new(endpoint: "fake_endpoint") }
   end
 
   def test_resource_uri
     # add_subscription_id, name and resource_uri have to be provided together
-    assert_raises(ArgumentError) { AzureGenericResource.new(resource_uri: 'test') }
+    assert_raises(ArgumentError) { AzureGenericResource.new(resource_uri: "test") }
   end
 end

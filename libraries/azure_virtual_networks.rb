@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureVirtualNetworks < AzureGenericResources
-  name 'azure_virtual_networks'
-  desc 'Verifies settings for Azure Virtual Networks'
+  name "azure_virtual_networks"
+  desc "Verifies settings for Azure Virtual Networks"
   example <<-EXAMPLE
     azure_virtual_networks(resource_group: 'example') do
       it{ should exist }
@@ -13,7 +13,7 @@ class AzureVirtualNetworks < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/
@@ -37,7 +37,7 @@ class AzureVirtualNetworks < AzureGenericResources
     # Following resource parameters have to be defined/created here.
     #   resource_provider => Microsoft.Network/virtualNetworks
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/virtualNetworks', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/virtualNetworks", opts)
 
     # Establish a connection with Azure REST API.
     # Initiate instance variables: @table and @resources.
@@ -75,8 +75,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermVirtualNetworks < AzureVirtualNetworks
-  name 'azurerm_virtual_networks'
-  desc 'Verifies settings for Azure Virtual Networks'
+  name "azurerm_virtual_networks"
+  desc "Verifies settings for Azure Virtual Networks"
   example <<-EXAMPLE
     azurerm_virtual_networks(resource_group: 'example') do
       it{ should exist }
@@ -86,10 +86,10 @@ class AzurermVirtualNetworks < AzureVirtualNetworks
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureVirtualNetworks.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
+    opts[:api_version] ||= "2018-02-01"
     super
   end
 end

@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureMonitorActivityLogAlerts < AzureGenericResources
-  name 'azure_monitor_activity_log_alerts'
-  desc 'Verifies settings for Azure Monitor Activity Log Alerts'
+  name "azure_monitor_activity_log_alerts"
+  desc "Verifies settings for Azure Monitor Activity Log Alerts"
   example <<-EXAMPLE
     describe azure_monitor_activity_log_alerts do
       its('names') { should include('example-log-alert') }
@@ -13,9 +13,9 @@ class AzureMonitorActivityLogAlerts < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Insights/activityLogAlerts', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Insights/activityLogAlerts", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -52,7 +52,7 @@ class AzureMonitorActivityLogAlerts < AzureGenericResources
     return [] if @resources.empty?
     @resources.each do |resource|
       operations = resource[:properties].dig(:condition, :allOf)
-          &.select { |alert| alert[:field] == 'operationName' }&.collect { |al| al[:equals] }
+          &.select { |alert| alert[:field] == "operationName" }&.collect { |al| al[:equals] }
       resource_group, _provider, _r_type = Helpers.res_group_provider_type_from_uri(resource[:id])
       @table << {
         id: resource[:id],
@@ -69,8 +69,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermMonitorActivityLogAlerts < AzureMonitorActivityLogAlerts
-  name 'azurerm_monitor_activity_log_alerts'
-  desc 'Verifies settings for Azure Monitor Activity Log Alerts'
+  name "azurerm_monitor_activity_log_alerts"
+  desc "Verifies settings for Azure Monitor Activity Log Alerts"
   example <<-EXAMPLE
     describe azurerm_monitor_activity_log_alerts do
       its('names') { should include('example-log-alert') }
@@ -80,10 +80,10 @@ class AzurermMonitorActivityLogAlerts < AzureMonitorActivityLogAlerts
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMonitorActivityLogAlerts.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2017-04-01'
+    opts[:api_version] ||= "2017-04-01"
     super
   end
 end

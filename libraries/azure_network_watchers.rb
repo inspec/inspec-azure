@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureNetworkWatchers < AzureGenericResources
-  name 'azure_network_watchers'
-  desc 'Verifies settings for Network Watchers'
+  name "azure_network_watchers"
+  desc "Verifies settings for Network Watchers"
   example <<-EXAMPLE
     azure_network_watchers(resource_group: 'example') do
       it{ should exist }
@@ -13,9 +13,9 @@ class AzureNetworkWatchers < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/networkWatchers', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/networkWatchers", opts)
     opts[:allowed_parameters] = %i(resource_group)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
@@ -47,8 +47,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermNetworkWatchers < AzureNetworkWatchers
-  name 'azurerm_network_watchers'
-  desc 'Verifies settings for Network Watchers'
+  name "azurerm_network_watchers"
+  desc "Verifies settings for Network Watchers"
   example <<-EXAMPLE
     azurerm_network_watchers(resource_group: 'example') do
       it{ should exist }
@@ -58,10 +58,10 @@ class AzurermNetworkWatchers < AzureNetworkWatchers
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkWatchers.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
+    opts[:api_version] ||= "2018-02-01"
     super
   end
 end

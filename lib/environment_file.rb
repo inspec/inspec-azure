@@ -21,7 +21,7 @@ class EnvironmentFile
   end
 
   def synchronize(envs)
-    raise "The following options are unknown: #{unknown(envs)}. Please use only: #{OPTIONS.join(',')}." unless unknown(envs).empty?
+    raise "The following options are unknown: #{unknown(envs)}. Please use only: #{OPTIONS.join(",")}." unless unknown(envs).empty?
 
     add_vars(envs)
     remove_vars(OPTIONS - envs)
@@ -49,7 +49,7 @@ class EnvironmentFile
     "export #{key}=#{value}\n"
   end
 
-  def set_var(key, value = 'true')
+  def set_var(key, value = "true")
     found, new_content = replace_key(key, value) do |k, v|
       export_statement(k, v)
     end
@@ -61,14 +61,14 @@ class EnvironmentFile
 
   def remove_var(key)
     _, new_content = replace_key(key) do |_key, _value|
-      ''
+      ""
     end
 
     File.write(@file.path, new_content)
   end
 
   def key?(key)
-    File.open(@file.path, 'r').each_line do |line|
+    File.open(@file.path, "r").each_line do |line|
       if match_export_statement(key, line)
         return true
       end
@@ -78,10 +78,10 @@ class EnvironmentFile
   end
 
   def replace_key(key, value = nil, &formatter)
-    new_content = ''
+    new_content = ""
     found       = false
 
-    File.open(@file.path, 'r').each_line do |line|
+    File.open(@file.path, "r").each_line do |line|
       if match_export_statement(key, line)
         new_content << formatter.call(key, value)
         found = true

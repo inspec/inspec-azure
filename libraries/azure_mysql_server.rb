@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureMysqlServer < AzureGenericResource
-  name 'azure_mysql_server'
-  desc 'Verifies settings for an Azure My SQL Server'
+  name "azure_mysql_server"
+  desc "Verifies settings for an Azure My SQL Server"
   example <<-EXAMPLE
     describe azurerm_mysql_server(resource_group: 'example', server_name: 'vm-name') do
       it { should have_monitoring_agent_installed }
@@ -11,7 +11,7 @@ class AzureMysqlServer < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/
@@ -43,14 +43,14 @@ class AzureMysqlServer < AzureGenericResource
     #       not to accept a different `resource_provider`.
     #
     # `resource_provider` has to be defined first since it does the first validation on user-supplied input.
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.DBforMySQL/servers', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.DBforMySQL/servers", opts)
     opts[:resource_identifiers] = %i(server_name)
     opts[:allowed_parameters] = %i(firewall_rules_api_version)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
 
-    @opts[:firewall_rules_api_version] ||= 'latest'
+    @opts[:firewall_rules_api_version] ||= "latest"
   end
 
   def to_s
@@ -72,7 +72,7 @@ class AzureMysqlServer < AzureGenericResource
     return unless exists?
     additional_resource_properties(
       {
-        property_name: 'firewall_rules',
+        property_name: "firewall_rules",
         property_endpoint: "#{id}/firewallRules",
         api_version: @opts[:firewall_rules_api_version],
       },
@@ -83,8 +83,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermMysqlServer < AzureMysqlServer
-  name 'azurerm_mysql_server'
-  desc 'Verifies settings for an Azure My SQL Server'
+  name "azurerm_mysql_server"
+  desc "Verifies settings for an Azure My SQL Server"
   example <<-EXAMPLE
     describe azurerm_mysql_server(resource_group: 'example', server_name: 'vm-name') do
       it { should have_monitoring_agent_installed }
@@ -94,10 +94,10 @@ class AzurermMysqlServer < AzureMysqlServer
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureMysqlServer.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2017-12-01'
+    opts[:api_version] ||= "2017-12-01"
     super
   end
 end

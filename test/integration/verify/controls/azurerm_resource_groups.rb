@@ -1,30 +1,28 @@
-resource_group = input('resource_group', value: nil)
+resource_group = input("resource_group", value: nil)
 
 # Added to test `inspec check` command
 resource_group_names = azure_resource_groups.names
 
-control 'azurerm_resource_groups' do
+control "azurerm_resource_groups" do
 
-  impact 1.0
-  title 'Testing the plural resource of azure_resource_groups.'
-  desc 'Testing the plural resource of azure_resource_groups.'
+  title "Testing the plural resource of azure_resource_groups."
+  desc "Testing the plural resource of azure_resource_groups."
 
   describe azurerm_resource_groups do
     it { should exist }
-    its('names') { should include(resource_group) }
-    its('names.size') { should eq resource_group_names.size }
+    its("names") { should include(resource_group) }
+    its("names.size") { should eq resource_group_names.size }
   end
 
   describe azurerm_resource_groups.where(name: resource_group) do
-    its('tags.first') { should include('ExampleTag'=>'example') }
+    its("tags.first") { should include("ExampleTag"=>"example") }
   end
 end
 
-control 'azure_resource_groups_loop' do
+control "azure_resource_groups_loop" do
 
-  impact 1.0
-  title 'Testing the plural resource of azure_resource_groups.'
-  desc 'Testing the plural resource of azure_resource_groups.'
+  title "Testing the plural resource of azure_resource_groups."
+  desc "Testing the plural resource of azure_resource_groups."
 
   azure_resource_groups.ids.each do |id|
     describe azure_resource_group(resource_id: id) do

@@ -209,6 +209,14 @@ resource "azurerm_managed_disk" "disk" {
   }
 }
 
+resource "azurerm_snapshot" "snapshot" {
+  name                = "snapshot"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.id
+  create_option       = "Copy"
+  source_uri          = azurerm_managed_disk.disk.id
+}
+
 resource "azurerm_network_security_group" "nsg" {
   name                = "Inspec-NSG"
   location            = var.location
@@ -1684,11 +1692,16 @@ resource "azurerm_synapse_workspace" "synapse_inspec_ws" {
   storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.inspec_adls_gen2.id
   sql_administrator_login              = "sqladminuser"
   sql_administrator_login_password     = "H@Sh1CoR3!"
+  public_network_access_enabled = false
 
   aad_admin {
     login     = "AzureAD Admin"
     object_id = "00000000-0000-0000-0000-000000000000"
     tenant_id = "00000000-0000-0000-0000-000000000000"
+  }
+
+  identity {
+    type = "SystemAssigned"
   }
 
   tags = {
@@ -1716,4 +1729,16 @@ AzureActivity |
   where ActivityStatus == "Succeeded" |
   make-series dcount(ResourceId) default=0 on EventSubmissionTimestamp in range(ago(7d), now(), 1d) by Caller
 QUERY
+}
+
+resource "azurerm_cdn_profile" "inspec_cdn_profile" {
+  name                = "inspec_cdn_profile"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "Standard_Verizon"
+
+  tags = {
+    environment = "inspec"
+    cost_center = "inspec"
+  }
 }

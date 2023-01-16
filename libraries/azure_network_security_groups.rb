@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureNetworkSecurityGroups < AzureGenericResources
-  name 'azure_network_security_groups'
-  desc 'Verifies settings for Network Security Groups'
+  name "azure_network_security_groups"
+  desc "Verifies settings for Network Security Groups"
   example <<-EXAMPLE
     azure_network_security_groups(resource_group: 'example') do
       it{ should exist }
@@ -13,7 +13,7 @@ class AzureNetworkSecurityGroups < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format listing the all resources for a given subscription:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/providers/
@@ -43,7 +43,7 @@ class AzureNetworkSecurityGroups < AzureGenericResources
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/networkSecurityGroups', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/networkSecurityGroups", opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
@@ -63,8 +63,8 @@ end
 # Provide the same functionality under the old resource name.
 # This is for backward compatibility.
 class AzurermNetworkSecurityGroups < AzureNetworkSecurityGroups
-  name 'azurerm_network_security_groups'
-  desc 'Verifies settings for Network Security Groups'
+  name "azurerm_network_security_groups"
+  desc "Verifies settings for Network Security Groups"
   example <<-EXAMPLE
     azurerm_network_security_groups(resource_group: 'example') do
       it{ should exist }
@@ -74,10 +74,10 @@ class AzurermNetworkSecurityGroups < AzureNetworkSecurityGroups
   def initialize(opts = {})
     Inspec::Log.warn Helpers.resource_deprecation_message(@__resource_name__, AzureNetworkSecurityGroups.name)
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # For backward compatibility.
-    opts[:api_version] ||= '2018-02-01'
+    opts[:api_version] ||= "2018-02-01"
     super
   end
 end

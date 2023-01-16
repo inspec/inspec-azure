@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureDBMigrationServices < AzureGenericResources
-  name 'azure_db_migration_services'
-  desc 'Verifies settings for a list of DB migration service resources in a resource group'
+  name "azure_db_migration_services"
+  desc "Verifies settings for a list of DB migration service resources in a resource group"
   example <<-EXAMPLE
     describe azure_db_migration_services(resource_group: 'rg-1') do
       it { should exist }
@@ -12,9 +12,9 @@ class AzureDBMigrationServices < AzureGenericResources
   attr_reader :table
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.DataMigration/services', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.DataMigration/services", opts)
     super
     return if failed_resource?
 

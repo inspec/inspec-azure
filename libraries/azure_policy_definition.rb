@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzurePolicyDefinition < AzureGenericResource
-  name 'azure_policy_definition'
-  desc 'Verifies settings for a policy definition'
+  name "azure_policy_definition"
+  desc "Verifies settings for a policy definition"
   example <<-EXAMPLE
     describe azure_policy_definition(name: 'policy_name') do
       it { should exist }
@@ -11,8 +11,8 @@ class AzurePolicyDefinition < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
-    raise ArgumentError, '`resource_group` is not allowed.' if opts.key(:resource_group)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
+    raise ArgumentError, "`resource_group` is not allowed." if opts.key(:resource_group)
 
     # Azure REST API endpoint URL format for the resource:
     #   for a policy in a subscription:
@@ -48,13 +48,13 @@ class AzurePolicyDefinition < AzureGenericResource
     #     This is `false` for built-in policy definitions and it is bound to user-supplied `built_in` parameter.
     #     Default is `true`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Authorization/policyDefinitions', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Authorization/policyDefinitions", opts)
 
     # `built_in` is a resource specific parameter as oppose to `name` and `api_version`.
     # That's why it should be put in allowed_parameters to be able to pass the parameter validation in the backend.
     opts[:allowed_parameters] = %i(built_in)
 
-    opts[:resource_uri] = '/providers/Microsoft.Authorization/policyDefinitions'
+    opts[:resource_uri] = "/providers/Microsoft.Authorization/policyDefinitions"
     opts[:add_subscription_id] = opts[:built_in] != true
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
@@ -67,6 +67,6 @@ class AzurePolicyDefinition < AzureGenericResource
 
   def custom?
     return unless exists?
-    properties&.policyType&.downcase == 'custom'
+    properties&.policyType&.downcase == "custom"
   end
 end

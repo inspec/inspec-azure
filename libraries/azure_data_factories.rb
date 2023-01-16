@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureDataFactories < AzureGenericResources
-  name 'azure_data_factories'
-  desc 'List azure data factories'
+  name "azure_data_factories"
+  desc "List azure data factories"
   example <<-EXAMPLE
     describe azure_data_factories(resource_group: 'example') do
       it { should exist }
@@ -11,7 +11,7 @@ class AzureDataFactories < AzureGenericResources
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{SubscriptionID}/
@@ -40,7 +40,7 @@ class AzureDataFactories < AzureGenericResources
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.DataFactory/factories', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.DataFactory/factories", opts)
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
     # Check if the resource is failed.

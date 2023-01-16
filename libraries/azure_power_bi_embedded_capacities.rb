@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzurePowerBiEmbeddedCapacities < AzureGenericResources
-  name 'azure_power_bi_embedded_capacities'
-  desc 'Retrieves and verifies the settings of all Azure Power BI Embedded Capacities.'
+  name "azure_power_bi_embedded_capacities"
+  desc "Retrieves and verifies the settings of all Azure Power BI Embedded Capacities."
   example <<-EXAMPLE
     describe azure_power_bi_embedded_capacities do
       it { should exist }
@@ -10,9 +10,9 @@ class AzurePowerBiEmbeddedCapacities < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.PowerBIDedicated/capacities', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.PowerBIDedicated/capacities", opts)
     super(opts, true)
     return if failed_resource?
 
@@ -28,11 +28,11 @@ class AzurePowerBiEmbeddedCapacities < AzureGenericResources
   def populate_table
     @resources.each do |resource|
       props = resource[:properties]
-      sku_hash = concat_keys(resource[:sku], 'sku')
-      administration_attrs = concat_keys(props[:administration], 'administration')
+      sku_hash = concat_keys(resource[:sku], "sku")
+      administration_attrs = concat_keys(props[:administration], "administration")
       @table << resource.merge(resource[:properties])
-                        .merge(sku_hash)
-                        .merge(administration_attrs)
+        .merge(sku_hash)
+        .merge(administration_attrs)
     end
   end
 

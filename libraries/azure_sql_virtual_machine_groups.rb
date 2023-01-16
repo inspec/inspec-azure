@@ -1,8 +1,8 @@
-require 'azure_generic_resources'
+require "azure_generic_resources"
 
 class AzureSQLVirtualMachineGroups < AzureGenericResources
-  name 'azure_sql_virtual_machine_groups'
-  desc 'Verifies settings for a collection of Azure SQL Virtual Machine Groups'
+  name "azure_sql_virtual_machine_groups"
+  desc "Verifies settings for a collection of Azure SQL Virtual Machine Groups"
   example <<-EXAMPLE
     describe azure_sql_virtual_machine_groups do
         it { should exist }
@@ -10,9 +10,9 @@ class AzureSQLVirtualMachineGroups < AzureGenericResources
   EXAMPLE
 
   def initialize(opts = {})
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups", opts)
     super(opts, true)
     return if failed_resource?
 

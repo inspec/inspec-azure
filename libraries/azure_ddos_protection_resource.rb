@@ -1,8 +1,8 @@
-require 'azure_generic_resource'
+require "azure_generic_resource"
 
 class AzureDdosProtectionResource < AzureGenericResource
-  name 'azure_ddos_protection_resource'
-  desc 'Verifies settings for Azure DDoS Protection Standard '
+  name "azure_ddos_protection_resource"
+  desc "Verifies settings for Azure DDoS Protection Standard "
   example <<-EXAMPLE
     describe azure_ddos_protection_resource(resource_group: 'example', name: 'vm-name') do
       it { should exit }
@@ -11,7 +11,7 @@ class AzureDdosProtectionResource < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
+    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
 
     # Azure REST API endpoint URL format for the resource:
     #   GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/
@@ -40,7 +40,7 @@ class AzureDdosProtectionResource < AzureGenericResource
     #     The `specific_resource_constraint` method will validate the user input
     #       not to accept a different `resource_provider`.
     #
-    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/ddosProtectionPlans', opts)
+    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/ddosProtectionPlans", opts)
     opts[:required_parameters] = %i(name)
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
