@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.32 -->
+<!-- latest_release 1.118.33 -->
+## [v1.118.33](https://github.com/inspec/inspec-azure/tree/v1.118.33) (2023-01-16)
+
+#### Merged Pull Requests
+- RESOURCE-535 Modify the readme.md file with missing resources. [#693](https://github.com/inspec/inspec-azure/pull/693) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.32](https://github.com/inspec/inspec-azure/tree/v1.118.32) (2022-12-26)
 
 #### Merged Pull Requests
 - Handle unpack uri creds [#707](https://github.com/inspec/inspec-azure/pull/707) ([sathish-progress](https://github.com/sathish-progress))
-<!-- latest_release -->
 
 ## [v1.118.31](https://github.com/inspec/inspec-azure/tree/v1.118.31) (2022-12-16)
 
