@@ -6,7 +6,7 @@ control "azure_api_management" do
   desc "Testing the singular resource of azure_api_management."
 
   only_if { !api_management_name.empty? }
-  
+
   describe azure_api_management(resource_group: resource_group, api_management_name: api_management_name) do
     it                { should exist }
     its("id")         { should_not be_nil }

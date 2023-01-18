@@ -1,7 +1,7 @@
 control "azure_graph_users" do
   title "Testing the plural resource of azure_graph_users."
   desc "Testing the plural resource of azure_graph_users."
-  
+
   describe azure_graph_users do
     its("display_names")  { should_not be_empty }
     its("user_types")     { should_not be_empty }
@@ -12,7 +12,7 @@ end
 control "azurerm_ad_users" do
   title "Testing the plural resource of azurerm_ad_users."
   desc "Testing the plural resource of azurerm_ad_users."
-  
+
   describe azurerm_ad_users do
     its("display_names")       { should_not be_empty }
     its("user_types")          { should_not be_empty }

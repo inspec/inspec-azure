@@ -6,7 +6,7 @@ control "azure_public_ip" do
   desc "Testing the singular resource of azure_public_ip."
 
   only_if { !address_name.empty? }
-  
+
   describe azure_public_ip(resource_group: resource_group, name: address_name) do
     it                                                       { should exist }
     its("name")                                              { should cmp address_name }

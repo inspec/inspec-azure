@@ -1,7 +1,6 @@
 directory_object = input(:sample_directory_object, value: "")
 
 control "azure active directory object" do
-
   title "Testing the singular resource of azure_active_directory_object."
   desc "Testing the singular resource of azure_active_directory_object."
 

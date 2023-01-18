@@ -8,9 +8,7 @@ control "azure_postgresql_database" do
 
   only_if { !postgresql_database_name.nil? }
 
-  describe azure_postgresql_database(resource_group: resource_group,
-                                     server_name: postgresql_server_name,
-                                     database_name: postgresql_database_name) do
+  describe azure_postgresql_database(resource_group: resource_group, server_name: postgresql_server_name, database_name: postgresql_database_name) do
     it { should exist }
     its("id") { should_not be_nil }
     its("name") { should eq postgresql_database_name }
