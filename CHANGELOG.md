@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.33 -->
+<!-- latest_release 1.118.34 -->
+## [v1.118.34](https://github.com/inspec/inspec-azure/tree/v1.118.34) (2023-01-18)
+
+#### Merged Pull Requests
+- Resource 511 change the integration test from azurerm to azure [#708](https://github.com/inspec/inspec-azure/pull/708) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.33](https://github.com/inspec/inspec-azure/tree/v1.118.33) (2023-01-16)
 
 #### Merged Pull Requests
 - RESOURCE-535 Modify the readme.md file with missing resources. [#693](https://github.com/inspec/inspec-azure/pull/693) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.32](https://github.com/inspec/inspec-azure/tree/v1.118.32) (2022-12-26)
 
