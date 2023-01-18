@@ -4,7 +4,7 @@ class AzureHPCASCOperation < AzureGenericResource
   name "azure_hpc_asc_operation"
   desc "Retrieves and verifies the settings of an Azure HPC ASC Operation"
   example <<-EXAMPLE
-    describe azure_hpc_asc_operation(location: 'westus', operation_id: 'testoperationid') do
+    describe azure_hpc_asc_operation(location: 'westus', operation_id: 'OPERATION_ID') do
       it { should exist }
     end
   EXAMPLE

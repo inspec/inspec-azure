@@ -4,7 +4,7 @@ class AzureContainerRegistry < AzureGenericResource
   name "azure_container_registry"
   desc "Verifies settings for an Azure Container Registry"
   example <<-EXAMPLE
-    describe azure_container_registry(resource_group: 'rg-1', name: 'cr-1') do
+    describe azure_container_registry(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_REGISTRY_NAME') do
       it { should exist }
     end
   EXAMPLE

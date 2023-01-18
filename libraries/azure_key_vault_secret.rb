@@ -4,7 +4,7 @@ class AzureKeyVaultSecret < AzureGenericResource
   name "azure_key_vault_secret"
   desc "Verifies configuration for a Secret within a Vault"
   example <<-EXAMPLE
-    describe azure_key_vault_secret(vault_name: 'vault-name', secret_name: 'secret-name') do
+    describe azure_key_vault_secret(vault_name: 'KEY_VAULT_NAME', secret_name: 'SECRET_NAME') do
       it { should exist }
       its('attributes.enabled') { should eq true }
     end

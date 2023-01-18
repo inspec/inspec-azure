@@ -2,10 +2,10 @@ require "azure_generic_resources"
 
 class AzureDdosProtectionResources < AzureGenericResources
   name "azure_ddos_protection_resources"
-  desc "Verifies settings for Azure DDoS Protection Standard "
+  desc "Verifies settings for Azure DDoS Protection Standard"
   example <<-EXAMPLE
-    azure_ddos_protection_resources(resource_group: 'rg') do
-      it{ should exist }
+    describe azure_ddos_protection_resources(resource_group: 'RESOURCE_GROUP_NAME') do
+      it { should exist }
     end
   EXAMPLE
 

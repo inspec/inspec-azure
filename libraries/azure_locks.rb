@@ -4,7 +4,7 @@ class AzureLocks < AzureGenericResources
   name "azure_locks"
   desc "Verifies settings for an Azure Lock on a Resource"
   example <<-EXAMPLE
-    describe azure_locks(resource_group: 'my-rg', resource_name: 'my-vm', resource_type: 'Microsoft.Compute/virtualMachines') do
+    describe azure_locks(resource_group: 'RESOURCE_GROUP_NAME', resource_name: 'my-vm', resource_type: 'Microsoft.Compute/virtualMachines') do
       it { should exist }
     end
   EXAMPLE

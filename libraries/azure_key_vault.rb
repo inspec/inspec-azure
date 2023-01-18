@@ -4,9 +4,9 @@ class AzureKeyVault < AzureGenericResource
   name "azure_key_vault"
   desc "Verifies settings and configuration for an Azure Key Vault"
   example <<-EXAMPLE
-    describe azure_key_vault(resource_group: 'rg-1', vault_name: 'vault-1') do
-      it            { should exist }
-      its('name')   { should eq('vault-1') }
+    describe azure_key_vault(resource_group: 'RESOURCE_GROUP_NAME', vault_name: 'vault-1') do
+      it { should exist }
+      its('name') { should eq('vault-1') }
     end
   EXAMPLE
 

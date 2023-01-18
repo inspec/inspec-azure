@@ -4,7 +4,7 @@ class AzureAksCluster < AzureGenericResource
   name "azure_aks_cluster"
   desc "Verifies settings for AKS Clusters"
   example <<-EXAMPLE
-    describe azure_aks_cluster(resource_group: 'example', name: 'name') do
+    describe azure_aks_cluster(resource_group: 'RESOURCE_GROUP_NAME', name: 'AKS_CLUSTER_NAME') do
       its(name) { should eq 'name'}
     end
   EXAMPLE

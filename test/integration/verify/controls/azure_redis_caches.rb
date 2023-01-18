@@ -1,4 +1,4 @@
-resource_group_name = attribute(:resource_group, value: nil)
+resource_group_name = input(:resource_group, value: nil)
 
 control "azure redis caches test" do
 

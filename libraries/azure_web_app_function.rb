@@ -2,9 +2,9 @@ class AzureWebAppFunction < AzureGenericResource
   name "azure_web_app_function"
   desc "Verifies settings and configuration for an Azure Function"
   example <<-EXAMPLE
-    describe azure_web_app_function(resource_group: 'rg-nm1', site_name: "my-site", function_name: 'HttpTriggerJS1') do
-      it            { should exist }
-      its('type')   { should cmp 'Microsoft.Web/sites/functions' }
+    describe azure_web_app_function(resource_group: 'RESOURCE_GROUP_NAME', site_name: "SITE_NAME", function_name: 'FUNCTION_NAME') do
+      it { should exist }
+      its('type') { should cmp 'Microsoft.Web/sites/functions' }
     end
   EXAMPLE
 

@@ -4,7 +4,7 @@ class AzureVirtualNetworkPeerings < AzureGenericResources
   name "azure_virtual_network_peerings"
   desc "Verifies settings for Azure Virtual Network Peerings"
   example <<-EXAMPLE
-    azure_virtual_network_peerings(resource_group: 'example', vnet: 'virtual-network-name') do
+    describe azure_virtual_network_peerings(resource_group: 'RESOURCE_GROUP_NAME', vnet: 'VIRTUAL_NETWORK_NAME') do
       it{ should exist }
     end
   EXAMPLE

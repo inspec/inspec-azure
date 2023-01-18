@@ -5,7 +5,7 @@ class AzureManagedApplications < AzureGenericResources
   desc "Verifies settings for a collection of Azure Managed Applications."
   example <<-EXAMPLE
     describe azure_managed_applications do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

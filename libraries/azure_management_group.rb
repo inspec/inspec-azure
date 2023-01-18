@@ -4,7 +4,7 @@ class AzureManagementGroup < AzureGenericResource
   name "azure_management_group"
   desc "Verifies settings for an Azure Management Group"
   example <<-EXAMPLE
-    describe azure_management_group(group_id: 'example-group') do
+    describe azure_management_group(group_id: 'MANAGEMENT_GROUP_ID') do
       it { should exist }
     end
   EXAMPLE

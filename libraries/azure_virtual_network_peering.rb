@@ -4,7 +4,7 @@ class AzureVirtualNetworkPeering < AzureGenericResource
   name "azure_virtual_network_peering"
   desc "Verifies settings for an Azure Virtual Network Peering"
   example <<-EXAMPLE
-    describe azure_virtual_network_peering(resource_group: 'example',vnet: 'virtual-network-name' name: 'virtual-network-peering-name') do
+    describe azure_virtual_network_peering(resource_group: 'RESOURCE_GROUP_NAME', vnet: 'VIRTUAL_NETWORK_NAME', name: 'VIRTUAL_NETWORK_PEERING_NAME') do
       it { should exist }
       its('name') { should eq 'virtual-network-peering-name' }
     end

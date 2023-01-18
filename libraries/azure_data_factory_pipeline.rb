@@ -2,11 +2,11 @@ require "azure_generic_resource"
 
 class AzureDataFactoryPipeline < AzureGenericResource
   name "azure_data_factory_pipeline"
-  desc "Verifies settings for Azure data factory pipeline "
+  desc "Verifies settings for Azure data factory pipeline"
   example <<-EXAMPLE
-      describe azure_data_factory_pipeline(resource_group: resource_group, factory_name: factory_name, pipeline_name: pipeline_name)  do
-        it { should exist }
-      end
+    describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'DATA_FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do
+      it { should exist }
+    end
   EXAMPLE
 
   def initialize(opts = {})

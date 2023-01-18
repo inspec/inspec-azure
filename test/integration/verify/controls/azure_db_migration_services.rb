@@ -1,6 +1,6 @@
-service_name = attribute(:inspec_db_migration_service_name, value: nil)
-sku_name = attribute(:inspec_db_migration_service_sku_name, value: nil)
-location = attribute(:location, value: nil)
+service_name = input(:inspec_db_migration_service_name, value: nil)
+sku_name = input(:inspec_db_migration_service_sku_name, value: nil)
+location = input(:location, value: nil)
 
 control "azure_db_migration_services" do
 

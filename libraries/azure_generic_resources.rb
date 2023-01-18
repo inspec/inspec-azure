@@ -1,14 +1,10 @@
 require "azure_backend"
 
-# The backend class for the plural static resources.
-#
-# @author omerdemirok
-#
 class AzureGenericResources < AzureResourceBase
   name "azure_generic_resources"
   desc "Inspec Resource to interrogate any resource type in bulk available through Azure resource manager."
   example <<-EXAMPLE
-    describe azure_static_resources(resource_group: 'my_group') do
+    describe azure_static_resources(resource_group: 'RESOURCE_GROUP_NAME') do
       it { should exist }
     end
   EXAMPLE

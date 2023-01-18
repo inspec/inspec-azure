@@ -4,8 +4,8 @@ class AzureEventHubEventHub < AzureGenericResource
   name "azure_event_hub_event_hub"
   desc "Verifies settings for Event Hub description"
   example <<-EXAMPLE
-    describe azure_event_hub_event_hub(resource_group: 'example', namespace_name: 'namespace-ns', event_hub_name: 'eventHubName') do
-      its(name) { should eq 'name'}
+    describe azure_event_hub_event_hub(resource_group: 'RESOURCE_GROUP_NAME', namespace_name: 'NAMESPACE_NAME', event_hub_name: 'EVENT_HUB_NAME') do
+      its('name') { should eq 'EVENT_HUB_NAME'}
     end
   EXAMPLE
 

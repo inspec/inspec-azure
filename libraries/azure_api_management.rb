@@ -4,7 +4,7 @@ class AzureApiManagement < AzureGenericResource
   name "azure_api_management"
   desc "Verifies settings for an Azure Api Management Service"
   example <<-EXAMPLE
-    describe azure_api_management(resource_group: 'rg-1', name: 'apim01') do
+    describe azure_api_management(resource_group: 'RESOURCE_GROUP_NAME', name: 'API_MANAGEMENT_NAME') do
       it { should exist }
     end
   EXAMPLE
@@ -32,7 +32,7 @@ class AzurermApiManagement < AzureApiManagement
   name "azurerm_api_management"
   desc "Verifies settings for an Azure Api Management Service"
   example <<-EXAMPLE
-    describe azurerm_api_management(resource_group: 'rg-1', api_management_name: 'apim01') do
+    describe azurerm_api_management(resource_group: 'RESOURCE_GROUP_NAME', api_management_name: 'API_MANAGEMENT_NAME') do
       it { should exist }
     end
   EXAMPLE

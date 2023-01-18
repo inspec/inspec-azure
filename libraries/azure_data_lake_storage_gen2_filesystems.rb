@@ -4,7 +4,7 @@ class AzureDataLakeStorageGen2Filesystems < AzureGenericResources
   name "azure_data_lake_storage_gen2_filesystems"
   desc "Verifies settings for a list of Data Lake Storage Gen2 file systems"
   example <<-EXAMPLE
-    describe azure_data_lake_storage_gen2_filesystems(account_name: 'adls') do
+    describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME') do
       it { should exist }
     end
   EXAMPLE

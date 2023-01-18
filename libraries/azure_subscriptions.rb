@@ -5,7 +5,7 @@ class AzureSubscriptions < AzureGenericResources
   desc "Verifies settings for the Azure Subscription within a tenant"
   example <<-EXAMPLE
     describe azure_subscriptions do
-      its('display_names') { should include 'Demo Resources' }
+      its('display_names') { should include 'DEMO_RESOURCES' }
     end
   EXAMPLE
 

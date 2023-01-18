@@ -8,7 +8,7 @@ class AzureGraphGenericResources < AzureResourceBase
   name "azure_graph_generic_resources"
   desc "Inspec plural resource to interrogate any resource type available through Azure Graph API"
   example <<-EXAMPLE
-    describe azure_graph_generic_resources(resource_provider: 'users', filter: {given_name: 'John'}) do
+    describe azure_graph_generic_resources(resource_provider: 'RESOURCE_PROVIDER', filter: {given_name: 'John'}) do
       it { should exist }
     end
   EXAMPLE

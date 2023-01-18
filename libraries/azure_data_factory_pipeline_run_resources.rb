@@ -4,9 +4,9 @@ class AzureDataFactoryPipelineRunResources < AzureGenericResources
   name "azure_data_factory_pipeline_run_resources"
   desc "Lists  DataFactoryDataSets"
   example <<-EXAMPLE
-     azure_data_factory_pipeline_run_resources(resource_group: 'example', factory_name: 'factory_name') do
-       it{ should exist }
-     end
+    describe azure_data_factory_pipeline_run_resources(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'DATA_FACTORY_NAME') do
+      it { should exist }
+    end
   EXAMPLE
 
   attr_reader :table

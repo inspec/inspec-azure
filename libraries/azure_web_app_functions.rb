@@ -2,9 +2,9 @@ class AzureWebAppFunctions < AzureGenericResources
   name "azure_web_app_functions"
   desc "Verifies settings for a collection of Azure Web App Functions"
   example <<-EXAMPLE
-    describe azure_web_app_functions(resource_group: 'my-rg', site_name: "my-site") do
-        it            { should exist }
-        its('names')  { should_not be_empty }
+    describe azure_web_app_functions(resource_group: 'RESOURCE_GROUP_NAME', site_name: 'SITE_NAME') do
+        it { should exist }
+        its('names') { should_not be_empty }
     end
   EXAMPLE
 

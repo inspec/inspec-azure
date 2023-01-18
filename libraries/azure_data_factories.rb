@@ -2,9 +2,9 @@ require "azure_generic_resources"
 
 class AzureDataFactories < AzureGenericResources
   name "azure_data_factories"
-  desc "List azure data factories"
+  desc "List all azure data factories"
   example <<-EXAMPLE
-    describe azure_data_factories(resource_group: 'example') do
+    describe azure_data_factories(resource_group: 'RESOURCE_GROUP_NAME') do
       it { should exist }
     end
   EXAMPLE

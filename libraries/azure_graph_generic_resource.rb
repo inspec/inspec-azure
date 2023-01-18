@@ -8,7 +8,7 @@ class AzureGraphGenericResource < AzureResourceBase
   name "azure_graph_generic_resource"
   desc "Inspec Resource to interrogate any resource type available through Azure Graph API"
   example <<-EXAMPLE
-    describe azure_graph_generic_resource(resource_provider: 'users', name: 'jdoe@contoso.com') do
+    describe azure_graph_generic_resource(resource_provider: 'RESOURCE_PROVIDER', name: 'jdoe@contoso.com') do
       its('display_name') { should eq 'John Doe' }
     end
   EXAMPLE

@@ -4,7 +4,7 @@ class AzureExpressRouteCircuit < AzureGenericResource
   name "azure_express_route_circuit"
   desc "ExpressRoute circuit connect your on-premises infrastructure to Microsoft through a connectivity provider"
   example <<-EXAMPLE
-    describe azure_express_route_circuit(resource_group: 'example', circuit_name: 'circuitName') do
+    describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP_NAME', circuit_name: 'CIRCUIT_NAME') do
       it { should exist }
     end
   EXAMPLE

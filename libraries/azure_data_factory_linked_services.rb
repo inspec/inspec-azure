@@ -4,7 +4,7 @@ class AzureDataFactoryLinkedServices < AzureGenericResources
   name "azure_data_factory_linked_services"
   desc "List azure linked services"
   example <<-EXAMPLE
-    describe azure_data_factory_linked_services(resource_group: 'example', factory_name: 'fn') do
+    describe azure_data_factory_linked_services(resource_group: 'RESOURCE_GROUP_NAME', factory_name: 'DATA_FACTORY_NAME') do
       it { should exist }
     end
   EXAMPLE

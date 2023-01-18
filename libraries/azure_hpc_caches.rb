@@ -5,7 +5,7 @@ class AzureHPCCaches < AzureGenericResources
   desc "Verifies settings for a collection of Azure HPC Caches"
   example <<-EXAMPLE
     describe azure_hpc_caches do
-        it { should exist }
+      it { should exist }
     end
   EXAMPLE
 

@@ -4,7 +4,7 @@ class AzureCDNProfile < AzureGenericResource
   name "azure_cdn_profile"
   desc "Verifies settings for a specific Azure CDN Profile."
   example <<-EXAMPLE
-    describe azure_cdn_profile(resource_group: 'large_vms', name: 'demo1') do
+    describe azure_cdn_profile(resource_group: 'RESOURCE_GROUP_NAME', name: 'CDN_PROFILE_NAME') do
       it { should exist }
     end
   EXAMPLE

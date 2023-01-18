@@ -8,7 +8,7 @@ class AzureGenericResource < AzureResourceBase
   name "azure_generic_resource"
   desc "Inspec Resource to interrogate any resource type available through Azure Resource Manager"
   example <<-EXAMPLE
-    describe azure_generic_resource(resource_group: 'example', name: 'my_resource') do
+    describe azure_generic_resource(resource_group: 'RESOURCE_GROUP_NAME', name: 'RESOURCE_NAME') do
       its('name') { should eq 'my_resource' }
     end
   EXAMPLE

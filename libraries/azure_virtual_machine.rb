@@ -4,7 +4,8 @@ class AzureVirtualMachine < AzureGenericResource
   name "azure_virtual_machine"
   desc "Verifies settings for an Azure Virtual Machine"
   example <<-EXAMPLE
-    describe azure_virtual_machine(resource_group: 'example', name: 'vm-name') do
+    describe azure_virtual_machine(resource_group: 'RESOURCE_GROUP_NAME', name: 'VIRTUAL_MACHINE_NAME') do
+      it { should exist }
       it { should have_monitoring_agent_installed }
     end
   EXAMPLE

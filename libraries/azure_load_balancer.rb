@@ -4,7 +4,7 @@ class AzureLoadBalancer < AzureGenericResource
   name "azure_load_balancer"
   desc "Verifies settings for an Azure Load Balancer"
   example <<-EXAMPLE
-    describe azure_load_balancer(resource_group: 'rg-1', name: 'lb-1') do
+    describe azure_load_balancer(resource_group: 'RESOURCE_GROUP_NAME', name: 'LOAD_BALANCER_NAME') do
       it { should exist }
     end
   EXAMPLE

@@ -5,7 +5,7 @@ class AzureApiManagements < AzureGenericResources
   desc "Verifies settings for a collection of Azure Api Management Services"
   example <<-EXAMPLE
     describe azure_api_managements do
-        it  { should exist }
+      it  { should exist }
     end
   EXAMPLE
 

@@ -4,7 +4,7 @@ class AzureExpressRouteServiceProviders < AzureGenericResources
   name "azure_express_route_providers"
   desc "Verifies settings for Azure Virtual Machines"
   example <<-EXAMPLE
-    describe azure_express_route_providers(resource_group: 'example') do
+    describe azure_express_route_providers(resource_group: 'RESOURCE_GROUP_NAME') do
       it{ should exist }
     end
   EXAMPLE

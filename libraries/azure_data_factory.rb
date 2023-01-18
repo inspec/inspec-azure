@@ -2,9 +2,10 @@ require "azure_generic_resource"
 
 class AzureDataFactory < AzureGenericResource
   name "azure_data_factory"
-  desc "Creates azure data factory"
+  desc "Verifies azure data factory"
   example <<-EXAMPLE
-    describe azure_data_factory(resource_group: 'example', name: 'factoryName') do
+    describe azure_data_factory(resource_group: 'RESOURCE_GROUP_NAME', name: 'DATA_FACTORY_NAME') do
+      it { should exist }
       it { should have_monitoring_agent_installed }
     end
   EXAMPLE
