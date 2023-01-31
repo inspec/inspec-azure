@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.34 -->
+<!-- latest_release 1.118.35 -->
+## [v1.118.35](https://github.com/inspec/inspec-azure/tree/v1.118.35) (2023-01-31)
+
+#### Merged Pull Requests
+- Create the integration test for datafactory linked_services and pipeline_run_resource [#710](https://github.com/inspec/inspec-azure/pull/710) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.34](https://github.com/inspec/inspec-azure/tree/v1.118.34) (2023-01-18)
 
 #### Merged Pull Requests
 - Resource 511 change the integration test from azurerm to azure [#708](https://github.com/inspec/inspec-azure/pull/708) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.33](https://github.com/inspec/inspec-azure/tree/v1.118.33) (2023-01-16)
 
