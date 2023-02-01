@@ -1,6 +1,6 @@
-control "azure_microsoft_defender_settings" do
-  title "Testing the plural resource of azure_microsoft_defender_settings."
-  desc "Testing the plural resource of azure_microsoft_defender_settings."
+control "azure_microsoft_defender_pricing_settings" do
+  title "Testing the plural resource of azure_microsoft_defender_pricing_settings."
+  desc "Testing the plural resource of azure_microsoft_defender_pricing_settings."
 
   describe azure_microsoft_defender_settings do
     it { should exist }
