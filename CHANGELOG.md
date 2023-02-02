@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.36 -->
+<!-- latest_release 1.118.37 -->
+## [v1.118.37](https://github.com/inspec/inspec-azure/tree/v1.118.37) (2023-02-02)
+
+#### Merged Pull Requests
+- Resource 589 create the singular and plural integration tests for azure microsoft defender setting and azure power bi app dashboard tile resources [#712](https://github.com/inspec/inspec-azure/pull/712) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.36](https://github.com/inspec/inspec-azure/tree/v1.118.36) (2023-02-02)
 
 #### Merged Pull Requests
 - RESOURCE-590  Create the integration tests for azure_power_bi_generic_resources resource [#713](https://github.com/inspec/inspec-azure/pull/713) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.35](https://github.com/inspec/inspec-azure/tree/v1.118.35) (2023-01-31)
 
