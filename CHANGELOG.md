@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.37 -->
+<!-- latest_release 1.118.38 -->
+## [v1.118.38](https://github.com/inspec/inspec-azure/tree/v1.118.38) (2023-02-02)
+
+#### Merged Pull Requests
+- Resource 585 create the integration test for azure graph generic resource and azure lock resources [#711](https://github.com/inspec/inspec-azure/pull/711) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.37](https://github.com/inspec/inspec-azure/tree/v1.118.37) (2023-02-02)
 
 #### Merged Pull Requests
 - Resource 589 create the singular and plural integration tests for azure microsoft defender setting and azure power bi app dashboard tile resources [#712](https://github.com/inspec/inspec-azure/pull/712) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.36](https://github.com/inspec/inspec-azure/tree/v1.118.36) (2023-02-02)
 
