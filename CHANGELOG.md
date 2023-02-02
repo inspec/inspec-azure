@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.35 -->
+<!-- latest_release 1.118.36 -->
+## [v1.118.36](https://github.com/inspec/inspec-azure/tree/v1.118.36) (2023-02-02)
+
+#### Merged Pull Requests
+- RESOURCE-590  Create the integration tests for azure_power_bi_generic_resources resource [#713](https://github.com/inspec/inspec-azure/pull/713) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
 ## [v1.118.35](https://github.com/inspec/inspec-azure/tree/v1.118.35) (2023-01-31)
 
 #### Merged Pull Requests
 - Create the integration test for datafactory linked_services and pipeline_run_resource [#710](https://github.com/inspec/inspec-azure/pull/710) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.34](https://github.com/inspec/inspec-azure/tree/v1.118.34) (2023-01-18)
 
