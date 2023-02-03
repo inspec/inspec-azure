@@ -52,7 +52,7 @@ class AzureKeyVault < AzureGenericResource
     super(opts, true)
 
     # `api_version` is fixed for backward compatibility.
-    @opts[:diagnostic_settings_api_version] ||= "2017-05-01-preview"
+    @opts[:diagnostic_settings_api_version] ||= "2021-05-01-preview"
   end
 
   def to_s
@@ -101,10 +101,16 @@ class AzureKeyVault < AzureGenericResource
   end
 
   def has_logging_enabled?
+
     return false if diagnostic_settings.nil? || diagnostic_settings.empty?
+
     log = diagnostic_settings.each do |setting|
-      log = setting.properties&.logs&.detect { |l| l.category == "AuditEvent" }
-      break log if log.present?
+      log = setting.properties&.logs&.detect { |l|
+              l.category == "AuditEvent" ||
+        l.categoryGroup == "audit" ||
+        l.categoryGroup == "allLogs" ||
+        l.categoryGroup == "AllMetrics"}
+      break log if log.present? && log.enabled?
     end
     log&.enabled
   end
