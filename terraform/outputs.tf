@@ -510,6 +510,10 @@ output "sample_directory_object" {
   value = var.sample_directory_object
 }
 
+output "linked_service_id" {
+  value = azurerm_data_factory_linked_service_mysql.dflsmsql.id
+}
+
 output "linked_service_name" {
   value = azurerm_data_factory_linked_service_mysql.dflsmsql.name
 }

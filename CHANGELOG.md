@@ -1,10 +1,30 @@
 # Changelog
-<!-- latest_release 1.118.34 -->
+<!-- latest_release 1.118.38 -->
+## [v1.118.38](https://github.com/inspec/inspec-azure/tree/v1.118.38) (2023-02-02)
+
+#### Merged Pull Requests
+- Resource 585 create the integration test for azure graph generic resource and azure lock resources [#711](https://github.com/inspec/inspec-azure/pull/711) ([soumyo13](https://github.com/soumyo13))
+<!-- latest_release -->
+
+## [v1.118.37](https://github.com/inspec/inspec-azure/tree/v1.118.37) (2023-02-02)
+
+#### Merged Pull Requests
+- Resource 589 create the singular and plural integration tests for azure microsoft defender setting and azure power bi app dashboard tile resources [#712](https://github.com/inspec/inspec-azure/pull/712) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.36](https://github.com/inspec/inspec-azure/tree/v1.118.36) (2023-02-02)
+
+#### Merged Pull Requests
+- RESOURCE-590  Create the integration tests for azure_power_bi_generic_resources resource [#713](https://github.com/inspec/inspec-azure/pull/713) ([soumyo13](https://github.com/soumyo13))
+
+## [v1.118.35](https://github.com/inspec/inspec-azure/tree/v1.118.35) (2023-01-31)
+
+#### Merged Pull Requests
+- Create the integration test for datafactory linked_services and pipeline_run_resource [#710](https://github.com/inspec/inspec-azure/pull/710) ([soumyo13](https://github.com/soumyo13))
+
 ## [v1.118.34](https://github.com/inspec/inspec-azure/tree/v1.118.34) (2023-01-18)
 
 #### Merged Pull Requests
 - Resource 511 change the integration test from azurerm to azure [#708](https://github.com/inspec/inspec-azure/pull/708) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.33](https://github.com/inspec/inspec-azure/tree/v1.118.33) (2023-01-16)
 
