@@ -70,6 +70,7 @@ class AzureKeyVault < AzureGenericResource
   # resource uri is the same as (resource) `id` of the key vault.
   #   @see: https://docs.microsoft.com/en-us/rest/api/monitor/diagnosticsettings/list
   #
+  #
   # `#additional_resource_properties` method will be used to get the diagnostic settings from the Rest API.
   #   property_name => The name of the properties, `diagnostic_settings`.
   #   property_endpoint => id + '/providers/microsoft.insights/diagnosticSettings'
