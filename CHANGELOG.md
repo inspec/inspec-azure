@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.38 -->
+<!-- latest_release 1.118.39 -->
+## [v1.118.39](https://github.com/inspec/inspec-azure/tree/v1.118.39) (2023-02-10)
+
+#### Merged Pull Requests
+- RESOURCE-591 version updated and log keys added [#715](https://github.com/inspec/inspec-azure/pull/715) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.118.38](https://github.com/inspec/inspec-azure/tree/v1.118.38) (2023-02-02)
 
 #### Merged Pull Requests
 - Resource 585 create the integration test for azure graph generic resource and azure lock resources [#711](https://github.com/inspec/inspec-azure/pull/711) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.37](https://github.com/inspec/inspec-azure/tree/v1.118.37) (2023-02-02)
 

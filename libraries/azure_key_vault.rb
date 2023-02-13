@@ -52,7 +52,7 @@ class AzureKeyVault < AzureGenericResource
     super(opts, true)
 
     # `api_version` is fixed for backward compatibility.
-    @opts[:diagnostic_settings_api_version] ||= "2017-05-01-preview"
+    @opts[:diagnostic_settings_api_version] ||= "2021-05-01-preview"
   end
 
   def to_s
@@ -69,6 +69,7 @@ class AzureKeyVault < AzureGenericResource
   #   providers/microsoft.insights/diagnosticSettings?api-version=2017-05-01-preview
   # resource uri is the same as (resource) `id` of the key vault.
   #   @see: https://docs.microsoft.com/en-us/rest/api/monitor/diagnosticsettings/list
+  #
   #
   # `#additional_resource_properties` method will be used to get the diagnostic settings from the Rest API.
   #   property_name => The name of the properties, `diagnostic_settings`.
@@ -102,9 +103,15 @@ class AzureKeyVault < AzureGenericResource
 
   def has_logging_enabled?
     return false if diagnostic_settings.nil? || diagnostic_settings.empty?
+
     log = diagnostic_settings.each do |setting|
-      log = setting.properties&.logs&.detect { |l| l.category == "AuditEvent" }
-      break log if log.present?
+      log = setting.properties&.logs&.detect { |l|
+        l.category == "AuditEvent" ||
+          l.categoryGroup == "audit" ||
+          l.categoryGroup == "allLogs" ||
+          l.categoryGroup == "AllMetrics"
+      }
+      break log if log.present? && log.enabled?
     end
     log&.enabled
   end
