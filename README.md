@@ -47,56 +47,64 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 - Azure Service Principal Account
 
 ### Configuration
-### Configuration
 
-For the driver to interact with the Microsoft Azure Resource Management REST API, you need to configure a Service Principal with Contributor rights for a specific subscription. Using an Organizational (AAD) account and related password is no longer supported. To create a Service Principal and apply the correct permissions, see the [create an Azure service principal with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#create-a-service-principal) and the [Azure CLI](https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-install/) documentation. Make sure you stay within the section titled 'Password-based authentication'.
+For the driver to interact with the Microsoft Azure Resource Management REST API, you need to configure a Service Principal with Contributor rights for a specific subscription. Using an Organizational (AAD) account and related password is no longer supported. 
+
+To create a Service Principal and apply the correct permissions, see the [create an Azure service principal with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#create-a-service-principal) and the [Azure CLI](https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-install/) documentation. Make sure you stay within the section titled 'Password-based authentication'.
 
 If the above is TLDR then try this after `az login` using your target subscription ID and the desired SP name:
 
 ```bash
-# Create a Service Principal using the desired subscription id from the command above
-az ad sp create-for-rbac --name="kitchen-azurerm" --role="Contributor" --scopes="/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-
-#Output
-#
-#{
-#  "appId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",    <- Also known as the Client ID
-#  "displayName": "azure-cli-2018-12-12-14-15-39",
-#  "name": "http://azure-cli-2018-12-12-14-15-39",
-#  "password": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-#  "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-#}
+az ad sp create-for-rbac --name="inspec-azure" --role="Contributor" --scopes="/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
+
+This above command helps to create the Service Principal account with the given subscription id.
+
+# Output
+
+```bash
+{
+  "appId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "displayName": "azure-cli-2018-12-12-14-15-39",
+  "name": "http://azure-cli-2018-12-12-14-15-39",
+  "password": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+```
+
+Explanation of the above output:
+
+| Attribute Name | Description                                             |
+|----------------|---------------------------------------------------------|
+| appId          | This is the Client Id of the user.                      |
+| displayName    | This is the display name of the Service Principal name. |
+| name           | This is the name of the Service Principal name.         |
+| password       | This is the Client Secret of the user.                  |
+| tenant         | This is the Tenant Id of the user.                      |
 
 NOTE: Don't forget to save the values from the output -- most importantly the `password`.
 
 You will also need to ensure you have an active Azure subscription (you can get started [for free](https://azure.microsoft.com/en-us/free/) or use your [MSDN Subscription](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits/)).
 
-You are now ready to configure kitchen-azurerm to use the credentials from the service principal you created above. You will use four elements from the output:
+You are now ready to configure `inspec-azure` to use the credentials from the service principal you created above. You will use four elements from the output:
 
 1. **Subscription ID**: available from the Azure portal
 2. **Client ID**: the appId value from the output.
 3. **Client Secret/Password**: the password from the output.
 4. **Tenant ID**: the tenant from the output.
 
-Using a text editor, open or create the file ```~/.azure/credentials``` and add the following section, noting there is one section per Subscription ID. **Make sure you save the file with UTF-8 encoding**
+These must be stored in an environment variables prefaced with `AZURE_`.  If you use Dotenv, then you can save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you do not use `Dotenv`, then you can create environment variables in the way that you prefer.
 
 ```ruby
-[ADD-YOUR-AZURE-SUBSCRIPTION-ID-HERE-IN-SQUARE-BRACKET]
-client_id = "your-azure-client-id-here"
-client_secret = "your-client-secret-here"
-tenant_id = "your-azure-tenant-id-here"
-```
-
-If preferred, you may also set the following environment variables, however this would be incompatible with supporting multiple Azure subscriptions.
-
-```ruby
-AZURE_CLIENT_ID="your-azure-client-id-here"
-AZURE_CLIENT_SECRET="your-client-secret-here"
-AZURE_TENANT_ID="your-azure-tenant-id-here"
+AZURE_CLIENT_ID=<your-azure-client-id-here>
+AZURE_CLIENT_SECRET=<your-client-secret-here>
+AZURE_TENANT_ID=<your-azure-tenant-id-here>
+SUBSCRIPTION_ID=<your-azure-subscription-id-here>
 ```
 
 Note that the environment variables, if set, take preference over the values in a configuration file.
+
+### Below is the manual procedure to create the Service Principal Account
 
 ### Service Principal
 
@@ -138,7 +146,7 @@ Since this is an InSpec resource pack, it only defines InSpec resources. To use 
 #### Create a new profile
 
 ```ruby
-$ inspec init profile --platform azure my-profile
+inspec init profile --platform azure my-profile
 ```
 
 Example `inspec.yml`:
