@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.40 -->
+<!-- latest_release 1.118.41 -->
+## [v1.118.41](https://github.com/inspec/inspec-azure/tree/v1.118.41) (2023-03-02)
+
+#### Merged Pull Requests
+- RESOURCE-84 AZURE CLI IMPLEMENTATION [#718](https://github.com/inspec/inspec-azure/pull/718) ([sa-progress](https://github.com/sa-progress))
+<!-- latest_release -->
+
 ## [v1.118.40](https://github.com/inspec/inspec-azure/tree/v1.118.40) (2023-02-13)
 
 #### Merged Pull Requests
 - Resource 592 Removing incomplete sentinel inspec azure resources [#714](https://github.com/inspec/inspec-azure/pull/714) ([soumyo13](https://github.com/soumyo13))
-<!-- latest_release -->
 
 ## [v1.118.39](https://github.com/inspec/inspec-azure/tree/v1.118.39) (2023-02-10)
 
