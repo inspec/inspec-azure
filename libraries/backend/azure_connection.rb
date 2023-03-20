@@ -57,7 +57,6 @@ class AzureConnection
     @storage_endpoint_suffix = @client_args[:endpoint].storage_endpoint_suffix
     @key_vault_dns_suffix = @client_args[:endpoint].key_vault_dns_suffix
     @graph_api_endpoint_api_version = @client_args[:endpoint].graph_api_endpoint_api_version
-
     @connection ||= Faraday.new do |conn|
       # Implement user provided HTTP client params for handling TimeOut exceptions.
       # https://www.rubydoc.info/gems/faraday/Faraday/Request/Retry
@@ -68,6 +67,14 @@ class AzureConnection
       conn.response :json, content_type: /\bjson$/, parser_options: { symbolize_names: true }
       conn.adapter Faraday.default_adapter
     end
+    # subscriptionId = 'e9f33b12-2297-4b42-bd77-74a71ec7bb1a' #ENV['AZURE_SUBSCRIPTION_ID']
+    # azureAccessToken=`az account get-access-token --subscription #{subscriptionId}`
+    # token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuY29yZS53aW5kb3dzLm5ldC8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kYjI2NmE2Ny1jYmUwLTRkMjYtYWUxYS1kMDU4MWZlMDM1MzUvIiwiaWF0IjoxNjc5MzM4NjUwLCJuYmYiOjE2NzkzMzg2NTAsImV4cCI6MTY3OTM0NDI5NiwiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhUQUFBQVl1OExYVk90S3JrWUVDMVJpeWM0WGdLbi9LVnM1U3FZT1NFcksreXJXUlBUR2RzSTdrQjQrNVl6ckVBVUNqUFFiUTdOWkNqMjNpd2hjZXNkSDRqZjdtOGpTM3lyeWhxVDhodmxPNzZ4V3AxeE9BVVJ2ekNHMmV6bWptcVFicUo3NUNxSmxoaEJhOHlkUVhMdXBlT0RzZz09IiwiYW1yIjpbInB3ZCIsIm1mYSJdLCJhcHBpZCI6IjA0YjA3Nzk1LThkZGItNDYxYS1iYmVlLTAyZjllMWJmN2I0NiIsImFwcGlkYWNyIjoiMCIsImZhbWlseV9uYW1lIjoiQW5hbmQiLCJnaXZlbl9uYW1lIjoiU2FtaXIiLCJncm91cHMiOlsiM2E4MDUzMWItMmI1Zi00YTdiLTg2ZjEtNGNkM2Q1YjRkMzY4IiwiYWRjMDczMjEtZWYyYi00NGQ1LWEyMTAtNTU5YWE1ZjEwZjJkIiwiZjBmZjMzMjktZmVlNS00Y2JhLWFkN2YtNjVjNGY2YThlOWRmIiwiMGJmMjkyMjktNTBkNy00MzNjLWIwOGUtMmE1ZDhiMjkzY2I1IiwiNzcyMTQ5NTQtODhlNy00NjMxLWI2NGYtODdlYTBmOGIzZTNjIiwiNTIxMTNjNzQtYzdhZC00Mzc2LTgyYjEtODViN2QzYTg0MDdiIiwiYTJhZTk1N2UtOTI1NC00MzU0LWJlMTgtMWFlNGE4ZmI0MzY4IiwiN2UyNTI4ODAtNzQ4ZS00NmVlLWExZWEtNmM2N2E3MWUzYzExIiwiNGZiMzJhOGUtNDAzZC00NzNkLWE1YmYtMTY1MGQ1OTdjMzc1IiwiNGMyMzk5OTItODk5OS00ZTMwLTllZDUtZWZmZjI4YjQxNWJlIiwiYWIzODkwYjAtNTU2NS00OTgyLWEzMDAtZjQ3MjhkNjIwN2FmIiwiNzMwYzg5YmMtMzE3OC00MThlLWEzMWEtNWYxNjU0ZjU1MmExIiwiOTZlYzIwYzQtZGE5ZC00MmU1LTllZWMtNDVmMWVlZmQwYmRlIiwiYTIxYmU3YzQtMWQwMy00M2FmLWI"
+    # @connection ||= Faraday.new do |conn|
+    #   conn.request :authorization, 'Bearer', azureAccessToken
+    #   conn.response :json, content_type: /\bjson$/, parser_options: { symbolize_names: true }
+    #   conn.adapter Faraday.default_adapter
+    # end
   end
 
   # azure://<client_id>:<secret>@<tenant_id>/<subscription_id>
@@ -115,7 +122,7 @@ class AzureConnection
       # Authenticate if necessary.
       authenticate(resource) if @@token_data[resource.to_sym].nil? || @@token_data[resource.to_sym].empty?
       # Update access token if expired.
-      authenticate(resource) if Time.now > @@token_data[resource.to_sym][:token_expires_on]
+      # authenticate(resource) if Time.now > @@token_data[resource.to_sym][:token_expires_on]
     end
     # Create the necessary headers.
     opts[:headers] ||= {}
@@ -145,36 +152,45 @@ class AzureConnection
   # https://docs.microsoft.com/en-us/rest/api/azure/
   #
   def authenticate(resource)
-    # Validate the presence of credentials.
-    unless credentials.values.compact.delete_if(&:empty?).size == 4
-      raise HTTPClientError::MissingCredentials, "The following must be set in the Environment:"\
-        " #{credentials.keys}.\n"\
-        "Missing: #{credentials.keys.select { |key| credentials[key].nil? }}"
-    end
+
+    # # Validate the presence of credentials.
+    # unless credentials.values.compact.delete_if(&:empty?).size == 4
+    #   raise HTTPClientError::MissingCredentials, "The following must be set in the Environment:"\
+    #     " #{credentials.keys}.\n"\
+    #     "Missing: #{credentials.keys.select { |key| credentials[key].nil? }}"
+    # end
+    tenant_id = 'db266a67-cbe0-4d26-ae1a-d0581fe03535'
     # Build up the url that is required to authenticate with Azure REST API
-    auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{credentials[:tenant_id]}/oauth2/token"
-    body = {
-      grant_type: "client_credentials",
-      client_id: credentials[:client_id],
-      client_secret: credentials[:client_secret],
-      resource: resource,
-    }
-    headers = {
-      "Content-Type" => "application/x-www-form-urlencoded",
-      "Accept" => "application/json",
-    }
-    resp = @connection.post(auth_url) do |req|
-      req.body = URI.encode_www_form(body)
-      req.headers = headers
+    auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{tenant_id}/oauth2/token"
+
+    if !credentials[:client_secret].nil? && credentials[:client_secret]!='dummy'
+      body = {
+        grant_type: "client_credentials",
+        client_id: credentials[:client_id],
+        client_secret: credentials[:client_secret],
+        resource: resource,
+      }
+      headers = {
+        "Content-Type" => "application/x-www-form-urlencoded",
+        "Accept" => "application/json",
+      }
+      resp = @connection.post(auth_url) do |req|
+        req.body = URI.encode_www_form(body)
+        req.headers = headers
+      end
+
+      if resp.status == 200
+        response_body = resp.body
+        @@token_data[resource.to_sym][:token] = response_body[:access_token]
+        @@token_data[resource.to_sym][:token_expires_on] = Time.at(Integer(response_body[:expires_on]))
+        @@token_data[resource.to_sym][:token_type] = response_body[:token_type]
+      else
+        fail_api_query(resp)
+      end
     end
-    if resp.status == 200
-      response_body = resp.body
-      @@token_data[resource.to_sym][:token] = response_body[:access_token]
-      @@token_data[resource.to_sym][:token_expires_on] = Time.at(Integer(response_body[:expires_on]))
-      @@token_data[resource.to_sym][:token_type] = response_body[:token_type]
-    else
-      fail_api_query(resp)
-    end
+    accessToken = `az account get-access-token --query accessToken -o tsv`
+    @@token_data[resource.to_sym][:token] = accessToken
+    @@token_data[resource.to_sym][:token_type] = 'bearer'
   end
 
   # Raise custom exceptions for failed Azure Rest API calls.
