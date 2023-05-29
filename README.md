@@ -44,7 +44,18 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 - Ruby
 - Bundler installed
-- Azure Service Principal Account
+
+### Azure CLI 
+- ``` az login --tenant AZURE_TENANT_ID```
+- These must be stored in an environment variables prefaced with `AZURE_`.  If you use Dotenv, then you can save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you do not use `Dotenv`, then you can create environment variables in the way that you prefer.
+
+```ruby
+AZURE_TENANT_ID=<your-azure-tenant-id-here>
+SUBSCRIPTION_ID=<your-azure-subscription-id-here>
+```
+
+
+### Azure Service Principal Account
 
 ### Configuration
 
