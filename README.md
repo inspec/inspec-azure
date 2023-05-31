@@ -48,13 +48,22 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 ### Authentication
 ### Azure CLI Authentication: 
 -The Azure CLI provides a command-line interface for interacting with Azure services. 
-a. Use the az login --tenant AZURE_TENANT_ID command to log in with a specific Azure tenant: If you have a specific Azure tenant ID, you can provide it as a parameter to the az login command. If you don't specify the tenant ID, the CLI will provide a list of available tenants.
+ 
+```bash
+  az login --tenant AZURE_TENANT_ID
+```
+a. Use the `az login --tenant AZURE_TENANT_ID` command to log in with a specific Azure tenant: If you have a specific Azure tenant ID, you can provide it as a parameter to the az login command. If you don't specify the tenant ID, the CLI will provide a list of available tenants.
 
 b. If the CLI can open your default browser: If the CLI can open your default browser, it will initiate the authorization code flow and open the Azure sign-in page in the browser for authentication.
 
 c. If no web browser is available or fails to open: In case a web browser is not available or fails to open, the CLI will initiate the device code flow. It will provide you with a code and instruct you to open a browser page at https://aka.ms/devicelogin. You need to enter the code displayed in your terminal on that page for authentication.
 
 d. Storing retrieved credentials: The documentation suggests storing the retrieved credentials, such as tenant_id and subscription_id, in environment variables prefaced with AZURE_. It provides an example of using a .envrc file or creating environment variables using the preferred method.
+
+```ruby
+        AZURE_TENANT_ID=<your-azure-tenant-id-here>
+        AZURE_SUBSCRIPTION_ID=<your-azure-subscription-id-here>
+```
 
 ### Azure Service Principal Account Authentication:
 
