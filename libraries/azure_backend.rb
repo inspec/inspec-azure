@@ -55,7 +55,7 @@ class AzureResourceBase < Inspec.resource(1)
 
 
     # We can't raise an error due to `InSpec check` builds up a dummy backend and any error at this stage fails it.
-    unless @azure.credentials.values.compact.delete_if(&:empty?).size == 2
+    unless @azure.credentials.values.compact.delete_if(&:empty?).size >= 2
       Inspec::Log.error "The following must be set in the Environment:"\
         " #{@azure.credentials.keys}.\n"\
         "Missing: #{@azure.credentials.keys.select { |key| @azure.credentials[key].nil? }}"

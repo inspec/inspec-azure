@@ -147,14 +147,13 @@ class AzureConnection
   #
   def authenticate(resource)
     # Validate the presence of credentials.
-    unless credentials.values.compact.delete_if(&:empty?).size == 2
+    unless credentials.values.compact.delete_if(&:empty?).size >= 2
       raise HTTPClientError::MissingCredentials, "The following must be set in the Environment:"\
         " #{credentials.keys}.\n"\
         "Missing: #{credentials.keys.select { |key| credentials[key].nil? }}"
     end
     # Build up the url that is required to authenticate with Azure REST API
     auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{credentials[:tenant_id]}/oauth2/token"
-
     if !credentials[:client_secret].nil?
       body = {
         grant_type: "client_credentials",
