@@ -60,9 +60,9 @@ c. If no web browser is available or fails to open: In case a web browser is not
 
 d. Storing retrieved credentials: The documentation suggests storing the retrieved credentials, such as tenant_id and subscription_id, in environment variables prefaced with AZURE_. It provides an example of using a .envrc file or creating environment variables using the preferred method.
 
-```ruby :wq
-        AZURE_TENANT_ID=<your-azure-tenant-id-here>
-        AZURE_SUBSCRIPTION_ID=<your-azure-subscription-id-here>
+```ruby
+AZURE_TENANT_ID=<your-azure-tenant-id-here>
+AZURE_SUBSCRIPTION_ID=<your-azure-subscription-id-here>
 ```
 
 ### Azure Service Principal Account Authentication:
