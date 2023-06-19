@@ -154,7 +154,7 @@ class AzureConnection
     end
     # Build up the url that is required to authenticate with Azure REST API
     auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{credentials[:tenant_id]}/oauth2/token"
-    if !credentials[:client_secret].nil?
+    if credentials[:client_secret].present? 
       body = {
         grant_type: "client_credentials",
         client_id: credentials[:client_id],
