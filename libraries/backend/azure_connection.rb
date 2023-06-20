@@ -1,4 +1,4 @@
-require "backend/helpers"
+require 'backend/helpers'
 require 'time'
 require 'json'
 # Client class to manage the Azure REST API connection.
@@ -16,7 +16,7 @@ class AzureConnection
   @@provider_details = {}
 
   # This will be included in headers for statistical purposes.
-  INSPEC_USER_AGENT = "pid-18d63047-6cdf-4f34-beed-62f01fc73fc2".freeze
+  INSPEC_USER_AGENT = 'pid-18d63047-6cdf-4f34-beed-62f01fc73fc2'.freeze
 
   # @return [String] the resource management endpoint url
   attr_reader :resource_manager_endpoint_url
@@ -39,7 +39,7 @@ class AzureConnection
   # Creates a HTTP client.
   def initialize(client_args)
     # Validate parameter's type.
-    raise ArgumentError, "Parameters must be provided in an Hash object." unless client_args.is_a?(Hash)
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless client_args.is_a?(Hash)
 
     # The valid client args:
     #   - endpoint: [String]
@@ -50,7 +50,7 @@ class AzureConnection
     #       in order to provide back-off (default - 1)
     @client_args = client_args
 
-    raise StandardError, "Endpoint has to be provided to establish a connection with Azure REST API." \
+    raise StandardError, 'Endpoint has to be provided to establish a connection with Azure REST API.' \
       unless @client_args.key?(:endpoint)
     @resource_manager_endpoint_url = @client_args[:endpoint].resource_manager_endpoint_url
     @resource_manager_endpoint_api_version = @client_args[:endpoint].resource_manager_endpoint_api_version
@@ -76,10 +76,10 @@ class AzureConnection
   def credentials
     # azure://<user>:<password>@<host>/<path>
     @credentials ||= {
-      tenant_id: creds_from_uri[:host] || ENV["AZURE_TENANT_ID"],
-      client_id: creds_from_uri[:user] || ENV["AZURE_CLIENT_ID"],
-      client_secret: creds_from_uri[:password] || ENV["AZURE_CLIENT_SECRET"],
-      subscription_id: creds_from_uri[:path]&.gsub("/", "") || ENV["AZURE_SUBSCRIPTION_ID"],
+      tenant_id: creds_from_uri[:host] || ENV['AZURE_TENANT_ID'],
+      client_id: creds_from_uri[:user] || ENV['AZURE_CLIENT_ID'],
+      client_secret: creds_from_uri[:password] || ENV['AZURE_CLIENT_SECRET'],
+      subscription_id: creds_from_uri[:path]&.gsub('/', '') || ENV['AZURE_SUBSCRIPTION_ID'],
     }
   end
 
@@ -112,7 +112,7 @@ class AzureConnection
     resource = opts[:audience] || "#{uri.scheme}://#{uri.host}"
 
     # If it is a paged response than the provided nextLink will contain `skiptoken` in parameters.
-    unless opts[:url].include?("skiptoken")
+    unless opts[:url].include?('skiptoken')
       # Authenticate if necessary.
       authenticate(resource) if @@token_data[resource.to_sym].nil? || @@token_data[resource.to_sym].empty?
       # Update access token if expired.
@@ -120,10 +120,10 @@ class AzureConnection
     end
     # Create the necessary headers.
     opts[:headers] ||= {}
-    opts[:headers]["User-Agent"] = INSPEC_USER_AGENT
-    opts[:headers]["Authorization"] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
-    opts[:headers]["Accept"] = "application/json"
-    opts[:method] ||= "get"
+    opts[:headers]['User-Agent'] = INSPEC_USER_AGENT
+    opts[:headers]['Authorization'] = "#{@@token_data[resource.to_sym][:token_type]} #{@@token_data[resource.to_sym][:token]}"
+    opts[:headers]['Accept'] = 'application/json'
+    opts[:method] ||= 'get'
     resp = send_request(opts)
 
     if resp.status == 200
@@ -148,7 +148,7 @@ class AzureConnection
   def authenticate(resource)
     # Validate the presence of credentials.
     unless credentials.values.compact.delete_if(&:empty?).size >= 2
-      raise HTTPClientError::MissingCredentials, "The following must be set in the Environment:"\
+      raise HTTPClientError::MissingCredentials, 'The following must be set in the Environment:'\
         " #{credentials.keys}.\n"\
         "Missing: #{credentials.keys.select { |key| credentials[key].nil? }}"
     end
@@ -156,14 +156,14 @@ class AzureConnection
     auth_url = "#{@client_args[:endpoint].active_directory_endpoint_url}#{credentials[:tenant_id]}/oauth2/token"
     if credentials[:client_secret].present? 
       body = {
-        grant_type: "client_credentials",
+        grant_type: 'client_credentials',
         client_id: credentials[:client_id],
         client_secret: credentials[:client_secret],
         resource: resource,
       }
       headers = {
-        "Content-Type" => "application/x-www-form-urlencoded",
-        "Accept" => "application/json",
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        'Accept' => 'application/json',
       }
       resp = @connection.post(auth_url) do |req|
         req.body = URI.encode_www_form(body)
@@ -179,12 +179,19 @@ class AzureConnection
         fail_api_query(resp)
       end
     else
-
-      response = `az account get-access-token`
+      begin
+        response = `az account get-access-token`
+      rescue StandardError => e
+        puts "An error occurred which execution az cli command: #{e.message}"
+        raise HTTPClientError::MissingCLICredentials, 'Wrong TENANT_ID CLIENT_ID CLIENT_SECRET SUBSCRIPTION_ID or did not execute az login with correct tenant id'
+      end
+      unless response.nil? || !response.empty?
+        raise raise HTTPClientError::MissingCLICredentials, 'Wrong TENANT_ID CLIENT_ID CLIENT_SECRET SUBSCRIPTION_ID or did not execute az login with correct tenant id'
+      end
       response_body = JSON.parse(response)
-      @@token_data[resource.to_sym][:token] = response_body["accessToken"]
-      @@token_data[resource.to_sym][:token_expires_on] = Time.parse(response_body["expiresOn"])
-      @@token_data[resource.to_sym][:token_type] = response_body["tokenType"]
+      @@token_data[resource.to_sym][:token] = response_body['accessToken']
+      @@token_data[resource.to_sym][:token_expires_on] = Time.parse(response_body['expiresOn'])
+      @@token_data[resource.to_sym][:token_type] = response_body['tokenType']
 
     end
   end
@@ -211,9 +218,9 @@ class AzureConnection
       end
       message += code.nil? ? "#{code} #{error_message}" : resp.body.to_s
       resource_not_found_codes = %w{Request_ResourceNotFound ResourceGroupNotFound ResourceNotFound NotFound}
-      resource_not_found_keywords = ["could not be found"]
-      wrong_api_keywords = ["The supported api-versions are", "The supported versions are", "Consider using the latest supported version"]
-      explicit_invalid_api_code = "InvalidApiVersionParameter"
+      resource_not_found_keywords = ['could not be found']
+      wrong_api_keywords = ['The supported api-versions are', 'The supported versions are', 'Consider using the latest supported version']
+      explicit_invalid_api_code = 'InvalidApiVersionParameter'
       possible_invalid_api_codes = %w{InvalidApiVersionParameter NoRegisteredProviderFound InvalidResourceType BadParameter}
       code = code.to_s
       if code
@@ -237,18 +244,18 @@ class AzureConnection
 
   def send_request(opts)
     case opts[:method]
-    when "get"
+    when 'get'
       @connection.get(opts[:url]) do |req|
         req.params =  opts[:params] unless opts[:params].nil?
         req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
       end
-    when "post"
+    when 'post'
       @connection.post(opts[:url]) do |req|
         req.params = opts[:params] unless opts[:params].nil?
         req.headers = opts[:headers].merge(opts[:headers]) unless opts[:headers].nil?
         req.body = opts[:req_body] unless opts[:req_body].nil?
       end
-    when "head"
+    when 'head'
       @connection.head(opts[:url]) do |req|
         req.params = opts[:params] unless opts[:params].nil?
         req.headers = opts[:headers] unless opts[:headers].nil?
@@ -263,7 +270,7 @@ class AzureConnection
   def creds_from_uri
     return @creds_from_uri if defined? @creds_from_uri
 
-    if ENV["RAKE_ENV"] == "test"
+    if ENV['RAKE_ENV'] == 'test'
       Inspec::Config.mock.unpack_train_credentials
     else
       begin

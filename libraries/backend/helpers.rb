@@ -70,6 +70,7 @@ end
 
 class HTTPClientError < StandardError
   class MissingCredentials < StandardError; end
+  class MissingCLICredentials < StandardError; end
 end
 
 # Create necessary Azure environment variables and provide access to them
