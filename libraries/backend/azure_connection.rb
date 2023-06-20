@@ -188,6 +188,7 @@ class AzureConnection
       unless response.nil? || !response.empty?
         raise raise HTTPClientError::MissingCLICredentials, 'Wrong TENANT_ID CLIENT_ID CLIENT_SECRET SUBSCRIPTION_ID or did not execute az login with correct tenant id'
       end
+
       response_body = JSON.parse(response)
       @@token_data[resource.to_sym][:token] = response_body['accessToken']
       @@token_data[resource.to_sym][:token_expires_on] = Time.parse(response_body['expiresOn'])
