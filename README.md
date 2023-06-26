@@ -47,8 +47,8 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 ### Authentication
 ### Azure CLI Authentication: 
--The Azure CLI provides a command-line interface for interacting with Azure services. 
- 
+-The Azure CLI provides a command-line interface for interacting with Azure services.
+To enable authentication, you will need to install the Azure CLI.- [https://learn.microsoft.com/en-us/cli/azure/install-azure-cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 ```bash
   az login --tenant AZURE_TENANT_ID
 ```
