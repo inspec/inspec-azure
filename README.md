@@ -44,67 +44,28 @@ This InSpec resource pack uses the Azure REST API and provides the required reso
 
 - Ruby
 - Bundler installed
-- Azure Service Principal Account
 
-### Configuration
-
-For the driver to interact with the Microsoft Azure Resource Management REST API, you need to configure a Service Principal with Contributor rights for a specific subscription. Using an Organizational (AAD) account and related password is no longer supported. 
-
-To create a Service Principal and apply the correct permissions, see the [create an Azure service principal with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest#create-a-service-principal) and the [Azure CLI](https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-install/) documentation. Make sure you stay within the section titled 'Password-based authentication'.
-
-If the above is TLDR then try this after `az login` using your target subscription ID and the desired SP name:
-
+### Authentication
+### Azure CLI Authentication: 
+-The Azure CLI provides a command-line interface for interacting with Azure services.
+To enable authentication, you will need to install the Azure CLI.- [https://learn.microsoft.com/en-us/cli/azure/install-azure-cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 ```bash
-az ad sp create-for-rbac --name="inspec-azure" --role="Contributor" --scopes="/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  az login --tenant AZURE_TENANT_ID
 ```
+a. Use the `az login --tenant AZURE_TENANT_ID` command to log in with a specific Azure tenant: If you have a specific Azure tenant ID, you can provide it as a parameter to the az login command. If you don't specify the tenant ID, the CLI will provide a list of available tenants.
 
-This above command helps to create the Service Principal account with the given subscription id.
+b. If the CLI can open your default browser: If the CLI can open your default browser, it will initiate the authorization code flow and open the Azure sign-in page in the browser for authentication.
 
-# Output
+c. If no web browser is available or fails to open: In case a web browser is not available or fails to open, the CLI will initiate the device code flow. It will provide you with a code and instruct you to open a browser page at https://aka.ms/devicelogin. You need to enter the code displayed in your terminal on that page for authentication.
 
-```bash
-{
-  "appId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "displayName": "azure-cli-2018-12-12-14-15-39",
-  "name": "http://azure-cli-2018-12-12-14-15-39",
-  "password": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-  "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-}
-```
-
-Explanation of the above output:
-
-| Attribute Name | Description                                             |
-|----------------|---------------------------------------------------------|
-| appId          | This is the Client Id of the user.                      |
-| displayName    | This is the display name of the Service Principal name. |
-| name           | This is the name of the Service Principal name.         |
-| password       | This is the Client Secret of the user.                  |
-| tenant         | This is the Tenant Id of the user.                      |
-
-NOTE: Don't forget to save the values from the output -- most importantly the `password`.
-
-You will also need to ensure you have an active Azure subscription (you can get started [for free](https://azure.microsoft.com/en-us/free/) or use your [MSDN Subscription](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits/)).
-
-You are now ready to configure `inspec-azure` to use the credentials from the service principal you created above. You will use four elements from the output:
-
-1. **Subscription ID**: available from the Azure portal
-2. **Client ID**: the appId value from the output.
-3. **Client Secret/Password**: the password from the output.
-4. **Tenant ID**: the tenant from the output.
-
-These must be stored in an environment variables prefaced with `AZURE_`.  If you use Dotenv, then you can save these values in your own `.envrc` file. Either source it or run `direnv allow`. If you do not use `Dotenv`, then you can create environment variables in the way that you prefer.
+d. Storing retrieved credentials: The documentation suggests storing the retrieved credentials, such as tenant_id and subscription_id, in environment variables prefaced with AZURE_. It provides an example of using a .envrc file or creating environment variables using the preferred method.
 
 ```ruby
-AZURE_CLIENT_ID=<your-azure-client-id-here>
-AZURE_CLIENT_SECRET=<your-client-secret-here>
 AZURE_TENANT_ID=<your-azure-tenant-id-here>
-SUBSCRIPTION_ID=<your-azure-subscription-id-here>
+AZURE_SUBSCRIPTION_ID=<your-azure-subscription-id-here>
 ```
 
-Note that the environment variables, if set, take preference over the values in a configuration file.
-
-### Below is the manual procedure to create the Service Principal Account
+### Azure Service Principal Account Authentication:
 
 ### Service Principal
 
