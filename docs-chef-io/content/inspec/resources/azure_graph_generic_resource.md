@@ -14,11 +14,11 @@ Use the `azure_graph_generic_resource` Inspec audit resource to test any valid A
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -65,11 +65,11 @@ describe azure_graph_generic_resource(resource: 'USERS', id: 'jdoe@contoso.com',
 end
 ```
 
-For more examples, please see the [integration tests](../../test/integration/verify/controls/azure_graph_generic_resource.rb).
+For more examples, please see the [integration tests](https://github.com/inspec/inspec-azure/blob/main/test/integration/verify/controls/azure_graph_generic_resource.rb).
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
 ### exist
 

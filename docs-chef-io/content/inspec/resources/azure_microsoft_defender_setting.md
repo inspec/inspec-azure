@@ -52,7 +52,7 @@ This resource does not have any examples.
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
 ### exists
 

@@ -14,11 +14,11 @@ Use the `azure_application_gateway` InSpec audit resource to test the properties
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -84,7 +84,7 @@ describe azure_application_gateway(resource_id: '/subscriptions/{subscriptionId}
 end
 ```
 
-See [integration tests](../../test/integration/verify/controls/azurerm_application_gateway.rb) for more examples.
+See [integration tests](https://github.com/inspec/inspec-azure/blob/main/test/integration/verify/controls/azure_application_gateway.rb) for more examples.
 
 ## Matchers
 
@@ -112,4 +112,4 @@ end
 
 ## Azure Permissions
 
-{{% azure_permissions_service_principal role="contributor" %}}
+{{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

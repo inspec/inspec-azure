@@ -14,11 +14,11 @@ Use the `azure_virtual_network_gateway` InSpec audit resource to test the proper
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -109,4 +109,4 @@ end
 
 ## Azure Permissions
 
-{{% azure_permissions_service_principal role="reader" %}}
+{{% inspec-azure/azure_permissions_service_principal role="reader" %}}

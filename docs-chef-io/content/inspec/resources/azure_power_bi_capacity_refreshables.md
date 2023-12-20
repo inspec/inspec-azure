@@ -14,11 +14,11 @@ Use the `azure_power_bi_capacity_refreshables` InSpec audit resource to test the
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -77,7 +77,11 @@ end
 
 : **Field**: `averageDuration`
 
-{{% inspec_filter_table %}}
+{{< note >}}
+
+{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+
+{{< /note>}}
 
 For additional information, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/capacities/get-refreshables) for other properties available.
 
@@ -93,7 +97,7 @@ end
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
 ### exists
 
