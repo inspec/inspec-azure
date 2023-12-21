@@ -93,6 +93,8 @@ end
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### custom
 
 Test if a policy definition type is `Custom` or not.

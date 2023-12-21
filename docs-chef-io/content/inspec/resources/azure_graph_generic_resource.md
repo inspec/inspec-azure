@@ -71,6 +71,8 @@ For more examples, please see the [integration tests](https://github.com/inspec/
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### exist
 
 ```ruby

@@ -80,6 +80,8 @@ This resource does not have any examples.
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### exist
 
 The control passes if the filter returns at least one result.

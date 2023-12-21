@@ -158,6 +158,8 @@ See [integration tests](https://github.com/inspec/inspec-azure/blob/main/test/in
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### have_auto_provisioning_enabled
 
 Test if auto provisioning is enabled. This can be used via the default security policy only.

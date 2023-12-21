@@ -141,6 +141,8 @@ end
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### compliant
 
 Test if a policy definition type is `Compliant` or not.

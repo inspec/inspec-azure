@@ -89,6 +89,8 @@ See [integration tests](https://github.com/inspec/inspec-azure/blob/main/test/in
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### exist
 
 The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.

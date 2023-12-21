@@ -182,6 +182,8 @@ Please note that `allow` requires the `direction` parameter to be set to `inboun
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### exists
 
 The control passes if the resource returns a result. Use `should_not` if you expect zero matches.

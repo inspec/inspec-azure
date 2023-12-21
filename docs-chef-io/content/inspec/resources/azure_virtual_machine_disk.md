@@ -119,6 +119,8 @@ end
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### attached
 
 Test if a disk is attached to a virtual machine.

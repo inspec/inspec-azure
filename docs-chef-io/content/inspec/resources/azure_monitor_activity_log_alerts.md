@@ -106,6 +106,8 @@ end
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### exists
 
 The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.

@@ -93,6 +93,8 @@ end
 
 {{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
+This resource has the following special matchers.
+
 ### Test webapp to ensure it's using the latest supported version of .NET
 
 ```ruby
