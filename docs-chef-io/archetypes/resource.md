@@ -16,11 +16,11 @@ Use the `{{ .Name }}` Chef InSpec audit resource to test properties of...
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -48,7 +48,7 @@ end
 
 ## Examples
 
-**EXAMPLE DESCRIPTION**
+EXAMPLE DESCRIPTION
 
 ```ruby
 describe {{ .Name }} do
@@ -56,7 +56,7 @@ describe {{ .Name }} do
 end
 ```
 
-**EXAMPLE DESCRIPTION**
+EXAMPLE DESCRIPTION
 
 ```ruby
 describe {{ .Name }} do
@@ -66,7 +66,7 @@ end
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
 
 ## Azure Permissions
 
