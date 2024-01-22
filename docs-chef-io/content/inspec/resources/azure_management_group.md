@@ -14,11 +14,11 @@ Use the `azure_management_group` InSpec audit resource to test the properties of
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -101,7 +101,7 @@ describe azure_management_group(group_id: 'ABC-1234', recurse: true, expand: 'CH
 end
 ```
 
-See [integration tests](../../test/integration/verify/controls/azurerm_management_group.rb) for more examples.
+See [integration tests](https://github.com/inspec/inspec-azure/blob/main/test/integration/verify/controls/azure_management_group.rb) for more examples.
 
 ## Matchers
 
@@ -129,4 +129,4 @@ end
 
 ## Azure Permissions
 
-{{% azure_permissions_service_principal role="contributor" %}}
+{{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

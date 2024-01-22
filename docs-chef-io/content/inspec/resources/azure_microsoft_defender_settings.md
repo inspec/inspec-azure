@@ -51,7 +51,11 @@ No required parameters.
 
 : **Field**: `properties`
 
-{{% inspec_filter_table %}}
+{{< note >}}
+
+{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+
+{{< /note>}}
 
 See the [Azure documentation on Defender for Cloud Settings configuration](https://learn.microsoft.com/en-us/rest/api/defenderforcloud/settings/list?tabs=HTTP) for additional information. You may access any attribute in the response with the key names separated by dots (`.`).
 
@@ -61,7 +65,9 @@ This resource does not have any examples.
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+
+This resource has the following special matchers.
 
 ### exist
 

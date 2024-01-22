@@ -14,11 +14,11 @@ Use the `azure_blob_services` Chef InSpec audit resource to test the properties 
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -65,7 +65,11 @@ end
 
 : **Field**: `type`
 
-{{% inspec_filter_table %}}
+{{< note >}}
+
+{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+
+{{< /note>}}
 
 See [Azure's documentation on Blob services](https://learn.microsoft.com/en-us/rest/api/storagerp/blob-services/list?tabs=HTTP) for a full list of available properties.
 
@@ -79,11 +83,13 @@ describe azure_blob_services(resource_group: 'RESOURCE_GROUP_NAME', storage_acco
 end
 ```
 
-See [integration tests](../../test/integration/verify/controls/azure_blob_services.rb) for more examples.
+See [integration tests](https://github.com/inspec/inspec-azure/blob/main/test/integration/verify/controls/azure_blob_services.rb) for more examples.
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+
+This resource has the following special matchers.
 
 ### exist
 
@@ -103,4 +109,4 @@ end
 
 ## Azure Permissions
 
-{{% azure_permissions_service_principal role="contributor" %}}
+{{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

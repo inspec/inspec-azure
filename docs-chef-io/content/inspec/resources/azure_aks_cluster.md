@@ -14,11 +14,11 @@ Use the `azure_aks_cluster` InSpec audit resource to test the properties of an A
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{% inspec_azure_common_parameters %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -117,7 +117,7 @@ describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do
 end
 ```
 
-See [integration tests](../../test/integration/verify/controls/azurerm_aks_cluster.rb) for more examples.
+See [integration tests](https://github.com/inspec/inspec-azure/blob/main/test/integration/verify/controls/azure_aks_cluster.rb) for more examples.
 
 ## Matchers
 
@@ -145,4 +145,4 @@ end
 
 ## Azure Permissions
 
-{{% azure_permissions_service_principal role="contributor" %}}
+{{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

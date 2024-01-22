@@ -12,9 +12,9 @@ parent = "inspec/resources/azure"
 
 Use the `azure_generic_resource` Inspec audit resource to test any valid Azure resource available through Azure Resource Manager.
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -178,7 +178,9 @@ For more examples, please see the [integration tests](/test/integration/verify/c
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+
+This resource has the following special matchers.
 
 ### exist
 
@@ -202,4 +204,4 @@ end
 
 ## Azure Permissions
 
-{{% azure_permissions_service_principal role="contributor" %}}
+{{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

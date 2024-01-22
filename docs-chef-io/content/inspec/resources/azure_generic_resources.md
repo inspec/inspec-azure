@@ -12,9 +12,9 @@ parent = "inspec/resources/azure"
 
 Use the `azure_generic_resources` Inspec audit resource to test any valid Azure resources.
 
-## Installation
+## Install
 
-{{% inspec_azure_install %}}
+{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_install.md" >}}
 
 ## Syntax
 
@@ -142,7 +142,11 @@ It is advised to use these parameter sets to narrow down the targeted resources 
 
 : **Field**: `provisioning_state`
 
-{{% inspec_filter_table %}}
+{{< note >}}
+
+{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+
+{{< /note>}}
 
 <superscript>**</superscript> These properties are not available when `resource_uri` is used.
 
@@ -211,13 +215,19 @@ describe azure_generic_resources(add_subscription_id: true, resource_uri: "provi
 end
 ```
 
-{{% inspec_filter_table %}}
+{{< note >}}
+
+{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+
+{{< /note>}}
 
 For more examples, please see the [integration tests](/test/integration/verify/controls/azure_generic_resources.rb).
 
 ## Matchers
 
-{{% inspec_matchers_link %}}
+{{< readfile file="content/inspec/reusable/md/inspec_matchers_link.md" >}}
+
+This resource has the following special matchers.
 
 ### exist
 
@@ -241,4 +251,4 @@ end
 
 ## Azure Permissions
 
-{{% azure_permissions_service_principal role="contributor" %}}
+{{% inspec-azure/azure_permissions_service_principal role="contributor" %}}
