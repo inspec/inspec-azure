@@ -9,6 +9,7 @@ if RUBY_VERSION.start_with?("2.7")
   gem "concurrent-ruby", "< 1.2"
   gem "dry-core", "< 1.0"
   gem "dry-logic", "< 1.0"
+  gem "mixlib-shellout", "< 3.0"
 else
   gem "activesupport"
 end
