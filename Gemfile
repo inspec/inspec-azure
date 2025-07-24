@@ -19,6 +19,7 @@ gem "inspec-bin"
 gem "rake"
 
 group :development do
+  gem "byebug", "< 12"
   gem "pry"
   gem "pry-byebug"
 end
