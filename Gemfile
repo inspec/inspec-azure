@@ -3,6 +3,7 @@ source "https://rubygems.org"
 if RUBY_VERSION.start_with?("2.7")
   gem "activesupport", "< 7"
   gem "zeitwerk", "< 2.7"
+  gem "public_suffix", "< 5"
 else
   gem "activesupport"
 end
