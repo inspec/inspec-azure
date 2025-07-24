@@ -1,5 +1,11 @@
 source "https://rubygems.org"
 
+if RUBY_VERSION.start_with?("2.7")
+  gem "activesupport", "< 7"
+else
+  gem "activesupport"
+end
+
 gem "faraday"
 gem "faraday_middleware"
 gem "inspec-bin"
