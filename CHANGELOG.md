@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.43 -->
+<!-- latest_release 1.118.44 -->
+## [v1.118.44](https://github.com/inspec/inspec-azure/tree/v1.118.44) (2025-07-28)
+
+#### Merged Pull Requests
+- Minor docs fixes [#725](https://github.com/inspec/inspec-azure/pull/725) ([IanMadd](https://github.com/IanMadd))
+<!-- latest_release -->
+
 ## [v1.118.43](https://github.com/inspec/inspec-azure/tree/v1.118.43) (2024-01-22)
 
 #### Merged Pull Requests
 - Reorganize reusable text files [#722](https://github.com/inspec/inspec-azure/pull/722) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.118.42](https://github.com/inspec/inspec-azure/tree/v1.118.42) (2023-07-27)
 
