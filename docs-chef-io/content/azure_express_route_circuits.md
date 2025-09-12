@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_express_route_circuits` InSpec audit resource to test the properties of Azure ExpressRoute circuits for a resource group.
 
-## Azure Rest API Version, Endpoint, And HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
 If not provided, the latest version is used. For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
@@ -178,6 +178,6 @@ describe azure_express_route_circuits(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

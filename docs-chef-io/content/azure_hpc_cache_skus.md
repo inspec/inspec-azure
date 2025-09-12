@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_hpc_cache_skus` InSpec audit resource to test the properties related to all Azure HPC Cache SKUs.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -90,6 +90,6 @@ describe azure_hpc_cache_skus do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

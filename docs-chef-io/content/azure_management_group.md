@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_management_group` InSpec audit resource to test the properties of an Azure management group.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -123,6 +123,6 @@ describe azure_management_group(name: 'ABCD-1234') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

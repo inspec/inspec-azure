@@ -245,6 +245,6 @@ describe azure_generic_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

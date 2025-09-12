@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_service_bus_topic` InSpec audit resource to test the properties related to an Azure Service Bus topic.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -108,6 +108,6 @@ describe azure_service_bus_topic(resource_group: 'RESOURCE_GROUP', namespace_nam
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

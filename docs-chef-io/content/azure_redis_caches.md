@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_redis_caches` InSpec audit resource to test the properties of multiple Azure Redis caches in a resource group or an entire subscription.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -220,6 +220,6 @@ describe azure_redis_caches(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

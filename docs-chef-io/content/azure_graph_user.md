@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_graph_user` InSpec audit resource to test the properties of an Azure Active Directory user within a Tenant.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -143,7 +143,7 @@ describe azure_graph_user(user_id: 'someUserId') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 Graph resources require specific privileges granted to your service principal.
 Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.

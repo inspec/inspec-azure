@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_power_bi_embedded_capacity` InSpec audit resource to test the properties related to an Azure Power BI Embedded Capacity.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -111,6 +111,6 @@ describe azure_power_bi_embedded_capacity(resource_group: 'RESOURCE_GROUP', name
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

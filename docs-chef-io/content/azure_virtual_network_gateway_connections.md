@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_virtual_network_gateway_connections` InSpec audit resource to test the properties related to all Azure Virtual Network Gateway connections within a project.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -144,6 +144,6 @@ describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GRO
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

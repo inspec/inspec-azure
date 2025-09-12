@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_resource_group` InSpec audit resource to test the properties and configuration of an Azure resource group.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -107,6 +107,6 @@ describe azure_resource_group(name: 'RESOURCE_GROUP') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

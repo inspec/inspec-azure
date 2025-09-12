@@ -198,6 +198,6 @@ describe azure_generic_resource(name: 'a_very_unique_name_within_subscription') 
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

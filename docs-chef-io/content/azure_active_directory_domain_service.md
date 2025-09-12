@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_active_directory_domain_service` InSpec audit resource to test the properties of an Azure Active Directory service within a tenant.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -103,6 +103,6 @@ describe azure_active_directory_domain_service(id: 'example.onmicrosoft.com') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 Graph resources require specific privileges granted to your service principal. Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.

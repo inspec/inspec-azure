@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_network_interface` InSpec audit resource to test the properties and configuration of the Azure Network interface.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -152,6 +152,6 @@ describe azure_network_interface(resource_group: 'RESOURCE_GROUP', name: 'NETWOR
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

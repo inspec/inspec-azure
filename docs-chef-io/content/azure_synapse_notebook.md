@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_synapse_notebook` InSpec audit resource to test the properties related to an Azure Synapse notebook in a Synapse workspace.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -88,7 +88,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
 
 ### exists
 
@@ -110,6 +110,6 @@ describe azure_synapse_notebook(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT', name
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

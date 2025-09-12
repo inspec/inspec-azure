@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_service_bus_subscription_rules` InSpec audit resource to test the properties related to all Azure Service Bus subscription rules.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -114,6 +114,6 @@ describe azure_service_bus_subscription_rules(resource_group: 'RESOURCE_GROUP', 
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

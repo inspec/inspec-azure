@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_hpc_storage_target` InSpec audit resource to test the properties related to an Azure HPC Storage Target.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -111,6 +111,6 @@ describe azure_hpc_storage_target(resource_group: 'RESOURCE_GROUP', cache_name: 
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

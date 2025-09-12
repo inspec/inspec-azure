@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_power_bi_dashboards` InSpec audit resource to test the properties related to all AzurePower BI Dashboards within a project.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -109,6 +109,6 @@ describe azure_power_bi_dashboards do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.
+Your [service principal](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal) must have the `dashboard.Read.All` role on the Azure Power BI Workspace you wish to test.

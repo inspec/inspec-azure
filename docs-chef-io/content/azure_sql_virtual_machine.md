@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_sql_virtual_machine` Chef InSpec audit resource to test the properties of an Azure SQL virtual machine.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -78,7 +78,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
 
 ### exists
 
@@ -100,6 +100,6 @@ describe azure_sql_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'SQL_
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

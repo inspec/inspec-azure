@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_storage_account` InSpec audit resource to test the properties related to an Azure Storage account.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -198,6 +198,6 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

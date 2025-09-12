@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_hdinsight_cluster` InSpec audit resource to test the properties of an Azure HDInsight Cluster.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -107,6 +107,6 @@ describe azure_hdinsight_cluster(resource_group: 'RESOURCE_GROUP', name: 'CLUSTE
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

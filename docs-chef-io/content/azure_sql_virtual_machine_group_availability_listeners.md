@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_sql_virtual_machine_group_availability_listeners` InSpec audit resource to test the properties related to all Azure SQL virtual machine group availability listeners.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -115,6 +115,6 @@ describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

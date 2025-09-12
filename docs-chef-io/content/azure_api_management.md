@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_api_management` InSpec audit resource to test the properties and configuration of an Azure API Management Service.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -110,6 +110,6 @@ describe azure_api_management(resource_group: 'RESOURCE_GROUP', name: 'APIM01') 
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

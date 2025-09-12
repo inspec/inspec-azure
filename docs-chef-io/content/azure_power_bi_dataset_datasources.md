@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_power_bi_dataset_datasources` Chef InSpec audit resource to test the properties of all Azure Power BI dataset data sources.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -98,6 +98,6 @@ describe azure_power_bi_dataset_datasources(dataset_id: 'DATASET_ID') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
-Your [Service Principal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal) must be set up with a `Dataset.Read.All` role on the Azure Power BI data set you wish to test.
+Your [service principal](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal) must have the `Dataset.Read.All` role on the Azure Power BI data set you wish to test.

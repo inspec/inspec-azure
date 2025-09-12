@@ -14,7 +14,7 @@ Use the `azure_data_factory_pipeline_run_resource` InSpec audit resource to test
 
 For additional information, see the [`Azure API documentation on Data Factory pipeline runs`](https://docs.microsoft.com/en-us/rest/api/datafactory/pipeline-runs/query-by-factory).
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -93,6 +93,6 @@ describe azure_data_factory_pipeline_run_resource(resource_group: `RESOURCE_GROU
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_migrate_project` InSpec audit resource to test the properties related to an Azure Migrate project.
 
-## Azure Rest API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
@@ -82,7 +82,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
 
 ### exists
 
@@ -100,6 +100,6 @@ describe azure_migrate_project(resource_group: 'RESOURCE_GROUP', name: 'PROJECT_
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

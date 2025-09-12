@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_migrate_project_database_instances` InSpec audit resource to test the properties of all Azure Migrate Project database instances in a migrate project.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -175,6 +175,6 @@ describe azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROU
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

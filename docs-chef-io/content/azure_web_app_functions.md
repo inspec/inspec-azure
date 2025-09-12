@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_web_app_functions` InSpec audit resource to test the properties related to azure functions for a resource group or the entire subscription.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -123,6 +123,6 @@ describe azure_web_app_functions(resource_group: 'RESOURCE_GROUP', site_name: 'f
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_virtual_machines` InSpec audit resource to test the properties related to virtual machines for a resource group or the entire subscription.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -156,6 +156,6 @@ describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

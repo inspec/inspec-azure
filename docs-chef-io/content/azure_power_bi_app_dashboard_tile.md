@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_power_bi_app_dashboard_tile` InSpec audit resource to test the properties related to an Azure Power BI app dashboard tile.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -80,7 +80,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
 
 ### exists
 
@@ -102,7 +102,7 @@ describe azure_power_bi_app_dashboard_tile(app_id: 'APP_ID', dashboard_id: 'DASH
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 This API does not support service principal authentication. Instead, use an Active Directory account access token to access this resource.
-Your Active Directory account must be set up with a `Dashboard.Read.All` role on the Azure Power BI workspace you wish to test.
+Your Active Directory account must have the `Dashboard.Read.All` role on the Azure Power BI workspace you wish to test.

@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_mysql_database_configurations` InSpec audit resource to test the properties of an Azure MySQL Database Configuration on a MySQL Database Server.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -107,6 +107,6 @@ describe azure_mysql_database_configuration(resource_group: 'RESOURCE_GROUP', se
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

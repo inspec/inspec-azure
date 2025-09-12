@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_role_definition` InSpec audit resource to test the properties and configuration of an Azure role definition.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -105,6 +105,6 @@ describe azure_role_definition(name: 'abcd-1234') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

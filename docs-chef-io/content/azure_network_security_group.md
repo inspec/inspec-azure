@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_network_security_group` InSpec audit resource to test the properties of an Azure Network Security group.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -218,6 +218,6 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

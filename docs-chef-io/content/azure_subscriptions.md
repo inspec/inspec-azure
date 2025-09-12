@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_subscriptions` InSpec audit resource to test the properties and configuration of all Azure subscriptions for a tenant.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -84,6 +84,6 @@ describe azure_subscriptions do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

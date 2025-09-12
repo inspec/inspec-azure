@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_service_bus_namespaces` InSpec audit resource to test the properties related to all Azure Service Bus Namespaces within a project.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -135,6 +135,6 @@ describe azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

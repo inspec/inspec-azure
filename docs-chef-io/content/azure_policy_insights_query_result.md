@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_policy_insights_query_result` InSpec audit resource to test the properties and configuration of an Azure Policy Insights query result.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -169,6 +169,6 @@ describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

@@ -117,6 +117,6 @@ describe azure_mysql_database_configuration(resource_group: 'RESOURCE_GROUP', se
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

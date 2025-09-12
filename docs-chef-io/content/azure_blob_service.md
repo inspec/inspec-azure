@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_blob_service` Chef InSpec audit resource to test the properties of an Azure Storage account's Blob service.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -120,6 +120,6 @@ describe azure_blob_service(resource_group: 'RESOURCE_GROUP', storage_account_na
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

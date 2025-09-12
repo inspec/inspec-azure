@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_managed_application` InSpec audit resource to test the properties related to an Azure Managed application.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -108,6 +108,6 @@ describe azure_managed_application(resource_group: 'RESOURCE_GROUP', name: 'MANA
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

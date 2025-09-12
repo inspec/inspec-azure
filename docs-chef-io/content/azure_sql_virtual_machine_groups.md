@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_sql_virtual_machine_groups` InSpec audit resource to test the properties related to all Azure SQL virtual machine groups.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -116,6 +116,6 @@ describe azure_sql_virtual_machine_groups(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}

@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_cosmosdb_database_account` InSpec audit resource to test the properties and configuration of an Azure CosmosDb Database account within a resource group.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -104,6 +104,6 @@ describe azure_cosmosdb_database_account(resource_group: 'RESOURCE_GROUP', name:
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

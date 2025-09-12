@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_policy_exemption` InSpec audit resource to test the properties related to an Azure Policy Exemption.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -99,7 +99,7 @@ end
 
 ## Matchers
 
-This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](/inspec/matchers/).
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
 
 ### exists
 
@@ -121,6 +121,6 @@ describe azure_policy_exemption('3b8b3f3bbec24cd6af583694') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

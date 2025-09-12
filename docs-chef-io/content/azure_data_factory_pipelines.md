@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_data_factory_pipelines` InSpec audit resource to test the properties related to a pipeline for a resource group or the entire subscription.
 
-## Azure Rest API Version, Endpoint, And HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
 If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
@@ -83,6 +83,6 @@ describe azure_data_factory_pipelines(resource_group: 'RESOURCE_GROUP', factory_
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

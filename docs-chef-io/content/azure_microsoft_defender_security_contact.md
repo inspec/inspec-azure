@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_microsoft_defender_security_contact` Chef InSpec audit resource to test the properties of a Microsoft Defender for Cloud Security Contact configuration.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -110,6 +110,6 @@ describe azure_microsoft_defender_security_contact(name: 'SECURITY_CONTACT_NAME'
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 Graph resources require specific privileges granted to your service principal. Please refer to the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications#updating-an-application) for information on how to grant these permissions to your application.

@@ -31,13 +31,13 @@ inspec exec <PROFILE_NAME> --input-file=<PROFILE_NAME>/inputs.yml -t azure://
 
 ## Set Azure credentials
 
-To use Chef InSpec Azure resources, you need to create a Service Principal Name (SPN) to audit an Azure subscription.
+To use Chef InSpec Azure resources, you need to create a service principal Name (SPN) to audit an Azure subscription.
 
 You can create an SPN using the command line or from the Azure Portal:
 
 - [Azure CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
 - [PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal)
-- [Azure Portal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+- [Azure Portal](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal)
 
 You can specify the SPN information in one of three ways:
 

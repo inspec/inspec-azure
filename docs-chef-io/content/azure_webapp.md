@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_webapp` InSpec audit resource to test the properties and configuration of an Azure webapp.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -127,6 +127,6 @@ describe azure_webapp(resource_group: 'RESOURCE_GROUP', name: 'WEBAPP_NAME') do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

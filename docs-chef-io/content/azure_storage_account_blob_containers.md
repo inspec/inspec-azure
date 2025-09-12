@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_storage_account_blob_containers` InSpec audit resource to test the properties and configuration of Blob Containers within an Azure Storage Account.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -99,6 +99,6 @@ describe azurerm_storage_account_blob_containers(resource_group: 'RESOURCE_GROUP
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_power_bi_apps` InSpec audit resource to test the properties related to all Azure Power BI apps.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -105,7 +105,7 @@ describe azure_power_bi_apps do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
-This API does not support Service Principal Authentication. Use your Active Directory account access tokens to access this resource.
-Your Active Directory account must be set up with an `App.Read.All` role on the Azure Power BI workspace you wish to test.
+This API does not support service principal Authentication. Use your Active Directory account access tokens to access this resource.
+Your Active Directory account must have then `App.Read.All` role on the Azure Power BI workspace you wish to test.

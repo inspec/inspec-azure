@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_policy_assignments` InSpec resource to examine assignments of the Azure policy to resources and resource groups.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -154,6 +154,6 @@ describe azure_policy_assignments.where{ (updatedOn > last_30_days) || (createdO
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

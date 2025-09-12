@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_policy_exemptions` InSpec audit resource to test properties related to all Azure Policy Exemptions for the subscription.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -167,6 +167,6 @@ describe azure_policy_exemptions do
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="contributor" %}}

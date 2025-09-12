@@ -12,7 +12,7 @@ parent = "inspec/resources/azure"
 
 Use the `azure_hpc_asc_operation` InSpec audit resource to test the properties related to an Azure HPC ASC Operation.
 
-## Azure REST API Version, Endpoint, and HTTP Client Parameters
+## Azure REST API version, endpoint, and HTTP client parameters
 
 {{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
@@ -99,6 +99,6 @@ describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_
 end
 ```
 
-## Azure Permissions
+## Azure permissions
 
 {{% inspec-azure/azure_permissions_service_principal role="reader" %}}
