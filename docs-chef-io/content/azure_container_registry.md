@@ -60,7 +60,7 @@ Either one of the parameter sets can be provided for a valid query:
 `sku`
 : The SKU of the container registry.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/containerregistry/registries/get#registry) for other available properties. You can access any attribute in the response with the key names separated by dots (`.`).
 

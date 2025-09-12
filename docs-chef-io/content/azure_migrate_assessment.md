@@ -79,7 +79,7 @@ The parameter set should be provided for a valid query are `resource_group`, `pr
 `properties.reservedInstance`
 : Azure reserved instance.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/get) for a full list of available properties. Access any attribute in the response by separating the key names with a period (`.`).
 

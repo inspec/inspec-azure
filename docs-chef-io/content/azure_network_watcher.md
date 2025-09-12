@@ -68,7 +68,7 @@ Either one of the parameter sets can be provided for a valid query:
 `flow_logs`
 : Information on the configuration of flow log and traffic analytics (optional) in [this format](https://docs.microsoft.com/en-us/rest/api/network-watcher/networkwatchers/getflowlogstatus#flowloginformation). All properties can be accessed via dot notation. For example, `flow_logs.properties.enabled`. This resource supports targeting network security groups defined at resource creation only.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/network-watcher/networkwatchers/get#networkwatcher) for other available properties. You can access any attribute in the response with the key names separated by dots (`.`).
 

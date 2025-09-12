@@ -68,7 +68,7 @@ Either one of the parameter sets can be provided for a valid query:
 `enable_vm_protection`
 : Boolean value showing if the virtual network has VM protection enabled. `its('enable_vm_protection') { should eq false }`.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/virtualnetworks/get#virtualnetwork) for other available properties. Any property in the response may be accessed with the key names separated by dots (`.`).
 

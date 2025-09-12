@@ -88,7 +88,7 @@ The parameter set should be provided for a valid query: `resource_group` and `se
 `properties.virtualNicId`
 : The ID of the Azure Network Interface.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/datamigration/services/get) for other available properties.
 You can access any attribute in the response with the key names separated by dots (`.`).

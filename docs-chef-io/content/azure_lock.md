@@ -20,7 +20,7 @@ Use the `azure_lock` InSpec audit resource to test the properties and configurat
 
 The Management Lock resources do not follow the common `resouce_group` and `name` patterns for identification. As a result, the `resource_id` must be given as a parameter to the `azure_lock` resource.
 
-The [`azure_locks`]({{< relref "azure_locks.md" >}}) resource can be used for gathering the Management Lock resource IDs to be tested within the desired level, such as subscription, resource group, or individual resource.
+The [`azure_locks`](azure_locks.md) resource can be used for gathering the Management Lock resource IDs to be tested within the desired level, such as subscription, resource group, or individual resource.
 
 ```ruby
 describe azure_lock(resource_id: '/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks/{lockName}') do
@@ -46,7 +46,7 @@ end
 
 Please note that the properties can vary depending on the `api_version` used for the lookup.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/resources/managementlocks/getatresourcelevel#managementlockobject) for other available properties. You can access any attribute in the response with the key names separated by dots (`.`). For example, `properties.<attribute>`.
 

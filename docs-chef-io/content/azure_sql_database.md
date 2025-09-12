@@ -75,7 +75,7 @@ Either one of the parameter sets can be provided for a valid query:
 `threat_detection_settings`
 : Threat detection settings for the targeted database with [these](https://docs.microsoft.com/en-us/rest/api/sql/databasethreatdetectionpolicies/get#databasesecurityalertpolicy) properties.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/sql/databases/get#database) for other available properties.
 You can access any attribute in the response with the key names separated by dots (`.`). For example, `properties.<attribute>`.

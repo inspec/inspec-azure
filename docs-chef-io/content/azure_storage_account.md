@@ -79,7 +79,7 @@ Pass one of the following parameter sets for a valid query:
 
 The property names are in snake case, `property_name`. Therefore, you can test `<EnumerationResults ServiceEndpoint="https://myaccount.queue.core.windows.net/">` with `its('enumeration_results.service_endpoint)`.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storagerp/storageaccounts/getproperties#storageaccount) for other available properties. You can access any attribute in the response with the key names separated by dots (`.`).
 

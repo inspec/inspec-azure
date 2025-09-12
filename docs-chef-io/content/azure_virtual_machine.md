@@ -80,7 +80,7 @@ Either one of the parameter sets can be provided for a valid query:
 `data_disk_names`
 : The virtual machine's data disk names. `its('data_disk_names') { should include('DataDisk1') }`.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachines/get#virtualmachine) for other available properties. You can access any attribute in the response with the key names separated by dots (`.`).
 

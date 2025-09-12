@@ -62,7 +62,7 @@ This resource requires the `endpoint` and `name` parameters for a valid query.
 `properties`
 : The properties of the notebook.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/synapse/data-plane/notebook/get-notebook) for other available properties.
 

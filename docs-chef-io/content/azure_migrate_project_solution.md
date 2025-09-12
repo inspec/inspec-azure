@@ -76,7 +76,7 @@ The parameter set should be provided for a valid query is`resource_group`, `proj
 `properties.purpose`
 : The purpose of the solution.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/projects/solutions/get-solution) for other available properties. Any attribute in the response is accessed with the key names separated by dots (`.`).
 

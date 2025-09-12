@@ -69,7 +69,7 @@ Either one of the parameter sets can be provided for a valid query:
 `properties.publicAccess`
 : Specifies whether data in the container may be accessed publicly and the level of access. See the [Azure blob containers PublicAccess documentation](https://docs.microsoft.com/en-us/rest/api/storagerp/blobcontainers/get#publicaccess) for valid values.
 
-For properties applicable to all resources, such as `type`, `tags`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `tags`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/storagerp/blobcontainers/get#blobcontainer) for other available properties. You can access any attribute in the response with the key names separated by dots (`.`).
 

@@ -65,7 +65,7 @@ Either one of the parameter sets can be provided for a valid query:
 `disabled_logging_types`
 : The logging types that are disabled for the AKS cluster.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get#managedcluster) for other available properties. You can access any attribute in the response with the key names separated by dots (`.`).
 

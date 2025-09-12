@@ -53,7 +53,7 @@ Provide one of the following parameter sets for a valid query:
 `properties.frontDoorId`
 : The ID of the frontdoor.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 See the [Azure CDN profile documentation](https://docs.microsoft.com/en-us/rest/api/cdn/profiles/get#profile) for other available properties.
 You can access any attribute in the response with the key names separated by dots (`.`).

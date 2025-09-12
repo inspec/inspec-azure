@@ -68,7 +68,7 @@ Either one of the parameter sets can be provided for a valid query along with th
 `supported_stacks`
 : Available application frameworks and their versions with [these](https://docs.microsoft.com/en-us/rest/api/appservice/provider/getavailablestacks#applicationstackcollection) properties.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/appservice/webapps/get#site) for other available properties.
 You can access any attribute in the response with the key names separated by dots (`.`). For example, `properties.<attribute>`.

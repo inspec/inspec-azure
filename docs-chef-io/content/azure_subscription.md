@@ -91,7 +91,7 @@ end
 <superscript>*</superscript> `physical_locations` might be different than the `locations` property depending on the API version.
 This is because of the change in the Azure API terminology. It is advised to see the [official documentation](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/listlocations) for more information.
 
-For properties applicable to all resources, such as `type` and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type` and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/resources/subscriptions/get#subscription) for other available properties.  You can access any attribute in the response with the key names separated by dots (`.`). For example, `properties.<attribute>`.
 

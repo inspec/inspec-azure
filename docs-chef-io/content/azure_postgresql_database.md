@@ -60,7 +60,7 @@ Either one of the parameter sets can be provided for a valid query:
 `properties.charset`
 : The charset of the database.
 
-For properties applicable to all resources, such as `type`, `tags`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `tags`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/postgresql/flexibleserver(preview)/databases/get) for other available properties.
 You can access any attribute in the response with the key names separated by dots (`.`).

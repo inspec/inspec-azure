@@ -74,7 +74,7 @@ Either one of the parameter sets can be provided for a valid query:
 
 Different parameter combinations can be tried. If it is not supported, the InSpec resource or the Azure Rest API will raise an error.
 
-If the Azure Resource Manager endpoint returns multiple resources for a given query, this singular generic resource will fail. In that case, the [plural generic resource]({{< relref "azure_generic_resources.md" >}}) should be used.
+If the Azure Resource Manager endpoint returns multiple resources for a given query, this singular generic resource will fail. In that case, the [plural generic resource](azure_generic_resources.md) should be used.
 
 ## Properties
 

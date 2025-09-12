@@ -51,7 +51,7 @@ end
 `storage_account`
 : A hash containing the `name` and the `resouce_group` of the storage account in which the activity logs are kept.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/monitor/logprofiles/get#logprofileresource) for other available properties.
 

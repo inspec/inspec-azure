@@ -95,7 +95,7 @@ For example, providing that a network security group has a single security rule 
 
 `*ip_range` used in these methods supports IPv4 and IPv6. The IP range criteria should be written in CIDR notation.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups/get#networksecuritygroup) for other available properties. Any property in the response may be accessed with the key names separated by dots (`.`).
 

@@ -126,7 +126,7 @@ Either one of the parameter sets can be provided for a valid query:
 
 <superscript>*</superscript>Only applicable to the default security policy.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 You can access any attribute in the response with the key names separated by dots (`.`). For example, `properties.<attribute>`.
 

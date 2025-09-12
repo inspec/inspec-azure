@@ -70,7 +70,7 @@ The parameter set that should be provided for a valid query is `resource_group` 
 `properties.ingressConfig.qosLevel`
 : The QoS tier for ingress.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/servicefabric/sfmeshrp-api-network_get) for other available properties.
 

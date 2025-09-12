@@ -15,7 +15,7 @@ Use the `azure_migrate_project` InSpec audit resource to test the properties rel
 ## Azure REST API version, endpoint, and HTTP client parameters
 
 This resource interacts with API versions supported by the resource provider. The `api_version` can be defined as a resource parameter.
-If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md" >}}).
+If not provided, the latest version will be used. For more information, refer to [`azure_generic_resource`](azure_generic_resource.md).
 
 Unless defined, `azure_cloud` global endpoint and default values for the HTTP client will be used. For more information, refer to the resource pack [README](https://github.com/inspec/inspec-azure/blob/main/README.md).
 
@@ -64,7 +64,7 @@ The parameter set that should be provided for a valid query is `resource_group` 
 `properties`
 : The nested properties.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/migrate/projects/migrate-projects/get-migrate-project) for other available properties.
 

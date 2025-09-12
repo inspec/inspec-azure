@@ -63,7 +63,7 @@ end
 `datasetId`
 : The dataset ID, which is available only for tiles created from a report or using a dataset, such as Q&A tiles.
 
-For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
+For properties applicable to all resources, such as `type`, `name`, `id`, and `properties`, refer to [`azure_generic_resource`](azure_generic_resource#properties).
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/apps/get-tile) for other available properties.
 
