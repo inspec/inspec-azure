@@ -41,7 +41,7 @@ end
 : Name of the Activity Log Alert to test.
 
 `resource_id`
-: The unique resource ID. 
+: The unique resource ID.
 
 Either one of the parameter sets can be provided for a valid query:
 

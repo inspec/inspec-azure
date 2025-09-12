@@ -120,7 +120,7 @@ azure_virtual_machines.ids.each do |id|
     it { should exist }
   end
 end
-``` 
+```
 
 ## Matchers
 
@@ -131,6 +131,7 @@ This resource has the following special matchers.
 ### exists
 
 The control will pass if the filter returns at least one result. Use `should_not` if you expect zero matches.
+
 ```ruby
 describe azure_locks(resource_group: 'RESOURCE_GROUP', resource_name: 'VM_NAME', resource_type: 'Microsoft.Compute/virtualMachines') do
   it { should exist }

@@ -90,7 +90,7 @@ describe azure_blob_service(resource_group: 'RESOURCE_GROUP', storage_account_na
 end
 ```
 
-### Test that type 
+### Test that type
 
 ```ruby
 describe azure_blob_service(resource_group: 'RESOURCE_GROUP', storage_account_name: 'STORAGE_ACCOUNT_NAME') do
@@ -113,7 +113,6 @@ describe azure_blob_service(resource_group: 'RESOURCE_GROUP', storage_account_na
   it { should exist }
 end
 ```
-
 
 ```ruby
 describe azure_blob_service(resource_group: 'RESOURCE_GROUP', storage_account_name: 'STORAGE_ACCOUNT_NAME') do

@@ -112,6 +112,7 @@ describe azure_postgresql_server(resource_id: '/subscriptions/.../my-server') do
   its('location') { should cmp 'westeurope' }
 end
 ```
+
 ### Test a PostgreSql server's firewall rules
 
 ```ruby
@@ -119,6 +120,7 @@ describe azure_postgresql_server(resource_id: '/subscriptions/.../my-server') do
   its('firewall_rules') { should eq {} }
 end
 ```
+
 ## Matchers
 
 {{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}

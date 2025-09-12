@@ -76,7 +76,6 @@ Either one of the parameter sets can be provided for a valid query:
 `properties.value`
 : Value of the configuration.
 
-
 For properties applicable to all resources, such as `type`, `id`, and `properties`, refer to [`azure_generic_resource`]({{< relref "azure_generic_resource.md#properties" >}}).
 
 Also, see the [Azure documentation](https://learn.microsoft.com/en-us/rest/api/mysql/singleserver/configurations/get?tabs=HTTP) for other available properties.

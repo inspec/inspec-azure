@@ -94,6 +94,7 @@ describe azure_key_vault_key(vault_name: 'EXAMPLE_VAULT', key_name: 'EXAMPLE_KEY
   its('attributes.enabled') { should eq true }
 end
 ```
+
 ### Test if the rotationploicy is enabled
 
 ```ruby
