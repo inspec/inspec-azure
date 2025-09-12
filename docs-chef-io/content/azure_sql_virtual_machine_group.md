@@ -70,7 +70,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/sq
 
 ## Examples
 
-### Test that the SQL virtual machine group is provisioned successfully
+Test that the SQL virtual machine group is provisioned successfully:
 
 ```ruby
 describe azure_sql_virtual_machine_group(resource_group: 'RESOURCE_GROUP', name: 'SQL_VIRTUAL_MACHINE_GROUP') do

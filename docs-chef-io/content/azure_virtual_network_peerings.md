@@ -39,17 +39,17 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `etags`
 : A list of etags defined on the resources.
 
-: **Field**: `etag`
+  Field: `etag`
 
 {{< note >}}
 
@@ -59,7 +59,7 @@ end
 
 ## Examples
 
-### Exists if any Virtual Network Peerings exist for a given Virtual Network in the resource group
+Exists if any virtual network peerings exist for a given virtual network in the resource group:
 
 ```ruby
 describe azure_virtual_network_peerings(resource_group: 'MyResourceGroup', vnet: 'virtual-network-name') do
@@ -67,7 +67,7 @@ describe azure_virtual_network_peerings(resource_group: 'MyResourceGroup', vnet:
 end
 ```
 
-**Filters the Results to Only Those that Match the Given Name.**
+Filters the results to only those that match the given name:
 
 ```ruby
 describe azure_virtual_network_peerings(resource_group: 'RESOURCE_GROUP', vnet: 'VIRTUAL-NETWORK-NAME') do

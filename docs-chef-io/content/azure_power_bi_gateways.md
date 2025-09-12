@@ -31,27 +31,27 @@ end
 `ids`
 : List of all gateway IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : List of all the gateway names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : List of all the gateway types.
 
-: **Field**: `type`
+  Field: `type`
 
 `exponents`
 : List of all public key exponents.
 
-: **Field**: `exponent`
+  Field: `exponent`
 
 `modulus`
 : List of all public key modulus.
 
-: **Field**: `modulus`
+  Field: `modulus`
 
 {{< note >}}
 
@@ -62,7 +62,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Loop through Power BI gateways by their IDs
+Loop through Power BI gateways by their IDs:
 
 ```ruby
 azure_power_bi_gateways.ids.each do |id|
@@ -72,7 +72,7 @@ azure_power_bi_gateways.ids.each do |id|
 end
 ```
 
-### Test to ensure all Power BI gateways exponent is 'AQAB'
+Test to ensure all Power BI gateways exponent is 'AQAB':
 
 ```ruby
 describe azure_power_bi_gateways.where(exponent: 'AQAB') do

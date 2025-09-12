@@ -45,47 +45,47 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `policy_types`
 : A list of policy types of all the resources.
 
-: **Field**: `policy_type`
+  Field: `policy_type`
 
 `modes`
 : A list of modes of all the resources.
 
-: **Field**: `mode`
+  Field: `mode`
 
 `metadata_versions`
 : A list of metadata versions of the resources.
 
-: **Field**: `metadata_version`
+  Field: `metadata_version`
 
 `metadata_categories`
 : A list of metadata categories of the resources.
 
-: **Field**: `metadata_category`
+  Field: `metadata_category`
 
 `parameters`
 : A list of parameters of the resources.
 
-: **Field**: `parameters`
+  Field: `parameters`
 
 `policy_rules`
 : A list of policy rules of the resources.
 
-: **Field**: `policy_rule`
+  Field: `policy_rule`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -95,7 +95,7 @@ end
 
 ## Examples
 
-### Check a specific Policy definition is present
+Check a specific Policy definition is present:
 
 ```ruby
 describe azure_policy_definitions do
@@ -103,7 +103,7 @@ describe azure_policy_definitions do
 end
 ```
 
-### Filters the results to include only those Policy definitions which include the specified name
+Filters the results to include only those Policy definitions which include the specified name:
 
 ```ruby
 describe azure_policy_definitions.where{ name.include?('my-policy') } do
@@ -111,7 +111,7 @@ describe azure_policy_definitions.where{ name.include?('my-policy') } do
 end
 ```
 
-### Filters the results to include only the custom Policy definitions
+Filters the results to include only the custom Policy definitions:
 
 ```ruby
 describe azure_policy_definitions.where(policy_type: "Custom") do

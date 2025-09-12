@@ -31,7 +31,7 @@ Either one of the following parameters is mandatory.
 `id`
 : Domain ID.
 
-: **Example**: `example.com`
+  For example, `example.com`
 
 ## Properties
 
@@ -73,7 +73,7 @@ Either one of the following parameters is mandatory.
 
 ## Examples
 
-### Test if an active directory domain is referenced with a valid ID
+Test if an active directory domain is referenced with a valid ID:
 
 ```ruby
 describe azure_active_directory_domain_service(id: 'example.com') do
@@ -81,7 +81,7 @@ describe azure_active_directory_domain_service(id: 'example.com') do
 end
 ```
 
-### Test if an active directory domain is referenced with an invalid ID
+Test if an active directory domain is referenced with an invalid ID:
 
 ```ruby
 describe azure_active_directory_domain_service(id: 'example.com') do

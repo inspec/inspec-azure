@@ -67,7 +67,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI dataset requires an on-prem gateway
+Test that the Power BI dataset requires an on-prem gateway:
 
 ```ruby
 describe azure_power_bi_dataset(name: 'DATASET_ID')  do

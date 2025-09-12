@@ -65,7 +65,7 @@ end
 
 ## Examples
 
-### Test properties of a pipeline runs
+Test properties of a pipeline runs:
 
 ```ruby
 describe azure_data_factory_pipeline_run_resource(resource_group: `RESOURCE_GROUP`, name: 'FACTORY_NAME', run_id: `RUN_ID`) do
@@ -77,7 +77,7 @@ end
 
 ## Matchers
 
-### Test that a pipeline runs exists
+Test that a pipeline runs exists:
 
 ```ruby
 describe azure_data_factory_pipeline_run_resource(resource_group: `RESOURCE_GROUP`, factory_name: `FACTORY_NAME`, run_id: `RUN_ID`) do
@@ -85,7 +85,7 @@ describe azure_data_factory_pipeline_run_resource(resource_group: `RESOURCE_GROU
 end
 ```
 
-### Test that a pipeline runs does not exist
+Test that a pipeline runs does not exist:
 
 ```ruby
 describe azure_data_factory_pipeline_run_resource(resource_group: `RESOURCE_GROUP`, factory_name: `FACTORY_NAME`, run_id: 'RUN_ID') do

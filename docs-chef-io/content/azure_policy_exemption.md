@@ -81,7 +81,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test that the policy exemption category is `Waiver`
+Test that the policy exemption category is `Waiver`:
 
 ```ruby
 describe azure_policy_exemption(name: 'POLICY_EXEMPTION_NAME') do
@@ -89,7 +89,7 @@ describe azure_policy_exemption(name: 'POLICY_EXEMPTION_NAME') do
 end
 ```
 
-### Test that the definition reference ID list includes a particular reference ID
+Test that the definition reference ID list includes a particular reference ID:
 
 ```ruby
 describe azure_policy_exemption(resource_group: 'RESOURCE_GROUP', name: 'POLICY_EXEMPTION_NAME') do

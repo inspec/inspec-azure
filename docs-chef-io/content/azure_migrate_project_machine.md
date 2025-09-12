@@ -81,7 +81,7 @@ Any attribute in the response nested within properties may be accessed with the 
 
 ## Examples
 
-### Test that the Migrate Project machine has a Windows OS
+Test that the Migrate Project machine has a Windows OS:
 
 ```ruby
 describe azure_migrate_project_machine(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_MACHINE_NAME') do

@@ -37,25 +37,25 @@ end
 
 : List of all Power BI dataflow IDs.
 
-: **Field**: `objectId`
+  Field: `objectId`
 
 `names`
 
 : List of all the Power BI dataflow names.
 
-: **Field**: `name`
+  Field: `name`
 
 `descriptions`
 
 : List of all the Power BI dataflow descriptions.
 
-: **Field**: `descriptions`
+  Field: `descriptions`
 
 `modelUrls`
 
 : List of all URLs to the dataflow definition file
 
-: **Field**: `modelUrl`
+  Field: `modelUrl`
 
 {{< note >}}
 
@@ -65,7 +65,7 @@ end
 
 ## Examples
 
-### Test to ensure Power BI Dataflow for Finance exists
+Test to ensure Power BI Dataflow for Finance exists:
 
 ```ruby
 describe azure_power_bi_dataflows(group_id: 'GROUP_ID').where(name: 'DATAFLOW_NAME') do

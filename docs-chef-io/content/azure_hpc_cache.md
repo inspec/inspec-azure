@@ -74,7 +74,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/st
 
 ## Examples
 
-### Test that the HPC Cache is provisioned
+Test that the HPC Cache is provisioned:
 
 ```ruby
 describe azure_hpc_cache(resource_group: 'RESOURCE_GROUP', name: 'HPC_CACHE_NAME') do

@@ -92,7 +92,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/mi
 
 ## Examples
 
-### Test that Migrate Project database has a SQL 'assessmentTargetType'
+Test that Migrate Project database has a SQL 'assessmentTargetType':
 
 ```ruby
 describe azure_migrate_project_database(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_DB_NAME') do

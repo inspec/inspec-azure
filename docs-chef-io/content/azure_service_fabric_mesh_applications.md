@@ -36,42 +36,42 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the Service Fabric Mesh applications.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the Geo-locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `provisioningStates`
 : A list of provisioning states of the Service Fabric Mesh applications.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `healthStates`
 : A list of the health states of a resource such as application, Service, or Network.
 
-: **Field**: `healthState`
+  Field: `healthState`
 
 `serviceNames`
 : A list of the services in the application.
 
-: **Field**: `serviceNames`
+  Field: `serviceNames`
 
 {{< note >}}
 
@@ -81,7 +81,7 @@ end
 
 ## Examples
 
-### Loop through Service Fabric Mesh applications by their names
+Loop through Service Fabric Mesh applications by their names:
 
 ```ruby
 azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -91,7 +91,7 @@ azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP').names.e
 end
 ```
 
-### Test that there are Service Fabric Mesh applications that are successfully provisioned
+Test that there are Service Fabric Mesh applications that are successfully provisioned:
 
 ```ruby
 describe azure_service_fabric_mesh_applications(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do

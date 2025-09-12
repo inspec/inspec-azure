@@ -37,32 +37,32 @@ end
 `ids`
 : List of all app report IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `embedUrls`
 : List of all the report embed URLs.
 
-: **Field**: `embedUrl`
+  Field: `embedUrl`
 
 `appIds`
 : List of all the app IDs.
 
-: **Field**: `appId`
+  Field: `appId`
 
 `datasetIds`
 : List of all the Dataset IDs.
 
-: **Field**: `datasetId`
+  Field: `datasetId`
 
 `names`
 : List of all the report names.
 
-: **Field**: `name`
+  Field: `name`
 
 `webUrls`
 : List of all the report web URLs.
 
-: **Field**: `webUrl`
+  Field: `webUrl`
 
 {{< note >}}
 
@@ -73,7 +73,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Loop through Power BI app reports by their IDs
+Loop through Power BI app reports by their IDs:
 
 ```ruby
 azure_power_bi_app_reports(app_id: 'APP_ID').ids.each do |id|
@@ -83,7 +83,7 @@ azure_power_bi_app_reports(app_id: 'APP_ID').ids.each do |id|
 end
 ```
 
-### Test to filter out Power BI app reports by report name
+Test to filter out Power BI app reports by report name:
 
 ```ruby
 describe azure_power_bi_app_reports(app_id: 'APP_ID').where(name: 'REPORT_NAME') do

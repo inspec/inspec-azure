@@ -59,7 +59,7 @@ All the parameter sets are required for a valid query:
 
 ## Examples
 
-### Test that a linked service exists
+Test that a linked service exists:
 
 ```ruby
 describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: `FACTORY_NAME`, linked_service_name: `LINKED_SERVICE_NAME`) do
@@ -67,7 +67,7 @@ describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, fac
 end
 ```
 
-### Test that a linked service does not exist
+Test that a linked service does not exist:
 
 ```ruby
 describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, factory_name: `FACTORY_NAME`, linked_service_name: 'should not exit') do
@@ -75,7 +75,7 @@ describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, fac
 end
 ```
 
-### Test properties of a linked service
+Test properties of a linked service:
 
 ```ruby
 describe azure_data_factory_linked_service(resource_group: `RESOURCE_GROUP`, name: 'FACTORY_NAME') do

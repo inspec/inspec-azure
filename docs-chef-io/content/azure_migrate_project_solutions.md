@@ -41,97 +41,97 @@ The parameter set that should be provided for a valid query is `resource_group` 
 `ids`
 : Path reference to the project solutions.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all project solutions.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `eTags`
 : A list of eTags for all the project solutions.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `properties`
 : A list of properties for all the project solutions.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `tools`
 : The tool used in all the solutions.
 
-: **Field**: `tool`
+  Field: `tool`
 
 `purposes`
 : The purpose of all the solutions.
 
-: **Field**: `purpose`
+  Field: `purpose`
 
 `goals`
 : The goals of all the solutions.
 
-: **Field**: `goal`
+  Field: `goal`
 
 `statuses`
 : The current status of all the solutions.
 
-: **Field**: `status`
+  Field: `status`
 
 `cleanupStates`
 : The cleanup states of all the solutions.
 
-: **Field**: `cleanupState`
+  Field: `cleanupState`
 
 `summaries`
 : The summary of all the solutions.
 
-: **Field**: `summary`
+  Field: `summary`
 
 `details`
 : The details of all the solutions.
 
-: **Field**: `details`
+  Field: `details`
 
 `instanceTypes`
 : The Instance types.
 
-: **Field**: `instanceType`
+  Field: `instanceType`
 
 `databasesAssessedCounts`
 : The count of databases assessed.
 
-: **Field**: `databasesAssessedCount`
+  Field: `databasesAssessedCount`
 
 `databaseInstancesAssessedCounts`
 : The count of database instances assessed.
 
-: **Field**: `databaseInstancesAssessedCount`
+  Field: `databaseInstancesAssessedCount`
 
 `migrationReadyCounts`
 : The count of databases ready for migration.
 
-: **Field**: `migrationReadyCount`
+  Field: `migrationReadyCount`
 
 `groupCounts`
 : The count of groups reported by all the solutions.
 
-: **Field**: `groupCount`
+  Field: `groupCount`
 
 `assessmentCounts`
 : The count of assessments reported by all the solutions.
 
-: **Field**: `assessmentCount`
+  Field: `assessmentCount`
 
 `extendedDetails`
 : The extended details reported by all the solutions.
 
-: **Field**: `extendedDetails`
+  Field: `extendedDetails`
 
 {{< note >}}
 
@@ -141,7 +141,7 @@ The parameter set that should be provided for a valid query is `resource_group` 
 
 ## Examples
 
-### Loop through Migrate Project solutions by their names
+Loop through Migrate Project solutions by their names:
 
 ```ruby
 azure_migrate_project_solutions(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -151,7 +151,7 @@ azure_migrate_project_solutions(resource_group: 'RESOURCE_GROUP', project_name: 
 end
 ```
 
-### Test to ensure the Migrate Project solutions for assessment
+Test to ensure the Migrate Project solutions for assessment:
 
 ```ruby
 describe azure_migrate_project_solutions(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(purpose: 'Assessment') do

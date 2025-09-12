@@ -45,32 +45,32 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of the types of resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-### Check container registries are present
+Check container registries are present:
 
 ```ruby
 describe azure_container_registries do
@@ -89,7 +89,7 @@ describe azure_container_registries do
 end
 ```
 
-### Filter the results to include only those with names match the given string value
+Filter the results to include only those with names match the given string value:
 
 ```ruby
 describe azure_container_registries.where{ name.eql?('production-cr-01') } do

@@ -33,14 +33,14 @@ The following parameters can be passed for targeting specific domains.
 `filter`
 : A hash containing the filtering options and their values. The `starts_with_` operator can be used for fuzzy string matching. Parameter names are in the snake case.
 
-: **Example**: `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}`
+  For example, `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}`
 
 `filter_free_text`
 : [OData](https://www.odata.org/getting-started/basic-tutorial/) query string in double quotes, `"`.
 
-Property names are in camel case. For more information, refer to [Microsoft's query parameters documentation](https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter).
+  Property names are in camel case. For more information, refer to [Microsoft's query parameters documentation](https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter).
 
-: **Example**: `"startswith(displayName,'J') and surname eq 'Doe'"` or `"userType eq 'Guest'"`
+  For example, `"startswith(displayName,'J') and surname eq 'Doe'"` or `"userType eq 'Guest'"`
 
 It is advised to use these parameters to narrow down the targeted resources at the server side, Azure Graph API, for a more efficient test.
 
@@ -49,62 +49,62 @@ It is advised to use these parameters to narrow down the targeted resources at t
 `ids`
 : A list of fully qualified names of the domain.
 
-: **Field**: `id`
+  Field: `id`
 
 `authentication_types`
 : A list of the configured authentication types for the domain.
 
-: **Field**: `authenticationType`
+  Field: `authenticationType`
 
 `availability_statuses`
 : A list of domain entities when verify action is set.
 
-: **Field**: `availabilityStatus`
+  Field: `availabilityStatus`
 
 `is_admin_manageds`
 : A list of admin-managed configurations.
 
-: **Field**: `isAdminManaged`
+  Field: `isAdminManaged`
 
 `is_defaults`
 : A list of flags to indicate if they are default domains.
 
-: **Field**: `isDefault`
+  Field: `isDefault`
 
 `is_initials`
 : A list of flags to indicate if they are initial domains created by Microsoft Online Services.
 
-: **Field**: `isInitial`
+  Field: `isInitial`
 
 `is_roots`
 : A list of flags to indicate if they are verified root domains.
 
-: **Field**: `isRoot`
+  Field: `isRoot`
 
 `is_verifieds`
 : A list of flags to indicate if the domains have completed domain ownership verification.
 
-: **Field**: `isVerified`
+  Field: `isVerified`
 
 `password_notification_window_in_days`
 : A list of password notification window days.
 
-: **Field**: `passwordNotificationWindowInDays`
+  Field: `passwordNotificationWindowInDays`
 
 `password_validity_period_in_days`
 : A list of password validity periods in days.
 
-: **Field**: `passwordValidityPeriodInDays`
+  Field: `passwordValidityPeriodInDays`
 
 `supported_services`
 : A list of capabilities assigned to the domain.
 
-: **Field**: `supportedServices`
+  Field: `supportedServices`
 
 `states`
 : A list of asynchronous operations scheduled.
 
-: **Field**: `state`
+  Field: `state`
 
 {{< note >}}
 
@@ -116,7 +116,7 @@ It is advised to use these parameters to narrow down the targeted resources at t
 
 The following examples show how to use this InSpec audit resource.
 
-### Check domains with some filtering parameters applied at the server side using 'filter'
+Check domains with some filtering parameters applied at the server side using 'filter':
 
 ```ruby
 describe azure_active_directory_domain_services(filter: {authenticationType: "authenticationType-value"}) do
@@ -124,7 +124,7 @@ describe azure_active_directory_domain_services(filter: {authenticationType: "au
 end
 ```
 
-### Check domains with some filtering parameters applied at the server side using 'filter_free_text'
+Check domains with some filtering parameters applied at the server side using 'filter_free_text':
 
 ```ruby
 describe azure_active_directory_domain_services(filter_free_text: "startswith(authenticationType,'authenticationType-value')") do
@@ -132,7 +132,7 @@ describe azure_active_directory_domain_services(filter_free_text: "startswith(au
 end
 ```
 
-### Test to ensure there are supported services using client-side filtering
+Test to ensure there are supported services using client-side filtering:
 
 ```ruby
 describe azure_active_directory_domain_services.supportedServices do

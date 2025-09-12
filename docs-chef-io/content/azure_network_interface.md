@@ -82,7 +82,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if IP forwarding is enabled
+Test if IP forwarding is enabled:
 
 ```ruby
 describe azure_network_interface(resource_group: 'RESOURCE_GROUP', name: 'NETWORK_INTERFACE_NAME') do
@@ -90,7 +90,7 @@ describe azure_network_interface(resource_group: 'RESOURCE_GROUP', name: 'NETWOR
 end
 ```
 
-### Test if the primary IP configuration is set to correct private IP address
+Test if the primary IP configuration is set to correct private IP address:
 
 ```ruby
 describe azure_network_interface(resource_group: 'RESOURCE_GROUP', name: 'NETWORK_INTERFACE_NAME') do

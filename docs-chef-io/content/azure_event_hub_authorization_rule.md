@@ -69,7 +69,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ev
 
 ## Examples
 
-### Test the name of an Authorization Rule
+Test the name of an Authorization Rule:
 
 ```ruby
 describe azure_event_hub_authorization_rule(resource_group: 'RESOURCE_GROUP', namespace_name: 'EVENT_NAME', event_hub_endpoint: 'HUB_NAME', name: 'AUTH_RULE') do

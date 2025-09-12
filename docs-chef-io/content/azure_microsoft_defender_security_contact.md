@@ -62,7 +62,7 @@ See the [Azure documentation on Defender for Cloud Security Contact configuratio
 
 ## Examples
 
-### Test if a name exists
+Test if a name exists:
 
 ```ruby
 describe azure_microsoft_defender_security_contact(name: 'SECURITY_CONTACT_NAME') do
@@ -70,7 +70,7 @@ describe azure_microsoft_defender_security_contact(name: 'SECURITY_CONTACT_NAME'
 end
 ```
 
-### Test if a type exists
+Test if a type exists:
 
 ```ruby
 describe azure_microsoft_defender_security_contact(name: 'SECURITY_CONTACT_NAME') do
@@ -78,7 +78,7 @@ describe azure_microsoft_defender_security_contact(name: 'SECURITY_CONTACT_NAME'
 end
 ```
 
-### Test if a notification by role state exists
+Test if a notification by role state exists:
 
 ```ruby
 describe azure_microsoft_defender_security_contact(name: 'SECURITY_CONTACT_NAME') do

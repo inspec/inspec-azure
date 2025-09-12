@@ -46,37 +46,37 @@ end
 `names`
 : A list of the unique resource IDs.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of all the azure_express_route.
 
-: **Field**: `type`
+  Field: `type`
 
 `ids`
 : A list of id for all the azure_express_route.
 
-: **Field**: `id`
+  Field: `id`
 
 `tags`
 : A list of all the express_route names.
 
-: **Field**: `tag`
+  Field: `tag`
 
 `provisioning_states`
 : A list of the status of the request.
 
-: **Field**: `provisioning_state`
+  Field: `provisioning_state`
 
 `peering_locations_list`
 : A list of `peering locations` pairs defined on the resources.
 
-: **Field**: `locations`
+  Field: `locations`
 
 `bandwidths_offered_list`
 : A list of `bandwidths offered` pairs defined on the resources.
 
-: **Field**: `bandwidths`
+  Field: `bandwidths`
 
 {{< note >}}
 
@@ -86,7 +86,7 @@ end
 
 ## Examples
 
-### Test if any azure_express_route exists in the resource group
+Test if any azure_express_route exists in the resource group:
 
 ```ruby
 describe azure_express_route_providers(resource_group: 'RESOURCE_GROUP') do
@@ -97,7 +97,7 @@ describe azure_express_route_providers do
 end
 ```
 
-### Test that there are express_route that includes a string in names (Server Side Filtering via Generic Resource - Recommended)
+Test that there are express_route that includes a string in names (Server Side Filtering via Generic Resource - Recommended):
 
 ```ruby
 describe azure_generic_resources(resource_group: 'RESOURCE_GROUP') do

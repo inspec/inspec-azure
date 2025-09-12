@@ -69,7 +69,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/io
 
 ## Examples
 
-### Test the resource name
+Test the resource name:
 
 ```ruby
 describe azure_iothub_event_hub_consumer_group(resource_group: 'RESOURCE_GROUP', resource_name: 'IoT_NAME', event_hub_endpoint: 'EVENT_HUB_NAME', name: 'CONSUMER_GROUP') do

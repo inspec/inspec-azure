@@ -70,7 +70,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test an Activity Log Alert has the correct operation
+Test an Activity Log Alert has the correct operation:
 
 ```ruby
 describe azure_monitor_activity_log_alert(resource_group: 'RESOURCE_GROUP', name: 'ALERT_NAME') do
@@ -78,7 +78,7 @@ describe azure_monitor_activity_log_alert(resource_group: 'RESOURCE_GROUP', name
 end
 ```
 
-### Test the scope of an Activity Log Alert
+Test the scope of an Activity Log Alert:
 
 ```ruby
 describe azure_monitor_activity_log_alert(resource_group: 'RESOURCE_GROUP', name: 'ALERT_NAME') do

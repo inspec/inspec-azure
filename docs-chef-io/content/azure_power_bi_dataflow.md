@@ -60,7 +60,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI dataflow name exists
+Test that the Power BI dataflow name exists:
 
 ```ruby
 describe azure_power_bi_dataflow(group_id: 'GROUP_ID', name: 'DATAFLOW_ID')  do

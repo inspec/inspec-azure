@@ -74,7 +74,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ne
 
 ## Examples
 
-### Test the location of a Network Watcher
+Test the location of a Network Watcher:
 
 ```ruby
 describe azure_network_watcher(resource_group: 'RESOURCE_GROUP', name: 'NETWORK_WATCHER_NAME') do
@@ -82,7 +82,7 @@ describe azure_network_watcher(resource_group: 'RESOURCE_GROUP', name: 'NETWORK_
 end
 ```
 
-### Test the Flow Log status of a Network Security group
+Test the Flow Log status of a Network Security group:
 
 ```ruby
 describe azure_network_watcher(resource_group: 'RESOURCE_GROUP', name: 'NETWORK_WATCHER_NAME', nsg_resource_group: 'NSG_RESOURCE_GROUP', nsg_name: 'nsg_eastus') do
@@ -91,7 +91,7 @@ describe azure_network_watcher(resource_group: 'RESOURCE_GROUP', name: 'NETWORK_
 end
 ```
 
-### Loop through Network Security groups with the resource ID
+Loop through Network Security groups with the resource ID:
 
 ```ruby
 azure_network_security_groups.where(location: 'eastus').ids.each do |nsg_id|

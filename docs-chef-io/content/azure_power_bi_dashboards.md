@@ -42,22 +42,22 @@ end
 `ids`
 : List of all dashboard IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `displayNames`
 : List of all the dashboard display names.
 
-: **Field**: `displayName`
+  Field: `displayName`
 
 `embedUrls`
 : List of all dashboard embed URLs.
 
-: **Field**: `embedUrl`
+  Field: `embedUrl`
 
 `isReadOnly`
 : List of all read-only dashboards.
 
-: **Field**: `isReadOnlies`
+  Field: `isReadOnlies`
 
 {{< note >}}
 
@@ -69,7 +69,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Loop throughPower BI Dashboards by their IDs
+Loop throughPower BI Dashboards by their IDs:
 
 ```ruby
 azure_power_bi_dashboards.ids.each do |id|
@@ -79,7 +79,7 @@ azure_power_bi_dashboards.ids.each do |id|
 end
 ```
 
-### Test to ensure all Power BI dashboards are ready-only
+Test to ensure all Power BI dashboards are ready-only:
 
 ```ruby
 describe azure_power_bi_dashboards.where(isReadOnly: true) do

@@ -39,37 +39,37 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of the types of resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `kinds`
 : A list of kinds of all the resources being interrogated.
 
-: **Field**: `kind`
+  Field: `kind`
 
 {{< note >}}
 
@@ -79,7 +79,7 @@ end
 
 ## Examples
 
-### Check resources are present
+Check resources are present:
 
 ````ruby
 describe azure_sql_databases(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME') do
@@ -88,7 +88,7 @@ describe azure_sql_databases(resource_group: 'RESOURCE_GROUP', server_name: 'SER
 end
 ````
 
-### Filter the results to include only those with names that match the specified string value
+Filter the results to include only those with names that match the specified string value:
 
 ```ruby
 describe azure_sql_databases.(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME').where{ name.eql?('production-db') } do
@@ -96,7 +96,7 @@ describe azure_sql_databases.(resource_group: 'RESOURCE_GROUP', server_name: 'SE
 end
 ```
 
-### Filter the results to include only those with 'GRS' storage account type
+Filter the results to include only those with 'GRS' storage account type:
 
 ```ruby
 describe azure_sql_databases.(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME').where{ properties[:storageAccountType] == 'GRS' } do

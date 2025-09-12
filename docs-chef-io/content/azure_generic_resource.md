@@ -51,16 +51,16 @@ The following parameters can be passed for targeting a specific Azure resource.
 `add_subscription_id`
 : Indicates whether the `resource_uri` contains the subscription ID. `true` or `false`.
 
-`tag_name<superscript>*</superscript>`
+`tag_name`
 : Tag name defined on the Azure resource. `name`.
+
+  When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
 
 `tag_value`
 : Tag value of the tag defined with the `tag_name`. `external_linux`.
 
 `api_version`
 : API version to use when interrogating the resource. If not set or the resource provider does not support the provided API version, then the latest version for the resource provider will be used. `2017-10-9`, `latest`, and `default`.
-
-<superscript>*</superscript> When resources are filtered by a tag name and value, the tags for each resource are not returned in the results.
 
 Either one of the parameter sets can be provided for a valid query:
 
@@ -72,7 +72,7 @@ Either one of the parameter sets can be provided for a valid query:
 - `add_subscription_id`, `resource_uri` and `name`
 - `tag_name` and `tag_value`
 
-Different parameter combinations can be tried. If it is not supported, the InSpec resource or the Azure Rest API will raise an error.
+Different parameter combinations can be tried. If it is not supported, the InSpec resource or the Azure REST API will raise an error.
 
 If the Azure Resource Manager endpoint returns multiple resources for a given query, this singular generic resource will fail. In that case, the [plural generic resource](azure_generic_resources.md) should be used.
 
@@ -106,7 +106,7 @@ For more properties, refer to specific Azure documents for the tested resource.
 
 ## Examples
 
-### Test properties of a virtual machine and the endpoint API version
+Test properties of a virtual machine and the endpoint API version:
 
 ```ruby
 describe azure_generic_resource(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -119,7 +119,7 @@ describe azure_generic_resource(resource_group: 'RESOURCE_GROUP', name: 'NAME') 
 end
 ```
 
-### Test to ensure that the API version is used for the Query
+Test to ensure that the API version is used for the Query:
 
 ```ruby
 describe azure_generic_resource(resource_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}', api_version: '2017-01-01') do
@@ -128,20 +128,15 @@ describe azure_generic_resource(resource_id: '/subscriptions/{subscriptionId}/re
 end
 ```
 
-### Test to ensure if the tags include specific values
+Test to ensure if the tags include specific values:
 
 ```ruby
 describe azure_generic_resource(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
   its('tags') { should include(name: 'MyVM') }
-
-**The tag key name can be tested in String or Symbol.**
-**regardless of the value.**
-**regardless of the value.**
-
 end
 ```
 
-### Test properties of a virtual machine resides in an Azure Dev Test Lab
+Test properties of a virtual machine resides in an Azure Dev Test Lab:
 
 ```ruby
 describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', resource_path: '{labName}/virtualmachines', resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -150,7 +145,7 @@ describe azure_generic_resource(resource_provider: 'Microsoft.DevTestLab/labs', 
 end
 ```
 
-### Test a resource group
+Test a resource group:
 
 ```ruby
 describe azure_generic_resource(add_subscription_id: true, resource_uri: '/resourcegroups/', name: 'RESOURCE_GROUP') do
@@ -160,7 +155,7 @@ describe azure_generic_resource(add_subscription_id: true, resource_uri: '/resou
 end
 ```
 
-### Test a policy definition
+Test a policy definition:
 
 ```ruby
 describe azure_generic_resource(add_subscription_id: true, resource_uri: 'providers/Microsoft.Authorization/policyDefinitions', name: 'POLICY') do

@@ -94,7 +94,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/st
 
 ## Examples
 
-### Test that the Data Lake Storage Gen 2 Filesystem Path is server encrypted
+Test that the Data Lake Storage Gen 2 Filesystem Path is server encrypted:
 
 ```ruby
 describe azure_data_lake_storage_gen2_path(account_name: 'ACCOUNT_NAME', filesystem: 'FILE_SYSTEM', name: 'PATHNAME')  do

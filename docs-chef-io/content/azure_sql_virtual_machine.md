@@ -68,7 +68,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/co
 
 ## Examples
 
-### Test that the SQL virtual machine is provisioned successfully
+Test that the SQL virtual machine is provisioned successfully:
 
 ```ruby
 describe azure_sql_virtual_machine(resource_group: 'RESOURCE_GROUP', name: 'SQL_VM_NAME') do

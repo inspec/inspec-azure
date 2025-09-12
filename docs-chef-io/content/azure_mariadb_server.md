@@ -70,7 +70,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if a MariaDB server is referenced with a valid name
+Test if a MariaDB server is referenced with a valid name:
 
 ```ruby
 describe azure_mariadb_server(resource_group: 'RESOURCE_GROUP', name: 'SQL-SERVER-1') do
@@ -78,7 +78,7 @@ describe azure_mariadb_server(resource_group: 'RESOURCE_GROUP', name: 'SQL-SERVE
 end
 ```
 
-### Test if a MariaDB server is referenced with an invalid name
+Test if a MariaDB server is referenced with an invalid name:
 
 ```ruby
 describe azure_mariadb_server(resource_group: 'RESOURCE_GROUP', name: 'I-DONT-EXIST') do
@@ -86,7 +86,7 @@ describe azure_mariadb_server(resource_group: 'RESOURCE_GROUP', name: 'I-DONT-EX
 end
 ```
 
-### Test if a MariaDB server has firewall rules set
+Test if a MariaDB server has firewall rules set:
 
 ```ruby
 describe azure_mariadb_server(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -94,7 +94,7 @@ describe azure_mariadb_server(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
 end
 ```
 
-### Test a MariaDB server's location and maximum replica capacity
+Test a MariaDB server's location and maximum replica capacity:
 
 ```ruby
 describe azure_mariadb_server(resource_id: '/subscriptions/.../my-server') do

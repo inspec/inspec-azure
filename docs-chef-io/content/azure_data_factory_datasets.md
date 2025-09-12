@@ -41,37 +41,37 @@ end
 `names`
 : A list of the unique resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `ids`
 : A list of dataset IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `properties`
 : A list of properties for the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `types`
 : A list of types for each resource.
 
-: **Field**: `type`
+  Field: `type`
 
 `descriptions`
 : A list of descriptions of the resources.
 
-: **Field**: `description`
+  Field: `description`
 
 `linkedServiceName_referenceNames`
 : The list of LinkedService names.
 
-: **Field**: `linkedServiceName_referenceName`
+  Field: `linkedServiceName_referenceName`
 
 `linkedServiceName_types`
 : The list of LinkedService types.
 
-: **Field**: `linkedServiceName_type`
+  Field: `linkedServiceName_type`
 
 {{< note >}}
 
@@ -81,7 +81,7 @@ end
 
 ## Examples
 
-### Test if properties match
+Test if properties match:
 
 ```ruby
 describe azure_data_factory_datasetsazure_data_factory_datasets(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME') do
@@ -95,7 +95,7 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
 
-### Test if any Dataset exists in the Data Factory
+Test if any Dataset exists in the Data Factory:
 
 ```ruby
 describe azure_data_factory_datasetsazure_data_factory_datasets(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME') do
@@ -103,7 +103,7 @@ describe azure_data_factory_datasetsazure_data_factory_datasets(resource_group: 
 end
 ```
 
-### Test that there are not any Datasets in a Data Factory
+Test that there are not any Datasets in a Data Factory:
 
 ```ruby
 # Should not exist if no datasets are in the data factory.

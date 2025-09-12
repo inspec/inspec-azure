@@ -45,27 +45,27 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the virtual networks.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of all the virtual network names.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `etags`
 : A list of etags defined on the resources.
 
-: **Field**: `etag`
+  Field: `etag`
 
 {{< note >}}
 
@@ -75,7 +75,7 @@ end
 
 ## Examples
 
-### Exists if any virtual networks exist in the resource group
+Exists if any virtual networks exist in the resource group:
 
 ```ruby
 describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP') do
@@ -83,10 +83,10 @@ describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Filters the results to only those that match the given name (Client Side)
+Filters the results to only those that match the given name (Client Side):
 
 ```ruby
-**Insist that MyVnetName exists.**
+Insist that MyVnetName exists:
 
 describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP').where(name: 'VNET_NAME') do
   it { should exist }
@@ -94,17 +94,17 @@ end
 ```
 
 ```ruby
-**Insist that you have at least one virtual network that starts with 'prefix'.**
+Insist that you have at least one virtual network that starts with 'prefix':
 
 describe azure_virtual_networks(resource_group: 'RESOURCE_GROUP').where { name.include?('project_A') } do
   it { should exist }
 end
 ```
 
-### Filters the networks at Azure API to only those that match the given name via a generic resource (Recommended)
+Filters the networks at Azure API to only those that match the given name via a generic resource (Recommended):
 
 ```ruby
-**Fuzzy string matching.**
+Fuzzy string matching:
 
 describe azure_generic_resources(resource_group: 'RESOURCE_GROUP', resource_provider: 'Microsoft.Network/virtualNetworks', substring_of_name: 'project_A') do
   it { should exist }
@@ -113,7 +113,7 @@ end
 
 ```ruby
 
-**Exact name matching.**
+Exact name matching:
 
 describe azure_generic_resources(resource_group: 'RESOURCE_GROUP', resource_provider: 'Microsoft.Network/virtualNetworks', name: 'MyVnetName') do
   it { should exist }

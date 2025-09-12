@@ -39,27 +39,27 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `etags`
 : A list of etags defined on the resources.
 
-: **Field**: `etag`
+  Field: `etag`
 
 {{< note >}}
 
@@ -69,7 +69,7 @@ end
 
 ## Examples
 
-### Check if a specific container exists
+Check if a specific container exists:
 
 ```ruby
 describe azurerm_storage_account_blob_containers(resource_group: 'RESOURCE_GROUP', storage_account_name: 'PRODUCTION') do
@@ -77,13 +77,19 @@ describe azurerm_storage_account_blob_containers(resource_group: 'RESOURCE_GROUP
 end
 ```
 
+## Matchers
+
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
+
+This resource has the following special matchers.
+
 ### exists
 
 The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
-```ruby
-**If we expect at least one resource to exist on a specified account.**
+If we expect at least one resource to exist on a specified account:
 
+```ruby
 describe azurerm_storage_account_blob_containers(resource_group: 'RESOURCE_GROUP', storage_account_name: 'PRODUCTION') do
   it { should exist }
 end
@@ -91,9 +97,9 @@ end
 
 ### not_exists
 
-```ruby
-**If we expect not to exist containers on a specified account.**
+If we expect not to exist containers on a specified account:
 
+```ruby
 describe azurerm_storage_account_blob_containers(resource_group: 'RESOURCE_GROUP', storage_account_name: 'PRODUCTION') do
   it { should_not exist }
 end

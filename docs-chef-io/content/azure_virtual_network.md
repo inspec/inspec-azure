@@ -74,7 +74,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/vi
 
 ## Examples
 
-### Ensure that the Virtual Network exists in the east US region
+Ensure that the Virtual Network exists in the east US region:
 
 ```ruby
 describe azure_virtual_network(resource_group: 'RESOURCE_GROUP', name: 'VNET_NAME') do
@@ -83,7 +83,7 @@ describe azure_virtual_network(resource_group: 'RESOURCE_GROUP', name: 'VNET_NAM
 end
 ```
 
-### Ensure that the Virtual Network's DNS servers are configured as expected
+Ensure that the Virtual Network's DNS servers are configured as expected:
 
 ```ruby
 describe azure_virtual_network(resource_group: 'RESOURCE_GROUP', name: 'VNET_NAME') do
@@ -91,7 +91,7 @@ describe azure_virtual_network(resource_group: 'RESOURCE_GROUP', name: 'VNET_NAM
 end
 ```
 
-### Ensure that the Virtual Network's address space is configured as expected
+Ensure that the Virtual Network's address space is configured as expected:
 
 ```ruby
 describe azure_virtual_network(resource_group: 'RESOURCE_GROUP', name: 'VNET_NAME') do

@@ -42,22 +42,22 @@ end
 `osTypes`
 : A list of OS Types.
 
-: **Field**: `osType`
+  Field: `osType`
 
 `codePackages`
 : A list of code packages.
 
-: **Field**: `codePackages`
+  Field: `codePackages`
 
 `networkRefs`
 : A list of the network refs.
 
-: **Field**: `networkRefs`
+  Field: `networkRefs`
 
 `replicaNames`
 : A list of the replica names.
 
-: **Field**: `replicaName`
+  Field: `replicaName`
 
 {{< note >}}
 
@@ -67,7 +67,7 @@ end
 
 ## Examples
 
-### Test that there are Service Fabric Mesh replicas with at least one replica
+Test that there are Service Fabric Mesh replicas with at least one replica:
 
 ```ruby
 describe azure_service_fabric_mesh_replicas(resource_group: 'RESOURCE_GROUP', application_name: 'SERVICE_FABRIC_MESH_APPLICATION_NAME', service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME').where{ replicaName > 1 } do

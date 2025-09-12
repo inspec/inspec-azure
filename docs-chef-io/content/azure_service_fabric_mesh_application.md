@@ -75,7 +75,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/se
 
 ## Examples
 
-### Test that the Service Fabric Mesh application is provisioned successfully
+Test that the Service Fabric Mesh application is provisioned successfully:
 
 ```ruby
 describe azure_service_fabric_mesh_application(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_FABRIC_MESH_APP_NAME') do

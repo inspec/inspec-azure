@@ -72,7 +72,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/se
 
 ## Examples
 
-### Test that the Service Bus subscription rule is of SQL Filter type
+Test that the Service Bus subscription rule is of SQL Filter type:
 
 ```ruby
 describe azure_service_bus_subscription_rule(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', subscription_name: "SUBSCRIPTION_NAME", topic_name: 'TOPIC_NAME', name: 'SUBSCRIPTION_RULE_NAME') do

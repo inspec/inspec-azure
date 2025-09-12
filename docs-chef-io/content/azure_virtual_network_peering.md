@@ -62,7 +62,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/vi
 
 ## Examples
 
-### Ensure that the Virtual Network Peering state is connected
+Ensure that the Virtual Network Peering state is connected:
 
 ```ruby
 describe azure_virtual_network_peering(resource_group: 'RESOURCE_GROUP',vnet: 'VIRTUAL-NETWORK-NAME' name: 'VIRTUAL-NETWORK-PEERING-NAME') do

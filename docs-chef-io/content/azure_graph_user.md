@@ -31,17 +31,17 @@ Either one of the following parameters is mandatory.
 `user_principal_name`
 : The user principal name.
 
-: **Example**: `jdoe@contoso.com`
+  For example, `jdoe@contoso.com`
 
 `id`
 : Globally unique identifier.
 
-: **Example**: `abcd-1234-efabc-5678`
+  For example, `abcd-1234-efabc-5678`
 
 `user_id`
 : Globally unique identifier (For backward compatibility).
 
-: **Example**: `abcd-1234-efabc-5678`
+  For example, `abcd-1234-efabc-5678`
 
 ## Properties
 
@@ -113,7 +113,7 @@ Either one of the following parameters is mandatory.
 
 ## Examples
 
-### Test if an Active Directory user account is referenced with a valid ID
+Test if an Active Directory user account is referenced with a valid ID:
 
 ```ruby
 describe azure_graph_user(id: 'someValidId')
@@ -121,7 +121,7 @@ describe azure_graph_user(id: 'someValidId')
 end
 ```
 
-### Test if an Active Directory user Account is referenced with an invalid ID
+Test if an Active Directory user Account is referenced with an invalid ID:
 
 ```ruby
 describe azure_graph_user(id: 'someInvalidId')

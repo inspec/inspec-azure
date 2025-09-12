@@ -68,7 +68,7 @@ Any property in the response may be accessed with the key names separated by dot
 
 ## Examples
 
-### Ensure that the subnets address prefix is configured as expected
+Ensure that the subnets address prefix is configured as expected:
 
 ```ruby
 describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name: 'SUBNET_NAME') do
@@ -76,7 +76,7 @@ describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name:
 end
 ```
 
-### Ensure that the subnet is attached to the right network security group
+Ensure that the subnet is attached to the right network security group:
 
 ```ruby
 describe azure_subnet(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME', name: 'SUBNET_NAME') do

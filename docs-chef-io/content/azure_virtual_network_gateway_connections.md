@@ -40,57 +40,57 @@ The parameter set should be provided for a valid query:
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types.
 
-: **Field**: `type`
+  Field: `type`
 
 `eTags`
 : A list of eTags.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `locations`
 : A list of all locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `properties`
 : A list of Properties for all the virtual network gateway connections.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `provisioningStates`
 : A list of provisioning states.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `connectionTypes`
 : A list of gateway connection types.
 
-: **Field**: `connectionType`
+  Field: `connectionType`
 
 `connectionProtocols`
 : A list of connection protocols used for this connection.
 
-: **Field**: `connectionProtocol`
+  Field: `connectionProtocol`
 
 `useLocalAzureIpAddresses`
 : A list of private local Azure IPs for the connection.
 
-: **Field**: `datacenterManagementServerName`
+  Field: `datacenterManagementServerName`
 
 `ipsecPolicies`
 : A list of all the IPSec policies to be considered by this connection.
 
-: **Field**: `ipsecPolicies`
+  Field: `ipsecPolicies`
 
 {{< note >}}
 
@@ -100,7 +100,7 @@ The parameter set should be provided for a valid query:
 
 ## Examples
 
-### Loop through Virtual Network Gateway connection by their names
+Loop through Virtual Network Gateway connection by their names:
 
 ```ruby
 azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -110,7 +110,7 @@ azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').name
 end
 ```
 
-### Test that there are Virtual Network Gateway connections with IPsec type
+Test that there are Virtual Network Gateway connections with IPsec type:
 
 ```ruby
 describe azure_virtual_network_gateway_connections(resource_group: 'RESOURCE_GROUP').where(connectionType: 'VPN_CONNECTION_TYPE') do

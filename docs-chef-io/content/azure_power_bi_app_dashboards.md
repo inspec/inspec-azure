@@ -36,22 +36,22 @@ end
 `ids`
 : List of all app IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `displayNames`
 : List of all the dashboard display names.
 
-: **Field**: `displayName`
+  Field: `displayName`
 
 `embedUrls`
 : List of all the dashboard embed URLs.
 
-: **Field**: `embedUrl`
+  Field: `embedUrl`
 
 `isReadOnlies`
 : List of all the boolean read-only dashboard flags.
 
-: **Field**: `isReadOnly`
+  Field: `isReadOnly`
 
 {{< note >}}
 
@@ -62,7 +62,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Loop through Power BI app dashboards by their IDs
+Loop through Power BI app dashboards by their IDs:
 
 ```ruby
 azure_power_bi_app_dashboards(app_id: 'APP_ID').ids.each do |id|
@@ -72,7 +72,7 @@ azure_power_bi_app_dashboards(app_id: 'APP_ID').ids.each do |id|
 end
 ```
 
-### Test to filter out Power BI app dashboards that are read-only
+Test to filter out Power BI app dashboards that are read-only:
 
 ```ruby
 describe azure_power_bi_app_dashboards(app_id: 'APP_ID').where(isReadOnly: true) do

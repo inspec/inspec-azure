@@ -41,27 +41,27 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the SQL virtual machine group availability listeners.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `provisioningStates`
 : A list of provisioning states of the SQL virtual machine group availability listeners.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 {{< note >}}
 
@@ -71,7 +71,7 @@ end
 
 ## Examples
 
-### Loop through SQL virtual machine group availability listeners by their names
+Loop through SQL virtual machine group availability listeners by their names:
 
 ```ruby
 azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME').names.each do |name|
@@ -81,7 +81,7 @@ azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE
 end
 ```
 
-### Test that there are SQL virtual machine group availability listeners that are successfully provisioned
+Test that there are SQL virtual machine group availability listeners that are successfully provisioned:
 
 ```ruby
 describe azure_sql_virtual_machine_group_availability_listeners(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME').where(provisioningState: 'Succeeded') do

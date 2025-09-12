@@ -72,7 +72,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test the administrator's login name of a PostgreSql server
+Test the administrator's login name of a PostgreSql server:
 
 ```ruby
 describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do
@@ -80,7 +80,7 @@ describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER
 end
 ```
 
-### Test the fully qualified domain name of a PostgreSql server
+Test the fully qualified domain name of a PostgreSql server:
 
 ```ruby
 describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'i-dont-exist') do
@@ -88,7 +88,7 @@ describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'i-dont
 end
 ```
 
-### Test the client encoding configuration value of a PostgreSql server
+Test the client encoding configuration value of a PostgreSql server:
 
 ```ruby
 describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do
@@ -96,7 +96,7 @@ describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER
 end
 ```
 
-### Test the deadlock timeout configuration value of a PostgreSql server
+Test the deadlock timeout configuration value of a PostgreSql server:
 
 ```ruby
 describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do
@@ -104,7 +104,7 @@ describe azure_postgresql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER
 end
 ```
 
-### Test a PostgreSql server's location and maximum replica capacity
+Test a PostgreSql server's location and maximum replica capacity:
 
 ```ruby
 describe azure_postgresql_server(resource_id: '/subscriptions/.../my-server') do
@@ -113,7 +113,7 @@ describe azure_postgresql_server(resource_id: '/subscriptions/.../my-server') do
 end
 ```
 
-### Test a PostgreSql server's firewall rules
+Test a PostgreSql server's firewall rules:
 
 ```ruby
 describe azure_postgresql_server(resource_id: '/subscriptions/.../my-server') do

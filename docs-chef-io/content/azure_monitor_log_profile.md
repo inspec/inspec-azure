@@ -59,7 +59,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if a Log profile is referenced with a valid name
+Test if a Log profile is referenced with a valid name:
 
 ```ruby
 describe azure_monitor_log_profile(name: 'LOG_PROFILE') do
@@ -67,7 +67,7 @@ describe azure_monitor_log_profile(name: 'LOG_PROFILE') do
 end
 ```
 
-### Test if a Log profile is referenced with an invalid name
+Test if a Log profile is referenced with an invalid name:
 
 ```ruby
 describe azure_monitor_log_profile(name: 'i-dont-exist') do
@@ -75,7 +75,7 @@ describe azure_monitor_log_profile(name: 'i-dont-exist') do
 end
 ```
 
-### Test the retention days of a Log profile
+Test the retention days of a Log profile:
 
 ```ruby
 describe azure_monitor_log_profile(name: 'LOG_PROFILE') do
@@ -83,7 +83,7 @@ describe azure_monitor_log_profile(name: 'LOG_PROFILE') do
 end
 ```
 
-### Test the storage account of a Log profile
+Test the storage account of a Log profile:
 
 ```ruby
 describe azure_monitor_log_profile(resource_id: '/subscriptions/{subscriptionId}/providers/microsoft.insights/logprofiles/{logProfileName}') do
@@ -97,7 +97,7 @@ end
 
 This resource has the following special matchers.
 
-### have_log_retention_enabled
+### have_log_retention_enabled:
 
 Test whether the log retention is enabled.
 

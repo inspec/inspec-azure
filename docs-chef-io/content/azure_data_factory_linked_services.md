@@ -41,32 +41,32 @@ end
 `names`
 : A list of the unique resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `ids`
 : A list of Linked Services IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `properties`
 : A list of properties for the resource.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `provisioning_states`
 : The linked services provisioning state.
 
-: **Field**: `provisioning_state`
+  Field: `provisioning_state`
 
 `linked_service_types`
 : The type of linked service resource.
 
-: **Field**: `linked_service_type`
+  Field: `linked_service_type`
 
 `type_properties`
 : The linked service type of properties.
 
-: **Field**: `type_properties`
+  Field: `type_properties`
 
 {{< note >}}
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-### Test if any linked services exist in the resource group
+Test if any linked services exist in the resource group:
 
 ```ruby
 describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
@@ -85,7 +85,7 @@ describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, fa
 end
 ```
 
-### Test that there are not any linked services in a resource group
+Test that there are not any linked services in a resource group:
 
 ```ruby
 # Should not exist if no Linked Services are in the resource group.
@@ -95,7 +95,7 @@ describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, fa
 end
 ```
 
-### Filter linked services in a resource group by properties
+Filter linked services in a resource group by properties:
 
 ```ruby
 describe azure_data_factory_linked_services(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do

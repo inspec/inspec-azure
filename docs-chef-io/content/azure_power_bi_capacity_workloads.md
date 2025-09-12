@@ -36,17 +36,17 @@ end
 `states`
 : List of all Power Bi Capacity Workload IDs.
 
-: **Field**: `state`
+  Field: `state`
 
 `names`
 : List of all the Power Bi Capacity Workload names.
 
-: **Field**: `name`
+  Field: `name`
 
 `maxMemoryPercentageSetByUsers`
 : List of all the Power Bi Capacity Workload Kinds.
 
-: **Field**: `maxMemoryPercentageSetByUser`
+  Field: `maxMemoryPercentageSetByUser`
 
 {{< note >}}
 
@@ -57,7 +57,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test to ensure Power BI Capacity Workload is enabled
+Test to ensure Power BI Capacity Workload is enabled:
 
 ```ruby
 describe azure_power_bi_capacity_workloads(capacity_id: 'CAPACITY_ID').where(state: 'Enabled') do

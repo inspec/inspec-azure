@@ -132,7 +132,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if log collection is enabled
+Test if log collection is enabled:
 
 ```ruby
 describe azure_security_center_policy(resource_group: 'my-rg', name: 'my_policy') do
@@ -140,7 +140,7 @@ describe azure_security_center_policy(resource_group: 'my-rg', name: 'my_policy'
 end
 ```
 
-**Test If Notifications are Enabled.**
+Test If Notifications are Enabled:
 
 ```ruby
 describe azure_security_center_policy(resource_group: 'RESOURCE_GROUP', name: 'POLICY_NAME') do

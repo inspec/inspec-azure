@@ -35,32 +35,32 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names for all the resources.
 
-: **Field**: `name`
+  Field: `name`
 
 `etags`
 : A list of etag for all the resources.
 
-: **Field**: `etag`
+  Field: `etag`
 
 `types`
 : A list of types for all the resources.
 
-: **Field**: `type`
+  Field: `type`
 
 `locations`
 : A list of locations for all the resources.
 
-: **Field**: `location`
+  Field: `location`
 
 `properties`
 : A list of properties for all the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -70,7 +70,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Test that the Virtual WAN type is standard
+Test that the Virtual WAN type is standard:
 
 ```ruby
 describe azure_virtual_wans.where{ properties.select{|prop| prop.type == 'Standard' } } do

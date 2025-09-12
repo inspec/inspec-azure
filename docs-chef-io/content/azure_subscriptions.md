@@ -35,22 +35,22 @@ This resource does not require any parameters.
 `ids`
 : A list of the subscription IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of display names of all the subscriptions.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the subscriptions.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `tenant_ids`
 : A list of tenant IDs of all the subscriptions.
 
-: **Field**: `tenant_id`
+  Field: `tenant_id`
 
 {{< note >}}
 
@@ -60,7 +60,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Check a specific subscription is present
+Check a specific subscription is present:
 
 ```ruby
 describe azure_subscriptions do

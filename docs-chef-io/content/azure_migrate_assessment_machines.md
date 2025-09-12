@@ -41,107 +41,107 @@ end
 `ids`
 : Path reference to the assessment machines.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all assessment machines.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `eTags`
 : A list of eTags for all the assessment machines.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `properties`
 : A list of properties for all the assessment machines.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `bootTypes`
 : A list of boot machines.
 
-: **Field**: `bootType`
+  Field: `bootType`
 
 `createdTimestamps`
 : Time when this machine is created.
 
-: **Field**: `createdTimestamp`
+  Field: `createdTimestamp`
 
 `datacenterManagementServerArmIds`
 : A list of ARM IDs of the data center as tracked by the `Microsoft.OffAzure`.
 
-: **Field**: `datacenterManagementServerArmId`
+  Field: `datacenterManagementServerArmId`
 
 `datacenterManagementServerNames`
 : Name of the servers hosting the data center management solution.
 
-: **Field**: `datacenterManagementServerName`
+  Field: `datacenterManagementServerName`
 
 `descriptions`
 : Descriptions of all the machines.
 
-: **Field**: `description`
+  Field: `description`
 
 `discoveryMachineArmIds`
 : A list of ARM IDs of the machine as tracked by the `Microsoft.OffAzure`.
 
-: **Field**: `discoveryMachineArmId`
+  Field: `discoveryMachineArmId`
 
 `disks`
 : Dictionary of disks attached to all the machines. The key is disk ID. Value is a disk object.
 
-: **Field**: `disks`
+  Field: `disks`
 
 `displayNames`
 : User readable names of all the machines as defined by the user in their private data center.
 
-: **Field**: `displayName`
+  Field: `displayName`
 
 `groups`
 : A List of references to the groups where the machine is a member.
 
-: **Field**: `groups`
+  Field: `groups`
 
 `megabytesOfMemories`
 : A list of memories in Megabytes.
 
-: **Field**: `megabytesOfMemory`
+  Field: `megabytesOfMemory`
 
 `networkAdapters`
 : Dictionary of network adapters attached to all the machines. The key is the network adapter ID. Value is a network adapter object.
 
-: **Field**: `networkAdapters`
+  Field: `networkAdapters`
 
 `numberOfCores`
 : Processor counts.
 
-: **Field**: `numberOfCores`
+  Field: `numberOfCores`
 
 `operatingSystemTypes`
 : Operating system types of all the machines.
 
-: **Field**: `operatingSystemType`
+  Field: `operatingSystemType`
 
 `operatingSystemNames`
 : Operating system names of all the machines.
 
-: **Field**: `operatingSystemName`
+  Field: `operatingSystemName`
 
 `operatingSystemVersions`
 : Operating system versions of all the machines.
 
-: **Field**: `operatingSystemVersion`
+  Field: `operatingSystemVersion`
 
 `updatedTimestamps`
 : Time when the machines are last updated.
 
-: **Field**: `updatedTimestamp`
+  Field: `updatedTimestamp`
 
 {{< note >}}
 
@@ -151,7 +151,7 @@ end
 
 ## Examples
 
-### Loop through migrate assessment machines by their names
+Loop through migrate assessment machines by their names:
 
 ```ruby
 azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME').names.each do |name|
@@ -161,7 +161,7 @@ azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name
 end
 ```
 
-### Test that there are migrate assessment machines with BIOS boot type
+Test that there are migrate assessment machines with BIOS boot type:
 
 ```ruby
 describe azure_migrate_assessment_machines(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME').where(bootType: 'BIOS') do

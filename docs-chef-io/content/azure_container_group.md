@@ -68,7 +68,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/co
 
 ## Examples
 
-### Test that the container group has a public IP address
+Test that the container group has a public IP address:
 
 ```ruby
 describe azure_container_group(resource_group: 'RESOURCE_GROUP_NAME', name: 'CONTAINER_GROUP_NAME') do

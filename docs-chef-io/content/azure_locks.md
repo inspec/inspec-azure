@@ -76,17 +76,17 @@ Either one of the parameter sets can be provided for a valid query:
 `ids`
 : A list of the unique resource IDs of the Management Locks.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the Management Locks being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `properties`
 : A list of properties for all the Management Locks being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -96,7 +96,7 @@ Either one of the parameter sets can be provided for a valid query:
 
 ## Examples
 
-### Check if a specific Management Lock is present for a resource
+Check if a specific Management Lock is present for a resource:
 
 ```ruby
 describe azure_locks(resource_group: 'RESOURCE_GROUP', resource_name: 'VM_NAME', resource_type: 'Microsoft.Compute/virtualMachines') do
@@ -104,7 +104,7 @@ describe azure_locks(resource_group: 'RESOURCE_GROUP', resource_name: 'VM_NAME',
 end
 ```
 
-### Filters the results to include only those Management Locks that have the specific name
+Filters the results to include only those Management Locks that have the specific name:
 
 ```ruby
 describe azure_locks.where{ name.include?('production') } do
@@ -112,7 +112,7 @@ describe azure_locks.where{ name.include?('production') } do
 end
 ```
 
-### Loop through all virtual machines to test if they have Management Locks defined
+Loop through all virtual machines to test if they have Management Locks defined:
 
 ```ruby
 azure_virtual_machines.ids.each do |id|

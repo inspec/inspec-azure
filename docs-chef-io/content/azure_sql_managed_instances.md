@@ -37,47 +37,47 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the SQL-managed instances.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `provisioningStates`
 : A list of provisioning states of all the SQL-managed instances.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `minimalTlsVersions`
 : A list of minimalTlsVersion for all the SQL-managed instances.
 
-: **Field**: `minimalTlsVersion`
+  Field: `minimalTlsVersion`
 
 `sku_names`
 : A list of names for the sku.
 
-: **Field**: `sku_name`
+  Field: `sku_name`
 
 `sku_tiers`
 : A list of tiers for the sku.
 
-: **Field**: `sku_tier`
+  Field: `sku_tier`
 
 {{< note >}}
 
@@ -87,7 +87,7 @@ end
 
 ## Examples
 
-**Loop through SQL managed instances by their names.**
+Loop through SQL managed instances by their names:
 
 ```ruby
 azure_sql_managed_instances(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -97,7 +97,7 @@ azure_sql_managed_instances(resource_group: 'RESOURCE_GROUP').names.each do |nam
 end
 ```
 
-### Test that there are SQL-managed instances that are successfully provisioned
+Test that there are SQL-managed instances that are successfully provisioned:
 
 ```ruby
 describe azure_sql_managed_instances.where(provisioningState: 'Succeeded') do

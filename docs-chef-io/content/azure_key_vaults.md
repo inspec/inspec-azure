@@ -45,32 +45,32 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of all the key vault names.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of types of all the key vaults.
 
-: **Field**: `type`
+  Field: `type`
 
 `locations`
 : A list of locations for all the key vaults.
 
-: **Field**: `location`
+  Field: `location`
 
 `properties`
 : A list of properties for all the key vaults.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-### Loop through key vaults by their IDs
+Loop through key vaults by their IDs:
 
 ```ruby
 azure_key_vaults.ids.each do |id|
@@ -90,7 +90,7 @@ azure_key_vaults.ids.each do |id|
 end
 ```
 
-### Test to ensure there are key vaults that include a certain string in their names (Client Side Filtering)
+Test to ensure there are key vaults that include a certain string in their names (client-side filtering):
 
 ```ruby
 describe azure_key_vaults.where { name.include?('deployment') } do
@@ -98,7 +98,7 @@ describe azure_key_vaults.where { name.include?('deployment') } do
 end
 ```
 
-### Test to ensure there are key vaults that include a certain string in their names (Server Side Filtering via Generic Resource - Recommended)
+Test to ensure there are key vaults that include a certain string in their names (Server Side Filtering via Generic Resource - Recommended):
 
 ```ruby
 describe azure_generic_resources(resource_provider: 'Microsoft.KeyVault/vaults', substring_of_name: 'deployment') do

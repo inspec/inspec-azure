@@ -35,77 +35,77 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names for all the resources.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types for all the resources.
 
-: **Field**: `type`
+  Field: `type`
 
 `locations`
 : A list of the resource location for all the resources.
 
-: **Field**: `location`
+  Field: `location`
 
 `tags`
 : A list of tags for all the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `properties`
 : A list of properties all the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `containers`
 : A list of containers within the container group.
 
-: **Field**: `containers`
+  Field: `containers`
 
 `init_containers`
 : A list of init containers for a container group.
 
-: **Field**: `init_containers`
+  Field: `init_containers`
 
 `image_registry_credentials`
 : A list of image registry credentials through which the container group is created.
 
-: **Field**: `image_registry_credentials`
+  Field: `image_registry_credentials`
 
 `ip_address`
 : A list of IP address type of the container group.
 
-: **Field**: `ip_address`
+  Field: `ip_address`
 
 `os_types`
 : A list of operating system types required by the containers in the container group.
 
-: **Field**: `os_type`
+  Field: `os_type`
 
 `provisioning_states`
 : A list of provisioning states of the container group.
 
-: **Field**: `provisioning_state`
+  Field: `provisioning_state`
 
 `volumes`
 : A list of volumes that can be mounted by containers in this container group.
 
-: **Field**: `volumes`
+  Field: `volumes`
 
 `skus`
 : A list SKUs for a container group.
 
-: **Field**: `sku`
+  Field: `sku`
 
 `restart_policies`
 : A list of restart policies for all containers within the container group.
 
-: **Field**: `restart_policy`
+  Field: `restart_policy`
 
 {{< note >}}
 
@@ -115,7 +115,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Test to loop through container groups by their names
+Test to loop through container groups by their names:
 
 ```ruby
 azure_container_groups.names.each do |name|
@@ -125,7 +125,7 @@ azure_container_groups.names.each do |name|
 end
 ```
 
-### Test to ensure there are container groups with valid name
+Test to ensure there are container groups with valid name:
 
 ```ruby
 describe azure_container_groups.where(name: 'CONTAINER_GROUP_NAME') do

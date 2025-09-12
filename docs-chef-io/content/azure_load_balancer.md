@@ -63,7 +63,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/lo
 
 ## Examples
 
-### Test if a Load Balancer has any inbound nat rules
+Test if a Load Balancer has any inbound nat rules:
 
 ```ruby
 describe azure_load_balancer(resource_group: 'RESOURCE_GROUP', name: 'EXAMPLE_LB') do
@@ -71,7 +71,7 @@ describe azure_load_balancer(resource_group: 'RESOURCE_GROUP', name: 'EXAMPLE_LB
 end
 ```
 
-### Loop through all Load Balancers in a subscription via 'resource_id'
+Loop through all Load Balancers in a subscription via 'resource_id':
 
 ```ruby
 azure_load_balancers.ids.each do |id|

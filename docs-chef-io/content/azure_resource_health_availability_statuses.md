@@ -35,27 +35,27 @@ This resource does not require any parameters.
 `ids`
 : A list of the Azure Resource Manager Identity for the `availabilityStatuses` resources.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : current.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : `Microsoft.ResourceHealth/AvailabilityStatuses`.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties of availability state.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of Azure Resource Manager geo locations of the resource.
 
-: **Field**: `location`
+  Field: `location`
 
 {{< note >}}
 
@@ -65,7 +65,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Loop through availability statuses by resource ID
+Loop through availability statuses by resource ID:
 
 ```ruby
 azure_resource_health_availability_statuses.ids.each do |id|
@@ -75,7 +75,7 @@ azure_resource_health_availability_statuses.ids.each do |id|
 end
 ```
 
-### Test that there are availability statuses that have an 'Available' availability state
+Test that there are availability statuses that have an 'Available' availability state:
 
 ```ruby
 describe azure_resource_health_availability_statuses.where{ properties.select{|prop| prop.availabilityState == 'Available' } } do

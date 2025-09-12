@@ -33,32 +33,32 @@ No required parameters.
 `ids`
 : The id of the snapshot.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : The name of the snapshot.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : The type of the snapshot.
 
-: **Field**: `type`
+  Field: `type`
 
 `locations`
 : The location of the snapshot.
 
-: **Field**: `location`
+  Field: `location`
 
 `properties`
 : The properties of the snapshot.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `skus`
 : The sku of the snapshot.
 
-: **Field**: `sku`
+  Field: `sku`
 
 {{< note >}}
 
@@ -70,7 +70,7 @@ See the [Azure documentation](https://learn.microsoft.com/en-us/rest/api/compute
 
 ## Examples
 
-### Test if a snapshot has a valid type
+Test if a snapshot has a valid type:
 
 ```ruby
 describe azure_snapshots do

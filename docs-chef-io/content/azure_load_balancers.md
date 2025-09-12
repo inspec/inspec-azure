@@ -45,37 +45,37 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of the types of resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `skus`
 : A list of the SKUs of the resources being interrogated.
 
-: **Field**: `sku`
+  Field: `sku`
 
 {{< note >}}
 
@@ -85,7 +85,7 @@ end
 
 ## Examples
 
-### Check Load balancers are present
+Check Load balancers are present:
 
 ````ruby
 describe azure_load_balancers do
@@ -94,7 +94,7 @@ describe azure_load_balancers do
 end
 ````
 
-### Filter the results to include only those with names match the specified string value
+Filter the results to include only those with names match the specified string value:
 
 ```ruby
 describe azure_load_balancers.where{ name.eql?('PRODUCTION-LB') } do
@@ -102,7 +102,7 @@ describe azure_load_balancers.where{ name.eql?('PRODUCTION-LB') } do
 end
 ```
 
-### Filter the results to include only those with location match the specified string value
+Filter the results to include only those with location match the specified string value:
 
 ```ruby
 describe azure_load_balancers.where{ location.eql?('EASTUS-2') } do

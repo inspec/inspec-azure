@@ -54,7 +54,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI gateway's exponent is 'AQAB'
+Test that the Power BI gateway's exponent is 'AQAB':
 
 ```ruby
 describe azure_power_bi_gateway(gateway_id: 'GATEWAY_ID')  do

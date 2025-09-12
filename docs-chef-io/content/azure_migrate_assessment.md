@@ -85,7 +85,7 @@ Refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/mig
 
 ## Examples
 
-### Test that the migrate assessments have a minimum scaling factor
+Test that the migrate assessments have a minimum scaling factor:
 
 ```ruby
 describe azure_migrate_assessment(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', group_name: 'GROUP_NAME', NAME: 'ASSESSMENT_NAME') do

@@ -41,177 +41,177 @@ The parameter set that should be provided for a valid query are `resource_group`
 `ids`
 : Path reference to the assessments.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all assessments.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `eTags`
 : A list of eTags for all the assessments.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `properties`
 : A list of Properties for all the assessments.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `azureDiskTypes`
 : Storage type selected for the disk of all the assessments.
 
-: **Field**: `azureDiskType`
+  Field: `azureDiskType`
 
 `azureHybridUseBenefits`
 : A HUB discount on windows virtual machines for all the assessments.
 
-: **Field**: `azureHybridUseBenefit`
+  Field: `azureHybridUseBenefit`
 
 `azureLocations`
 : Target Azure locations for which the machines should be assessed.
 
-: **Field**: `azureLocation`
+  Field: `azureLocation`
 
 `azureOfferCodes`
 : Offer codes according to which cost estimation is done.
 
-: **Field**: `azureOfferCode`
+  Field: `azureOfferCode`
 
 `azurePricingTiers`
 : Pricing tiers for size evaluation.
 
-: **Field**: `azurePricingTier`
+  Field: `azurePricingTier`
 
 `azureStorageRedundancies`
 : Storage redundancy types offered by Azure.
 
-: **Field**: `azureStorageRedundancy`
+  Field: `azureStorageRedundancy`
 
 `azureVmFamilies`
 : List of azure VM families.
 
-: **Field**: `azureVmFamilies`
+  Field: `azureVmFamilies`
 
 `confidenceRatingInPercentages`
 : Confidence rating percentages for assessment.
 
-: **Field**: `confidenceRatingInPercentage`
+  Field: `confidenceRatingInPercentage`
 
 `createdTimestamps`
 : Time when this project is created.
 
-: **Field**: `createdTimestamp`
+  Field: `createdTimestamp`
 
 `currencies`
 : Currencies to report the prices.
 
-: **Field**: `currency`
+  Field: `currency`
 
 `discountPercentages`
 : Custom discount percentages to be applied to final costs.
 
-: **Field**: `discountPercentage`
+  Field: `discountPercentage`
 
 `eaSubscriptionIds`
 : Enterprise agreement subscription arm IDs.
 
-: **Field**: `eaSubscriptionId`
+  Field: `eaSubscriptionId`
 
 `monthlyBandwidthCosts`
 : Monthly network cost estimates for the machines.
 
-: **Field**: `monthlyBandwidthCost`
+  Field: `monthlyBandwidthCost`
 
 `monthlyComputeCosts`
 : Monthly compute cost estimates for the machines.
 
-: **Field**: `monthlyComputeCost`
+  Field: `monthlyComputeCost`
 
 `monthlyPremiumStorageCosts`
 : Monthly premium storage cost estimates for the machines.
 
-: **Field**: `monthlyPremiumStorageCost`
+  Field: `monthlyPremiumStorageCost`
 
 `monthlyStandardSSDStorageCosts`
 : Monthly standard SSD storage cost estimates for the machines.
 
-: **Field**: `monthlyStandardSSDStorageCost`
+  Field: `monthlyStandardSSDStorageCost`
 
 `monthlyStorageCosts`
 : Monthly storage cost estimates for the machines.
 
-: **Field**: `monthlyStorageCost`
+  Field: `monthlyStorageCost`
 
 `numberOfMachines`
 : Number of assessed machines part of the assessments.
 
-: **Field**: `numberOfMachines`
+  Field: `numberOfMachines`
 
 `percentiles`
 : Percentiles of performance data used to recommend Azure size.
 
-: **Field**: `percentile`
+  Field: `percentile`
 
 `perfDataEndTimes`
 : End times to consider performance data for assessments.
 
-: **Field**: `perfDataEndTime`
+  Field: `perfDataEndTime`
 
 `perfDataStartTimes`
 : Start times to consider performance data for assessments.
 
-: **Field**: `perfDataStartTime`
+  Field: `perfDataStartTime`
 
 `pricesTimestamps`
 : Times when the Azure Prices are queried.
 
-: **Field**: `pricesTimestamp`
+  Field: `pricesTimestamp`
 
 `reservedInstances`
 : Azure reserved instances.
 
-: **Field**: `reservedInstance`
+  Field: `reservedInstance`
 
 `scalingFactors`
 : Scaling factors used over utilization data to add a performance buffer for new machines to be created in Azure.
 
-: **Field**: `scalingFactor`
+  Field: `scalingFactor`
 
 `sizingCriterions`
 : Assessment sizing criteria.
 
-: **Field**: `sizingCriterion`
+  Field: `sizingCriterion`
 
 `stages`
 : User configurable setting that describes the status of the assessments.
 
-: **Field**: `stage`
+  Field: `stage`
 
 `statuses`
 : Whether the assessments have been created and are valid.
 
-: **Field**: `status`
+  Field: `status`
 
 `timeRanges`
 : Time ranges of performance data used to recommend a size.
 
-: **Field**: `timeRange`
+  Field: `timeRange`
 
 `updatedTimestamps`
 : Times when the project is last updated.
 
-: **Field**: `updatedTimestamp`
+  Field: `updatedTimestamp`
 
 `vmUptimes`
 : Specify the durations for which the VMs are up in the on-premises environment.
 
-: **Field**: `vmUptime`
+  Field: `vmUptime`
 
 Refer to the [Azure Migrate assements documentation](https://docs.microsoft.com/en-us/rest/api/migrate/assessment/assessments/list-by-project) for additional information.
 
@@ -223,7 +223,7 @@ Refer to the [Azure Migrate assements documentation](https://docs.microsoft.com/
 
 ## Examples
 
-### Loop through migrate assessments by their names
+Loop through migrate assessments by their names:
 
 ```ruby
 azure_migrate_assessments(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME'.names.each do |name|
@@ -233,7 +233,7 @@ azure_migrate_assessments(resource_group: 'RESOURCE_GROUP', project_name: 'PROJE
 end
 ```
 
-### Test to ensure migrate assessments exist with local redundancy
+Test to ensure migrate assessments exist with local redundancy:
 
 ```ruby
 describe azure_migrate_assessments(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(azureStorageRedundancy: 'LocallyRedundant') do

@@ -36,37 +36,37 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the service Fabric Mesh services.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `osTypes`
 : The Operating system type required by the code in services.
 
-: **Field**: `replicaCount`
+  Field: `replicaCount`
 
 `replicaCounts`
 : The number of replicas of the service to create. Defaults to 1 if not specified.
 
-: **Field**: `metricId`
+  Field: `metricId`
 
 `healthStates`
 : The health state of a services resource.
 
-: **Field**: `healthState`
+  Field: `healthState`
 
 {{< note >}}
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-### Loop through service Fabric Mesh services by their names
+Loop through service Fabric Mesh services by their names:
 
 ```ruby
 azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -86,7 +86,7 @@ azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP').names.each 
 end
 ```
 
-### Test that there are service Fabric Mesh services that are healthy
+Test that there are service Fabric Mesh services that are healthy:
 
 ```ruby
 describe azure_service_fabric_mesh_services(resource_group: 'RESOURCE_GROUP').where(replicaCounts: 2) do

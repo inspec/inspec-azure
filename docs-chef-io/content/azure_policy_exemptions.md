@@ -33,87 +33,87 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names for all the resources.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types for all the resources.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `system_data`
 : A list of System Data for all the resources.
 
-: **Field**: `system_data`
+  Field: `system_data`
 
 `policy_assignment_ids`
 : A list of Policy Assignment IDs.
 
-: **Field**: `policy_assignment_id`
+  Field: `policy_assignment_id`
 
 `policy_definition_reference_ids`
 : A list of Policy Definition Reference IDs.
 
-: **Field**: `policy_definition_reference_ids`
+  Field: `policy_definition_reference_ids`
 
 `exemption_categories`
 : A list of categories of exemptions.
 
-: **Field**: `exemption_category`
+  Field: `exemption_category`
 
 `display_names`
 : A list of display names of the exemptions.
 
-: **Field**: `display_name`
+  Field: `display_name`
 
 `descriptions`
 : A list of descriptions of the exemptions.
 
-: **Field**: `description`
+  Field: `description`
 
 `metadata`
 : A list of metadata info of the exemptions.
 
-: **Field**: `metadata`
+  Field: `metadata`
 
 `created_by`
 : A list of creators of the exemptions.
 
-: **Field**: `created_by`
+  Field: `created_by`
 
 `created_by_types`
 : A list of the type of creators of the exemptions.
 
-: **Field**: `created_by_type`
+  Field: `created_by_type`
 
 `created_at`
 : A list of created_at timestamps of the exemptions.
 
-: **Field**: `created_at`
+  Field: `created_at`
 
 `last_modified_by`
 : A list of the last modifiers of the exemptions.
 
-: **Field**: `last_modified_by`
+  Field: `last_modified_by`
 
 `last_modified_by_types`
 : A list of the type of modifiers of the exemptions.
 
-: **Field**: `last_modified_by_type`
+  Field: `last_modified_by_type`
 
 `last_modified_at`
 : A list of `modified_at` timestamps of the exemptions.
 
-: **Field**: `last_modified_at`
+  Field: `last_modified_at`
 
 {{< note >}}
 
@@ -123,7 +123,7 @@ end
 
 ## Examples
 
-### Loop through Policy Exemptions by their names
+Loop through Policy Exemptions by their names:
 
 ```ruby
 azure_policy_exemptions.names.each do |name|
@@ -133,7 +133,7 @@ azure_policy_exemptions.names.each do |name|
 end
 ```
 
-### Test that there are Policy Exemptions that are of waiver exemption category
+Test that there are Policy Exemptions that are of waiver exemption category:
 
 ```ruby
 describe azure_policy_exemptions.where(exemption_category: 'Waiver') do

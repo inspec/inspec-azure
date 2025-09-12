@@ -35,22 +35,22 @@ This resource does not require any parameters.
 `ids`
 : List of all app IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : List of all the app names.
 
-: **Field**: `name`
+  Field: `name`
 
 `descriptions`
 : List of all the app Descriptions.
 
-: **Field**: `description`
+  Field: `description`
 
 `lastUpdates`
 : List of all Last updated times of the apps.
 
-: **Field**: `lastUpdate`
+  Field: `lastUpdate`
 
 {{< note >}}
 
@@ -61,7 +61,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Loop through Power BI apps by their IDs
+Loop through Power BI apps by their IDs:
 
 ```ruby
 azure_power_bi_apps.ids.each do |id|
@@ -71,7 +71,7 @@ azure_power_bi_apps.ids.each do |id|
 end
 ```
 
-### Test that a Power BI app named 'Finance' exists
+Test that a Power BI app named 'Finance' exists:
 
 ```ruby
 describe azure_power_bi_apps.where(name: 'Finance') do

@@ -45,32 +45,32 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `os_disks`
 : A list of OS disk names for all the virtual machines.
 
-: **Field**: `os_disk`
+  Field: `os_disk`
 
 `data_disks`
 : A list of data disks for all the virtual machines.
 
-: **Field**: `data_disks`
+  Field: `data_disks`
 
 `vm_names`
 : A list of all the virtual machine names.
 
-: **Field**: `name`
+  Field: `name`
 
 `platforms`
 : A list of virtual machine operation system platforms. Supported values are `windows` and `linux`.
 
-: **Field**: `platform`
+  Field: `platform`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 {{< note >}}
 
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-### Test if any virtual machines exist in the resource group
+Test if any virtual machines exist in the resource group:
 
 ```ruby
 describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP') do
@@ -88,7 +88,7 @@ describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-**Filters Based on Platform.**
+Filters Based on Platform:
 
 ```ruby
 describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform: 'windows') do
@@ -96,7 +96,7 @@ describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform
 end
 ```
 
-### Loop through virtual machines by their IDs
+Loop through virtual machines by their IDs:
 
 ```ruby
 azure_virtual_machines.ids.each do |id|
@@ -106,7 +106,7 @@ azure_virtual_machines.ids.each do |id|
 end
 ```
 
-### Test if there are Windows virtual machines
+Test if there are Windows virtual machines:
 
 ```ruby
 describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform: 'windows') do
@@ -114,7 +114,7 @@ describe azure_virtual_machines(resource_group: 'RESOURCE_GROUP').where(platform
 end
 ```
 
-### Test that there are virtual machines that includes a certain string in their names (Client Side Filtering)
+Test that there are virtual machines that includes a certain string in their names (client-side filtering):
 
 ```ruby
 describe azure_virtual_machines(resource_group: 'MyResourceGroup').where { name.include?('WindowsVm') } do
@@ -122,7 +122,7 @@ describe azure_virtual_machines(resource_group: 'MyResourceGroup').where { name.
 end
 ```
 
-### Test that there are virtual machine that includes a certain string in their names (Server Side Filtering via Generic Resource - Recommended)
+Test that there are virtual machine that includes a certain string in their names (Server Side Filtering via Generic Resource - Recommended):
 
 ```ruby
 describe azure_generic_resources(resource_group: 'RESOURCE_GROUP', resource_provider: 'Microsoft.Compute/virtualMachine', substring_of_name: 'WindowsVm') do

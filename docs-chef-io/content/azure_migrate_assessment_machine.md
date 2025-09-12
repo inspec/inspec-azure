@@ -84,7 +84,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test the boot migrate assessment machine
+Test the boot migrate assessment machine:
 
 ```ruby
 describe azure_migrate_assessment_machine(resource_group: 'RESOURCE_GROUP', project_name: 'MIGRATE_ASSESSMENT_PROJECT_NAME', name: 'MIGRATE_ASSESSMENT_MACHINE_NAME') do

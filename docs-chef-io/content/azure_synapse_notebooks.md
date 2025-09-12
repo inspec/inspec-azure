@@ -38,27 +38,27 @@ This resource requires the `endpoint` parameter for a valid query.
 `ids`
 : A list of the unique fully qualified resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names for all the Synapse notebooks.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types for all the resources.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the notebooks.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `etags`
 : A list of resource Etags.
 
-: **Field**: `tags`
+  Field: `tags`
 
 {{< note >}}
 
@@ -68,7 +68,7 @@ This resource requires the `endpoint` parameter for a valid query.
 
 ## Examples
 
-### Loop through Synapse Notebooks by their names
+Loop through Synapse Notebooks by their names:
 
 ```ruby
 azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT').names.each do |name|
@@ -78,7 +78,7 @@ azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT').names.each d
 end
 ```
 
-### Test that there are Synapse Notebooks that include a certain string in their names (Client Side Filtering)
+Test that there are Synapse Notebooks that include a certain string in their names (client-side filtering):
 
 ```ruby
 describe azure_synapse_notebooks(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT').where { name.include?('analytics-trends') } do

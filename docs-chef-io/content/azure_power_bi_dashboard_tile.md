@@ -67,7 +67,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI dashboard tile is on the left corner
+Test that the Power BI dashboard tile is on the left corner:
 
 ```ruby
 describe azure_power_bi_dashboard_tile(group_id: 'GROUP_ID', dashboard_id: 'dashboard_ID', title_id: 'TITLE_ID')  do

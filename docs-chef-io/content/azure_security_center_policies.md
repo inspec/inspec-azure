@@ -35,17 +35,17 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `policy_names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -55,7 +55,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Check if a specific policy is present
+Check if a specific policy is present:
 
 ```ruby
 describe azure_security_center_policies do
@@ -63,7 +63,7 @@ describe azure_security_center_policies do
 end
 ```
 
-### Filter the results to include only those policies that have a specified string in their names
+Filter the results to include only those policies that have a specified string in their names:
 
 ```ruby
 describe azure_security_center_policies.where{ name.include?('production') } do
@@ -71,7 +71,7 @@ describe azure_security_center_policies.where{ name.include?('production') } do
 end
 ```
 
-### Filter the results to include only those policies that the log collection is enabled
+Filter the results to include only those policies that the log collection is enabled:
 
 ```ruby
 describe azure_security_center_policies.where{ properties[:logCollection] == 'On' } do

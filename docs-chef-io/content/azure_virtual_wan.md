@@ -79,7 +79,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/vi
 
 ## Examples
 
-### Test that a Virtual WAN's encryption is not disabled
+Test that a Virtual WAN's encryption is not disabled:
 
 ```ruby
 describe azure_virtual_wan(resource_group: 'RESOURCE_GROUP', name: 'DEFAULT_WAN') do

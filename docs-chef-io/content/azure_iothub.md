@@ -63,7 +63,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/io
 
 ## Examples
 
-### Test if file upload notifications are enabled
+Test if file upload notifications are enabled:
 
 ```ruby
 describe azure_iothub(resource_group: 'RESOURCE_GROUP', name: 'IoT_NAME') do

@@ -60,7 +60,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test that a resource group has the specified type
+Test that a resource group has the specified type:
 
 ```ruby
 describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do
@@ -76,7 +76,7 @@ end
 
 This resource has the following special matchers.
 
-### Test streaming function to ensure it's using Javascript UDF
+Test streaming function to ensure it's using Javascript UDF:
 
 ```ruby
 describe azure_streaming_analytics_function(resource_group: 'RESOURCE_GROUP', job_name: 'JOB_NAME', function_name: 'FUNCTION_NAME') do

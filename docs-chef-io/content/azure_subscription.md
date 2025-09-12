@@ -97,7 +97,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/re
 
 ## Examples
 
-### Test subscription`s display name
+Test subscription`s display name:
 
 ```ruby
 describe azure_subscription do
@@ -105,7 +105,7 @@ describe azure_subscription do
 end
 ```
 
-### Test subscription`s authorization source
+Test subscription`s authorization source:
 
 ```ruby
 describe azure_subscription do
@@ -113,7 +113,7 @@ describe azure_subscription do
 end
 ```
 
-### Test subscription`s locations
+Test subscription`s locations:
 
 ```ruby
 describe azure_subscription do
@@ -121,7 +121,7 @@ describe azure_subscription do
 end
 ```
 
-### Test subscription`s enabled logging types (via diagnostic settings)
+Test subscription`s enabled logging types (via diagnostic settings):
 
 ```ruby
 describe azure_subscription do
@@ -129,7 +129,7 @@ describe azure_subscription do
 end
 ```
 
-### Test subscription`s disabled logging types (via diagnostic settings)
+Test subscription`s disabled logging types (via diagnostic settings):
 
 ```ruby
 describe azure_subscription do

@@ -61,7 +61,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if a snapshot is referenced with a valid name
+Test if a snapshot is referenced with a valid name:
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -69,7 +69,7 @@ describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME')
 end
 ```
 
-### Test if a snapshot is referenced with an invalid name
+Test if a snapshot is referenced with an invalid name:
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -77,7 +77,7 @@ describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME')
 end
 ```
 
-### Test if a snapshot has the `Windows' operating system type
+Test if a snapshot has the `Windows' operating system type:
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do
@@ -85,7 +85,7 @@ describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME')
 end
 ```
 
-### Test if the snapshot has a valid disk size
+Test if the snapshot has a valid disk size:
 
 ```ruby
 describe azure_snapshot(resource_group: 'RESOURCE_GROUP', name: 'SNAPSHOT_NAME') do

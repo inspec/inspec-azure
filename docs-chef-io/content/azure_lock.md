@@ -52,7 +52,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/re
 
 ## Examples
 
-### Test if a 'ReadOnly' Management Lock exists in a specific resource group
+Test if a 'ReadOnly' Management Lock exists in a specific resource group:
 
 ```ruby
 azure_locks(resource_group: 'EXAMPLE-GROUP').ids.each do |id|
@@ -62,7 +62,7 @@ azure_locks(resource_group: 'EXAMPLE-GROUP').ids.each do |id|
 end
 ```
 
-### Test if Management Locks on a specific resource contain a certain String
+Test if Management Locks on a specific resource contain a certain String:
 
 ```ruby
 azure_locks(resouce_id: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/{vmName}').ids.each do |lock_id|

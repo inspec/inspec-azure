@@ -43,37 +43,37 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of the types of resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `etags`
 : A list of etags defined on the resources.
 
-: **Field**: `etag`
+  Field: `etag`
 
 {{< note >}}
 
@@ -83,7 +83,7 @@ end
 
 ## Examples
 
-### Check if a specific consumer group exists
+Check if a specific consumer group exists:
 
 ```ruby
 describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP', resource_name: 'IoT_NAME', event_hub_endpoint: 'EVENT_HUB_NAME') do
@@ -96,13 +96,13 @@ end
 The control passes if the filter returns at least one result. Use `should_not` if you expect zero matches.
 
 ```ruby
-**If we expect at least one resource to exist on a specified endpoint.**
+If we expect at least one resource to exist on a specified endpoint:
 
 describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP', resource_name: 'IoT_NAME', event_hub_endpoint: 'EVENT_HUB_NAME') do
   it { should exist }
 end
 
-**If we expect not to exist consumer groups on a specified endpoint.**
+If we expect not to exist consumer groups on a specified endpoint:
 
 describe azure_iothub_event_hub_consumer_groups(resource_group: 'RESOURCE_GROUP', resource_name: 'IoT_NAME', event_hub_endpoint: 'EVENT_HUB_NAME') do
   it { should_not exist }

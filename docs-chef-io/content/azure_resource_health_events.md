@@ -58,22 +58,22 @@ If one or more parameters are missing then all events in a subscription will be 
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names for all the resources.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of resource types for all the resources.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -85,7 +85,7 @@ See the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/resource
 
 ## Examples
 
-### Test that there are health events that have a service issue
+Test that there are health events that have a service issue:
 
 ```ruby
 describe azure_resource_health_events.where{ properties.select{|prop| prop.eventType == 'ServiceIssue' } } do
@@ -93,7 +93,7 @@ describe azure_resource_health_events.where{ properties.select{|prop| prop.event
 end
 ```
 
-### Test that there are health events for a particular resource
+Test that there are health events for a particular resource:
 
 ```ruby
 describe azure_resource_health_events(resource_group: 'RESOURCE_GROUP', resource_type: 'RESOURCE_TYPE', resource_id: 'RESOURCE_ID') do

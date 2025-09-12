@@ -77,7 +77,7 @@ For properties applicable to all resources, such as `type`, `name`, `id`, and `p
 
 ## Examples
 
-### Test that the SQL managed instances are provisioned successfully
+Test that the SQL managed instances are provisioned successfully:
 
 ```ruby
 describe azure_sql_managed_instance(resource_group: 'RESOURCE_GROUP', name: 'INSTANCE_NAME') do

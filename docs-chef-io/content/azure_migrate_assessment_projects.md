@@ -35,112 +35,112 @@ This resource does not require any parameters.
 `ids`
 : Path reference to the projects.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Name of the projects.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the project.
 
-: **Field**: `type`
+  Field: `type`
 
 `eTags`
 : A list of eTags for all the assessments.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `locations`
 : Azure locations in which the project is created.
 
-: **Field**: `location`
+  Field: `location`
 
 `tags`
 : A list of Tags provided by Azure Tagging service.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `properties`
 : A list of Properties for all the projects.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `assessmentSolutionIds`
 : Assessment solution ARM IDs tracked by `Microsoft.Migrate/migrateProjects`.
 
-: **Field**: `assessmentSolutionId`
+  Field: `assessmentSolutionId`
 
 `createdTimestamps`
 : Times when this project is created. Date-Time is represented in ISO-8601 format.
 
-: **Field**: `createdTimestamp`
+  Field: `createdTimestamp`
 
 `customerStorageAccountArmIds`
 : The ARM IDs of the storage account used for interactions when public access is disabled.
 
-: **Field**: `customerStorageAccountArmId`
+  Field: `customerStorageAccountArmId`
 
 `customerWorkspaceIds`
 : The ARM IDs of the service map workspace created by customer.
 
-: **Field**: `customerWorkspaceId`
+  Field: `customerWorkspaceId`
 
 `customerWorkspaceLocations`
 : Locations of the service map workspace created by customer.
 
-: **Field**: `customerWorkspaceLocation`
+  Field: `customerWorkspaceLocation`
 
 `lastAssessmentTimestamps`
 : Times when the last assessment is created.
 
-: **Field**: `lastAssessmentTimestamp`
+  Field: `lastAssessmentTimestamp`
 
 `numberOfAssessments`
 : Number of assessments created in the project.
 
-: **Field**: `numberOfAssessments`
+  Field: `numberOfAssessments`
 
 `numberOfGroups`
 : Number of groups created in all the projects.
 
-: **Field**: `numberOfGroups`
+  Field: `numberOfGroups`
 
 `numberOfMachines`
 : Number of machines in all the projects.
 
-: **Field**: `numberOfMachines`
+  Field: `numberOfMachines`
 
 `privateEndpointConnections`
 : The list of private endpoint connections to the projects.
 
-: **Field**: `privateEndpointConnections`
+  Field: `privateEndpointConnections`
 
 `projectStatuses`
 : Assessment project statuses.
 
-: **Field**: `projectStatus`
+  Field: `projectStatus`
 
 `provisioningStates`
 : Provisioning states of all the projects.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `publicNetworkAccesses`
 : Public network access for all the projects.
 
-: **Field**: `publicNetworkAccess`
+  Field: `publicNetworkAccess`
 
 `serviceEndpoints`
 : Service endpoints of all the projects.
 
-: **Field**: `serviceEndpoint`
+  Field: `serviceEndpoint`
 
 `updatedTimestamps`
 : Times when this project is last updated.
 
-: **Field**: `updatedTimestamp`
+  Field: `updatedTimestamp`
 
 {{< note >}}
 
@@ -150,7 +150,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Loop through migrate assessment projects by their names
+Loop through migrate assessment projects by their names:
 
 ```ruby
 azure_migrate_assessment_projects.names.each do |name|
@@ -160,7 +160,7 @@ azure_migrate_assessment_projects.names.each do |name|
 end
 ```
 
-### Test to ensure that migrate assessment projects in West Europe location
+Test to ensure that migrate assessment projects in West Europe location:
 
 ```ruby
 describe azure_migrate_assessment_projects.where(location: 'westeurope') do

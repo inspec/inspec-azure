@@ -66,7 +66,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/sq
 
 ## Examples
 
-### Test if a GlobalDocumentDB is accessible on public network
+Test if a GlobalDocumentDB is accessible on public network:
 
 ```ruby
 describe azure_cosmosdb_database_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do

@@ -68,7 +68,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/se
 
 ## Examples
 
-### Test that the SQL virtual machine group availability listener is provisioned successfully
+Test that the SQL virtual machine group availability listener is provisioned successfully:
 
 ```ruby
 describe azure_sql_virtual_machine_group_availability_listener(resource_group: 'RESOURCE_GROUP', sql_virtual_machine_group_name: 'SQL_VIRTUAL_MACHINE_GROUP_NAME', name: 'AVAILABILITY_LISTENER_NAME') do

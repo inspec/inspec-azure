@@ -68,7 +68,7 @@ Any attribute in the response nested within properties is accessed with the key 
 
 ## Examples
 
-### Test that the Migrate project event is of servers 'instanceType'
+Test that the Migrate project event is of servers 'instanceType':
 
 ```ruby
 describe azure_migrate_project_event(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_EVENT_NAME') do

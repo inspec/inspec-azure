@@ -36,47 +36,47 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource Names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the Managed applications.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the resource locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `identities`
 : A list of the identity of the resources.
 
-: **Field**: `identity`
+  Field: `identity`
 
 `plans`
 : A list of the plan information.
 
-: **Field**: `plan`
+  Field: `plan`
 
 `provisioningStates`
 : A list of provisioning states of the app.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `publisherTenantIds`
 : A list of the publisher tenant ID.
 
-: **Field**: `publisherTenantId`
+  Field: `publisherTenantId`
 
 {{< note >}}
 
@@ -86,7 +86,7 @@ end
 
 ## Examples
 
-### Loop through Managed applications by their names
+Loop through Managed applications by their names:
 
 ```ruby
 azure_managed_applications(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -96,7 +96,7 @@ azure_managed_applications(resource_group: 'RESOURCE_GROUP').names.each do |name
 end
 ```
 
-### Test that there are Managed applications that are successfully provisioned
+Test that there are Managed applications that are successfully provisioned:
 
 ```ruby
 describe azure_managed_applications(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do

@@ -36,32 +36,32 @@ end
 `names`
 : A list of the unique resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `ids`
 : A list of DDoS protection plan IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `virtual_networks`
 : The list of virtual networks associated with the DDoS protection plan resource.
 
-: **Field**: `virtual_networks`
+  Field: `virtual_networks`
 
 `provisioning_states`
 : The provisioning states of the DDoS protection plans.
 
-: **Field**: `provisioning_state`
+  Field: `provisioning_state`
 
 `types`
 : The types of all the DDoS protection plans.
 
-: **Field**: `type`
+  Field: `type`
 
 `resource_guids`
 : The resource GUID property of the DDoS protection plan resource. It uniquely identifies the resource, even if the user changes its name or migrates the resource across subscriptions or resource groups.
 
-: **Field**: `resource_guid`
+  Field: `resource_guid`
 
 {{< note >}}
 
@@ -73,7 +73,7 @@ Also, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/a
 
 ## Examples
 
-### Test to ensure that the DDoS protection plan resource is in a successful state
+Test to ensure that the DDoS protection plan resource is in a successful state:
 
 ```ruby
 describe azure_ddos_protection_resources(resource_group: 'RESOURCE_GROUP') do
@@ -81,7 +81,7 @@ describe azure_ddos_protection_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test to ensure that a DDoS protection plan resource is from a location
+Test to ensure that a DDoS protection plan resource is from a location:
 
 ```ruby
 describe azure_ddos_protection_resources(resource_group: 'RESOURCE_GROUP') do
@@ -89,7 +89,7 @@ describe azure_ddos_protection_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test if any DDoS protection plan exists in the resource group
+Test if any DDoS protection plan exists in the resource group:
 
 ```ruby
 describe azure_ddos_protection_resources(resource_group: 'RESOURCE_GROUP') do

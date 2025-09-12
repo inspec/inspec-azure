@@ -71,7 +71,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test key vault's SKU family
+Test key vault's SKU family:
 
 ```ruby
 describe azure_key_vault(resource_group: 'RESOURCE_GROUP', name: 'VAULT_NAME') do
@@ -79,7 +79,7 @@ describe azure_key_vault(resource_group: 'RESOURCE_GROUP', name: 'VAULT_NAME') d
 end
 ```
 
-### Test if the key vault is enabled for disk encryption
+Test if the key vault is enabled for disk encryption:
 
 ```ruby
 describe azure_key_vault(resource_group: 'RESOURCE_GROUP', name: 'VAULT_NAME') do
@@ -87,7 +87,7 @@ describe azure_key_vault(resource_group: 'RESOURCE_GROUP', name: 'VAULT_NAME') d
 end
 ```
 
-### Test if Azure key vault audit logging is enabled
+Test if Azure key vault audit logging is enabled:
 
 ```ruby
 describe azure_key_vault(resource_group: 'RESOURCE_GROUP', name: 'VAULT_NAME') do

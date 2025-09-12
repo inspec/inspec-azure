@@ -63,7 +63,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ev
 
 ## Examples
 
-### Test if Kafka is enabled for an Eventhub Namespace
+Test if Kafka is enabled for an Eventhub Namespace:
 
 ```ruby
 describe azure_event_hub_namespace(resource_group: 'RESOURCE_GROUP', name: 'EVENT_HUB_NAME') do

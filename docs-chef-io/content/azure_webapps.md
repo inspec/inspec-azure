@@ -45,22 +45,22 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -70,7 +70,7 @@ end
 
 ## Examples
 
-### Test that an example resource group has the named web application
+Test that an example resource group has the named web application:
 
 ```ruby
 describe azure_webapps(resource_group: 'EXAMPLEGROUP') do

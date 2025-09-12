@@ -71,7 +71,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ak
 
 ## Examples
 
-### Test that an AKS Cluster has the desired network plug-in
+Test that an AKS Cluster has the desired network plug-in:
 
 ```ruby
 describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do
@@ -79,7 +79,7 @@ describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do
 end
 ```
 
-### Loop through all clusters within the subscription
+Loop through all clusters within the subscription:
 
 ```ruby
 azure_aks_clusters.ids.each do |resource_id|
@@ -89,7 +89,7 @@ azure_aks_clusters.ids.each do |resource_id|
 end 
 ```
 
-### Test that a specified AKS Cluster has the correct number of nodes in pool
+Test that a specified AKS Cluster has the correct number of nodes in pool:
 
 ```ruby
 describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do
@@ -97,7 +97,7 @@ describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do
 end
 ```
 
-### Test that a specified AKS Cluster has kube-audit logging enabled
+Test that a specified AKS Cluster has kube-audit logging enabled:
 
 ```ruby
 describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do
@@ -105,7 +105,7 @@ describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do
 end
 ```
 
-### Test that a specified AKS Cluster has logging enabled on it and no forms of logging are disabled
+Test that a specified AKS Cluster has logging enabled on it and no forms of logging are disabled:
 
 ```ruby
 describe azure_aks_cluster('RESOURCE_GROUP', name: 'CLUSTER_NAME') do

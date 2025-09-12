@@ -83,7 +83,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test the resource name
+Test the resource name:
 
 ```ruby
 describe azure_mysql_database_configuration(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME', name: 'CONFIGURATION_NAME') do

@@ -43,32 +43,32 @@ end
 `invokedBy_names`
 : A list of the unique resource names.
 
-: **Field**: `invokedBy_name`
+  Field: `invokedBy_name`
 
 `pipelineNames`
 : A list of the pipeline names.
 
-: **Field**: `pipelineName`
+  Field: `pipelineName`
 
 `statuses`
 : The statuses of the pipeline runs.
 
-: **Field**: `status`
+  Field: `status`
 
 `runIds`
 : The list of identifiers of runs.
 
-: **Field**: `runId`
+  Field: `runId`
 
 `runStart`
 : The list of start times of pipeline runs in ISO8601 format.
 
-: **Field**: `runStart`
+  Field: `runStart`
 
 `runEnd`
 : The list of end times of pipeline runs in ISO8601 format.
 
-: **Field**: `runEnd`
+  Field: `runEnd`
 
 {{< note >}}
 
@@ -78,7 +78,7 @@ end
 
 ## Examples
 
-### Filter pipeline runs in a resource group by properties
+Filter pipeline runs in a resource group by properties:
 
 ```ruby
 describe azure_data_factory_pipeline_run_resources(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
@@ -90,7 +90,7 @@ end
 
 ## Matchers
 
-### Test if any pipeline runs exist in the resource group
+Test if any pipeline runs exist in the resource group:
 
 ```ruby
 describe azure_data_factory_pipeline_run_resources(resource_group: `RESOURCE_GROUP`, factory_name: 'FACTORY_NAME') do
@@ -98,7 +98,7 @@ describe azure_data_factory_pipeline_run_resources(resource_group: `RESOURCE_GRO
 end
 ```
 
-### Test that there aren't any pipeline runs in a resource group
+Test that there aren't any pipeline runs in a resource group:
 
 ```ruby
 # Should not exist if no pipeline runs are in the resource group.

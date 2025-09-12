@@ -35,22 +35,22 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types of all the resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -60,7 +60,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Test that a named Management Group exists
+Test that a named Management Group exists:
 
 ```ruby
 describe azure_management_groups do

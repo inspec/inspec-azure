@@ -69,7 +69,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test a policy definition display name
+Test a policy definition display name:
 
 ```ruby
 describe azure_policy_definition(name: 'MY_POLICY') do
@@ -77,7 +77,7 @@ describe azure_policy_definition(name: 'MY_POLICY') do
 end
 ```
 
-### Test a policy definition rule
+Test a policy definition rule:
 
 ```ruby
 describe azure_policy_definition(name: 'MY_POLICY', built_in: true ) do

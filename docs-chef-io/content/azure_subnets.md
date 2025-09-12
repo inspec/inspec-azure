@@ -39,17 +39,17 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `etags`
 : A list of etags defined on the resources.
 
-: **Field**: `etag`
+  Field: `etag`
 
 {{< note >}}
 
@@ -59,7 +59,7 @@ end
 
 ## Examples
 
-### Exists if any subnets exist for a specified virtual network in the resource group
+Exists if any subnets exist for a specified virtual network in the resource group:
 
 ```ruby
 describe azure_subnets(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME') do
@@ -67,7 +67,7 @@ describe azure_subnets(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME') do
 end
 ```
 
-### Filters the results to only those that match the specified name
+Filters the results to only those that match the specified name:
 
 ```ruby
 describe azure_subnets(resource_group: 'RESOURCE_GROUP', vnet: 'VNET_NAME')

@@ -55,7 +55,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI app is published by inspec-devs
+Test that the Power BI app is published by inspec-devs:
 
 ```ruby
 describe azure_power_bi_app(app_id: 'APP_ID')  do

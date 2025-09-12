@@ -45,27 +45,27 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -75,7 +75,7 @@ end
 
 ## Examples
 
-### Test that an example resource group has the named VPN gateway
+Test that an example resource group has the named VPN gateway:
 
 ```ruby
 describe azure_virtual_network_gateways(resource_group: 'EXAMPLEGROUP') do

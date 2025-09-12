@@ -49,27 +49,27 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of all the key vault names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types of all the functions.
 
-: **Field**: `type`
+  Field: `type`
 
 `locations`
 : A list of locations for all the functions.
 
-: **Field**: `location`
+  Field: `location`
 
 `properties`
 : A list of properties for all the functions.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -79,7 +79,7 @@ end
 
 ## Examples
 
-### Loop through functions by their IDs
+Loop through functions by their IDs:
 
 ```ruby
 azure_web_app_functions(resource_group: 'RESOURCE_GROUP', site_name: 'function-app-http').ids.each do |id|
@@ -89,7 +89,7 @@ azure_web_app_functions(resource_group: 'RESOURCE_GROUP', site_name: 'function-a
 end
 ```
 
-### Test that there are functions that include a certain string in their names (Client Side Filtering)
+Test that there are functions that include a certain string in their names (client-side filtering):
 
 ```ruby
 describe azure_web_app_functions(resource_group: 'RESOURCE_GROUP', site_name: 'function-app-http').where { name.include?('queue') } do

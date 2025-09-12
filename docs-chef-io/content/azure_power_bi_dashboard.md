@@ -56,7 +56,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI Dashboard is read-only
+Test that the Power BI Dashboard is read-only:
 
 ```ruby
 describe azure_power_bi_dashboard(group_id: 'GROUP_ID', dashboard_id: 'DASHBOARD_ID')  do

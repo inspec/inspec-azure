@@ -45,37 +45,37 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `skus`
 : A list of the SKUs (pricing tiers) of the servers.
 
-: **Field**: `sku`
+  Field: `sku`
 
 `types`
 : A list of the types of resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -85,7 +85,7 @@ end
 
 ## Examples
 
-**Check MariaDB Servers are present.**
+Check MariaDB Servers are present:
 
 ```ruby
 describe azure_mariadb_servers do
@@ -94,7 +94,7 @@ describe azure_mariadb_servers do
 end
 ```
 
-### Filters the results to include only those servers that have the specified name (Client Side Filtering)
+Filters the results to include only those servers that have the specified name (client-side filtering):
 
 ```ruby
 describe azure_mariadb_servers.where{ name.include?('production') } do
@@ -102,7 +102,7 @@ describe azure_mariadb_servers.where{ name.include?('production') } do
 end
 ```
 
-### Filters the results to include only those servers which reside in a specified location (Client Side Filtering)
+Filters the results to include only those servers which reside in a specified location (client-side filtering):
 
 ```ruby
 describe azure_mariadb_servers.where{ location.eql?('westeurope') } do
@@ -110,7 +110,7 @@ describe azure_mariadb_servers.where{ location.eql?('westeurope') } do
 end
 ```
 
-### Filters the results to include only those servers which reside in a specified location and has the specified name (Server Side Filtering - Recommended)
+Filters the results to include only those servers which reside in a specified location and has the specified name (server-side filtering - recommended):
 
 ```ruby
 describe azure_generic_resources(resource_provider: 'Microsoft.DBforMariaDB/servers', substring_of_name: 'production', location: 'westeurope') do

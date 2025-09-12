@@ -71,7 +71,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if a MySQL server is referenced with a valid name
+Test if a MySQL server is referenced with a valid name:
 
 ```ruby
 describe azure_mysql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do
@@ -79,7 +79,7 @@ describe azure_mysql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME
 end
 ```
 
-### Test if a MySQL server is referenced with an invalid name
+Test if a MySQL server is referenced with an invalid name:
 
 ```ruby
 describe azure_mysql_server(resource_group: 'RESOURCE_GROUP', name: 'i-dont-exist') do
@@ -87,7 +87,7 @@ describe azure_mysql_server(resource_group: 'RESOURCE_GROUP', name: 'i-dont-exis
 end
 ```
 
-### Test if a MySQL server has firewall rules set
+Test if a MySQL server has firewall rules set:
 
 ```ruby
 describe azure_mysql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do
@@ -95,7 +95,7 @@ describe azure_mysql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME
 end
 ```
 
-### Test a MySQL server's fully qualified domain name, location, and public network access status
+Test a MySQL server's fully qualified domain name:, location, and public network access status
 
 ```ruby
 describe azure_mysql_server(resource_id: '/subscriptions/.../my-server') do

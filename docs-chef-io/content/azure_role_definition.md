@@ -68,7 +68,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/au
 
 ## Examples
 
-### Test allowed permissions on a role definition
+Test allowed permissions on a role definition:
 
 ```ruby
 describe azure_role_definition(name: 'policy-reader-only')

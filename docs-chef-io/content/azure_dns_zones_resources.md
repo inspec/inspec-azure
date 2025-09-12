@@ -35,42 +35,42 @@ This resource does not require any parameters.
 `name`
 : A list of the unique resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `ids`
 : A list of DNS zone IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of the types of all DNS zones.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of the properties of the Azure DNS zone resources.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `max_number_of_recordsets`
 : A list of the maximum number of records per record set that can be created in the DNS zones.
 
-: **Field**: `max_number_of_recordsets`
+  Field: `max_number_of_recordsets`
 
 `number_of_record_sets`
 : A list of the current number of record sets in the DNS zones.
 
-: **Field**: `number_of_record_sets`
+  Field: `number_of_record_sets`
 
 `name_servers`
 : A list of the name servers for the DNS zones.
 
-: **Field**: `name_servers`
+  Field: `name_servers`
 
 {{< note >}}
 
@@ -80,7 +80,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Test that a DNS zone has the correct type
+Test that a DNS zone has the correct type:
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -88,7 +88,7 @@ describe azure_dns_zones_resources do
 end
 ```
 
-### Test that a DNS zone resource has a 'Succeeded' provisioning state
+Test that a DNS zone resource has a 'Succeeded' provisioning state:
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -96,7 +96,7 @@ describe azure_dns_zones_resources do
 end
 ```
 
-### Test that a DNS zone has the 'global' location
+Test that a DNS zone has the 'global' location:
 
 ```ruby
 describe azure_dns_zones_resources do
@@ -104,7 +104,7 @@ describe azure_dns_zones_resources do
 end
 ```
 
-### Test if any Azure DNS zone exists in the resource group
+Test if any Azure DNS zone exists in the resource group:
 
 ```ruby
 describe azure_dns_zones_resources do

@@ -37,32 +37,32 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the SQL virtual machines.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the Geo-locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `provisioningStates`
 : A list of provisioning states of the SQL virtual machines.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 {{< note >}}
 
@@ -72,7 +72,7 @@ end
 
 ## Examples
 
-### Loop through SQL virtual machines by their names
+Loop through SQL virtual machines by their names:
 
 ```ruby
 azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -82,7 +82,7 @@ azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP').names.each do |name
 end
 ```
 
-### Test that there are SQL virtual machines that are successfully provisioned
+Test that there are SQL virtual machines that are successfully provisioned:
 
 ```ruby
 describe azure_sql_virtual_machines(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do

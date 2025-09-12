@@ -68,7 +68,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/se
 
 ## Examples
 
-### Test that the 'Service Fabric Mesh Service' is healthy
+Test that the 'Service Fabric Mesh Service' is healthy:
 
 ```ruby
 describe azure_service_fabric_mesh_service(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_FABRIC_MESH_SERVICE_NAME') do

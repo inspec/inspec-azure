@@ -41,27 +41,27 @@ end
 `names`
 : Unique names for all Azure Storage Account Filesystems.
 
-: **Field**: `name`
+  Field: `name`
 
 `lastModifieds`
 : Last modified timestamps of Azure Storage Account Filesystem.
 
-: **Field**: `lastModified`
+  Field: `lastModified`
 
 `eTags`
 : A list of eTags for all the Azure Storage Account Filesystems.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `DefaultEncryptionScopes`
 : A list of all Encryption scopes of the ADLS Filesystems.
 
-: **Field**: `DefaultEncryptionScope`
+  Field: `DefaultEncryptionScope`
 
 `DenyEncryptionScopeOverrides`
 : A list of all Deny Encryption Scope Overrides.
 
-: **Field**: `DenyEncryptionScopeOverrides`
+  Field: `DenyEncryptionScopeOverrides`
 
 {{< note >}}
 
@@ -72,7 +72,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/st
 
 ## Examples
 
-### Loop through Data Lake Storage Gen2 Filesystems by their names and verify that each exists
+Loop through Data Lake Storage Gen2 Filesystems by their names and verify that each exists:
 
 ```ruby
 azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').names.each do |name|
@@ -82,7 +82,7 @@ azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').names.eac
 end
 ```
 
-### Test To ensure Data Lake Storage Gen2 Filesystems With ‘$account-encryption-key' encryption scope
+Test To ensure Data Lake Storage Gen2 Filesystems With :‘$account-encryption-key' encryption scope
 
 ```ruby
 describe azure_data_lake_storage_gen2_filesystems(account_name: 'ACCOUNT_NAME').where(DefaultEncryptionScope: '$account-encryption-key') do

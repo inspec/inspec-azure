@@ -41,62 +41,62 @@ The parameter set that should be provided for a valid query is `resource_group` 
 `ids`
 : Path reference to all the groups.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all groups.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `eTags`
 : A list of eTags for all the groups.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `properties`
 : A list of properties for all the groups.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `areAssessmentsRunnings`
 : A list of boolean describing the assessment run state.
 
-: **Field**: `areAssessmentsRunning`
+  Field: `areAssessmentsRunning`
 
 `assessments`
 : List of references to assessments created on this group.
 
-: **Field**: `assessments`
+  Field: `assessments`
 
 `createdTimestamps`
 : List of creation times of the groups.
 
-: **Field**: `createdTimestamp`
+  Field: `createdTimestamp`
 
 `groupStatuses`
 : List of creation status of the groups.
 
-: **Field**: `groupStatus`
+  Field: `groupStatus`
 
 `groupTypes`
 : List of group types.
 
-: **Field**: `groupType`
+  Field: `groupType`
 
 `machineCounts`
 : List of machine counts.
 
-: **Field**: `machineCount`
+  Field: `machineCount`
 
 `updatedTimestamps`
 : List of updated timestamps of the groups.
 
-: **Field**: `updatedTimestamp`
+  Field: `updatedTimestamp`
 
 {{< note >}}
 
@@ -106,7 +106,7 @@ The parameter set that should be provided for a valid query is `resource_group` 
 
 ## Examples
 
-### Loop through migrate assessment groups by their names
+Loop through migrate assessment groups by their names:
 
 ```ruby
 azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -116,7 +116,7 @@ azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 
 end
 ```
 
-### Test that the assessments are running for migrating assessment groups
+Test that the assessments are running for migrating assessment groups:
 
 ```ruby
 describe azure_migrate_assessment_groups(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(areAssessmentsRunning: true) do

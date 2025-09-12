@@ -82,7 +82,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/mi
 
 ## Examples
 
-### Test that the Migrate Project solution is defined for assessment
+Test that the Migrate Project solution is defined for assessment:
 
 ```ruby
 describe azure_migrate_project_solution(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'PROJECT_SOLUTION_NAME') do

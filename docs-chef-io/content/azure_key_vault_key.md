@@ -79,7 +79,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ke
 
 ## Examples
 
-### Test the key identifier
+Test the key identifier:
 
 ```ruby
 describe azure_key_vault_key(vault_name: 'EXAMPLE_VAULT', key_name: 'EXAMPLE_KEY', key_version: '7df9bf2c3b4347bab213ebe233f0e350') do
@@ -87,7 +87,7 @@ describe azure_key_vault_key(vault_name: 'EXAMPLE_VAULT', key_name: 'EXAMPLE_KEY
 end
 ```
 
-### Test if the key is enabled
+Test if the key is enabled:
 
 ```ruby
 describe azure_key_vault_key(vault_name: 'EXAMPLE_VAULT', key_name: 'EXAMPLE_KEY') do
@@ -95,7 +95,7 @@ describe azure_key_vault_key(vault_name: 'EXAMPLE_VAULT', key_name: 'EXAMPLE_KEY
 end
 ```
 
-### Test if the rotationploicy is enabled
+Test if the rotationploicy is enabled:
 
 ```ruby
 describe azure_key_vault_key(vault_name: 'EXAMPLE_VAULT', key_name: 'EXAMPLE_KEY') do

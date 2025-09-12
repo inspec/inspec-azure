@@ -42,10 +42,10 @@ You can create an SPN using the command line or from the Azure Portal:
 You can specify the SPN information in one of three ways:
 
 - In the `~/.azure/credentials` file
-- As environment variables  
+- As environment variables
 - Using Chef InSpec target URIs
 
-### Set the Azure credentials file
+Set the Azure credentials file:
 
 By default, Chef InSpec looks at `~/.azure/credentials`, and it should contain:
 
@@ -72,7 +72,7 @@ After you set up the credentials, you can execute Chef InSpec:
 inspec exec <PROFILE_NAME> -t azure://
 ```
 
-### Provide credentials using environment variables
+Provide credentials using environment variables:
 
 As an alternative to the credentials file, you can set the Azure credentials using environment variables:
 
@@ -90,7 +90,7 @@ AZURE_CLIENT_SECRET="Jibr4iwwaaZwBb6W" \
 AZURE_TENANT_ID="6ad89b58-df2e-11e6-bf01-fe55135034f3" inspec exec my-profile -t azure://
 ```
 
-### Provide credentials using Chef InSpec target option
+Provide credentials using Chef InSpec target option:
 
 If you have several Azure subscriptions configured in your `~/.azure/credentials` file, you can use the Chef InSpec command line `--target` / `-t` option to select a specific subscription ID. For example:
 

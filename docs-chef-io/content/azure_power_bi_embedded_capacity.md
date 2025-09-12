@@ -77,7 +77,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI Embedded Capacity
+Test that the Power BI Embedded Capacity:
 
 ```ruby
 describe azure_power_bi_embedded_capacity(resource_group: 'RESOURCE_GROUP', name: 'POWER_BI_EMBEDDED')  do

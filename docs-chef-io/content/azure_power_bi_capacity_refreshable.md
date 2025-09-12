@@ -78,7 +78,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI Capacity refreshable schedule is enabled
+Test that the Power BI Capacity refreshable schedule is enabled:
 
 ```ruby
 describe azure_power_bi_capacity_refreshable(capacity_id: 'CAPACITY_ID', name: 'REFRESHABLE_ID')  do

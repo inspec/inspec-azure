@@ -45,32 +45,32 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the network security groups.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of all the network security group names.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `etags`
 : A list of etags defined on the resources.
 
-: **Field**: `etag`
+  Field: `etag`
 
 `properties`
 : A list of all properties of all the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 {{< note >}}
 
 {{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
@@ -79,7 +79,7 @@ end
 
 ## Examples
 
-### Test that an example resource group has the named network security group
+Test that an example resource group has the named network security group:
 
 ```ruby
 describe azure_network_security_groups(resource_group: 'EXAMPLEGROUP') do
@@ -87,16 +87,16 @@ describe azure_network_security_groups(resource_group: 'EXAMPLEGROUP') do
 end
 ```
 
-### Filters the Network Security groups at Azure API to only those that match the specified name via a generic resource (Recommended)
+Filters the Network Security groups at Azure API to only those that match the specified name via a generic resource (Recommended):
 
 ```ruby
-**Fuzzy string matching.**
+Fuzzy string matching:
 
 describe azure_generic_resources(resource_provider: 'Microsoft.Network/networkSecurityGroups', substring_of_name: 'project_A') do
   it { should exist }
 end
 
-**Exact name matching.**
+Exact name matching:
 
 describe azure_generic_resources(resource_provider: 'Microsoft.Network/networkSecurityGroups', name: 'project_A') do
   it { should exist }

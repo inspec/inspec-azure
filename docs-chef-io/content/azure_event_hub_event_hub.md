@@ -66,7 +66,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ev
 
 ## Examples
 
-### Test the message retention time of an event hub
+Test the message retention time of an event hub:
 
 ```ruby
 describe azure_event_hub_event_hub(resource_group: 'RESOURCE_GROUP', namespace_name: 'EVENT_NAME', name: 'HUB_NAME') do

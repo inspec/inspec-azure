@@ -82,7 +82,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if a SQL database is referenced with a valid name
+Test if a SQL database is referenced with a valid name:
 
 ```ruby
 describe azure_sql_database(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME', name: 'DB_NAME') do
@@ -90,7 +90,7 @@ describe azure_sql_database(resource_group: 'RESOURCE_GROUP', server_name: 'SERV
 end
 ```
 
-### Test if a SQL database is referenced with an invalid name
+Test if a SQL database is referenced with an invalid name:
 
 ```ruby
 describe azure_sql_database(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME', name: 'DB_NAME') do
@@ -98,7 +98,7 @@ describe azure_sql_database(resource_group: 'RESOURCE_GROUP', server_name: 'SERV
 end
 ```
 
-### Test if a SQL database has transparent data encryption is enabled
+Test if a SQL database has transparent data encryption is enabled:
 
 ```ruby
 describe azure_sql_database(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME', name: 'DB_NAME') do
@@ -106,7 +106,7 @@ describe azure_sql_database(resource_group: 'RESOURCE_GROUP', server_name: 'SERV
 end
 ```
 
-### Test if a SQL database auditing is enabled
+Test if a SQL database auditing is enabled:
 
 ```ruby
 describe azure_sql_database(resource_group: 'inspec-rg', server_name: 'customer_server', name: 'order-db') do
@@ -114,7 +114,7 @@ describe azure_sql_database(resource_group: 'inspec-rg', server_name: 'customer_
 end
 ```
 
-### Test if a SQL database threat detection is enabled
+Test if a SQL database threat detection is enabled:
 
 ```ruby
 describe azure_sql_database(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME', name: 'DB_NAME') do

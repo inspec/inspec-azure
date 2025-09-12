@@ -37,22 +37,22 @@ end
 `attributes`
 : A list of the key management attributes in [this](https://docs.microsoft.com/en-us/rest/api/keyvault/keys/get-key/get-key?tabs=HTTP#keyattributes) format.
 
-: **Field**: `attributes`
+  Field: `attributes`
 
 `kids`
 : A list of key IDs.
 
-: **Field**: `kid`
+  Field: `kid`
 
 `managed`
 : A list of boolean values indicating if the keys are managed by key vault or not.
 
-: **Field**: `managed`
+  Field: `managed`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 {{< note >}}
 
@@ -62,7 +62,7 @@ end
 
 ## Examples
 
-### Test that a vault has the named key
+Test that a vault has the named key:
 
 ```ruby
 describe azure_key_vault_keys(vault_name: 'EXAMPLE_VAULT').where { kid.include?('KEY_NAME')} do
@@ -71,7 +71,7 @@ describe azure_key_vault_keys(vault_name: 'EXAMPLE_VAULT').where { kid.include?(
 end
 ```
 
-### Loop through keys by the key ID
+Loop through keys by the key ID:
 
 ```ruby
 azure_key_vault_keys(vault_name: 'EXAMPLE_VAULT').kids.each do |kid|

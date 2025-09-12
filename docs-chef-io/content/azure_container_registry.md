@@ -66,7 +66,7 @@ Also, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/a
 
 ## Examples
 
-### Test the status of the retention policy for the container registry
+Test the status of the retention policy for the container registry:
 
 ```ruby
 describe azure_container_registry(resource_group: 'RESOURCE_GROUP', name: 'NAME') do

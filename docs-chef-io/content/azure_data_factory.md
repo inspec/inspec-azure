@@ -75,7 +75,7 @@ Both the parameter sets need to be provided for a valid query: `resource_group` 
 
 ## Examples
 
-### Test that a Data Factory exists
+Test that a Data Factory exists:
 
 ```ruby
 describe azure_data_factory(resource_group: resource_group, name: 'DATA_FACTORY_NAME') do
@@ -83,7 +83,7 @@ describe azure_data_factory(resource_group: resource_group, name: 'DATA_FACTORY_
 end
 ```
 
-### Test that a Data Factory does not exist
+Test that a Data Factory does not exist:
 
 ```ruby
 describe azure_data_factory(resource_group: resource_group, name: 'DATA_FACTORY_NAME') do
@@ -91,7 +91,7 @@ describe azure_data_factory(resource_group: resource_group, name: 'DATA_FACTORY_
 end
 ```
 
-### Test properties of a Data Factory
+Test properties of a Data Factory:
 
 ```ruby
 describe azure_data_factory(resource_group: `RESOURCE_GROUP`, name: 'NAME') do

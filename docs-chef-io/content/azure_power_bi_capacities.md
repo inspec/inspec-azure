@@ -35,37 +35,37 @@ This resource does not require any parameters.
 `ids`
 : List of all Power BI capacity IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `displayNames`
 : List of all the Power BI capacity names.
 
-: **Field**: `displayName`
+  Field: `displayName`
 
 `admins`
 : An array of capacity admins.
 
-: **Field**: `admin`
+  Field: `admin`
 
 `skus`
 : List of all capacity SKUs.
 
-: **Field**: `sku`
+  Field: `sku`
 
 `states`
 : List of the capacity states.
 
-: **Field**: `state`
+  Field: `state`
 
 `regions`
 : List of the Azure regions where the capacity is provisioned.
 
-: **Field**: `region`
+  Field: `region`
 
 `capacityUserAccessRights`
 : List of access rights user has on the capacity.
 
-: **Field**: `capacityUserAccessRight`
+  Field: `capacityUserAccessRight`
 
 {{< note >}}
 
@@ -77,7 +77,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test to ensure Power BI capacities are active
+Test to ensure Power BI capacities are active:
 
 ```ruby
 describe azure_power_bi_app_capacities.where(state: 'Active') do

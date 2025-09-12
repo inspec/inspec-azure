@@ -39,27 +39,27 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of the types of resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -69,7 +69,7 @@ end
 
 ## Examples
 
-### Check resources are present
+Check resources are present:
 
 ```ruby
 describe azure_mysql_databases(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME') do
@@ -78,7 +78,7 @@ describe azure_mysql_databases(resource_group: 'RESOURCE_GROUP', server_name: 'S
 end
 ```
 
-### Filter the results to include only those with names match the specified string value
+Filter the results to include only those with names match the specified string value:
 
 ```ruby
 describe azure_mysql_databases.(resource_group: 'RESOURCE_GROUP', server_name: 'SERVER_NAME').where{ name.eql?('production-db') } do

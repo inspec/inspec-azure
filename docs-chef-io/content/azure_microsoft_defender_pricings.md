@@ -33,32 +33,32 @@ No required parameters.
 `ids`
 : The ID of the resource.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : The name of the resource.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : The type of the resource.
 
-: **Field**: `type`
+  Field: `type`
 
 `freeTrialRemainingTimes`
 : The duration left for the subscriptions free trial period - in ISO 8601 format (e.g. P3Y6M4DT12H30M5S).
 
-: **Field**: `properties.freeTrialRemainingTime`
+  Field: `properties.freeTrialRemainingTime`
 
 `pricingTiers`
 : The pricing tier value. Microsoft Defender for Cloud is provided in two pricing tiers: free and standard, with the standard tier available with a trial period. The standard tier offers advanced security capabilities, while the free tier offers basic security features.
 
-: **Field**: `properties.pricingTier`
+  Field: `properties.pricingTier`
 
 `subPlans`
 : The sub-plan selected for a Standard pricing configuration, when more than one sub-plan is available. Each sub-plan enables a set of security features. When not specified, full plan is applied.
 
-: **Field**: `properties.subPlan`
+  Field: `properties.subPlan`
 
 {{< note >}}
 

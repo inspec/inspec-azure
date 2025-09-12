@@ -52,7 +52,7 @@ All the parameter sets need to be provided for a valid query: `resource_group` ,
 
 ## Examples
 
-### Test that a pipeline exists
+Test that a pipeline exists:
 
 ```ruby
 describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do
@@ -60,7 +60,7 @@ describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_n
 end
 ```
 
-### Test that a pipeline does not exist
+Test that a pipeline does not exist:
 
 ```ruby
 describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do
@@ -68,7 +68,7 @@ describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_n
 end
  ```
 
-### Test properties of a pipeline
+Test properties of a pipeline:
 
 ```ruby
 describe azure_data_factory_pipeline(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', pipeline_name: 'PIPELINE_NAME') do

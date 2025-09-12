@@ -79,15 +79,11 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ap
 
 ## Examples
 
-**Test <>.**
-
 ```ruby
 describe azure_web_app_function(resource_group: 'RESOURCE_GROUP', site_name: 'functions-http', function_name: 'HttpTrigger1') do
   its('properties.language') { should eq 'Javascript' }
 end
 ```
-
-**Test <>.**
 
 ```ruby
 describe azure_web_app_function(resource_group: 'RESOURCE_GROUP', site_name: 'functions-http', function_name: 'HttpTrigger1') do

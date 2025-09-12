@@ -94,7 +94,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if a SQL server is referenced with a valid name
+Test if a SQL server is referenced with a valid name:
 
 ```ruby
 describe azure_sql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do
@@ -102,7 +102,7 @@ describe azure_sql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME')
 end
 ```
 
-### Test if a SQL server is referenced with an invalid name
+Test if a SQL server is referenced with an invalid name:
 
 ```ruby
 describe azure_sql_server(resource_group: 'RESOURCE_GROUP', name: 'i-dont-exist') do
@@ -110,7 +110,7 @@ describe azure_sql_server(resource_group: 'RESOURCE_GROUP', name: 'i-dont-exist'
 end
 ```
 
-### Test if a SQL server has firewall rules set
+Test if a SQL server has firewall rules set:
 
 ```ruby
 describe azure_sql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do
@@ -118,7 +118,7 @@ describe azure_sql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME')
 end
 ```
 
-### Test a SQL server's location and kind
+Test a SQL server's location and kind:
 
 ```ruby
 describe azure_sql_server(resource_id: '/subscriptions/.../my-server') do
@@ -127,7 +127,7 @@ describe azure_sql_server(resource_id: '/subscriptions/.../my-server') do
 end
 ```
 
-### Test a SQL server's auditing settings
+Test a SQL server's auditing settings:
 
 ```ruby
 describe azure_sql_server(resource_group: 'RESOURCE_GROUP', name: 'SERVER_NAME') do

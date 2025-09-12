@@ -35,27 +35,27 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `role_names`
 : A list of role names of all the role definitions being interrogated.
 
-: **Field**: `role_name`
+  Field: `role_name`
 
 `types`
 : A list of role type of all the role definitions being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -65,7 +65,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Check a specific role definition is present
+Check a specific role definition is present:
 
 ```ruby
 describe azure_role_definitions do
@@ -73,7 +73,7 @@ describe azure_role_definitions do
 end
 ```
 
-### Filter the results to include only those role definitions that have the specified name
+Filter the results to include only those role definitions that have the specified name:
 
 ```ruby
 describe azure_role_definitions.where{ name.include?('my-role') } do
@@ -81,7 +81,7 @@ describe azure_role_definitions.where{ name.include?('my-role') } do
 end
 ```
 
-### Filter the results to include only the built-in role definitions
+Filter the results to include only the built-in role definitions:
 
 ```ruby
 describe azure_role_definitions.where{ type == "BuiltInRole" } do
@@ -90,7 +90,7 @@ describe azure_role_definitions.where{ type == "BuiltInRole" } do
 end
 ```
 
-### Filter the results to include only the role definitions that contain 'Kubernetes' in the role name
+Filter the results to include only the role definitions that contain 'Kubernetes' in the role name:
 
 ```ruby
 describe azure_role_definitions.where{ role_name.include?('Kubernetes') } do

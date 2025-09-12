@@ -59,7 +59,7 @@ See the [Azure documentation on Defender for Cloud pricing configuration](https:
 
 ## Examples
 
-### Test if a name exists
+Test if a name exists:
 
 This resource does not have any examples.
 

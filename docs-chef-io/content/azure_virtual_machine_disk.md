@@ -71,7 +71,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test if a disk is referenced with a valid name
+Test if a disk is referenced with a valid name:
 
 ```ruby
 describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'OS_DISK') do
@@ -79,7 +79,7 @@ describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'OS_
 end
 ```
 
-### Test if a disk is referenced with an invalid name
+Test if a disk is referenced with an invalid name:
 
 ```ruby
 describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'i-dont-exist') do
@@ -87,7 +87,7 @@ describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'i-d
 end
 ```
 
-### Test the VM that the disk is attached
+Test the VM that the disk is attached:
 
 ```ruby
 describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'OS_DISK') do
@@ -95,7 +95,7 @@ describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'OS_
 end
 ```
 
-### Test the key type used to encrypt the data at rest
+Test the key type used to encrypt the data at rest:
 
 ```ruby
 describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'OS_DISK') do
@@ -103,7 +103,7 @@ describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'OS_
 end
 ```
 
-### Test a disk's size in bytes
+Test a disk's size in bytes:
 
 ```ruby
 describe azure_virtual_machine_disk(resource_group: 'RESOURCE_GROUP', name: 'OS_DISK') do

@@ -42,22 +42,22 @@ end
 `names`
 : Unique names for all the paths in the Filesystem.
 
-: **Field**: `name`
+  Field: `name`
 
 `lastModifieds`
 : Last modified timestamps of all the paths in the Filesystem.
 
-: **Field**: `lastModified`
+  Field: `lastModified`
 
 `eTags`
 : A list of eTags for all the paths in the Filesystem.
 
-: **Field**: `eTag`
+  Field: `eTag`
 
 `contentLengths`
 : A list of Content-Length of all the paths in the Filesystem.
 
-: **Field**: `contentLength`
+  Field: `contentLength`
 
 {{< note >}}
 
@@ -68,7 +68,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/st
 
 ## Examples
 
-### Loop through Data Lake Storage Gen2 Filesystem paths by their names
+Loop through Data Lake Storage Gen2 Filesystem paths by their names:
 
 ```ruby
 azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'ADLS FILESYSTEM').names.each do |name|
@@ -78,7 +78,7 @@ azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'AD
 end
 ```
 
-### Test to ensure Data Lake Storage Gen2 Filesystem paths with file size greater than 2 MB
+Test to ensure Data Lake Storage Gen2 Filesystem paths with file size greater than 2 MB:
 
 ```ruby
 describe azure_data_lake_storage_gen2_paths(account_name: 'ACCOUNT_NAME', filesystem: 'ADLS FILESYSTEM').where{ contentLength > 2097152 } do

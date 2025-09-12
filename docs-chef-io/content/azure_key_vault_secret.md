@@ -92,7 +92,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test the secret identifier
+Test the secret identifier:
 
 ```ruby
 describe azure_key_vault_secret(vault_name: 'EXAMPLE_VAULT', secret_name: 'EXAMPLE_SECRET') do
@@ -100,7 +100,7 @@ describe azure_key_vault_secret(vault_name: 'EXAMPLE_VAULT', secret_name: 'EXAMP
 end
 ```
 
-### Test if the secret is enabled
+Test if the secret is enabled:
 
 ```ruby
 describe azure_key_vault_secret(vault_name: 'EXAMPLE_VAULT', secret_name: 'EXAMPLE_SECRET') do

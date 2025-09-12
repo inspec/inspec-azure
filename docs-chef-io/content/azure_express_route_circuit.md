@@ -110,7 +110,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ex
 
 ## Examples
 
-### Test an ExpressRoute circuit resource has the correct type
+Test an ExpressRoute circuit resource has the correct type:
 
 ```ruby
 describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_name: 'EXPRESS_CIRCUIT_NAME') do
@@ -118,7 +118,7 @@ describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_n
 end
 ```
 
-### Test an ExpressRoute circuit resource is in a successful state
+Test an ExpressRoute circuit resource is in a successful state:
 
 ```ruby
 describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_name: 'EXPRESS_CIRCUIT_NAME') do
@@ -126,7 +126,7 @@ describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_n
 end
 ```
 
-### Test the location of an ExpressRoute circuit resource
+Test the location of an ExpressRoute circuit resource:
 
 ```ruby
 describe azure_express_route_circuit(resource_group: 'RESOURCE_GROUP', circuit_name: 'EXPRESS_CIRCUIT_NAME') do

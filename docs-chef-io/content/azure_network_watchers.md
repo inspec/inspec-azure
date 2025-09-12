@@ -45,22 +45,22 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 {{< note >}}
 
@@ -70,7 +70,7 @@ end
 
 ## Examples
 
-### Test that an example resource group has the named Network Watcher
+Test that an example resource group has the named network watcher:
 
 ```ruby
 describe azure_network_watchers(resource_group: 'EXAMPLEGROUP') do

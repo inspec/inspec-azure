@@ -65,7 +65,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/st
 
 ## Examples
 
-### Test that the HPC ASC operation is succeeded
+Test that the HPC ASC operation is succeeded:
 
 ```ruby
 describe azure_hpc_asc_operation(location: 'LOCATION', operation_id: 'OPERATION_ID') do

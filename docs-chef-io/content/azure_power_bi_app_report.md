@@ -60,7 +60,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI app report is paginated and embed URL is present
+Test that the Power BI app report is paginated and embed URL is present:
 
 ```ruby
 describe azure_power_bi_app_report(app_id: 'APP_ID', report_id: 'REPORT_ID')  do

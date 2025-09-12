@@ -66,7 +66,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ap
 
 ## Examples
 
-### Test the SSL policy name of an application gateway
+Test the SSL policy name of an application gateway:
 
 ```ruby
 describe azure_application_gateway(resource_group: 'RESOURCE_GROUP', application_gateway_name: 'APPLICATION_GATEWAY_NAME') do

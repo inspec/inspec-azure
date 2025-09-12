@@ -44,62 +44,62 @@ end
 `names`
 : A list of the unique resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `ids`
 : A list of data factory IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `tags`
 : A list of `tag:value` pairs for the resource.
 
-: **Field**: `tag`
+  Field: `tag`
 
 `provisioning_states`
 : The Data Factory provisioning state.
 
-: **Field**: `provisioning_state`
+  Field: `provisioning_state`
 
 `types`
 : The resource type.
 
-: **Field**: `type`
+  Field: `type`
 
 `repo_configuration_types`
 : The Git or VSTS repository configuration types.
 
-: **Field**: `repo type`
+  Field: `repo type`
 
 `repo_configuration_project_names`
 : The VSTS repository project names.
 
-: **Field**: `project_name`
+  Field: `project_name`
 
 `repo_configuration_account_names`
 : The Git or VSTS repository account names.
 
-: **Field**: `account_name`
+  Field: `account_name`
 
 `repo_configuration_repository_names`
 : The Git or VSTS repository names.
 
-: **Field**: `repository_name`
+  Field: `repository_name`
 
 `repo_configuration_collaboration_branches`
 : The Git or VSTS repository collaboration branches.
 
-: **Field**: `collaboration_branch`
+  Field: `collaboration_branch`
 
 `repo_configuration_root_folders`
 : The Git or VSTS repository root folders.
 
-: **Field**: `root_folder`
+  Field: `root_folder`
 
 `repo_configuration_tenant_ids`
 : The VSTS tenant IDs.
 
-: **Field**: `tenant_id`
+  Field: `tenant_id`
 
 {{< note >}}
 
@@ -109,7 +109,7 @@ end
 
 ## Examples
 
-### Test if any Data Factories exist in the resource group
+Test if any Data Factories exist in the resource group:
 
 ```ruby
 describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
@@ -118,7 +118,7 @@ describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test that there are not any Data Factories in a resource group
+Test that there are not any Data Factories in a resource group:
 
 ```ruby
 # Should not exist if no Data Factory is in the resource group.
@@ -128,7 +128,7 @@ describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Filter Data Factories in a resource group by properties
+Filter Data Factories in a resource group by properties:
 
 ```ruby
 describe azure_data_factories(resource_group: 'RESOURCE_GROUP') do

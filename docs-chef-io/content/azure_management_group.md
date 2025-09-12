@@ -87,7 +87,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ma
 
 ## Examples
 
-### Test Tenant ID, Parent Name, Children Display Name
+Test Tenant ID, Parent Name, Children Display Name:
 
 ```ruby
 describe azure_management_group(group_id: 'ABC-1234', recurse: true, expand: 'CHILDREN') do

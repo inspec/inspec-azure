@@ -37,32 +37,32 @@ end
 `name`
 : A list of the unique resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `ids`
 : A list of Bastion hosts IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `provisioning_states`
 : State of Bastion hosts creation.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `types`
 : Types of all the Bastion hosts.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : Properties of all the Bastion hosts.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -72,7 +72,7 @@ end
 
 ## Examples
 
-### Test to ensure that the Bastion hosts resource is from the same type
+Test to ensure that the Bastion hosts resource is from the same type:
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
@@ -80,7 +80,7 @@ describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test to ensure that the Bastion hosts resource is in a successful state
+Test to ensure that the Bastion hosts resource is in a successful state:
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
@@ -88,7 +88,7 @@ describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test to ensure that the Bastion hosts resource is from the same location
+Test to ensure that the Bastion hosts resource is from the same location:
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
@@ -96,7 +96,7 @@ describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test if any Bastion hosts exist in the resource group
+Test if any Bastion hosts exist in the resource group:
 
 ```ruby
 describe azure_bastion_hosts_resources(resource_group: 'RESOURCE_GROUP') do

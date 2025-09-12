@@ -42,32 +42,32 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the Service Bus subscriptions.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `lockDurations`
 : A list of the lock duration timespans.
 
-: **Field**: `lockDuration`
+  Field: `lockDuration`
 
 `statuses`
 : A list of statuses of a messaging entity.
 
-: **Field**: `status`
+  Field: `status`
 
 {{< note >}}
 
@@ -77,7 +77,7 @@ end
 
 ## Examples
 
-### Test that there are Service Bus subscriptions that are active
+Test that there are Service Bus subscriptions that are active:
 
 ```ruby
 describe azure_service_bus_subscriptions(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', topic_name: 'TOPIC_NAME').where(status: 'Active') do

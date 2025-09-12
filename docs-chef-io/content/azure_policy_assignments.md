@@ -134,7 +134,7 @@ Please review the [Azure documentation](https://docs.microsoft.com/en-us/rest/ap
 
 ## Examples
 
-### Check that all assigned policies are in enforcing mode
+Check that all assigned policies are in enforcing mode:
 
 ```ruby
 describe azure_policy_assignments.where{ enforcement_mode == 'DoNotEnforce' } do
@@ -143,7 +143,7 @@ describe azure_policy_assignments.where{ enforcement_mode == 'DoNotEnforce' } do
 end
 ```
 
-### Check that no policies were modified in the last 30 days
+Check that no policies were modified in the last 30 days:
 
 ```ruby
 last_30_days = Time.now() - (60*60*24*30)

@@ -29,27 +29,27 @@ No required parameters.
 `ids`
 : The ID of the resource.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : The name of the resource.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : The type of the resource.
 
-: **Field**: `type`
+  Field: `type`
 
 `kinds`
 : The kind of the resource.
 
-: **Field**: `kind`
+  Field: `kind`
 
 `properties`
 : The properties of the resource.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 

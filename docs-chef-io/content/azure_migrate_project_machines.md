@@ -41,42 +41,42 @@ The parameter set that should be provided for a valid query is `resource_group` 
 `ids`
 : Path reference to the project machines.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all project machines.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the project machines.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `discoveryData`
 : The discovery details of all the machines published by various sources.
 
-: **Field**: `discoveryData`
+  Field: `discoveryData`
 
 `assessmentData`
 : The assessment details of all the machines published by various sources.
 
-: **Field**: `assessmentData`
+  Field: `assessmentData`
 
 `migrationData`
 : The migration details of all the machines published by various sources.
 
-: **Field**: `migrationData`
+  Field: `migrationData`
 
 `lastUpdatedTimes`
 : The times of the last modification of all the machines.
 
-: **Field**: `lastUpdatedTime`
+  Field: `lastUpdatedTime`
 
 {{< note >}}
 
@@ -86,7 +86,7 @@ The parameter set that should be provided for a valid query is `resource_group` 
 
 ## Examples
 
-### Loop through Migrate Project machines by their names
+Loop through Migrate Project machines by their names:
 
 ```ruby
 azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -96,7 +96,7 @@ azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP', project_name: '
 end
 ```
 
-### Test that there are Migrate Project machines with Windows OS
+Test that there are Migrate Project machines with Windows OS:
 
 ```ruby
 describe azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ discoveryData.detect{ |data| data[:osType] == 'WINDOWSGUEST' } } do
@@ -104,7 +104,7 @@ describe azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP', projec
 end
 ```
 
-### Test that the Migrate Project machines are of BIOS boot type
+Test that the Migrate Project machines are of BIOS boot type:
 
 ```ruby
 describe azure_migrate_project_machines(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ discoveryData.detect{ |data| data[:extendedInfo][:bootType] == 'BIOS' } } do

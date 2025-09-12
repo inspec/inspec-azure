@@ -56,7 +56,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test a resource group location
+Test a resource group location:
 
 ```ruby
 describe azure_resource_group(name: 'RESOURCE_GROUP') do
@@ -64,7 +64,7 @@ describe azure_resource_group(name: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test a resource group provisioning state
+Test a resource group provisioning state:
 
 ```ruby
 describe azure_resource_group(name: 'RESOURCE_GROUP') do
@@ -72,7 +72,7 @@ describe azure_resource_group(name: 'RESOURCE_GROUP') do
 end
 ```
 
-### Test a resource group tags
+Test a resource group tags:
 
 ```ruby
 describe azure_resource_group(name: 'RESOURCE_GROUP') do

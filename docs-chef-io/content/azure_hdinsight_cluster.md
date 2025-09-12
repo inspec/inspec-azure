@@ -59,7 +59,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/hd
 
 ## Examples
 
-### Test that a specified HDInsight Cluster is successfully provisioned
+Test that a specified HDInsight Cluster is successfully provisioned:
 
 ```ruby
 describe azure_hdinsight_cluster(resource_group: 'RESOURCE_GROUP', name: 'CLUSTER_NAME') do
@@ -73,7 +73,7 @@ describe azure_hdinsight_cluster(resource_id: '/subscriptions/{subscriptionId}/r
 end
 ```
 
-### Test the version of an HDInsight Cluster
+Test the version of an HDInsight Cluster:
 
 ```ruby
 describe azure_hdinsight_cluster(resource_group: 'RESOURCE_GROUP', name: 'CLUSTER_NAME') do

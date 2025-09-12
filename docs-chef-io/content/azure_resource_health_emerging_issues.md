@@ -35,22 +35,22 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names for all the resources.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types for all the resources.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -62,7 +62,7 @@ See [Azure's documentation](https://docs.microsoft.com/en-us/rest/api/resourcehe
 
 ## Examples
 
-### Test that there are emerging health issues that are of lower severity
+Test that there are emerging health issues that are of lower severity:
 
 ```ruby
 describe azure_resource_health_emerging_issues.where{ properties.select{|prop| prop.statusActiveEvents.select{ |event| event.severity == 'Warning' } } } do

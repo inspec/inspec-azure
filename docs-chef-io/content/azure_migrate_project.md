@@ -72,7 +72,7 @@ Any attribute in the response nested within properties may be accessed with the 
 
 ## Examples
 
-### Test that The Migrate project has a server instance type
+Test that The Migrate project has a server instance type:
 
 ```ruby
 describe azure_migrate_project(resource_group: 'RESOURCE_GROUP', name: 'PROJECT_NAME') do

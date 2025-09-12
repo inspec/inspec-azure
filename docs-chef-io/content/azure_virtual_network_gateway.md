@@ -71,7 +71,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ne
 
 ## Examples
 
-### Test the VPN client protocol of a virtual network gateway
+Test the VPN client protocol of a virtual network gateway:
 
 ```ruby
 describe azure_virtual_network_gateway(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_NAME') do

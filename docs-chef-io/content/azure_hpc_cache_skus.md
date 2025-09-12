@@ -33,27 +33,27 @@ end
 `resourceTypes`
 : A resource types list where the SKU applies.
 
-**Field**: `resourceType`
+  Field: `resourceType`
 
 `names`
 : A list of SKU names.
 
-**Field**: `name`
+  Field: `name`
 
 `sizes`
 : A list of the SKU sizes.
 
-**Field**: `size`
+  Field: `size`
 
 `tiers`
 : A tiers list of VM in a scale set.
 
-**Field**: `tier`
+  Field: `tier`
 
 `kind`
 : The supported kind list of resources.
 
-**Field**: `kind`
+  Field: `kind`
 
 {{< note >}}
 
@@ -63,7 +63,7 @@ end
 
 ## Examples
 
-### Ensure that there are Standard tier HPC Cache SKUs
+Ensure that there are Standard tier HPC Cache SKUs:
 
 ```ruby
 describe azure_hpc_cache_skus.where(tier: 'STANDARD') do

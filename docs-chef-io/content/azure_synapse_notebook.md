@@ -70,7 +70,7 @@ Access any property in the response by separating the key names with a period (`
 
 ## Examples
 
-### Test that there are four cores for each executor
+Test that there are four cores for each executor:
 
 ```ruby
 describe azure_synapse_notebook(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT', name: 'NOTEBOOK_NAME') do
@@ -78,7 +78,7 @@ describe azure_synapse_notebook(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT', name
 end
 ```
 
-### Test that the notebook uses the Python kernel
+Test that the notebook uses the Python kernel:
 
 ```ruby
 describe azure_synapse_notebook(endpoint: 'WORKSPACE_DEVELOPMENT_ENDPOINT', name: 'NOTEBOOK_NAME') do

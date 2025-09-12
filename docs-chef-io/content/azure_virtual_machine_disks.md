@@ -45,37 +45,37 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `attached`
 : Indicates whether the disk is currently mounted to a running VM.
 
-: **Field**: `attached`
+  Field: `attached`
 
 `resource_group`
 : A list of resource groups for all the disks.
 
-: **Field**: `resource_group`
+  Field: `resource_group`
 
 `names`
 : A list of names for all the disks.
 
-: **Field**: `name`
+  Field: `name`
 
 `locations`
 : A list of locations of the disks.
 
-: **Field**: `location`
+  Field: `location`
 
 `properties`
 : A list of properties of the disks.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources.
 
-: **Field**: `tags`
+  Field: `tags`
 
 {{< note >}}
 
@@ -85,7 +85,7 @@ end
 
 ## Examples
 
-### Filter the attached disks
+Filter the attached disks:
 
 ```ruby
 describe azure_virtual_machine_disks(resource_group: 'RESOURCE_GROUP').where(attached: true) do
@@ -94,7 +94,7 @@ describe azure_virtual_machine_disks(resource_group: 'RESOURCE_GROUP').where(att
 end
 ```
 
-### Loop through disks by their IDs
+Loop through disks by their IDs:
 
 ```ruby
 azure_virtual_machine_disks.ids.each do |id|
@@ -104,7 +104,7 @@ azure_virtual_machine_disks.ids.each do |id|
 end
 ```
 
-### Test that there are disks that include a certain string in their names (Client Side Filtering)
+Test that there are disks that include a certain string in their names (client-side filtering):
 
 ```ruby
 describe azure_virtual_machine_disks(resource_group: 'RESOURCE_GROUP').where { name.include?('Windows') } do
@@ -112,7 +112,7 @@ describe azure_virtual_machine_disks(resource_group: 'RESOURCE_GROUP').where { n
 end
 ```
 
-### Test that there are disks that include a certain string in their names (Server Side Filtering via Generic Resource - Recommended)
+Test that there are disks that include a certain string in their names (Server Side Filtering via Generic Resource - Recommended):
 
 ```ruby
 describe azure_generic_resources(resource_provider: 'Microsoft.Compute/disks', substring_of_name: 'Windows') do

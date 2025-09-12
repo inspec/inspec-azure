@@ -79,7 +79,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/mi
 
 ## Examples
 
-### Test the migrate assessment group has at least five machines
+Test the migrate assessment group has at least five machines:
 
 ```ruby
 describe azure_migrate_assessment_group(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'GROUP_NAME') do

@@ -52,7 +52,7 @@ The properties that can be tested are entirely dependent on the Azure Resource t
 
 ## Examples
 
-### Test properties of a user account
+Test properties of a user account:
 
 ```ruby
 describe azure_graph_generic_resource(resource: 'USERS', id: 'jdoe@contoso.com', select: %w{ surname givenName }) do

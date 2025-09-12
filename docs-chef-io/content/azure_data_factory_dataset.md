@@ -65,7 +65,7 @@ end
 
 ## Examples
 
-### Test if properties match
+Test if properties match:
 
 ```ruby
 describe azure_data_factory_dataset(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME', dataset_name: 'DATASET_NAME') do

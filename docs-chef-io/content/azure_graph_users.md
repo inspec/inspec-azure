@@ -33,12 +33,12 @@ The following parameters can be passed for targeting specific users.
 `filter`
 : A hash containing the filtering options and their values. The `starts_with_` operator can be used for fuzzy string matching. Parameter names are in the snake case.
 
-: **Example**: `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}`
+  For example, `{ starts_with_given_name: 'J', starts_with_department: 'Core', country: 'United Kingdom', given_name: John}`
 
 `filter_free_text`
 : [OData](https://www.odata.org/getting-started/basic-tutorial/) query string in double quotes, `"`. Property names are in the camel case. See the [Microsoft query parameters documentation](https://docs.microsoft.com/en-us/graph/query-parameters#filter-parameter) for more information.
 
-: **Example**: `"startswith(displayName,'J') and surname eq 'Doe'"` or `"userType eq 'Guest'"`
+  For example, `"startswith(displayName,'J') and surname eq 'Doe'"` or `"userType eq 'Guest'"`
 
 It is advised to use these parameters to narrow down the targeted resources at the server side, Azure Graph API, for a more efficient test.
 
@@ -47,42 +47,42 @@ It is advised to use these parameters to narrow down the targeted resources at t
 `ids`
 : The unique identifiers of users.
 
-: **Field**: `id`
+  Field: `id`
 
 `object_ids`
 : The unique identifiers of users. This is for backward compatibility. Use `ids` instead.
 
-: **Field**: `id`
+  Field: `id`
 
 `display_names`
 : The display names of users.
 
-: **Field**: `displayName`
+  Field: `displayName`
 
 `given_names`
 : The given names of users.
 
-: **Field**: `givenName`
+  Field: `givenName`
 
 `job_titles`
 : The job titles of users.
 
-: **Field**: `jobTitle`
+  Field: `jobTitle`
 
 `mails`
 : The email addresses of users.
 
-: **Field**: `mail`
+  Field: `mail`
 
 `user_types`
 : The user types of users. For example, `Member`, `Guest`.
 
-: **Field**: `userType`
+  Field: `userType`
 
 `user_principal_names`
 : The user principal names of users. For example, `jdoe@contoso.com`.
 
-: **Field**: `userPrincipalName`
+  Field: `userPrincipalName`
 
 {{< note >}}
 
@@ -94,7 +94,7 @@ It is advised to use these parameters to narrow down the targeted resources at t
 
 The following examples show how to use this InSpec audit resource.
 
-### Check users with some filtering parameters applied at server side (Using 'filter')
+Check users with some filtering parameters applied at server side (Using 'filter'):
 
 ```ruby
 describe azure_graph_users(filter: {given_name: 'John', starts_with_department: 'Customer'}) do
@@ -102,7 +102,7 @@ describe azure_graph_users(filter: {given_name: 'John', starts_with_department: 
 end
 ```
 
-### Check users with some filtering parameters applied at server side (Using 'filter_free_text')
+Check users with some filtering parameters applied at server side (Using 'filter_free_text'):
 
 ```ruby
 describe azure_graph_users(filter_free_text: "startswith(givenName,'J') and startswith(department,'customer') and country eq 'United States'") do
@@ -110,7 +110,7 @@ describe azure_graph_users(filter_free_text: "startswith(givenName,'J') and star
 end
 ```
 
-### Ensure there are no guest accounts active (Client Side Filtering)
+Ensure there are no guest accounts active (client-side filtering):
 
 ```ruby
 describe azure_graph_users.guest_accounts do

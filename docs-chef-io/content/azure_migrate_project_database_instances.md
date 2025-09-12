@@ -41,87 +41,87 @@ end
 `ids`
 : Path reference to the project database instances.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all project database instances.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the project database instances.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `discoveryDatas`
 : The assessment details of the database published by various sources.
 
-: **Field**: `assessmentData`
+  Field: `assessmentData`
 
 `summaries`
 : The database instances summaries per solution.
 
-: **Field**: `summary`
+  Field: `summary`
 
 `lastUpdatedTimes`
 : The time of the last modification of the database instance details.
 
-: **Field**: `lastUpdatedTime`
+  Field: `lastUpdatedTime`
 
 `enqueueTimes`
 : The time when the message was enqueued.
 
-: **Field**: `enqueueTimes`
+  Field: `enqueueTimes`
 
 `extendedInfos`
 : The extended properties of the database servers.
 
-: **Field**: `extendedInfos`
+  Field: `extendedInfos`
 
 `hostNames`
 : The host names of the database servers.
 
-: **Field**: `hostNames`
+  Field: `hostNames`
 
 `instanceIds`
 : The database instance IDs.
 
-: **Field**: `instanceIds`
+  Field: `instanceIds`
 
 `instanceNames`
 : The database instance names.
 
-: **Field**: `instanceNames`
+  Field: `instanceNames`
 
 `instanceTypes`
 : The database instance types.
 
-: **Field**: `instanceTypes`
+  Field: `instanceTypes`
 
 `instanceVersions`
 : The database instance versions.
 
-: **Field**: `instanceVersions`
+  Field: `instanceVersions`
 
 `ipAddresses`
 : The IP addresses of the database server. IP addresses could be IPV4 or IPV6.
 
-: **Field**: `ipAddresses`
+  Field: `ipAddresses`
 
 `portNumbers`
 : The port numbers of the database server.
 
-: **Field**: `portNumbers`
+  Field: `portNumbers`
 
 `solutionNames`
 : The names of the solution that sent the data.
 
-: **Field**: `solutionNames`
+  Field: `solutionNames`
 
 {{< note >}}
 
@@ -131,7 +131,7 @@ end
 
 ## Examples
 
-### Loop through Migrate Project database instances by their names
+Loop through Migrate Project database instances by their names:
 
 ```ruby
 azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -141,7 +141,7 @@ azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', proje
 end
 ```
 
-### Test that there are Migrate Project database instances that are of SQL instance types
+Test that there are Migrate Project database instances that are of SQL instance types:
 
 ```ruby
 describe azure_migrate_project_database_instances(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ instanceTypes.include?('SQL') } do

@@ -77,7 +77,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/se
 
 ## Examples
 
-### Test that the Service Bus Namespaces are provisioned successfully
+Test that the Service Bus Namespaces are provisioned successfully:
 
 ```ruby
 describe azure_service_bus_namespace(resource_group: 'RESOURCE_GROUP', name: 'SERVICE_BUS_NAMESPACE') do

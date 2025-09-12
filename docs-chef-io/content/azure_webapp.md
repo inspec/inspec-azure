@@ -75,7 +75,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test that a resource group has the specified Webapp and verify it's authentication settings, platform-specific security token storing is enabled
+Test that a resource group has the specified Webapp and verify it's authentication settings:, platform-specific security token storing is enabled
 
 ```ruby
 describe azure_webapp(resource_group: 'EXAMPLE', name: 'WEBAPP_NAME') do
@@ -91,7 +91,7 @@ end
 
 This resource has the following special matchers.
 
-### Test webapp to ensure it's using the latest supported version of .NET
+Test webapp to ensure it's using the latest supported version of :.NET
 
 ```ruby
 describe azure_webapp(resource_group: 'EXAMPLE', name: 'WEBAPP_NAME') do
@@ -99,7 +99,7 @@ describe azure_webapp(resource_group: 'EXAMPLE', name: 'WEBAPP_NAME') do
 end
 ```
 
-### Test webapp to ensure it's using the latest supported version of Python
+Test webapp to ensure it's using the latest supported version of Python:
 
 ```ruby
 describe azure_webapp(resource_group: 'EXAMPLE', name: 'WEBAPP_NAME') do

@@ -35,7 +35,7 @@ This resource does not require any parameters.
 `values`
 : A list of the unique directory object values.
 
-: **Field**: `value`
+  Field: `value`
 
 {{< note >}}
 
@@ -45,7 +45,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Iterate over and test the visibility of Active Directory objects
+Iterate over and test the visibility of Active Directory objects:
 
 ```ruby
   azure_active_directory_objects.values.each do |value|

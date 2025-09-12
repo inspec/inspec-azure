@@ -66,7 +66,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/sy
 
 ## Examples
 
-### Test that the Synapse workspaces are provisioned successfully
+Test that the Synapse workspaces are provisioned successfully:
 
 ```ruby
 describe azure_synapse_workspace(resource_group: 'RESOURCE_GROUP', name: 'SYNAPSE_WORKSPACE_NAME') do

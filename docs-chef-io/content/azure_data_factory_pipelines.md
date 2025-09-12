@@ -44,17 +44,17 @@ end
 `names`
 : A list of the unique resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `ids`
 : A list of pipeline IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `properties`
 : A list of properties for the resource.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -64,7 +64,7 @@ end
 
 ## Examples
 
-### Test if any pipeline exists in the resource group
+Test if any pipeline exists in the resource group:
 
 ```ruby
 describe azure_data_factory_pipelines(resource_group: 'RESOURCE_GROUP', factory_name: 'FACTORY_NAME') do
@@ -73,7 +73,7 @@ describe azure_data_factory_pipelines(resource_group: 'RESOURCE_GROUP', factory_
 end
 ```
 
-### Test that there are not any pipelines in a resource group
+Test that there are not any pipelines in a resource group:
 
 ```ruby
 # Should not exist if no pipelines is in the resource group.

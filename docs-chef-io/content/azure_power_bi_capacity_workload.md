@@ -57,7 +57,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI Capacity workload is enabled
+Test that the Power BI Capacity workload is enabled:
 
 ```ruby
 describe azure_power_bi_capacity_workload(capacity_id: 'CAPACITY_ID', name: 'WORKLOAD_NAME')  do

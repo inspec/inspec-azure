@@ -41,97 +41,97 @@ The parameter set should be provided for a valid query is`resource_group` and `p
 `ids`
 : Path reference to the project databases.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all project databases.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the project databases.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `assessmentDatas`
 : The assessment details of the database published by various sources.
 
-: **Field**: `assessmentData`
+  Field: `assessmentData`
 
 `assessmentIds`
 : The database assessment scopes/IDs.
 
-: **Field**: `assessmentId`
+  Field: `assessmentId`
 
 `assessmentTargetTypes`
 : The assessed target database types.
 
-: **Field**: `assessmentTargetType`
+  Field: `assessmentTargetType`
 
 `breakingChangesCounts`
 : The number of breaking changes found.
 
-: **Field**: `breakingChangesCount`
+  Field: `breakingChangesCount`
 
 `compatibilityLevels`
 : The compatibility levels of the database.
 
-: **Field**: `compatibilityLevel`
+  Field: `compatibilityLevel`
 
 `databaseNames`
 : The database names.
 
-: **Field**: `databaseName`
+  Field: `databaseName`
 
 `databaseSizeInMBs`
 : The sizes of the databases.
 
-: **Field**: `databaseSizeInMB`
+  Field: `databaseSizeInMB`
 
 `enqueueTimes`
 : The list of times the message is enqueued.
 
-: **Field**: `enqueueTime`
+  Field: `enqueueTime`
 
 `extendedInfos`
 : The extended properties of all the database.
 
-: **Field**: `extendedInfo`
+  Field: `extendedInfo`
 
 `instanceIds`
 : The database server instance IDs.
 
-: **Field**: `instanceId`
+  Field: `instanceId`
 
 `isReadyForMigrations`
 : The values indicating whether the database is ready for migration.
 
-: **Field**: `isReadyForMigration`
+  Field: `isReadyForMigration`
 
 `lastAssessedTimes`
 : The time when the databases were last assessed.
 
-: **Field**: `lastAssessedTime`
+  Field: `lastAssessedTime`
 
 `lastUpdatedTimes`
 : The time of the last modifications of the database details.
 
-: **Field**: `lastUpdatedTime`
+  Field: `lastUpdatedTime`
 
 `migrationBlockersCounts`
 : The number of blocking changes found.
 
-: **Field**: `migrationBlockersCount`
+  Field: `migrationBlockersCount`
 
 `solutionNames`
 : The names of the solution that sent the data.
 
-: **Field**: `solutionName`
+  Field: `solutionName`
 
 {{< note >}}
 
@@ -141,7 +141,7 @@ The parameter set should be provided for a valid query is`resource_group` and `p
 
 ## Examples
 
-### Loop through Migrate Project databases by their names
+Loop through Migrate Project databases by their names:
 
 ```ruby
 azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -151,7 +151,7 @@ azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 
 end
 ```
 
-### Test there are Migrate Project databases are ready for migration
+Test there are Migrate Project databases are ready for migration:
 
 ```ruby
 describe azure_migrate_project_databases(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where{ isReadyForMigration.include?(true) } do

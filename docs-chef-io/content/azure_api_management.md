@@ -66,7 +66,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ap
 
 ## Examples
 
-### Test API Management Service's publisher Email value
+Test API Management Service's publisher Email value:
 
 ```ruby
 describe azure_api_management(resource_group: RESOURCE_GROUP, api_management_name: API_MANAGEMENT_NAME) do
@@ -74,7 +74,7 @@ describe azure_api_management(resource_group: RESOURCE_GROUP, api_management_nam
 end
 ```
 
-### Loop through resources via plural resource
+Loop through resources via plural resource:
 
 ```ruby
 azure_api_managements.ids.each do |resource_id|

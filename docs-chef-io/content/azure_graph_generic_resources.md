@@ -75,17 +75,15 @@ For example, if the query parameters are `select: %w{ country department givenNa
 
 ## Examples
 
-### Test a selection of user accounts
+Test a selection of user accounts using the `filter` parameter:
 
 ```ruby
-**Using filter parameter.**
-
 describe azure_graph_generic_resources(resource: 'USERS', filter: { starts_with_given_name: 'J', starts_with_department: 'customer', country: 'United Kingdom' },  select: %w{ country userPrincipalName}) do
   it { should exist }
   its('countries'.uniq) { should eq ['United Kingdom'] }
 end
 
-**Using filter_free_text parameter.**
+Test a selection of user accounts using the `filter_free_text` parameter:
 
 describe azure_graph_generic_resources(resource: 'USERS', filter_free_text: "startswith(givenName,'J') and startswith(department,'customer') and country eq 'United States'",  select: %w{ country userPrincipalName}) do
   it { should exist }
@@ -93,13 +91,15 @@ describe azure_graph_generic_resources(resource: 'USERS', filter_free_text: "sta
 end
 ```
 
-### Filter<superscript>*</superscript> the results to only include that match the given country (Client-Side Filtering is NOT Recommended)
+Filter the results to only include that match the given country:
 
 ```ruby
-    describe azure_graph_generic_resources(resource: 'USERS', select: %w{ country }).where(country: 'United Kingdom') do
-      it { should exist }
-    end
+describe azure_graph_generic_resources(resource: 'USERS', select: %w{ country }).where(country: 'United Kingdom') do
+  it { should exist }
+end
 ```
+
+Note:** Client-side filtering isn't recommended.
 
 {{< note >}}
 
@@ -107,7 +107,7 @@ end
 
 {{< /note>}}
 
-**Test `given_names` Parameter.**
+Test `given_names` Parameter:
 
 ```ruby
 azure_graph_generic_resources(resource: 'USERS', filter: { starts_with_given_name: 'J' }, select: %w{ givenName }).given_names.each do |name|

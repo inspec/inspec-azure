@@ -45,32 +45,32 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the Service Bus subscription rules.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `filterTypes`
 : A list of the filter types.
 
-: **Field**: `filterType`
+  Field: `filterType`
 
 `sqlFilter`
 : A list of sqlFilters.
 
-: **Field**: `sqlFilter`
+  Field: `sqlFilter`
 
 {{< note >}}
 
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-### Test that there are Service Bus subscription rules that are of SQL Filter type
+Test that there are Service Bus subscription rules that are of SQL Filter type:
 
 ```ruby
 describe azure_service_bus_subscription_rules(resource_group: 'RESOURCE_GROUP', namespace_name: 'NAMESPACE_NAME', subscription_name: 'SUBSCRIPTION_NAME', topic_name: 'TOPIC_NAME').where(filterType: 'SqlFilter') do

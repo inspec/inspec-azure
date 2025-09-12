@@ -39,27 +39,27 @@ end
 `ids`
 : Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : The name of the resource.
 
-: **Field**: `name`
+  Field: `name`
 
 `properties`
 : The property of the resource.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `skus`
 : Sku name and tier.
 
-: **Field**: `sku`
+  Field: `sku`
 
 `types`
 : The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts"
 
-: **Field**: `type`
+  Field: `type`
 
 {{< note >}}
 
@@ -71,7 +71,7 @@ See [Azure's documentation on Blob services](https://learn.microsoft.com/en-us/r
 
 ## Examples
 
-### Test that an example Resource Group has the named storage account
+Test that an example Resource Group has the named storage account:
 
 ```ruby
 describe azure_blob_services(resource_group: 'RESOURCE_GROUP_NAME', storage_account_name: 'STORAGE_ACCOUNT_NAME') do

@@ -117,7 +117,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test a policy definition resource type
+Test a policy definition resource type:
 
 ```ruby
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54',  resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do
@@ -125,7 +125,7 @@ describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c
 end
 ```
 
-### Test a policy definition and policy assignment scope
+Test a policy definition and policy assignment scope:
 
 ```ruby
 describe azure_policy_insights_query_result(policy_definition: 'de875639-505c-4c00-b2ab-bb290dab9a54', resource_id: '/subscriptions/80b824de-ec53-4116-9868-3deeab10b0cd/resourcegroups/jfm-winimgbuilderrg2/providers/microsoft.virtualmachineimages/imagetemplates/win1021h1') do

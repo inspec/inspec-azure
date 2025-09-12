@@ -54,7 +54,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/vi
 
 ## Examples
 
-### Test to ensure that the Bastion hosts resource is from the same type
+Test to ensure that the Bastion hosts resource is from the same type:
 
 ```ruby
 describe azure_bastion_hosts_resource(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -62,7 +62,7 @@ describe azure_bastion_hosts_resource(resource_group: 'RESOURCE_GROUP', name: 'N
 end
 ```
 
-### Test to ensure that the Bastion hosts resource is in a successful state
+Test to ensure that the Bastion hosts resource is in a successful state:
 
 ```ruby
 describe azure_bastion_hosts_resource(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -70,7 +70,7 @@ describe azure_bastion_hosts_resource(resource_group: 'RESOURCE_GROUP', name: 'N
 end
 ```
 
-### Test to ensure that the Bastion hosts resource is from the same location
+Test to ensure that the Bastion hosts resource is from the same location:
 
 ```ruby
 describe azure_bastion_hosts_resource(resource_group: 'RESOURCE_GROUP', name: 'NAME') do

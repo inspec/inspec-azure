@@ -75,7 +75,7 @@ for other available properties. You can access any attribute in the response wit
 
 ## Examples
 
-### Test that the Azure DNS zone resource has the correct resource type
+Test that the Azure DNS zone resource has the correct resource type:
 
 ```ruby
 describe azure_dns_zones_resource(resource_group: 'RESOURCE_GROUP_NAME', name: 'DNS_ZONE_NAME') do
@@ -83,7 +83,7 @@ describe azure_dns_zones_resource(resource_group: 'RESOURCE_GROUP_NAME', name: '
 end
 ```
 
-### Test that the location of the Azure DNS zone resource is 'global'
+Test that the location of the Azure DNS zone resource is 'global':
 
 ```ruby
 describe azure_dns_zones_resource(resource_group: 'RESOURCE_GROUP_NAME', name: 'DNS_ZONE_NAME') do

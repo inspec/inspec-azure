@@ -74,7 +74,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ma
 
 ## Examples
 
-### Test that the managed applications are provisioned successfully
+Test that the managed applications are provisioned successfully:
 
 ```ruby
 describe azure_managed_application(resource_group: 'RESOURCE_GROUP', name: 'MANAGED_APPLICATION_NAME') do

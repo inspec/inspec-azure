@@ -41,22 +41,22 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/streamanalytics/) for other available properties.
 You can access any attribute in the response with the key names separated by dots (`.`). For example, `properties.<attribute>`.
@@ -69,7 +69,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test that the names should be an array
+Test that the names should be an array:
 
 ```ruby
 describe azure_streaming_analytics_functions(resource_group: "RESOURCE_GROUP", job_name: "AZURE_STREAMING_JOB_NAME") do

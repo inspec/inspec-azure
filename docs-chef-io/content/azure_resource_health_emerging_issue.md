@@ -65,7 +65,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test that there are emerging issues with an active event type
+Test that there are emerging issues with an active event type:
 
 ```ruby
 describe azure_resource_health_emerging_issue(name: 'default') do

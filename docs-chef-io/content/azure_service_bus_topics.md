@@ -41,42 +41,42 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the Service Bus topics.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `maxSizeInMegabytes`
 : A list of maximum sizes of the topics.
 
-: **Field**: `maxSizeInMegabytes`
+  Field: `maxSizeInMegabytes`
 
 `sizeInBytes`
 : A list of sizes of the topics.
 
-: **Field**: `sizeInBytes`
+  Field: `sizeInBytes`
 
 `statuses`
 : A list of the status of a messaging entity.
 
-: **Field**: `status`
+  Field: `status`
 
 `countDetails`
 : A list of message count details.
 
-: **Field**: `countDetails`
+  Field: `countDetails`
 
 {{< note >}}
 
@@ -86,7 +86,7 @@ end
 
 ## Examples
 
-### Loop through Service Bus topics by their names
+Loop through Service Bus topics by their names:
 
 ```ruby
 azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERVICE_BUS_NAMESPACE_NAME').names.each do |name|
@@ -96,7 +96,7 @@ azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERV
 end
 ```
 
-### Test that there are Service Bus topics that are successfully provisioned
+Test that there are Service Bus topics that are successfully provisioned:
 
 ```ruby
 describe azure_service_bus_topics(resource_group: 'RESOURCE_GROUP', namespace_name: 'SERVICE_BUS_NAMESPACE_NAME').where(status: 'Active') do

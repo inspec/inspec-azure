@@ -36,52 +36,52 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the Service Bus Namespaces.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the Geo-locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `serviceBusEndpoints`
 : A list of endpoints you can use to perform Service Bus operations.
 
-: **Field**: `serviceBusEndpoint`
+  Field: `serviceBusEndpoint`
 
 `metricIds`
 : A list of identifiers for Azure Insights metrics.
 
-: **Field**: `metricId`
+  Field: `metricId`
 
 `provisioningStates`
 : A list of provisioning states of the namespace.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `sku_names`
 : A list of names for the sku.
 
-: **Field**: `sku_name`
+  Field: `sku_name`
 
 `sku_tiers`
 : A list of tiers for the sku.
 
-: **Field**: `sku_tier`
+  Field: `sku_tier`
 
 {{< note >}}
 
@@ -91,7 +91,7 @@ end
 
 ## Examples
 
-### Loop through Service Bus Namespaces by their names
+Loop through Service Bus Namespaces by their names:
 
 ```ruby
 azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -101,7 +101,7 @@ azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP').names.each do |na
 end
 ```
 
-### Test that there are Service Bus Namespaces that are successfully provisioned
+Test that there are Service Bus Namespaces that are successfully provisioned:
 
 ```ruby
 describe azure_service_bus_namespaces(resource_group: 'RESOURCE_GROUP').where(provisioningState: 'Succeeded') do

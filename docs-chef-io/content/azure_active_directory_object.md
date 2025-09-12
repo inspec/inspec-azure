@@ -31,7 +31,7 @@ Parameter `id` is mandatory.
 `id`
 : The Active Directory object ID.
 
-: **Example**: `0bf29229-50d7-433c-b08e-2a5d8b293cb5`
+  For example, `0bf29229-50d7-433c-b08e-2a5d8b293cb5`
 
 ## Properties
 
@@ -133,7 +133,7 @@ Parameter `id` is mandatory.
 
 ## Examples
 
-### Test if an Active Directory object is referenced with a valid ID
+Test if an Active Directory object is referenced with a valid ID:
 
 ```ruby
 describe azure_active_directory_object(id: 'ACTIVE_DIRECTORY_OBJECT_ID') do
@@ -141,7 +141,7 @@ describe azure_active_directory_object(id: 'ACTIVE_DIRECTORY_OBJECT_ID') do
 end
 ```
 
-### Test if an Active Directory object is referenced with an invalid ID
+Test if an Active Directory object is referenced with an invalid ID:
 
 ```ruby
 describe azure_active_directory_object(id: 'ACTIVE_DIRECTORY_OBJECT_ID') do

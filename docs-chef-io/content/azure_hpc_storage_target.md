@@ -77,7 +77,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/st
 
 ## Examples
 
-### Test that the HPC Storage Target is ready
+Test that the HPC Storage Target is ready:
 
 ```ruby
 describe azure_hpc_storage_target(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME', name: 'HPC_STORAGE_TARGET_NAME') do

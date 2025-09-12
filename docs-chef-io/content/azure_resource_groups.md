@@ -35,22 +35,22 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource group IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resource groups.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resource groups.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `locations`
 : A list of locations of all the resource groups.
 
-: **Field**: `location`
+  Field: `location`
 
 {{< note >}}
 
@@ -60,7 +60,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Check if a specific resource group is present
+Check if a specific resource group is present:
 
 ```ruby
 describe azure_resource_groups do
@@ -68,7 +68,7 @@ describe azure_resource_groups do
 end
 ```
 
-### Filters the results to include only those resource groups that have the specified name
+Filters the results to include only those resource groups that have the specified name:
 
 ```ruby
 describe azure_resource_groups.where{ name.include?('my-resource-group') } do
@@ -76,7 +76,7 @@ describe azure_resource_groups.where{ name.include?('my-resource-group') } do
 end
 ```
 
-### Filters the results to include only the resource groups that have specified tag
+Filters the results to include only the resource groups that have specified tag:
 
 ```ruby
 describe azure_resource_groups.where{ tags.has_key?('owner') && tags['owner'] == "InSpec" } do

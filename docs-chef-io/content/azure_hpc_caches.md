@@ -36,37 +36,37 @@ end
 `ids`
 : A list of resource IDs.
 
-**Field**: `id`
+  Field: `id`
 
 `names`
 : A list of HPC Cache names.
 
-**Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the HPC Cache types.
 
-**Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the HPC Caches.
 
-**Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the resource locations.
 
-**Field**: `location`
+  Field: `location`
 
 `cacheSizeGBs`
 : A list of the sizes of the HPC Cache.
 
-**Field**: `cacheSizeGB`
+  Field: `cacheSizeGB`
 
 `subnets`
 : A list of subnets used for the HPC Cache.
 
-**Field**: `subnet`
+  Field: `subnet`
 
 {{< note >}}
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-### Loop through HPC Caches by their names
+Loop through HPC Caches by their names:
 
 ```ruby
 azure_hpc_caches.names.each do |name|
@@ -86,7 +86,7 @@ azure_hpc_caches.names.each do |name|
 end
 ```
 
-### Test to ensure that there are provisioned HPC Caches
+Test to ensure that there are provisioned HPC Caches:
 
 ```ruby
 describe azure_hpc_caches.where(provisioningState: 'SUCCEEDED') do

@@ -45,37 +45,37 @@ end
 `ids`
 : A list of the unique resource ids.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `types`
 : A list of the types of resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `skus`
 : A list of the SKUs of the resources being interrogated.
 
-: **Field**: `sku`
+  Field: `sku`
 
 {{< note >}}
 
@@ -85,7 +85,7 @@ end
 
 ## Examples
 
-**Check that a CDN profile is present.**
+Check that a CDN profile is present:
 
 ````ruby
 describe azure_cdn_profiles do
@@ -94,7 +94,7 @@ describe azure_cdn_profiles do
 end
 ````
 
-**Filter the CDN profiles by name and verify that it exists.**
+Filter the CDN profiles by name and verify that it exists:
 
 ```ruby
 describe azure_cdn_profiles.where{ name.eql?('CDN_PROFILE_NAME') } do
@@ -102,7 +102,7 @@ describe azure_cdn_profiles.where{ name.eql?('CDN_PROFILE_NAME') } do
 end
 ```
 
-**Filter the CDN profiles by location and verify that at least one exists.**
+Filter the CDN profiles by location and verify that at least one exists:
 
 ```ruby
 describe azure_cdn_profiles.where{ location.eql?('eastus-2') } do

@@ -39,37 +39,37 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource Names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of Properties for all the HPC Storage Targets.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the resource locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `targetTypes`
 : A list of the types of storage target.
 
-: **Field**: `targetType`
+  Field: `targetType`
 
 `states`
 : A list of the operational state of the storage target.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 {{< note >}}
 
@@ -79,7 +79,7 @@ end
 
 ## Examples
 
-### Loop through HPC Storage Targets by their names
+Loop through HPC Storage Targets by their names:
 
 ```ruby
 azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME').names.each do |name|
@@ -89,7 +89,7 @@ azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CAC
 end
 ```
 
-### Test that there are HPC Storage Targets that are ready
+Test that there are HPC Storage Targets that are ready:
 
 ```ruby
 describe azure_hpc_storage_targets(resource_group: 'RESOURCE_GROUP', cache_name: 'HPC_CACHE_NAME').where(state: 'Ready') do

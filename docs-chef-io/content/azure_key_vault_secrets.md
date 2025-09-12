@@ -37,27 +37,27 @@ end
 `attributes`
 : A list of the secret management attributes in [this](https://docs.microsoft.com/en-us/rest/api/keyvault/secrets/get-secrets/get-secrets?tabs=HTTP#secretattributes) format.
 
-: **Field**: `attributes`
+  Field: `attributes`
 
 `ids`
 : A list of secret IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `managed`
 : A list of boolean values indicating if the secrets are managed by key vault or not.
 
-: **Field**: `managed`
+  Field: `managed`
 
 `contentTypes`
 : A list of secrets content type being interrogated.
 
-: **Field**: `contentType`
+  Field: `contentType`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 {{< note >}}
 
@@ -67,7 +67,7 @@ end
 
 ## Examples
 
-### Test that a vault has the named secret
+Test that a vault has the named secret:
 
 ```ruby
 describe azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT').where { id.include?('SECRET')} do
@@ -76,7 +76,7 @@ describe azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT').where { id.include
 end
 ```
 
-### Loop through secrets by their IDs
+Loop through secrets by their IDs:
 
 ```ruby
 azure_key_vault_secrets(vault_name: 'EXAMPLE_VAULT').ids.each do |id|

@@ -45,32 +45,32 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `location`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `operations`
 : A list of operations for all the resources being interrogated.
 
-: **Field**: `operations`
+  Field: `operations`
 
 `resource_group`
 : Azure resource group where the targeted resource resides.
 
-: **Field**: `resource_group`
+  Field: `resource_group`
 
 {{< note >}}
 
@@ -80,7 +80,7 @@ end
 
 ## Examples
 
-### Test that a subscription has the named activity log alert
+Test that a subscription has the named activity log alert:
 
 ```ruby
 describe azure_monitor_activity_log_alerts do
@@ -88,7 +88,7 @@ describe azure_monitor_activity_log_alerts do
 end
 ```
 
-**Loop through all resources with `resource_id`.**
+Loop through all resources with `resource_id`:
 
 ```ruby
 azure_monitor_activity_log_alerts.ids.each do |id|

@@ -35,17 +35,17 @@ This resource does not require any parameters.
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `properties`
 : A list of properties for all the resources being interrogated.
 
-: **Field**: `properties`
+  Field: `properties`
 
 {{< note >}}
 
@@ -55,7 +55,7 @@ This resource does not require any parameters.
 
 ## Examples
 
-### Check if a specific Log profile is present
+Check if a specific Log profile is present:
 
 ```ruby
 describe azure_monitor_log_profiles do
@@ -63,7 +63,7 @@ describe azure_monitor_log_profiles do
 end
 ```
 
-### Filter the results by the 'name' property if it includes a certain string
+Filter the results by the 'name' property if it includes a certain string:
 
 ```ruby
 describe azure_monitor_log_profiles.where{ name.include?('production') } do
@@ -71,7 +71,7 @@ describe azure_monitor_log_profiles.where{ name.include?('production') } do
 end
 ```
 
-### Filter the results to include only those Log profiles that retention policy is enabled
+Filter the results to include only those Log profiles that retention policy is enabled:
 
 ```ruby
 describe azure_monitor_log_profiles.where{ properties.dig(:retentionPolicy, :enabled) == true } do

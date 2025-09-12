@@ -75,7 +75,7 @@ Also, refer to the [Azure documentation](https://docs.microsoft.com/en-us/rest/a
 
 ## Examples
 
-### Test if a Blob Container is deleted
+Test if a Blob Container is deleted:
 
 ```ruby
 describe azure_storage_account_blob_container(resource_group: 'RESOURCE_GROUP', storage_account_name: 'DEFAULT', name: 'LOGS') do
@@ -83,7 +83,7 @@ describe azure_storage_account_blob_container(resource_group: 'RESOURCE_GROUP', 
 end
 ```
 
-### Ensure that the Blob Container is private
+Ensure that the Blob Container is private:
 
 ```ruby
 describe azure_storage_account_blob_container(resource_group: 'RESOURCE_GROUP', storage_account_name: 'PRODUCTION', name: 'LOGS') do
@@ -91,7 +91,7 @@ describe azure_storage_account_blob_container(resource_group: 'RESOURCE_GROUP', 
 end
 ```
 
-### Loop through resources via 'resource_id'
+Loop through resources via 'resource_id':
 
 ```ruby
 azure_storage_account_blob_containers.(resource_group: 'RESOURCE_GROUP', storage_account_name: 'PRODUCTION').ids.each do |id|

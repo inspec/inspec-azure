@@ -89,7 +89,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-### Test that the Redis instance's provisioning status equals 'Succeeded'
+Test that the Redis instance's provisioning status equals 'Succeeded':
 
 ```ruby
 describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do
@@ -97,9 +97,9 @@ describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_
 end
 ```
 
-### Test that the Redis instance Skuname equals 'Standard'
+Test that the Redis instance Skuname equals 'Standard':
 
-**Skuname** is the Redis cache to deploy. Valid values are `Basic`, `Standard`, and `Premium`.
+Skuname is the Redis cache to deploy. Valid values are `Basic`, `Standard`, and `Premium`.
 
 ```ruby
 describe azure_redis_cache(resource_group: 'RESOURCE_GROUP', name: 'REDIS_CACHE_NAME') do

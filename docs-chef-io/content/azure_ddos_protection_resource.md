@@ -56,7 +56,7 @@ for other properties available. Access any attribute in the response by separati
 
 ## Examples
 
-### Test to ensure that the DDoS protection plan resource has the correct type
+Test to ensure that the DDoS protection plan resource has the correct type:
 
 ```ruby
 describe azure_ddos_protection_resource(resource_group: 'RESOURCE_GROUP', name: 'DDOS_PROTECTION_PLAN_NAME') do
@@ -64,7 +64,7 @@ describe azure_ddos_protection_resource(resource_group: 'RESOURCE_GROUP', name: 
 end
 ```
 
-### Test to ensure that the DDoS protection plan resource is in a successful state
+Test to ensure that the DDoS protection plan resource is in a successful state:
 
 ```ruby
 describe azure_ddos_protection_resource(resource_group: 'RESOURCE_GROUP', name: 'DDOS_PROTECTION_PLAN_NAME') do
@@ -72,7 +72,7 @@ describe azure_ddos_protection_resource(resource_group: 'RESOURCE_GROUP', name: 
 end
 ```
 
-### Test to ensure that the DDoS protection plan resource is from the same location
+Test to ensure that the DDoS protection plan resource is from the same location:
 
 ```ruby
 describe azure_ddos_protection_resource(resource_group: 'RESOURCE_GROUP', name: 'DDOS_PROTECTION_PLAN_NAME') do

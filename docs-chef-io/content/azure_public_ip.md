@@ -59,7 +59,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/vi
 
 ## Examples
 
-### Test the IP Address of a Public IP Resource
+Test the IP Address of a Public IP Resource:
 
 ```ruby
 describe azure_public_ip(resource_group: 'RESOURCE_GROUP', name: 'ADDRESS_NAME') do

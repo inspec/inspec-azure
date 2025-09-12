@@ -67,7 +67,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/re
 
 ## Examples
 
-### Test availability status of a resource
+Test availability status of a resource:
 
 ```ruby
 describe azure_resource_health_availability_status(resource_group: 'AZURE_RESOURCE_GROUP', resource_type: 'AZURE_RESOURCE_TYPE', name: 'RESOURCE_NAME') do
@@ -75,7 +75,7 @@ describe azure_resource_health_availability_status(resource_group: 'AZURE_RESOUR
 end
 ```
 
-### Test the chronicity type of a resource
+Test the chronicity type of a resource:
 
 ```ruby
 describe azure_resource_health_availability_status(resource_group: 'AZURE_RESOURCE_GROUP', resource_type: 'AZURE_RESOURCE_TYPE', name: 'RESOURCE_NAME') do

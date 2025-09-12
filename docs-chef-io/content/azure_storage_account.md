@@ -85,7 +85,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/st
 
 ## Examples
 
-### Test the primary endpoints
+Test the primary endpoints:
 
 ```ruby
 describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -96,7 +96,7 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-### Verify that only HTTPS is supported
+Verify that only HTTPS is supported:
 
 ```ruby
 describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -104,7 +104,7 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-### Test queues service endpoint
+Test queues service endpoint:
 
 ```ruby
 describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -112,7 +112,7 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-### Test Blobs service endpoint
+Test Blobs service endpoint:
 
 ```ruby
 describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -120,7 +120,7 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-### Test queue properties logging version
+Test queue properties logging version:
 
 ```ruby
 describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -128,7 +128,7 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-### Test Blob properties logging version
+Test Blob properties logging version:
 
 ```ruby
 describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -136,7 +136,7 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-### Test table properties logging version
+Test table properties logging version:
 
 ```ruby
 describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -144,7 +144,7 @@ describe azure_storage_account(resource_group: 'RESOURCE_GROUP', name: 'NAME') d
 end
 ```
 
-### Loop through all storage accounts and test a blob service endpoint exists from already cached data
+Loop through all storage accounts and test a blob service endpoint exists from already cached data:
 
 ```ruby
 azure_storage_accounts.entries.each do |azure_storage_account_data|
@@ -158,7 +158,7 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
 
-### have_encryption_enabled
+### have_encryption_enabled:
 
 Test if encryption is enabled.
 

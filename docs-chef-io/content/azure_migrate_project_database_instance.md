@@ -108,7 +108,7 @@ Any attribute in the response nested within properties may be accessed with the 
 
 ## Examples
 
-### Test that the Migrate Project database instance has a SQL instanceType
+Test that the Migrate Project database instance has a SQL instanceType:
 
 ```ruby
 describe azure_migrate_project_database_instance(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME', name: 'DB_NAME') do

@@ -60,7 +60,7 @@ You can access any attribute in the response with the key names separated by dot
 
 ## Examples
 
-**Check the resource state of a CDN profile.**
+Check the resource state of a CDN profile:
 
 ```ruby
 describe azure_cdn_profile(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
@@ -68,7 +68,7 @@ describe azure_cdn_profile(resource_group: 'RESOURCE_GROUP', name: 'NAME') do
 end
 ```
 
-**Check the resource state of all profiles in a subscription.**
+Check the resource state of all profiles in a subscription:
 
 ```ruby
 azure_cdn_profiles.ids.each do |id|

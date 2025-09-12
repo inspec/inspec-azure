@@ -36,37 +36,37 @@ end
 `ids`
 : List of all Power BI dataset IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : List of all the Power BI dataset names.
 
-: **Field**: `name`
+  Field: `name`
 
 `addRowsAPIEnableds`
 : List of boolean flags which describe whether the dataset allows adding new rows.
 
-: **Field**: `addRowsAPIEnabled`
+  Field: `addRowsAPIEnabled`
 
 `isRefreshables`
 : List of boolean flags that represent refreshable parameters of datasets.
 
-: **Field**: `isRefreshable`
+  Field: `isRefreshable`
 
 `isEffectiveIdentityRequireds`
 : List of boolean flags that represent effective identity.
 
-: **Field**: `isEffectiveIdentityRequired`
+  Field: `isEffectiveIdentityRequired`
 
 `isEffectiveIdentityRolesRequireds`
 : List of boolean flags that describe whether `RLS` is defined inside the `PBIX` file.
 
-: **Field**: `isEffectiveIdentityRolesRequired`
+  Field: `isEffectiveIdentityRolesRequired`
 
 `isOnPremGatewayRequireds`
 : List of boolean flags that describe whether the dataset requires an On-premises Data Gateway.
 
-: **Field**: `isOnPremGatewayRequired`
+  Field: `isOnPremGatewayRequired`
 
 {{< note >}}
 
@@ -78,7 +78,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test to ensure the Power BI dataset is refreshable
+Test to ensure the Power BI dataset is refreshable:
 
 ```ruby
 describe azure_power_bi_datasets.where(isRefreshable: true) do

@@ -36,42 +36,42 @@ end
 `ids`
 : List of all Power BI Capacity refreshable IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : List of all the Power BI Capacity refreshable names.
 
-: **Field**: `name`
+  Field: `name`
 
 `kinds`
 : List of all the Power BI Capacity refreshable kinds.
 
-: **Field**: `kind`
+  Field: `kind`
 
 `refreshCounts`
 : List of the number of refreshes within the summary time windows.
 
-: **Field**: `refreshCount`
+  Field: `refreshCount`
 
 `refreshFailures`
 : List of the number of refresh failures within the summary time window.
 
-: **Field**: `refreshFailures`
+  Field: `refreshFailures`
 
 `refreshesPerDays`
 : List of the number of refreshes.
 
-: **Field**: `refreshesPerDay`
+  Field: `refreshesPerDay`
 
 `medianDurations`
 : List of the median duration in seconds of a refresh.
 
-: **Field**: `medianDuration`
+  Field: `medianDuration`
 
 `averageDurations`
 : List of the average duration in seconds of a refresh.
 
-: **Field**: `averageDuration`
+  Field: `averageDuration`
 
 {{< note >}}
 
@@ -83,7 +83,7 @@ For additional information, refer to the [Azure documentation](https://docs.micr
 
 ## Examples
 
-### Test to ensure Power BI Capacity refreshable schedules are enabled
+Test to ensure Power BI Capacity refreshable schedules are enabled:
 
 ```ruby
 describe azure_power_bi_capacity_refreshables do

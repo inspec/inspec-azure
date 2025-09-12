@@ -66,7 +66,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/se
 
 ## Examples
 
-### Test that the Service Fabric Mesh replica Replica is equal to 1
+Test that the Service Fabric Mesh replica Replica is equal to 1:
 
 ```ruby
 describe azure_service_fabric_mesh_replica(resource_group: 'RESOURCE_GROUP', application_name: 'SERVICE_FABRIC_MESH_APPLICATION_NAME', service_name: 'SERVICE_FABRIC_MESH_SERVICE_NAME', name: 'SERVICE_FABRIC_MESH_SERVICE_REPLICA_NAME') do

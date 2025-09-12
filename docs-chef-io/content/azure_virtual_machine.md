@@ -86,7 +86,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/co
 
 ## Examples
 
-### Ensure that the virtual machine has the expected data Disks
+Ensure that the virtual machine has the expected data Disks:
 
 ```ruby
 describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do
@@ -94,7 +94,7 @@ describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmNam
 end
 ```
 
-**Ensure that the Virtual Machine has the Expected Monitoring Agent Installed.**
+Ensure that the Virtual Machine has the Expected Monitoring Agent Installed:
 
 ```ruby
 describe azure_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do

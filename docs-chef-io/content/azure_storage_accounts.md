@@ -45,32 +45,32 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `locations`
 : A list of locations for all the resources being interrogated.
 
-: **Field**: `location`
+  Field: `location`
 
 `names`
 : A list of names of all the resources being interrogated.
 
-: **Field**: `name`
+  Field: `name`
 
 `type`
 : A list of types of all the resources being interrogated.
 
-: **Field**: `type`
+  Field: `type`
 
 `tags`
 : A list of `tag:value` pairs defined on the resources being interrogated.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `properties`
 : A list of all properties of all the resources.
 
-: **Field**: `properties`
+  Field: `properties`
 {{< note >}}
 
 {{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
@@ -79,7 +79,7 @@ end
 
 ## Examples
 
-### Check if a specific storage account exists
+Check if a specific storage account exists:
 
 ```ruby
 describe azurerm_storage_accounts(resource_group: 'RESOURCE_GROUP') do

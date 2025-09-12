@@ -36,37 +36,37 @@ end
 `ids`
 : A list of resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of the resource types.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the Service Bus regions.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `locations`
 : A list of the resource locations.
 
-: **Field**: `location`
+  Field: `location`
 
 `codes`
 : A list of region codes.
 
-: **Field**: `code`
+  Field: `code`
 
 `fullNames`
 : A list of full names of the regions.
 
-: **Field**: `fullName`
+  Field: `fullName`
 
 {{< note >}}
 
@@ -76,7 +76,7 @@ end
 
 ## Examples
 
-### Test that there are Service Bus regions that are successfully provisioned
+Test that there are Service Bus regions that are successfully provisioned:
 
 ```ruby
 describe azure_service_bus_regions(sku: 'SKU_NAME').where(code: 'Central US') do

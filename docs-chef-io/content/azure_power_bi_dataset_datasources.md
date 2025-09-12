@@ -39,22 +39,22 @@ end
 `datasourceIds`
 : List of all Power BI data source IDs.
 
-: **Field**: `datasourceId`
+  Field: `datasourceId`
 
 `gatewayIds`
 : List of all the bound gateway IDs.
 
-: **Field**: `gatewayId`
+  Field: `gatewayId`
 
 `datasourceTypes`
 : List of the data source types.
 
-: **Field**: `datasourceType`
+  Field: `datasourceType`
 
 `connectionDetails`
 : List of the data source connection details.
 
-: **Field**: `connectionDetails`
+  Field: `connectionDetails`
 
 {{< note >}}
 
@@ -66,7 +66,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Verify that a Power BI dataset data source for a server exists
+Verify that a Power BI dataset data source for a server exists:
 
 ```ruby
 describe azure_power_bi_dataset_datasources(dataset_id: 'DATASET_ID').where{ connectionDetails[:server] == 'CONNECTION_SERVER' } do

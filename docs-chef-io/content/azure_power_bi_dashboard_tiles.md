@@ -45,37 +45,37 @@ end
 `ids`
 : List of all dashboard IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `titles`
 : List of all the titles.
 
-: **Field**: `title`
+  Field: `title`
 
 `embedUrls`
 : List of all dashboard embed URLs.
 
-: **Field**: `embedUrl`
+  Field: `embedUrl`
 
 `rowSpans`
 : List of all row spans.
 
-: **Field**: `rowSpan`
+  Field: `rowSpan`
 
 `colSpans`
 : List of all col spans.
 
-: **Field**: `colSpan`
+  Field: `colSpan`
 
 `reportIds`
 : List of all report IDs.
 
-: **Field**: `reportId`
+  Field: `reportId`
 
 `datasetIds`
 : List of all dataset IDs.
 
-: **Field**: `datasetId`
+  Field: `datasetId`
 
 {{< note >}}
 
@@ -86,7 +86,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Loop through Power BI dashboard tiles by their IDs
+Loop through Power BI dashboard tiles by their IDs:
 
 ```ruby
 azure_power_bi_dashboard_tiles.ids.each do |id|
@@ -96,7 +96,7 @@ azure_power_bi_dashboard_tiles.ids.each do |id|
 end
 ```
 
-### Test to ensure all Power BI dashboard tiles that are in the top left corner
+Test to ensure all Power BI dashboard tiles that are in the top left corner:
 
 ```ruby
 describe azure_power_bi_dashboard_tiles.where(rowSpan: true) do

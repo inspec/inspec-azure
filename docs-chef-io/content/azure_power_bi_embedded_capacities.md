@@ -41,52 +41,52 @@ The following parameters are optional,`account_name` and `dns_suffix`.
 `ids`
 : A list of Power BI dedicated resources.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : The names of all the Power BI dedicated resources.
 
-: **Field**: `name`
+  Field: `name`
 
 `locations`
 : A location list of all the Power BI dedicated resources.
 
-: **Field**: `location`
+  Field: `location`
 
 `modes`
 : A list of all the capacity modes.
 
-: **Field**: `mode`
+  Field: `mode`
 
 `provisioningStates`
 : A list of all provisioning states.
 
-: **Field**: `provisioningState`
+  Field: `provisioningState`
 
 `states`
 : The current state of all Power BI dedicated resources.
 
-: **Field**: `state`
+  Field: `state`
 
 `sku_names`
 : The SKU name of the Power BI dedicated resource.
 
-: **Field**: `sku_name`
+  Field: `sku_name`
 
 `sku_tiers`
 : The SKU tier of the Power BI dedicated resource.
 
-: **Field**: `sku_tier`
+  Field: `sku_tier`
 
 `sku_capacities`
 : The SKU capacities of the Power BI dedicated resource.
 
-: **Field**: `sku_capacity`
+  Field: `sku_capacity`
 
 `administration_members`
 : A collection of dedicated capacity administrators.
 
-: **Field**: `administration_members`
+  Field: `administration_members`
 
 {{< note >}}
 
@@ -96,7 +96,7 @@ The following parameters are optional,`account_name` and `dns_suffix`.
 
 ## Examples
 
-### Loop through Power BI Embedded Capacities by their names
+Loop through Power BI Embedded Capacities by their names:
 
 ```ruby
 azure_power_bi_embedded_capacities.names.each do |name|
@@ -106,7 +106,7 @@ azure_power_bi_embedded_capacities.names.each do |name|
 end
 ```
 
-### Test to ensure Power BI Embedded Capacities where `sku_capacities` greater than 1
+Test to ensure Power BI Embedded Capacities where `sku_capacities` greater than 1:
 
 ```ruby
 describe azure_power_bi_embedded_capacities.where(sku_capacity > 1 ) do

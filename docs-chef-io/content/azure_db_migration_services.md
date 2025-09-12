@@ -45,67 +45,67 @@ end
 `ids`
 : A list of the unique resource IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : A list of names for all the resource names.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : A list of types for all the resources.
 
-: **Field**: `type`
+  Field: `type`
 
 `locations`
 : A list of locations for all the resources.
 
-: **Field**: `location`
+  Field: `location`
 
 `kinds`
 : A list of kinds for all the resources.
 
-: **Field**: `kind`
+  Field: `kind`
 
 `etags`
 : A list of HTTP strong entity tag values.
 
-: **Field**: `etag`
+  Field: `etag`
 
 `tags`
 : A list of resource tags.
 
-: **Field**: `tags`
+  Field: `tags`
 
 `sku_names`
 : A list of SKU names.
 
-: **Field**: `sku_name`
+  Field: `sku_name`
 
 `sku_sizes`
 : A list of SKU sizes.
 
-: **Field**: `sku_sizes`
+  Field: `sku_sizes`
 
 `sku_tiers`
 : A list of SKU tiers.
 
-: **Field**: `sku_tiers`
+  Field: `sku_tiers`
 
 `provisioning_states`
 : A list of provisioning_states from the properties.
 
-: **Field**: `provisioning_state`
+  Field: `provisioning_state`
 
 `virtual_nic_ids`
 : A list of virtual nic IDs from the properties.
 
-: **Field**: `virtual_nic_id`
+  Field: `virtual_nic_id`
 
 `virtual_subnet_ids`
 : A list of virtual subnet IDs from the properties.
 
-: **Field**: `virtual_subnet_id`
+  Field: `virtual_subnet_id`
 
 {{< note >}}
 
@@ -115,7 +115,7 @@ end
 
 ## Examples
 
-### Loop through DB Migration Services by their names
+Loop through DB Migration Services by their names:
 
 ```ruby
 azure_db_migration_services(resource_group: 'RESOURCE_GROUP').names.each do |name|
@@ -125,7 +125,7 @@ azure_db_migration_services(resource_group: 'RESOURCE_GROUP').names.each do |nam
 end
 ```
 
-### Test that there are DB Migration Services that includes a certain string in their names (Client Side Filtering)
+Test that there are DB Migration Services that includes a certain string in their names (client-side filtering):
 
 ```ruby
 describe azure_db_migration_services(resource_group: 'my-rg').where { name.include?('UAT') } do

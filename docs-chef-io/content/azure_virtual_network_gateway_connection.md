@@ -71,7 +71,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/ne
 
 ## Examples
 
-### Test that the Virtual Network Gateway connection protocol is IKEv1
+Test that the Virtual Network Gateway connection protocol is IKEv1:
 
 ```ruby
 describe azure_virtual_network_gateway_connection(resource_group: 'RESOURCE_GROUP', name: 'VIRTUAL_NETWORK_NAME') do

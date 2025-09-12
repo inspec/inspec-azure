@@ -41,62 +41,62 @@ The parameter set that should be provided for a valid query is `resource_group` 
 `ids`
 : Path reference to the project events.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : Unique names for all project events.
 
-: **Field**: `name`
+  Field: `name`
 
 `types`
 : Type of the objects.
 
-: **Field**: `type`
+  Field: `type`
 
 `properties`
 : A list of properties for all the project events.
 
-: **Field**: `properties`
+  Field: `properties`
 
 `instanceTypes`
 : The instance types.
 
-: **Field**: `instanceType`
+  Field: `instanceType`
 
 `machines`
 : The machines for which the error is reported.
 
-: **Field**: `machine`
+  Field: `machine`
 
 `errorCodes`
 : The error codes.
 
-: **Field**: `errorCode`
+  Field: `errorCode`
 
 `errorMessages`
 : The error messages.
 
-: **Field**: `errorMessage`
+  Field: `errorMessage`
 
 `recommendations`
 : The recommendations for the error.
 
-: **Field**: `recommendation`
+  Field: `recommendation`
 
 `possibleCauses`
 : The possible causes for the error.
 
-: **Field**: `possibleCause`
+  Field: `possibleCause`
 
 `solutions`
 : The solutions for which the error is reported.
 
-: **Field**: `solution`
+  Field: `solution`
 
 `clientRequestIds`
 : The client request IDs of the payload for which the event is reported.
 
-: **Field**: `clientRequestId`
+  Field: `clientRequestId`
 
 {{< note >}}
 
@@ -108,7 +108,7 @@ For more details on the available properties, see the [Azure documentation](http
 
 ## Examples
 
-### Loop through Migrate Project events by their names
+Loop through Migrate Project events by their names:
 
 ```ruby
 azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').names.each do |name|
@@ -118,7 +118,7 @@ azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PR
 end
 ```
 
-### Test that there are Migrate Project events for databases
+Test that there are Migrate Project events for databases:
 
 ```ruby
 describe azure_migrate_project_events(resource_group: 'RESOURCE_GROUP', project_name: 'PROJECT_NAME').where(instanceType: 'Databases') do

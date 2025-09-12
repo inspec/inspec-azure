@@ -41,37 +41,37 @@ end
 `ids`
 : List of all app dashboard tile IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `titles`
 : List of all the dashboard titles.
 
-: **Field**: `title`
+  Field: `title`
 
 `embedUrls`
 : List of all the dashboard embed URLs.
 
-: **Field**: `embedUrl`
+  Field: `embedUrl`
 
 `rowSpans`
 : List of all the row span values.
 
-: **Field**: `rowSpan`
+  Field: `rowSpan`
 
 `colSpans`
 : List of all the col span values.
 
-: **Field**: `colSpan`
+  Field: `colSpan`
 
 `reportIds`
 : List of all the report IDs.
 
-: **Field**: `reportId`
+  Field: `reportId`
 
 `datasetIds`
 : List of all the dataset IDs.
 
-: **Field**: `datasetId`
+  Field: `datasetId`
 
 {{< note >}}
 
@@ -82,7 +82,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Loop through Power BI app dashboard tiles by their IDs
+Loop through Power BI app dashboard tiles by their IDs:
 
 ```ruby
 azure_power_bi_app_dashboard_tiles(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID').ids.each do |id|
@@ -92,7 +92,7 @@ azure_power_bi_app_dashboard_tiles(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID
 end
 ```
 
-### Test to filter out Power BI app dashboard tiles that are in the left corner
+Test to filter out Power BI app dashboard tiles that are in the left corner:
 
 ```ruby
 describe azure_power_bi_app_dashboard_tiles(app_id: 'APP_ID', dashboard_id: 'DASHBOARD_ID').where(rowSpan: 0, colSpan: 0) do

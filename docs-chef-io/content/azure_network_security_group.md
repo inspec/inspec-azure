@@ -101,7 +101,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/vi
 
 ## Examples
 
-### Test that a resource group has the specified Network Security group
+Test that a resource group has the specified Network Security group:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
@@ -109,7 +109,7 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
 end
 ```
 
-### Test that a Network Security group allows SSH from the internet
+Test that a Network Security group allows SSH from the internet:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
@@ -117,60 +117,51 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
 end
 ```
 
-### Test that a Network Security group allows inbound traffics from a certain IP range in any port and protocol
+Test that a Network Security group allows inbound traffics from a certain IP range in any port and protocol:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
   it { should allow(source_ip_range: '10.0.0.0/24', direction: 'inbound') }
-**same test with the specific inbound rule check.**
 end
 ```
 
-### Test that a Network Security group allows inbound traffics from internet service tag in port `80` and `TCP` protocol
+Test that a Network Security group allows inbound traffics from internet service tag in port `80` and `TCP` protocol:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
   it { should allow(source_service_tag: 'Internet', destination_port: '22', protocol: 'TCP', direction: 'inbound') }
-**same test with the specific inbound rule check.**
-
 end
 ```
 
-### Test that a Network Security group allows inbound traffics from virtual network service tag in a port range and protocol
+Test that a Network Security group allows inbound traffics from virtual network service tag in a port range and protocol:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
   it { should allow(source_service_tag: 'VirtualNetwork', destination_port: %w{22 8080 56-78}, direction: 'inbound') }
-**same test with the specific inbound rule check.**
-
 end
 ```
 
-### Test that a Network Security group allows outbound traffics to a certain IP range in any port and protocol
+Test that a Network Security group allows outbound traffics to a certain IP range in any port and protocol:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
   it { should allow(destination_ip_range: '10.0.0.0/24', direction: 'outbound') }
-**same test with the specific outbound rule check.**
-
 end
 ```
 
-### Loop through multiple Network Security groups and verify that each group does not allow inbound traffic from already cached data
+Loop through multiple Network Security groups and verify that each group does not allow inbound traffic from already cached data:
 
 ```ruby
 azure_network_security_groups.entries.each do |azure_network_security_group_data|
   describe azure_network_security_group(resource_data: azure_network_security_group_data) do
     it { should_not allow(destination_ip_range: '10.0.0.0/24', direction: 'inbound') }
-**same test with the specific outbound rule check.**
-
   end
 end
 ```
 
 {{< note >}}
 
-Please note that `allow` requires the `direction` parameter to be set to `inbound` or `outbound` and you must prefix the `ip_range`, `service_tag`, and `port` with `source_` or `destination_` identifiers.
+`allow` requires the `direction` parameter to be set to `inbound` or `outbound` and you must prefix the `ip_range`, `service_tag`, and `port` with `source_` or `destination_` identifiers.
 
 {{< /note >}}
 
@@ -202,7 +193,7 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
 end
 ```
 
-### Test that a Network Security group should not allow UDP from the internet
+Test that a Network Security group should not allow UDP from the internet:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do
@@ -210,7 +201,7 @@ describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'G
 end
 ```
 
-### Validating Number of days to retain flow log records
+Validating Number of days to retain flow log records:
 
 ```ruby
 describe azure_network_security_group(resource_group: 'RESOURCE_GROUP', name: 'GROUP_NAME') do

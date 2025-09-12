@@ -35,17 +35,17 @@ This resource does not require any parameters.
 `ids`
 : List of all Power BI dataflow storage account IDs.
 
-: **Field**: `id`
+  Field: `id`
 
 `names`
 : List of all the dataflow storage account names.
 
-: **Field**: `name`
+  Field: `name`
 
 `isEnableds`
 : List of the flags that indicates if workspaces can be assigned to the storage accounts.
 
-: **Field**: `isEnabled`
+  Field: `isEnabled`
 
 {{< note >}}
 
@@ -57,7 +57,7 @@ Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/po
 
 ## Examples
 
-### Test that the Power BI dataflow storage account is enabled
+Test that the Power BI dataflow storage account is enabled:
 
 ```ruby
 describe azure_power_bi_dataflow_storage_accounts.where(isEnabled: true) do
