@@ -13,25 +13,17 @@ parent = "inspec/resources/azure"
 +++
 
 
-Chef InSpec has resources for auditing Azure.
+Chef InSpec provides resources for auditing Azure infrastructure, including virtual machines, storage accounts, databases, and networking components. These resources help you verify that your Azure environment meets security and compliance requirements.
 
 ## Initialize an InSpec profile for auditing Azure
 
 You can create a profile for testing Azure resources with `inspec init profile`:
 
 ```bash
-$ inspec init profile --platform azure <PROFILE_NAME>
-Create new profile at /Users/me/<PROFILE_NAME>
- * Creating directory libraries
- * Creating file README.md
- * Creating directory controls
- * Creating file controls/example.rb
- * Creating file inspec.yml
- * Creating file inputs.yml
- * Creating file libraries/.gitkeep
+inspec init profile --platform azure <PROFILE_NAME>
 ```
 
-Assuming the `inputs.yml` file contains your Azure project ID, you can execute this sample profile using the following command:
+If your `inputs.yml` file contains your Azure project ID, you can execute this sample profile using the following command:
 
 ```bash
 inspec exec <PROFILE_NAME> --input-file=<PROFILE_NAME>/inputs.yml -t azure://
@@ -39,19 +31,23 @@ inspec exec <PROFILE_NAME> --input-file=<PROFILE_NAME>/inputs.yml -t azure://
 
 ## Set Azure credentials
 
-To use Chef InSpec Azure resources, create a Service Principal Name (SPN) to audit an Azure subscription.
+To use Chef InSpec Azure resources, you need to create a Service Principal Name (SPN) to audit an Azure subscription.
 
-This can be done on the command line or from the Azure Portal:
+You can create an SPN using the command line or from the Azure Portal:
 
 - [Azure CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
 - [PowerShell](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal)
 - [Azure Portal](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
 
-The information from the SPN can be specified either in the file `~/.azure/credentials`, as environment variables, or by using Chef InSpec target URIs.
+You can specify the SPN information in one of three ways:
+
+- In the `~/.azure/credentials` file
+- As environment variables  
+- Using Chef InSpec target URIs
 
 ### Set the Azure credentials file
 
-By default, Chef InSpec is configured to look at `~/.azure/credentials`, and it should contain:
+By default, Chef InSpec looks at `~/.azure/credentials`, and it should contain:
 
 ```powershell
 [<SUBSCRIPTION_ID>]
@@ -62,15 +58,15 @@ tenant_id = "<TENANT_ID>"
 
 {{< note >}}
 
-In the Azure web portal, these values are labeled differently:
+In the Azure web portal, these values have different labels:
 
-- The client_id is referred to as the 'Application ID'
-- The client_secret is referred to as the 'Key (Password Type)'
-- The tenant_id is referred to as the 'Directory ID'
+- The Azure web portal calls the `client_id` the **Application ID**
+- The Azure web portal calls the `client_secret` the **Key (Password Type)**
+- The Azure web portal calls the `tenant_id` the **Directory ID**
 
 {{< /note >}}
 
-With the credentials in place, you can now execute Chef InSpec.
+After you set up the credentials, you can execute Chef InSpec:
 
 ```bash
 inspec exec <PROFILE_NAME> -t azure://
@@ -78,7 +74,7 @@ inspec exec <PROFILE_NAME> -t azure://
 
 ### Provide credentials using environment variables
 
-You may also set the Azure credentials via environment variables:
+As an alternative to the credentials file, you can set the Azure credentials using environment variables:
 
 - `AZURE_SUBSCRIPTION_ID`
 - `AZURE_CLIENT_ID`
@@ -96,7 +92,7 @@ AZURE_TENANT_ID="6ad89b58-df2e-11e6-bf01-fe55135034f3" inspec exec my-profile -t
 
 ### Provide credentials using Chef InSpec target option
 
-If you have created a `~/.azure/credentials` file as above, you may also use the Chef InSpec command line `--target` / `-t` option to select a subscription ID.  For example:
+If you have several Azure subscriptions configured in your `~/.azure/credentials` file, you can use the Chef InSpec command line `--target` / `-t` option to select a specific subscription ID. For example:
 
 ```bash
 inspec exec my-profile -t azure://2fbdbb02-df2e-11e6-bf01-fe55135034f3
