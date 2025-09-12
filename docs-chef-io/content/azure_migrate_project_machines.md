@@ -14,7 +14,7 @@ Use the `azure_migrate_project_machines` InSpec audit resource to test the prope
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
+{{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
 ## Syntax
 
@@ -80,7 +80,7 @@ The parameter set that should be provided for a valid query is `resource_group` 
 
 {{< note >}}
 
-{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+{{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
 
 {{< /note>}}
 

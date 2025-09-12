@@ -53,7 +53,7 @@ No required parameters.
 
 {{< note >}}
 
-{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+{{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
 
 {{< /note>}}
 

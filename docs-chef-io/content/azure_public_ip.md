@@ -14,7 +14,7 @@ Use the `azure_public_ip` InSpec audit resource to test the properties of an Azu
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
+{{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
 ## Syntax
 

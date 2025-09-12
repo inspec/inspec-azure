@@ -14,7 +14,7 @@ Use the `azure_data_factories` InSpec audit resource to test the properties rela
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
+{{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
 ## Syntax
 
@@ -103,7 +103,7 @@ end
 
 {{< note >}}
 
-{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+{{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
 
 {{< /note>}}
 

@@ -140,7 +140,7 @@ It is advised to use these parameter sets to narrow down the targeted resources 
 
 {{< note >}}
 
-{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+{{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
 
 {{< /note>}}
 
@@ -213,7 +213,7 @@ end
 
 {{< note >}}
 
-{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+{{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
 
 {{< /note>}}
 

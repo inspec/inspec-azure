@@ -14,7 +14,7 @@ Use the `azure_power_bi_capacity_refreshable` InSpec audit resource to test the 
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
+{{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
 ## Syntax
 

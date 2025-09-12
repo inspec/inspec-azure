@@ -14,7 +14,7 @@ Use the `azure_resource_health_events` InSpec audit resource to test the propert
 
 ## Azure REST API Version, Endpoint, and HTTP Client Parameters
 
-{{< readfile file="content/inspec/resources/reusable/md/inspec_azure_common_parameters.md" >}}
+{{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
 
 ## Syntax
 
@@ -77,7 +77,7 @@ If one or more parameters are missing then all events in a subscription will be 
 
 {{< note >}}
 
-{{< readfile file="content/inspec/reusable/md/inspec_filter_table.md" >}}
+{{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
 
 {{< /note>}}
 
