@@ -1,8 +1,8 @@
 +++
 title = "azure_storage_account resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_storage_account"
@@ -158,7 +158,7 @@ end
 
 This InSpec audit resource has the following special matchers. For a full list of available matchers, please visit our [Universal Matchers page](https://docs.chef.io/inspec/matchers/).
 
-### have_encryption_enabled:
+### have_encryption_enabled
 
 Test if encryption is enabled.
 

@@ -1,8 +1,8 @@
 +++
 title = "azure_express_route_providers resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_express_route_providers"

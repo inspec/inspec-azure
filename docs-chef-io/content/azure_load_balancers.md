@@ -1,8 +1,8 @@
 +++
 title = "azure_load_balancers resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_load_balancers"

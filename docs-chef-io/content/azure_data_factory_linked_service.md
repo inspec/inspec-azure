@@ -1,8 +1,8 @@
 +++
 title = "azure_data_factory_linked_service resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_data_factory_linked_service"

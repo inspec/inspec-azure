@@ -1,8 +1,8 @@
 +++
 title = "azure_power_bi_dataflow_storage_accounts resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_power_bi_dataflow_storage_accounts"

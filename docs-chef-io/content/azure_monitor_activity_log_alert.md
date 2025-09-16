@@ -1,8 +1,8 @@
 +++
 title = "azure_monitor_activity_log_alert resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_monitor_activity_log_alert"

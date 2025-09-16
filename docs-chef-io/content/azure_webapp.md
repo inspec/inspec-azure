@@ -1,8 +1,8 @@
 +++
 title = "azure_webapp resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_webapp"

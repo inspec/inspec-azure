@@ -1,8 +1,8 @@
 +++
 title = "azure_aks_cluster resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_aks_cluster"
@@ -86,7 +86,7 @@ azure_aks_clusters.ids.each do |resource_id|
   describe azure_aks_cluster(resource_id: resource_id) do
     its('properties.networkProfile.networkPlugin') { should cmp 'kubenet' }
   end
-end 
+end
 ```
 
 Test that a specified AKS Cluster has the correct number of nodes in pool:

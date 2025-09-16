@@ -1,8 +1,8 @@
 +++
 title = "azure_hpc_asc_operation resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_hpc_asc_operation"

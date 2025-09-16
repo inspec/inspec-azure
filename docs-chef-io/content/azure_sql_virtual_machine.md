@@ -1,8 +1,8 @@
 +++
 title = "azure_sql_virtual_machine resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_sql_virtual_machine"

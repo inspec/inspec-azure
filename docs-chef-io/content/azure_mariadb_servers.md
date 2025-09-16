@@ -1,8 +1,8 @@
 +++
 title = "azure_mariadb_servers resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_mariadb_servers"

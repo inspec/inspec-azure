@@ -1,8 +1,8 @@
 +++
 title = "azure_bastion_hosts_resource resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_bastion_hosts_resource"

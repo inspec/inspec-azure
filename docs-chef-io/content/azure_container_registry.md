@@ -1,8 +1,8 @@
 +++
 title = "azure_container_registry resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_container_registry"

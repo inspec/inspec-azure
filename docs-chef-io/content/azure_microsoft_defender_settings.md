@@ -1,8 +1,8 @@
 +++
 title = "azure_microsoft_defender_settings resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_microsoft_defender_settings"

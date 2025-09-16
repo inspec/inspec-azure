@@ -1,8 +1,8 @@
 +++
 title = "azure_policy_exemptions resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_policy_exemptions"

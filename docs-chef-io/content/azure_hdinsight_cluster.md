@@ -1,8 +1,8 @@
 +++
 title = "azure_hdinsight_cluster resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_hdinsight_cluster"

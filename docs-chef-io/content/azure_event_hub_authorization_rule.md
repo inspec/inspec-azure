@@ -1,8 +1,8 @@
 +++
 title = "azure_event_hub_authorization_rule resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_event_hub_authorization_rule"

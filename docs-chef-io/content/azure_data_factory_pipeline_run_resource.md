@@ -1,8 +1,8 @@
 +++
 title = "azure_data_factory_pipeline_run_resource resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_data_factory_pipeline_run_resource"

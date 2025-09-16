@@ -1,8 +1,8 @@
 +++
 title = "azure_ddos_protection_resource resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_ddos_protection_resource"

@@ -1,8 +1,8 @@
 +++
 title = "azure_virtual_network_gateway resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_virtual_network_gateway"

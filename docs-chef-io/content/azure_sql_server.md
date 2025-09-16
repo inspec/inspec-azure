@@ -1,8 +1,8 @@
 +++
 title = "azure_sql_server resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_sql_server"

@@ -1,8 +1,8 @@
 +++
 title = "azure_data_lake_storage_gen2_path resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_data_lake_storage_gen2_path"

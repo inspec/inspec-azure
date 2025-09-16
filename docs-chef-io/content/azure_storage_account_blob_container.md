@@ -1,8 +1,8 @@
 +++
 title = "azure_storage_account_blob_container resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_storage_account_blob_container"

@@ -1,8 +1,8 @@
 +++
 title = "azure_key_vault_keys resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_key_vault_keys"

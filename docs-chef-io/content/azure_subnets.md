@@ -1,8 +1,8 @@
 +++
 title = "azure_subnets resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_subnets"

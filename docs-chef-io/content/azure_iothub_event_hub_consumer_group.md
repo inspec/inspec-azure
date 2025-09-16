@@ -1,8 +1,8 @@
 +++
 title = "azure_iothub_event_hub_consumer_group resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_iothub_event_hub_consumer_group"

@@ -1,8 +1,8 @@
 +++
 title = "azure_resource_group resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_resource_group"

@@ -1,8 +1,8 @@
 +++
 title = "azure_migrate_project_solution resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_migrate_project_solution"

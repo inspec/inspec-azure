@@ -1,8 +1,8 @@
 +++
 title = "azure_streaming_analytics_functions resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_streaming_analytics_functions"

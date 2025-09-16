@@ -1,8 +1,8 @@
 +++
 title = "azure_db_migration_services resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_db_migration_services"

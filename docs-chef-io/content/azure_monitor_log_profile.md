@@ -1,8 +1,8 @@
 +++
 title = "azure_monitor_log_profile resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_monitor_log_profile"
@@ -97,7 +97,7 @@ end
 
 This resource has the following special matchers.
 
-### have_log_retention_enabled:
+### have_log_retention_enabled
 
 Test whether the log retention is enabled.
 

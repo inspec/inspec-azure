@@ -1,8 +1,8 @@
 +++
 title = "azure_cosmosdb_database_account resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_cosmosdb_database_account"

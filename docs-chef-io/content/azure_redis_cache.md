@@ -1,8 +1,8 @@
 +++
 title = "azure_redis_cache resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_redis_cache"

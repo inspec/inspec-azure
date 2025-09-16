@@ -1,8 +1,8 @@
 +++
 title = "azure_service_bus_subscription_rule resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_service_bus_subscription_rule"

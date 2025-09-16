@@ -1,8 +1,8 @@
 +++
 title = "azure_migrate_assessment_machine resource"
-platform = "azure"
+
 draft = false
-gh_repo = "inspec-azure"
+
 
 [menu.azure]
 title = "azure_migrate_assessment_machine"
