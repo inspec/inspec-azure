@@ -1,5 +1,6 @@
-*.*~
-*~
+
+/public
+/resources
 
 chef-web-docs/
 .hugo_build.lock
