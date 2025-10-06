@@ -1,0 +1,111 @@
++++
+title = "azure_power_bi_gateways resource"
+
+draft = false
+
+
+[menu.azure]
+title = "azure_power_bi_gateways"
+identifier = "inspec/resources/azure/azure_power_bi_gateways resource"
+parent = "inspec/resources/azure"
++++
+
+Use the `azure_power_bi_gateways` InSpec audit resource to test the properties related to all Azure Power BI gateways.
+
+## Azure REST API version, endpoint, and HTTP client parameters
+
+{{< readfile file="content/reusable/md/inspec_azure_common_parameters.md" >}}
+
+## Syntax
+
+An `azure_power_bi_gateways` resource block returns all Azure Power BI gateways.
+
+```ruby
+describe azure_power_bi_gateways do
+  #...
+end
+```
+
+## Properties
+
+`ids`
+: List of all gateway IDs.
+
+  Field: `id`
+
+`names`
+: List of all the gateway names.
+
+  Field: `name`
+
+`types`
+: List of all the gateway types.
+
+  Field: `type`
+
+`exponents`
+: List of all public key exponents.
+
+  Field: `exponent`
+
+`modulus`
+: List of all public key modulus.
+
+  Field: `modulus`
+
+{{< note >}}
+
+{{< readfile file="content/reusable/md/inspec_filter_table.md" >}}
+
+{{< /note>}}
+Also, see the [Azure documentation](https://docs.microsoft.com/en-us/rest/api/power-bi/Gateways/get-Gateways) for other available properties.
+
+## Examples
+
+Loop through Power BI gateways by their IDs:
+
+```ruby
+azure_power_bi_gateways.ids.each do |id|
+  describe azure_power_bi_gateway(gateway_id: id) do
+    it { should exist }
+  end
+end
+```
+
+Test to ensure all Power BI gateways exponent is 'AQAB':
+
+```ruby
+describe azure_power_bi_gateways.where(exponent: 'AQAB') do
+  it { should exist }
+end
+```
+
+## Matchers
+
+{{< readfile file="content/reusable/md/inspec_matchers_link.md" >}}
+
+This resource has the following special matchers.
+
+### exists
+
+```ruby
+# Should not exist if no Power BI gateways are present.
+
+describe azure_power_bi_gateways do
+  it { should_not exist }
+end
+```
+
+### not_exists
+
+```ruby
+# Should exist if the filter returns at least one Power BI gateway.
+
+describe azure_power_bi_gateways do
+  it { should exist }
+end
+```
+
+## Azure permissions
+
+Your [service principal](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal) must have the `Dataset.Read.All` role on the Azure Power BI Workspace you wish to test.
