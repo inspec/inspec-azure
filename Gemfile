@@ -2,10 +2,8 @@ source "https://rubygems.org"
 
 gem "faraday"
 gem "faraday_middleware"
-gem "inspec-bin"
+gem "inspec-bin", "~> 4.56"
 gem "rake"
-# Pinning at version ~> 2.0 to support ruby 2.7
-gem "connection_pool", "~> 2.0"
 
 group :development do
   gem "pry"
