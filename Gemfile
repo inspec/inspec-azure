@@ -1,7 +1,11 @@
 source "https://rubygems.org"
 
+# Faraday 2.x compatibility:
+# - Built-in JSON and retry middleware, no separate faraday_middleware needed
+# - JSON response parsing is included by default
+# - Retry functionality requires faraday-retry gem in Faraday 2.x
 gem "faraday"
-gem "faraday_middleware"
+gem "faraday-retry"
 gem "inspec-bin"
 gem "rake"
 
