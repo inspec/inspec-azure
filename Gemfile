@@ -4,6 +4,8 @@ gem "faraday"
 gem "faraday_middleware"
 gem "inspec-bin"
 gem "rake"
+# Pinning at version ~> 2.0 to support ruby versions < 3.2
+gem "connection_pool", "~> 2.0"
 
 group :development do
   gem "pry"
