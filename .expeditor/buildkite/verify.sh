@@ -42,10 +42,9 @@ if [ -n "${CI_ENABLE_COVERAGE:-}" ]; then
 
   echo "--- running sonarscanner"
   sonar-scanner \
-  -Dsonar.organization=inspec \
-  -Dsonar.projectKey=inspec_inspec-azure \
+  -Dsonar.branch.name=main \
   -Dsonar.sources=. \
-  -Dsonar.host.url=https://sonarcloud.io
+  -Dsonar.host.url=https://sonar.progress.com
 fi
 
 exit $RAKE_EXIT
