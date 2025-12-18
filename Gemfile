@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "faraday"
 gem "faraday_middleware"
-gem "inspec-bin"
+gem "inspec-bin", ">= 5.22.36", "< 6.0"
 gem "rake"
 
 group :development do
