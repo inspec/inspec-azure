@@ -6,7 +6,7 @@ source "https://rubygems.org"
 # - Retry functionality requires faraday-retry gem in Faraday 2.x
 gem "faraday"
 gem "faraday-retry"
-gem "inspec-bin"
+gem "inspec-bin", ">= 5.22.36", "< 6.0"
 gem "rake"
 
 group :development do

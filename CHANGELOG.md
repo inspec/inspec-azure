@@ -1,10 +1,15 @@
 # Changelog
-<!-- latest_release 1.118.45 -->
+<!-- latest_release 1.118.46 -->
+## [v1.118.46](https://github.com/inspec/inspec-azure/tree/v1.118.46) (2025-12-18)
+
+#### Merged Pull Requests
+- Fix CI errors [#733](https://github.com/inspec/inspec-azure/pull/733) ([balasubramanian-s](https://github.com/balasubramanian-s))
+<!-- latest_release -->
+
 ## [v1.118.45](https://github.com/inspec/inspec-azure/tree/v1.118.45) (2025-10-06)
 
 #### Merged Pull Requests
 - Reorganize docs content [#727](https://github.com/inspec/inspec-azure/pull/727) ([IanMadd](https://github.com/IanMadd))
-<!-- latest_release -->
 
 ## [v1.118.44](https://github.com/inspec/inspec-azure/tree/v1.118.44) (2025-07-28)
 
