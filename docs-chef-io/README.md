@@ -75,18 +75,6 @@ You can add shortcodes from other repositories. For example, the `inspec_filter_
 
 {{< /note >}}
 
-### Release Dates
-
-The chef/chef-web-docs repository uses the `release-dates.json` file in `docs-chef-io/assets/release-notes/inspec-azure` to generate release notes on <https://docs.chef.io/release_notes_inspec_azure/>. See below for more information on release notes for inspec-azure.
-
-## Update the InSpec Repository Module In `chef/chef-web-docs`
-
-We use [Hugo modules](https://gohugo.io/hugo-modules/) to build Chef's documentation from multiple repositories.
-
-When release notes are announced for inspec-azure, the documentation for inspec-azure is updated at the same time. See the section below on release notes.
-
-A member from the Documentation Team can also update the inspec-azure resource documentation at any time when new resources are ready to be added to <docs.chef.io>.
-
 ## Local Development Environment
 
 We use [Hugo](https://gohugo.io/), [Go](https://golang.org/), and[NPM](https://www.npmjs.com/) to build the Chef Documentation website. You will need Hugo 0.93.1 or higher installed and running to build and view our documentation.
@@ -117,37 +105,7 @@ Run `make clean_all` to delete the cloned copy of chef/chef-web-docs.
 
 ## Publish Release Notes
 
-The process for publishing and announcing release notes for inspec-azure is mostly manual.
-
-### Edit Pending Release Notes
-
-Edit the Pending Release Notes file in the [inspec-azure wiki](https://github.com/inspec/inspec-azure/wiki/Pending-Release-Notes).
-
-We recommend editing this page as new resources are added or changes are made to the inspec-azure resources.
-
-Have a member of the documentation team review the Pending Release Notes file before they're released.
-
-### Release the Release Notes
-
-1. Log in to the chef-cd S3 account using saml2aws.
-
-2. Run the `publish-release-notes.sh` script in `tools/release-notes`. You can run this from the Makefile with `make publish_release_notes`
-
-   This command pushes the pending release notes to the S3 chef-cd bucket, reset the Pending Release Notes file, and update the `release-dates.json` file in `assets/release-notes/inspec-azure`.
-
-3. Push up and merge a branch to `inspec/inspec-azure` with the changes made to the `release-dates.json` file.
-
-### chef-web-docs
-
-chef-web-docs is configured to open a PR that updates the inspec-azure content on <doc.chef.io> when a change is committed to the `release-dates.json` file in the inspec-azure repository. This updates the InSpec Azure resource documentation and update release notes for InSpec Azure resources.
-
-A member fo the documentation team can merge that PR for you as soon as it's made.
-
-### Chef Discourse
-
-Copy the release notes to a new announcement in [Chef Release Announcements](https://discourse.chef.io/c/chef-release/9) on Discourse.
-
-You can find the proper release notes in the Pending Release Notes file history or on <https://packages.chef.io/release-notes/inspec-azure/RELEASE_DATE.md>
+InSpec Azure release notes are published from the [chef-web-docs repository](https://github.com/chef/chef-web-docs/).
 
 ## Documentation Feedback
 
