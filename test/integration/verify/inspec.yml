@@ -1,7 +1,7 @@
 name: Inspec Azure Integration Test Profile
 title: Inspec Azure Integration Test Profile
 maintainer: Chef Software, Inc.
-copyright: Chef Software, Inc.
+copyright: Copyright (c) 2017-2024 Progress Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.
 copyright_email: support@chef.io
 license: Apache-2.0
 summary: This profile is a simple wrapper around the controls defined in the integration test directory.
