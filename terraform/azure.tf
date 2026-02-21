@@ -304,7 +304,7 @@ resource "azurerm_network_security_group" "nsg_open" {
 
 resource "azurerm_virtual_network" "vnet" {
   name                = "Inspec-VNet"
-  address_space       = ["10.1.1.0/24"]
+  address_space       = ["10.1.0.0/16"]
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
 }
@@ -326,6 +326,31 @@ resource "azurerm_subnet" "subnet" {
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg" {
   network_security_group_id = azurerm_network_security_group.nsg.id
   subnet_id                 = azurerm_subnet.subnet.id
+}
+
+resource "azurerm_subnet" "private_endpoint" {
+  count                = var.private_endpoint_count
+  name                 = "Inspec-Private-Endpoint-Subnet"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefix       = "10.1.2.0/24"
+
+  enforce_private_link_endpoint_network_policies = false
+}
+
+resource "azurerm_private_endpoint" "storage_blob" {
+  count               = var.private_endpoint_count
+  name                = "inspec-storage-private-endpoint"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  subnet_id           = azurerm_subnet.private_endpoint[0].id
+
+  private_service_connection {
+    name                           = "inspec-storage-blob-connection"
+    private_connection_resource_id = azurerm_storage_account.sa.id
+    is_manual_connection           = false
+    subresource_names              = ["blob"]
+  }
 }
 
 resource "azurerm_network_interface" "nic1" {

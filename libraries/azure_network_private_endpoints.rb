@@ -59,6 +59,9 @@ class AzurermNetworkPrivateEndpoints < AzureNetworkPrivateEndpoints
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
     raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
+    # For backward compatibility.
+    opts[:api_version] ||= '2020-05-01'
+
     super
   end
 end

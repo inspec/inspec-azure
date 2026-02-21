@@ -19,8 +19,10 @@ output "vnet_address_space" {
 }
 
 output "vnet_subnets" {
-  value = [
-    azurerm_subnet.subnet.name]
+  value = compact(list(
+    azurerm_subnet.subnet.name,
+    var.private_endpoint_count > 0 ? azurerm_subnet.private_endpoint[0].name : ""
+  ))
 }
 
 output "vnet_dns_servers" {
@@ -358,6 +360,16 @@ output "ip_address_name" {
 output "api_management_name" {
   description = "the name for the azurerm_api_management resource"
   value       = var.api_management_count > 0 ? azurerm_api_management.apim01[0].name : ""
+}
+
+output "private_endpoint_name" {
+  description = "the name for the azurerm_private_endpoint resource"
+  value       = var.private_endpoint_count > 0 ? azurerm_private_endpoint.storage_blob[0].name : ""
+}
+
+output "private_endpoint_id" {
+  description = "the id for the azurerm_private_endpoint resource"
+  value       = var.private_endpoint_count > 0 ? azurerm_private_endpoint.storage_blob[0].id : ""
 }
 
 output "azure_streaming_job_function_name" {
