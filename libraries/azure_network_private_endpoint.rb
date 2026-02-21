@@ -1,8 +1,8 @@
-require "azure_generic_resource"
+require 'azure_generic_resource'
 
 class AzureNetworkPrivateEndpoint < AzureGenericResource
-  name "azure_network_private_endpoint"
-  desc "Verifies settings for an Azure Network Private Endpoint"
+  name 'azure_network_private_endpoint'
+  desc 'Verifies settings for an Azure Network Private Endpoint'
   example <<-EXAMPLE
     describe azure_network_private_endpoint(resource_group: "RESOURCE_GROUP", name: "private-endpoint-name") do
       it { should exist }
@@ -11,9 +11,9 @@ class AzureNetworkPrivateEndpoint < AzureGenericResource
 
   def initialize(opts = {})
     # Options should be Hash type. Otherwise Ruby will raise an error when we try to access the keys.
-    raise ArgumentError, "Parameters must be provided in an Hash object." unless opts.is_a?(Hash)
+    raise ArgumentError, 'Parameters must be provided in an Hash object.' unless opts.is_a?(Hash)
 
-    opts[:resource_provider] = specific_resource_constraint("Microsoft.Network/privateEndpoints", opts)
+    opts[:resource_provider] = specific_resource_constraint('Microsoft.Network/privateEndpoints', opts)
 
     # static_resource parameter must be true for setting the resource_provider in the backend.
     super(opts, true)
