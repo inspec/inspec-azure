@@ -7,11 +7,11 @@ class AzureNetworkPrivateEndpointsConstructorTest < Minitest::Test
     assert_raises(ArgumentError) { AzureNetworkPrivateEndpoints.new(resource_provider: 'some_type') }
   end
 
-  def tag_value_not_ok
+  def test_tag_value_not_ok
     assert_raises(ArgumentError) { AzureNetworkPrivateEndpoints.new(tag_value: 'some_tag_value') }
   end
 
-  def tag_name_not_ok
+  def test_tag_name_not_ok
     assert_raises(ArgumentError) { AzureNetworkPrivateEndpoints.new(tag_name: 'some_tag_name') }
   end
 
