@@ -1,10 +1,16 @@
 # Changelog
-<!-- latest_release 1.118.46 -->
+<!-- latest_release 1.118.47 -->
+## [v1.118.47](https://github.com/inspec/inspec-azure/tree/v1.118.47) (2026-04-17)
+
+#### Merged Pull Requests
+- CHEF-27146
+ - Remove SLA text from README.md [#728](https://github.com/inspec/inspec-azure/pull/728) ([Saburesh07](https://github.com/Saburesh07))
+<!-- latest_release -->
+
 ## [v1.118.46](https://github.com/inspec/inspec-azure/tree/v1.118.46) (2025-12-18)
 
 #### Merged Pull Requests
 - Fix CI errors [#733](https://github.com/inspec/inspec-azure/pull/733) ([balasubramanian-s](https://github.com/balasubramanian-s))
-<!-- latest_release -->
 
 ## [v1.118.45](https://github.com/inspec/inspec-azure/tree/v1.118.45) (2025-10-06)
 
