@@ -646,3 +646,7 @@ A combination of the above can be provided.
 ```shell
 rake tf:apply[management_group,public_ip,network_watcher]
 ```
+
+# Copyright
+
+See [COPYRIGHT.md](./COPYRIGHT.md).
