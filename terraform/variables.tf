@@ -116,6 +116,10 @@ variable "management_group_count" {
   default = 1
 }
 
+variable "private_endpoint_count" {
+  default = 1
+}
+
 variable "policy_definition_name" {
   default = "inspec_compliance_audit"
 }

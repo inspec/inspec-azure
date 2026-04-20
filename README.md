@@ -200,6 +200,7 @@ With the generic resources:
 | [azure_mysql_server](https://docs.chef.io/inspec/resources/azure_mysql_server/)                                                                         | [azure_mysql_servers](https://docs.chef.io/inspec/resources/azure_mysql_servers/)                                                                         |
 | [azure_mysql_server_configuration](https://docs.chef.io/inspec/resources/azure_mysql_server_configuration/)                                             | [azure_mysql_server_configurations](https://docs.chef.io/inspec/resources/azure_mysql_server_configurations/)                                             |
 | [azure_network_interface](https://docs.chef.io/inspec/resources/azure_network_interface/)                                                               | [azure_network_interfaces](https://docs.chef.io/inspec/resources/azure_network_interfaces/)                                                               |
+| [azure_network_private_endpoint](https://docs.chef.io/inspec/resources/azure_network_private_endpoint/)                                                 | [azure_network_private_endpoints](https://docs.chef.io/inspec/resources/azure_network_private_endpoints/)                                                 |
 | [azure_network_security_group](https://docs.chef.io/inspec/resources/azure_network_security_group/)                                                     | [azure_network_security_groups](https://docs.chef.io/inspec/resources/azure_network_security_groups/)                                                     |
 | [azure_network_watcher](https://docs.chef.io/inspec/resources/azure_network_watcher/)                                                                   | [azure_network_watchers](https://docs.chef.io/inspec/resources/azure_network_watchers/)                                                                   |
 | No Singular Resource                                                                                                                                    | [azure_policy_assignments](https://docs.chef.io/inspec/resources/azure_policy_assignments/)                                                               |
@@ -433,6 +434,7 @@ They can be defined as environment variables or resource parameters (has priorit
 | azurerm_mysql_database, azurerm_mysql_databases                                   | `2017-12-01`                        | [azure_mysql_database](https://docs.chef.io/inspec/resources/azure_mysql_database/), [azure_mysql_databases](https://docs.chef.io/inspec/resources/azure_mysql_databases/)                                                                     |
 | azurerm_mysql_server, azurerm_mysql_servers                                       | `2017-12-01`                        | [azure_mysql_server](https://docs.chef.io/inspec/resources/azure_mysql_server/), [azure_mysql_servers](https://docs.chef.io/inspec/resources/azure_mysql_servers/)                                                                             |
 | azurerm_network_interface, azurerm_network_interfaces                             | `2018-11-01`                        | [azure_network_interface](https://docs.chef.io/inspec/resources/azure_network_interface/), [azure_network_interfaces](https://docs.chef.io/inspec/resources/azure_network_interfaces/)                                                         |
+| azurerm_network_private_endpoint, azurerm_network_private_endpoints               | `2020-05-01`                        | [azure_network_private_endpoint](https://docs.chef.io/inspec/resources/azure_network_private_endpoint/), [azure_network_private_endpoints](https://docs.chef.io/inspec/resources/azure_network_private_endpoints/)                           |
 | azurerm_network_security_group, azurerm_network_security_groups                   | `2018-02-01`                        | [azure_network_security_group](https://docs.chef.io/inspec/resources/azure_network_security_group/), [azure_network_security_groups](https://docs.chef.io/inspec/resources/azure_network_security_groups/)                                     |
 | azurerm_network_watcher, azurerm_network_watchers                                 | `2018-02-01`                        | [azure_network_watcher](https://docs.chef.io/inspec/resources/azure_network_watcher/), [azure_network_watchers](https://docs.chef.io/inspec/resources/azure_network_watchers/)                                                                 |
 | azurerm_postgresql_database, azurerm_postgresql_databases                         | `2017-12-01`                        | [azure_postgresql_database](https://docs.chef.io/inspec/resources/azure_postgresql_database/), [azure_postgresql_databases](https://docs.chef.io/inspec/resources/azure_postgresql_databases/)                                                 |
@@ -641,8 +643,14 @@ rake tf:apply[api_management]
 rake tf:apply[management_group]
 ```
 
+- Private Endpoint
+
+```shell
+rake tf:apply[private_endpoint]
+```
+
 A combination of the above can be provided.
 
 ```shell
-rake tf:apply[management_group,public_ip,network_watcher]
+rake tf:apply[management_group,public_ip,network_watcher,private_endpoint]
 ```
